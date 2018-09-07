@@ -12,5 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('layouts/admin');
+    return view('layouts.app');
 });
+
+Route::get('personal', 'Users\UserController@index')->name('personal.index');
+Route::get('personal/create', function() {return view('archivos.personal.create');})->name('personal.create');
+
+Auth::routes();
+Route::get('/ui', function () { return view('layouts.admin'); })->name('ui');
+Route::get('/register', function () { return view('register'); })->name('register');
