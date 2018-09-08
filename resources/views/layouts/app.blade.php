@@ -49,7 +49,6 @@
   <div class="container-fluid expanded-panel">
     <div class="row">
       <div id="logo" class="col-xs-12 col-sm-2">
-        <img src="{{url('img/logo.jpeg')}}" style="width: 100%;">
         <a href="index.html">Madre Teresa</a>
       </div>
       <div id="top-panel" class="col-xs-12 col-sm-10">
