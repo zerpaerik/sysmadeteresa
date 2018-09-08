@@ -8,8 +8,8 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Personal</strong></span>
-					<a href="{{route('personal.create')}}" class="btn btn-primary">Agregar</a>
+					<span><strong>Usuarios</strong></span>
+					<a href="{{route('user.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -25,25 +25,21 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
+							<th>Id</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th>DNI</th>
-							<th>Telefono</th>
 							<th>Email</th>
-							<th>Dirección</th>
-							<th>Acciones</th>
+							<th>Rol</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($personal as $person)					
+						@foreach($users as $user)					
 							<tr>
-								<td>{{$person->name}}</td>
-								<td>{{$person->lastname}}</td>
-								<td>{{$person->dni}}</td>
-								<td>{{$person->phone}}</td>
-								<td>{{$person->email}}</td>
-								<td>{{$person->address}}</td>
-								<td><a href="personal/{{$person->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td>{{$user->id}}</td>
+								<td>{{$user->name}}</td>
+								<td>{{$user->lastname}}</td>
+								<td>{{$user->email}}</td>
+								<td>{{($user->role_id == 1) ? 'admin' : 'regular'}}</td>
 							</tr>
 						@endforeach
 					</tbody>

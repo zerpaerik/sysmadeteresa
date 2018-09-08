@@ -16,11 +16,8 @@ class UserSeeder extends Seeder
         	"name" => "admin",
         	"lastname" => "admin",
         	"password" => \Hash::make("password"),
-        	"dni" => "123456",
-        	"phone" => "5555555",
         	"email" => "admin@admin.com",
-        	"role_id" => 1,
-        	"address" => "web" 
+        	"role_id" => 1
         ]);
     }
 }

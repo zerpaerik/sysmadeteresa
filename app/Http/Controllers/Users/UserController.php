@@ -10,8 +10,8 @@ use App\Models\Role;
 class UserController extends Controller
 {
 	public function index(){
-		$users = User::where('role_id', "!=", 1)->get();
-		return view('archivos.personal.index', ["users" => $users]);
+		$users = User::all();
+		return view('archivos.users.index', ["users" => $users]);
 	}
 
 	public function create(Request $request){
@@ -19,10 +19,7 @@ class UserController extends Controller
           'name' => 'required|string|max:255',
           'lastname' => 'required|string|max:255',
           'email' => 'required|email|unique:users',
-          'phone' => 'required|unique:users',
-          'dni' => 'required|unique:users',
           'role_id' => 'required',
-          'address' => 'required',
           'password' => 'required|string|min:6',
         ]);
         if($validator->fails()) 
@@ -31,10 +28,7 @@ class UserController extends Controller
       'name' => $request->name,
       'lastname' => $request->lastname,
       'email' => $request->email,
-      'phone' => $request->phone,
-      'dni' => $request->dni,
       'role_id' => $request->role_id,
-      'address' => $request->address,
       'password' => \Hash::make($request->password)
     ]);
 		return redirect()->action('Users\UserController@index', ["created" => true, "users" => User::all()]);
@@ -51,7 +45,7 @@ class UserController extends Controller
   }
 
   public function createView() {
-    return view('archivos.personal.create', ["roles" => Role::all()]);
+    return view('archivos.users.create', ["roles" => Role::all()]);
   }
 
 }

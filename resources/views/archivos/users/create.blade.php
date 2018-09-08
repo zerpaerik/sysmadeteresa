@@ -22,7 +22,7 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="personal/create">
+				<form class="form-horizontal" role="form" method="post" action="user/create">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombres</label>
@@ -37,21 +37,24 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="email" placeholder="Email" data-toggle="tooltip" data-placement="bottom" title="Email">
 						</div>
-						
-						<label class="col-sm-1 control-label">DNI</label>
+						<label class="col-sm-1 control-label">Rol</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="dni" placeholder="DNI" data-toggle="tooltip" data-placement="bottom" title="DNI">
-						</div>
+							<select class="form-control" name="role_id">
+								@foreach($roles as $role)
+									<option value="{{$role->id}}">{{$role->name}}</option>
+								@endforeach
+							</select>
+						</div>							
 
-						<label class="col-sm-1 control-label">Dirección</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" name="address" placeholder="Dirección" data-toggle="tooltip" data-placement="bottom" title="Dirección">
+						<label class="col-sm-1 control-label">Contraseña</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="password" placeholder="Contraseña" data-toggle="tooltip" data-placement="bottom" title="Contraseña">
 						</div>	
-						
-						<label class="col-sm-1 control-label">Telefono</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" name="phone" placeholder="Telefono" data-toggle="tooltip" data-placement="bottom" title="Telefono">
-						</div>								
+
+						<label class="col-sm-1 control-label">Confirmar</label>
+						<div class="col-sm-3">
+							<input type="password" class="form-control" name="confirm_password" placeholder="Confirmar contraseña" data-toggle="tooltip" data-placement="bottom" title="Confirmar contraseña">
+						</div>	
 
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">

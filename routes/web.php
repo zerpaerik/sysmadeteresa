@@ -20,9 +20,14 @@ Route::get('role-create', 'Users\RoleController@createView')->name('role.create'
 Route::post('role/create', 'Users\RoleController@create')->middleware('auth');
 Route::get('role/{id}', 'Users\RoleController@delete')->middleware('auth');
 
-Route::get('personal', 'Users\UserController@index')->name('personal.index')->middleware('auth');
-Route::get('personal-create', 'Users\UserController@createView')->name('personal.create')->middleware('auth');
-Route::post('personal/create', 'Users\UserController@create')->middleware('auth');
+Route::get('personal', 'Personal\PersonalController@index')->name('personal.index')->middleware('auth');
+Route::get('personal-create', 'Personal\PersonalController@createView')->name('personal.create')->middleware('auth');
+Route::post('personal/create', 'Personal\PersonalController@create')->middleware('auth');
+Route::get('personal/{id}', 'Personal\PersonalController@delete')->middleware('auth');
+
+Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
+Route::get('user-create', 'Users\UserController@createView')->name('user.create')->middleware('auth');
+Route::post('user/create', 'Users\UserController@create')->middleware('auth');
 Route::get('user/{id}', 'Users\UserController@delete')->middleware('auth');
 
 Route::get('/ui', function () { return view('layouts.admin'); })->name('ui');
