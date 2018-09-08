@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>DevOOPS</title>
+    <title>sysMadreTeresa</title>
     <meta name="description" content="description">
     <meta name="author" content="DevOOPS">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="plugins/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="{{url('/plugins/bootstrap/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{url('/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-    <link href="plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-    <link href="plugins/xcharts/xcharts.min.css" rel="stylesheet">
-    <link href="plugins/select2/select2.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{url('/plugins/fancybox/jquery.fancybox.css')}}" rel="stylesheet">
+    <link href="{{url('/plugins/fullcalendar/fullcalendar.css')}}" rel="stylesheet">
+    <link href="{{url('/plugins/xcharts/xcharts.min.css')}}" rel="stylesheet">
+    <link href="{{url('/plugins/select2/select2.css')}}" rel="stylesheet">
+    <link href="{{url('/css/style.css')}}" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
         <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
@@ -49,7 +49,7 @@
   <div class="container-fluid expanded-panel">
     <div class="row">
       <div id="logo" class="col-xs-12 col-sm-2">
-        <a href="index.html">DevOOPS</a>
+        <a href="index.html">sysMadreTeresa</a>
       </div>
       <div id="top-panel" class="col-xs-12 col-sm-10">
         <div class="row">
@@ -81,13 +81,15 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
                   <div class="avatar">
-                    <img src="img/avatar.jpg" class="img-rounded" alt="avatar" />
+                    <img src="{{url('img/avatar.jpg')}}" class="img-rounded" alt="avatar" />
                   </div>
+                  @auth
                   <i class="fa fa-angle-down pull-right"></i>
                   <div class="user-mini pull-right">
-                    <span class="welcome">Welcome,</span>
-                    <span>Jane Devoops</span>
+                    <span class="welcome">Bienvenido,</span>
+                    <span>{{Auth::user()->name}}</span>
                   </div>
+                  @endauth
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -121,9 +123,12 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="{{route('logout')}}">
                       <i class="fa fa-power-off"></i>
-                      <span class="hidden-sm text">Logout</span>
+                      <form method="POST" action="logout">
+                          {{csrf_field()}}
+                        <input type="submit" class="hidden-sm text" value="Logout">
+                      </form>
                     </a>
                   </li>
                 </ul>
@@ -147,7 +152,7 @@
     <!--Start Content-->
     <div id="content" class="col-xs-12 col-sm-10">
       <div class="preloader">
-        <img src="img/devoops_getdata.gif" class="devoops-getdata" alt="preloader"/>
+        <img src="{{url('img/devoops_getdata.gif')}}" class="devoops-getdata" alt="preloader"/>
       </div>
       <div id="app">
         @yield('content')
@@ -159,14 +164,14 @@
 <!--End Container-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!--<script src="http://code.jquery.com/jquery.js"></script>-->
-<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="{{url('/plugins/jquery/jquery-2.1.0.min.js')}}"></script>
+<script src="{{url('/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="plugins/bootstrap/bootstrap.min.js"></script>
-<script src="plugins/justified-gallery/jquery.justifiedgallery.min.js"></script>
-<script src="plugins/tinymce/tinymce.min.js"></script>
-<script src="plugins/tinymce/jquery.tinymce.min.js"></script>
+<script src="{{url('/plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{url('/plugins/justified-gallery/jquery.justifiedgallery.min.js')}}"></script>
+<script src="{{url('/plugins/tinymce/tinymce.min.js')}}"></script>
+<script src="{{url('/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
 <!-- All functions for this theme + document.ready processing -->
-<script src="js/devoops.js"></script>
+<script src="{{url('/js/devoops.js')}}"></script>
 </body>
 </html>

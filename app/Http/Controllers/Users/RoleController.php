@@ -15,16 +15,20 @@ class RoleController extends Controller
 			"name" => "required|unique:roles"
 		]);
 
-		if($validator->fails()) return view(/*view*/, ["errors" => $validator->errors()]);
+		if($validator->fails()) return view('archivos.role.create', ["errors" => $validator->errors()]);
 
 		$role = Role::create([
 			"name" => $request->name,
 		]);
 
-		return view(/*view*/, ["role" => $role]);
+		return redirect()->action('Users\RoleController@index', ["created" => true, "roles" => Role::all()]);
 	}
 
     public function index(){
-    	//
+    	return view('archivos.role.index', ["roles" => Role::all()]);
     }
+
+  public function createView() {
+    return view('archivos.role.create', ["roles" => Role::all()]);
+  }
 }

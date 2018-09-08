@@ -8,8 +8,8 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Usuarios</strong></span>
-					<a href="{{route('personal.create')}}" class="btn btn-primary">Agregar</a>
+					<span><strong>Roles</strong></span>
+					<a href="{{route('role.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -26,26 +26,16 @@
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Nombres</th>
-							<th>Apellidos</th>
-							<th>DNI</th>
-							<th>Telefono</th>
-							<th>Email</th>
-							<th>Dirección</th>
+							<th>Nombre</th>
 							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($users as $user)					
+						@foreach($roles as $role)					
 							<tr>
-								<td>{{$user->id}}</td>
-								<td>{{$user->name}}</td>
-								<td>{{$user->lastname}}</td>
-								<td>{{$user->dni}}</td>
-								<td>{{$user->phone}}</td>
-								<td>{{$user->email}}</td>
-								<td>{{$user->address}}</td>
-								<td><a href="user/{{$user->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td>{{$role->id}}</td>
+								<td>{{$role->name}}</td>
+								<td><a href="#" class="btn btn-danger">Eliminar</a></td>
 							</tr>
 						@endforeach
 					</tbody>
