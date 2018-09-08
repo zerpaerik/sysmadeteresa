@@ -24,7 +24,7 @@
 			<div class="box">
 				<div class="box-content">
 					<div class="text-center">
-						<h3 class="page-header">MadreTeresa</h3>
+						   <img src="{{url('img/logo.jpeg')}}" style="width: 100%;">
 					</div>
 					<form method="POST" action="login">
 						{{ csrf_field() }}
