@@ -36,6 +36,14 @@
 						<label class="control-label">contraseña</label>
 						<input type="password" class="form-control" name="password" />
 					</div>
+					<div class="form-group">
+						<label class="control-label">sede</label>
+						<select class="form-control" name="sede">
+							@foreach($sedes as $sede)
+							<option value="{{$sede->id}}">{{$sede->name}}</option>
+							@endforeach
+						</select>
+					</div>
 					<div class="text-center">
 						<input type="submit" value="Acceder" class="btn btn-primary">
 					</div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Role;
+use App\Models\Config\Sede;
 
 class UserController extends Controller
 {
@@ -41,7 +42,7 @@ class UserController extends Controller
   }
 
   public function loginView(){
-    return view('auth.login');
+    return view('auth.login', ["sedes" => Sede::all()]);
   }
 
   public function createView() {
