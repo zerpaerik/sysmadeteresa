@@ -116,7 +116,6 @@
     </ul>
   </li>
 
-
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
@@ -130,6 +129,9 @@
       <li>
         <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
       </li>
+      <li>
+        <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
+      </li>      
       @endif
     </ul>
   </li>

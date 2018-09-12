@@ -26,7 +26,7 @@ Route::post('personal/create', 'Personal\PersonalController@create')->middleware
 Route::get('personal/{id}', 'Personal\PersonalController@delete')->middleware('auth');
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
-Route::get('user-create', 'Users\UserController@createView')->name('user.create')->middleware('auth');
+
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');
 Route::get('user/{id}', 'Users\UserController@delete')->middleware('auth');
 
@@ -34,3 +34,10 @@ Route::get('/ui', function () { return view('layouts.admin'); })->name('ui');
 Route::get('login', 'Users\UserController@loginView')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('user-create', 'Users\UserController@createView')->name('user.create')->middleware('auth');
+
+Route::get('sedes', 'Config\SedeController@index')->name('sedes.index')->middleware('auth');
+
+Route::get('sedes-create', 'Config\SedeController@createView')->name('sedes.create');
+Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');

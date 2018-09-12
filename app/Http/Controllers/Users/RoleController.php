@@ -25,10 +25,10 @@ class RoleController extends Controller
 	}
 
     public function index(){
-    	return view('archivos.role.index', ["roles" => Role::all()]);
+      return view('archivos.role.index', ["roles" => Role::all()]);
     }
 
-  public function createView() {
-    return view('archivos.role.create', ["roles" => Role::all()]);
-  }
+	public function createView() {
+	  return view('archivos.role.create', ["roles" => Role::all()]);
+	}
 }
