@@ -29,15 +29,15 @@
 					<form method="POST" action="login">
 						{{ csrf_field() }}
 					<div class="form-group">
-						<label class="control-label">email</label>
+						<label class="control-label">E-mail</label>
 						<input type="text" class="form-control" name="email" />
 					</div>
 					<div class="form-group">
-						<label class="control-label">contraseña</label>
+						<label class="control-label">Contraseña</label>
 						<input type="password" class="form-control" name="password" />
 					</div>
 					<div class="form-group">
-						<label class="control-label">sede</label>
+						<label class="control-label">Sede</label>
 						<select class="form-control" name="sede">
 							@foreach($sedes as $sede)
 							<option value="{{$sede->id}}">{{$sede->name}}</option>

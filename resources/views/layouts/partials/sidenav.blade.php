@@ -8,25 +8,25 @@
       <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-hospital-o"></i> Centros medicos</a>
+      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros medicos</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-circle-o"></i> Laboratorios</a>
+      <a href="{{route('laboratorios.index')}}"><i class="fa fa-circle-o"></i> Laboratorios</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
+      <a href="{{route('analisis.index')}}"><i class="fa fa-renren"></i> Analisis de laboratorios</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-dropbox"></i> Servicios</a>
+      <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+      <a href=""><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-wheelchair"></i> Pacientes</a>
+      <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
     </li>    
   </ul>
 </li>
