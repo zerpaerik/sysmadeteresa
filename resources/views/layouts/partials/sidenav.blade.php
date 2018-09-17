@@ -130,6 +130,15 @@
         <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
       </li>
       <li>
+        <a href="{{route('medidas.index')}}"><i class="fa fa-user-md"></i> Medidas</a>
+      </li>
+      <li>
+        <a href="{{route('categorias.index')}}"><i class="fa fa-list-alt"></i> Categorias</a>
+      </li>
+      <li>
+        <a href="{{route('proveedores.index')}}"><i class="fa fa-truck"></i> Proveedores</a>
+      </li>      
+      <li>
         <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
       </li>      
       @endif

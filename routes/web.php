@@ -41,3 +41,12 @@ Route::get('sedes', 'Config\SedeController@index')->name('sedes.index')->middlew
 
 Route::get('sedes-create', 'Config\SedeController@createView')->name('sedes.create');
 Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');
+
+//Medidas
+Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');
+
+//Proveedores
+Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores.index');
+
+//Categorias
+Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
