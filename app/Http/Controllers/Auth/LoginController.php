@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Models\Config\Sede;
 
 class LoginController extends Controller
 {
@@ -50,6 +51,7 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             session(['sede' => $request->sede]);
+            session(['sedeName' => Sede::where('id', '=', $request->sede)->get(['name'])->first()->name]);
             return $this->sendLoginResponse($request);
         }
 

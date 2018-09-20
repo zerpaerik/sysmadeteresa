@@ -38,14 +38,35 @@
   </a>
   <ul class="dropdown-menu">
     <li>
-      <a href="#"><i class="fa fa-plus-square-o"></i> Productos</a>
+      <a href="{{route('productos.index')}}"><i class="fa fa-plus-square-o"></i> Productos</a>
     </li>
     <li>
       <a href="#"><i class="fa fa-refresh"></i> Actualizar existencias</a>
     </li>
     <li>
-      <a href="#"><i class="fa fa-share"></i> Ingreso de productos</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#"><i class="fa fa-plus-square-o"></i> Ingresos</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-refresh"></i> Actualizar existencias</a>
+          </li>
+        </ul>      
     </li>
+
+    <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#"><i class="fa fa-plus-square-o"></i> Ventas</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-refresh"></i> Movimientos</a>
+          </li>
+        </ul>      
+    </li>
+
   </ul>
 </li>
 

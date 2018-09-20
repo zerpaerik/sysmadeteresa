@@ -91,6 +91,11 @@ Route::get('sedes', 'Config\SedeController@index')->name('sedes.index')->middlew
 Route::get('sedes-create', 'Config\SedeController@createView')->name('sedes.create');
 Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');
 
+//Productos
+Route::get('productos', 'Existencias\ProductoController@index')->name('productos.index');
+Route::post('producto/create', 'Existencias\ProductoController@create')->name('producto.create');
+Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
+
 //Medidas
 Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');
 

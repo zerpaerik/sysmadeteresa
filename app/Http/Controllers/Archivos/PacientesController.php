@@ -28,7 +28,7 @@ class PacientesController extends Controller
         if($validator->fails()) 
           return redirect()->action('Archivos\PacientesController@createView', ['errors' => $validator->errors()]);
 		$pacientes = Pacientes::create([
-		  'dni' => $request->dni,
+		  	'dni' => $request->dni,
 	      'nombres' => $request->nombres,
 	      'apellidos' => $request->apellidos,
 	      'direccion' => $request->direccion,

@@ -9,7 +9,7 @@
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
 					<span><strong>{{ucfirst($model)}}</strong></span>
-					<a href="{{route('sedes.create')}}" class="btn btn-primary">Agregar</a>
+					<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
