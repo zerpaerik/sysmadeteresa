@@ -34,8 +34,10 @@
 						@foreach($data as $d)
 						<tr>
 							@foreach($fields as $f)
-							<td>{{$d->$f}}</td>
-							@endforeach
+								<td>{{$d->$f}}</td>
+							@endforeach						
+							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>
@@ -56,5 +58,9 @@
 	  A simple success alert—check it out!
 	</div>
 @endif
-
 @endsection
+<script type="text/javascript">
+	function del(id){
+		alert("deleting "+id);
+	}
+</script>

@@ -95,12 +95,21 @@ Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');
 Route::get('productos', 'Existencias\ProductoController@index')->name('productos.index');
 Route::post('producto/create', 'Existencias\ProductoController@create')->name('producto.create');
 Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
+Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
+Route::post('producto/edit', 'Existencias\ProductoController@edit');
+Route::delete('existencias-delete-{id}', 'Existencias\ProductoController@delete');
 
 //Medidas
 Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');
+Route::get('medidas-create', 'Config\MedidaController@createView')->name('medidas.create');
+Route::get('medidas-edit-{id}', 'Config\MedidaController@editView')->name('medidas.edit');
 
 //Proveedores
 Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores.index');
+Route::get('proveedores-create', 'Config\ProveedorController@createView')->name('proveedores.create');
+Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name('proveedores.edit');
 
 //Categorias
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
+Route::get('categorias-create', 'Config\CategoriaController@createView')->name('categorias.create');
+Route::get('categorias-edit', 'Config\CategoriaController@editView')->name('categorias.edit');

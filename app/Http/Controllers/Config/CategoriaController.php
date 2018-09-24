@@ -18,5 +18,5 @@ class CategoriaController extends Controller
 			"fields" => ["id", "nombre"],
 		]);
 	}
-    
+
 }
