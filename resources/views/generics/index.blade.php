@@ -2,6 +2,7 @@
 
 @section('content')
 </br>
+
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
@@ -53,7 +54,7 @@
 		</div>
 	</div>
 </div>
-
+<button onclick="openmodal();"></button>
 @if(isset($created))
 	<div class="alert alert-success" role="alert">
 	  A simple success alert—check it out!
@@ -75,6 +76,33 @@
       }
     });
 	}
+
+	function closeModal(){
+		$('#myModal').modal('hide');
+	}
+
+	function openmodal(){
+		$("#myModal").show();
+	}
+
 </script>
+
+<div id="myModal" class="modal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Modal Body</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
