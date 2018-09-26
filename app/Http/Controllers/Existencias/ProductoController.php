@@ -16,7 +16,7 @@ class ProductoController extends Controller
 			return view('generics.index', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
-				"headers" => ["id", "nombre", "cantidad", "medida", "categoria", "sede_id", "transferir", "editar"],
+				"headers" => ["id", "nombre", "cantidad", "medida", "categoria", "sede_id", "Editar", "Eliminar"],
 				"data" => $producto,
 				"fields" => ["id", "nombre", "cantidad", "medida", "categoria", "sede_id"],
           "actions" => [
@@ -47,9 +47,9 @@ class ProductoController extends Controller
     }
 
     public function delete($id){
-      $p = Producto::find($request->id);
+      $p = Producto::find($id);
       $res = $p->delete();
-      return redirect()->action('Existencias\ProductoController@index', ["deleted" => $res]);
+      return response()->json(["deleted" => $res]);
     }
 
     public function create(Request $request){

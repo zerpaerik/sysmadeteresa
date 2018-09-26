@@ -53,14 +53,28 @@
 		</div>
 	</div>
 </div>
+
 @if(isset($created))
 	<div class="alert alert-success" role="alert">
 	  A simple success alert—check it out!
 	</div>
 @endif
-@endsection
+
 <script type="text/javascript">
 	function del(id){
-		alert("deleting "+id);
+		$.ajax({
+      url: "{{$model}}-delete-"+id,
+      headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "delete",
+      dataType: "json",
+      data: {},
+      success: function(res){
+      	location.reload(true);
+      }
+    });
 	}
 </script>
+
+@endsection
