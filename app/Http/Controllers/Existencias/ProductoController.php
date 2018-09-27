@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Existencias;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Existencias\Producto;
-use App\Models\Config\{Medida, Categoria};
+use App\Models\Config\{Medida, Categoria, Sede};
 
 
 class ProductoController extends Controller
@@ -37,15 +37,16 @@ class ProductoController extends Controller
     }
 
     public function productInView(){
-      return view('existencias.entrada', ["productos" => Producto::get(['id', 'nombre'])]);  
+      return view('existencias.entrada', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre'])]);  
     }
 
     public function productOutView(){
-      return view('existencias.salida', ["productos" => Producto::get(['id', 'nombre'])]);    
+      return view('existencias.salida', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre'])]);    
     }
 
     public function productTransView(){
-      return view('existencias.transferir', ["productos" => Producto::get(['id', 'nombre'])]);    
+      $sedes = Sede::whereNotIn("id", [\Session::get('sede')])->get(["id", "name"]);
+      return view('existencias.transferir', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre']), "sedes" => $sedes]);    
     }
 
     public function getProduct($id){
@@ -57,7 +58,35 @@ class ProductoController extends Controller
       $p = Producto::find($request->id);
       $p->cantidad = $p->cantidad + $request->cantidadplus;
       $res = $p->save();
-      return response()->json(["success" => $res], 200);
+      return response()->json(["success" => $res, "producto" => $p], 200);
+    }
+
+    public function transfer(Request $request){
+      $pfrom = Producto::where('sede_id', '=', \Session::get("sede"))
+      ->where("id", '=', $request->id)
+      ->get()->first();
+      $pfrom->cantidad = $pfrom->cantidad - $request->cantidadplus;
+      $wasSubs = $pfrom->save();
+
+      $p = Producto::where('sede_id', '=', $request->sede)
+      ->where("nombre", '=', $pfrom->nombre)
+      ->get()->first();
+      if($wasSubs){
+        if($p){
+          $p->cantidad = $p->cantidad + $request->cantidadplus;
+          $res = $p->save();
+          return response()->json(["success" => $res, "producto" => $pfrom, "to" => $p]);
+        }else{
+          $newprod = Producto::create([
+            "nombre" => $pfrom->nombre,
+            "categoria" => $pfrom->getOriginal("categoria"),
+            "medida" => $pfrom->getOriginal("medida"),
+            "cantidad" => $request->cantidadplus,
+            "sede_id" => $request->sede
+          ]);
+          return response()->json(["success" => true, "producto" => $pfrom, "to" => $newprod]);
+        }
+      }
     }
 
     public function edit(Request $request){

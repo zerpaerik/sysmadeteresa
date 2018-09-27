@@ -102,6 +102,7 @@ Route::get('existencias-in', 'Existencias\ProductoController@productInView')->na
 Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->name('productos.out');
 Route::get('existencias-trans', 'Existencias\ProductoController@productTransView')->name('productos.trans');
 Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
+Route::post('transfer', 'Existencias\ProductoController@transfer');
 Route::patch('producto', 'Existencias\ProductoController@addCant');
 
 //Medidas

@@ -54,14 +54,14 @@
 							<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad actual" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" disabled="disabled">
 						</div>
 
-						<div class="col-sm-8">
-							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Agregar">
-						</div>
-
-						<label class="col-sm-2 control-label">Agregar</label>
+						<label class="col-sm-10 control-label">Agregar</label>
 						<div class="col-sm-2">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
 						</div>
+
+						<div class="col-sm-12" style="float:right;">
+							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+						</div>				
 
 						<input type="hidden" name="id" id="idp">
 
@@ -71,6 +71,18 @@
 		</div>
 		<div class="alert alert-success invisible" id="successalrt" role="alert">Actualizado</div>
 	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Tipo</th>
+				<th>Producto</th>
+				<th>Cantidad</th>
+			</tr>
+		</thead>
+		<tbody id="table-b">
+		</tbody>
+	</table>
 
 <script type="text/javascript">
 	document.getElementById("prod").addEventListener('change', function(evt){
@@ -111,8 +123,8 @@
       data: d,
       success: function(res){
       	if(res.success){
-      		var sumatoria = eval($('#cantidad').val() +"+"+ $('#cantidadplus').val());
-	      	$('#cantidad').val(sumatoria);
+      		$( "#table-b" ).append( "<tr><td>Entrada</td><td>"+res.producto.nombre+"</td><td>"+$('#cantidadplus').val()+"</td></tr>" );      		
+	      	$('#cantidad').val(res.producto.cantidad);
 	      	$('#cantidadplus').val(0);      		
       		$("#successalrt").toggleClass("invisible");
       		setTimeout(function(){
