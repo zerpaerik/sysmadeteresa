@@ -136,7 +136,7 @@
       headers: {
     		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   		},
-      type: "post",
+      type: "POST",
       data: d,
       success: function(res){
       	if(res.success){
