@@ -98,6 +98,11 @@ Route::get('productos-create', 'Existencias\ProductoController@createView')->nam
 Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
 Route::post('producto/edit', 'Existencias\ProductoController@edit');
 Route::delete('existencias-delete-{id}', 'Existencias\ProductoController@delete');
+Route::get('existencias-in', 'Existencias\ProductoController@productInView')->name('productos.in');
+Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->name('productos.out');
+Route::get('existencias-trans', 'Existencias\ProductoController@productTransView')->name('productos.trans');
+Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
+Route::patch('producto', 'Existencias\ProductoController@addCant');
 
 //Medidas
 Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');

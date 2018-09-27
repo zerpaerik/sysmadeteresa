@@ -54,7 +54,6 @@
 		</div>
 	</div>
 </div>
-<button onclick="openmodal();"></button>
 @if(isset($created))
 	<div class="alert alert-success" role="alert">
 	  A simple success alert—check it out!

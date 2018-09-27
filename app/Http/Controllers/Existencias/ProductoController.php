@@ -36,6 +36,30 @@ class ProductoController extends Controller
       
     }
 
+    public function productInView(){
+      return view('existencias.entrada', ["productos" => Producto::get(['id', 'nombre'])]);  
+    }
+
+    public function productOutView(){
+      return view('existencias.salida', ["productos" => Producto::get(['id', 'nombre'])]);    
+    }
+
+    public function productTransView(){
+      return view('existencias.transferir', ["productos" => Producto::get(['id', 'nombre'])]);    
+    }
+
+    public function getProduct($id){
+      $p = Producto::find($id);
+      return response()->json(["producto" => $p], 200);
+    }
+
+    public function addCant(Request $request){
+      $p = Producto::find($request->id);
+      $p->cantidad = $p->cantidad + $request->cantidadplus;
+      $res = $p->save();
+      return response()->json(["success" => $res], 200);
+    }
+
     public function edit(Request $request){
       $p = Producto::find($request->id);
       $p->nombre = $request->nombre;

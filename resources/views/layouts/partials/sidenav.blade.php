@@ -47,7 +47,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="#"><i class="fa fa-plus-square-o"></i> Ingresos</a>
+            <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
           </li>
           <li>
             <a href="#"><i class="fa fa-refresh"></i> Actualizar existencias</a>
@@ -59,10 +59,10 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="#"><i class="fa fa-plus-square-o"></i> Ventas</a>
+            <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
           <li>
-            <a href="#"><i class="fa fa-refresh"></i> Movimientos</a>
+            <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
           </li>
         </ul>      
     </li>
