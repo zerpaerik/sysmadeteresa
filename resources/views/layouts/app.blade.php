@@ -9,6 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{url('/plugins/bootstrap/bootstrap.css')}}" rel="stylesheet">
     <link href="{{url('/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>    
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <link href="{{url('/plugins/fancybox/jquery.fancybox.css')}}" rel="stylesheet">
@@ -142,11 +144,15 @@
 <script src="{{url('/plugins/jquery/jquery-2.1.0.min.js')}}"></script>
 <script src="{{url('/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/lang/es.js"></script>
 <script src="{{url('/plugins/bootstrap/bootstrap.min.js')}}"></script>
 <script src="{{url('/plugins/justified-gallery/jquery.justifiedgallery.min.js')}}"></script>
 <script src="{{url('/plugins/tinymce/tinymce.min.js')}}"></script>
 <script src="{{url('/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
 <!-- All functions for this theme + document.ready processing -->
+@yield('scripts')
 <script src="{{url('/js/devoops.js')}}"></script>
 </body>
 </html>

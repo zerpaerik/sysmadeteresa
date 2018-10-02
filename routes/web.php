@@ -120,3 +120,6 @@ Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
 Route::get('categorias-create', 'Config\CategoriaController@createView')->name('categorias.create');
 Route::get('categorias-edit-{id}', 'Config\CategoriaController@editView')->name('categorias.edit');
+
+//Events
+Route::get('events', 'Events\EventController@index');
