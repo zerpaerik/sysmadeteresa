@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableEspecialidades extends Migration
+class CreateTableHistorias extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateTableEspecialidades extends Migration
      */
     public function up()
     {
-      Schema::create('especialidades', function (Blueprint $table) {
+      Schema::create('historias', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('nombre');
-        $table->string('codigo');
+        $table->string('nombres');
         $table->timestamps();
       });
     }
