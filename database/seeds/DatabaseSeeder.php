@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MedidasSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ProveedorSeeder::class);
+        $this->call(EspecialidadSeeder::class);
+        $this->call(ProfesionalSeeder::class);
     }
 }

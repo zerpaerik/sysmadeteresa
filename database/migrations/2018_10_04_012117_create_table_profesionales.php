@@ -18,7 +18,6 @@ class CreateTableProfesionales extends Migration
         $table->string('nombres');
         $table->string('apellidos');
         $table->string('dni');
-        $table->string('precio');
         $table->string('cmp');
         $table->string('codigo');
         $table->integer('especialidad')->index()->unsigned();
