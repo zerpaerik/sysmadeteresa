@@ -13,7 +13,7 @@ class CreateTableEdocivil extends Migration
      */
     public function up()
     {
-      Schema::create('edocivils', function (Blueprint $table) {
+      Schema::create('edo_civils', function (Blueprint $table) {
         $table->increments('id');
         $table->string('nombre');
         $table->timestamps();

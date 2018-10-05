@@ -36,4 +36,9 @@ class EventController extends Controller
     ]);
     return view('events.index', compact('calendar'));
   }
+
+  public function createView(){
+    return view('consultas.create');
+  }
+
 }

@@ -121,5 +121,6 @@ Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.i
 Route::get('categorias-create', 'Config\CategoriaController@createView')->name('categorias.create');
 Route::get('categorias-edit-{id}', 'Config\CategoriaController@editView')->name('categorias.edit');
 
-//Events
+//Consultas
 Route::get('events', 'Events\EventController@index');
+Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');

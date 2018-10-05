@@ -26,7 +26,7 @@ class CreateTablePacientes extends Migration
         $table->string('gradoinstruccion');
         $table->string('ocupacion');
         $table->integer('edocivil')->index()->unsigned();
-        $table->foreign('edocivil')->references('id')->on('edocivils');
+        $table->foreign('edocivil')->references('id')->on('edo_civils');
         $table->integer('estatus');
         $table->integer('historia')->index()->unsigned();
         $table->foreign('historia')->references('id')->on('historias');

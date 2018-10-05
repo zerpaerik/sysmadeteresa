@@ -97,6 +97,19 @@
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Consultas</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
+      </li>
+    </ul>
+  </li>
+
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
     </a>
