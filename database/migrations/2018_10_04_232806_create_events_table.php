@@ -20,8 +20,9 @@ class CreateEventsTable extends Migration
         $table->foreign('profesional')->references('id')->on('profesionales');
         $table->integer('paciente')->index()->unsigned();
         $table->foreign('paciente')->references('id')->on('pacientes');
-        $table->date('start_date');
-        $table->date('end_date');
+        $table->dateTime('start_date');
+        $table->dateTime('end_date');
+        $table->integer('entrada')->default(0);
         $table->timestamps();
       });
     }

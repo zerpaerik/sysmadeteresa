@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EdoCivilSeeder::class);
         $this->call(ProvinciaSeeder::class);
         $this->call(PacienteSeeder::class);
+        //$this->call(EventSeeder::class);
     }
 }
