@@ -15,13 +15,13 @@ class CreateTableProfesionales extends Migration
     {
       Schema::create('profesionales', function (Blueprint $table) {
         $table->increments('id');
-        $table->string('nombres');
+        $table->string('name');
         $table->string('apellidos');
         $table->string('dni');
         $table->string('cmp');
         $table->string('codigo');
-        $table->integer('especialidad')->index()->unsigned();
-        $table->foreign('especialidad')->references('id')->on('especialidades');
+        $table->integer('centro');
+        $table->integer('especialidad');
         $table->timestamps();
       });
     }

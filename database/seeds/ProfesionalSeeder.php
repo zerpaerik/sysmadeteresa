@@ -14,13 +14,13 @@ class ProfesionalSeeder extends Seeder
     {
 
     		$profesionales = [
-    			["nombres" => "Jose", 
+    			["name" => "Jose", 
     			"apellidos" => "Perez", 
     			"dni" => "123456789", 
     			"cmp" => "00000", 
     			"codigo" => "111111", 
     			"especialidad" => 1],
-                ["nombres" => "Juan", 
+                ["name" => "Juan", 
                 "apellidos" => "Rodriguez", 
                 "dni" => "012345678", 
                 "cmp" => "00001", 

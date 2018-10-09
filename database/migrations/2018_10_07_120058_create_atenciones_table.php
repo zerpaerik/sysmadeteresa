@@ -24,8 +24,6 @@ class CreateAtencionesTable extends Migration
             $table->foreign('id_servicio')->references('id')->on('servicios');
             $table->integer('id_laboratorio')->index()->unsigned();
             $table->foreign('id_laboratorio')->references('id')->on('analises');
-            $table->integer('id_paquete')->index()->unsigned();
-            $table->foreign('id_paquete')->references('id')->on('paquetes');
             $table->boolean('es_servicio');
             $table->boolean('es_laboratorio');
             $table->boolean('es_paquete');
@@ -38,8 +36,7 @@ class CreateAtencionesTable extends Migration
             $table->boolean('resultado');
             $table->date('fecha_pago_lab');
             $table->date('fecha_pago_comision');
-            $table->integer('id_sede')->index()->unsigned();
-            $table->foreign('id_sede')->references('id')->on('sede');
+            $table->integer('id_sede');
             $table->integer('estatus');
             $table->timestamps();
         });

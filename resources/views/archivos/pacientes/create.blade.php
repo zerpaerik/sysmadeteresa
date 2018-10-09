@@ -44,25 +44,36 @@
 						</div>
 
 						<label class="col-sm-1 control-label">Dirección</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="direccion" placeholder="Dirección" data-toggle="tooltip" data-placement="bottom" title="Dirección">
 						</div>	
 						
 						<label class="col-sm-1 control-label">Referencia</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="Referencia" placeholder="Referencia" data-toggle="tooltip" data-placement="bottom" title="Referencia">
 						</div>
 
+						<label class="col-sm-1 control-label">Ocupaciòn</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="ocupacion" placeholder="ocupacion" data-toggle="tooltip" data-placement="bottom" title="ocupacion">
+						</div>
+
+
+						<label class="col-sm-1 control-label">Nacimiento</label>
+						<div class="col-sm-3">
+							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="fechanac">
+						</div>
+
 						<label class="col-sm-1 control-label">Estado Civìl</label>
-						<div class="col-sm-2">
-							<select class="form-control" name="laboratorio">
+						<div class="col-sm-3">
+							<select class="form-control" name="edocivil">
 							@foreach($edocivil as $edo)
-							<option value="{{$edo->nombre}}">{{$edo->nombre}}</option>
+							<option value="{{$edo->id}}">{{$edo->nombre}}</option>
 							@endforeach
 						</select>
 						</div>	
-						<label class="col-sm-1 control-label">Grado de Inst.</label>
-						<div class="col-sm-2">
+						<label class="col-sm-1 control-label">Instrucciòn</label>
+						<div class="col-sm-3">
 							<select class="form-control" name="gradoinstruccion">
 							@foreach($gradoinstruccion as $gdo)
 							<option value="{{$gdo->nombre}}">{{$gdo->nombre}}</option>
@@ -70,18 +81,18 @@
 						</select>
 						</div>	
 						<label class="col-sm-1 control-label">Provincia</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<select class="form-control" name="provincia">
 							@foreach($provincias as $pro)
-							<option value="{{$pro->nombre}}">{{$pro->nombre}}</option>
+							<option value="{{$pro->id}}">{{$pro->nombre}}</option>
 							@endforeach
 						</select>
 						</div>	
 							<label class="col-sm-1 control-label">Distritos</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<select class="form-control" name="distrito">
 							@foreach($distritos as $dis)
-							<option value="{{$dis->nombre}}">{{$dis->nombre}}</option>
+							<option value="{{$dis->id}}">{{$dis->nombre}}</option>
 							@endforeach
 						</select>
 						</div>									

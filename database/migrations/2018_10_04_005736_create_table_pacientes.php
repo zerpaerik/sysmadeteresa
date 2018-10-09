@@ -21,6 +21,8 @@ class CreateTablePacientes extends Migration
         $table->string('direccion');
         $table->integer('provincia')->index()->unsigned();
         $table->foreign('provincia')->references('id')->on('provincias');
+        $table->integer('distrito')->index()->unsigned();
+        $table->foreign('distrito')->references('id')->on('distritos');
         $table->string('telefono');
         $table->date('fechanac');
         $table->string('gradoinstruccion');
@@ -28,9 +30,7 @@ class CreateTablePacientes extends Migration
         $table->integer('edocivil')->index()->unsigned();
         $table->foreign('edocivil')->references('id')->on('edo_civils');
         $table->integer('estatus');
-        $table->integer('historia')->index()->unsigned();
-        $table->foreign('historia')->references('id')->on('historias');
-        $table->string('distrito');
+        $table->string('historia');
         $table->timestamps();
       });   
     }

@@ -9,10 +9,21 @@ use App\Models\Laboratorios;
 class LaboratoriosController extends Controller
 {
 
-	public function index(){
-		$laboratorios = Laboratorios::all();
-		return view('archivos.laboratorios.index', ["laboratorios" => $laboratorios]);
-	}
+	 public function index(){
+
+      $laboratorios = Laboratorios::all();
+      return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "laboratorios",
+        "headers" => ["id", "Nombre", "Direcciòn", "Referencia", "Editar", "Eliminar"],
+        "data" => $laboratorios,
+        "fields" => ["id", "name", "direccion", "referencia"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
@@ -41,12 +52,19 @@ class LaboratoriosController extends Controller
     return view('archivos.laboratorios.create');
   }
 
-   public function edit($id) {
+   public function editView($id){
+      $p = Laboratorios::find($id);
+      return view('archivos.laboratorios.edit', ["name" => $p->name, "direccion" => $p->direccion, "referencia" => $p->referencia, "id" => $p->id,]);
+      
+    }   
 
-   	 $laboratorios = Laboratorios::findOrFail($id);
-
-     return view('archivos.laboratorios.edit', compact('laboratorios'));
-    
-  }
+      public function edit(Request $request){
+      $p = Laboratorios::find($request->id);
+      $p->name = $request->name;
+      $p->direccion = $request->direccion;
+      $p->referencia = $request->referencia;
+      $res = $p->save();
+      return redirect()->action('Archivos\LaboratoriosController@index', ["edited" => $res]);
+    }
 
 }

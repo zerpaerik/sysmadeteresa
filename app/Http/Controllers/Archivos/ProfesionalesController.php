@@ -15,14 +15,24 @@ class ProfesionalesController extends Controller
 	public function index(){
 
 
-	$profesionales = DB::table('profesionales as a')
+      	$profesionales = DB::table('profesionales as a')
         ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.nacimiento','b.nombre as especialidad','c.name as centro')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
         ->orderby('a.dni','desc')
         ->paginate(5000);
+        return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "profesionales",
+        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro", "Editar", "Eliminar"],
+        "data" => $profesionales,
+        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);  
 
-		return view('archivos.profesionales.index', ["profesionales" => $profesionales]);
 	}
 
 	public function create(Request $request){
@@ -61,12 +71,22 @@ class ProfesionalesController extends Controller
     return view('archivos.profesionales.create', compact('centros','especialidades'));
   }
 
-   public function edit($id) {
+     public function editView($id){
+      $p = Profesionales::find($id);
+      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"id" => $p->id]);
+    }
 
-   	 $profesionales = Profesionales::findOrFail($id);
-
-     return view('archivos.profesionales.edit', compact('profesionales'));
-    
-  }
+     public function edit(Request $request){
+      $p = Profesionales::find($request->id);
+      $p->name = $request->name;
+      $p->apellidos = $request->apellidos;
+      $p->dni = $request->dni;
+      $p->cmp = $request->cmp;
+      $p->especialidad = $request->especialidad;
+      $p->centro = $request->centro;
+      $p->nacimiento = $request->nacimiento;
+      $res = $p->save();
+      return redirect()->action('Archivos\ProfesionalesController@index', ["edited" => $res]);
+    }
 
 }

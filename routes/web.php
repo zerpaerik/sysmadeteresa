@@ -24,41 +24,43 @@ Route::get('personal', 'Personal\PersonalController@index')->name('personal.inde
 Route::get('personal-create', 'Personal\PersonalController@createView')->name('personal.create')->middleware('auth');
 Route::post('personal/create', 'Personal\PersonalController@create')->middleware('auth');
 Route::get('personal/{id}', 'Personal\PersonalController@delete')->middleware('auth');
+Route::get('personal-edit-{id}', 'Personal\PersonalController@editView')->name('personal.edit');
+Route::post('personal/edit', 'Personal\PersonalController@edit');
 
 Route::get('centros', 'Archivos\CentrosController@index')->name('centros.index')->middleware('auth');
 Route::get('centros-create', 'Archivos\CentrosController@createView')->name('centros.create')->middleware('auth');
 Route::post('centros/create', 'Archivos\CentrosController@create')->middleware('auth');
-Route::get('centros-edit/{id}', 'Archivos\CentrosController@edit')->middleware('auth');
-Route::post('centros/update', 'Archivos\CentrosController@update')->middleware('auth');
 Route::get('centros/{id}', 'Archivos\CentrosController@delete')->middleware('auth');
+Route::get('centros-edit-{id}', 'Archivos\CentrosController@editView')->name('centros.edit');
+Route::post('centros/edit', 'Archivos\CentrosController@edit');
 
 Route::get('profesionales', 'Archivos\ProfesionalesController@index')->name('profesionales.index')->middleware('auth');
 Route::get('profesionales-create', 'Archivos\ProfesionalesController@createView')->name('profesionales.create')->middleware('auth');
 Route::post('profesionales/create', 'Archivos\ProfesionalesController@create')->middleware('auth');
-Route::get('profesionales-edit/{id}', 'Archivos\ProfesionalesController@edit')->middleware('auth');
-Route::post('profesionales/update', 'Archivos\ProfesionalesController@update')->middleware('auth');
 Route::get('profesionales/{id}', 'Archivos\ProfesionalesController@delete')->middleware('auth');
+Route::get('profesionales-edit-{id}', 'Archivos\ProfesionalesController@editView')->name('profesionales.edit');
+Route::post('profesionales/edit', 'Archivos\ProfesionalesController@edit');
 
 Route::get('laboratorios', 'Archivos\LaboratoriosController@index')->name('laboratorios.index')->middleware('auth');
 Route::get('laboratorios-create', 'Archivos\LaboratoriosController@createView')->name('laboratorios.create')->middleware('auth');
 Route::post('laboratorios/create', 'Archivos\LaboratoriosController@create')->middleware('auth');
-Route::get('laboratorios-edit/{id}', 'Archivos\LaboratoriosController@edit')->middleware('auth');
-Route::post('laboratorios/update', 'Archivos\LaboratoriosController@update')->middleware('auth');
 Route::get('laboratorios/{id}', 'Archivos\LaboratoriosController@delete')->middleware('auth');
+Route::get('laboratorios-edit-{id}', 'Archivos\LaboratoriosController@editView')->name('laboratorios.edit');
+Route::post('laboratorios/edit', 'Archivos\LaboratoriosController@edit');
 
 Route::get('analisis', 'Archivos\AnalisisController@index')->name('analisis.index')->middleware('auth');
 Route::get('analisis-create', 'Archivos\AnalisisController@createView')->name('analisis.create')->middleware('auth');
 Route::post('analisis/create', 'Archivos\AnalisisController@create')->middleware('auth');
-Route::get('analisis-edit/{id}', 'Archivos\AnalisisController@edit')->middleware('auth');
-Route::post('analisis/update', 'Archivos\AnalisisController@update')->middleware('auth');
 Route::get('analisis/{id}', 'Archivos\AnalisisController@delete')->middleware('auth');
+Route::get('analisis-edit-{id}', 'Archivos\AnalisisController@editView')->name('analisis.edit');
+Route::post('analisis/edit', 'Archivos\AnalisisController@edit');
 
 Route::get('servicios', 'Archivos\ServiciosController@index')->name('servicios.index')->middleware('auth');
 Route::get('servicios-create', 'Archivos\ServiciosController@createView')->name('servicios.create')->middleware('auth');
 Route::post('servicios/create', 'Archivos\ServiciosController@create')->middleware('auth');
-Route::get('servicios-edit/{id}', 'Archivos\ServiciosController@edit')->middleware('auth');
-Route::post('servicios/update', 'Archivos\ServiciosController@update')->middleware('auth');
 Route::get('servicios/{id}', 'Archivos\ServiciosController@delete')->middleware('auth');
+Route::get('servicios-edit-{id}', 'Archivos\ServiciosController@editView')->name('servicios.edit');
+Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
 
 Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
 Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
@@ -70,9 +72,16 @@ Route::get('paquetes/{id}', 'Archivos\PaquetesController@delete')->middleware('a
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
-Route::get('pacientes-edit/{id}', 'Archivos\PacientesController@edit')->middleware('auth');
-Route::post('pacientes/update', 'Archivos\PacientesController@update')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
+Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
+Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
+
+Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
+Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');
+Route::post('atenciones/create', 'AtencionesControllerr@create')->middleware('auth');
+Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
+Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
+Route::post('atenciones/edit', 'AtencionesController@edit');
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
 

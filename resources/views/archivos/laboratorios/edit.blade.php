@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Editar Personal</strong></span>
+					<span><strong>Editar Laboratorio</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,7 +22,7 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="centros/edit">
+				<form class="form-horizontal" role="form" method="post" action="laboratorios/edit">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
@@ -45,7 +45,7 @@
 
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Editar">
-							<a href="{{route('centros.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
+							<a href="{{route('laboratorios.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			
 				</form>	

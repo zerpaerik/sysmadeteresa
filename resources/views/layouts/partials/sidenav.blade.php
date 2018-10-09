@@ -71,7 +71,7 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="#"><i class="fa fa-plus-circle"></i> Ingreso de atenciones</a>
+        <a href="{{route('atenciones.index')}}"><i class="fa fa-plus-circle"></i> Ingreso de atenciones</a>
       </li>
       <li>
         <a href="#"><i class="fa fa-random"></i> Relación de gastos</a>

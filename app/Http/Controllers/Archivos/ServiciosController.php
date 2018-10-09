@@ -9,10 +9,26 @@ use App\Models\Servicios;
 class ServiciosController extends Controller
 {
 
-	public function index(){
-		$servicios = Servicios::all();
-		return view('archivos.servicios.index', ["servicios" => $servicios]);
-	}
+ public function index(){
+
+      $servicios = Servicios::all();
+      return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "servicios",
+        "headers" => ["id", "Detalle", "Precio", "Eliminar"],
+        "data" => $servicios,
+        "fields" => ["id", "detalle", "precio",],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);  
+
+
+
+    }
+
+  
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
@@ -42,12 +58,19 @@ class ServiciosController extends Controller
     return view('archivos.servicios.create');
   }
 
-   public function edit($id) {
+   
+     public function editView($id){
+      $p = Servicios::find($id);
+      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"id" => $p->id,]);
+      
+    } 
 
-   	 $servicios = Servicios::findOrFail($id);
-
-     return view('archivos.servicios.edit', compact('servicios'));
-    
-  }
+       public function edit(Request $request){
+      $p = Servicios::find($request->id);
+      $p->detalle = $request->detalle;
+      $p->precio = $request->precio;
+      $res = $p->save();
+      return redirect()->action('Archivos\ServiciosController@index', ["edited" => $res]);
+    }
 
 }

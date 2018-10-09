@@ -43,12 +43,14 @@
 								<td>{{$person->phone}}</td>
 								<td>{{$person->email}}</td>
 								<td>{{$person->address}}</td>
+								<td><a href="personal/{{$person->id}}" class="btn btn-primary">Editar</a></td>
 								<td><a href="personal/{{$person->id}}" class="btn btn-danger">Eliminar</a></td>
 							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
 						<tr>
+							
 							<th>
 								<button type="button" class="btn btn-danger">Eliminar</button>
 							</th>

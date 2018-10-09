@@ -22,30 +22,26 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="centros/edit">
+				<form class="form-horizontal" role="form" method="post" action="servicios/edit">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Nombre</label>
+						<label class="col-sm-1 control-label">Detalle</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="name" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" value="{{$name}}" title="Nombre">
+							<input type="text" class="form-control" name="detalle" placeholder="detalle" data-toggle="tooltip" data-placement="bottom" value="{{$detalle}}" title="detalle">
 						</div>
 
-						<label class="col-sm-1 control-label">Direcciòn</label>
+						<label class="col-sm-1 control-label">Precio</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="direccion" placeholder="direccion" data-toggle="tooltip" data-placement="bottom" value="{{$direccion}}" title="direccion">
+							<input type="text" class="form-control" name="precio" placeholder="precio" data-toggle="tooltip" data-placement="bottom" value="{{$precio}}" title="precio">
 						</div>
 
-						<label class="col-sm-1 control-label">Referencia</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="referencia" placeholder="referencia" data-toggle="tooltip" data-placement="bottom" value="{{$referencia}}" title="referencia">
-						</div>
-			
+				
 
 						<input type="hidden" name="id" value="{{$id}}">
 
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Editar">
-							<a href="{{route('centros.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
+							<a href="{{route('servicios.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			
 				</form>	

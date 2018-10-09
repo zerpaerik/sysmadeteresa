@@ -47,6 +47,11 @@
 						<div class="col-sm-4">
 							<input type="text" class="form-control" name="material" placeholder="Material" data-toggle="tooltip" data-placement="bottom" title="Material">
 						</div>	
+
+						<label class="col-sm-1 control-label">Porcentaje</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
+						</div>	
 						
 						
 						<label class="col-sm-1 control-label">Laboratorio</label>

@@ -30,10 +30,11 @@ class HistoriaPacientes extends Model
           
         } else {
          foreach ($searchContador as $correlativo){
+            $id=$correlativo->id;
             $contador=$correlativo->historia+1;
 
          
-            $historia=HistoriaPacientes::findOrFail($correlativo->id);
+            $historia=HistoriaPacientes::findOrFail($id);
             $historia->historia=$contador;
             $historia->updated_at=date('Y-m-d H:i:s');
             $historia->update();
