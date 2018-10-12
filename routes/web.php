@@ -83,6 +83,9 @@ Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth')
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit', 'AtencionesController@edit');
 
+Route::get('movimientos/atencion/personal','AtencionesController@personal');
+Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
+
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
 
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');

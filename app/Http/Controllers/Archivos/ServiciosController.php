@@ -15,9 +15,9 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio", "Eliminar"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Eliminar"],
         "data" => $servicios,
-        "fields" => ["id", "detalle", "precio",],
+        "fields" => ["id", "detalle", "precio","porcentaje",],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -40,7 +40,8 @@ class ServiciosController extends Controller
           return redirect()->action('Archivos\ServiciosController@createView', ['errors' => $validator->errors()]);
 		$centros = Servicios::create([
 	      'detalle' => $request->detalle,
-	      'precio' => $request->precio
+	      'precio' => $request->precio,
+        'porcentaje' => $request->porcentaje
 	     
 	  
    		]);
@@ -61,7 +62,7 @@ class ServiciosController extends Controller
    
      public function editView($id){
       $p = Servicios::find($id);
-      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"id" => $p->id,]);
+      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"porcentaje" => $p->porcentaje,"id" => $p->id,]);
       
     } 
 
@@ -69,6 +70,7 @@ class ServiciosController extends Controller
       $p = Servicios::find($request->id);
       $p->detalle = $request->detalle;
       $p->precio = $request->precio;
+      $p->porcentaje = $request->porcentaje;
       $res = $p->save();
       return redirect()->action('Archivos\ServiciosController@index', ["edited" => $res]);
     }

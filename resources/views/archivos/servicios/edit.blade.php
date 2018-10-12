@@ -35,6 +35,11 @@
 							<input type="text" class="form-control" name="precio" placeholder="precio" data-toggle="tooltip" data-placement="bottom" value="{{$precio}}" title="precio">
 						</div>
 
+						<label class="col-sm-1 control-label">Porcentaje</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" value="{{$porcentaje}}" title="porcentaje">
+						</div>
+
 				
 
 						<input type="hidden" name="id" value="{{$id}}">

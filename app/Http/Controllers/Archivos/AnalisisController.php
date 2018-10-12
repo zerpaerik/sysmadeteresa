@@ -69,7 +69,7 @@ class AnalisisController extends Controller
 
     public function editView($id){
       $p = Analisis::find($id);
-      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name, "preciopublico" => $p->preciopublico,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio, "material" => $p->material,"id" => $p->id]);
+      return view('archivos.analisis.edit', ["laboratorios" => Laboratorios::all(),"name" => $p->name, "preciopublico" => $p->preciopublico,"costlab" => $p->costlab,"tiempo" => $p->tiempo, "laboratorio" => $p->laboratorio,"porcentaje" => $p->porcentaje, "material" => $p->material,"id" => $p->id]);
     }
 
       public function edit(Request $request){

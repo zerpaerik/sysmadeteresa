@@ -26,12 +26,17 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Detalle</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="detalle" placeholder="Detalle" data-toggle="tooltip" data-placement="bottom" title="Detalle">
 						</div>
 						<label class="col-sm-1 control-label">Precio</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+						</div>
+
+						<label class="col-sm-1 control-label">Porcentaje</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
 						</div>
 						
 											

@@ -17,6 +17,7 @@ class CreateTableServicios extends Migration
         $table->increments('id');
         $table->string('detalle');
         $table->string('precio');
+        $table->string('porcentaje');
         $table->timestamps();
       });
     }

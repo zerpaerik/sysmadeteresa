@@ -7,6 +7,10 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Servicios;
 use App\Models\Analisis;
+use App\Models\Pacientes;
+use App\Models\Personal;
+use App\Models\Profesionales;
+
 
 
 class AtencionesController extends Controller
@@ -42,8 +46,27 @@ class AtencionesController extends Controller
 
     $servicios = Servicios::all();
     $laboratorios = Analisis::all();
+    $pacientes = Pacientes::all();
 
-    return view('movimientos.atenciones.create', compact('servicios','laboratorios'));
+    return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes'));
+  }
+
+  public function personal(){
+     
+      $personal = Personal::all();
+ 
+    return view('movimientos.atenciones.personal', compact('personal'));
+
+
+  }
+
+   public function profesional(){
+     
+      $profesional = Profesionales::all();
+ 
+    return view('movimientos.atenciones.profesional', compact('profesional'));
+
+
   }
 
     //
