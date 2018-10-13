@@ -19,13 +19,15 @@ class ProfesionalSeeder extends Seeder
     			"dni" => "123456789", 
     			"cmp" => "00000", 
     			"codigo" => "111111", 
-    			"especialidad" => 1],
+    			"especialidad" => 1,
+                "centro" => 1],
                 ["name" => "Juan", 
                 "apellidos" => "Rodriguez", 
                 "dni" => "012345678", 
                 "cmp" => "00001", 
                 "codigo" => "111112", 
-                "especialidad" => 1],
+                "especialidad" => 1,
+                "centro" => 1],
     		];
     		foreach ($profesionales as $profesional) {
     			Profesional::create($profesional);

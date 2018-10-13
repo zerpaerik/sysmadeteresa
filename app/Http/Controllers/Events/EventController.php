@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pacientes\Paciente;
 use App\Models\Profesionales\Profesional;
-use App\Models\Events\Event;
+use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos\Credito;
 use Calendar;
 use Carbon\Carbon;
@@ -14,13 +14,18 @@ use Carbon\Carbon;
 class EventController extends Controller
 {
 
-  public function index()
+  public function index(Request $request)
   {
-    $calendar = Calendar::addEvents($this->getEvents())
-    ->setOptions([
-    	'locale' => 'es',
-    ]);
-    return view('events.index', compact('calendar'));
+    if($request->isMethod('get')){
+      $calendar = false;
+      return view('events.index', ["calendar" => $calendar, "especialistas" => Profesional::all()]);
+    }else{
+      $calendar = Calendar::addEvents($this->getEvents($request->especialista))
+      ->setOptions([
+        'locale' => 'es',
+      ]);
+      return view('events.index',[ "calendar" => $calendar, "especialistas" => Profesional::all()]);
+    }
   }
 
   private static function toggleType($type){
@@ -35,16 +40,17 @@ class EventController extends Controller
     }
   }
 
-  private function getEvents(){
+  private function getEvents($args = null){
     $events = [];
-    $data = Event::all();
+    $data = ($args) ? Event::where('profesional', '=', $args)->get() : Event::all();
     if($data->count()) {
       foreach ($data as $key => $value) {
+        $datetime = RangoConsulta::find($value->time);
         $events[] = Calendar::event(
           $value->title,
           false,
-          new \DateTime($value->start_date),
-          new \DateTime($value->end_date),
+          new \DateTime($value->date." ".$datetime->start_time),
+          new \DateTime($value->date." ".$datetime->end_time),
           null,
           [
             'color' => self::toggleType($value->entrada),
@@ -60,7 +66,8 @@ class EventController extends Controller
     $validator = \Validator::make($request->all(), [
       "paciente" => "required", 
       "especialista" => "required", 
-      "start_date" => "required", 
+      "date" => "required", 
+      "time" => "required",
       "title" => "required"
     ]);
 
@@ -71,17 +78,13 @@ class EventController extends Controller
       ]);
     }
 
-    $start = Carbon::createFromFormat('d/m/Y H:i:s', $request->start_date ." ". $request->start_time . ":00");
-
-    $end = Carbon::createFromFormat('d/m/Y H:i:s', $request->start_date ." ". $request->end_time . ":00");
-
     $paciente = Paciente::find($request->paciente);
 
     $evt = Event::create([
       "paciente" => $request->paciente,
       "profesional" => $request->especialista,
-      "start_date" => $start,
-      "end_date" => $end,
+      "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+      "time" => $request->time,
       "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
     ]);
 
@@ -102,10 +105,24 @@ class EventController extends Controller
 
   }
 
+  public function availableTime($e, $d, $m, $y){
+    $times = Event::where('date', '=', $y."/".$m."/".$d)
+    ->where('profesional', '=', $e)->get(['time']);
+    $arrTimes = [];
+    if($times){
+      foreach ($times as $time) {
+        array_push($arrTimes, $time->time);
+      }
+      return response()->json(RangoConsulta::whereNotIn("id", $arrTimes)->get(["start_time", "end_time", "id"]));
+    }
+    return response()->json(RangoConsulta::all()); 
+  }
+
   public function createView($extra = []){
     $data = [
       "especialistas" => Profesional::all(),
-      "pacientes" => Paciente::all()
+      "pacientes" => Paciente::all(),
+      "tiempos" => RangoConsulta::all()
     ];
     return view('consultas.create', $data + $extra);
   }

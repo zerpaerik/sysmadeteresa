@@ -104,9 +104,11 @@
       <li>
         <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
       </li>
+      <li>
+        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
+      </li>      
     </ul>
   </li>
-
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">

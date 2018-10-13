@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Distritos extends Model
 {
     protected $fillable = [
-    	'nombre'
+    	'nombre', 'provincia'
     ];
 }
