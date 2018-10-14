@@ -27,7 +27,7 @@ class PacienteSeeder extends Seeder
 					"edocivil" => 1,
 					"estatus" => 1,
 					"historia" => 1,
-					"distrito" => "asdasd"
+					"distrito" => 1
 				]
 			];
 			foreach ($pacientes as $paciente) {

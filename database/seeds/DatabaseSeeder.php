@@ -17,11 +17,13 @@ class DatabaseSeeder extends Seeder
         $this->call(MedidasSeeder::class);
         $this->call(CategoriaSeeder::class);
         $this->call(ProveedorSeeder::class);
+        $this->call(RangoCosultasSeeder::class);
         $this->call(EspecialidadSeeder::class);
         $this->call(ProfesionalSeeder::class);
         $this->call(HistoriaSeeder::class);
         $this->call(EdoCivilSeeder::class);
         $this->call(ProvinciaSeeder::class);
+        $this->call(DistritoSeeder::class);
         $this->call(PacienteSeeder::class);
         //$this->call(EventSeeder::class);
     }

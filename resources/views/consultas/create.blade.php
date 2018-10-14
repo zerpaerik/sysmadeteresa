@@ -31,7 +31,7 @@
 							<select id="el1" name="especialista">
 								@foreach($especialistas as $especialista)
 									<option value="{{$especialista->id}}">
-										{{$especialista->nombres}} {{$especialista->apellidos}}
+										{{$especialista->name}} {{$especialista->apellidos}}
 										/ {{$especialista->especialidad}}
 									</option>
 								@endforeach
@@ -57,16 +57,18 @@
 
 						<label class="col-sm-1 control-label">Fecha</label>
 						<div class="col-sm-3">
-							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="start_date">
+							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date">
 						</div>
-						<label class="col-sm-2 control-label">Hora Inicio</label>
-						<div class="col-sm-1">
-							<input type="text" id="input_time" class="form-control" placeholder="Inicio" name="start_time">
-						</div>
-						<label class="col-sm-2 control-label">Hora Fin</label>
-						<div class="col-sm-1">
-							<input type="text" id="input_time2" class="form-control" placeholder="Fin" name="end_time">
-						</div>						
+						<label class="col-sm-1 control-label">Hora</label>
+							<div class="col-sm-3">
+								<select id="el3" name="time">
+									@foreach($tiempos as $tiempo)
+										<option value="{{$tiempo->id}}">
+											{{$tiempo->start_time}} {{$tiempo->end_time}}
+										</option>
+									@endforeach
+								</select>
+							</div>						
 
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
@@ -81,28 +83,43 @@
 @section('scripts')
 <script type="text/javascript">
 // Run Select2 on element
-function Select2Test(){
-	$("#el2").select2();
-	$("#el1").select2();
-}
 $(document).ready(function() {
-	// Load script of Select2 and run this
-	LoadSelect2Script(Select2Test);
 	LoadTimePickerScript(DemoTimePicker);
+	LoadSelect2Script(function (){
+		$("#el2").select2();
+		$("#el1").select2();
+		$("#el3").select2({disabled : true});
+	});
 	WinMove();
 });
+
+$('#input_date').on('change', getAva);
+$('#el1').on('change', getAva);
+
+function getAva (){
+		var d = $('#input_date').val();
+		var e = $("#el1").val();
+		if(!d) return;
+		$.ajax({
+      url: "available-time/"+e+"/"+d,
+      headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "get",
+      success: function(res){
+      	$('#el3').find('option').remove().end();
+      	for(var i = 0; i < res.length; i++){
+					var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
+					$('#el3').append(newOption).trigger('change');
+      	}
+      }
+    });	
+}
+
 function DemoTimePicker(){
 	$('#input_date').datepicker({
 	setDate: new Date(),
 	minDate: 0});
-	$('#input_time').timepicker({
-		setDate: new Date(),
-		stepMinute: 10
-	});
-	$('#input_time2').timepicker({
-		setDate: new Date(),
-		stepMinute: 10
-	});
 }
 </script>
 @endsection

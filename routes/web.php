@@ -138,6 +138,7 @@ Route::get('categorias-create', 'Config\CategoriaController@createView')->name('
 Route::get('categorias-edit-{id}', 'Config\CategoriaController@editView')->name('categorias.edit');
 
 //Consultas
-Route::get('events', 'Events\EventController@index');
+Route::match(['get', 'post'], 'events', 'Events\EventController@index')->name('consultas.index');
+Route::get('available-time/{e}/{d}/{m}/{y}', 'Events\EventController@availableTime');
 Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');
 Route::post('consulta/create', 'Events\EventController@create');
