@@ -11,6 +11,7 @@ use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales;
 
+use Auth;
 
 
 class AtencionesController extends Controller
@@ -28,6 +29,7 @@ class AtencionesController extends Controller
         ->join('analises as e','a.id_laboratorio','e.id')
         ->orderby('a.id','desc')
         ->paginate(5000);
+
         return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "atenciones",
@@ -47,8 +49,43 @@ class AtencionesController extends Controller
     $servicios = Servicios::all();
     $laboratorios = Analisis::all();
     $pacientes = Pacientes::all();
-
+    
     return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes'));
+  }
+
+  public function create(Request $request)
+  {
+    if (isset($request->id_servicio)) {
+      foreach ($request->id_servicio['servicios'] as $key => $servicio) {
+        $serv = new Atenciones();
+        $serv->id_paciente = $request->id_paciente;
+        $serv->origen = $request->origen;
+        $serv->origen_usuario = $request->origen_usuario;
+        $serv->id_servicio =  $servicio['servicio'];
+        $serv->es_servicio =  true;
+        $serv->monto = $request->monto_s['servicios'][$key]['monto'];
+        $serv->id_sede = $request->session()->get('sede');
+        $serv->estatus = 1;
+        $serv->save();
+      }
+    }
+
+    if (isset($request->id_laboratorio)) {
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        $lab = new Atenciones();
+        $lab->id_paciente = $request->id_paciente;
+        $lab->origen = $request->origen;
+        $lab->origen_usuario = $request->origen_usuario;
+        $lab->id_laboratorio =  $laboratorio['laboratorio'];
+        $lab->es_laboratorio =  true;
+        $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
+        $lab->id_sede = $request->session()->get('sede');
+        $lab->estatus = 1;
+        $lab->save();
+      }
+    }
+
+     return redirect()->route('atenciones.index');
   }
 
   public function personal(){

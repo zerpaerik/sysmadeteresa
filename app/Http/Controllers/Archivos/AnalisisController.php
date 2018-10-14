@@ -84,4 +84,9 @@ class AnalisisController extends Controller
       $res = $p->save();
       return redirect()->action('Archivos\AnalisisController@index', ["edited" => $res]);
     }
+
+  public function getAnalisi($id)
+  {
+    return Analisis::findOrFail($id);
+  }
 }

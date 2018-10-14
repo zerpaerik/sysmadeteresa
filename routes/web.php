@@ -55,12 +55,16 @@ Route::get('analisis/{id}', 'Archivos\AnalisisController@delete')->middleware('a
 Route::get('analisis-edit-{id}', 'Archivos\AnalisisController@editView')->name('analisis.edit');
 Route::post('analisis/edit', 'Archivos\AnalisisController@edit');
 
+Route::get('analisis/getAnalisi/{id}', 'Archivos\AnalisisController@getAnalisi');
+
 Route::get('servicios', 'Archivos\ServiciosController@index')->name('servicios.index')->middleware('auth');
 Route::get('servicios-create', 'Archivos\ServiciosController@createView')->name('servicios.create')->middleware('auth');
 Route::post('servicios/create', 'Archivos\ServiciosController@create')->middleware('auth');
 Route::get('servicios/{id}', 'Archivos\ServiciosController@delete')->middleware('auth');
 Route::get('servicios-edit-{id}', 'Archivos\ServiciosController@editView')->name('servicios.edit');
 Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
+
+Route::get('servicios/getServicio/{id}', 'Archivos\ServiciosController@getServicio');
 
 Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
 Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
@@ -78,7 +82,7 @@ Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');
-Route::post('atenciones/create', 'AtencionesControllerr@create')->middleware('auth');
+Route::post('atenciones/create', 'AtencionesController@create')->middleware('auth');
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit', 'AtencionesController@edit');

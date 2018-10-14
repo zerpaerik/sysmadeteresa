@@ -60,33 +60,60 @@
 						</div>
 					</div>
 					<br>
-					<div class="row">
+					
+          <div class="row">
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Servicios seleccionados</label>
+            <!-- sheepIt Form -->
+            <div id="servicios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="servicios_template" class="template row">
 
-						<label class="col-sm-1 control-label">Servicios</label>
-						<div class="col-sm-5">
-							<select id="el3" name="id_servicio">
-								@foreach($servicios as $pac)
-									<option value="{{$pac->id}}">
-										{{$pac->detalle}}-Precio:{{$pac->precio}}
-									</option>
-								@endforeach
-							</select>
-						</div>
+                    <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
+                    <div class="col-sm-5">
+                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
+                        <option value="">Seleccionar servicio</option>}
+                        option
+                        @foreach($servicios as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->detalle}}-Precio:{{$pac->precio}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
 
-						<label class="col-sm-1 control-label">Monto</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="monto_s" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Tiempo">
-						</div>
+                    <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                    <div class="col-sm-3">
+                      <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="number" type="hidden" value="">
 
-						<input type="button" onclick="return add_li()" value="añadir li">
-						
-					</div>
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún servicio</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar servicio</span></a></div>
+                    <div id="servicios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="servicios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
+          </div>
 					<br>
 					<div class="row">
 
-						<label class="col-sm-1 control-label">Laboratorios</label>
+						<!-- <label class="col-sm-1 control-label">Laboratorios</label>
 						<div class="col-sm-5">
-							<select id="el5" name="id_laboratorio" multiple="true">
+							<select id="el5" class="selectLab" name="id_laboratorio" multiple="true">
 								@foreach($laboratorios as $pac)
 									<option value="{{$pac->id}}">
 										{{$pac->name}}-Precio:{{$pac->preciopublico}}
@@ -97,11 +124,62 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="monto_l" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Tiempo">
-						</div>
+							<input type="text" class="number monto form-control" name="monto_l" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+						</div> -->
+
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios seleccionados</label>
+            <!-- sheepIt Form -->
+            <div id="laboratorios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="laboratorios_template" class="template row">
+
+                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
+                    <div class="col-sm-5">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="">Seleccionar laboratorio</option>}
+                        @foreach($laboratorios as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->name}}-Precio:{{$pac->preciopublico}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                    <div class="col-sm-3">
+                      <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
+
+                      <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún laboratorios</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar laboratorio</span></a></div>
+                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
 						
 					</div>
-
+          <hr>
+          <div class="form-group form-inline">
+            <div class="col-sm-4 col-sm-offset-7">
+              <button type="button" id="calcular" class="btn btn-primary">Calcular Total</button>
+              <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 240px">
+            </div>
+          </div>
 
 											
 						<br>
@@ -115,7 +193,151 @@
 	</div>
 </div>
 @section('scripts')
+<script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('plugins/jqNumber/jquery.number.min.js') }}" type="text/javascript"></script>
+
 <script type="text/javascript">
+  $(document).ready(function() {
+
+    $('#calcular').click(function(){
+      var total = 0;
+      $(".monto").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $(".montol").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $("#total").val(total);
+    })
+
+    $(".monto").keyup(function(event) {
+      var montoId = $(this).attr('id');
+      var montoArr = montoId.split('_');
+      var id = montoArr[1];
+      var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
+      var monto = parseFloat($(this).val())
+      //var total = parseFloat($('#total').val());
+      //var totalN = 0;
+      
+      // if(total > 0){
+      //     total -= montoH;
+      // }
+      
+      $('#servicios_'+id+'_montoHidden').val(monto);
+
+      //$('#total').val(total + monto);
+      
+      $("#calcular").trigger("click");
+      
+    });
+
+    $(".montol").keyup(function(event) {
+      var montoId = $(this).attr('id');
+      var montoArr = montoId.split('_');
+      var id = montoArr[1];
+      var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
+      var monto = parseFloat($(this).val())
+      //var total = parseFloat($('#total').val());
+      //var totalN = 0;
+      
+      // if(total > 0){
+      //     total -= montoH;
+      // }
+      
+      $('#laboratorios_'+id+'_montoHidden').val(monto);
+
+      //$('#total').val(total + monto);
+
+      $("#calcular").trigger("click");
+      
+    });
+
+    // Main sheepIt form
+    var phonesForm = $("#servicios").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        // removeLastConfirmationMsg: 'Are you sure?',
+         // removeCurrentConfirmationMsg: 'Are you sure?',
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+
+        afterRemoveCurrent: function(source, event){
+          $("#calcular").trigger("click");
+        }
+    });
+
+    // Main sheepIt form
+    var phonesForm = $("#laboratorios").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        // removeLastConfirmationMsg: 'Are you sure?',
+         // removeCurrentConfirmationMsg: 'Are you sure?',
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+
+        afterRemoveCurrent: function(source, event){
+          $("#calcular").trigger("click");
+        }
+    });
+
+    $(document).on('change','.selectServ',function(){
+      var selectId = $(this).attr('id');
+      var selectArr = selectId.split('_');
+      var id = selectArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "servicios/getServicio/"+$(this).val(),
+         success: function(a) {
+            $('#servicios_'+id+'_montoHidden').val(a.precio);
+            $('#servicios_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+         }
+      });
+    })
+
+    $(document).on('change', '.selectLab', function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "analisis/getAnalisi/"+$(this).val(),
+         success: function(a) {
+            $('#laboratorios_'+id+'_montoHidden').val(a.preciopublico);
+            $('#laboratorios_'+id+'_monto').val(a.preciopublico);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.preciopublico));
+         }
+      });
+    })
+
+    
+});
+
+$('.number').number(true,2,'.',',');
+
+
 // Run Select2 on element
 function Select2Test(){
 	$("#el2").select2();

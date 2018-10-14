@@ -66,5 +66,4 @@ class LaboratoriosController extends Controller
       $res = $p->save();
       return redirect()->action('Archivos\LaboratoriosController@index', ["edited" => $res]);
     }
-
 }

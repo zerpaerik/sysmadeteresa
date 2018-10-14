@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Servicios;
-
 class ServiciosController extends Controller
 {
 
@@ -55,7 +54,6 @@ class ServiciosController extends Controller
   }
 
   public function createView() {
-  	
     return view('archivos.servicios.create');
   }
 
@@ -73,6 +71,11 @@ class ServiciosController extends Controller
       $p->porcentaje = $request->porcentaje;
       $res = $p->save();
       return redirect()->action('Archivos\ServiciosController@index', ["edited" => $res]);
+    }
+
+    public function getServicio($servicio)
+    {
+        return Servicios::findOrFail($servicio);
     }
 
 }
