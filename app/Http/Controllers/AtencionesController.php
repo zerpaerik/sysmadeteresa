@@ -55,37 +55,47 @@ class AtencionesController extends Controller
 
   public function create(Request $request)
   {
+    if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
+      return redirect()->route('atenciones.create');
+    }
+
     if (isset($request->id_servicio)) {
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
-        $serv = new Atenciones();
-        $serv->id_paciente = $request->id_paciente;
-        $serv->origen = $request->origen;
-        $serv->origen_usuario = $request->origen_usuario;
-        $serv->id_servicio =  $servicio['servicio'];
-        $serv->es_servicio =  true;
-        $serv->monto = $request->monto_s['servicios'][$key]['monto'];
-        $serv->id_sede = $request->session()->get('sede');
-        $serv->estatus = 1;
-        $serv->save();
+        if (!is_null($servicio['servicio'])) {
+              $serv = new Atenciones();
+              $serv->id_paciente = $request->id_paciente;
+              $serv->origen = $request->origen;
+              $serv->origen_usuario = $request->origen_usuario;
+              $serv->id_servicio =  $servicio['servicio'];
+              $serv->es_servicio =  true;
+              $serv->monto = $request->monto_s['servicios'][$key]['monto'];
+              $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
+              $serv->id_sede = $request->session()->get('sede');
+              $serv->estatus = 1;
+              $serv->save(); 
+        }
       }
     }
 
     if (isset($request->id_laboratorio)) {
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
-        $lab = new Atenciones();
-        $lab->id_paciente = $request->id_paciente;
-        $lab->origen = $request->origen;
-        $lab->origen_usuario = $request->origen_usuario;
-        $lab->id_laboratorio =  $laboratorio['laboratorio'];
-        $lab->es_laboratorio =  true;
-        $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
-        $lab->id_sede = $request->session()->get('sede');
-        $lab->estatus = 1;
-        $lab->save();
+        if (!is_null($laboratorio['laboratorio'])) {
+          $lab = new Atenciones();
+          $lab->id_paciente = $request->id_paciente;
+          $lab->origen = $request->origen;
+          $lab->origen_usuario = $request->origen_usuario;
+          $lab->id_laboratorio =  $laboratorio['laboratorio'];
+          $lab->es_laboratorio =  true;
+          $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
+          $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->id_sede = $request->session()->get('sede');
+          $lab->estatus = 1;
+          $lab->save();
+        }
       }
     }
 
-     return redirect()->route('atenciones.index');
+    return redirect()->route('atenciones.index');
   }
 
   public function personal(){

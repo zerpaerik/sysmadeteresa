@@ -70,7 +70,7 @@
                 <div id="servicios_template" class="template row">
 
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
                         <option value="">Seleccionar servicio</option>}
                         option
@@ -83,10 +83,16 @@
                     </div>
 
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="number" type="hidden" value="">
 
                       <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    <label for="servicios_#index#_monto" class="col-sm-1 control-label">Abono</label>
+                    <div class="col-sm-2">
+
+                      <input id="servicios_#index#_abonoS" name="monto_abos[servicios][#index#][abono] type="text" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
                     </div>
 
                     <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -135,7 +141,7 @@
                 <div id="laboratorios_template" class="template row">
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
-                    <div class="col-sm-5">
+                    <div class="col-sm-3">
                       <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
                         <option value="">Seleccionar laboratorio</option>}
                         @foreach($laboratorios as $pac)
@@ -147,10 +153,16 @@
                     </div>
 
                     <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                       <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
 
                       <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Abono</label>
+                    <div class="col-sm-2">
+
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
                     </div>
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -175,9 +187,30 @@
 					</div>
           <hr>
           <div class="form-group form-inline">
-            <div class="col-sm-4 col-sm-offset-7">
-              <button type="button" id="calcular" class="btn btn-primary">Calcular Total</button>
-              <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 240px">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total servicio:
+              </div> 
+              <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
+
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total abono:
+              </div>
+              <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
+
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total restante:  
+              </div>
+               
+              <input type="text" name="total_g" class="number form-control" value="0.00" id="total_g" readonly="readonly" style="width: 150px">
             </div>
           </div>
 
@@ -199,38 +232,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $('#calcular').click(function(){
-      var total = 0;
-      $(".monto").each(function(){
-        total += parseFloat($(this).val());
-      })
-
-      $(".montol").each(function(){
-        total += parseFloat($(this).val());
-      })
-
-      $("#total").val(total);
-    })
-
     $(".monto").keyup(function(event) {
       var montoId = $(this).attr('id');
       var montoArr = montoId.split('_');
       var id = montoArr[1];
       var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
-      var monto = parseFloat($(this).val())
-      //var total = parseFloat($('#total').val());
-      //var totalN = 0;
-      
-      // if(total > 0){
-      //     total -= montoH;
-      // }
-      
+      var monto = parseFloat($(this).val());
       $('#servicios_'+id+'_montoHidden').val(monto);
-
-      //$('#total').val(total + monto);
-      
-      $("#calcular").trigger("click");
-      
+      calcular();
+      calculo_general();
     });
 
     $(".montol").keyup(function(event) {
@@ -238,21 +248,37 @@
       var montoArr = montoId.split('_');
       var id = montoArr[1];
       var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
-      var monto = parseFloat($(this).val())
-      //var total = parseFloat($('#total').val());
-      //var totalN = 0;
-      
-      // if(total > 0){
-      //     total -= montoH;
-      // }
-      
+      var monto = parseFloat($(this).val());
       $('#laboratorios_'+id+'_montoHidden').val(monto);
-
-      //$('#total').val(total + monto);
-
-      $("#calcular").trigger("click");
-      
+      calcular();
+      calculo_general();
     });
+
+    $(".abonoL, .abonoS").keyup(function(){
+      var total = 0;
+      var selectId = $(this).attr('id');
+      var selectArr = selectId.split('_');
+      
+      if(selectArr[0] == 'servicios'){
+          if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      } else {
+        if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      }
+    });
+
+    var botonDisabled = true;
 
     // Main sheepIt form
     var phonesForm = $("#servicios").sheepIt({
@@ -267,12 +293,10 @@
         minFormsCount: 1,
         iniFormsCount: 0,
 
-        // removeLastConfirmationMsg: 'Are you sure?',
-         // removeCurrentConfirmationMsg: 'Are you sure?',
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
-
         afterRemoveCurrent: function(source, event){
-          $("#calcular").trigger("click");
+          calcular();
+          calculo_general();
         }
     });
 
@@ -289,12 +313,11 @@
         minFormsCount: 1,
         iniFormsCount: 0,
 
-        // removeLastConfirmationMsg: 'Are you sure?',
-         // removeCurrentConfirmationMsg: 'Are you sure?',
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
-
+        
         afterRemoveCurrent: function(source, event){
-          $("#calcular").trigger("click");
+          calcular();
+          calculo_general();
         }
     });
 
@@ -311,6 +334,8 @@
             $('#servicios_'+id+'_monto').val(a.precio);
             var total = parseFloat($('#total').val());
             $("#total").val(total + parseFloat(a.precio));
+            calcular();
+            calculo_general();
          }
       });
     })
@@ -328,15 +353,41 @@
             $('#laboratorios_'+id+'_monto').val(a.preciopublico);
             var total = parseFloat($('#total').val());
             $("#total").val(total + parseFloat(a.preciopublico));
+            calcular();
+            calculo_general();
          }
       });
     })
-
-    
 });
 
 $('.number').number(true,2,'.',',');
 
+function calcular() {
+  var total = 0;
+      $(".monto").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $(".montol").each(function(){
+        total += parseFloat($(this).val());
+      })
+
+      $("#total").val(total);
+}
+
+function calculo_general() {
+  var total = 0;
+  $(".abonoL").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $(".abonoS").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $("#total_a").val(total);
+  $("#total_g").val(parseFloat($("#total").val()) - parseFloat(total));
+}
 
 // Run Select2 on element
 function Select2Test(){
@@ -352,6 +403,7 @@ $(document).ready(function() {
 	LoadTimePickerScript(DemoTimePicker);
 	WinMove();
 });
+
 function DemoTimePicker(){
 	$('#input_date').datepicker({
 	setDate: new Date(),
