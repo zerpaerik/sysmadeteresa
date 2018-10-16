@@ -32,6 +32,8 @@ class UserController extends Controller
       'role_id' => $request->role_id,
       'password' => \Hash::make($request->password)
     ]);
+
+    
 		return redirect()->action('Users\UserController@index', ["created" => true, "users" => User::all()]);
 	}
 

@@ -22,26 +22,16 @@ class AtencionesController extends Controller
 
 
       	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.name as paciente','c.name as profesional','d.detalle as servicio')
-        ->join('users as b','a.id_paciente','b.id')
-        ->join('users as c','a.origen_usuario','c.id')
-        ->join('servicios as d','a.id_servicio','d.id')
-        ->join('analises as e','a.id_laboratorio','e.id')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
         ->orderby('a.id','desc')
         ->paginate(5000);
 
-        return view('generics.index', [
-        "icon" => "fa-list-alt",
-        "model" => "atenciones",
-        "headers" => ["id", "Paciente", "Origen", "Servicio", "Laboratorio", "Total","porcentaje","Abonado Total", "Editar", "Eliminar"],
-        "data" => $atenciones,
-        "fields" => ["id", "paciente", "profesional", "servicio", "laboratorio", "monto", "porcentaje", "abono"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
 
+        return view('movimientos.atenciones.index', ["atenciones" => $atenciones]);
 	}
 
 	public function createView() {
@@ -55,6 +45,19 @@ class AtencionesController extends Controller
 
   public function create(Request $request)
   {
+
+      $searchUsuarioID = DB::table('users')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->origen_usuario)
+                    ->first();                    
+                    //->get();
+                    
+                    $usuarioID = $searchUsuarioID->id;
+
+
+
+
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
     }
@@ -65,9 +68,15 @@ class AtencionesController extends Controller
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
-              $serv->origen_usuario = $request->origen_usuario;
+              $serv->origen_usuario = $usuarioID;
               $serv->id_servicio =  $servicio['servicio'];
+              $serv_id_laboratorio= 999;
               $serv->es_servicio =  true;
+              $serv->tipopago = $request->tipopago;
+              $serv->es_laboratorio =  false;
+              $serv->pagado_lab = false;
+              $serv->pagado_com = false;
+              $serv->resultado = false;
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
               $serv->id_sede = $request->session()->get('sede');
@@ -83,9 +92,15 @@ class AtencionesController extends Controller
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
-          $lab->origen_usuario = $request->origen_usuario;
+          $lab->origen_usuario = $usuarioID;
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
+          $lab->id_servicio = 999;
           $lab->es_laboratorio =  true;
+          $lab->tipopago = $request->tipopago;
+          $lab->es_servicio =  false;
+          $lab->pagado_lab = false;
+          $lab->pagado_com = false;
+          $lab->resultado = false;
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
           $lab->id_sede = $request->session()->get('sede');

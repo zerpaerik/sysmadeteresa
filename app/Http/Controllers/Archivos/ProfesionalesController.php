@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Profesionales;
 use App\Models\Especialidades;
 use App\Models\Centros;
+use App\User;
 use DB;
 
 class ProfesionalesController extends Controller
@@ -54,6 +55,13 @@ class ProfesionalesController extends Controller
 	      'centro' => $request->centro
 
    		]);
+
+      $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->apellidos
+
+      ]);
+
 		return redirect()->action('Archivos\ProfesionalesController@index', ["created" => true, "centros" => Profesionales::all()]);
 	}    
 

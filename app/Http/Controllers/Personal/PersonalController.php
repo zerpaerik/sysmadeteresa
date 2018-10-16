@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Personal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Personal;
+use App\User;
 
 class PersonalController extends Controller
 {
@@ -27,7 +28,9 @@ class PersonalController extends Controller
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
-      ]);     
+      ]);  
+
+         
     }
 
 	public function create(Request $request){
@@ -49,6 +52,15 @@ class PersonalController extends Controller
 	      'dni' => $request->dni,
 	      'address' => $request->address,
    		]);
+
+    $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->lastname,
+        'email' => $request->email,
+        'dni' => $request->dni,
+        'address' => $request->address,
+      ]);
+
 		return redirect()->action('Personal\PersonalController@index', ["created" => true, "users" => Personal::all()]);
 	}   
 

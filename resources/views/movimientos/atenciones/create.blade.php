@@ -92,7 +92,7 @@
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Abono</label>
                     <div class="col-sm-2">
 
-                      <input id="servicios_#index#_abonoS" name="monto_abos[servicios][#index#][abono] type="text" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                      <input id="servicios_#index#_abonoS" name="monto_abos[servicios][#index#][abono] type="text" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -162,7 +162,7 @@
                     <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Abono</label>
                     <div class="col-sm-2">
 
-                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
@@ -186,10 +186,22 @@
 						
 					</div>
           <hr>
+           <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Forma de Pago:
+              </div> 
+              <select name="tipopago" class="selectLab form-control">
+                        <option value="">Seleccionar Tipo de Pago</option>
+                        <option value="EF">Efectivo</option>}
+                        <option value="TJ">Tarjeta</option> 
+              </select>
+            </div>
+          </div>
           <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
-                Total servicio:
+                Total:
               </div> 
               <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 150px">
             </div>
@@ -262,7 +274,7 @@
       if(selectArr[0] == 'servicios'){
           if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
               alert('La cantidad insertada en abono es mayor al monto.');
-              $(this).val('0.00');
+              $(this).val('0');
               calculo_general();
           } else {
               calculo_general();
@@ -270,7 +282,7 @@
       } else {
         if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
               alert('La cantidad insertada en abono es mayor al monto.');
-              $(this).val('0.00');
+              $(this).val('0');
               calculo_general();
           } else {
               calculo_general();
