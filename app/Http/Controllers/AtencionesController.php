@@ -70,7 +70,6 @@ class AtencionesController extends Controller
               $serv->origen = $request->origen;
               $serv->origen_usuario = $usuarioID;
               $serv->id_servicio =  $servicio['servicio'];
-              $serv_id_laboratorio= 999;
               $serv->es_servicio =  true;
               $serv->tipopago = $request->tipopago;
               $serv->es_laboratorio =  false;
@@ -94,7 +93,6 @@ class AtencionesController extends Controller
           $lab->origen = $request->origen;
           $lab->origen_usuario = $usuarioID;
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
-          $lab->id_servicio = 999;
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
           $lab->es_servicio =  false;
