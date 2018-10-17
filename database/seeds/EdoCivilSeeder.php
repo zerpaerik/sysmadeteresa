@@ -13,8 +13,8 @@ class EdoCivilSeeder extends Seeder
     public function run()
     {
         $civils = [[
-        	"nombre" => "soltero(a)",
-        	"nombre" => "casado(a)"
+        	"nombre" => "Soltero(a)",
+        	"nombre" => "Casado(a)"
         ]];
 
         foreach ($civils as $civil) {

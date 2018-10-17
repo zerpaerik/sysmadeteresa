@@ -11,7 +11,7 @@ class DistritoSeeder extends Seeder
      */
     public function run()
     {
-    	$distritos = [["nombre" => "distrito x", "provincia" => 1]];
+    	$distritos = [["nombre" => "Lima", "provincia" => 1]];
     	foreach ($distritos as $distrito) {
     		Distritos::create($distrito);
     	}

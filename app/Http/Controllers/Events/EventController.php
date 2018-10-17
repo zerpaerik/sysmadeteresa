@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pacientes\Paciente;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
-use App\Models\Creditos\Credito;
+use App\Models\Creditos;
 use Calendar;
 use Carbon\Carbon;
 
@@ -89,9 +89,12 @@ class EventController extends Controller
     ]);
 
     if ($evt) {
-      $cred = Credito::create([
+      $cred = Creditos::create([
+        "origen" => 'CONSULTAS',
         "monto" => $request->monto,
-        "event_id" => $evt->id
+        "tipo_ingreso" => 'EF',
+        "id_sede" => $request->session()->get('sede')
+
       ]);
     }else{
       //

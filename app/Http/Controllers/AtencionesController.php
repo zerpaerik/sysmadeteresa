@@ -10,7 +10,7 @@ use App\Models\Analisis;
 use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales;
-
+use App\Models\Creditos;
 use Auth;
 
 
@@ -22,11 +22,12 @@ class AtencionesController extends Controller
 
 
       	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+        ->join('profesionales as f','f.id','a.origen_usuario')
         ->orderby('a.id','desc')
         ->paginate(5000);
 
@@ -70,6 +71,7 @@ class AtencionesController extends Controller
               $serv->origen = $request->origen;
               $serv->origen_usuario = $usuarioID;
               $serv->id_servicio =  $servicio['servicio'];
+              $serv->id_laboratorio = 1;
               $serv->es_servicio =  true;
               $serv->tipopago = $request->tipopago;
               $serv->es_laboratorio =  false;
@@ -81,6 +83,17 @@ class AtencionesController extends Controller
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->save(); 
+
+              $creditos = new Creditos();
+              $creditos->origen = 'ATENCIONES';
+              $creditos->id_atencion = $serv->id;
+              $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
+              $creditos->id_sede = $request->session()->get('sede');
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'INGRESO DE ATENCIONES';
+              $creditos->save();
+
+
         }
       }
     }
@@ -92,6 +105,7 @@ class AtencionesController extends Controller
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
           $lab->origen_usuario = $usuarioID;
+          $lab->id_servicio = 1;
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
@@ -104,6 +118,15 @@ class AtencionesController extends Controller
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->save();
+
+          $creditos = new Creditos();
+          $creditos->origen = 'ATENCIONES';
+          $creditos->id_atencion = $lab->id;
+          $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
+          $creditos->id_sede = $request->session()->get('sede');
+          $creditos->tipo_ingreso = $request->tipopago;
+          $creditos->descripcion = 'INGRESO DE ATENCIONES';
+          $creditos->save();
         }
       }
     }

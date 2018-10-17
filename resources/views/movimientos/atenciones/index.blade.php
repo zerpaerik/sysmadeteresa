@@ -41,7 +41,7 @@
 							<tr>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
 								<td>{{$atec->servicio}}</td>
 								<td>{{$atec->laboratorio}}</td>
 								<td>{{$atec->monto}}</td>
