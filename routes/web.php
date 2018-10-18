@@ -87,6 +87,36 @@ Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth')
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit', 'AtencionesController@edit');
 
+Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
+Route::get('gastos-create', 'GastosController@createView')->name('gastos.create')->middleware('auth');
+Route::post('gastos/create', 'GastosController@create')->middleware('auth');
+Route::get('gastos/{id}', 'GastosController@delete')->middleware('auth');
+Route::get('gastos-edit-{id}', 'GastosController@editView')->name('gastos.edit');
+Route::post('gastos/edit', 'GastosController@edit');
+
+Route::get('labporpagar', 'LabporPagarController@index')->name('labporpagar.index')->middleware('auth');
+Route::get('labporpagar-create', 'LabporPagarController@createView')->name('labporpagar.create')->middleware('auth');
+Route::post('labporpagar/create', 'LabporPagarController@create')->middleware('auth');
+Route::get('labporpagar/{id}', 'LabporPagarController@delete')->middleware('auth');
+Route::get('labporpagar-edit-{id}', 'LabporPagarController@editView')->name('labporpagar.edit');
+Route::post('labporpagar/edit', 'LabporPagarController@edit');
+Route::get('pagar/{id}', 'LabporPagarController@pagar')->middleware('auth');
+
+
+Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
+Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');
+Route::post('ingresos/create', 'OtrosIngresosController@create')->middleware('auth');
+Route::get('ingresos/{id}', 'OtrosIngresosController@delete')->middleware('auth');
+Route::get('ingresos-edit-{id}', 'OtrosIngresosController@editView')->name('ingresos.edit');
+Route::post('ingresos/edit', 'OtrosIngresosController@edit');
+
+Route::get('cuentasporcobrar', 'CuentasporCobrarController@index')->name('cuentasporcobrar.index')->middleware('auth');
+Route::get('cuentasporcobrar-create', 'CuentasporCobrarController@createView')->name('cuentasporcobrar.create')->middleware('auth');
+Route::post('cuentasporcobrar/create', 'CuentasporCobrarController@create')->middleware('auth');
+Route::get('cuentasporcobrar/{id}', 'CuentasporCobrarController@delete')->middleware('auth');
+Route::get('cuentasporcobrar-edit-{id}', 'CuentasporCobrarController@editView')->name('cuentasporcobrar.edit');
+Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
+
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 

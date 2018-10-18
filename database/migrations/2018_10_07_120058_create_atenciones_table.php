@@ -28,6 +28,7 @@ class CreateAtencionesTable extends Migration
             $table->boolean('es_laboratorio');
             $table->boolean('es_paquete');
             $table->string('monto');
+            $table->string('pendiente');
             $table->string('porcentaje');
             $table->string('tipopago');
             $table->string('abono');

@@ -55,8 +55,8 @@ class AtencionesController extends Controller
                     //->get();
                     
                     $usuarioID = $searchUsuarioID->id;
-
-
+    
+ 
 
 
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
@@ -78,6 +78,7 @@ class AtencionesController extends Controller
               $serv->pagado_lab = false;
               $serv->pagado_com = false;
               $serv->resultado = false;
+              $serv->pendiente = $request->total_g;
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
               $serv->id_sede = $request->session()->get('sede');
@@ -115,6 +116,7 @@ class AtencionesController extends Controller
           $lab->resultado = false;
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->save();

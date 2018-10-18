@@ -74,16 +74,16 @@
         <a href="{{route('atenciones.index')}}"><i class="fa fa-plus-circle"></i> Ingreso de atenciones</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-random"></i> Relación de gastos</a>
+        <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de gastos</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-dollar"></i> Laboratorios por pagar</a>
+        <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por pagar</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-money"></i> Otros ingresos</a>
+        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros ingresos</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-list-alt"></i> Cuentas por cobrar</a>
+        <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por cobrar</a>
       </li>
       <li>
         <a href="#"><i class="fa fa-list-alt"></i> Comisiones por pagar</a>
