@@ -30,9 +30,18 @@ class AtencionesController extends Controller
         ->join('profesionales as f','f.id','a.origen_usuario')
         ->orderby('a.id','desc')
         ->paginate(5000);
-
-
-        return view('movimientos.atenciones.index', ["atenciones" => $atenciones]);
+        
+         return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "atenciones",
+        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
+        "data" => $atenciones,
+        "fields" => ["id", "nombres", "apellidos","nompro","apepro","servicio","laboratorio","monto","abono"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]); 
 	}
 
 	public function createView() {
