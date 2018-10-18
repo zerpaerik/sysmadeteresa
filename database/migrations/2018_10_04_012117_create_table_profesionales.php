@@ -20,6 +20,7 @@ class CreateTableProfesionales extends Migration
         $table->string('dni');
         $table->string('cmp');
         $table->integer('centro');
+        $table->string('codigo');
         $table->integer('especialidad');
         $table->date('nacimiento');
         $table->timestamps();
