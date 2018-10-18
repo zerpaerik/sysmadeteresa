@@ -83,11 +83,7 @@ class AtencionesController extends Controller
               $serv->id_laboratorio = 1;
               $serv->es_servicio =  true;
               $serv->tipopago = $request->tipopago;
-              $serv->es_laboratorio =  false;
-              $serv->pagado_lab = false;
-              $serv->pagado_com = false;
-              $serv->resultado = false;
-              $serv->pendiente = $request->total_g;
+              $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
               $serv->id_sede = $request->session()->get('sede');
@@ -119,10 +115,7 @@ class AtencionesController extends Controller
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
-          $lab->es_servicio =  false;
-          $lab->pagado_lab = false;
-          $lab->pagado_com = false;
-          $lab->resultado = false;
+          $lab->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
           $lab->pendiente = $request->total_g;

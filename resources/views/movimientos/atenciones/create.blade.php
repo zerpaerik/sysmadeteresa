@@ -372,7 +372,7 @@
     })
 });
 
-$('.number').number(true,2,'.',',');
+$('.number').number(true,2,',','.');
 
 function calcular() {
   var total = 0;
