@@ -25,7 +25,7 @@ class ComporPagarController extends Controller
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('profesionales as f','f.id','a.origen_usuario')
-        ->where('a.pagado_com','=',0)
+        ->where('a.pagado_com','=', NULL)
         ->orderby('a.id','desc')
         ->paginate(5000);
 

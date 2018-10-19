@@ -41,7 +41,7 @@
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->abono}}</td>
-								<td>{{$atec->abono}}</td>
+								<td>{{$atec->pendiente}}</td>
 								<td></td>
 							</tr>
 						@endforeach

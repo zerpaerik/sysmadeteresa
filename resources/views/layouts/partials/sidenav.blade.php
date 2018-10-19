@@ -86,7 +86,7 @@
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por cobrar</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-list-alt"></i> Comisiones por pagar</a>
+        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comisiones por pagar</a>
       </li>
       <li>
         <a href="#"><i class="fa fa-list-alt"></i> Comisiones pagadas</a>

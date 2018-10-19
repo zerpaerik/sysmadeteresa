@@ -102,6 +102,14 @@ Route::get('labporpagar-edit-{id}', 'LabporPagarController@editView')->name('lab
 Route::post('labporpagar/edit', 'LabporPagarController@edit');
 Route::get('pagar/{id}', 'LabporPagarController@pagar')->middleware('auth');
 
+Route::get('comporpagar', 'ComporPagarController@index')->name('comporpagar.index')->middleware('auth');
+Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');
+Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('auth');
+Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
+Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
+Route::post('comporpagar/edit', 'ComporPagarController@edit');
+Route::get('pagar/{id}', 'ComporPagarController@pagar')->middleware('auth');
+
 
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
 Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');

@@ -24,7 +24,7 @@ class LabporPagarController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
         ->join('laboratorios as f','f.id','c.laboratorio')
         ->where('es_laboratorio','=',1)
-        ->where('a.pagado_lab','=',0)
+        ->where('a.pagado_lab','=',NULL)
         ->orderby('a.id','desc')
         ->paginate(5000);
 
