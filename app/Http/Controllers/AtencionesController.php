@@ -64,6 +64,8 @@ class AtencionesController extends Controller
                     //->get();
                     
                     $usuarioID = $searchUsuarioID->id;
+
+
     
  
 
@@ -73,6 +75,14 @@ class AtencionesController extends Controller
     }
 
     if (isset($request->id_servicio)) {
+            $searchServicio = DB::table('servicios')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id_servicio)
+                    ->first();   
+
+                    $porcentaje = $searchServicio->porcentaje;
+
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
               $serv = new Atenciones();
@@ -83,9 +93,11 @@ class AtencionesController extends Controller
               $serv->id_laboratorio = 1;
               $serv->es_servicio =  true;
               $serv->tipopago = $request->tipopago;
+              $serv->porc_pagar = $porcentaje;
               $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->monto = $request->monto_s['servicios'][$key]['monto'];
               $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
+              $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->save(); 
@@ -105,6 +117,14 @@ class AtencionesController extends Controller
     }
 
     if (isset($request->id_laboratorio)) {
+       $searchAnalisis = DB::table('analises')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id_laboratorio)
+                    ->first();   
+
+                    $porcentaje = $searchAnalisis->porcentaje;
+
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
           $lab = new Atenciones();
@@ -115,9 +135,11 @@ class AtencionesController extends Controller
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
-          $lab->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
+          $lab->porc_pagar = $porcentaje;
+          $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
           $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
