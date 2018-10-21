@@ -39,17 +39,6 @@
 					<tbody>
 						@foreach($atenciones as $atec)	
 
-
-						<?php 
-
-						$monto = $atec->monto;
-						$porcentaje = $atec->porcentaje;
-						$total = ($monto*$porcentaje)/100;
-
-						print_r($total);
-
-						;?>
-
 							<tr>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
@@ -57,9 +46,9 @@
 								<td>{{$atec->servicio}}</td>
 								<td>{{$atec->laboratorio}}</td>
 								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porcentaje}}</td>
-                                <td>{!!$total!!}</td>
-								<td></td>
+								<td>{{$atec->porc_pagar}}</td>
+                                <td>{{$atec->porcentaje}}</td>
+								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
 					</tbody>

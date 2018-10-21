@@ -30,6 +30,7 @@ class CreateAtencionesTable extends Migration
             $table->string('monto');
             $table->string('pendiente');
             $table->string('porcentaje');
+            $table->string('porc_pagar');
             $table->string('tipopago');
             $table->string('abono');
             $table->boolean('pagado_lab');
