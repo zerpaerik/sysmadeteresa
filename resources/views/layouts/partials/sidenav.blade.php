@@ -41,6 +41,9 @@
       <a href="{{route('productos.index')}}"><i class="fa fa-plus-square-o"></i> Productos</a>
     </li>
     <li>
+      <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de transferencias</a>
+    </li>    
+    <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
         <ul class="dropdown-menu">
           <li>
@@ -56,7 +59,8 @@
             <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
           <li>
-            <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
+            <!--{{route('productos.trans')}}-->
+            <a href="#"><i class="fa fa-refresh"></i> Movimientos</a>
           </li>
         </ul>      
     </li>

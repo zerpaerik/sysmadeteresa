@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Existencias;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Existencias\Producto;
-use App\Models\Config\{Medida, Categoria, Sede};
+use App\Models\Existencias\{Producto, Existencia, Transferencia};
+use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 
 
 class ProductoController extends Controller
@@ -16,9 +16,9 @@ class ProductoController extends Controller
 			return view('generics.index', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
-				"headers" => ["id", "nombre", "cantidad", "medida", "categoria", "sede_id", "Editar", "Eliminar"],
+				"headers" => ["id", "nombre", "medida", "categoria", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre", "cantidad", "medida", "categoria", "sede_id"],
+				"fields" => ["id", "nombre", "medida", "categoria"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -27,7 +27,7 @@ class ProductoController extends Controller
     }
 
     public function createView($extraArgs = []){
-    	return view('existencias.create', ["medidas" => Medida::all(), "categorias" => Categoria::all()] + $extraArgs);
+    	return view('existencias.create', ["categorias" => Categoria::all(), "medidas" => Medida::all()] + $extraArgs);
     }
 
     public function editView($id){
@@ -37,11 +37,19 @@ class ProductoController extends Controller
     }
 
     public function productInView(){
-      return view('existencias.entrada', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre'])]);  
+      return view('existencias.entrada', [
+        "productos" => Producto::all(),
+        "sedes" => Sede::all(),
+        "proveedores" => Proveedor::all()
+      ]);
     }
 
     public function productOutView(){
-      return view('existencias.salida', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre'])]);    
+      return view('existencias.salida', [
+        "productos" => Producto::all(),
+        "sedes" => Sede::all(),
+        "proveedores" => Proveedor::all()
+      ]);    
     }
 
     public function productTransView(){
@@ -55,10 +63,30 @@ class ProductoController extends Controller
     }
 
     public function addCant(Request $request){
-      $p = Producto::find($request->id);
-      $p->cantidad = $p->cantidad + $request->cantidadplus;
-      $res = $p->save();
-      return response()->json(["success" => $res, "producto" => $p], 200);
+      
+      $p = Existencia::where("producto", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
+      if($p){
+        $p->cantidad = $p->cantidad + $request->cantidadplus;
+        $res = $p->save();
+      }else{
+        $p = Existencia::create([
+          "producto" => $request->id,
+          "cantidad" => $request->cantidadplus,
+          "sede_id"  => $request->sede
+        ]);
+        $res = true;
+      }
+      if($res){
+        $trans = Transferencia::create([
+          "code" => $request->code,
+          "producto" => $request->id,
+          "cantidad" => $request->cantidadplus,
+          "origen" => ($request->cantidadplus > 0) ? -1 : 0,
+          "destino" => $request->sede,
+          "proveedor" => $request->proveedor
+        ]);
+      }else{$trans = [];}
+      return response()->json(["success" => $res, "producto" => $p, "trans" => $trans], 200);
     }
 
     public function transfer(Request $request){
@@ -105,6 +133,17 @@ class ProductoController extends Controller
       return response()->json(["deleted" => $res]);
     }
 
+    public function getExist($prod, $sede){
+      $ex = Existencia::where('producto', '=', $prod)->where("sede_id", "=", $sede)
+      ->get(["cantidad"])->first();
+      $prod = Producto::where('id', '=', $prod)->get()->first();
+      if($ex){
+        return response()->json(["existencia" => $ex, "exists" => true, "medida" => $prod->medida]);
+      }else{
+        return response()->json(["exists" => false, "medida" => $prod->medida]);
+      }
+    }
+
     public function create(Request $request){
 	  	$validator = \Validator::make($request->all(), [
 	  		"nombre" => "required|unique:productos",
@@ -116,9 +155,7 @@ class ProductoController extends Controller
     	$producto = Producto::create([
     		"nombre" => $request->nombre,
     		"categoria" => $request->categoria,
-    		"medida" => $request->medida,
-    		"cantidad" => $request->cantidad ?: 0,
-    		"sede_id" => \Session::get('sede')
+    		"medida" => $request->medida
     	]);
     	
     	if($producto){
@@ -126,4 +163,28 @@ class ProductoController extends Controller
 			}
    			return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
     }
+
+    public function historicoView(){
+      return view('existencias.historico', ["transferencias" => $this->unique_multidim_array(Transferencia::all(), "code")]);
+    }
+
+    public function transView($code){
+      $t = Transferencia::where('code', '=', $code)->get();
+      return view('existencias.transferencia', ["transferencias" => $t, "code" => $code]);
+    }
+
+    function unique_multidim_array($array, $key) { 
+        $temp_array = array(); 
+        $i = 0; 
+        $key_array = array(); 
+        
+        foreach($array as $val) { 
+            if (!in_array($val[$key], $key_array)) { 
+                $key_array[$i] = $val[$key]; 
+                $temp_array[$i] = $val; 
+            } 
+            $i++; 
+        } 
+        return $temp_array; 
+    }     
 }

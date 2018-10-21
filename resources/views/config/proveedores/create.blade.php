@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Agregar nueva sede</strong></span>
+					<span><strong>Agregar nuevo proveedor</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,22 +22,22 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="sede/create">
+				<form class="form-horizontal" role="form" method="post" action="proveedor/create">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="name" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
+							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
 						</div>
 
-						<label class="col-sm-1 control-label">Dirección</label>
+						<label class="col-sm-1 control-label">Codigo</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" name="address" placeholder="Dirección" data-toggle="tooltip" data-placement="bottom" title="Dirección">
+							<input type="text" class="form-control" name="codigo" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
 						</div>						
 						
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
-							<a href="{{route('sedes.create')}}" class="col-sm-2 btn btn-danger">Volver</a>
+							<a href="{{route('proveedores.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			
 				</form>	

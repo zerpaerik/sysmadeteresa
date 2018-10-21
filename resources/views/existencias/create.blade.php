@@ -48,11 +48,6 @@
 							</select>
 						</div>
 
-						<label class="col-sm-1 control-label">Cantidad</label>
-						<div class="col-sm-3">
-							<input type="number" class="form-control" name="cantidad" placeholder="Cantidad inicial" data-toggle="tooltip" data-placement="bottom" title="Cantidad">
-						</div>
-						
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
 							<a href="{{route('productos.index')}}" class="col-sm-2 btn btn-danger">Volver</a>

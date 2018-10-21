@@ -7,7 +7,7 @@ use App\Models\Profesionales\Especialidad;
 
 class Profesional extends Model
 {
-    protected $fillable = ["nombres", "apellidos", "dni", "cmp", "codigo", "especialidad"];
+    protected $fillable = ["nombres", "apellidos", "dni", "cmp", "codigo", "especialidad", "nacimiento"];
     public $table = "profesionales";
 
     public function getEspecialidadAttribute($value){
