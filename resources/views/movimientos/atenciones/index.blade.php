@@ -9,7 +9,6 @@
 				<div class="box-name">
 					<i class="fa fa-users"></i>
 					<span><strong>Atenciones</strong></span>
-					<a href="{{route('atenciones.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -41,7 +40,7 @@
 							<tr>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
+								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->servicio}}</td>
 								<td>{{$atec->laboratorio}}</td>
 								<td>{{$atec->monto}}</td>
@@ -52,9 +51,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
+							
 						</tr>
 					</tfoot>
 				</table>

@@ -11,6 +11,7 @@ use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
+use App\Models\User;
 use Auth;
 
 
@@ -22,21 +23,21 @@ class AtencionesController extends Controller
 
 
       	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-        ->join('profesionales as f','f.id','a.origen_usuario')
-        ->orderby('a.id','desc')
+        ->whereNotIn('a.monto',[0,0.00])
+         ->orderby('a.id','desc')
         ->paginate(5000);
         
          return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "atenciones",
-        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
+        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
         "data" => $atenciones,
-        "fields" => ["id", "nombres", "apellidos","nompro","apepro","servicio","laboratorio","monto","abono"],
+        "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","monto","abono"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -65,11 +66,6 @@ class AtencionesController extends Controller
                     
                     $usuarioID = $searchUsuarioID->id;
 
-
-    
- 
-
-
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
     }
@@ -88,7 +84,7 @@ class AtencionesController extends Controller
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
-              $serv->origen_usuario = $usuarioID;
+              $serv->origen_usuario = $request->origen_usuario;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->id_laboratorio = 1;
               $serv->es_servicio =  true;
@@ -112,25 +108,28 @@ class AtencionesController extends Controller
               $creditos->save();
 
 
+        } else {
+
         }
       }
     }
 
     if (isset($request->id_laboratorio)) {
+
        $searchAnalisis = DB::table('analises')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('id','=', $request->id_laboratorio)
                     ->first();   
-
-                    $porcentaje = $searchAnalisis->porcentaje;
+                   
+                   $porcentaje =  $searchAnalisis->porcentaje;
 
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
-          $lab->origen_usuario = $usuarioID;
+          $lab->origen_usuario = $request->origen_usuario;
           $lab->id_servicio = 1;
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
           $lab->es_laboratorio =  true;
@@ -153,6 +152,8 @@ class AtencionesController extends Controller
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
+        } else {
+
         }
       }
     }
@@ -162,7 +163,11 @@ class AtencionesController extends Controller
 
   public function personal(){
      
-      $personal = Personal::all();
+       $personal = DB::table('users')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('tipo','=','1')
+                    ->get();  
  
     return view('movimientos.atenciones.personal', compact('personal'));
 
@@ -171,7 +176,11 @@ class AtencionesController extends Controller
 
    public function profesional(){
      
-      $profesional = Profesionales::all();
+        $profesional = DB::table('users')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('tipo','=','2')
+                    ->get();  
  
     return view('movimientos.atenciones.profesional', compact('profesional'));
 
