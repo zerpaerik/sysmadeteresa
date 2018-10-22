@@ -6,11 +6,12 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
+
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
 					<span><strong>{{ucfirst($model)}}</strong></span>
-					<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">

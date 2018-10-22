@@ -72,7 +72,7 @@
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                        <option value="">Seleccionar servicio</option>}
+                        <option value="1">Seleccionar servicio</option>}
                         option
                         @foreach($servicios as $pac)
                           <option value="{{$pac->id}}">
@@ -143,7 +143,7 @@
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
                     <div class="col-sm-3">
                       <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
-                        <option value="">Seleccionar laboratorio</option>}
+                        <option value="1">Seleccionar laboratorio</option>
                         @foreach($laboratorios as $pac)
                           <option value="{{$pac->id}}">
                             {{$pac->name}}-Precio:{{$pac->preciopublico}}
@@ -191,7 +191,7 @@
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
                 Forma de Pago:
               </div> 
-              <select name="tipopago" class="selectLab form-control">
+              <select name="tipopago" class="selectLab form-control" required="true">
                         <option value="">Seleccionar Tipo de Pago</option>
                         <option value="EF">Efectivo</option>}
                         <option value="TJ">Tarjeta</option> 

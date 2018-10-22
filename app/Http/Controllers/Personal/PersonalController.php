@@ -44,7 +44,7 @@ class PersonalController extends Controller
         ]);
         if($validator->fails()) 
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
-		$user = Personal::create([
+		$personal = Personal::create([
 	      'name' => $request->name,
 	      'lastname' => $request->lastname,
 	      'phone' => $request->phone,
@@ -56,12 +56,14 @@ class PersonalController extends Controller
     $users= User::create([
         'name' => $request->name,
         'lastname' => $request->lastname,
-        'email' => $request->email,
-        'dni' => $request->dni,
-        'address' => $request->address,
+        'tipo' => '1',
+        'dni' => $request->dni
+
       ]);
 
-		return redirect()->action('Personal\PersonalController@index', ["created" => true, "users" => Personal::all()]);
+
+
+		return redirect()->action('Personal\PersonalController@index', ["created" => true, "personal" => Personal::all()]);
 	}   
 
      public function editView($id){
