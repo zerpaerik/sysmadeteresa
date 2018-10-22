@@ -52,7 +52,7 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" placeholder="Monto" name="monto">
+							<input type="number" class="form-control" placeholder="Monto" name="monto" required="required">
 						</div>
 
 						<label class="col-sm-1 control-label">Fecha</label>
