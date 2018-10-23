@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Servicios extends Model
 {
     protected $fillable = [
-    	'detalle', 'precio', 'porcentaje'
+    	'id','detalle', 'precio', 'porcentaje'
     ];
+
+    public function atenciones()
+    {
+    	return $this->hasMany('App\Models\Atenciones', 'id_servicio', 'id');
+    }
 }

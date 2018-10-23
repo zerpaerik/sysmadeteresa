@@ -406,8 +406,8 @@ function Select2Test(){
 	$("#el2").select2();
 	$("#el1").select2();
 	$("#el3").select2();
-    $("#el5").select2();
-
+  $("#el5").select2();
+  $("#el4").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this

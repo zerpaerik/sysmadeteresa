@@ -85,7 +85,7 @@ Route::get('atenciones-create', 'AtencionesController@createView')->name('atenci
 Route::post('atenciones/create', 'AtencionesController@create')->middleware('auth');
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
-Route::post('atenciones/edit', 'AtencionesController@edit');
+Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
 Route::get('gastos-create', 'GastosController@createView')->name('gastos.create')->middleware('auth');

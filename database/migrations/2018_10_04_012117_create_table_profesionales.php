@@ -22,7 +22,7 @@ class CreateTableProfesionales extends Migration
         $table->integer('centro');
         $table->string('codigo');
         $table->integer('especialidad');
-        $table->date('nacimiento');
+        $table->date('nacimiento')->nullable(true);
         $table->timestamps();
       });
     }
