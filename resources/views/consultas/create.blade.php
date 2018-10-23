@@ -52,12 +52,12 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" placeholder="Monto" name="monto">
+							<input type="number" class="form-control" placeholder="Monto" name="monto" required="required">
 						</div>
 
 						<label class="col-sm-1 control-label">Fecha</label>
 						<div class="col-sm-3">
-							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date">
+							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date" required="required">
 						</div>
 						<label class="col-sm-1 control-label">Hora</label>
 							<div class="col-sm-3">

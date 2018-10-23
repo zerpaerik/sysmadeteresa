@@ -6,8 +6,6 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
-
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
@@ -38,8 +36,7 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach						
-							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
+							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Cobrar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>

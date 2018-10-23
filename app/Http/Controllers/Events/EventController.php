@@ -80,24 +80,18 @@ class EventController extends Controller
 
     $paciente = Paciente::find($request->paciente);
 
-    $evt = Event::create([
-      "paciente" => $request->paciente,
-      "profesional" => $request->especialista,
-      "date" => Carbon::createFromFormat('d/m/Y', $request->date),
-      "time" => $request->time,
-      "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
-    ]);
+    $exists = Event::where("date", "=", Carbon::createFromFormat('d/m/Y', $request->date))
+      ->where("time", "=", $request->time)
+      ->get()->first();
 
-    if ($evt) {
-      $cred = Creditos::create([
-        "origen" => 'CONSULTAS',
-        "monto" => $request->monto,
-        "tipo_ingreso" => 'EF',
-        "id_sede" => $request->session()->get('sede')
-
+    if(!$exists){
+      $evt = Event::create([
+        "paciente" => $request->paciente,
+        "profesional" => $request->especialista,
+        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+        "time" => $request->time,
+        "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
       ]);
-    }else{
-      //
     }
 
     $calendar = Calendar::addEvents($this->getEvents())

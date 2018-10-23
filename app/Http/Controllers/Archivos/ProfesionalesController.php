@@ -58,7 +58,10 @@ class ProfesionalesController extends Controller
 
       $users= User::create([
         'name' => $request->name,
-        'lastname' => $request->apellidos
+        'lastname' => $request->apellidos,
+        'tipo' => '2',
+        'dni' => $request->dni
+
 
       ]);
 

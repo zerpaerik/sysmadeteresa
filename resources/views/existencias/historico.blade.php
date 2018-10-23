@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Cuentas por Cobrar</strong></span>
+					<span><strong>Movimientos</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -24,35 +24,20 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Monto Pendiente</th>
-							<th>Acciones</th>
-
+							<th>Codigo</th>
+							<th>Origen</th>
+							<th>Sede</th>
 						</tr>
 					</thead>
-			
 					<tbody>
-						@foreach($atenciones as $atec)					
+						@foreach($transferencias as $transferencia)					
 							<tr>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->abono}}</td>
-								<td>{{$atec->pendiente}}</td>
-								<td></td>
+								<td><a href="transferencia-{{$transferencia->code}}">{{$transferencia->code}}</a></td>
+								<td>{{$transferencia->origen}}</td>
+								<td>{{$transferencia->destino}}</td>
 							</tr>
 						@endforeach
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 		</div>

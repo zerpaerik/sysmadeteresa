@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Cuentas por Cobrar</strong></span>
+					<span><strong>Comisiones por Pagar</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -26,23 +26,29 @@
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Servicios</th>
+							<th>Laboratorios</th>
 							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Monto Pendiente</th>
+							<th>Porcentaje</th>
+							<th>Monto a Pagar</th>
 							<th>Acciones</th>
 
 						</tr>
 					</thead>
-			
 					<tbody>
-						@foreach($atenciones as $atec)					
+						@foreach($atenciones as $atec)	
+
 							<tr>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
+								<td>{{$atec->servicio}}</td>
+								<td>{{$atec->laboratorio}}</td>
 								<td>{{$atec->monto}}</td>
-								<td>{{$atec->abono}}</td>
-								<td>{{$atec->pendiente}}</td>
-								<td></td>
+								<td>{{$atec->porc_pagar}}</td>
+                                <td>{{$atec->porcentaje}}</td>
+								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
 					</tbody>

@@ -7,6 +7,7 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\Creditos;
 use Auth;
 
 
@@ -17,8 +18,8 @@ class CuentasporCobrarController extends Controller
 	public function index(){
 
 
-      	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
+      	$cuentasporcobrar = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -28,46 +29,55 @@ class CuentasporCobrarController extends Controller
         ->orderby('a.id','desc')
         ->paginate(5000);
 
-
-        return view('movimientos.cuentasporcobrar.index', ["atenciones" => $atenciones]);
+         return view('generics.index2', [
+        "icon" => "fa-list-alt",
+        "model" => "cuentasporcobrar",
+        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
+        "data" => $cuentasporcobrar,
+        "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]); 
 	}
 
-	public function pagar($id, Request $request) {
 
-       $searchAtencion = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono')
-        ->where('a.id','=', $id)
-        ->get();
+	public function editView($id){
+      $p = Atenciones::find($id);
+      return view('movimientos.cuentasporcobrar.edit', ["pendiente" => $p->pendiente,"id" => $p->id]);
+    }
 
-         foreach ($searchAtencion as $atencion) {
-                    $monto = $atencion->monto;
-                    $id_laboratorio = $atencion->id_laboratorio;
-                }
+	 public function edit(Request $request){
 
-        $searchAnalisis =  DB::table('analises as a')
-        ->select('a.id','a.costlab','a.name')
-        ->where('a.id','=', $id_laboratorio)
-        ->get(); 
+       $searchAtencionID = DB::table('atenciones')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();                    
+                    //->get();
+                    
+                    $pendiente = $searchAtencionID->pendiente;
+                    $atencion = $searchAtencionID->id;
 
-        foreach ($searchAnalisis as $analisis) {
-                    $costo = $analisis->costlab;
-                    $name = $analisis->name;
-                } 
 
-                $pagarlab = Atenciones::findOrFail($id);
-                $pagarlab->pagado_lab = 1;
-                $pagarlab->update();
+                    $p = Atenciones::find($request->id);
+                    $p->pendiente = $pendiente-$request->monto;
+                    $res = $p->save();
 
-                $debitos = new Debitos();
-                $debitos->origen = 'LAB POR PAGAR';
-                $debitos->monto= $costo;
-                $debitos->id_sede = $request->session()->get('sede');
-                $debitos->descripcion = $name;
-                $debitos->save();     
+                    $creditos = new Creditos();
+                    $creditos->origen = 'CUENTAS POR COBRAR';
+                    $creditos->id_atencion = $atencion;
+                    $creditos->monto= $request->monto;
+                    $creditos->id_sede = $request->session()->get('sede');
+                    $creditos->tipo_ingreso = 'EF';
+                    $creditos->descripcion = 'CUENTAS POR COBRAR';
+                    $creditos->save();
 
-    return redirect()->route('labporpagar.index');
 
-  }
+
+      return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
+    }
 
 
 

@@ -21,6 +21,7 @@ class CreatePersonalTable extends Migration
             $table->string('phone')->unique();
             $table->string('address');
             $table->string('email')->unique();
+            $table->integer('tipo');
             $table->timestamps();
         });
     }

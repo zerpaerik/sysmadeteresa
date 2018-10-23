@@ -102,6 +102,14 @@ Route::get('labporpagar-edit-{id}', 'LabporPagarController@editView')->name('lab
 Route::post('labporpagar/edit', 'LabporPagarController@edit');
 Route::get('pagar/{id}', 'LabporPagarController@pagar')->middleware('auth');
 
+Route::get('comporpagar', 'ComporPagarController@index')->name('comporpagar.index')->middleware('auth');
+Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');
+Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('auth');
+Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
+Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
+Route::post('comporpagar/edit', 'ComporPagarController@edit');
+Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
+
 
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
 Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');
@@ -147,9 +155,12 @@ Route::delete('existencias-delete-{id}', 'Existencias\ProductoController@delete'
 Route::get('existencias-in', 'Existencias\ProductoController@productInView')->name('productos.in');
 Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->name('productos.out');
 Route::get('existencias-trans', 'Existencias\ProductoController@productTransView')->name('productos.trans');
+Route::get('existencia/{prod}/{sede}', 'Existencias\ProductoController@getExist');
 Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
 Route::post('transfer', 'Existencias\ProductoController@transfer');
 Route::patch('producto', 'Existencias\ProductoController@addCant');
+Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
+Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
 
 //Medidas
 Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');
@@ -161,6 +172,7 @@ Route::get('medidas-edit-{id}', 'Config\MedidaController@editView')->name('medid
 Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores.index');
 Route::get('proveedores-create', 'Config\ProveedorController@createView')->name('proveedores.create');
 Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name('proveedores.edit');
+Route::post('proveedor/create', 'Config\ProveedorController@create');
 
 //Categorias
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');

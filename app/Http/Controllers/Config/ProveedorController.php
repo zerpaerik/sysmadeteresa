@@ -13,10 +13,23 @@ class ProveedorController extends Controller
 		return view('generics.index', [
 			"icon" => "fa-truck",
 			"model" => "proveedores",
-			"headers" => ["id", "nombre", "codigo"],
+			"headers" => ["id", "nombre", "codigo", "editar", "eliminar"],
 			"data" => $proveedores,
 			"fields" => ["id", "nombre", "codigo"],
 		]);
+	}
+
+	public function create(Request $request){
+		$res = Proveedor::create($request->all());
+		return redirect()->action('Config\ProveedorController@index', ["created" => $res]);  
+	}
+
+	public function editView(){
+		return view('config.proveedores.edit');
+	}
+
+	public function createView(){
+		return view('config.proveedores.create');
 	}
 
 }

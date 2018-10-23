@@ -36,7 +36,7 @@
 
 						<label class="col-sm-1 control-label">Producto</label>
 						<div class="col-sm-3">
-							<select class="form-control" id="prod" name="producto"  data-toggle="tooltip" data-placement="bottom">
+							<select id="prod" name="producto"  data-toggle="tooltip" data-placement="bottom">
 								<option value="0">Seleccione un producto</option>
 								@foreach($productos as $producto)
 									<option value="{{$producto->id}}">{{$producto->nombre}}</option>
@@ -54,7 +54,25 @@
 							<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad actual" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" disabled="disabled">
 						</div>
 
-						<label class="col-sm-10 control-label">Agregar</label>
+						<label class="col-sm-1 control-label">Sede</label>
+						<div class="col-sm-2">
+							<select id="sede" name="sede">
+								@foreach($sedes as $sede)
+									<option value="{{$sede->id}}">{{$sede->name}}</option>
+								@endforeach
+							</select>
+						</div>
+
+						<label class="col-sm-1 control-label">Proveedor</label>
+						<div class="col-sm-3">
+							<select id="provee" name="provee">
+								@foreach($proveedores as $proveedor)
+									<option value="{{$proveedor->id}}">{{$proveedor->codigo}} - {{$proveedor->nombre}}</option>
+								@endforeach
+							</select>
+						</div>
+
+						<label class="col-sm-3 control-label">Agregar</label>
 						<div class="col-sm-2">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
 						</div>
@@ -62,8 +80,6 @@
 						<div class="col-sm-12" style="float:right;">
 							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>				
-
-						<input type="hidden" name="id" id="idp">
 
 					</form>	
 					</div>			
@@ -85,35 +101,66 @@
 	</table>
 
 <script type="text/javascript">
-	document.getElementById("prod").addEventListener('change', function(evt){
-		var id = document.getElementById("prod").value;
-		if(id < 1) return;
+
+	window.onunload = clear;
+
+	function clear(){
+  	window.sessionStorage.clear();
+	};
+
+	function getQuan(evt){
+		evt.preventDefault();
+		var prod = $("#prod").val();
+		if(prod < 1) return;
+
 		$.ajax({
-      url: "producto/"+id,
+      url: "existencia/"+prod+"/"+$("#sede").val(),
       headers: {
     		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   		},
       type: "get",
       success: function(res){
-      	$('#medida').val(res.producto.medida);
-      	$('#cantidad').val(res.producto.cantidad);
-      	$('#idp').val(res.producto.id);
+      	if(res.exists){
+      		$("#cantidad").val(res.existencia.cantidad);
+      		$("#medida").val(res.medida);
+      	}else{
+      		$("#medida").val(res.medida);
+      		$("#cantidad").val(0);
+      	}
       }
     });
-	});
+  }		
+
 </script>
 
-<script type="text/javascript">
 
-	document.getElementById("updatepro").addEventListener('click', function(evt){
+
+@endsection
+@section('scripts')
+<script>
+
+	$("#prod").on('change', getQuan);
+	$("#sede").on('change', getQuan);
+
+	$("#updatepro").on('click', function(evt){
 		evt.preventDefault();
-		if($('#idp').val() < 1) return;
+
+		if($('#prod').val() < 1) return;
+
+		var cs = window.sessionStorage.getItem("currentTime");
+		if(!cs){
+			cs = new Date().getTime();
+			window.sessionStorage.setItem("currentTime", cs);
+		}
 
 		var d = {
-			"id" : $('#idp').val(),
+			"code" :  cs,
+			"proveedor" : $('#provee').val(),
+			"id" : $('#prod').val(),
+			"sede" : $("#sede").val(),
 			"cantidadplus" : $('#cantidadplus').val()
 		};
-		
+
 		$.ajax({
       url: "producto/",
       headers: {
@@ -123,9 +170,9 @@
       data: d,
       success: function(res){
       	if(res.success){
-      		$( "#table-b" ).append( "<tr><td>Entrada</td><td>"+res.producto.nombre+"</td><td>"+$('#cantidadplus').val()+"</td></tr>" );      		
-	      	$('#cantidad').val(res.producto.cantidad);
-	      	$('#cantidadplus').val(0);      		
+					$( "#table-b" ).append("<tr><td>Entrada</td><td>"+$("#prod").val()+"</td><td>"+$('#cantidadplus').val()+"</td></tr>" );      		
+			  	$('#cantidad').val(res.producto.cantidad);
+			  	$('#cantidadplus').val(0);      				
       		$("#successalrt").toggleClass("invisible");
       		setTimeout(function(){
       			$("#successalrt").toggleClass("invisible");
@@ -135,9 +182,12 @@
     });
 	});
 
-	
+	$(document).ready(function() {
+		LoadSelect2Script(function (){
+			$("#provee").select2();
+			$("#sede").select2();
+			$("#prod").select2();
+		});
+	});
 </script>
-
-
-
 @endsection
