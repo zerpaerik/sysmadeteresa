@@ -183,12 +183,13 @@ class AtencionesController extends Controller
     $servicios = Servicios::all();
     $laboratorios = Analisis::all();
     $pacientes = Pacientes::all();
-    $personal = Personal::all();
-    $profesional = Profesionales::all();
+    //$personal = Personal::all();
+    //$profesional = Profesionales::all();
+    $users = User::all();
 
     $atencion = Atenciones::findOrFail($id);
     
-    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'personal', 'profesional'));
+    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users'));
   }
 
   public function edit(Request $request, $id)
