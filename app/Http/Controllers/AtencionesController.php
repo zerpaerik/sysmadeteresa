@@ -11,7 +11,7 @@ use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
-use App\Models\User;
+use App\User;
 use Auth;
 
 
