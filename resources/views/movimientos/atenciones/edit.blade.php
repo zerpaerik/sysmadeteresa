@@ -168,24 +168,30 @@
                   <div id="laboratorios_template" class="template row">
                       <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
                       <div class="col-sm-3">
-                        <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <select id="laboratorios_0_laboratorio" name="id_laboratorio[laboratorios][0][laboratorio]" class="selectLab form-control">
                           <option value="">Seleccionar laboratorio</option>}
                           @foreach($laboratorios as $pac)
-                            <option value="{{$pac->id}}">
-                              {{$pac->name}}-Precio:{{$pac->preciopublico}}
-                            </option>
+                            @if ($atencion->laboratorio->id == $pac->id)
+                                    <option value="{{$pac->id}}" selected="selected">
+                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                    </option>
+                                  @else
+                                    <option value="{{$pac->id}}">
+                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                    </option>
+                                  @endif
                           @endforeach
                         </select>
                       </div>
-                      <label for="laboratorios_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                      <label for="laboratorios_0_monto" class="col-sm-1 control-label">Monto</label>
                       <div class="col-sm-2">
-                        <input id="laboratorios_#index#_montoHidden" name="monto_h[laboratorios][#index#][montoHidden]" class="number" type="hidden" value="">
+                        <input id="laboratorios_0_montoHidden" name="monto_h[laboratorios][0][montoHidden]" class="number" type="hidden" value="">
 
-                        <input id="laboratorios_#index#_monto" name="monto_l[laboratorios][#index#][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                        <input id="laboratorios_0_monto" name="monto_l[laboratorios][0][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
                       </div>
-                      <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Abono</label>
+                      <label for="laboratorios_0_abonoL" class="col-sm-1 control-label">Abono</label>
                       <div class="col-sm-2">
-                        <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                        <input id="laboratorios_0_abonoL" name="monto_abol[laboratorios][0][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
                       </div>
                       <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                   </div>

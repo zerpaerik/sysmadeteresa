@@ -25,7 +25,7 @@ class Atenciones extends Model
     	return $this->hasOne('App\Models\Pacientes','id', 'id_paciente');
     }
 
-    public function Analisi()
+    public function laboratorio()
     {
         return $this->belongsTo('App\Models\Analisis','id_laboratorio');
     }
