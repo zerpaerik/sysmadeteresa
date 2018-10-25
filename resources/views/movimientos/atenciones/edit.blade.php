@@ -173,11 +173,11 @@
                           @foreach($laboratorios as $pac)
                             @if ($atencion->laboratorio->id == $pac->id)
                                     <option value="{{$pac->id}}" selected="selected">
-                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                      {{$pac->name}}-Precio:{{$pac->preciopublico}}
                                     </option>
                                   @else
                                     <option value="{{$pac->id}}">
-                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                      {{$pac->name}}-Precio:{{$pac->preciopublico}}
                                     </option>
                                   @endif
                           @endforeach
@@ -187,11 +187,11 @@
                       <div class="col-sm-2">
                         <input id="laboratorios_0_montoHidden" name="monto_h[laboratorios][0][montoHidden]" class="number" type="hidden" value="">
 
-                        <input id="laboratorios_0_monto" name="monto_l[laboratorios][0][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                        <input id="laboratorios_0_monto" name="monto_l[laboratorios][0][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="{{ $atencion->monto }}">
                       </div>
                       <label for="laboratorios_0_abonoL" class="col-sm-1 control-label">Abono</label>
                       <div class="col-sm-2">
-                        <input id="laboratorios_0_abonoL" name="monto_abol[laboratorios][0][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                        <input id="laboratorios_0_abonoL" name="monto_abol[laboratorios][0][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="{{ $atencion->abono }}">
                       </div>
                       <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                   </div>

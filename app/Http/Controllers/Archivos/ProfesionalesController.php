@@ -62,7 +62,6 @@ class ProfesionalesController extends Controller
         'tipo' => '2',
         'dni' => $request->dni
 
-
       ]);
 
 		return redirect()->action('Archivos\ProfesionalesController@index', ["created" => true, "centros" => Profesionales::all()]);

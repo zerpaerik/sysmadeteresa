@@ -18,7 +18,6 @@ class ProfesionalSeeder extends Seeder
     			"apellidos" => "Perez", 
     			"dni" => "123456789", 
     			"cmp" => "00000", 
-    			"codigo" => "111111", 
     			"especialidad" => 1,
                 "centro" => 1,
                 "nacimiento" => "1970-01-01 00:00:00"
@@ -27,7 +26,6 @@ class ProfesionalSeeder extends Seeder
                 "apellidos" => "Rodriguez", 
                 "dni" => "012345678", 
                 "cmp" => "00001", 
-                "codigo" => "111112", 
                 "especialidad" => 1,
                 "centro" => 1,
                 "nacimiento" => "1970-01-01 00:00:00"

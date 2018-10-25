@@ -195,7 +195,10 @@ class AtencionesController extends Controller
   public function edit(Request $request, $id)
   {
     $atencion = Atenciones::findOrFail($id);
-        
+    
+    $creditos = Creditos::where('id_atencion', $atencion->id)->first();
+
+    
     $searchUsuarioID = DB::table('users')
                     ->select('*')
                     ->where('id','=', $request->origen_usuario)
@@ -210,17 +213,23 @@ class AtencionesController extends Controller
       $atencion->pendiente = (float)$request->monto_s['servicios'][0]['monto'] - (float)$request->monto_abos['servicios'][0]['abono'];
       $atencion->monto = $request->monto_s['servicios'][0]['monto'];
       $atencion->abono = $request->monto_abos['servicios'][0]['abono'];
+
+      $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
     } else {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
-      $atencion->id_laboratorio =  $request->id_laboratorios['laboratorios'][0]['laboratorio'];
+      $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
       $atencion->tipopago = $request->tipopago;
       $atencion->pendiente = (float)$request->monto_s['laboratorios'][0]['monto'] - (float)$request->monto_abos['laboratorios'][0]['abono'];
       $atencion->monto = $request->monto_l['laboratorios'][0]['monto'];
       $atencion->abono = $request->monto_abol['laboratorios'][0]['abono'];
+
+      $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
     }
 
-    if ($atencion->save()) {
+    if ($atencion->save() && $creditos->save()) {
       return redirect()->route('atenciones.index');
     } else {
       throw new Exception("Error en el proceso de actualización", 1);

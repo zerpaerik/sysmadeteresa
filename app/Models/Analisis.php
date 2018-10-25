@@ -12,6 +12,6 @@ class Analisis extends Model
 
     public function Atenciones()
     {
-    	return $this->hasMany('App\Models\Atenciones', 'id_laboratorio');
+    	return $this->hasMany('App\Models\Atenciones', 'id_laboratorio', 'id');
     }
 }
