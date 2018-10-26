@@ -20,7 +20,8 @@ class ProfesionalSeeder extends Seeder
     			"cmp" => "00000", 
     			"especialidad" => 1,
                 "centro" => 1,
-                "nacimiento" => "1970-01-01 00:00:00"
+                "nacimiento" => "1970-01-01 00:00:00",
+                'tipo' => 1,
                 ],
                 ["name" => "Juan", 
                 "apellidos" => "Rodriguez", 
@@ -28,7 +29,8 @@ class ProfesionalSeeder extends Seeder
                 "cmp" => "00001", 
                 "especialidad" => 1,
                 "centro" => 1,
-                "nacimiento" => "1970-01-01 00:00:00"
+                "nacimiento" => "1970-01-01 00:00:00",
+                'tipo' => 1,
                 ],
     		];
     		foreach ($profesionales as $profesional) {

@@ -81,6 +81,7 @@ Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
+Route::get('atenciones-search', 'AtencionesController@search')->name('atenciones.search')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');
 Route::post('atenciones/create', 'AtencionesController@create')->middleware('auth');
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
@@ -88,6 +89,7 @@ Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenc
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
+Route::get('gastos-search', 'GastosController@search')->name('gastos.search')->middleware('auth');
 Route::get('gastos-create', 'GastosController@createView')->name('gastos.create')->middleware('auth');
 Route::post('gastos/create', 'GastosController@create')->middleware('auth');
 Route::get('gastos/{id}', 'GastosController@delete')->middleware('auth');
@@ -95,6 +97,7 @@ Route::get('gastos-edit-{id}', 'GastosController@editView')->name('gastos.edit')
 Route::post('gastos/edit', 'GastosController@edit');
 
 Route::get('labporpagar', 'LabporPagarController@index')->name('labporpagar.index')->middleware('auth');
+Route::get('labporpagar-search', 'LabporPagarController@search')->name('labporpagar.search')->middleware('auth');
 Route::get('labporpagar-create', 'LabporPagarController@createView')->name('labporpagar.create')->middleware('auth');
 Route::post('labporpagar/create', 'LabporPagarController@create')->middleware('auth');
 Route::get('labporpagar/{id}', 'LabporPagarController@delete')->middleware('auth');
@@ -103,6 +106,7 @@ Route::post('labporpagar/edit', 'LabporPagarController@edit');
 Route::get('pagar/{id}', 'LabporPagarController@pagar')->middleware('auth');
 
 Route::get('comporpagar', 'ComporPagarController@index')->name('comporpagar.index')->middleware('auth');
+Route::get('comporpagar-search', 'ComporPagarController@search')->name('comporpagar.search')->middleware('auth');
 Route::get('comporpagar-create', 'ComporPagarController@createView')->name('comporpagar.create')->middleware('auth');
 Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('auth');
 Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
@@ -112,6 +116,7 @@ Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth'
 
 
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
+Route::get('ingresos-search', 'OtrosIngresosController@search')->name('ingresos.search')->middleware('auth');
 Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');
 Route::post('ingresos/create', 'OtrosIngresosController@create')->middleware('auth');
 Route::get('ingresos/{id}', 'OtrosIngresosController@delete')->middleware('auth');
@@ -119,6 +124,7 @@ Route::get('ingresos-edit-{id}', 'OtrosIngresosController@editView')->name('ingr
 Route::post('ingresos/edit', 'OtrosIngresosController@edit');
 
 Route::get('cuentasporcobrar', 'CuentasporCobrarController@index')->name('cuentasporcobrar.index')->middleware('auth');
+Route::get('cuentasporcobrar-search', 'CuentasporCobrarController@search')->name('cuentasporcobrar.search')->middleware('auth');
 Route::get('cuentasporcobrar-create', 'CuentasporCobrarController@createView')->name('cuentasporcobrar.create')->middleware('auth');
 Route::post('cuentasporcobrar/create', 'CuentasporCobrarController@create')->middleware('auth');
 Route::get('cuentasporcobrar/{id}', 'CuentasporCobrarController@delete')->middleware('auth');

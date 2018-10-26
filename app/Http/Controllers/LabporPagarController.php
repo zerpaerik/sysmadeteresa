@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
@@ -15,22 +16,15 @@ class LabporPagarController extends Controller
 {
 
 	public function index(){
-
-
-      	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('analises as c','c.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->join('laboratorios as f','f.id','c.laboratorio')
-        ->where('es_laboratorio','=',1)
-        ->where('a.pagado_lab','=',NULL)
-        ->orderby('a.id','desc')
-        ->paginate(5000);
-
-
+        $inicio = Carbon::now()->toDateString(); 
+        $atenciones = $this->elasticSearch($inicio,$inicio);
         return view('movimientos.labporpagar.index', ["atenciones" => $atenciones]);
 	}
+
+    public function search(Request $request){
+        $atenciones = $this->elasticSearch($request->inicio,$request->final);
+        return view('movimientos.labporpagar.search', ["atenciones" => $atenciones]);
+    }
 
 	public function pagar($id, Request $request) {
 
@@ -67,6 +61,23 @@ class LabporPagarController extends Controller
 
     return redirect()->route('labporpagar.index');
 
+  }
+
+  private function elasticSearch($initial,$final){
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('analises as c','c.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('laboratorios as f','f.id','c.laboratorio')
+        ->where('es_laboratorio','=',1)
+        ->where('a.pagado_lab','=',NULL)
+        ->where('a.created_at','<=',$initial)
+        ->where('a.created_at','>=',$final)
+        ->orderby('a.id','desc')
+        ->paginate(5000);
+
+        return $atenciones;
   }
 
 

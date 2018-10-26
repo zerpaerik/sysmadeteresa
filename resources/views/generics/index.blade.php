@@ -25,7 +25,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<thead>
+					<thead> 
 						<tr>
 							@foreach($headers as $header)
 								<th>{{$header}}</th>

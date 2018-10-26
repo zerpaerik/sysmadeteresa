@@ -13,6 +13,7 @@ use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\User;
 use Auth;
+use Carbon\Carbon;
 
 
 class AtencionesController extends Controller
@@ -20,18 +21,27 @@ class AtencionesController extends Controller
 {
 
 	public function index(){
+    $initial = Carbon::now()->toDateString();
+    $atenciones = $this->elasticSearch($initial, $initial);
+    
+    return view('movimientos.atenciones.index', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","monto","abono"],
+      "actions" => [
+        '<button type="button" class="btn btn-info">Transferir</button>',
+        '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]); 
 
-      	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->whereNotIn('a.monto',[0,0.00])
-         ->orderby('a.id','desc')
-        ->paginate(5000);
-        
-         return view('generics.index', [
+	}
+
+    public function search(Request $request){
+      $atenciones = $this->elasticSearch($request->inicio, $request->final);
+
+      return view('movimientos.atenciones.search', [
         "icon" => "fa-list-alt",
         "model" => "atenciones",
         "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
@@ -42,7 +52,9 @@ class AtencionesController extends Controller
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
       ]); 
-	}
+
+  }
+
 
 	public function createView() {
 
@@ -234,5 +246,22 @@ class AtencionesController extends Controller
     } else {
       throw new Exception("Error en el proceso de actualización", 1);
     }
+  }
+
+  private function elasticSearch($initial, $final)
+  {
+    $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','a.created_at')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->whereNotIn('a.monto',[0,0.00])
+    ->where('a.created_at','>=', $initial)          
+    ->where('a.created_at','<=', $final)
+    ->orderby('a.id','desc')
+    ->paginate(5000);
+
+    return $atenciones;
   }
 }
