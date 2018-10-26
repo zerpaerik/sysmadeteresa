@@ -155,7 +155,7 @@ class ProductoController extends Controller
     	$producto = Producto::create([
     		"nombre" => $request->nombre,
     		"categoria" => $request->categoria,
-    		"medida" => $request->medida
+    		"medida" => $request->medida,
     	]);
     	
     	if($producto){

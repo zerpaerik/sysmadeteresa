@@ -60,7 +60,7 @@
           </li>
           <li>
             <!--{{route('productos.trans')}}-->
-            <a href="#"><i class="fa fa-refresh"></i> Movimientos</a>
+            <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
           </li>
         </ul>      
     </li>
@@ -121,16 +121,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="#"><i class="fa fa-list-alt"></i> Redac. Result. Serv.</a>
+        <a href="#"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-search"></i> Consult. Result. Serv.</a>
-      </li>
-      <li>
-        <a href="#"><i class="fa fa-list-alt"></i> Redac. Result. Lab.</a>
-      </li>
-      <li>
-        <a href="#"><i class="fa fa-search"></i> Consult. Result. Lab.</a>
+        <a href="#"><i class="fa fa-search"></i> Consultar Resultados</a>
       </li>
     </ul>
   </li>
@@ -162,16 +156,7 @@
       </li>
       <li>
         <a href="{{route('role.index')}}"><i class="fa fa-user-md"></i> Roles</a>
-      </li>
-      <li>
-        <a href="{{route('medidas.index')}}"><i class="fa fa-user-md"></i> Medidas</a>
-      </li>
-      <li>
-        <a href="{{route('categorias.index')}}"><i class="fa fa-list-alt"></i> Categorias</a>
-      </li>
-      <li>
-        <a href="{{route('proveedores.index')}}"><i class="fa fa-truck"></i> Proveedores</a>
-      </li>      
+      </li>     
       <li>
         <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
       </li>      
