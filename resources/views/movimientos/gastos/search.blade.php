@@ -6,6 +6,8 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
+
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
@@ -23,7 +25,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/cuentasporcobrar-search" method="get">
+					<form action="/gastos-search" method="get">
 						<h3>Rango de fechas</h3>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
@@ -31,7 +33,7 @@
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
 						<input type="submit">
 					</form>
-					<thead>
+					<thead> 
 						<tr>
 							@foreach($headers as $header)
 								<th>{{$header}}</th>
@@ -44,7 +46,8 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach						
-							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Cobrar</a></td>
+							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>

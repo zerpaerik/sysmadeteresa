@@ -10,7 +10,7 @@ use App\Models\Provincias;
 use App\Models\Distritos;
 use App\Models\GradoInstruccion;
 use App\Models\HistoriaPacientes;
-
+use Carbon\Carbon;
 class PacientesController extends Controller
 {
 

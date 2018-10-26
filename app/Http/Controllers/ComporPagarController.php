@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Atenciones;
@@ -15,23 +16,16 @@ class ComporPagarController extends Controller
 {
 
 	public function index(){
-
-
-      	
-      	$atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->join('profesionales as f','f.id','a.origen_usuario')
-        ->where('a.pagado_com','=', NULL)
-        ->orderby('a.id','desc')
-        ->paginate(5000);
-
-
+        $inicio = Carbon::now()->toDateString();
+        $atenciones = $this->elasticSearch($inicio,$inicio);
         return view('movimientos.comporpagar.index', ["atenciones" => $atenciones]);
 	}
+
+    public function search(Request $request)
+    {
+        $atenciones = $this->elasticSearch($request->inicio,$request->final);
+        return view('movimientos.comporpagar.search', ["atenciones" => $atenciones]); 
+    }
 
 	public function pagarcom($id, Request $request) {
 
@@ -66,7 +60,21 @@ class ComporPagarController extends Controller
 
   }
 
+  private function elasticSearch($initial, $final)
+  { 
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('profesionales as f','f.id','a.origen_usuario')
+        ->where('a.pagado_com','=', NULL)
+        ->where('a.created_at','>=', $initial)
+        ->where('a.created_at','<=', $final)
+        ->orderby('a.id','desc')
+        ->paginate(5000);
 
-
-    //
+        return $atenciones;
+  }
 }
