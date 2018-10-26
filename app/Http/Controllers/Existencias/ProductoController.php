@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
+use DB;
 
 
 class ProductoController extends Controller
 {
 
     public function index(){
-			$producto = Producto::all();
+		//	$producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->get();
 			return view('generics.index', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
@@ -38,7 +40,7 @@ class ProductoController extends Controller
 
     public function productInView(){
       return view('existencias.entrada', [
-        "productos" => Producto::all(),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);
@@ -63,17 +65,41 @@ class ProductoController extends Controller
     }
 
     public function addCant(Request $request){
+
+       $searchProduct = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();   
+
+                    $nombre = $searchProduct->nombre;
       
       $p = Existencia::where("producto", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
       if($p){
         $p->cantidad = $p->cantidad + $request->cantidadplus;
+        $p->nombre = $nombre;
         $res = $p->save();
       }else{
+
+        $searchProduct = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();   
+
+                    $nombre = $searchProduct->nombre;
+
         $p = Existencia::create([
           "producto" => $request->id,
           "cantidad" => $request->cantidadplus,
-          "sede_id"  => $request->sede
+          "sede_id"  => $request->sede,
+          "nombre" => $nombre
         ]);
+
+        $p = Producto::find($request->id);
+        $p->cantidad = $request->cantidadplus;
+        $res = $p->update();
+
         $res = true;
       }
       if($res){
@@ -156,6 +182,7 @@ class ProductoController extends Controller
     		"nombre" => $request->nombre,
     		"categoria" => $request->categoria,
     		"medida" => $request->medida,
+        "sede_id" => $request->session()->get('sede')
     	]);
     	
     	if($producto){

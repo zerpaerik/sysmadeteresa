@@ -8,7 +8,7 @@ use App\Models\Config\{Medida, Categoria, Sede};
 class Producto extends Model
 {
 
-    protected $fillable = ["nombre", "medida", "categoria"];
+    protected $fillable = ["nombre", "medida", "categoria","sede_id","cantidad"];
 
     public function getMedidaAttribute($value){
         return Medida::where('id', '=', $value)->get()->first()->nombre;
