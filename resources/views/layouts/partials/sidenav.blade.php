@@ -41,6 +41,17 @@
       <a href="{{route('productos.index')}}"><i class="fa fa-plus-square-o"></i> Productos</a>
     </li>
     <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
+          </li>
+          <li>
+            <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
+          </li>
+        </ul>      
+    </li>
+    <li>
       <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de transferencias</a>
     </li>    
     <li>

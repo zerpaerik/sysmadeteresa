@@ -151,6 +151,8 @@
 <script src="{{url('/plugins/justified-gallery/jquery.justifiedgallery.min.js')}}"></script>
 <script src="{{url('/plugins/tinymce/tinymce.min.js')}}"></script>
 <script src="{{url('/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
+<script src="{{url('/ckeditor/ckeditor.js')}}"></script>
+
 <!-- All functions for this theme + document.ready processing -->
 @yield('scripts')
 <script src="{{url('/js/devoops.js')}}"></script>

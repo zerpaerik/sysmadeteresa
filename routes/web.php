@@ -168,11 +168,20 @@ Route::patch('producto', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
 
+
+Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
+Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
+Route::get('requerimientos-search', 'Existencias\RequerimientosController@search')->name('requerimientos.search')->middleware('auth');
+Route::get('requerimientos-create', 'Existencias\RequerimientosController@createView')->name('requerimientos.create')->middleware('auth');
+Route::post('requerimientos/create', 'Existencias\RequerimientosController@create')->middleware('auth');
+Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
+Route::get('procesar/{id}', 'Existencias\RequerimientosController@procesar')->middleware('auth');
+
+
 //Medidas
 Route::get('medidas', 'Config\MedidaController@index')->name('medidas.index');
 Route::get('medidas-create', 'Config\MedidaController@createView')->name('medidas.create');
 Route::get('medidas-edit-{id}', 'Config\MedidaController@editView')->name('medidas.edit');
-
 
 //Proveedores
 Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores.index');
