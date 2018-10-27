@@ -26,7 +26,8 @@
 						<tr>
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
-							<th>Descripciòn</th>
+							<th>Producto</th>
+							<th>Cantidad</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
@@ -38,7 +39,8 @@
 							<tr>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
-								<td>{{$req->descripcion}}</td>
+								<td>{{$req->nombre}}</td>
+							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 								<td><a href="{{asset('/procesar')}}/{{$req->id}}" class="btn btn-xs btn-danger">Procesar</a></td>

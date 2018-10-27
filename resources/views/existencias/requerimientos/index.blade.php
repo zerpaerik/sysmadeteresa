@@ -27,7 +27,8 @@
 						<tr>
 							<th>Dirigida A:</th>
 							<th>Usuario Solicitante</th>
-							<th>Descripciòn</th>
+							<th>Producto Solicitado</th>
+							<th>Cantidad</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
 							
@@ -38,7 +39,8 @@
 							<tr>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
-								<td>{{$req->descripcion}}</td>
+								<td>{{$req->nombre}}</td>
+								<td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 

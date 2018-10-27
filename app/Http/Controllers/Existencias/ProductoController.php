@@ -18,9 +18,9 @@ class ProductoController extends Controller
 			return view('generics.index', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
-				"headers" => ["id", "nombre", "medida", "categoria", "Editar", "Eliminar"],
+				"headers" => ["id", "nombre", "medida", "categoria","cantidad", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre", "medida", "categoria"],
+				"fields" => ["id", "nombre", "medida", "categoria","cantidad"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -38,17 +38,22 @@ class ProductoController extends Controller
       
     }
 
-    public function productInView(){
+   /* public function productInView(){
       return view('existencias.entrada', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(),
+        "productos" => Producto::where('sede_id', '=', 1)->get(['id', 'nombre']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);
+    }*/
+
+     public function productInView(){
+      $sedes = Sede::where("id",'=',1)->get(["id", "name"]);
+      return view('existencias.entrada', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre']),"sedes" => $sedes,"proveedores" => Proveedor::all()]);    
     }
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::all(),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->get(['id', 'nombre']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    
@@ -74,7 +79,7 @@ class ProductoController extends Controller
 
                     $nombre = $searchProduct->nombre;
       
-      $p = Existencia::where("producto", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
+      $p = Producto::where("id", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
       if($p){
         $p->cantidad = $p->cantidad + $request->cantidadplus;
         $p->nombre = $nombre;
@@ -160,7 +165,7 @@ class ProductoController extends Controller
     }
 
     public function getExist($prod, $sede){
-      $ex = Existencia::where('producto', '=', $prod)->where("sede_id", "=", $sede)
+      $ex = Producto::where('id', '=', $prod)->where("sede_id", "=", $sede)
       ->get(["cantidad"])->first();
       $prod = Producto::where('id', '=', $prod)->get()->first();
       if($ex){

@@ -72,6 +72,16 @@
 							</select>
 						</div>
 
+						<label class="col-sm-1 control-label">Factura</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="factura" id="factura" placeholder="Nº Factura" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" >
+						</div>
+
+						<label class="col-sm-1 control-label">Monto Factura</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="monto" id="monto" placeholder="Monto Factura" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0">
+						</div>
+
 						<label class="col-sm-3 control-label">Agregar</label>
 						<div class="col-sm-2">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">

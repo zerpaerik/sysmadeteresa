@@ -43,17 +43,33 @@
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
+@if(Session::get('sedeName') <> 'PROCERES')
+
+
           <li>
             <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
           </li>
+@endif
+
+@if(Session::get('sedeName') == 'PROCERES')
+
           <li>
             <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
           </li>
+@endif
+
+
         </ul>      
     </li>
+@if(Session::get('sedeName') == 'PROCERES')
+
     <li>
       <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de transferencias</a>
-    </li>    
+    </li>
+@endif
+
+@if(Session::get('sedeName') == 'PROCERES')
+  
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
         <ul class="dropdown-menu">
@@ -62,6 +78,8 @@
           </li>
         </ul>      
     </li>
+@endif
+
 
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
@@ -69,10 +87,15 @@
           <li>
             <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
+@if(Session::get('sedeName') == 'PROCERES')
+
           <li>
             <!--{{route('productos.trans')}}-->
             <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
           </li>
+@endif
+
+
         </ul>      
     </li>
 

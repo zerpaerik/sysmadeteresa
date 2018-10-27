@@ -72,7 +72,7 @@
 							</select>
 						</div>
 
-						<label class="col-sm-3 control-label">Agregar</label>
+						<label class="col-sm-3 control-label">Salir</label>
 						<div class="col-sm-2">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
 						</div>

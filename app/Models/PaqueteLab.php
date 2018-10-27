@@ -19,7 +19,7 @@ class PaqueteLab extends Model
         ->where('id_paquete', $id)
         ->get();
         $descripcion='';
-        
+
         
         foreach ($data as $key => $value) {
 
