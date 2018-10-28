@@ -6,12 +6,15 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
-
+		
 			<div class="box-header">
+				
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model)}}</strong></span>
+					<span><strong>{{ucfirst($model)}}</strong></span>				
+				</div>
+				<div class="col-sm-3">
+					<input type="date" id="input_date" class="form-control" placeholder="Fecha" name="date">
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -21,17 +24,10 @@
 						<i class="fa fa-expand"></i>
 					</a>
 				</div>
-				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/atenciones-search" method="get">
-						<h5>Rango de fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<input type="submit">
-					</form>
-					<thead> 
+					<thead>
 						<tr>
 							@foreach($headers as $header)
 								<th>{{$header}}</th>
@@ -44,18 +40,10 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach						
-							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
+							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Redactar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 		</div>
@@ -68,6 +56,8 @@
 @endif
 
 <script type="text/javascript">
+	$('#input_date').on('change', getAva);
+
 	function del(id){
 		$.ajax({
       url: "{{$model}}-delete-"+id,
