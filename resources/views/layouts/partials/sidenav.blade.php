@@ -23,7 +23,7 @@
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href=""><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
