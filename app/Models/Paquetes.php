@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Paquetes extends Model
 {
     protected $fillable = [
-    	'name', 'costo'
+    	'detalle', 'precio','porcentaje'
     ];
+
+    public function servicios()
+    {
+    	return $this->hasMany('App\Models\PaqueteServ','paquete_id');
+    }
 }

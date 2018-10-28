@@ -66,20 +66,27 @@ Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
 
 Route::get('servicios/getServicio/{id}', 'Archivos\ServiciosController@getServicio');
 
-Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
-Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
-Route::post('paquetes/create', 'Archivos\PaquetesController@create')->middleware('auth');
-Route::get('paquetes-edit/{id}', 'Archivos\PaquetesController@edit')->middleware('auth');
-Route::post('paquetes/update', 'Archivos\PaquetesController@update')->middleware('auth');
-Route::get('paquetes/{id}', 'Archivos\PaquetesController@delete')->middleware('auth');
-
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
+/**
+ * Paquetes
+ */
+Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
+Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
+//Route::post('paquetes/create', 'Archivos\PaquetesController@create')->middleware('auth');
+Route::get('paquetes-edit/{id}', 'Archivos\PaquetesController@edit')->middleware('auth');
+Route::post('paquetes/update', 'Archivos\PaquetesController@update')->middleware('auth');
+Route::get('paquetes/{id}', 'Archivos\PaquetesController@delete')->middleware('auth');
+Route::get('paquete/view/{id}', 'Archivos\PaquetesController@show')->middleware('auth');
+Route::get('paquete/getPaquete/{id}', 'Archivos\PaquetesController@getPaquete');
 
+/**
+ * Atenciones
+ */
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
 Route::get('atenciones-search', 'AtencionesController@search')->name('atenciones.search')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');

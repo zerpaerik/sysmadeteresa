@@ -117,26 +117,9 @@
 					<br>
 					<div class="row">
 
-						<!-- <label class="col-sm-1 control-label">Laboratorios</label>
-						<div class="col-sm-5">
-							<select id="el5" class="selectLab" name="id_laboratorio" multiple="true">
-								@foreach($laboratorios as $pac)
-									<option value="{{$pac->id}}">
-										{{$pac->name}}-Precio:{{$pac->preciopublico}}
-									</option>
-								@endforeach
-							</select>
-						</div>
-
-						<label class="col-sm-1 control-label">Monto</label>
-						<div class="col-sm-3">
-							<input type="text" class="number monto form-control" name="monto_l" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
-						</div> -->
-
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios seleccionados</label>
             <!-- sheepIt Form -->
             <div id="laboratorios" class="embed ">
-            
                 <!-- Form template-->
                 <div id="laboratorios_template" class="template row">
 
@@ -180,18 +163,69 @@
                     <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
-                
             </div>
             <!-- /sheepIt Form --> 
 						
 					</div>
+
+          <div class="row">
+
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Paquetes seleccionados</label>
+            <!-- sheepIt Form -->
+            <div id="paquetes" class="embed ">
+                <!-- Form template-->
+                <div id="paquetes_template" class="template row">
+
+                    <label for="paquetes_#index#_paquete" class="col-sm-1 control-label">Paq</label>
+                    <div class="col-sm-3">
+                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selectPaq form-control">
+                        <option value="1">Seleccionar paquete</option>
+                        @foreach($paquetes as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->detalle}}-Precio:{{$pac->precio}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                    <div class="col-sm-2">
+
+                      <input id="paquetes_#index#_monto" name="monto_p[paquetes][#index#][monto] type="text" class="number form-control montop" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
+                    </div>
+
+                    <label for="paquetes_#index#_abonop" class="col-sm-1 control-label">Abono</label>
+                    <div class="col-sm-2">
+
+                      <input id="paquetes_#index#_abonop" name="monto_abop[paquetes][#index#][abono] type="text" class="number form-control abonop" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                    </div>
+
+                    <a id="paquetes_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="paquetes_noforms_template" class="noItems col-sm-12 text-center">Ningún paquete</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="paquetes_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="paquetes_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar paquete</span></a></div>
+                    <div id="paquetes_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="paquetes_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+            </div>
+            <!-- /sheepIt Form --> 
+            
+          </div>
           <hr>
            <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
                 Forma de Pago:
               </div> 
-              <select name="tipopago" class="selectLab form-control" required="true">
+              <select name="tipopago" class="form-control" required="true">
                         <option value="">Seleccionar Tipo de Pago</option>
                         <option value="EF">Efectivo</option>}
                         <option value="TJ">Tarjeta</option> 
@@ -244,34 +278,59 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    $(".monto").keyup(function(event) {
-      var montoId = $(this).attr('id');
-      var montoArr = montoId.split('_');
-      var id = montoArr[1];
-      var montoH = parseFloat($('#servicios_'+id+'_montoHidden').val());
-      var monto = parseFloat($(this).val());
-      $('#servicios_'+id+'_montoHidden').val(monto);
+    $(".monto, .montol, .montop").keyup(function(event) {
       calcular();
       calculo_general();
     });
 
-    $(".montol").keyup(function(event) {
+
+    /*$(".montop").keyup(function(event) {
+      
       var montoId = $(this).attr('id');
       var montoArr = montoId.split('_');
       var id = montoArr[1];
-      var montoH = parseFloat($('#laboratorios_'+id+'_montoHidden').val());
+      var montoH = parseFloat($('#paquetes_'+id+'_montoHidden').val());
       var monto = parseFloat($(this).val());
-      $('#laboratorios_'+id+'_montoHidden').val(monto);
+      $('#paquetes_'+id+'_montoHidden').val(monto);
       calcular();
       calculo_general();
-    });
+    });*/
 
-    $(".abonoL, .abonoS").keyup(function(){
+    $(".abonoL, .abonoS, .abonop").keyup(function(){
       var total = 0;
       var selectId = $(this).attr('id');
       var selectArr = selectId.split('_');
       
-      if(selectArr[0] == 'servicios'){
+      switch(selectArr[0]){
+        case 'servicios':
+            if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+                alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+        case 'laboratorios':
+            if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+                alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+        case 'paquetes':
+            if(parseFloat($(this).val()) > parseFloat($("#paquetes_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+      }
+      /*if(selectArr[0] == 'servicios'){
           if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
               alert('La cantidad insertada en abono es mayor al monto.');
               $(this).val('0.00');
@@ -287,7 +346,7 @@
           } else {
               calculo_general();
           }
-      }
+      }*/
     });
 
     var botonDisabled = true;
@@ -333,6 +392,26 @@
         }
     });
 
+    // Main sheepIt form
+    var phonesForm = $("#paquetes").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+          calcular();
+          calculo_general();
+        }
+    });
+
     $(document).on('change','.selectServ',function(){
       var selectId = $(this).attr('id');
       var selectArr = selectId.split('_');
@@ -370,6 +449,24 @@
          }
       });
     })
+
+    $(document).on('change', '.selectPaq', function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "paquete/getPaquete/"+$(this).val(),
+         success: function(a) {
+            $('#paquetes_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+            calcular();
+            calculo_general();
+         }
+      });
+    })
 });
 
 
@@ -383,6 +480,10 @@ function calcular() {
         total += parseFloat($(this).val());
       })
 
+      $(".montop").each(function(){
+        total += parseFloat($(this).val());
+      })
+
       $("#total").val(total);
 }
 
@@ -393,6 +494,10 @@ function calculo_general() {
   })
 
   $(".abonoS").each(function(){
+    total += parseFloat($(this).val());
+  })
+
+  $(".abonop").each(function(){
     total += parseFloat($(this).val());
   })
 

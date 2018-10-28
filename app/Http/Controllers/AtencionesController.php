@@ -11,6 +11,7 @@ use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
+use App\Models\Paquetes;
 use App\User;
 use Auth;
 use Carbon\Carbon;
@@ -61,8 +62,9 @@ class AtencionesController extends Controller
     $servicios = Servicios::all();
     $laboratorios = Analisis::all();
     $pacientes = Pacientes::all();
+    $paquetes = Paquetes::all();
     
-    return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes'));
+    return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes','paquetes'));
   }
 
   public function create(Request $request)
@@ -75,6 +77,45 @@ class AtencionesController extends Controller
 
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
+    }
+
+    if (isset($request->id_paquete)) {
+      
+      foreach ($request->id_paquete['paquetes'] as $key => $paquete) {
+        if (!is_null($paquete['paquete'])) {
+              $paquete = Paquetes::findOrFail($paquete['paquete']);
+              $paq = new Atenciones();
+              $paq->id_paciente = $request->id_paciente;
+              $paq->origen = $request->origen;
+              $paq->origen_usuario = $searchUsuarioID->id;
+              $paq->id_laboratorio =  1;
+              $paq->id_servicio =  1;
+              $paq->id_paquete = $paquete->id;
+              $paq->es_paquete =  true;
+              $paq->tipopago = $request->tipopago;
+              $paq->porc_pagar = $paquete->porcentaje;
+              $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
+              $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
+              $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
+              $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
+              $paq->id_sede = $request->session()->get('sede');
+              $paq->estatus = 1;
+              $paq->save(); 
+
+              $creditos = new Creditos();
+              $creditos->origen = 'ATENCIONES';
+              $creditos->id_atencion = $paq->id;
+              $creditos->monto= $request->monto_abop['paquetes'][$key]['abono'];
+              $creditos->id_sede = $request->session()->get('sede');
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'INGRESO DE ATENCIONES';
+              $creditos->save();
+
+
+        } else {
+
+        }
+      }
     }
 
     if (isset($request->id_servicio)) {
@@ -164,7 +205,7 @@ class AtencionesController extends Controller
         }
       }
     }
-
+    
     return redirect()->route('atenciones.index');
   }
 

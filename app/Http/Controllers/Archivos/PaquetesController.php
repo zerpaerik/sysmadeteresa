@@ -24,7 +24,7 @@ class PaquetesController extends Controller
         
 
         $paquetes = DB::table('paquetes as a')
-        ->select('a.id','a.name','a.costo')
+        ->select('a.id','a.detalle','a.precio', 'a.porcentaje')
         ->paginate(5000);
         $paquetes_servicios = new PaqueteServ();
         $paquetes_analises = new PaqueteLab();
@@ -32,62 +32,63 @@ class PaquetesController extends Controller
         return view('archivos.paquetes.index', compact('paquetes','paquetes_servicios','paquetes_analises'));
     }
 
-   
     public function createView()
     {
-
-          $servicios = Servicios::all();
-          $analisis = Analisis::all();
+      $servicios = Servicios::all();
+      $laboratorios = Analisis::all();
        
-        return view('archivos.paquetes.create', compact('servicios','analisis'));
+      return view('archivos.paquetes.create', compact('servicios','laboratorios'));
     }
-
-
 
     public function create(Request $request){
+    
+      $paquete = new Paquetes;
+      $paquete->detalle    = $request->detalle;
+      $paquete->precio     = $request->precio;
+      $paquete->porcentaje = $request->porcentaje;
+       
+      if ($paquete->save()) {
+          if (isset($request->id_servicio)) {
+            foreach ($request->id_servicio['servicios'] as $servicio) {
+              $serv = New PaqueteServ;
+              $serv->paquete_id  = $paquete->id;
+              $serv->servicio_id = $servicio['servicio'];
+              $serv->save();
+            }
+          }
+         
+          if (isset($request->id_laboratorio)) {
+            foreach ($request->id_laboratorio['laboratorios'] as $laboratorio) {
+              $lab = new PaqueteLab;
+              $lab->paquete_id     = $paquete->id;
+              $lab->laboratorio_id = $laboratorio['laboratorio'];
+              $lab->save();
+            }
+          }
+      }
 
-  
-       $paquetes = new Paquetes;
-       $paquetes->name =$request->name;
-       $paquetes->costo     =$request->costo;
-       $paquetes->save();
-
-     dd($request->servicio);
-     die();
-     
-       if(!is_null($request->servicio)){
-         foreach ($request->servicio as $key => $value) {
-           $paquetesserv = new PaqueteServ;
-           $paquetesserv->id_paquete =$paquetes->id;
-           $paquetesserv->id_servicio    =$value;
-           $paquetesserv->save();
-         }
-       }
-
-
-
-       if(!is_null($request->analisis)){
-       foreach ($request->analisis as $key_a => $value_a) {
-         $paquetesanalisis = new PaqueteLab();
-         $paquetesanalisis->id_paquete  =$paquetes->id;
-         $paquetesanalisis->id_analisis=$value_a;
-       $paquetesanalisis->save();
-       }
-        }
-      
-
-
-        return redirect()->route('paquetes.index');
-
-
-
+      return redirect()->route('paquetes.index');
     }
 
+    public function show($id)
+    {
+      $paquete = Paquetes::findOrFail($id);
+      $servicios = PaqueteServ::where('paquete_id', $paquete->id)->with('servicio')->get();
+      $laboratorios = PaqueteLab::where('paquete_id', $paquete->id)->with('laboratorio')->get();
 
-   
+      return view('archivos.paquetes.show', compact('paquete', 'servicios', 'laboratorios'));
+    }
 
-    
+    public function delete($id)
+    {
+      $paquete = Paquetes::findOrFail($id);
+      $paquete->delete();
 
-    
+      return redirect()->route('paquetes.index');
+    }
 
+    public function getPaquete($id)
+    {
+      return Paquetes::findOrFail($id);
+    }
 }

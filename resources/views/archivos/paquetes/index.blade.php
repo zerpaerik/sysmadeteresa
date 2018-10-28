@@ -5,6 +5,11 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+			@if(session('created'))
+				<div class="alert alert-success" role="alert">
+				  A simple success alert—check it out!
+				</div>
+			@endif
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
@@ -26,17 +31,21 @@
 					<thead>
 						<tr>
 							<th>Nombre</th>
-							<th>Detalle</th>
-							<th>Costo</th>
+							<th>Precio</th>
+							<th>Porcentaje</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($paquetes as $paq)					
 							<tr>
-								<td>{{$paq->name}}</td>
-								<td>{{$paq->name}}</td>
-								<td>{{$paq->name}}</td>
-								<td><a href="centros/{{$paq->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td>{{$paq->detalle}}</td>
+								<td>{{$paq->precio}}</td>
+								<td>{{$paq->porcentaje}}</td>
+								<td>
+									<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$paq->id}}">ver</a>
+									<a href="#" class="btn btn-warning edit">Editar</a>
+									<a href="paquetes/{{$paq->id}}" class="btn btn-danger">Eliminar</a>
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -47,11 +56,30 @@
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
+
+<!-- MODAL SECTION -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Detalles del paquete</h4>
+              </div>
+              <div class="modal-body"></div>
+            </div>
+          </div>
+        </div>
+<style type="text/css">
+	.modal-backdrop.in {
+	    filter: alpha(opacity=50);
+	    opacity: 0;
+	    z-index: 0;
+	}
+
+	.modal {
+		top:35px;
+	}
+</style>
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
@@ -66,12 +94,22 @@ function MakeSelect2(){
 		$(this).find('label input[type=text]').attr('placeholder', 'Search');
 	});
 }
-$(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
-});
+
+function view(e){
+        var id = $(e).attr('data-id');
+        
+        $.ajax({
+            type: "GET",
+            url: "/paquete/view/"+id,
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    };
 </script>
 
 @endsection
