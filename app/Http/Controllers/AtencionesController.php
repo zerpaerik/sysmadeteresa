@@ -23,7 +23,7 @@ class AtencionesController extends Controller
 
 	public function index(){
     $initial = Carbon::now()->toDateString();
-    $atenciones = $this->elasticSearch($initial, $initial);
+    $atenciones = $this->elasticSearch($initial);
     
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
@@ -40,7 +40,7 @@ class AtencionesController extends Controller
 	}
 
     public function search(Request $request){
-      $atenciones = $this->elasticSearch($request->inicio, $request->final);
+      $atenciones = $this->elasticSearch($request->inicio);
 
       return view('movimientos.atenciones.search', [
         "icon" => "fa-list-alt",
@@ -289,7 +289,7 @@ class AtencionesController extends Controller
     }
   }
 
-  private function elasticSearch($initial, $final)
+  private function elasticSearch($initial)
   {
     $atenciones = DB::table('atenciones as a')
     ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','a.created_at')
@@ -299,7 +299,6 @@ class AtencionesController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->whereNotIn('a.monto',[0,0.00])
     ->where('a.created_at','>=', $initial)          
-    ->where('a.created_at','<=', $final)
     ->orderby('a.id','desc')
     ->paginate(5000);
 

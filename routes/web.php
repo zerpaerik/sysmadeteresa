@@ -141,6 +141,19 @@ Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 
+Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
+Route::get('resultados-create', 'ResultadosController@createView')->name('resultados.create')->middleware('auth');
+Route::post('resultados/create', 'ResultadosController@create')->middleware('auth');
+Route::get('resultados/{id}', 'ResultadosController@delete')->middleware('auth');
+Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resultados.edit');
+Route::post('resultados/edit/{id}', 'ResultadosController@edit');
+
+Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')->name('resultados.ver');
+
+
+Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
+
+
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
 
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');
