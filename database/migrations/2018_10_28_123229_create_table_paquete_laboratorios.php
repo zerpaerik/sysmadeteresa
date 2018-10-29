@@ -15,18 +15,11 @@ class CreateTablePaqueteLaboratorios extends Migration
     {
         Schema::table('paquete_laboratorios', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('paquete_id');
-            $table->unsignedInteger('laboratorio_id');
-                  
-            $table->foreign('paquete_id')
-                  ->references('id')
-                  ->on('paquetes')
-                  ->onDelete('cascade');
-
-            $table->foreign('laboratorio_id')
-                  ->references('id')
-                  ->on('analises')
-                  ->onDelete('cascade');
+            $table->integer('paquete_id')->index()->unsigned();
+            $table->foreign('paquete_id')->references('id')->on('paquetes');
+            $table->integer('laboratorio_id')->index()->unsigned();
+            $table->foreign('laboratorio_id')->references('id')->on('analises');
+            $table->timestamps();
         });
     }
 
