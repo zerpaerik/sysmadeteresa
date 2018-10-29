@@ -40,6 +40,7 @@ class AtencionesController extends Controller
 	}
 
     public function search(Request $request){
+      //Pendiente Validar Fechas de entrada, lo hago despues
       $atenciones = $this->elasticSearch($request->inicio);
 
       return view('movimientos.atenciones.search', [
@@ -298,7 +299,8 @@ class AtencionesController extends Controller
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.created_at','>=', $initial)          
+    ->where('a.created_at','>=', $initial)
+    ->where('a.created_at','<=', $initial)
     ->orderby('a.id','desc')
     ->paginate(5000);
 
