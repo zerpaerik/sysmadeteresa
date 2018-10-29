@@ -15,18 +15,11 @@ class CreateTablePaqueteServicios extends Migration
     {
         Schema::table('paquete_servicios', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('paquete_id');
-            $table->unsignedInteger('servicio_id');
-
-            $table->foreign('paquete_id')
-                  ->references('id')
-                  ->on('paquetes')
-                  ->onDelete('cascade');
-
-            $table->foreign('servicio_id')
-                  ->references('id')
-                  ->on('servicios')
-                  ->onDelete('cascade');
+            $table->integer('paquete_id')->index()->unsigned();
+            $table->foreign('paquete_id')->references('id')->on('paquetes');
+            $table->integer('servicio_id')->index()->unsigned();
+            $table->foreign('servicio_id')->references('id')->on('servicios');
+            $table->timestamps();
         });
     }
 

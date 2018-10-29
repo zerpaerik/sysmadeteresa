@@ -28,9 +28,9 @@ class AtencionesController extends Controller
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Editar", "Eliminar"],
       "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","monto","abono"],
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono"],
       "actions" => [
         '<button type="button" class="btn btn-info">Transferir</button>',
         '<button type="button" class="btn btn-warning">Editar</button>'
@@ -46,9 +46,9 @@ class AtencionesController extends Controller
       return view('movimientos.atenciones.search', [
         "icon" => "fa-list-alt",
         "model" => "atenciones",
-        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Monto","Monto Abonado","Editar", "Eliminar"],
+        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Editar", "Eliminar"],
         "data" => $atenciones,
-        "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","monto","abono"],
+        "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -135,6 +135,7 @@ class AtencionesController extends Controller
               $serv->origen = $request->origen;
               $serv->origen_usuario = $searchUsuarioID->id;
               $serv->id_laboratorio =  1;
+              $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
               $serv->tipopago = $request->tipopago;
@@ -180,6 +181,7 @@ class AtencionesController extends Controller
           $lab->origen = $request->origen;
           $lab->origen_usuario = $searchUsuarioID->id;
           $lab->id_servicio = 1;
+          $lab->id_paquete =  1;
           $lab->id_laboratorio =  $laboratorio['laboratorio'];
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
@@ -293,11 +295,12 @@ class AtencionesController extends Controller
   private function elasticSearch($initial)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','a.created_at')
+    ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','a.created_at','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
     ->where('a.created_at','>=', $initial)
     ->where('a.created_at','<=', $initial)

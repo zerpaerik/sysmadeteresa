@@ -77,7 +77,7 @@ Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
  */
 Route::get('paquetes', 'Archivos\PaquetesController@index')->name('paquetes.index')->middleware('auth');
 Route::get('paquetes-create', 'Archivos\PaquetesController@createView')->name('paquetes.create')->middleware('auth');
-//Route::post('paquetes/create', 'Archivos\PaquetesController@create')->middleware('auth');
+Route::post('paquetes/create', 'Archivos\PaquetesController@create')->middleware('auth');
 Route::get('paquetes-edit/{id}', 'Archivos\PaquetesController@edit')->middleware('auth');
 Route::post('paquetes/update', 'Archivos\PaquetesController@update')->middleware('auth');
 Route::get('paquetes/{id}', 'Archivos\PaquetesController@delete')->middleware('auth');

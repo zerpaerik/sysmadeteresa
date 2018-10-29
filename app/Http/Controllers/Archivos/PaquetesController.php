@@ -46,7 +46,7 @@ class PaquetesController extends Controller
       $paquete->detalle    = $request->detalle;
       $paquete->precio     = $request->precio;
       $paquete->porcentaje = $request->porcentaje;
-       
+     
       if ($paquete->save()) {
           if (isset($request->id_servicio)) {
             foreach ($request->id_servicio['servicios'] as $servicio) {
@@ -75,7 +75,7 @@ class PaquetesController extends Controller
       $paquete = Paquetes::findOrFail($id);
       $servicios = PaqueteServ::where('paquete_id', $paquete->id)->with('servicio')->get();
       $laboratorios = PaqueteLab::where('paquete_id', $paquete->id)->with('laboratorio')->get();
-
+      
       return view('archivos.paquetes.show', compact('paquete', 'servicios', 'laboratorios'));
     }
 

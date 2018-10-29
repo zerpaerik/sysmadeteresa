@@ -49,13 +49,7 @@
 						</tr>
 						@endforeach						
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
+					
 				</table>
 			</div>
 		</div>
