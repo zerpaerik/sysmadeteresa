@@ -8,9 +8,10 @@ use App\Models\Pacientes\Paciente;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
+use App\Models\Events;
 use Calendar;
 use Carbon\Carbon;
-
+use DB;
 class EventController extends Controller
 {
 
@@ -26,6 +27,21 @@ class EventController extends Controller
       ]);
       return view('events.index',[ "calendar" => $calendar, "especialistas" => Profesional::all()]);
     }
+  }
+
+  public function show($id)
+  {
+    $event = DB::table('events as e')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.nombres','p.apellidos','p.id','pro.name as nombrePro','pro.apellidos as apellidoPro','pro.id','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('profesionales as pro','pro.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('e.id','=',$id)
+    ->first();
+
+    return view('events.show',[
+      'data' => $event
+    ]);
   }
 
   private static function toggleType($type){
@@ -54,7 +70,7 @@ class EventController extends Controller
           null,
           [
             'color' => self::toggleType($value->entrada),
-            'url' => 'event/'.$value->id
+            'url' => 'event-'.$value->id
           ]
         );
       }

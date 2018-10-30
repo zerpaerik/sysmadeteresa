@@ -23,8 +23,8 @@ class AtencionesController extends Controller
 
 	public function index(){
     $initial = Carbon::now()->toDateString();
-    $atenciones = $this->elasticSearch($initial);
-    
+    $final = Carbon::now()->addDay()->toDateString();
+    $atenciones = $this->elasticSearch($initial,$final);
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
@@ -41,8 +41,8 @@ class AtencionesController extends Controller
 
     public function search(Request $request){
       //Pendiente Validar Fechas de entrada, lo hago despues
-      $atenciones = $this->elasticSearch($request->inicio);
-
+      $final = Carbon::parse($request->inicio)->addDay()->toDateString();
+      $atenciones = $this->elasticSearch($request->inicio,$final);
       return view('movimientos.atenciones.search', [
         "icon" => "fa-list-alt",
         "model" => "atenciones",
@@ -292,18 +292,18 @@ class AtencionesController extends Controller
     }
   }
 
-  private function elasticSearch($initial)
+  private function elasticSearch($initial,$final)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','a.created_at','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.created_at','>=', $initial)
-    ->where('a.created_at','<=', $initial)
+    ->where('a.created_at','>=' ,$initial)
+    ->where('a.created_at','<' ,$final)
     ->orderby('a.id','desc')
     ->paginate(5000);
 
