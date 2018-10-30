@@ -220,3 +220,5 @@ Route::match(['get', 'post'], 'events', 'Events\EventController@index')->name('c
 Route::get('available-time/{e}/{d}/{m}/{y}', 'Events\EventController@availableTime');
 Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');
 Route::post('consulta/create', 'Events\EventController@create');
+Route::post('historial/create','HistorialController@create')->name('historials.create');
+Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
