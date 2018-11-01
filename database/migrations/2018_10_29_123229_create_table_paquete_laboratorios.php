@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTablePaqueteServicios extends Migration
+class CreateTablePaqueteLaboratorios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateTablePaqueteServicios extends Migration
      */
     public function up()
     {
-        Schema::table('paquete_servicios', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::table('paquete_laboratorios', function (Blueprint $table) {
+            //$table->increments('id');
             $table->integer('paquete_id')->index()->unsigned();
             $table->foreign('paquete_id')->references('id')->on('paquetes');
-            $table->integer('servicio_id')->index()->unsigned();
-            $table->foreign('servicio_id')->references('id')->on('servicios');
+            $table->integer('laboratorio_id')->index()->unsigned();
+            $table->foreign('laboratorio_id')->references('id')->on('analises');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateTablePaqueteServicios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paquete_servicios');
+        Schema::dropIfExists('paquete_laboratorios');
     }
 }

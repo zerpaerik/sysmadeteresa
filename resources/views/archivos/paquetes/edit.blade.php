@@ -22,7 +22,7 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="paquetes/create">
+				<form class="form-horizontal" role="form" method="post" action="paquetes/edit/{{$paquete->id}}">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
@@ -52,6 +52,7 @@
 
 				                    <label for="servicios_{{$loop->index}}_servicio" class="col-sm-1 control-label">Servicio</label>
 				                    <div class="col-sm-3">
+				                    	<input type="hidden" name="id_servicio[servicios][{{$loop->index}}][id]" value="{{$serv->id}}">
 				                      <select id="servicios_{{$loop->index}}_servicio" name="id_servicio[servicios][{{$loop->index}}][servicio]" class="selectServ form-control">
 				                        <option value="1">Seleccionar servicio</option>
 				                        @foreach($servicios as $pac)
@@ -86,6 +87,7 @@
 
 					                    <label for="laboratorios_{{$loop->index}}_laboratorio" class="col-sm-1 control-label">Lab</label>
 					                    <div class="col-sm-3">
+					                    	<input type="hidden" name="id_laboratorio[laboratorios][{{$loop->index}}][id]" value="{{$serv->id}}">
 					                      <select id="laboratorios_{{$loop->index}}_laboratorio" name="id_laboratorio[laboratorios][{{$loop->index}}][laboratorio]" class="selectLab form-control">
 					                        <option value="1">Seleccionar laboratorio</option>
 					                        @foreach($laboratorios as $pac)
@@ -104,7 +106,7 @@
 					                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 					                </div>
 					                <!-- /Form template-->
-				                @enforeach
+				                @endforeach
 				            </div>
 				            <!-- /sheepIt Form --> 
 						</div>

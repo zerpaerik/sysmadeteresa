@@ -83,11 +83,41 @@ class PaquetesController extends Controller
     {
       $paquete = Paquetes::findOrFail($id);
       $serviciosP = PaqueteServ::where('paquete_id',$id)->with('servicio')->get();
-      $laboratorioP = PaqueteLab::where('paquete_id',$id)->with('laboratorio')->get();
+      $laboratoriosP = PaqueteLab::where('paquete_id',$id)->with('laboratorio')->get();
       $servicios = Servicios::all();
       $laboratorios = Analisis::all();
      
       return view('archivos.paquetes.edit', compact('paquete','serviciosP','laboratoriosP','servicios','laboratorios'));  
+    }
+
+    public function update(Request $request, $id)
+    {
+      $paquete = Paquetes::where('id',$id)
+                          ->update([
+                              'precio' => $request->precio,
+                              'porcentaje' => $request->porcentaje
+                          ]);
+      if ($paquete) {
+        if (isset($request->id_servicio)) {
+            foreach ($request->id_servicio['servicios'] as $servicio) {
+              PaqueteServ::where('id', $servicio['id'])
+                          ->update([
+                              'servicio_id' => $servicio['servicio']
+                          ]);
+          }
+        }
+       
+        if (isset($request->id_laboratorio)) {
+          foreach ($request->id_laboratorio['laboratorios'] as $laboratorio) {
+            PaqueteLab::where('id', $laboratorio['id'])
+                          ->update([
+                              'laboratorio_id' => $laboratorio['laboratorio']
+                          ]);
+          }
+        }
+      }
+
+      return redirect()->route('paquetes.index');
     }
 
     public function delete($id)
