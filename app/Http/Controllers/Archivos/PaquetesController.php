@@ -79,6 +79,17 @@ class PaquetesController extends Controller
       return view('archivos.paquetes.show', compact('paquete', 'servicios', 'laboratorios'));
     }
 
+    public function edit($id)
+    {
+      $paquete = Paquetes::findOrFail($id);
+      $serviciosP = PaqueteServ::where('paquete_id',$id)->with('servicio')->get();
+      $laboratorioP = PaqueteLab::where('paquete_id',$id)->with('laboratorio')->get();
+      $servicios = Servicios::all();
+      $laboratorios = Analisis::all();
+     
+      return view('archivos.paquetes.edit', compact('paquete','serviciosP','laboratoriosP','servicios','laboratorios'));  
+    }
+
     public function delete($id)
     {
       $paquete = Paquetes::findOrFail($id);

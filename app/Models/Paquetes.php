@@ -10,8 +10,4 @@ class Paquetes extends Model
     	'detalle', 'precio','porcentaje'
     ];
 
-    public function servicios()
-    {
-    	return $this->hasMany('App\Models\PaqueteServ','paquete_id');
-    }
 }
