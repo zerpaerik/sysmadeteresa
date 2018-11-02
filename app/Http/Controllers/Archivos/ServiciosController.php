@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Servicios;
+use App\Models\ServicioMaterial;
+use App\Models\Existencias\Producto;
 class ServiciosController extends Controller
 {
 
@@ -35,17 +37,30 @@ class ServiciosController extends Controller
           'precio' => 'required|string|max:20'
         
         ]);
-        if($validator->fails()) 
+        
+        if($validator->fails()) {
           return redirect()->action('Archivos\ServiciosController@createView', ['errors' => $validator->errors()]);
-		$centros = Servicios::create([
-	      'detalle' => $request->detalle,
-	      'precio' => $request->precio,
-        'porcentaje' => $request->porcentaje
-	     
-	  
-   		]);
-		return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
-	}    
+        } else {
+          $servicio = new Servicios;
+          $servicio->detalle = $request->detalle;
+          $servicio->precio  = $request->precio;
+          $servicio->porcentaje  = $request->porcentaje;
+
+          if ($servicio->save()) {
+            if (isset($request->materiales)) {
+              foreach ($request->materiales as $mat) {
+                ServicioMaterial::create([
+                  'servicio_id' => $servicio->id,
+                  'material_id' => $mat['material'],
+                  'cantidad'    => $mat['cantidad']
+                ]);
+              }
+            }
+          }
+          
+          return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
+        }    
+  }
 
   public function delete($id){
     $servicios = Servicios::find($id);
@@ -54,7 +69,8 @@ class ServiciosController extends Controller
   }
 
   public function createView() {
-    return view('archivos.servicios.create');
+    $materiales = Producto::where('categoria', 1)->get();
+    return view('archivos.servicios.create', compact('materiales'));
   }
 
    

@@ -14,7 +14,7 @@ class CreateTablePaqueteLaboratorios extends Migration
     public function up()
     {
         Schema::table('paquete_laboratorios', function (Blueprint $table) {
-            //$table->increments('id');
+            $table->increments('id');
             $table->integer('paquete_id')->index()->unsigned();
             $table->foreign('paquete_id')->references('id')->on('paquetes');
             $table->integer('laboratorio_id')->index()->unsigned();
