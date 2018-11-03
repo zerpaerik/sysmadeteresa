@@ -14,4 +14,9 @@ class Servicios extends Model
     {
     	return $this->hasMany('App\Models\Atenciones', 'id_servicio', 'id');
     }
+
+    public function materiales()
+    {
+    	return $this->hasMany('App\Models\ServicioMaterial', 'servicio_id', 'id');
+    }
 }
