@@ -16,8 +16,6 @@ class ConsultaController extends Controller
     		'peso' => $request->peso,
     		'g' => $request->g,
     		'p' => $request->p,
-    		'menarquia' => $request->menarquia,
-    		'1_r_s' => $request->rs,
     		'fur' => $request->fur,
     		'rc' => $request->rc,
     		'MAC' => $request->mac,
