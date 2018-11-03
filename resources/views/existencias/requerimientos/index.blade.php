@@ -29,6 +29,7 @@
 							<th>Usuario Solicitante</th>
 							<th>Producto Solicitado</th>
 							<th>Cantidad</th>
+							<th>Cantidad Entregada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
 							
@@ -41,6 +42,7 @@
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
 								<td>{{$req->cantidad}}</td>
+								<td>{{$req->cantidadd}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 

@@ -47,6 +47,15 @@
 								@endforeach
 							</select>
 						</div>
+						<label class="col-sm-1 control-label">Precio Unit.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="preciounidad" placeholder="preciounidad" data-toggle="tooltip" data-placement="bottom" title="preciounidad">
+						</div>
+
+						<label class="col-sm-1 control-label">Precio Venta.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precioventa" placeholder="precioventa" data-toggle="tooltip" data-placement="bottom" title="precioventa">
+						</div>
 
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">

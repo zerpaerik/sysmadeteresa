@@ -18,9 +18,9 @@ class ProductoController extends Controller
 			return view('generics.index', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
-				"headers" => ["id", "nombre", "medida", "categoria","cantidad", "Editar", "Eliminar"],
+				"headers" => ["id", "Nombre", "Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre", "medida", "categoria","cantidad"],
+				"fields" => ["id", "nombre", "medida", "categoria","cantidad","preciounidad","precioventa"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -187,6 +187,8 @@ class ProductoController extends Controller
     		"nombre" => $request->nombre,
     		"categoria" => $request->categoria,
     		"medida" => $request->medida,
+        "preciounidad" => $request->preciounidad,
+        "precioventa" => $request->precioventa,
         "sede_id" => $request->session()->get('sede')
     	]);
     	

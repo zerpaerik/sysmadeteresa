@@ -16,7 +16,7 @@ class RequerimientosController extends Controller
     public function index(){
 
       $requerimientos = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
                     ->join('sedes as b','a.id_sede_solicitada','b.id')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -29,7 +29,7 @@ class RequerimientosController extends Controller
      public function index2(){
 
       $requerimientos2 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
                     ->join('sedes as b','a.id_sede_solicita','b.id')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -69,13 +69,65 @@ class RequerimientosController extends Controller
 
     }
 
+
+    public function editView($id){
+
+      $p = Requerimientos::find($id);
+
+      return view('existencias.requerimientos.edit', ["cantidad" => $p->cantidad,"id" => $p->id]);
+      
+    } 
+
     
 
-      public function procesar($id, Request $request){
+      public function edit(Request $request){
+
+      
+        $searchRequerimiento = DB::table('requerimientos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();                    
+                    //->get();
+                    
+                    $producto = $searchRequerimiento->id_producto;
+                    $sede_solicita = $searchRequerimiento->id_sede_solicita;
+                  
+
+        $searchProducto = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $producto)
+                    ->first();  
+
+                    $cantidadactual = $searchProducto->cantidad;
+                    $nombre = $searchProducto->nombre;
+                    $categoria = $searchProducto->categoria;
+                    $medida = $searchProducto->medida;
+                    $preciounidad = $searchProducto->preciounidad;
+                    $precioventa = $searchProducto->precioventa;
+ 
 
       $p = Requerimientos::find($request->id);
       $p->estatus = 'Procesado';
+      $p->cantidadd= $request->cantidadd;
       $res = $p->save();
+
+      $p = Producto::find($producto);
+      $p->cantidad= $cantidadactual - $request->cantidadd;
+      $res = $p->save();
+
+      $prod = new Producto();
+      $prod->nombre =  $nombre;
+      $prod->categoria =  $categoria;
+      $prod->medida =  $medida;
+      $prod->preciounidad = $preciounidad;
+      $prod->precioventa = $precioventa;
+      $prod->sede_id = $sede_solicita;
+      $prod->cantidad = $request->cantidadd;
+      $prod->save();
+
+
 
       return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
     }

@@ -43,13 +43,10 @@
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
-@if(Session::get('sedeName') <> 'PROCERES')
-
 
           <li>
             <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
           </li>
-@endif
 
 @if(Session::get('sedeName') == 'PROCERES')
 
