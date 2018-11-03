@@ -14,6 +14,11 @@ class ServicioMaterial extends Model
 
     public function material()
     {
-    	return $this->hasOne('App\Models\Productos', 'material_id');
+    	return $this->hasOne('App\Models\Existencias\Producto', 'id', 'material_id');
+    }
+
+    public function servicio()
+    {
+    	return $this->belongTo('App\Models\Servicio', 'id', 'servicio_id');
     }
 }

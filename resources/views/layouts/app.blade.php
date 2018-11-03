@@ -11,6 +11,7 @@
     <link href="{{url('/plugins/jquery-ui/jquery-ui.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>    
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
     <link href="{{url('/plugins/fancybox/jquery.fancybox.css')}}" rel="stylesheet">
@@ -152,6 +153,8 @@
 <script src="{{url('/plugins/tinymce/tinymce.min.js')}}"></script>
 <script src="{{url('/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
 <script src="{{url('/ckeditor/ckeditor.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+{!! Toastr::render() !!}
 
 <!-- All functions for this theme + document.ready processing -->
 @yield('scripts')
