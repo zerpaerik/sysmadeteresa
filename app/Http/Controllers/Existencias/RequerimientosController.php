@@ -42,7 +42,7 @@ class RequerimientosController extends Controller
 
 
     public function createView(){
-    	return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->get(["id", "nombre"])]);
+    	return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->where('almacen','=',1)->get(["id", "nombre"])]);
     }
 
 
@@ -125,6 +125,7 @@ class RequerimientosController extends Controller
       $prod->precioventa = $precioventa;
       $prod->sede_id = $sede_solicita;
       $prod->cantidad = $request->cantidadd;
+      $prod->almacen = 2;
       $prod->save();
 
 

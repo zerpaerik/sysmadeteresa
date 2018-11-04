@@ -173,6 +173,7 @@ Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');
 
 //Productos
 Route::get('productos', 'Existencias\ProductoController@index')->name('productos.index');
+Route::get('productos2', 'Existencias\ProductoController@index2')->name('productos.index2');
 Route::post('producto/create', 'Existencias\ProductoController@create')->name('producto.create');
 Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
 Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
