@@ -19,6 +19,6 @@ class ServicioMaterial extends Model
 
     public function servicio()
     {
-    	return $this->belongTo('App\Models\Servicio', 'id', 'servicio_id');
+    	return $this->hasOne('App\Models\Servicios', 'id','servicio_id');
     }
 }
