@@ -137,7 +137,7 @@ class AtencionesController extends Controller
 
               foreach ($serMateriales as $sm) {
                 if ($sm->material->cantidad < $sm->cantidad) {
-                  Toastr::error('No se tiene la cantidad suficiente de '.$sm->material->nombre, 'Material', $options = []);
+                  Toastr::error('No se tiene la cantidad suficiente de '.$sm->material->nombre, 'Material', ['progressBar' => true]);
                   return back();
                 }
               }
