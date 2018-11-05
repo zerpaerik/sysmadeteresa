@@ -132,4 +132,16 @@ class PaquetesController extends Controller
     {
       return Paquetes::findOrFail($id);
     }
+
+    public function deleteServ($id)
+    {
+      $serv = PaqueteServ::findOrFail($id);
+      return ($serv->delete()) ? 1 : 0;
+    }
+
+    public function deleteLab($id)
+    {
+       $lab = PaqueteLab::findOrFail($id);
+       return ($lab->delete()) ? 1 : 0;
+    }
 }

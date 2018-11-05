@@ -16,7 +16,7 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Eliminar"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Opciones"],
         "data" => $servicios,
         "fields" => ["id", "detalle", "precio","porcentaje",],
           "actions" => [
@@ -92,6 +92,18 @@ class ServiciosController extends Controller
     public function getServicio($servicio)
     {
         return Servicios::where('id', $servicio)->with('materiales.material')->first();      
+    }
+
+    public function show($id)
+    {
+      $servicio = Servicios::where('id', $id)->with('materiales.material')->first();
+      return view('archivos.servicios.show', compact('servicio'));
+    }
+
+    public function deleteMaterial($id)
+    {
+      $material = ServicioMaterial::findOrFail($id);
+      return ($material->delete()) ? 1 : 0;
     }
 
 }

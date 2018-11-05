@@ -65,6 +65,8 @@ Route::get('servicios-edit-{id}', 'Archivos\ServiciosController@editView')->name
 Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
 
 Route::get('servicios/getServicio/{id}', 'Archivos\ServiciosController@getServicio');
+Route::get('servicio/view/{id}', 'Archivos\ServiciosController@show');
+Route::get('servicio/material_eliminar/{id}', 'Archivos\ServiciosController@deleteMaterial');
 
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
@@ -83,6 +85,8 @@ Route::post('paquetes/edit/{id}', 'Archivos\PaquetesController@update')->middlew
 Route::get('paquetes/{id}', 'Archivos\PaquetesController@delete')->middleware('auth');
 Route::get('paquete/view/{id}', 'Archivos\PaquetesController@show')->middleware('auth');
 Route::get('paquete/getPaquete/{id}', 'Archivos\PaquetesController@getPaquete');
+Route::get('paquete/laboratorio_eliminar/{id}', 'Archivos\PaquetesController@deleteLab');
+Route::get('paquete/servicio_eliminar/{id}', 'Archivos\PaquetesController@deleteServ');
 
 /**
  * Atenciones

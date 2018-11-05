@@ -110,6 +110,53 @@ function view(e){
             }
         });
     };
+
+function eliminarServ(e) {
+	var id = $(e).attr('id');
+	var r = confirm("Seguro que deseas eliminar este Servicio!");
+	if (r) {
+		$.ajax({
+        type: "GET",
+	        url: "/paquete/servicio_eliminar/"+id,
+	        success: function (data) {
+	        	if (data == 1) {
+	        		$(e).parent('div').hide('slow');
+	            	toastr.success('El servicio ha sido eliminado.', 'Paquetes!');
+	        	} else {
+	        		toastr.error('El servicio no pudo ser eliminado.', 'Paquetes!')
+	        	}
+	        },
+	        error: function (data) {
+	            toastr.error('Se genero un problema al momento de realizar el proceso de eliminación.', 'Paquetes!')
+	        }
+	    });
+	}
+	
+}
+
+function eliminarLab(e) {
+	var id = $(e).attr('id');
+	var r = confirm("Seguro que deseas eliminar este laboratorio!");
+	if (r) {
+		//$(e).parent('div').hide('slow');
+		$.ajax({
+        type: "GET",
+	        url: "/paquete/laboratorio_eliminar/"+id,
+	        success: function (data) {
+	        	if (data == 1) {
+	        		$(e).parent('div').hide('slow');
+	            	toastr.success('El laboratorio ha sido eliminado.', 'Paquetes!');
+	        	} else {
+	        		toastr.error('El laboratorio no pudo ser eliminado.', 'Paquetes!')
+	        	}
+	        },
+	        error: function (data) {
+	            toastr.error('Se genero un problema al momento de realizar el proceso de eliminación.', 'Paquetes!')
+	        }
+	    });
+	}
+	
+}
 </script>
 
 @endsection
