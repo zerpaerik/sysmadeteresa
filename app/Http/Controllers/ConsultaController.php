@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Consulta;
-
+use App\Http\Requests\CreateConsultaRequest;
 class ConsultaController extends Controller
 {
     public function create(Request $request)
