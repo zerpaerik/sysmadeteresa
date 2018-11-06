@@ -12,10 +12,12 @@ use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\Models\Paquetes;
+use App\Models\Existencias\Producto;
+use App\Models\ServicioMaterial;
 use App\User;
 use Auth;
 use Carbon\Carbon;
-
+use Toastr;
 
 class AtencionesController extends Controller
 
@@ -122,14 +124,30 @@ class AtencionesController extends Controller
     if (isset($request->id_servicio)) {
             $searchServicio = DB::table('servicios')
                     ->select('*')
-                   // ->where('estatus','=','1')
                     ->where('id','=', $request->id_servicio)
                     ->first();   
 
-                    $porcentaje = $searchServicio->porcentaje;
+            $porcentaje = $searchServicio->porcentaje;
 
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
+              $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])
+                                        ->with('material', 'servicio')
+                                        ->get();
+
+              foreach ($serMateriales as $sm) {
+                if ($sm->material->cantidad < $sm->cantidad) {
+                  Toastr::error('El servicio '.$sm->servicio->detalle.' no se puede ofrecer', 'Servicio', ['progressBar' => true]);
+                  Toastr::error('No se tiene la cantidad suficiente de '.$sm->material->nombre, 'Material', ['progressBar' => true]);
+                  return back();
+                }
+              }
+
+              foreach ($serMateriales as $sm) {
+                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
+                $sm->material->save();
+              }
+
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
@@ -156,8 +174,6 @@ class AtencionesController extends Controller
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'INGRESO DE ATENCIONES';
               $creditos->save();
-
-
         } else {
 
         }
@@ -295,7 +311,7 @@ class AtencionesController extends Controller
   private function elasticSearch($initial,$final)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -304,6 +320,7 @@ class AtencionesController extends Controller
     ->whereNotIn('a.monto',[0,0.00])
     ->where('a.created_at','>=' ,$initial)
     ->where('a.created_at','<' ,$final)
+    ->where('a.id_sede','=', \Session::get("sede"))
     ->orderby('a.id','desc')
     ->paginate(5000);
 

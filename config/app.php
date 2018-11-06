@@ -162,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Kamaln7\Toastr\ToastrServiceProvider::class,
 
     ],
 
@@ -214,6 +215,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
+        'Toastr' => Kamaln7\Toastr\Facades\Toastr::class,
     ],
 
 ];

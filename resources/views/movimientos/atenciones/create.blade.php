@@ -80,6 +80,12 @@
                           </option>
                         @endforeach
                       </select>
+                      <div class="col-sm-3" id="materiales_#index#">
+                        <strong>Materiales</strong>
+                        <p id="load-materiales_#index#" style="width: 115px;">
+                          
+                        </p>
+                      </div>
                     </div>
 
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
@@ -273,7 +279,7 @@
 </div>
 @section('scripts')
 <script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('plugins/jqNumber/jquery.number.min.js') }}" type="text/javascript"></script>
+
 
 <script type="text/javascript">
   $(document).ready(function() {
@@ -312,7 +318,7 @@
             }
           break;
         case 'laboratorios':
-            if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+            if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
                 alert('La cantidad insertada en abono es mayor al monto.');
                 $(this).val('0.00');
                 calculo_general();
@@ -421,6 +427,10 @@
          type: "GET",
          url:  "servicios/getServicio/"+$(this).val(),
          success: function(a) {
+            $.each(a.materiales, function(i, item) {
+                $("#load-materiales_"+id).append('\r\n'+item.material.nombre);
+            });
+            $("#materiales_"+id).show();
             $('#servicios_'+id+'_montoHidden').val(a.precio);
             $('#servicios_'+id+'_monto').val(a.precio);
             var total = parseFloat($('#total').val());

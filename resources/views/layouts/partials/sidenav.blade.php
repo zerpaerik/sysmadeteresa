@@ -37,19 +37,31 @@
     <span class="hidden-xs">Existencias</span>
   </a>
   <ul class="dropdown-menu">
-    <li>
-      <a href="{{route('productos.index')}}"><i class="fa fa-plus-square-o"></i> Productos</a>
+   <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Productos</a>
+        <ul class="dropdown-menu">
+@if(Session::get('sedeName') == 'PROCERES')
+
+          <li>
+            <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Almacen Central</a>
+          </li>
+@endif
+
+
+          <li>
+            <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
+          </li>
+
+
+        </ul>      
     </li>
     <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
         <ul class="dropdown-menu">
-@if(Session::get('sedeName') <> 'PROCERES')
-
 
           <li>
             <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
           </li>
-@endif
 
 @if(Session::get('sedeName') == 'PROCERES')
 

@@ -22,8 +22,11 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					        @foreach($requerimientos2 as $req)					
+
 					<thead>
 						<tr>
+						  @if($req->estatus == 'Solicitado')
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
@@ -31,19 +34,38 @@
 							<th>Estatus</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
+							@else
+							<th>Solicitado Por:</th>
+							<th>Usuario Solicitante</th>
+							<th>Producto</th>
+							<th>Cantidad</th>
+						    <th>Cantidad Entregada</th>
+							<th>Estatus</th>
+							<th>Fecha</th>
+							@endif
+
 							
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($requerimientos2 as $req)					
 							<tr>
+							   @if($req->estatus == 'Solicitado')
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
 							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
-								<td><a href="{{asset('/procesar')}}/{{$req->id}}" class="btn btn-xs btn-danger">Procesar</a></td>
+								<td><a href="{{asset('requerimientos-edit')}}-{{$req->id}}" class="btn btn-xs btn-danger">Procesar</a></td>
+								@else
+								<td>{{$req->sede}}</td>
+								<td>{{$req->solicitante}}</td>
+								<td>{{$req->nombre}}</td>
+							    <td>{{$req->cantidad}}</td>
+							    <td>{{$req->cantidadd}}</td>
+								<td>{{$req->estatus}}</td>
+								<td>{{$req->created_at}}</td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>

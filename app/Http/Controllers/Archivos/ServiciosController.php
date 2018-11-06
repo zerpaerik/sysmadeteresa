@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Servicios;
+use App\Models\ServicioMaterial;
+use App\Models\Existencias\Producto;
 class ServiciosController extends Controller
 {
 
@@ -14,7 +16,7 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Eliminar"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Opciones"],
         "data" => $servicios,
         "fields" => ["id", "detalle", "precio","porcentaje",],
           "actions" => [
@@ -35,17 +37,30 @@ class ServiciosController extends Controller
           'precio' => 'required|string|max:20'
         
         ]);
-        if($validator->fails()) 
+        
+        if($validator->fails()) {
           return redirect()->action('Archivos\ServiciosController@createView', ['errors' => $validator->errors()]);
-		$centros = Servicios::create([
-	      'detalle' => $request->detalle,
-	      'precio' => $request->precio,
-        'porcentaje' => $request->porcentaje
-	     
-	  
-   		]);
-		return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
-	}    
+        } else {
+          $servicio = new Servicios;
+          $servicio->detalle = $request->detalle;
+          $servicio->precio  = $request->precio;
+          $servicio->porcentaje  = $request->porcentaje;
+
+          if ($servicio->save()) {
+            if (isset($request->materiales)) {
+              foreach ($request->materiales as $mat) {
+                ServicioMaterial::create([
+                  'servicio_id' => $servicio->id,
+                  'material_id' => $mat['material'],
+                  'cantidad'    => $mat['cantidad']
+                ]);
+              }
+            }
+          }
+          
+          return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
+        }    
+  }
 
   public function delete($id){
     $servicios = Servicios::find($id);
@@ -54,7 +69,8 @@ class ServiciosController extends Controller
   }
 
   public function createView() {
-    return view('archivos.servicios.create');
+    $materiales = Producto::where('categoria', 1)->get();
+    return view('archivos.servicios.create', compact('materiales'));
   }
 
    
@@ -75,7 +91,19 @@ class ServiciosController extends Controller
 
     public function getServicio($servicio)
     {
-        return Servicios::findOrFail($servicio);
+        return Servicios::where('id', $servicio)->with('materiales.material')->first();      
+    }
+
+    public function show($id)
+    {
+      $servicio = Servicios::where('id', $id)->with('materiales.material')->first();
+      return view('archivos.servicios.show', compact('servicio'));
+    }
+
+    public function deleteMaterial($id)
+    {
+      $material = ServicioMaterial::findOrFail($id);
+      return ($material->delete()) ? 1 : 0;
     }
 
 }

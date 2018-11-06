@@ -13,6 +13,8 @@ class HistorialController extends Controller
     		'antecedentes_personales' => $request->a_personales,
     		'antecedentes_patologicos' => $request->a_patologicos,
     		'alergias' => $request->alergias,
+            'menarquia' => $request->menarquia,
+            'prs' => $request->prs,
     		'paciente_id' => $request->paciente_id,
     		'profesional_id' => $request->profesional_id,
     	]);	

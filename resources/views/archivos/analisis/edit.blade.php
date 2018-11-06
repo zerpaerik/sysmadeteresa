@@ -46,6 +46,11 @@
 							<input type="text" class="form-control" name="material" placeholder="material" data-toggle="tooltip" data-placement="bottom" value="{{$material}}" title="material">
 						</div>
 
+						<label class="col-sm-1 control-label">Porcentaje</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" value="{{$porcentaje}}"  title="porcentaje">
+						</div>	
+
 						<label class="col-sm-1 control-label">Laboratorio</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="laboratorio"  data-toggle="tooltip" data-placement="bottom">

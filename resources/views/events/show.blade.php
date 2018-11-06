@@ -11,7 +11,10 @@
 		<p>Alergias: {{$historial->alergias}}</p>
 		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
-		<p>Antecedentes Familaires: {{$historial->antecedentes_familiar}}</p>
+		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
+		<p>Menarquia: {{$historial->menarquia}}</p>
+		<p>1º R.S : {{$historial->prs}}</p>
+
 	@else
 	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
 		<div></div>
@@ -41,6 +44,14 @@
 				<div class="col-sm-12">
 					<input required type="text" name="alergias">
 				</div>
+				<label for="" class="col-sm-12">Menarquia</label>
+				<div class="col-sm-12">
+					<input type="text" name="menarquia">
+				</div>
+				<label for="" class="col-sm-12">1º R.S</label>
+				<div class="col-sm-12">
+					<input type="text" name="prs">
+				</div>
 				<br>
 				<div class="col-sm-12">
 					<input type="submit" value="Registrar" class="btn btn-success">
@@ -61,8 +72,6 @@
 				<p class="col-sm-6"><strong>peso:</strong> {{ $consulta->peso }}</p>
 				<p class="col-sm-6"><strong>G:</strong> {{ $consulta->g }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }}</p>
-				<p class="col-sm-6"><strong>Menarquia:</strong> {{ $consulta->menarquia }}</p>
-				<p class="col-sm-6"><strong>1° R.S:</strong> {{ $consulta->rs }}</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>R/C:</strong> {{ $consulta->rc }}</p>
 				<p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
@@ -92,69 +101,54 @@
 			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
 
-			<label for="" class="col-sm-2 ">P/A</label>
+            <label for="" class="col-sm-2 ">Motivo de Consulta</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="motivo_consulta">		
+			</div>
+			 <label for="" class="col-sm-2 ">P/A</label>
 			<div class="col-sm-4">
 				<input type="text" name="pa" class="form-control" required>
 			</div>
-
 			<label for="" class="col-sm-2 ">Pulso</label>
 			<div class="col-sm-4">
 				<input  required class="form-control" type="text" name="pulso">
 			</div>
-
-			<label for=""class="col-sm-2 ">Temperatura</label>
-			<div class="col-sm-4">
-				<input  required class="form-control" type="text" name="temperatura">
-			</div>
-
-			<label for="" class="col-sm-2 ">Peso</label>
-			<div class="col-sm-4">			
-				<input  required class="form-control" type="text" name="peso">
-			</div>
-
 			<label for="" class="col-sm-2 ">G:</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="text" name="g">
 			</div>
-
-			<label for="" class="col-sm-2 ">P:</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="p">
-			</div>
-
-			<label for="" class="col-sm-2 ">Menarquia</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="menarquia">
-			</div>
-
-			<label for="" class="col-sm-2 ">1 R.S</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="rs">
+				<label for=""class="col-sm-2 ">Temperatura</label>
+			<div class="col-sm-4">
+				<input  required class="form-control" type="text" name="temperatura">
 			</div>
 
 			<label for="" class="col-sm-2 ">FUR</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="fur">
+				<input  required class="form-control" type="date" name="fur">
 			</div>
-
-			<label for="" class="col-sm-2 ">R/C</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="rc">
+			<label for="" class="col-sm-2 ">Peso</label>
+			<div class="col-sm-4">			
+				<input  required class="form-control" type="text" name="peso">
 			</div>
-
 			<label for="" class="col-sm-2 ">MAC</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="text" name="mac">
 			</div>
-
-			<label for="" class="col-sm-2 ">Motivo de Consulta</label>
+			<label for="" class="col-sm-2 ">Funciones Biologicas</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="motivo_consulta">		
+				<input  required class="form-control" type="text" name="funciones_biologicas">
 			</div>
-
 			<label for="" class="col-sm-2 ">Ultimo PAP</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="date" name="pap">
+			</div>
+			<label for="" class="col-sm-2 ">Evolucion de la enfermedad</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="evolucion_enfermedad">
+			</div>	
+			<label for="" class="col-sm-2 ">P:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="p">
 			</div>
 
 			<label for="" class="col-sm-2 ">Tipo de enfermedad</label>
@@ -162,14 +156,9 @@
 				<input  required class="form-control" type="text" name="tipo_enfermedad">
 			</div>
 
-			<label for="" class="col-sm-2 ">Evolucion de la enfermedad</label>
+			<label for="" class="col-sm-2 ">R/C</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="evolucion_enfermedad">
-			</div>	
-
-			<label for="" class="col-sm-2 ">Funciones Biologicas</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="funciones_biologicas">
+				<input  required class="form-control" type="text" name="rc">
 			</div>
 			<br>
 			<label class="col-sm-12" for="">Examen fisico regional</label>
