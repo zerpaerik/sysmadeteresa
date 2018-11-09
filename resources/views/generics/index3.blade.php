@@ -40,6 +40,13 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach						
+							<td>
+								<select name="informe" id="informe">
+								@foreach($informes as $informe)
+									<option value="{{$informe->id}}">{{$informe->title}}</option>
+								@endforeach
+								</select>
+							</td>
 							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Redactar</a></td>
 						</tr>
 						@endforeach						
@@ -56,6 +63,7 @@
 @endif
 
 <script type="text/javascript">
+
 	$('#input_date').on('change', getAva);
 
 	function del(id){

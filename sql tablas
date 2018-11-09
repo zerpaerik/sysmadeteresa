@@ -3,3 +3,13 @@ CREATE TABLE `santa_teresa`.`historials` ( `id` INT NOT NULL AUTO_INCREMENT , `a
 
 Previsualizar SQL
 CREATE TABLE `santa_teresa`. `consultas`( `id` INT NOT NULL AUTO_INCREMENT , `pa` VARCHAR(150) NOT NULL , `pulso` VARCHAR(150) NOT NULL , `temperatura` VARCHAR(150) NOT NULL , `peso` VARCHAR(150) NOT NULL , `g` VARCHAR(150) NOT NULL , `p` VARCHAR(150) NOT NULL , `menarquia` VARCHAR(150) NOT NULL , `1_r_s` VARCHAR(150) NOT NULL , `fur` VARCHAR(150) NOT NULL , `rc` VARCHAR(150) NOT NULL , `MAC` VARCHAR(150) NOT NULL , `fecha_ultimo_pap` DATE NOT NULL , `motivo_consulta` VARCHAR(150) NOT NULL , `tipo_enfermedad` VARCHAR(150) NOT NULL , `evolucion_enfermedad` VARCHAR(150) NOT NULL , `funciones_biologicas` VARCHAR(150) NOT NULL , `examen_fisico_regional` VARCHAR(150) NOT NULL , `presuncion_diagnostica` VARCHAR(150) NOT NULL , `diagnostico_final` VARCHAR(150) NOT NULL , `CIEX` VARCHAR(150) NOT NULL , `CIEX2` VARCHAR(150) NOT NULL , `examen_auxiliar` VARCHAR(150) NOT NULL , `plan_tratamiento` VARCHAR(150) NOT NULL , `obervaciones` TEXT NOT NULL , `paciente_id` INT(11) UNSIGNED NOT NULL , `profesional_id` INT(11) UNSIGNED NOT NULL , `created_at` TIMESTAMP NOT NULL , `updated_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+
+
+ALTER TABLE `resultados_servicios` ADD `created_at` TIMESTAMP NOT NULL AFTER `descripcion`, ADD `updated_at` TIMESTAMP NOT NULL AFTER `created_at`;
+
+
+CREATE TABLE `santa_teresa`.`informes` ( `id` INT NOT NULL AUTO_INCREMENT , `title` VARCHAR(150) NOT NULL , `content` TEXT NOT NULL , `reporte_id` VARCHAR(150) NOT NULL , `created_at` TIMESTAMP NOT NULL , `updated_at` TIMESTAMP NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+ALTER TABLE `resultados_laboratorios` CHANGE `descripcion` `descripcion` TEXT CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;

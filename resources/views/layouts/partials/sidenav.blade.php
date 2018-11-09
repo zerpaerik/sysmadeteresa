@@ -172,6 +172,9 @@
       <li>
         <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
       </li>
+      <li>
+        <a href="{{route('resultados.informe')}}"><i class="fa fa-plus-circle"></i> Crear Modelo de Informe</a>
+      </li>
     </ul>
   </li>
 

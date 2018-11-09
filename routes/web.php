@@ -146,6 +146,8 @@ Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
+Route::get('resultados-informe', 'ResultadosController@informe')->name('resultados.informe')->middleware('auth');
+Route::post('informe-create','ResultadosController@informeCreate')->name('informe.create')->middleware('auth');
 Route::get('resultados-create', 'ResultadosController@createView')->name('resultados.create')->middleware('auth');
 Route::post('resultados/create', 'ResultadosController@create')->middleware('auth');
 Route::get('resultados/{id}', 'ResultadosController@delete')->middleware('auth');
