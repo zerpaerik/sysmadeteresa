@@ -239,4 +239,5 @@ Route::post('observacion/create','ConsultaController@create')->name('observacion
 /**
  * Reportes
  */
-Route::get('diario', 'ReportesController@relacion_ingreso_egreso');
+Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
+Route::post('reporte/diario', 'ReportesController@relacion_diario');

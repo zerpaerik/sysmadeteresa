@@ -12,7 +12,7 @@
 		width: 49%;
 		float: left;
 		padding: 8px 5px;
-		font-size: 22px;
+		font-size: 18px;
 	}
 
 	.text-center{
@@ -32,45 +32,37 @@
 		width: 100%;
 		text-align: center;
 		margin: 10px 0;
-		background: #eaeaea;
 	}
-	th, td{
-		border-bottom: 1px solid black;
-	}
-
+	
 	tr th{
-		font-size: 20px;
+		font-size: 14px;
 		text-transform: uppercase;
 		padding: 8px 5px;
 	}
 
 	tr td{
-		font-size: 22px;
+		font-size: 14px;
 		padding: 8px 5px;
 	}
 </style>
 
-<div class="row">
+<div>
 	<div class="text-center title-header col-12">
-		<strong>EMPRESA:</strong> Alberto Veliz
-	</div>
-	<div class="text-center title-header col-12">
-		<strong>SUCURSAL:</strong> Aleander
+		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
 	</div>
 </div>
-
-<div class="row" style="overflow: auto;">
+<div>
 	<div class="col-6">
-		Fecha de Impresión: 05/11/2018
+		Fecha de Impresión: {{ Carbon\Carbon::now()->format('d/m/Y') }}
 	</div>
 	<div class="col-6 text-right">
-		Hora de Impresión: 00:00 am
+		Hora de Impresión: {{ Carbon\Carbon::now('America/Lima')->format('h:i a') }}
 	</div> 
-	<div class="col-6">
-		Fecha de Consulta:
-	</div>
 </div>
-<div class="row">
+<div style="width: 49%;padding: 8px 5px;font-size: 18px;">
+		Fecha de Consulta:
+</div>
+<div style="background: #eaeaea;">
 	<table>
 		<tr>
 			<th>INGRESOS</th>
@@ -101,17 +93,15 @@
 			<td>TOTAL</td>
 			<td></td>
 			<td></td>
-			<td width="150">{{ $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto }}</td>
+			<td width="80">{{ $totalIngresos }}</td>
 		</tr>
 	</table>
 </div>
-<div class="row">
-	<div class="col-6" style="font-weight: bold; ">
+<div style="font-weight: bold; font-size: 14px">
 		EGRESOS
-	</div>
 </div>
-<div class="row">
-	<table>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
 		<tr>
 			<th>Descripción</th>
 			<th>Origen</th>
@@ -119,60 +109,60 @@
 		</tr>
 		@foreach ($egresos as $egreso)
 			<tr>
-				<th>{{ $egreso->descripcion }}</th>
-				<th>{{ $egreso->origen }}</th>
-				<th>{{ $egreso->monto }}</th>
+				<td>{{ $egreso->descripcion }}</td>
+				<td>{{ $egreso->origen }}</td>
+				<td>{{ $egreso->monto }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<th>Total</th>
-			<th></th>
-			<th></th>
-			<th width="150">0</th>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalEgresos }}</td>
 		</tr>
 	</table>
 </div>
-<div class="row">
-	<div class="col-6" style="font-weight: bold; ">
+<div style="font-weight: bold; font-size: 14px">
 		SALDO TOTAL
-	</div>
 </div>
-<div class="row">
+<div style="margin-top:10px; background: #eaeaea;">
 	<table>
 		<tr>
 			<th>Total efectivo</th>
 			<th>Total tarjeta</th>
 		</tr>
 		<tr>
-			<td>0</td>
-			<td>0</td>
+			<td>{{ $efectivo->monto }}</td>
+			<td>{{ $tarjeta->monto }}</td>
 		</tr>
 		<tr>
 			<td>Total</td>
 			<td></td>
-			<td width="150">0</td>
+			<td width="80">
+				{{ $efectivo->monto + $tarjeta->monto }}
+			</td>
 		</tr>
 	</table>
 </div>
-<div class="row">
-	<div class="col-6" style="font-weight: bold; ">
+<div style="font-weight: bold; font-size: 14px">
 		SALDO DEL DÍA
-	</div>
 </div>
-<div class="row">
+<div style="margin-top:10px; background: #eaeaea;">
 	<table>
 		<tr>
 			<th>Ingresos</th>
 			<th>Egresos</th>
 		</tr>
 		<tr>
-			<td>0</td>
-			<td>0</td>
+			<td>{{ $totalIngresos }}</td>
+			<td>{{ $totalEgresos }}</td>
 		</tr>
 		<tr>
 			<td>Total</td>
 			<td></td>
-			<td width="150">0</td>
+			<td width="80">
+				{{ $totalIngresos - $totalEgresos }}
+			</td>
 		</tr>
 	</table>
 </div>
