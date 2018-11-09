@@ -128,6 +128,7 @@ class ReportesController extends Controller
                             ->get();
 
         $efectivo = Creditos::where('tipo_ingreso', 'EF')
+                            ->whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
                             ->select(DB::raw('SUM(monto) as monto'))
                             ->first();
         if (is_null($efectivo->monto)) {
@@ -135,6 +136,7 @@ class ReportesController extends Controller
         }
 
         $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+                            ->whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
                             ->select(DB::raw('SUM(monto) as monto'))
                             ->first();
 
