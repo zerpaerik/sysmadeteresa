@@ -13,7 +13,8 @@ use App\Models\ResultadosLaboratorios;
 use PDF;
 use Auth;
 use Carbon\Carbon;
-
+use PhpOffice\PhpWord\TemplateProcessor;
+use HTMLtoOpenXML;
 class ReportesController extends Controller
 
 {
@@ -24,38 +25,35 @@ class ReportesController extends Controller
                 ->select('a.id','a.es_servicio','a.es_laboratorio','a.resultado')
                 ->where('a.resultado','=',1)
                 ->where('a.id','=', $id)
-                ->get();
+                ->first();
            
-           foreach ($searchtipo as $tipo) {
-                    $es_servicio = $tipo->es_servicio;
-                    $es_laboratorio = $tipo->es_laboratorio;
-                }
-
+                    $es_servicio = $searchtipo->es_servicio;
+                    $es_laboratorio = $searchtipo->es_laboratorio;
 
 
                 if (!is_null($es_servicio)) {
 
                 $resultado = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.resultado','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','d.descripcion','e.detalle')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.resultado','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','d.descripcion','e.detalle','a.created_at')
                 ->join('users as b','b.id','a.origen_usuario')
                 ->join('pacientes as c','c.id','a.id_paciente')
                 ->join('resultados_servicios as d','d.id_atencion','a.id')
                 ->join('servicios as e','e.id','a.id_servicio')
                 ->where('a.resultado','=',1)
                 ->where('a.id','=', $id)
-                ->get();
+                ->first();
 
                 } else {
 
                 $resultado = DB::table('atenciones as a')
-                ->select('a.id','a.id_paciente','a.origen_usuario','a.resultado','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','d.descripcion','e.name as detalle')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.resultado','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','d.descripcion','e.name as detalle','a.created_at')
                 ->join('users as b','b.id','a.origen_usuario')
                 ->join('pacientes as c','c.id','a.id_paciente')
                 ->join('resultados_laboratorios as d','d.id_atencion','a.id')
                 ->join('analises as e','e.id','a.id_laboratorio')
                 ->where('a.resultado','=',1)
                 ->where('a.id','=', $id)
-                ->get();
+                ->first();
 
 
                 }
@@ -70,17 +68,35 @@ class ReportesController extends Controller
 
 
 
-       public function resultados_ver($id) 
+    public function resultados_ver($id) 
     {
-       
-     $resultados =ReportesController::verResultado($id);
-
+      
+     $resultados = ReportesController::verResultado($id);
+/*
      $view = \View::make('reportes.resultados_ver')->with('resultados', $resultados);
      $pdf = \App::make('dompdf.wrapper');
      $pdf->loadHTML($view);
      
        
-        return $pdf->stream('resultados_ver');
+    return $pdf->stream('resultados_ver');
+*/  
+       //dd($resultados);
+        $fileName = storage_path('informe.docx');
+
+        $phpWord = new TemplateProcessor($fileName);
+
+        $phpWord->setValue('nombre_paciente',$resultados->nompac);
+        $phpWord->setValue('apellido_paciente',$resultados->apepac);
+        $phpWord->setValue('tipo_examen',$resultados->detalle);
+        $phpWord->setValue('codigo',$resultados->detalle);
+        $phpWord->setValue('fecha',$resultados->created_at);
+        $parser = new HTMLtoOpenXML\Parser();
+        $ooXml = $parser->fromHTML($resultados->descripcion);
+        $phpWord->setValue('contenido_info',$ooXml);
+
+        $phpWord->saveAs(storage_path('edicion.doc'));
+
+        return response()->download(storage_path('edicion.doc'));
 
     }
 
