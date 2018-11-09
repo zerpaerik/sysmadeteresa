@@ -12,7 +12,7 @@ use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use PDF;
 use Auth;
-
+use Carbon\Carbon;
 
 class ReportesController extends Controller
 
@@ -84,10 +84,81 @@ class ReportesController extends Controller
 
     }
 
+    public function formDiario()
+    {
+        return view('reportes.form_diario');
+    }
 
+    public function relacion_diario(Request $request)
+    {
+        $atenciones = Creditos::where('origen', 'ATENCIONES')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($atenciones->cantidad == 0) {
+            $atenciones->monto = 0;
+        }
 
- //
+        $consultas = Creditos::where('origen', 'CONSULTAS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($consultas->cantidad == 0) {
+            $consultas->monto = 0;
+        }
+
+        $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($otros_servicios->cantidad == 0) {
+            $otros_servicios->monto = 0;
+        }
+
+        $cuentasXcobrar = Creditos::where('origen', 'CUENTAS POR COBRAR')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($cuentasXcobrar->cantidad == 0) {
+            $cuentasXcobrar->monto = 0;
+        }
+
+        $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
+                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->get();
+
+        $efectivo = Creditos::where('tipo_ingreso', 'EF')
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+        if (is_null($efectivo->monto)) {
+            $efectivo->monto = 0;
+        }
+
+        $tarjeta = Creditos::where('tipo_ingreso', 'TJ')
+                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+
+        if (is_null($tarjeta->monto)) {
+            $tarjeta->monto = 0;
+        }
+
+        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto;
+
+        $totalEgresos = 0;
+
+        foreach ($egresos as $egreso) {
+            $totalEgresos += $egreso->monto;
+        }
+
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->download('diario_'.$request->fecha.'.pdf');
 
     }
+}
 
 

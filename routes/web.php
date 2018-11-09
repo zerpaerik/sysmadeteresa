@@ -67,6 +67,8 @@ Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
 Route::get('servicios/getServicio/{id}', 'Archivos\ServiciosController@getServicio');
 Route::get('servicio/view/{id}', 'Archivos\ServiciosController@show');
 Route::get('servicio/material_eliminar/{id}', 'Archivos\ServiciosController@deleteMaterial');
+Route::get('servicios-addItems-{servicio}', 'Archivos\ServiciosController@addItems');
+Route::post('servicios/storeItems/{servicio}', 'Archivos\ServiciosController@storeItems');
 
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
@@ -87,6 +89,9 @@ Route::get('paquete/view/{id}', 'Archivos\PaquetesController@show')->middleware(
 Route::get('paquete/getPaquete/{id}', 'Archivos\PaquetesController@getPaquete');
 Route::get('paquete/laboratorio_eliminar/{id}', 'Archivos\PaquetesController@deleteLab');
 Route::get('paquete/servicio_eliminar/{id}', 'Archivos\PaquetesController@deleteServ');
+Route::get('paquetes-addItems-{paquete}', 'Archivos\PaquetesController@addItems');
+Route::post('paquetes/storeItems/{paquete}', 'Archivos\PaquetesController@storeItems');
+
 
 /**
  * Atenciones
@@ -232,3 +237,9 @@ Route::get('consulta-create', 'Events\EventController@createView')->name('consul
 Route::post('consulta/create', 'Events\EventController@create');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
+
+/**
+ * Reportes
+ */
+Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
+Route::post('reporte/diario', 'ReportesController@relacion_diario');

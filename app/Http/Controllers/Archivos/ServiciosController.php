@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Servicios;
 use App\Models\ServicioMaterial;
 use App\Models\Existencias\Producto;
+
+use Toastr;
+
 class ServiciosController extends Controller
 {
 
@@ -104,6 +107,36 @@ class ServiciosController extends Controller
     {
       $material = ServicioMaterial::findOrFail($id);
       return ($material->delete()) ? 1 : 0;
+    }
+
+    public function addItems(Servicios $servicio)
+    {
+      $materiales = Producto::where('categoria', 1)->get();
+      return view('archivos.servicios.add_items', compact('materiales', 'servicio'));
+    }
+
+    public function storeItems(Request $request, $id)
+    {
+      $servicio = Servicios::findOrFail($id);
+      $servicio->detalle = $request->detalle;
+      $servicio->precio  = $request->precio;
+      $servicio->porcentaje  = $request->porcentaje;
+
+      if ($servicio->save()) {
+        if (isset($request->materiales)) {
+          foreach ($request->materiales as $mat) {
+            ServicioMaterial::create([
+              'servicio_id' => $servicio->id,
+              'material_id' => $mat['material'],
+              'cantidad'    => $mat['cantidad']
+            ]);
+          }
+        }
+        Toastr::success('El Servicio '.$servicio->detalle.' ha sido actualizado.', 'Servicios!', ['progressBar' => true]);
+      }
+      
+      return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
+           
     }
 
 }
