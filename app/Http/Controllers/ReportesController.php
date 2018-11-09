@@ -84,10 +84,48 @@ class ReportesController extends Controller
 
     }
 
+    public function relacion_ingreso_egreso()
+    {
+        $atenciones = Creditos::where('origen', 'ATENCIONES')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime('21-10-2018')), date('Y-m-d 23:59:59', strtotime('21-10-2018'))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($atenciones->cantidad == 0) {
+            $atenciones->monto = 0;
+        }
 
+        $consultas = Creditos::where('origen', 'CONSULTAS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime('21-10-2018')), date('Y-m-d 23:59:59', strtotime('21-10-2018'))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($consultas->cantidad == 0) {
+            $consultas->monto = 0;
+        }
 
- //
+        $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime('21-10-2018')), date('Y-m-d 23:59:59', strtotime('21-10-2018'))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($otros_servicios->cantidad == 0) {
+            $otros_servicios->monto = 0;
+        }
+
+        $cuentasXcobrar = Creditos::where('origen', 'CUENTAS POR COBRAR')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime('21-10-2018')), date('Y-m-d 23:59:59', strtotime('21-10-2018'))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($cuentasXcobrar->cantidad == 0) {
+            $cuentasXcobrar->monto = 0;
+        }
+
+        $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime('28-10-2018')), date('Y-m-d', strtotime('28-10-2018'))])
+                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->get();
+
+        // dd($servicios);
+        return view('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos'));
 
     }
+}
 
 

@@ -225,3 +225,8 @@ Route::get('consulta-create', 'Events\EventController@createView')->name('consul
 Route::post('consulta/create', 'Events\EventController@create');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
+
+/**
+ * Reportes
+ */
+Route::get('diario', 'ReportesController@relacion_ingreso_egreso');
