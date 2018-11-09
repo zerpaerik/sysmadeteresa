@@ -114,6 +114,14 @@ class EventController extends Controller
         "time" => $request->time,
         "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
       ]);
+
+      $credito = Creditos::create([
+        "origen" => 'CONSULTAS',
+        "descripcion" => 'CONSULTAS',
+        "monto" => $request->monto,
+        "tipo_ingreso" => 'EF',
+        "id_sede" => $request->session()->get('sede'),
+      ]);
     }
 
     $calendar = Calendar::addEvents($this->getEvents())
