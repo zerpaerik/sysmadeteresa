@@ -50,10 +50,10 @@ class ResultadosController extends Controller
 	}
 
 
-	public function editView($id){
+	public function editView($id, Request $request){
 
     $atencion = Atenciones::findOrFail($id);
-    $informe = Informe::where('id',1)->first();
+    $informe = Informe::where('id',$request->informe)->first();
 
     return view('resultados.create', [
       'atencion' => $atencion,
