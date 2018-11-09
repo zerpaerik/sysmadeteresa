@@ -23,10 +23,10 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h3>Rango de fechas</h3>
+						<h4>Rango de fechas</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<label for="">final</label>
+						<label for="">Final</label>
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
 						<input type="submit">
 					</form>
