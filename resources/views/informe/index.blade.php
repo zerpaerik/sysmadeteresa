@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Redactar Resultado</strong></span>
+					<span><strong>Redactar Informe</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,15 +22,15 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="resultados/edit/{{$atencion->id}}">
+				<form class="form-horizontal" role="form" method="post" action="/informe-create">
 					{{ csrf_field() }}
 					<div class="form-group">
-						
 
 						<div class="panel-body">
 							<form>
-								<textarea class="ckeditor" name="descripcion" id="descripcion" rows="10" cols="80">  
-									{{ $informe->content}}
+								<label for="">Titulo del informe</label>
+								<input type="text" name="title" required >
+								<textarea class="ckeditor" name="content" id="content" rows="10" cols="80">  
 								</textarea>
 							</form>
 						</div>

@@ -27,22 +27,22 @@
 
 				<label for="" class="col-sm-12">Antecedentes familiares</label>
 				<div class="col-sm-12">
-					<input type="text" name="a_familiares">
+					<input required type="text" name="a_familiares">
 				</div>
 
 				<label for="" class="col-sm-12">Antecedentes personales</label>
 				<div class="col-sm-12">			
-					<input type="text" name="a_personales">
+					<input required type="text" name="a_personales">
 				</div>
 
 				<label for="" class="col-sm-12">Antecedentes patologicos</label>
 				<div class="col-sm-12">			
-					<input type="text" name="a_patologicos">
+					<input required type="text" name="a_patologicos">
 				</div>
 
 				<label for="" class="col-sm-12">Alergias</label>
 				<div class="col-sm-12">
-					<input type="text" name="alergias">
+					<input required type="text" name="alergias">
 				</div>
 				<label for="" class="col-sm-12">Menarquia</label>
 				<div class="col-sm-12">

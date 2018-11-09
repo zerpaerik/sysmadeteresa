@@ -10,7 +10,7 @@ use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
-
+use App\Informe;
 use Auth;
 
 
@@ -32,11 +32,15 @@ class ResultadosController extends Controller
         ->orderby('a.id','desc')
         ->paginate(5000);
 
+
+        $informe = Informe::all();
+
          return view('generics.index3', [
         "icon" => "fa-list-alt",
         "model" => "resultados",
-        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Profesional","Apellido Profesional","Servicio","laboratorio","Acción"],
+        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Profesional","Apellido Profesional","Servicio","laboratorio","Acción","Tipo Informe"],
         "data" => $resultados,
+        "informes" => $informe,
         "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
@@ -46,12 +50,36 @@ class ResultadosController extends Controller
 	}
 
 
-	public function editView($id){
+	public function editView($id, Request $request){
 
     $atencion = Atenciones::findOrFail($id);
+    $informe = Informe::where('id',$request->informe)->first();
 
-    return view('resultados.create', compact('atencion'));
+    return view('resultados.create', [
+      'atencion' => $atencion,
+      'informe' => $informe
+      ]);
 
+    }
+
+
+    public function informe()
+    {
+      return view ('informe.index',[
+        'prueba' => 'this is a test' 
+      ]);
+    }
+
+    
+    public function informeCreate(Request $request)
+    {
+      $informe = Informe::create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'reporte_id' => '1'
+      ]);
+
+      return back();
     }
 
 	 public function edit($id,Request $request){

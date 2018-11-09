@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Historial;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateHistorialRequest;
 
 class HistorialController extends Controller
 {

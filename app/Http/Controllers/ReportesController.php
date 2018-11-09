@@ -18,7 +18,7 @@ class ReportesController extends Controller
 
 {
 
-	 public function verResultado($id){
+	 public function verResultado($id=void){
        
                 $searchtipo = DB::table('atenciones as a')
                 ->select('a.id','a.es_servicio','a.es_laboratorio','a.resultado')

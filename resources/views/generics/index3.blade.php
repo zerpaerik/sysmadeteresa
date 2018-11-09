@@ -40,8 +40,17 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach						
-							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Redactar</a></td>
+							<td>
+								<form action="{{$model . '-edit-' .$d->id}}" method="get">
+								<select name="informe" id="informe">
+								@foreach($informes as $informe)
+									<option value="{{$informe->id}}">{{$informe->title}}</option>
+								@endforeach
+								</select>
+							</td>
+							<td><input type="submit" class="btn btn-success" value="Redactar"></td>
 						</tr>
+						</form>
 						@endforeach						
 					</tbody>
 				</table>
@@ -56,6 +65,14 @@
 @endif
 
 <script type="text/javascript">
+	
+	var informe = ""
+
+	function informe_value(value)
+	{
+		console.log(this.informe = value);
+	}
+
 	$('#input_date').on('change', getAva);
 
 	function del(id){
