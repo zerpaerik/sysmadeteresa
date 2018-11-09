@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 
+use Toastr;
 
 class PaquetesController extends Controller
 {
@@ -120,6 +121,43 @@ class PaquetesController extends Controller
       return redirect()->route('paquetes.index');
     }
 
+    public function addItems(Paquetes $paquete)
+    {
+      $servicios = Servicios::all();
+      $laboratorios = Analisis::all();
+      return view('archivos.paquetes.add_items', compact('paquete', 'servicios', 'laboratorios'));
+    }
+
+    public function storeItems(Request $request, $id)
+    {
+      $paquete = Paquetes::findOrFail($id);
+      $paquete->precio = $request->precio;
+      $paquete->porcentaje = $request->porcentaje;
+      if ($paquete->save()) {
+        if (isset($request->id_servicio)) {
+            foreach ($request->id_servicio['servicios'] as $servicio) {
+              $serv = new PaqueteServ;
+              $serv->paquete_id  = $paquete->id;
+              $serv->servicio_id = $servicio['servicio'];
+              $serv->save();
+            }
+        }
+         
+        if (isset($request->id_laboratorio)) {
+          foreach ($request->id_laboratorio['laboratorios'] as $laboratorio) {
+            $lab = new PaqueteLab;
+            $lab->paquete_id     = $paquete->id;
+            $lab->laboratorio_id = $laboratorio['laboratorio'];
+            $lab->save();
+          }
+        }
+
+        Toastr::success('El paquete '.$paquete->detalle.' ha sido actualizado.', 'Paquetes!', ['progressBar' => true]);
+      }
+
+      return redirect()->route('paquetes.index');
+    }
+
     public function delete($id)
     {
       $paquete = Paquetes::findOrFail($id);
@@ -131,5 +169,17 @@ class PaquetesController extends Controller
     public function getPaquete($id)
     {
       return Paquetes::findOrFail($id);
+    }
+
+    public function deleteServ($id)
+    {
+      $serv = PaqueteServ::findOrFail($id);
+      return ($serv->delete()) ? 1 : 0;
+    }
+
+    public function deleteLab($id)
+    {
+       $lab = PaqueteLab::findOrFail($id);
+       return ($lab->delete()) ? 1 : 0;
     }
 }

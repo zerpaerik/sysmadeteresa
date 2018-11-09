@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Servicios;
 use App\Models\ServicioMaterial;
 use App\Models\Existencias\Producto;
+
+use Toastr;
+
 class ServiciosController extends Controller
 {
 
@@ -16,7 +19,7 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Eliminar"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Opciones"],
         "data" => $servicios,
         "fields" => ["id", "detalle", "precio","porcentaje",],
           "actions" => [
@@ -92,6 +95,48 @@ class ServiciosController extends Controller
     public function getServicio($servicio)
     {
         return Servicios::where('id', $servicio)->with('materiales.material')->first();      
+    }
+
+    public function show($id)
+    {
+      $servicio = Servicios::where('id', $id)->with('materiales.material')->first();
+      return view('archivos.servicios.show', compact('servicio'));
+    }
+
+    public function deleteMaterial($id)
+    {
+      $material = ServicioMaterial::findOrFail($id);
+      return ($material->delete()) ? 1 : 0;
+    }
+
+    public function addItems(Servicios $servicio)
+    {
+      $materiales = Producto::where('categoria', 1)->get();
+      return view('archivos.servicios.add_items', compact('materiales', 'servicio'));
+    }
+
+    public function storeItems(Request $request, $id)
+    {
+      $servicio = Servicios::findOrFail($id);
+      $servicio->detalle = $request->detalle;
+      $servicio->precio  = $request->precio;
+      $servicio->porcentaje  = $request->porcentaje;
+
+      if ($servicio->save()) {
+        if (isset($request->materiales)) {
+          foreach ($request->materiales as $mat) {
+            ServicioMaterial::create([
+              'servicio_id' => $servicio->id,
+              'material_id' => $mat['material'],
+              'cantidad'    => $mat['cantidad']
+            ]);
+          }
+        }
+        Toastr::success('El Servicio '.$servicio->detalle.' ha sido actualizado.', 'Servicios!', ['progressBar' => true]);
+      }
+      
+      return redirect()->action('Archivos\ServiciosController@index', ["created" => true, "centros" => Servicios::all()]);
+           
     }
 
 }

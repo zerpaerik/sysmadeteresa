@@ -39,7 +39,7 @@
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Productos</label>
                     <div class="col-sm-4">
                       <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
-                        <option value="1">Seleccionar laboratorio</option>
+                        <option value="1">Seleccionar Producto</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
                             {{$pac->nombre}}
