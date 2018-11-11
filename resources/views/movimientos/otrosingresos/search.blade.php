@@ -29,8 +29,6 @@
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<input type="submit">
 					</form>
 					

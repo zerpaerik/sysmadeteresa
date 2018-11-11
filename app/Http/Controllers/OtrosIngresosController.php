@@ -14,8 +14,7 @@ class OtrosIngresosController extends Controller
 	public function index()
   {
         $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $ingresos = $this->elasticSearch($inicio,$final);
+        $ingresos = $this->elasticSearch($inicio);
         return view('movimientos.otrosingresos.index', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
@@ -31,7 +30,7 @@ class OtrosIngresosController extends Controller
 
   public function search(Request $request)
   {
-    $ingresos = $this->elasticSearch($request->inicio,$request->final);
+    $ingresos = $this->elasticSearch($request->inicio);
     return view('movimientos.otrosingresos.search', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
@@ -88,14 +87,13 @@ class OtrosIngresosController extends Controller
       return redirect()->action('OtrosIngresosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial,$final)
+    private function elasticSearch($initial)
     {
       $ingresos = DB::table('creditos as a')
             ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
             ->orderby('a.id','desc')
             ->where('a.origen','=','OTROS INGRESOS')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
           //->where('a.created_at','>=',$initial)
             //->where('a.created_at','<=',$final)
             ->get();     
