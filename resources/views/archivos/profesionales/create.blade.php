@@ -26,20 +26,20 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombres</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="Nombres" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 						</div>
 						<label class="col-sm-1 control-label">Apellidos</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="apellidos" placeholder="Apellidos" data-toggle="tooltip" data-placement="bottom" title="Apellidos">
 						</div>
 						<label class="col-sm-1 control-label">CMP</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="cmp" placeholder="CMP" data-toggle="tooltip" data-placement="bottom" title="CMP">
 						</div>
 						
 						<label class="col-sm-1 control-label">DNI</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="dni" placeholder="DNI" data-toggle="tooltip" data-placement="bottom" title="DNI">
 						</div>
 
@@ -49,7 +49,7 @@
 						</div>	
 						
 						
-						<label class="col-sm-2 control-label">Especialidad</label>
+						<label class="col-sm-1 control-label">Especialidad</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="especialidad">
 							@foreach($especialidades as $esp)
@@ -57,13 +57,18 @@
 							@endforeach
 						</select>
 						</div>	
-						<label class="col-sm-2 control-label">Centro Mèdico</label>
+						<label class="col-sm-1 control-label">Centro Mèdico</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="centro">
 							@foreach($centros as $centro)
 							<option value="{{$centro->id}}">{{$centro->name}}</option>
 							@endforeach
 						</select>
+						</div>	
+
+						<label class="col-sm-1 control-label">Telèfono</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="phone" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telefono">
 						</div>								
 
 						<br>

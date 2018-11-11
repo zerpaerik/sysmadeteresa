@@ -21,9 +21,9 @@ class PersonalController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "personal",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
         "data" => $personal,
-        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email",],
+        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -51,6 +51,7 @@ class PersonalController extends Controller
 	      'email' => $request->email,
 	      'dni' => $request->dni,
 	      'address' => $request->address,
+        'cargo' => $request->cargo,
    		]);
 
     $users= User::create([
@@ -68,7 +69,7 @@ class PersonalController extends Controller
 
      public function editView($id){
       $p = Personal::find($id);
-      return view('archivos.personal.edit', ["name" => $p->name, "lastname" => $p->lastname, "dni" => $p->dni,"phone" => $p->phone,"address" => $p->address,"email" => $p->email, "id" => $p->id,]);
+      return view('archivos.personal.edit', ["name" => $p->name, "lastname" => $p->lastname, "dni" => $p->dni,"phone" => $p->phone,"address" => $p->address,"email" => $p->email,"cargo" => $p->cargo, "id" => $p->id,]);
       
     } 
 
@@ -80,6 +81,7 @@ class PersonalController extends Controller
       $p->phone = $request->phone;
       $p->address = $request->address;
       $p->email = $request->email;
+      $p->cargo = $request->cargo;
       $res = $p->save();
       return redirect()->action('Personal\PersonalController@index', ["edited" => $res]);
     }

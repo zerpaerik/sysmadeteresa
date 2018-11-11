@@ -40,8 +40,9 @@ class ProfesionalesController extends Controller
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
           'apellidos' => 'required|string|max:255',
-          'cmp' => 'required|string|max:20' ,
-          'dni' => 'required|string|max:20' 
+          'cmp' => 'required|unique:profesionales' ,
+          'dni' => 'required|unique:profesionales' 
+
         ]);
         if($validator->fails()) 
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
@@ -52,7 +53,8 @@ class ProfesionalesController extends Controller
 	      'dni' => $request->dni,
 	      'nacimiento' => $request->nacimiento,
 	      'especialidad' => $request->especialidad,
-	      'centro' => $request->centro
+	      'centro' => $request->centro,
+        'phone' => $request->phone,
 
    		]);
 
@@ -83,7 +85,7 @@ class ProfesionalesController extends Controller
 
      public function editView($id){
       $p = Profesionales::find($id);
-      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"id" => $p->id]);
+      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"phone" => $p->phone,"id" => $p->id]);
     }
 
      public function edit(Request $request){
@@ -95,6 +97,7 @@ class ProfesionalesController extends Controller
       $p->especialidad = $request->especialidad;
       $p->centro = $request->centro;
       $p->nacimiento = $request->nacimiento;
+      $p->phone = $request->phone;
       $res = $p->save();
       return redirect()->action('Archivos\ProfesionalesController@index', ["edited" => $res]);
     }
