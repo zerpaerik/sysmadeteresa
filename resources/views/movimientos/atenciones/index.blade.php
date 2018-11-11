@@ -33,17 +33,32 @@
 					</form>
 					<thead> 
 						<tr>
-							@foreach($headers as $header)
-								<th>{{$header}}</th>
-							@endforeach
+							<th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Servicios</th>
+							<th>Laboratorios</th>
+							<th>Paquete</th>
+							<th>Monto</th>
+							<th>Monto Abonado</th>
+							<th>Fecha</th>
+							<th>Acciones</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
-							@foreach($fields as $f)
-								<td>{{$d->$f}}</td>
-							@endforeach						
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						<td>{{$d->servicio}}</td>
+						<td>{{$d->laboratorio}}</td>
+						<td>{{$d->paquete}}</td>
+						<td>{{$d->monto}}</td>
+						<td>{{$d->abono}}</td>
+						<td>{{$d->created_at}}</td>
+												
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
 						</tr>
