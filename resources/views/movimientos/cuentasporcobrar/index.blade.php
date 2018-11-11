@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model)}}</strong></span>
+					<span><strong>{{ucfirst($model1)}}</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -23,14 +23,6 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/cuentasporcobrar-search" method="get">
-						<h3>Rango de fechas</h3>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<label for="">final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<input type="submit">
-					</form>
 					<thead>
 						<tr>
 							@foreach($headers as $header)
@@ -48,13 +40,7 @@
 						</tr>
 						@endforeach						
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
+					
 				</table>
 			</div>
 		</div>

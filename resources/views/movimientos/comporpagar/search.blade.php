@@ -23,11 +23,11 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h4>Rango de Fechas</h4>
+						<h5>Rango de Fechas</h5>
 						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
+						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
+						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<input type="submit">
 					</form>
 					<thead>
@@ -40,6 +40,7 @@
 							<th>Monto</th>
 							<th>Porcentaje</th>
 							<th>Monto a Pagar</th>
+							<th>Fecha Atenciòn</th>
 							<th>Acciones</th>
 
 						</tr>
@@ -50,12 +51,13 @@
 							<tr>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
+								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->servicio}}</td>
 								<td>{{$atec->laboratorio}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->porc_pagar}}</td>
                                 <td>{{$atec->porcentaje}}</td>
+                                <td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
