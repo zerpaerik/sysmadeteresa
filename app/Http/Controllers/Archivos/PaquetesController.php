@@ -25,7 +25,8 @@ class PaquetesController extends Controller
         
 
         $paquetes = DB::table('paquetes as a')
-        ->select('a.id','a.detalle','a.precio', 'a.porcentaje')
+        ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus')
+        ->where('a.estatus','=',1)
         ->paginate(5000);
         $paquetes_servicios = new PaqueteServ();
         $paquetes_analises = new PaqueteLab();
@@ -35,8 +36,10 @@ class PaquetesController extends Controller
 
     public function createView()
     {
-      $servicios = Servicios::all();
-      $laboratorios = Analisis::all();
+      //$servicios = Servicios::all();
+      $servicios =Servicios::where("estatus", '=', 1)->get();
+      $laboratorios =Analisis::where("estatus", '=', 1)->get();
+      //$laboratorios = Analisis::all();
        
       return view('archivos.paquetes.create', compact('servicios','laboratorios'));
     }
@@ -161,7 +164,8 @@ class PaquetesController extends Controller
     public function delete($id)
     {
       $paquete = Paquetes::findOrFail($id);
-      $paquete->delete();
+      $paquete->estatus=0;
+      $paquete->save();
 
       return redirect()->route('paquetes.index');
     }

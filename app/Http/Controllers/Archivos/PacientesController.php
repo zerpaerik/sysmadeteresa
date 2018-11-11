@@ -17,7 +17,7 @@ class PacientesController extends Controller
 	
   public function index(){
 
-      $pacientes = Pacientes::all();
+      $pacientes =Pacientes::where("estatus", '=', 1)->get();
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "pacientes",
@@ -64,7 +64,8 @@ class PacientesController extends Controller
 
   public function delete($id){
     $pacientes = Pacientes::find($id);
-    $pacientes->delete();
+    $pacientes->estatus= 0;
+    $pacientes->save();
     return redirect()->action('Archivos\PacientesController@index', ["deleted" => true, "pacientes" => Pacientes::all()]);
   }
 

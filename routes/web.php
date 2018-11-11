@@ -103,6 +103,8 @@ Route::get('paquete/laboratorio_eliminar/{id}', 'Archivos\PaquetesController@del
 Route::get('paquete/servicio_eliminar/{id}', 'Archivos\PaquetesController@deleteServ');
 Route::get('paquetes-addItems-{paquete}', 'Archivos\PaquetesController@addItems');
 Route::post('paquetes/storeItems/{paquete}', 'Archivos\PaquetesController@storeItems');
+Route::get('paquetes-delete-{id}','Archivos\PaquetesController@delete');
+
 
 
 /**

@@ -17,9 +17,10 @@ class ProfesionalesController extends Controller
 
 
       	$profesionales = DB::table('profesionales as a')
-        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.nacimiento','b.nombre as especialidad','c.name as centro')
+        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
+        ->where('a.estatus','=', 1)
         ->orderby('a.dni','desc')
         ->paginate(5000);
         return view('generics.index', [
@@ -71,7 +72,8 @@ class ProfesionalesController extends Controller
 
   public function delete($id){
     $centros = Profesionales::find($id);
-    $centros->delete();
+    $centros->estatus= 0;
+    $centros->save();
     return redirect()->action('Archivos\ProfesionalesController@index', ["deleted" => true, "users" => Centros::all()]);
   }
 

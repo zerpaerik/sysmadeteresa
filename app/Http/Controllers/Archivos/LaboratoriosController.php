@@ -11,7 +11,7 @@ class LaboratoriosController extends Controller
 
 	 public function index(){
 
-      $laboratorios = Laboratorios::all();
+      $laboratorios =Laboratorios::where("estatus", '=', 1)->get();
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "laboratorios",
@@ -44,7 +44,8 @@ class LaboratoriosController extends Controller
 
   public function delete($id){
     $laboratorios = Laboratorios::find($id);
-    $laboratorios->delete();
+    $laboratorios->estatus = 0 ;
+    $laboratorios->save();
     return redirect()->action('Archivos\LaboratoriosController@index', ["deleted" => true, "laboratorios" => Laboratorios::all()]);
   }
 

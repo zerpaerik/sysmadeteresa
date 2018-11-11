@@ -17,7 +17,8 @@ class PersonalController extends Controller
 
   public function index(){
 
-      $personal = Personal::all();
+      //$personal = Personal::all();
+      $personal =Personal::where("estatus", '=', 1)->get();
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "personal",
@@ -88,7 +89,8 @@ class PersonalController extends Controller
 
   public function delete($id){
     $personal = Personal::find($id);
-    $personal->delete();
+    $personal->estatus = 0;
+    $personal->save();
     return redirect()->action('Personal\PersonalController@index', ["deleted" => true, "users" => Personal::all()]);
   }
 

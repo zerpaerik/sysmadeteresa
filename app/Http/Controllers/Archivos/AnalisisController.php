@@ -15,9 +15,10 @@ class AnalisisController extends Controller
 
 
 	$analisis = DB::table('analises as a')
-        ->select('a.id','a.name','a.preciopublico','a.costlab','a.costlab','a.tiempo','a.material','b.name as laboratorio')
+        ->select('a.id','a.name','a.preciopublico','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
         ->join('laboratorios as b','a.laboratorio','b.id')
         ->orderby('a.id','desc')
+        ->where('a.estatus','=', 1)
         ->paginate(5000);     
         return view('generics.index', [
         "icon" => "fa-list-alt",
@@ -56,7 +57,8 @@ class AnalisisController extends Controller
 
   public function delete($id){
     $analisis = Analisis::find($id);
-    $analisis->delete();
+    $analisis->estatus = 0;
+    $analisis->save();
     return redirect()->action('Archivos\AnalisisController@index', ["deleted" => true, "analisis" => Analisis::all()]);
   }
 

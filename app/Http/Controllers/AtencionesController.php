@@ -62,10 +62,16 @@ class AtencionesController extends Controller
 
 	public function createView() {
 
-    $servicios = Servicios::all();
-    $laboratorios = Analisis::all();
-    $pacientes = Pacientes::all();
-    $paquetes = Paquetes::all();
+    //$servicios = Servicios::all();
+    //$laboratorios = Analisis::all();
+    //$pacientes = Pacientes::all();
+    //$paquetes = Paquetes::all();
+    $servicios =Servicios::where("estatus", '=', 1)->get();
+    $laboratorios =Analisis::where("estatus", '=', 1)->get();
+    $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    $paquetes =Paquetes::where("estatus", '=', 1)->get();
+
+
     
     return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes','paquetes'));
   }
@@ -252,9 +258,14 @@ class AtencionesController extends Controller
 
   public function editView($id)
   {
-    $servicios = Servicios::all();
-    $laboratorios = Analisis::all();
-    $pacientes = Pacientes::all();
+    //$servicios = Servicios::all();
+    //$laboratorios = Analisis::all();
+    //$pacientes = Pacientes::all();
+
+    $servicios =Servicios::where("estatus", '=', 1)->get();
+    $laboratorios =Analisis::where("estatus", '=', 1)->get();
+    $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    $paquetes =Paquetes::where("estatus", '=', 1)->get();
     //$personal = Personal::all();
     //$profesional = Profesionales::all();
     $users = User::all();

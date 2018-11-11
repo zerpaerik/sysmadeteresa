@@ -16,7 +16,7 @@ class CentrosController extends Controller
 
    public function index(){
 
-      $centros = Centros::all();
+      $centros =Centros::where("estatus", '=', 1)->get();
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "centros",
@@ -64,7 +64,8 @@ class CentrosController extends Controller
 
   public function delete($id){
     $centros = Centros::find($id);
-    $centros->delete();
+    $centros->estatus = 0;
+    $centros->save();
     return redirect()->action('Archivos\CentrosController@index', ["deleted" => true, "users" => Centros::all()]);
   }
 
