@@ -29,9 +29,9 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 						</div>
-						<label class="col-sm-1 control-label">Precio al Pùblico</label>
+						<label class="col-sm-1 control-label">Precio</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="preciopublico" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+							<input type="text" class="form-control" name="preciopublico" placeholder="Precio al Pùblico" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>
 						<label class="col-sm-1 control-label">Costo</label>
 						<div class="col-sm-3">
@@ -44,12 +44,12 @@
 						</div>
 
 						<label class="col-sm-1 control-label">Material</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="material" placeholder="Material" data-toggle="tooltip" data-placement="bottom" title="Material">
 						</div>	
 
 						<label class="col-sm-1 control-label">Porcentaje</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
 						</div>	
 						
@@ -63,7 +63,6 @@
 						</select>
 						</div>	
 													
-
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 
