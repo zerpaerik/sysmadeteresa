@@ -188,7 +188,7 @@
         <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Consolidado</a>
       </li>
        <li>
-        <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
+        <a href="reporte-solicitar_consolidado"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
       </li>
       <li>
         <a href="#"><i class="fa fa-file-o"></i> Reporte General</a>

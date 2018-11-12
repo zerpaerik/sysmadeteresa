@@ -78,6 +78,15 @@ class PacientesController extends Controller
     return view('archivos.pacientes.create', compact('provincias','distritos','edocivil','gradoinstruccion'));
   }
 
+   public function createpac() {
+ 
+    $provincias = Provincias::all();
+    $distritos = Distritos::all();
+    $edocivil = EdoCivil::all();
+    $gradoinstruccion = GradoInstruccion::all();
+    return view('archivos.pacientes.createpac', compact('provincias','distritos','edocivil','gradoinstruccion'));
+  }
+
   public function editView($id){
       $p = Pacientes::find($id);
       return view('archivos.pacientes.edit', ["provincias" => Provincias::all(),"distritos" => Distritos::all(),"edocivil" => EdoCivil::all(),"gradoinstruccion" => GradoInstruccion::all(),"dni" => $p->dni, "nombres" => $p->nombres,"apellidos" => $p->apellidos,"direccion" => $p->direccion,"fechanac" => $p->fechanac,"gradoinstruccions" => $p->gradoinstruccions,"ocupacion" => $p->ocupacion,"historia" => $p->historia,"telefono" => $p->telefono,"referencia" => $p->referencia,"provincia" => $p->provincia,"distrito" => $p->distrito,"id" => $p->id]);

@@ -37,8 +37,11 @@
 									</option>
 								@endforeach
 							</select>
-						</div>
+						</div>s
 
+            <div class="btn btn-primary" href="{{asset('pacientes.create')}}" target="_blank"><a><span><i class="fa fa-plus-circle"></i> Agregar Paciente</span></a></div>
+
+           
 						</div>
 						<br>
 						<div class="row">
@@ -543,6 +546,22 @@ function DemoTimePicker(){
 		stepMinute: 10
 	});
 }
+
+
+function createPac(e){
+        
+        $.ajax({
+            type: "GET",
+            url: "pacientes-createpac",
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    };
 </script>
 
 <script type="text/javascript">

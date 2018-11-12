@@ -87,6 +87,8 @@ Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware(
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
+Route::get('pacientes-createpac','Archivos\PacientesController@createpac');
+
 
 /**
  * Paquetes
@@ -259,4 +261,6 @@ Route::post('observacion/create','ConsultaController@create')->name('observacion
  * Reportes
  */
 Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
+Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado');
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
+Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
