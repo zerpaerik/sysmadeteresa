@@ -51,6 +51,11 @@
 						<label class="col-sm-1 control-label">Telefono</label>
 						<div class="col-sm-2">
 							<input type="text" class="form-control" name="phone" placeholder="Telefono" data-toggle="tooltip" data-placement="bottom" title="Telefono">
+						</div>	
+
+						<label class="col-sm-1 control-label">Cargo</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" name="cargo" placeholder="cargo" data-toggle="tooltip" data-placement="bottom" title="cargo">
 						</div>								
 
 						<br>

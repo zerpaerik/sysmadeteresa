@@ -26,6 +26,7 @@ Route::post('personal/create', 'Personal\PersonalController@create')->middleware
 Route::get('personal/{id}', 'Personal\PersonalController@delete')->middleware('auth');
 Route::get('personal-edit-{id}', 'Personal\PersonalController@editView')->name('personal.edit');
 Route::post('personal/edit', 'Personal\PersonalController@edit');
+Route::get('personal-delete-{id}','Personal\PersonalController@delete');
 
 Route::get('centros', 'Archivos\CentrosController@index')->name('centros.index')->middleware('auth');
 Route::get('centros-create', 'Archivos\CentrosController@createView')->name('centros.create')->middleware('auth');
@@ -33,6 +34,8 @@ Route::post('centros/create', 'Archivos\CentrosController@create')->middleware('
 Route::get('centros/{id}', 'Archivos\CentrosController@delete')->middleware('auth');
 Route::get('centros-edit-{id}', 'Archivos\CentrosController@editView')->name('centros.edit');
 Route::post('centros/edit', 'Archivos\CentrosController@edit');
+Route::get('centros-delete-{id}','Archivos\CentrosController@delete');
+
 
 Route::get('profesionales', 'Archivos\ProfesionalesController@index')->name('profesionales.index')->middleware('auth');
 Route::get('profesionales-create', 'Archivos\ProfesionalesController@createView')->name('profesionales.create')->middleware('auth');
@@ -40,6 +43,8 @@ Route::post('profesionales/create', 'Archivos\ProfesionalesController@create')->
 Route::get('profesionales/{id}', 'Archivos\ProfesionalesController@delete')->middleware('auth');
 Route::get('profesionales-edit-{id}', 'Archivos\ProfesionalesController@editView')->name('profesionales.edit');
 Route::post('profesionales/edit', 'Archivos\ProfesionalesController@edit');
+Route::get('profesionales-delete-{id}','Archivos\ProfesionalesController@delete');
+
 
 Route::get('laboratorios', 'Archivos\LaboratoriosController@index')->name('laboratorios.index')->middleware('auth');
 Route::get('laboratorios-create', 'Archivos\LaboratoriosController@createView')->name('laboratorios.create')->middleware('auth');
@@ -47,6 +52,8 @@ Route::post('laboratorios/create', 'Archivos\LaboratoriosController@create')->mi
 Route::get('laboratorios/{id}', 'Archivos\LaboratoriosController@delete')->middleware('auth');
 Route::get('laboratorios-edit-{id}', 'Archivos\LaboratoriosController@editView')->name('laboratorios.edit');
 Route::post('laboratorios/edit', 'Archivos\LaboratoriosController@edit');
+Route::get('laboratorios-delete-{id}','Archivos\LaboratoriosController@delete');
+
 
 Route::get('analisis', 'Archivos\AnalisisController@index')->name('analisis.index')->middleware('auth');
 Route::get('analisis-create', 'Archivos\AnalisisController@createView')->name('analisis.create')->middleware('auth');
@@ -54,6 +61,8 @@ Route::post('analisis/create', 'Archivos\AnalisisController@create')->middleware
 Route::get('analisis/{id}', 'Archivos\AnalisisController@delete')->middleware('auth');
 Route::get('analisis-edit-{id}', 'Archivos\AnalisisController@editView')->name('analisis.edit');
 Route::post('analisis/edit', 'Archivos\AnalisisController@edit');
+Route::get('analisis-delete-{id}','Archivos\AnalisisController@delete');
+
 
 Route::get('analisis/getAnalisi/{id}', 'Archivos\AnalisisController@getAnalisi');
 
@@ -63,6 +72,7 @@ Route::post('servicios/create', 'Archivos\ServiciosController@create')->middlewa
 Route::get('servicios/{id}', 'Archivos\ServiciosController@delete')->middleware('auth');
 Route::get('servicios-edit-{id}', 'Archivos\ServiciosController@editView')->name('servicios.edit');
 Route::post('servicios/edit', 'Archivos\ServiciosController@edit');
+Route::get('servicios-delete-{id}','Archivos\ServiciosController@delete');
 
 Route::get('servicios/getServicio/{id}', 'Archivos\ServiciosController@getServicio');
 Route::get('servicio/view/{id}', 'Archivos\ServiciosController@show');
@@ -76,6 +86,8 @@ Route::post('pacientes/create', 'Archivos\PacientesController@create')->middlewa
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
+Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
+
 /**
  * Paquetes
  */
@@ -91,6 +103,8 @@ Route::get('paquete/laboratorio_eliminar/{id}', 'Archivos\PaquetesController@del
 Route::get('paquete/servicio_eliminar/{id}', 'Archivos\PaquetesController@deleteServ');
 Route::get('paquetes-addItems-{paquete}', 'Archivos\PaquetesController@addItems');
 Route::post('paquetes/storeItems/{paquete}', 'Archivos\PaquetesController@storeItems');
+Route::get('paquetes-delete-{id}','Archivos\PaquetesController@delete');
+
 
 
 /**
@@ -128,6 +142,7 @@ Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('a
 Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
 Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
 Route::post('comporpagar/edit', 'ComporPagarController@edit');
+Route::get('pagarmultiple/{id}', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
 
@@ -163,6 +178,8 @@ Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')-
 
 
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
+Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
+
 
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');

@@ -15,16 +15,17 @@ class AnalisisController extends Controller
 
 
 	$analisis = DB::table('analises as a')
-        ->select('a.id','a.name','a.preciopublico','a.costlab','a.costlab','a.tiempo','a.material','b.name as laboratorio')
+        ->select('a.id','a.name','a.preciopublico','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
         ->join('laboratorios as b','a.laboratorio','b.id')
         ->orderby('a.id','desc')
+        ->where('a.estatus','=', 1)
         ->paginate(5000);     
         return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "analisis",
-        "headers" => ["id", "Nombre", "Precio", "Costo", "Tiempo", "Material","Laboratorio", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio", "Editar", "Eliminar"],
         "data" => $analisis,
-        "fields" => ["id", "name", "preciopublico", "costlab", "tiempo", "material","laboratorio"],
+        "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -56,7 +57,8 @@ class AnalisisController extends Controller
 
   public function delete($id){
     $analisis = Analisis::find($id);
-    $analisis->delete();
+    $analisis->estatus = 0;
+    $analisis->save();
     return redirect()->action('Archivos\AnalisisController@index', ["deleted" => true, "analisis" => Analisis::all()]);
   }
 

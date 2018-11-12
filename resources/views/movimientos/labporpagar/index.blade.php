@@ -22,14 +22,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/labporpagar-search" method="get">
-						<h3>Rango de fechas</h3>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<label for="">final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<input type="submit">
-					</form>
+					
 					<thead>
 						<tr>
 							<th>Paciente</th>

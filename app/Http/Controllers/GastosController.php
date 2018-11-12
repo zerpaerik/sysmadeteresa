@@ -13,16 +13,15 @@ class GastosController extends Controller
 
 	public function index(){
 
-        $initial = Carbon::now()->toDateString();        
-          
-        $gastos = $this->elasticSearch($initial,$initial);
+    $initial = Carbon::now()->toDateString();
+    $gastos = $this->elasticSearch($initial);
 
         return view('movimientos.gastos.index', [
         "icon" => "fa-list-alt",
         "model" => "gastos",
-        "headers" => ["id", "Descripciòn", "Monto", "Editar", "Eliminar"],
+        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
         "data" => $gastos,
-        "fields" => ["id", "descripcion", "monto"],
+        "fields" => ["descripcion", "monto","created_at"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -33,14 +32,14 @@ class GastosController extends Controller
 
   public function search(Request $request){
     
-       $gastos = $this->elasticSearch($request->inicio,$request->final);
+       $gastos = $this->elasticSearch($request->inicio);
 
         return view('movimientos.gastos.search', [
         "icon" => "fa-list-alt",
         "model" => "gastos",
-        "headers" => ["id", "Descripciòn", "Monto", "Editar", "Eliminar"],
+        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
         "data" => $gastos,
-        "fields" => ["id", "descripcion", "monto"],
+        "fields" => ["descripcion", "monto","created_at"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -91,12 +90,11 @@ class GastosController extends Controller
       return redirect()->action('GastosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial, $final)
+    private function elasticSearch($initial)
     {
       $gastos = DB::table('debitos as a')
         ->select('a.id','a.descripcion','a.monto','a.created_at')
-        ->where('a.created_at','>=',$initial)
-        ->where('a.created_at','<=',$final)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         ->orderby('a.id','desc')
         ->paginate(5000);  
 

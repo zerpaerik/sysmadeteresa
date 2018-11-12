@@ -65,6 +65,12 @@
 							<input type="date" class="form-control" name="nacimiento" placeholder="nacimiento" data-toggle="tooltip" data-placement="bottom" title="nacimiento" value="{{$nacimiento}}">
 						</div>
 
+						<label class="col-sm-1 control-label">Telèfono</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="phone" placeholder="telefono" data-toggle="tooltip" data-placement="bottom" value="{{$phone}}" title="phone">
+						</div>
+
+
 						<input type="hidden" name="id" value="{{$id}}">
 
 						<div class="col-sm-8">

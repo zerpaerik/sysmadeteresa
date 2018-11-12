@@ -2,13 +2,15 @@
 
 @section('content')
 </br>
+
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Comisiones por Pagar</strong></span>
+					<span><strong>Resultados Guardados</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,51 +24,44 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/comporpagar-search" method="get">
+					<form action="/resultadosguardados-search" method="get">
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<input type="submit">
 					</form>
-					<thead>
+					<thead> 
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Porcentaje</th>
-							<th>Monto a Pagar</th>
-							<th>Fecha Atenciòn</th>
+							<th>Fecha</th>
 							<th>Acciones</th>
-
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atenciones as $atec)	
-
-							<tr>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								@if($d->es_servicio =='1')
-								<td>{{$d->servicio}}</td>
-								@else
-								<td>{{$d->laboratorio}}</td>
-								@endif
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-                                <td>{{$atec->porcentaje}}</td>
-                                <td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							</tr>
-						@endforeach
+						@foreach($resultadosguardados as $d)
+						<tr>
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
+						<td>{{$d->created_at}}</td>
+												
+							<td><a class="btn btn-warning" href="{{asset('resultadosguardados')}}-ver-{{$d->id}}">Ver informe</a>
+							</td>
+						</tr>
+						@endforeach						
 					</tbody>
-					<tfoot>
-						
-					</tfoot>
+					
 				</table>
 			</div>
 		</div>
@@ -77,5 +72,6 @@
 	  A simple success alert—check it out!
 	</div>
 @endif
+
 
 @endsection

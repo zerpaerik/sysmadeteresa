@@ -185,7 +185,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Reportes de atención diaria</a>
+        <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Consolidado</a>
+      </li>
+       <li>
+        <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
       </li>
       <li>
         <a href="#"><i class="fa fa-file-o"></i> Reporte General</a>

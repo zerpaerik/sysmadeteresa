@@ -29,7 +29,7 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="name" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 						</div>
-						<label class="col-sm-1 control-label">Precio</label>
+						<label class="col-sm-1 control-label">Precio al Pùblico</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="preciopublico" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>

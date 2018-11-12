@@ -6,10 +6,11 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model1)}}</strong></span>
+					<span><strong>Resultados Guardados</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -23,20 +24,39 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<thead>
+					<form action="/resultadosguardados-search" method="get">
+						<h5>Rango de fechas</h5>
+						<label for="">Inicio</label>
+						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
+						<input type="submit">
+					</form>
+					<thead> 
 						<tr>
-							@foreach($headers as $header)
-								<th>{{$header}}</th>
-							@endforeach
+							<th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Detalle</th>
+							<th>Fecha</th>
+							<th>Acciones</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
-							@foreach($fields as $f)
-								<td>{{$d->$f}}</td>
-							@endforeach						
-							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Cobrar</a></td>
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
+						<td>{{$d->created_at}}</td>
+												
+							<td><a class="btn btn-warning" href="{{$resultadosguardados . '-ver-' .$d->id}}">Ver informe</a></td>
 						</tr>
 						@endforeach						
 					</tbody>

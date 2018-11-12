@@ -17,9 +17,10 @@ class ProfesionalesController extends Controller
 
 
       	$profesionales = DB::table('profesionales as a')
-        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.nacimiento','b.nombre as especialidad','c.name as centro')
+        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
+        ->where('a.estatus','=', 1)
         ->orderby('a.dni','desc')
         ->paginate(5000);
         return view('generics.index', [
@@ -40,8 +41,9 @@ class ProfesionalesController extends Controller
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
           'apellidos' => 'required|string|max:255',
-          'cmp' => 'required|string|max:20' ,
-          'dni' => 'required|string|max:20' 
+          'cmp' => 'required|unique:profesionales' ,
+          'dni' => 'required|unique:profesionales' 
+
         ]);
         if($validator->fails()) 
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
@@ -52,7 +54,8 @@ class ProfesionalesController extends Controller
 	      'dni' => $request->dni,
 	      'nacimiento' => $request->nacimiento,
 	      'especialidad' => $request->especialidad,
-	      'centro' => $request->centro
+	      'centro' => $request->centro,
+        'phone' => $request->phone,
 
    		]);
 
@@ -69,7 +72,8 @@ class ProfesionalesController extends Controller
 
   public function delete($id){
     $centros = Profesionales::find($id);
-    $centros->delete();
+    $centros->estatus= 0;
+    $centros->save();
     return redirect()->action('Archivos\ProfesionalesController@index', ["deleted" => true, "users" => Centros::all()]);
   }
 
@@ -83,7 +87,7 @@ class ProfesionalesController extends Controller
 
      public function editView($id){
       $p = Profesionales::find($id);
-      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"id" => $p->id]);
+      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"phone" => $p->phone,"id" => $p->id]);
     }
 
      public function edit(Request $request){
@@ -95,6 +99,7 @@ class ProfesionalesController extends Controller
       $p->especialidad = $request->especialidad;
       $p->centro = $request->centro;
       $p->nacimiento = $request->nacimiento;
+      $p->phone = $request->phone;
       $res = $p->save();
       return redirect()->action('Archivos\ProfesionalesController@index', ["edited" => $res]);
     }

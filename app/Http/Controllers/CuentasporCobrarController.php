@@ -17,12 +17,26 @@ class CuentasporCobrarController extends Controller
 {
 
 	public function index(){
-        $inicio = Carbon::now()->toDateString();
-        $cuentasporcobrar = $this->elasticSearch($inicio,$inicio);
+
+         $cuentasporcobrar = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        //->join('profesionales as f','f.id','a.origen_usuario')
+        ->where('a.pendiente','>',0)
+        ->whereNotIn('a.monto',[0,0.00])
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->orderby('a.id','desc')
+        ->get();
+
+      
 
          return view('movimientos.cuentasporcobrar.index', [
         "icon" => "fa-list-alt",
         "model" => "cuentasporcobrar",
+        "model1" => "Cuentas Por Cobrar",
         "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
         "data" => $cuentasporcobrar,
         "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
@@ -33,22 +47,7 @@ class CuentasporCobrarController extends Controller
       ]); 
 	}
 
-  public function search(Request $request)
-  {
-        $cuentasporcobrar = $this->elasticSearch($request->inicio,$request->final);
 
-         return view('movimientos.cuentasporcobrar.search', [
-        "icon" => "fa-list-alt",
-        "model" => "cuentasporcobrar",
-        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
-        "data" => $cuentasporcobrar,
-        "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
-  }
 
 	public function editView($id){
       $p = Atenciones::find($id);
@@ -86,21 +85,5 @@ class CuentasporCobrarController extends Controller
       return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial, $final)
-    {
-        $cuentasporcobrar = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nompro','f.apellidos as apepro')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->join('profesionales as f','f.id','a.origen_usuario')
-        ->where('a.pendiente','>',0)
-        ->where('a.created_at','>=',$initial)
-        ->where('a.created_at','<=',$final)
-        ->orderby('a.id','desc')
-        ->paginate(5000);
-         
-        return $cuentasporcobrar; 
-    }
+  
 }

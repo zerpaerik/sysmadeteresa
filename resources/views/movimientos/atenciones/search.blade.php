@@ -28,22 +28,38 @@
 					<form action="/atenciones-search" method="get">
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
+						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<input type="submit">
 					</form>
 					<thead> 
 						<tr>
-							@foreach($headers as $header)
-								<th>{{$header}}</th>
-							@endforeach
+							<th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Detalle</th>
+							<th>Monto</th>
+							<th>Monto Abonado</th>
+							<th>Fecha</th>
+							<th>Acciones</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
-							@foreach($fields as $f)
-								<td>{{$d->$f}}</td>
-							@endforeach						
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
+						<td>{{$d->monto}}</td>
+						<td>{{$d->abono}}</td>
+						<td>{{$d->created_at}}</td>				
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
 						</tr>

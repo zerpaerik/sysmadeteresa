@@ -44,7 +44,7 @@
 								<td>
 									<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$paq->id}}">ver</a>
 									<a href="paquetes-edit-{{$paq->id}}" class="btn btn-warning edit">Editar</a>
-									<a href="paquetes/{{$paq->id}}" class="btn btn-danger">Eliminar</a>
+									<a href="paquetes-delete-{{$paq->id}}" class="btn btn-danger">Eliminar</a>
 									@if ($paq->id != 1)
 										<a href="paquetes-addItems-{{$paq->id}}" class="btn btn-success">Agregar items</a>
 									@endif

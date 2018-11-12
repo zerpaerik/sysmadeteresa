@@ -13,14 +13,14 @@ class OtrosIngresosController extends Controller
 
 	public function index()
   {
-    $inicio = Carbon::now()->toDateString();
-    $ingresos = $this->elasticSearch($inicio,$inicio);
+        $inicio = Carbon::now()->toDateString();
+        $ingresos = $this->elasticSearch($inicio);
         return view('movimientos.otrosingresos.index', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
-        "headers" => ["id", "Descripciòn", "Monto", "Editar", "Eliminar"],
+        "headers" => ["id", "Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
         "data" => $ingresos,
-        "fields" => ["id", "descripcion", "monto"],
+        "fields" => ["id", "descripcion", "monto","created_at"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -30,13 +30,13 @@ class OtrosIngresosController extends Controller
 
   public function search(Request $request)
   {
-    $ingresos = $this->elasticSearch($request->inicio,$request->final);
+    $ingresos = $this->elasticSearch($request->inicio);
     return view('movimientos.otrosingresos.search', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
-        "headers" => ["id", "Descripciòn", "Monto", "Editar", "Eliminar"],
+        "headers" => ["id", "Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
         "data" => $ingresos,
-        "fields" => ["id", "descripcion", "monto"],
+        "fields" => ["id", "descripcion", "monto","created_at"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -87,15 +87,16 @@ class OtrosIngresosController extends Controller
       return redirect()->action('OtrosIngresosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial,$final)
+    private function elasticSearch($initial)
     {
       $ingresos = DB::table('creditos as a')
             ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
             ->orderby('a.id','desc')
             ->where('a.origen','=','OTROS INGRESOS')
-            ->where('a.created_at','>=',$initial)
-            ->where('a.created_at','<=',$final)
-            ->paginate(5000);     
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+          //->where('a.created_at','>=',$initial)
+            //->where('a.created_at','<=',$final)
+            ->get();     
     
         return $ingresos;    
     }

@@ -55,6 +55,11 @@
 							<input type="text" class="form-control" name="email" placeholder="email" data-toggle="tooltip" data-placement="bottom" value="{{$email}}" title="email">
 						</div>
 
+						<label class="col-sm-1 control-label">Cargo</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="cargo" placeholder="cargo" data-toggle="tooltip" data-placement="bottom" value="{{$cargo}}" title="cargo">
+						</div>
+
 											
 
 						<input type="hidden" name="id" value="{{$id}}">

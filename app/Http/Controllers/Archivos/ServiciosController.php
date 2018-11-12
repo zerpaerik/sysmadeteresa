@@ -15,7 +15,7 @@ class ServiciosController extends Controller
 
  public function index(){
 
-      $servicios = Servicios::all();
+      $servicios =Servicios::where("estatus", '=', 1)->get();
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
@@ -67,7 +67,8 @@ class ServiciosController extends Controller
 
   public function delete($id){
     $servicios = Servicios::find($id);
-    $servicios->delete();
+    $servicios->estatus=0;
+    $servicios->save();
     return redirect()->action('Archivos\ServiciosController@index', ["deleted" => true, "servicios" => Servicios::all()]);
   }
 
