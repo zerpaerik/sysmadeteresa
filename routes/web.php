@@ -142,6 +142,7 @@ Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('a
 Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
 Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
 Route::post('comporpagar/edit', 'ComporPagarController@edit');
+Route::get('pagarmultiple/{id}', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
 
@@ -177,6 +178,8 @@ Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')-
 
 
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
+Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
+
 
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');

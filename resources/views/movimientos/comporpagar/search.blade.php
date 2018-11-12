@@ -32,11 +32,11 @@
 					</form>
 					<thead>
 						<tr>
+							<th>Marcar Varios</th>
 							<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
-							<th>Servicios</th>
-							<th>Laboratorios</th>
+							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Porcentaje</th>
 							<th>Monto a Pagar</th>
@@ -49,25 +49,29 @@
 						@foreach($atenciones as $atec)	
 
 							<tr>
+								<td><input value="{{$atec->id}}" type="checkbox"></td>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>
+								@else
 								<td>{{$atec->laboratorio}}</td>
+								@endif
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->porc_pagar}}</td>
-                                <td>{{$atec->porcentaje}}</td>
-                                <td>{{$atec->created_at}}</td>
+								<td>{{$atec->porcentaje}}</td>
+								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
-						<tr>
 							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
+								<form action="/pagarmultiple" method="get">
+									<input type="submit">
+								</form>
 							</th>
-						</tr>
 					</tfoot>
 				</table>
 			</div>

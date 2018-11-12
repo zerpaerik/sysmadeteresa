@@ -36,9 +36,7 @@
 							<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
-							<th>Servicios</th>
-							<th>Laboratorios</th>
-							<th>Paquete</th>
+							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Fecha</th>
@@ -52,9 +50,13 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
 						<td>{{$d->laboratorio}}</td>
+						@else
 						<td>{{$d->paquete}}</td>
+						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>

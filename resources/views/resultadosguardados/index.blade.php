@@ -6,12 +6,11 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
 
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model)}}</strong></span>
+					<span><strong>Resultados Guardados</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -25,7 +24,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/atenciones-search" method="get">
+					<form action="/resultadosguardados-search" method="get">
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
@@ -37,8 +36,6 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
 							<th></th>
@@ -57,21 +54,13 @@
 						@else
 						<td>{{$d->paquete}}</td>
 						@endif
-						<td>{{$d->monto}}</td>
-						<td>{{$d->abono}}</td>
-						<td>{{$d->created_at}}</td>				
-							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
+						<td>{{$d->created_at}}</td>
+												
+							<td><a class="btn btn-warning" href="{{$resultadosguardados . '-ver-' .$d->id}}">Ver informe</a></td>
 						</tr>
 						@endforeach						
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
+					
 				</table>
 			</div>
 		</div>

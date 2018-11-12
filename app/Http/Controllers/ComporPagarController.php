@@ -49,12 +49,12 @@ class ComporPagarController extends Controller
                 $pagarlab->pagado_com = 1;
                 $pagarlab->update();
 
-                $debitos = new Debitos();
+               /* $debitos = new Debitos();
                 $debitos->origen = 'COMISION POR PAGAR';
                 $debitos->monto= $porcentaje;
                 $debitos->id_sede = $request->session()->get('sede');
                 $debitos->descripcion = 'COMISION POR PAGAR';
-                $debitos->save();     
+                $debitos->save();    */ 
      
 
     return redirect()->route('comporpagar.index');
@@ -64,7 +64,7 @@ class ComporPagarController extends Controller
   private function elasticSearch($initial, $final)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -81,4 +81,27 @@ class ComporPagarController extends Controller
 
         return $atenciones;
   }
+
+
+  public function pagarmultiple(Request $request)
+  {
+
+   dd($request->input('ids'));
+   die();
+   
+    if ($request->input('ids')) {
+
+      $entries = Atenciones::whereIn('id', $request->input('ids'))->get();
+
+      foreach ($entries as $entry) {
+        $entry->pagado_com= 1;
+        $entry->save(); 
+
+    }
+
+}
+
+}
+       
+   
 }
