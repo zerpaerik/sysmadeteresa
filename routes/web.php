@@ -175,8 +175,8 @@ Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resul
 Route::post('resultados/edit/{id}', 'ResultadosController@edit');
 
 Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')->name('resultados.ver');
-
-
+Route::get('resultadosguardados-editar-{id}', 'ReportesController@editar')->name('resultadosguardados.editar')->middleware('auth');
+Route::post('resultadosguardados-update-{id}', 'ReportesController@update')->name('resultadosguardados.update')->middleware('auth');
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
 

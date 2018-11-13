@@ -11,7 +11,6 @@ use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use Carbon\Carbon;
-
 use Auth;
 
 

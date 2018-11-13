@@ -28,8 +28,8 @@ class ReportesController extends Controller
                 ->where('a.id','=', $id)
                 ->first();
            
-                    $es_servicio = $searchtipo->es_servicio;
-                    $es_laboratorio = $searchtipo->es_laboratorio;
+                $es_servicio = $searchtipo->es_servicio;
+                $es_laboratorio = $searchtipo->es_laboratorio;
 
 
                 if (!is_null($es_servicio)) {
@@ -66,6 +66,41 @@ class ReportesController extends Controller
          }  
 
      }
+
+
+    public function editar($id)
+    {
+        $resultados = ReportesController::verResultado($id);
+
+        return view('resultadosguardados.editar', ["resultados" => $resultados]);
+    }
+
+    public function update($id,Request $request)
+    {      
+        $searchtipo = DB::table('atenciones as a')
+        ->select('a.id','a.es_servicio','a.es_laboratorio','a.resultado')
+        ->where('a.resultado','=',1)
+        ->where('a.id','=', $id)
+        ->first();
+           
+        $es_servicio = $searchtipo->es_servicio;
+        $es_laboratorio = $searchtipo->es_laboratorio;
+
+        if (!is_null($es_servicio)) {
+            DB::table('resultados_servicios')
+            ->where('id_atencion',$searchtipo->id)
+            ->update(['descripcion' => $request->descripcion]);
+            return back();
+
+        }
+        else{
+            DB::table('resultados_laboratorios')
+            ->where('id_atencion',$searchtipo->id)
+            ->update(['descripcion' => $request->descripcion]);
+            return back();
+        }
+
+    }
 
 
 
