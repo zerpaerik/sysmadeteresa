@@ -53,12 +53,13 @@
 </head>
 <body>
 
-	<p style="text-align: left;"><center><h1>{{ Session::get('sedeName') }}</h1></center></p>
+	<p style="text-align: left;"><center><h1>SEDE:{{ Session::get('sedeName') }}</h1></center></p>
 	<br>
-
-  <p style="margin-left: 15px;"><strong>DOCTOR:</strong></p>
+   @foreach($reciboprofesional2 as $recibo)
+  <p style="margin-left: 15px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
   <p style="margin-left: 15px;"><strong>CONSULTORIO:</strong></p>
-  <p style="margin-left: 15px;"><strong>RECIBO: </strong></p>
+  <p style="margin-left: 15px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
+   @endforeach
 
 
 <table>
@@ -80,12 +81,14 @@
     @else
     <td>{{$recibo->laboratorio}} </td>
     @endif
-    <td>{{ $recibo->porcentaje}}</td></tr>
+    <td>{{ $recibo->porcentaje}}.00</td></tr>
   @endforeach
  </tbody>
 
- <p><strong>TOTAL:  </strong></p>
- 
+  @foreach($totalrecibo as $recibo)
+ <p><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}.00</p>
+  @endforeach
+
 
 
 
