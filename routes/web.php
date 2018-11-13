@@ -149,6 +149,9 @@ Route::post('comporpagar/edit', 'ComporPagarController@edit');
 Route::post('pagarmultiple', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
+Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.index')->middleware('auth');
+Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
+
 
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
 Route::get('ingresos-search', 'OtrosIngresosController@search')->name('ingresos.search')->middleware('auth');
@@ -269,3 +272,4 @@ Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
 Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado');
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
+Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
