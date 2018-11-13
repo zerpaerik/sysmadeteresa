@@ -91,6 +91,15 @@ class ResultadosController extends Controller
       return back();
     }
 
+    public function informeSearch(Request $request)
+    {
+      $informe = Informe::where('title','like','%'.$request->title.'%')->get();
+
+      return view('informe.search',[
+        'data' => $informe
+      ]);
+    }
+
     
     public function informeCreate(Request $request)
     {
