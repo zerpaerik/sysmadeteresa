@@ -56,7 +56,8 @@
 						@endif
 						<td>{{$d->created_at}}</td>
 												
-							<td><a class="btn btn-warning" href="{{$resultadosguardados . '-ver-' .$d->id}}">Ver informe</a></td>
+							<td><a class="btn btn-warning" href="{{$resultadosguardados . '-ver-' .$d->id}}">Ver informe</a>
+							<a class="btn btn-danger" href="{{asset('resultadosguardados')}}-editar-{{$d->id}}">Editar Informe</a></td>
 						</tr>
 						@endforeach						
 					</tbody>

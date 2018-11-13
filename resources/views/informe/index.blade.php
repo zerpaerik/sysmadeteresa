@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<br>
+</br>
+
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Redactar Informe</strong></span>
+					<span><strong>Modelo de informes</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -20,29 +20,64 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
-			<div class="box-content">
-				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="/informe-create">
-					{{ csrf_field() }}
-					<div class="form-group">
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<thead> 
+						<tr>
+							<th>Id</th>
+							<th>Titulo</th>
+							<th>Acciones</th>
 
-						<div class="panel-body">
-							<form>
-								<label for="">Titulo del informe</label>
-								<input type="text" name="title" required >
-								<textarea class="ckeditor" name="content" id="content" rows="10" cols="80">  
-								</textarea>
-							</form>
-						</div>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($data as $d)
+						<tr>
+						<td>{{$d->id}}</td>
+						<td>{{$d->title}}</td>
+							<td><a class="btn btn-primary" href="/resultados-informe-editar-{{$d->id}}">Editar</a></td>
+						</tr>
+						@endforeach						
+					</tbody>
 					
-						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Guardar">
-
-						<a href="{{route('resultados.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
-					</div>			
-				</form>	
+				</table>
 			</div>
 		</div>
 	</div>
 </div>
+@if(isset($created))
+	<div class="alert alert-success" role="alert">
+	  A simple success alert—check it out!
+	</div>
+@endif
+
+<script type="text/javascript">
+	function closeModal(){
+		$('#myModal').modal('hide');
+	}
+
+	function openmodal(){
+		$("#myModal").show();
+	}
+
+</script>
+
+<div id="myModal" class="modal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Modal Body</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
