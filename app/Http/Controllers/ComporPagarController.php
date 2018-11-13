@@ -9,7 +9,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use Auth;
-
+use Toastr;
 
 class ComporPagarController extends Controller
 
@@ -28,35 +28,23 @@ class ComporPagarController extends Controller
         return view('movimientos.comporpagar.search', ["atenciones" => $atenciones]); 
     }
 
-	public function pagarcom($id, Request $request) {
+	public function pagarcom($id) {
 
-       $searchAtencion = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_laboratorio','a.es_servicio','a.origen','a.id_laboratorio','a.id_servicio','a.monto','a.pagado_lab','a.porcentaje','a.abono')
-        ->where('a.id','=', $id)
-        ->get();
+          $last = Atenciones::select('recibo')->orderby('recibo', 'DESC')->first();
+          if (!empty($last->recibo)) {
+            $last = explode("-", $last->recibo);
+            $last = array_pop($last);
+          } else {
+            $last = 0;
+          }
 
-         foreach ($searchAtencion as $atencion) {
-                    $monto = $atencion->monto;
-                    $es_servicio = $atencion->es_servicio;
-                    $es_laboratorio = $atencion->es_laboratorio;
-                    $id_laboratorio = $atencion->id_laboratorio;
-                    $id_servicio = $atencion->id_servicio;
-                    $porcentaje = $atencion->porcentaje;
-                }
-
-
-                $pagarlab = Atenciones::findOrFail($id);
-                $pagarlab->pagado_com = 1;
-                $pagarlab->update();
-
-               /* $debitos = new Debitos();
-                $debitos->origen = 'COMISION POR PAGAR';
-                $debitos->monto= $porcentaje;
-                $debitos->id_sede = $request->session()->get('sede');
-                $debitos->descripcion = 'COMISION POR PAGAR';
-                $debitos->save();    */ 
+          Atenciones::where('id', $id)
+                  ->update([
+                      'pagado_com' => 1,
+                      'recibo' => 'REC'.date('Y').'-'.str_pad($last+1, 4, "0", STR_PAD_LEFT)
+                  ]);
      
-
+    Toastr::success('La comisió ha sido pagada.', 'Comisiones!', ['progressBar' => true]);
     return redirect()->route('comporpagar.index');
 
   }
@@ -85,23 +73,30 @@ class ComporPagarController extends Controller
 
   public function pagarmultiple(Request $request)
   {
+    if(isset($request->com)){
+      $last = Atenciones::select('recibo')->orderby('recibo', 'DESC')->first();
+      if (!empty($last->recibo)) {
+        $last = explode("-", $last->recibo);
+        $last = array_pop($last);
+      } else {
+        $last = 0;
+      }
 
-   dd($request->input('ids'));
-   die();
-   
-    if ($request->input('ids')) {
+      $recibo = 'REC'.date('Y').'-'.str_pad($last+1, 4, "0", STR_PAD_LEFT);
+      
+      foreach ($request->com as $atencion) {
+        Atenciones::where('id', $atencion)
+                  ->update([
+                      'pagado_com' => 1,
+                      'recibo' => $recibo
+                  ]);
+      }
 
-      $entries = Atenciones::whereIn('id', $request->input('ids'))->get();
+      Toastr::success('Las comisiones han sido pagadas.', 'Comisiones!', ['progressBar' => true]);
+    } 
 
-      foreach ($entries as $entry) {
-        $entry->pagado_com= 1;
-        $entry->save(); 
-
-    }
-
-}
-
-}
+    return redirect()->route('comporpagar.index');
+  }
        
    
 }

@@ -146,7 +146,7 @@ Route::post('comporpagar/create', 'ComporPagarController@create')->middleware('a
 Route::get('comporpagar/{id}', 'ComporPagarController@delete')->middleware('auth');
 Route::get('comporpagar-edit-{id}', 'ComporPagarController@editView')->name('comporpagar.edit');
 Route::post('comporpagar/edit', 'ComporPagarController@edit');
-Route::get('pagarmultiple/{id}', 'ComporPagarController@pagarmultiple');
+Route::post('pagarmultiple', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
 

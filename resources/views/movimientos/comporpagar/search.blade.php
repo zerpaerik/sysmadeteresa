@@ -30,6 +30,7 @@
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<input type="submit">
 					</form>
+					<form action="/pagarmultiple" method="post">
 					<thead>
 						<tr>
 							<th>Marcar Varios</th>
@@ -49,7 +50,7 @@
 						@foreach($atenciones as $atec)	
 
 							<tr>
-								<td><input value="{{$atec->id}}" type="checkbox"></td>
+								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
@@ -68,11 +69,11 @@
 					</tbody>
 					<tfoot>
 							<th>
-								<form action="/pagarmultiple" method="get">
-									<input type="submit">
-								</form>
+								{{ csrf_field() }}
+								<input type="submit">
 							</th>
 					</tfoot>
+					</form>
 				</table>
 			</div>
 		</div>
