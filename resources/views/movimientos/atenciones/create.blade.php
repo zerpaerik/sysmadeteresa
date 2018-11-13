@@ -37,10 +37,9 @@
 									</option>
 								@endforeach
 							</select>
-						</div>s
+						</div>
 
-            <div class="btn btn-primary" href="{{asset('pacientes.create')}}" target="_blank"><a><span><i class="fa fa-plus-circle"></i> Agregar Paciente</span></a></div>
-
+            <a href="{{route('pacientes.create2')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes</a>
            
 						</div>
 						<br>
