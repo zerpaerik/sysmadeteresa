@@ -241,19 +241,32 @@ class ReportesController extends Controller
 
      public function verReciboProfesional2($id){
        
-         $reciboprofesional = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio')
+         $reciboprofesional2 = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname')
         ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.pagado_com','=', 1)
         ->where('a.recibo','=', $id)
-       // ->orderby('a.id','desc')
+        ->groupBy('a.recibo')
         ->get();
 
-        if($reciboprofesional){
-            return $reciboprofesional;
+        if($reciboprofesional2){
+            return $reciboprofesional2;
+         }else{
+            return false;
+         }  
+
+     }
+
+     public function verTotalRecibo($id){
+
+
+        $totalRecibo = Atenciones::where('recibo', $id)
+                            ->select(DB::raw('SUM(porcentaje) as totalrecibo'))
+                            ->get();
+     
+        if($totalRecibo){
+            return $totalRecibo;
          }else{
             return false;
          }  
@@ -266,9 +279,12 @@ class ReportesController extends Controller
     
        $reciboprofesional = ReportesController::verReciboProfesional($id);
        $reciboprofesional2 = ReportesController::verReciboProfesional2($id);
+       $totalrecibo = ReportesController::verTotalRecibo($id);
+
+
 
       
-       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2);
+       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2)->with('totalrecibo', $totalrecibo);
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_profesionales_ver');
