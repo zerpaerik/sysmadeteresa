@@ -23,6 +23,62 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
+						<h5>Rango de Fechas</h5>
+						<label for="">Inicio</label>
+						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
+						<label for="">Final</label>
+						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
+						<input type="submit">
+					</form>
+					<form action="/pagarmultiple" method="post">
+					<thead>
+						<tr>
+							<th>Marcar Varios</th>
+							<th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Detalle</th>
+							<th>Monto</th>
+							<th>Porcentaje</th>
+							<th>Monto a Pagar</th>
+							<th>Fecha Atenciòn</th>
+							<th>Acciones</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($atenciones as $atec)	
+
+							<tr>
+								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
+								<td>{{$atec->id}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								@if($atec->es_servicio =='1')
+								<td>{{$atec->servicio}}</td>
+								@else
+								<td>{{$atec->laboratorio}}</td>
+								@endif
+								<td>{{$atec->monto}}</td>
+								<td>{{$atec->porc_pagar}}</td>
+								<td>{{$atec->porcentaje}}</td>
+								<td>{{$atec->created_at}}</td>
+								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
+							</tr>
+						@endforeach
+					</tbody>
+					<tfoot>
+							<th>
+								{{ csrf_field() }}
+								<input type="submit">
+							</th>
+					</tfoot>
+					</form>
+				</table>
+			</div>
+			<!-- <div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<form action="/comporpagar-search" method="get">
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
@@ -68,7 +124,7 @@
 						
 					</tfoot>
 				</table>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
