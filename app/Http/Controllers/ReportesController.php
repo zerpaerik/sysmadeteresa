@@ -221,6 +221,73 @@ class ReportesController extends Controller
 
     }
 
+
+    public function verReciboProfesional($id){
+       
+         $reciboprofesional = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.pagado_com','=', 1)
+        ->where('a.recibo','=', $id)
+       // ->orderby('a.id','desc')
+        ->get();
+
+        if($reciboprofesional){
+            return $reciboprofesional;
+         }else{
+            return false;
+         }  
+
+     }
+
+     public function verReciboProfesional2($id){
+       
+         $reciboprofesional = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.pagado_com','=', 1)
+        ->where('a.recibo','=', $id)
+       // ->orderby('a.id','desc')
+        ->get();
+
+        if($reciboprofesional){
+            return $reciboprofesional;
+         }else{
+            return false;
+         }  
+
+     }
+
+      public function recibo_profesionales_ver($id) 
+    {
+
+    
+       $reciboprofesional = ReportesController::verReciboProfesional($id);
+       $reciboprofesional2 = ReportesController::verReciboProfesional2($id);
+
+      
+       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2);
+       $pdf = \App::make('dompdf.wrapper');
+       $pdf->loadHTML($view);
+       return $pdf->stream('recibo_profesionales_ver');
+    /* }else{
+      return response()->json([false]);
+     }*/
+    }
+
+
+
+
+
+
+
+
     public function relacion_detallado(Request $request)
     {
 
