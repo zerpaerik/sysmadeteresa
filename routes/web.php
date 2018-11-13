@@ -170,6 +170,7 @@ Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
+Route::get('resultados-search', 'ResultadosController@search')->name('resultados.search')->middleware('auth');
 Route::get('resultados-informe', 'ResultadosController@informe')->name('resultados.informe')->middleware('auth');
 Route::get('resultados-informe-index', 'ResultadosController@informeIndex')->name('resultados.informe-index')->middleware('auth');
 Route::get('resultados-informe-search', 'ResultadosController@informeSearch')->name('resultados.informe-search')->middleware('auth');

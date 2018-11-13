@@ -6,9 +6,15 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+		
 			<div class="box-header">
+				
 				<div class="box-name">
-					<span><strong>Modelo de informes</strong></span>
+					<i class="fa {{$icon}}"></i>
+					<span><strong>{{ucfirst($model)}}</strong></span>				
+				</div>
+				<div class="col-sm-3">
+					<input type="date" id="input_date" class="form-control" placeholder="Fecha" name="date">
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -18,7 +24,6 @@
 						<i class="fa fa-expand"></i>
 					</a>
 				</div>
-				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
@@ -30,24 +35,32 @@
 						<input type="text" name="ape" value="" style="line-height: 20px">						
 						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>
-					<thead> 
+					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Titulo</th>
-							<th>Acciones</th>
-
+							@foreach($headers as $header)
+								<th>{{$header}}</th>
+							@endforeach
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
-						<td>{{$d->id}}</td>
-						<td>{{$d->title}}</td>
-							<td><a class="btn btn-primary" href="/resultados-informe-editar-{{$d->id}}">Editar</a></td>
+							@foreach($fields as $f)
+								<td>{{$d->$f}}</td>
+							@endforeach						
+							<td>
+								<form action="{{$model . '-edit-' .$d->id}}" method="get">
+								<select name="informe" id="informe">
+								@foreach($informes as $informe)
+									<option value="{{$informe->id}}">{{$informe->title}}</option>
+								@endforeach
+								</select>
+							</td>
+							<td><input type="submit" class="btn btn-success" value="Redactar"></td>
 						</tr>
+						</form>
 						@endforeach						
 					</tbody>
-					
 				</table>
 			</div>
 		</div>
@@ -60,6 +73,31 @@
 @endif
 
 <script type="text/javascript">
+	
+	var informe = ""
+
+	function informe_value(value)
+	{
+		console.log(this.informe = value);
+	}
+
+	$('#input_date').on('change', getAva);
+
+	function del(id){
+		$.ajax({
+      url: "{{$model}}-delete-"+id,
+      headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "delete",
+      dataType: "json",
+      data: {},
+      success: function(res){
+      	location.reload(true);
+      }
+    });
+	}
+
 	function closeModal(){
 		$('#myModal').modal('hide');
 	}
