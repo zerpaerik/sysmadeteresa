@@ -65,9 +65,30 @@ class ResultadosController extends Controller
 
     public function informe()
     {
-      return view ('informe.index',[
-        'prueba' => 'this is a test' 
+      return view ('informe.create');
+    }
+
+    public function informeIndex()
+    {
+      $informes = Informe::orderBy('id','desc')->get();
+
+      return view('informe.index',[
+        'data' => $informes
       ]);
+    }
+
+    public function informeEditar(Informe $id)
+    {
+      return view('informe.edit',[
+        'data' => $id
+      ]);
+    }
+
+    public function informeEdit(Informe $id, Request $request)
+    {
+      $id->update($request->all());
+
+      return back();
     }
 
     
