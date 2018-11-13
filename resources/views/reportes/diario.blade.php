@@ -48,6 +48,7 @@
 
 <div>
 	<div class="text-center title-header col-12">
+		<center><strong>REPORTE CONSOLIDADO</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
 	</div>
 </div>

@@ -220,7 +220,7 @@ class AtencionesController extends Controller
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $lab->id;
-          $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
+          $creditos->monto= $request->monto_abol['laboratorios'][$key]['abono'];
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';

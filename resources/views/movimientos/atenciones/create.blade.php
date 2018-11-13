@@ -39,6 +39,8 @@
 							</select>
 						</div>
 
+            <a href="{{route('pacientes.create2')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes</a>
+           
 						</div>
 						<br>
 						<div class="row">
@@ -543,6 +545,22 @@ function DemoTimePicker(){
 		stepMinute: 10
 	});
 }
+
+
+function createPac(e){
+        
+        $.ajax({
+            type: "GET",
+            url: "pacientes-createpac",
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#myModal').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    };
 </script>
 
 <script type="text/javascript">

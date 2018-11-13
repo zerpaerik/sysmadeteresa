@@ -82,11 +82,15 @@ Route::post('servicios/storeItems/{servicio}', 'Archivos\ServiciosController@sto
 
 Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.index')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
+Route::get('pacientes-create2', 'Archivos\PacientesController@createView2')->name('pacientes.create2')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
+Route::post('pacientes/create2', 'Archivos\PacientesController@create2')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
+Route::get('pacientes-createpac','Archivos\PacientesController@createpac');
+
 
 /**
  * Paquetes
@@ -259,4 +263,6 @@ Route::post('observacion/create','ConsultaController@create')->name('observacion
  * Reportes
  */
 Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
+Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado');
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
+Route::post('reporte/detallado', 'ReportesController@relacion_detallado');

@@ -113,6 +113,8 @@ class EventController extends Controller
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "time" => $request->time,
         "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
+        "monto" => $request->monto,
+        "sede" => $request->session()->get('sede')
       ]);
 
       $credito = Creditos::create([
