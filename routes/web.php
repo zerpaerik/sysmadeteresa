@@ -151,6 +151,8 @@ Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth'
 
 Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.index')->middleware('auth');
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
+Route::get('reversar/{id}', 'ComisionesPagadasController@reversar')->middleware('auth');
+
 
 Route::get('comporentregar', 'ComisionesporEntregarController@index')->name('comporentregar.index')->middleware('auth');
 Route::get('comporentregar-search', 'ComisionesporEntregarController@search')->name('comporentregar.search')->middleware('auth');
