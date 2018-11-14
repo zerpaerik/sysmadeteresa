@@ -107,30 +107,11 @@ class ReportesController extends Controller
 
     public function resultados_ver($id) 
     {
-      
-        $resultados = ReportesController::verResultado($id);
-
-        $phpWord = new \PhpOffice\PhpWord\PhpWord();
-
-        $phpWord->setDefaultFontName('Tahoma');
-        $phpWord->setDefaultFontSize(10);
-
-        $section = $phpWord->addSection();
-        $section->addText('INFORME CONSOLIDADO', array('name' => 'Tahoma', 'size' =>15, 'bold' => true));
-        $section->addText('Nombre: '.$resultados->nompac.' '.$resultados->apepac);
-        $section->addText('Tipo de examen: '.$resultados->detalle);
-        $section->addText('Codigo: '.$resultados->detalle);
-        $section->addText('Fecha: '.$resultados->created_at);
-
-        $parser = new HTMLtoOpenXML\Parser();
-        $ooXml = $parser->fromHTML($resultados->descripcion);
-        $section->addText($ooXml);
-   
-        
-        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save(storage_path('informe.docx'));
-        return response()->download(storage_path('informe.docx'));
-
+        $resultados =ReportesController::verResultado($id);
+        $view = \View::make('reportes.resultados_ver')->with('resultados', $resultados);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('resultados_ver');
     }
 
     public function formDiario()
