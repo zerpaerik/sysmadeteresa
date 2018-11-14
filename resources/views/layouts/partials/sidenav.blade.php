@@ -181,6 +181,21 @@
     </ul>
   </li>
 
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-truck"></i>
+      <span class="hidden-xs">Visitadores</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('comporentregar.index')}}"><i class="fa fa-square-o"></i> Comisiones Por Entregar</a>
+      </li>
+       <li>
+        <a href="{{route('comentregadas.index')}}"><i class="fa fa-check-square-o"></i> Comisiones Entregadas</a>
+      </li>
+    </ul>
+  </li>
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
