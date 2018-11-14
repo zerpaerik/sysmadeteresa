@@ -36,6 +36,8 @@
 					<thead>
 						<tr>
 							<th>Profesional</th>
+							<th>Consultorio</th>
+							<th>Especialidad</th>
 							<th>Visitador</th>
 							<th>Fecha de Visita</th>
 							
@@ -46,6 +48,8 @@
 
 						<tr>
 							<td>{{$atec->name}},{{$atec->apellidos}}</td>
+							<td>{{$atec->centro}}</td>
+							<td>{{$atec->especialidad}}</td>
 							<td>{{$atec->nomvi}},{{$atec->apevi}}</td>
 							<td>{{$atec->created_at}}</td>
 						</tr>
