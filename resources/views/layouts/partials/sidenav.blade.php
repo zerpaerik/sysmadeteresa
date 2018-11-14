@@ -188,6 +188,9 @@
     </a>
     <ul class="dropdown-menu">
       <li>
+        <a href="{{route('visitas.index')}}"><i class="fa fa-truck"></i> Registro de Visitas</a>
+      </li>
+      <li>
         <a href="{{route('comporentregar.index')}}"><i class="fa fa-square-o"></i> Comisiones Por Entregar</a>
       </li>
        <li>

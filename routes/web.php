@@ -159,6 +159,11 @@ Route::get('entregar/{id}', 'ComisionesporEntregarController@entregar')->middlew
 Route::get('comentregadas', 'ComisionesEntregadasController@index')->name('comentregadas.index')->middleware('auth');
 Route::get('comentregadas-search', 'ComisionesEntregadasController@search')->name('comentregadas.search')->middleware('auth');
 
+Route::get('visitas', 'VisitasController@index')->name('visitas.index')->middleware('auth');
+Route::get('visitas-search', 'VisitasController@search')->name('visitas.search')->middleware('auth');
+Route::get('visitar', 'VisitasController@visitar');
+Route::get('visitar-create', 'VisitasController@createView')->name('visitar.create')->middleware('auth');
+Route::post('visitar/create', 'VisitasController@create')->middleware('auth');
 
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
 Route::get('ingresos-search', 'OtrosIngresosController@search')->name('ingresos.search')->middleware('auth');
