@@ -38,6 +38,7 @@
 							<th>Origen</th>
 							<th>Fecha Atenciòn</th>
 							<th>Acciones</th>
+							<th></th>
 
 						</tr>
 					</thead>
@@ -49,7 +50,8 @@
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
-								<td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Ver</a></td>
+								<td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a></td>
+								<td><a href="{{asset('/reversar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Reversar</a></td>	
 							</tr>
 						@endforeach
 					</tbody>

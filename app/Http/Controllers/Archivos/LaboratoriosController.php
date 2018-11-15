@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Laboratorios;
+use Toastr;
 
 class LaboratoriosController extends Controller
 {
@@ -28,8 +29,7 @@ class LaboratoriosController extends Controller
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
-          'direccion' => 'required|string|max:255',
-          'referencia' => 'required|string|max:255' 
+         
         ]);
         if($validator->fails()) 
           return redirect()->action('Archivos\LaboratoriosController@createView', ['errors' => $validator->errors()]);
@@ -39,6 +39,9 @@ class LaboratoriosController extends Controller
 	      'referencia' => $request->referencia,
 	  
    		]);
+
+        Toastr::success('Registrado Exitosamente.', 'Laboratorio!', ['progressBar' => true]);
+
 		return redirect()->action('Archivos\LaboratoriosController@index', ["created" => true, "centros" => Laboratorios::all()]);
 	}    
 

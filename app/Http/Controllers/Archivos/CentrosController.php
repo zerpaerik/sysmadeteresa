@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Centros;
+use Toastr;
 
 class CentrosController extends Controller
 {
@@ -33,8 +34,7 @@ class CentrosController extends Controller
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
-          'direccion' => 'required|string|max:255',
-          'referencia' => 'required|string|max:255' 
+          
         ]);
         if($validator->fails()) 
           return redirect()->action('Archivos\CentrosController@createView', ['errors' => $validator->errors()]);
@@ -44,6 +44,9 @@ class CentrosController extends Controller
 	      'referencia' => $request->referencia,
 	  
    		]);
+
+        Toastr::success('Registrado Exitosamente.', 'Centro Mèdico!', ['progressBar' => true]);
+
 		return redirect()->action('Archivos\CentrosController@index', ["created" => true, "centros" => Centros::all()]);
 	}  
 

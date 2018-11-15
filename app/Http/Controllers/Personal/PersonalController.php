@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Personal;
 use App\User;
+use Toastr;
+
 
 class PersonalController extends Controller
 {
@@ -38,10 +40,8 @@ class PersonalController extends Controller
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',
           'lastname' => 'required|string|max:255',
-          'phone' => 'required|unique:personals',
-          'dni' => 'required|unique:personals',
-          'email' => 'required',
-          'address' => 'required'
+          'dni' => 'required|unique:personals'
+         
         ]);
         if($validator->fails()) 
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
@@ -64,7 +64,7 @@ class PersonalController extends Controller
       ]);
 
 
-
+    Toastr::success('Registrado Exitosamente.', 'Personal!', ['progressBar' => true]);
 		return redirect()->action('Personal\PersonalController@index', ["created" => true, "personal" => Personal::all()]);
 	}   
 
