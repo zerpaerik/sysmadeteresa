@@ -30,9 +30,8 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
-        ->paginate(5000);
-
-
+        ->paginate(10);
+        dd($resultados->links());
         $informe = Informe::all();
 
          return view('resultados.index', [
