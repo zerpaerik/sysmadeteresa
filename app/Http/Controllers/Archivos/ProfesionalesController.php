@@ -9,6 +9,7 @@ use App\Models\Especialidades;
 use App\Models\Centros;
 use App\User;
 use DB;
+use Toastr;
 
 class ProfesionalesController extends Controller
 {
@@ -66,6 +67,8 @@ class ProfesionalesController extends Controller
         'dni' => $request->dni
 
       ]);
+
+     Toastr::success('Registrado Exitosamente.', 'Profesional de Apoyo!', ['progressBar' => true]);
 
 		return redirect()->action('Archivos\ProfesionalesController@index', ["created" => true, "centros" => Profesionales::all()]);
 	}    

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Analisis;
 use App\Models\Laboratorios;
 use DB;
+use Toastr;
 
 class AnalisisController extends Controller
 {
@@ -52,6 +53,8 @@ class AnalisisController extends Controller
 	    
 
    		]);
+            Toastr::success('Registrado Exitosamente.', 'Analisis de Laboratorio!', ['progressBar' => true]);
+
 		return redirect()->action('Archivos\AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);
 	}    
 
