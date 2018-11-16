@@ -31,7 +31,6 @@ class ResultadosController extends Controller
         ->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
         ->paginate(10);
-        dd($resultados->links());
         $informe = Informe::all();
 
          return view('resultados.index', [
@@ -50,34 +49,15 @@ class ResultadosController extends Controller
 
   public function search(Request $request)
   {
-        $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('servicios as c','c.id','a.id_servicio')
-        ->join('analises as d','d.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->whereNotIn('a.monto',[0,0.00])
-        ->where('a.resultado','=', NULL)
-        ->where('b.nombres','like','%'.$request->nom.'%')
-        ->where('b.apellidos','like','%'.$request->ape.'%')
-        ->orderby('a.id','desc')
-        ->paginate(5000);
+    $search = $request->nom;
+    $split = explode(" ",$search);
 
-
-        $informe = Informe::all();
-
-         return view('resultados.index', [
-        "icon" => "fa-list-alt",
-        "model" => "resultados",
-        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Profesional","Apellido Profesional","Servicio","laboratorio","Acción","Tipo Informe"],
-        "data" => $resultados,
-        "informes" => $informe,
-        "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+    if (!isset($split[1])) {
+      $split[1] = '';
+      return $this->elasticSearch($split[0],$split[1]);
+    }else{
+      return $this->elasticSearch($split[0],$split[1]);     
+    }
   }
 
 
@@ -101,7 +81,7 @@ class ResultadosController extends Controller
 
     public function informeIndex()
     {
-      $informes = Informe::orderBy('id','desc')->get();
+      $informes = Informe::orderBy('id','desc')->paginate(10);
 
       return view('informe.index',[
         'data' => $informes
@@ -210,7 +190,37 @@ class ResultadosController extends Controller
 
     }
 
- //
+    private function elasticSearch($nom, $ape)
+    {     
+      $resultados = DB::table('atenciones as a')
+      ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+      ->join('pacientes as b','b.id','a.id_paciente')
+      ->join('servicios as c','c.id','a.id_servicio')
+      ->join('analises as d','d.id','a.id_laboratorio')
+      ->join('users as e','e.id','a.origen_usuario')
+      ->whereNotIn('a.monto',[0,0.00])
+      ->where('a.resultado','=', NULL)
+      ->where('b.nombres','like','%'.$nom.'%')
+      ->where('b.apellidos','like','%'.$ape.'%')
+      ->orderby('a.id','desc')
+      ->paginate(5000);
+
+
+      $informe = Informe::all();
+
+       return view('resultados.index', [
+      "icon" => "fa-list-alt",
+      "model" => "resultados",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Profesional","Apellido Profesional","Servicio","laboratorio","Acción","Tipo Informe"],
+      "data" => $resultados,
+      "informes" => $informe,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]);     
+    }
 
     }
 

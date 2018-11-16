@@ -25,7 +25,7 @@ class AtencionesController extends Controller
 
 	public function index(){
     $initial = Carbon::now()->toDateString();
-    $atenciones = $this->elasticSearch($initial);
+    $atenciones = $this->elasticSearch($initial,'','');
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
@@ -41,20 +41,41 @@ class AtencionesController extends Controller
 	}
 
     public function search(Request $request){
-      //Pendiente Validar Fechas de entrada, lo hago despues
-      $atenciones = $this->elasticSearch($request->inicio);
-      return view('movimientos.atenciones.search', [
-        "icon" => "fa-list-alt",
-        "model" => "atenciones",
-        "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-        "data" => $atenciones,
-        "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]); 
 
+    $search = $request->nom;
+    $split = explode(" ",$search);
+
+    if (!isset($split[1])) {
+     
+      $split[1] = '';
+      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);
+      
+      return view('movimientos.atenciones.search', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]); 
+    }else{
+      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);  
+
+      return view('movimientos.atenciones.search', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]);         
+    }      
   }
 
 
@@ -319,7 +340,7 @@ class AtencionesController extends Controller
     }
   }
 
-  private function elasticSearch($initial)
+  private function elasticSearch($initial,$nombre,$apellido)
   {
     $atenciones = DB::table('atenciones as a')
     ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
@@ -329,11 +350,12 @@ class AtencionesController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
-    //->where('a.created_at','>=' ,$initial)
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('a.id_sede','=', \Session::get("sede"))
+    ->where('b.nombres','like','%'.$nombre.'%')
+    ->where('b.apellidos','like','%'.$apellido.'%')
     ->orderby('a.id','desc')
-    ->paginate(5000);
+    ->paginate(20);
 
     return $atenciones;
   }

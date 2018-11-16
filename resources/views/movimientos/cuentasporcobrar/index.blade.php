@@ -23,6 +23,12 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<form action="/cuentasporcobrar-search" method="get">
+						<h5>Buscar por pacientes</h5>
+						<label for="">Nombre</label>
+						<input type="text" name="nom">
+						<input type="submit" class="btn btn-primary" value="Buscar">
+					</form>		
 					<thead>
 						<tr>
 							@foreach($headers as $header)
@@ -40,8 +46,8 @@
 						</tr>
 						@endforeach						
 					</tbody>
-					
 				</table>
+					{{$data->links()}}
 			</div>
 		</div>
 	</div>

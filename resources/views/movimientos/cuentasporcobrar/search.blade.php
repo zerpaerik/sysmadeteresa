@@ -24,13 +24,11 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/cuentasporcobrar-search" method="get">
-						<h3>Rango de fechas</h3>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<label for="">final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}">
-						<input type="submit">
-					</form>
+						<h5>Buscar por pacientes</h5>
+						<label for="">Nombre</label>
+						<input type="text" name="nom">
+						<input type="submit" class="btn btn-primary" value="Buscar">
+					</form>		
 					<thead>
 						<tr>
 							@foreach($headers as $header)
@@ -56,6 +54,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				{{$data->links()}}
 			</div>
 		</div>
 	</div>

@@ -96,7 +96,7 @@ class GastosController extends Controller
         ->select('a.id','a.descripcion','a.monto','a.created_at')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         ->orderby('a.id','desc')
-        ->paginate(5000);  
+        ->paginate(20);  
 
         return $gastos;
     }

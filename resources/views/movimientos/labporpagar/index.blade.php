@@ -22,7 +22,12 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					
+					<form action="/labporpagar-search" method="get">
+						<h5>Buscar por pacientes</h5>
+						<label for="">Nombre</label>
+						<input type="text" name="nom">
+						<input type="submit" class="btn btn-primary" value="Buscar">
+					</form>					
 					<thead>
 						<tr>
 							<th>Paciente</th>
@@ -48,6 +53,7 @@
 						
 					</tfoot>
 				</table>
+				{{$atenciones->links()}}
 			</div>
 		</div>
 	</div>

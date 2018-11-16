@@ -16,28 +16,24 @@ class LabporPagarController extends Controller
 {
 
 	public function index(){
-        
-        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.es_laboratorio','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
-        ->join('pacientes as b','b.id','a.id_paciente')
-        ->join('analises as c','c.id','a.id_laboratorio')
-        ->join('users as e','e.id','a.origen_usuario')
-        ->join('laboratorios as f','f.id','c.laboratorio')
-        ->where('a.es_laboratorio','=',1)
-        ->where('a.pagado_lab','=',NULL)
-        ->whereNotIn('c.costlab',[0])
-        ->where('a.id_sede','=', \Session::get("sede"))
-        ->orderby('a.id','desc')
-        ->get();
-
-       // dd($atenciones);
-        //die();
-
-
+        $atenciones = $this->elasticSearch('','');
         return view('movimientos.labporpagar.index', ["atenciones" => $atenciones]);
 	}
 
- 
+    public function search(Request $request){ 
+        $search = $request->nom;
+        $split = explode(" ",$search);
+        if (!isset($split[1])) {
+
+            $split[1] = '';
+            $atenciones = $this->elasticSearch($split[0],$split[1]);
+            return view('movimientos.labporpagar.search', ["atenciones" => $atenciones]);
+          
+        }else{
+            $atenciones = $this->elasticSearch($split[0],$split[1]);  
+            return view('movimientos.labporpagar.search', ["atenciones" => $atenciones]);            
+        }   
+    }
 
 	public function pagar($id, Request $request) {
 
@@ -75,10 +71,23 @@ class LabporPagarController extends Controller
     return redirect()->route('labporpagar.index');
 
   }
+  private function elasticSearch($nom,$ape)
+  {
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.es_laboratorio','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('analises as c','c.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('laboratorios as f','f.id','c.laboratorio')
+        ->where('a.es_laboratorio','=',1)
+        ->where('a.pagado_lab','=',NULL)
+        ->whereNotIn('c.costlab',[0])
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->where('b.nombres','like','%'.$nom.'%')
+        ->where('b.apellidos','like','%'.$ape.'%')        
+        ->orderby('a.id','desc')
+        ->paginate(20);
 
-
-
-
-
-    //
+        return $atenciones;
+  }  
 }

@@ -94,9 +94,7 @@ class OtrosIngresosController extends Controller
             ->orderby('a.id','desc')
             ->where('a.origen','=','OTROS INGRESOS')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-          //->where('a.created_at','>=',$initial)
-            //->where('a.created_at','<=',$final)
-            ->get();     
+            ->paginate(20);     
     
         return $ingresos;    
     }

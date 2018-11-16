@@ -29,10 +29,8 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/resultados-search" method="get">
 						<h5>Nombre de paciente</h5>
-						<label for="">Nombre</label>
-						<input type="text" name="nom" value="" style="line-height: 20px">
-						<label for="">Apellido</label>
-						<input type="text" name="ape" value="" style="line-height: 20px">						
+						<label for="">Nombre y apellido</label>
+						<input type="text" name="nom" value="" style="line-height: 20px">					
 						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>
 					<thead>

@@ -58,7 +58,7 @@ class ResultadosGuardadosController extends Controller
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('a.resultado','=', 1)
         ->orderby('a.id','desc')
-        ->get();
+        ->paginate(20);
 
     return $resultadosguardados;
   }

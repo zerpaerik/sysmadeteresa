@@ -29,7 +29,7 @@
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
+						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>
 					
 					<thead> 
@@ -58,6 +58,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				{{$data->links()}}
 			</div>
 		</div>
 	</div>

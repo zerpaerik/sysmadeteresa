@@ -28,7 +28,9 @@
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
+						<label for="">Nombre</label>
+						<input type="text" name="nom" style="line-height: 20px">
+						<input type="submit" value="Buscar" class="btn btn-primary">
 					</form>
 					<form action="/pagarmultiple" method="post">
 					<thead>
@@ -75,6 +77,8 @@
 					</tfoot>
 					</form>
 				</table>
+				{{$atenciones->links()}}
+				
 			</div>
 			<!-- <div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
