@@ -72,7 +72,7 @@
 					<tfoot>
 							<th>
 								{{ csrf_field() }}
-								<input type="submit">
+								<button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger"><input type="submit">Pagar Seleccionadas</button>
 							</th>
 					</tfoot>
 					</form>

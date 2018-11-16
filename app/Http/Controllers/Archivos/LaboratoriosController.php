@@ -49,6 +49,8 @@ class LaboratoriosController extends Controller
     $laboratorios = Laboratorios::find($id);
     $laboratorios->estatus = 0 ;
     $laboratorios->save();
+
+
     return redirect()->action('Archivos\LaboratoriosController@index', ["deleted" => true, "laboratorios" => Laboratorios::all()]);
   }
 

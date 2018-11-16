@@ -30,10 +30,10 @@
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
-							<th>Cantidad</th>
+							<th>Cantidad Solicitada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
-							<th>Acciones</th>
+							<th>Cantidad a Entregar</th>
 							@else
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
@@ -43,8 +43,6 @@
 							<th>Estatus</th>
 							<th>Fecha</th>
 							@endif
-
-							
 						</tr>
 					</thead>
 					<tbody>
@@ -56,7 +54,7 @@
 							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
-								<td><a href="{{asset('requerimientos-edit')}}-{{$req->id}}" class="btn btn-xs btn-danger">Procesar</a></td>
+							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
 								@else
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>

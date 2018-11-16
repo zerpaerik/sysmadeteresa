@@ -8,6 +8,7 @@ use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
 use App\Models\Config\{Sede, Proveedor};
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Toastr;
 
 
 class RequerimientosController extends Controller
@@ -70,26 +71,27 @@ class RequerimientosController extends Controller
     }
 
 
-    public function editView($id){
+   /* public function editView($id){
 
       $p = Requerimientos::find($id);
 
       return view('existencias.requerimientos.edit', ["cantidad" => $p->cantidad,"id" => $p->id]);
       
-    } 
+    } */
 
     
 
       public function edit(Request $request){
 
-      
+
         $searchRequerimiento = DB::table('requerimientos')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('id','=', $request->id)
                     ->first();                    
                     //->get();
-                    
+
+                  
                     $producto = $searchRequerimiento->id_producto;
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
                   
@@ -107,6 +109,7 @@ class RequerimientosController extends Controller
                     $preciounidad = $searchProducto->preciounidad;
                     $precioventa = $searchProducto->precioventa;
  
+
 
       $p = Requerimientos::find($request->id);
       $p->estatus = 'Procesado';
@@ -129,6 +132,7 @@ class RequerimientosController extends Controller
       $prod->save();
 
 
+        Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
       return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
     }
