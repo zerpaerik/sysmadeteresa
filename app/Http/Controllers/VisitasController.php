@@ -69,9 +69,4 @@ class VisitasController extends Controller
 		Toastr::success('La Visita Fue Registrada.', 'Profesional Visitadp!', ['progressBar' => true]);
        return redirect()->route('visitas.index');
 	}   
-
-
-  
-       
-   
 }
