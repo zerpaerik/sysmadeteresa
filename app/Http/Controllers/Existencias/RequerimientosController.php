@@ -144,8 +144,20 @@ class RequerimientosController extends Controller
                     $medida = $searchProducto->medida;
                     $preciounidad = $searchProducto->preciounidad;
                     $precioventa = $searchProducto->precioventa;
- 
 
+         $searchProductoSedeSolicitad =  DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('nombre','=', $nombre)
+                    ->where('sede_id','=',$sede_solicita)
+                    ->where('almacen','=',2)
+                    ->first(); 
+
+                    if($searchProductoSedeSolicitad == NULL){
+                      $cantidadactualsedesolicita=0;
+                    }else{
+                    $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
+                    }  
 
       $p = Requerimientos::find($request->id);
       $p->estatus = 'Procesado';
@@ -156,17 +168,26 @@ class RequerimientosController extends Controller
       $p->cantidad= $cantidadactual - $request->cantidadd;
       $res = $p->save();
 
-      $prod = new Producto();
-      $prod->nombre =  $nombre;
-      $prod->categoria =  $categoria;
-      $prod->medida =  $medida;
-      $prod->preciounidad = $preciounidad;
-      $prod->precioventa = $precioventa;
-      $prod->sede_id = $sede_solicita;
-      $prod->cantidad = $request->cantidadd;
-      $prod->almacen = 2;
-      $prod->save();
+     
+      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
 
+      if($p){
+        $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
+        $p->save();
+      }else{
+
+        $prod = new Producto();
+        $prod->nombre =  $nombre;
+        $prod->categoria =  $categoria;
+        $prod->medida =  $medida;
+        $prod->preciounidad = $preciounidad;
+        $prod->precioventa = $precioventa;
+        $prod->sede_id = $sede_solicita;
+        $prod->cantidad = $request->cantidadd;
+        $prod->almacen = 2;
+        $prod->save();
+
+      }
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
