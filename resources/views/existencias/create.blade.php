@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Agregar nuevo producto</strong></span>
+					<span><strong>Agregar Producto</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -28,6 +28,11 @@
 						<label class="col-sm-1 control-label">Nombre</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
+						</div>
+
+						<label class="col-sm-1 control-label">Còdigo</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="codigo" placeholder="codigo ùnico" data-toggle="tooltip" data-placement="bottom" title="codigo">
 						</div>
 
 						<label class="col-sm-1 control-label">Categoria</label>

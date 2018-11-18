@@ -139,6 +139,7 @@ class RequerimientosController extends Controller
                     ->first();  
 
                     $cantidadactual = $searchProducto->cantidad;
+                    $codigo = $searchProducto->codigo;
                     $nombre = $searchProducto->nombre;
                     $categoria = $searchProducto->categoria;
                     $medida = $searchProducto->medida;
@@ -148,7 +149,7 @@ class RequerimientosController extends Controller
          $searchProductoSedeSolicitad =  DB::table('productos')
                     ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('nombre','=', $nombre)
+                    ->where('codigo','=', $codigo)
                     ->where('sede_id','=',$sede_solicita)
                     ->where('almacen','=',2)
                     ->first(); 
@@ -169,7 +170,7 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
+      $p = Producto::where("codigo", "=", $codigo)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
 
       if($p){
         $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
@@ -179,6 +180,7 @@ class RequerimientosController extends Controller
         $prod = new Producto();
         $prod->nombre =  $nombre;
         $prod->categoria =  $categoria;
+        $prod->codigo = $codigo;
         $prod->medida =  $medida;
         $prod->preciounidad = $preciounidad;
         $prod->precioventa = $precioventa;
