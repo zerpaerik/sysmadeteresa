@@ -77,8 +77,8 @@
 					</tfoot>
 					</form>
 				</table>
-				{{$atenciones->links()}}
-				
+				<h4>Total de deuda: {{$total}}</h4>
+				{{$atenciones->links()}}	
 			</div>
 			<!-- <div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">

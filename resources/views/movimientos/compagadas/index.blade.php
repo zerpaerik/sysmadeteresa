@@ -28,7 +28,7 @@
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
+						<input type="submit" value="Buscar" class="btn btn-primary">
 					</form>
 					<form action="/pagarmultiple" method="post">
 					<thead>
@@ -39,6 +39,7 @@
 							<th>Fecha Atenciòn</th>
 							<th>Acciones</th>
 							<th></th>
+							<th>Total Pagado</th>
 
 						</tr>
 					</thead>
@@ -51,7 +52,9 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
                                 <td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a></td>
-                                <td><a href="{{asset('/reversar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Reversar</a></td>							</tr>
+                                <td><a href="{{asset('/reversar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Reversar</a></td>	
+								<td>{{$atec->totalrecibo}}</td>
+                            </tr>
 						@endforeach
 					</tbody>
 					<tfoot>

@@ -16,27 +16,37 @@ class ComporPagarController extends Controller
 {
 
 	public function index(){
+        $total = 0;
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
         $atenciones = $this->elasticSearch($inicio,$final,'','');
-        return view('movimientos.comporpagar.index', ["atenciones" => $atenciones]);
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->porcentaje; 
+        }
+        return view('movimientos.comporpagar.index', ["atenciones" => $atenciones, "total" => $total]);
 	}
 
     public function search(Request $request)
     {
       $search = $request->nom;
       $split = explode(" ",$search);
+      $total = 0;
 
       if (!isset($split[1])) {
        
         $split[1] = '';
         $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
-        return view('movimientos.comporpagar.search', ["atenciones" => $atenciones]); 
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->porcentaje; 
+        }
+        return view('movimientos.comporpagar.search', ["atenciones" => $atenciones,"total" => $total]); 
 
       }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);  
-        return view('movimientos.comporpagar.search', ["atenciones" => $atenciones]); 
-          
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
+        foreach ($atenciones as $aten) {
+          $total = $total + $aten->porcentaje; 
+        } 
+        return view('movimientos.comporpagar.search', ["atenciones" => $atenciones, "total" => $total]);   
       }    
     }
 
@@ -78,11 +88,10 @@ class ComporPagarController extends Controller
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
         ->orderby('a.id','desc')
         ->paginate(20);
-
-
-
         return $atenciones;
   }
+
+
 
 
   public function pagarmultiple(Request $request)

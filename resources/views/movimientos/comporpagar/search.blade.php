@@ -75,7 +75,7 @@
 					</tfoot>
 					</form>
 				</table>
-				{{$atenciones->links()}}
+				<h4>Total de deuda: {{$total}}</h4>
 			</div>
 		</div>
 	</div>
