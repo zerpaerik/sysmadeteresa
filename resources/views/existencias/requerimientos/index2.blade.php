@@ -22,18 +22,26 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<form action="/requerimientos-search" method="get">
+						<label for="">Inicio</label>
+						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px;margin-left: 10px;">
+						<label for="">Final</label>
+						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
+						<label for=""></label>
+						<input type="text" placeholder="Buscador" name="sede" style="line-height: 20px; margin-left: 30px;">
+						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
+					</form>
 					        @foreach($requerimientos2 as $req)					
-
 					<thead>
 						<tr>
 						  @if($req->estatus == 'Solicitado')
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
-							<th>Cantidad</th>
+							<th>Cantidad Solicitada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
-							<th>Acciones</th>
+							<th>Cantidad a Entregar</th>
 							@else
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
@@ -43,8 +51,6 @@
 							<th>Estatus</th>
 							<th>Fecha</th>
 							@endif
-
-							
 						</tr>
 					</thead>
 					<tbody>
@@ -56,7 +62,7 @@
 							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
-								<td><a href="{{asset('requerimientos-edit')}}-{{$req->id}}" class="btn btn-xs btn-danger">Procesar</a></td>
+							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
 								@else
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>

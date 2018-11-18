@@ -28,9 +28,9 @@
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">Nombre</label>
-						<input type="text" name="nom" style="line-height: 20px">
-						<input type="submit" value="Buscar" class="btn btn-primary">
+						<label for=""></label>
+						<input type="text" placeholder="Buscador" name="nom" style="line-height: 20px; margin-left: 30px;">
+						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
 					</form>
 					<form action="/pagarmultiple" method="post">
 					<thead>
@@ -72,7 +72,7 @@
 					<tfoot>
 							<th>
 								{{ csrf_field() }}
-								<input type="submit">
+								<button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger"><input type="submit">Pagar Seleccionadas</button>
 							</th>
 					</tfoot>
 					</form>

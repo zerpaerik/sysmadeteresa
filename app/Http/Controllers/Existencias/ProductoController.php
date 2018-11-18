@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
+use Toastr;
 
 
 class ProductoController extends Controller
@@ -19,9 +20,9 @@ class ProductoController extends Controller
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
         "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre", "Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+				"headers" => ["id", "Nombre","Còdigo","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre", "medida", "categoria","cantidad","preciounidad","precioventa"],
+				"fields" => ["id", "nombre","codigo", "medida", "categoria","cantidad","preciounidad","precioventa"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -36,9 +37,9 @@ class ProductoController extends Controller
         "icon" => "fa-list-alt",
         "model" => "existencias",
         "model1" => "Productos en Almacen Local",
-        "headers" => ["id", "Nombre", "Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre","Còdigo", "Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
         "data" => $producto,
-        "fields" => ["id", "nombre", "medida", "categoria","cantidad","preciounidad","precioventa"],
+        "fields" => ["id", "nombre","codigo", "medida", "categoria","cantidad","preciounidad","precioventa"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -52,7 +53,7 @@ class ProductoController extends Controller
 
     public function editView($id){
       $p = Producto::find($id);
-      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad, "id" => $p->id]);
+      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "id" => $p->id]);
       
     }
 
@@ -173,6 +174,7 @@ class ProductoController extends Controller
       $p->categoria = $request->categoria;
       $p->medida = $request->medida;
       $p->cantidad = $request->cantidad;
+      $p->codigo = $request->codigo;
       $res = $p->save();
       return redirect()->action('Existencias\ProductoController@index', ["edited" => $res]);
     }
@@ -194,29 +196,60 @@ class ProductoController extends Controller
       }
     }
 
+
+    public function codigoProduct(Request $request){
+
+        $searchpacienteDNI = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('codigo','=', $request->codigo)
+                    ->where('sede_id','=',$request->session()->get('sede'))
+                    ->get();
+
+           if (count($searchpacienteDNI) > 0){
+
+              return true;
+           } else {
+
+              return false;
+           }
+
+    }
+
     public function create(Request $request){
-	  	$validator = \Validator::make($request->all(), [
-	  		"nombre" => "required|unique:productos",
-	  		"medida" => "required",
-	  		"categoria" => "required"
-	  	]);
-	  	
-    	if($validator->fails()) $this->createView(["created" => false]);
-    	$producto = Producto::create([
-    		"nombre" => $request->nombre,
-    		"categoria" => $request->categoria,
-    		"medida" => $request->medida,
+      $validator = \Validator::make($request->all(), [
+        'nombre' => 'required|string|max:255',
+        'codigo' => 'required|unique:productos'
+      ]);
+
+      if($validator->fails()) $this->createView(["created" => false]);
+
+      If (ProductoController::codigoProduct($request)){ 
+
+        Toastr::error('El Còdigo de Producto ya esta en Uso.', 'Producto!', ['progressBar' => true]);
+        return redirect()->action('Existencias\ProductoController@createView', ["created" => false]);
+
+      } else {
+
+       $producto = Producto::create([
+        "nombre" => $request->nombre,
+        "codigo" => $request->codigo,
+        "categoria" => $request->categoria,
+        "medida" => $request->medida,
         "preciounidad" => $request->preciounidad,
         "precioventa" => $request->precioventa,
         "sede_id" => $request->session()->get('sede'),
         "almacen" => 1
-    	]);
-    	
-    	if($producto){
-   			return redirect()->action('Existencias\ProductoController@index', ["created" => true]);
-			}
-   			return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
-    }
+      ]);
+       Toastr::success('Registrado Exitosamente.', 'Producto!', ['progressBar' => true]);
+       return redirect()->action('Existencias\ProductoController@index', ["created" => true]);
+       
+     }
+
+
+   }
+   
+		
 
     public function historicoView(){
       return view('existencias.historico', ["transferencias" => $this->unique_multidim_array(Transferencia::all(), "code")]);
