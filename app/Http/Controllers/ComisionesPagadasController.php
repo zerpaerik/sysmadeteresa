@@ -66,6 +66,20 @@ class ComisionesPagadasController extends Controller
   }
 
 
+     private function verTotalRecibo($id){
+
+
+        $totalRecibo = Atenciones::where('recibo', $id)
+                            ->select(DB::raw('SUM(porcentaje) as totalrecibo'))
+                            ->get();
+     
+        if($totalRecibo){
+            return $totalRecibo;
+         }else{
+            return false;
+         }  
+
+     }
   
        
    

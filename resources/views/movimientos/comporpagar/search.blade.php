@@ -45,12 +45,10 @@
 							<th>Monto a Pagar</th>
 							<th>Fecha Atenciòn</th>
 							<th>Acciones</th>
-
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($atenciones as $atec)	
-
 							<tr>
 								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
 								<td>{{$atec->id}}</td>
