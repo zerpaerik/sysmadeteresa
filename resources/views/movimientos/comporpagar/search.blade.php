@@ -23,13 +23,12 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h5>Rango de Fechas</h5>
+						<h4>Total de deuda: {{$total}}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px"
-						<label for="">Nombre</label>
-						<input type="text" name="nom" style="line-height: 20px">						
+						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
+						<input type="text" placeholder="Buscador" name="nom" style="line-height: 20px; margin-left: 30px;">
 						<input type="submit" value="Buscar" class="btn btn-primary">
 					</form>
 					<form action="/pagarmultiple" method="post">
@@ -75,7 +74,6 @@
 					</tfoot>
 					</form>
 				</table>
-				<h4>Total de deuda: {{$total}}</h4>
 			</div>
 		</div>
 	</div>

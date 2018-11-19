@@ -23,7 +23,7 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h5>Rango de Fechas</h5>
+						<h4>Total de deuda: {{$total}}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
@@ -77,7 +77,6 @@
 					</tfoot>
 					</form>
 				</table>
-				<h4>Total de deuda: {{$total}}</h4>
 				{{$atenciones->links()}}	
 			</div>
 			<!-- <div class="box-content no-padding">

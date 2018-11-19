@@ -23,7 +23,7 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/compagadas-search" method="get">
-						<h5>Totales</h5>
+						<h4>Totales: {{ $total }}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
@@ -37,9 +37,9 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Fecha Atenciòn</th>
+							<th>Total Pagado</th>
 							<th>Acciones</th>
 							<th></th>
-							<th>Total Pagado</th>
 
 						</tr>
 					</thead>
@@ -51,9 +51,9 @@
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>{{$atec->totalrecibo}}</td>
                                 <td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a></td>
                                 <td><a href="{{asset('/reversar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Reversar</a></td>	
-								<td>{{$atec->totalrecibo}}</td>
                             </tr>
 						@endforeach
 					</tbody>

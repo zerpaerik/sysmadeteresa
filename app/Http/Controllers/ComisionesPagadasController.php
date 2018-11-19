@@ -16,16 +16,24 @@ class ComisionesPagadasController extends Controller
 {
 
 	public function index(){
+        $total = 0;
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
         $atenciones = $this->elasticSearch($inicio,$final);
-        return view('movimientos.compagadas.index', ["atenciones" => $atenciones]);
+        foreach ($atenciones as $atec) {
+          $total = $total + $atec->totalrecibo;
+        }
+        return view('movimientos.compagadas.index', ["atenciones" => $atenciones, "total" => $total]);
 	}
 
     public function search(Request $request)
     {
+        $total = 0;
         $atenciones = $this->elasticSearch($request->inicio,$request->final);
-        return view('movimientos.compagadas.search', ["atenciones" => $atenciones]); 
+        foreach ($atenciones as $atec) {
+          $total = $total + $atec->totalrecibo;
+        }
+        return view('movimientos.compagadas.search', ["atenciones" => $atenciones, "total" => $total]); 
     }
 
 
