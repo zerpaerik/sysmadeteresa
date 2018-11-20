@@ -149,12 +149,11 @@ class AtencionesController extends Controller
     }
 
     if (isset($request->id_servicio)) {
-            $searchServicio = DB::table('servicios')
-                    ->select('*')
-                    ->where('id','=', $request->id_servicio)
-                    ->first();   
-
-            $porcentaje = $searchServicio->porcentaje;
+      $searchServicio = DB::table('servicios')
+              ->select('*')
+              ->where('id','=', $request->id_servicio)
+              ->first();   
+      $porcentaje = ($request->origen == 1) ? $searchServicio->por_per : $searchServicio->porcentaje;
 
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {

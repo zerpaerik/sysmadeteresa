@@ -19,9 +19,9 @@ class ServiciosController extends Controller
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Opciones"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal", "Porcentaje Tecnólogo", "Opciones"],
         "data" => $servicios,
-        "fields" => ["id", "detalle", "precio","porcentaje",],
+        "fields" => ["id", "detalle", "precio","porcentaje","por_per", "por_tec"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -40,7 +40,7 @@ class ServiciosController extends Controller
           'precio' => 'required|string|max:20'
         
         ]);
-        
+
         if($validator->fails()) {
           return redirect()->action('Archivos\ServiciosController@createView', ['errors' => $validator->errors()]);
         } else {
@@ -48,6 +48,8 @@ class ServiciosController extends Controller
           $servicio->detalle = $request->detalle;
           $servicio->precio  = $request->precio;
           $servicio->porcentaje  = $request->porcentaje;
+          $servicio->por_per  = $request->por_per;
+          $servicio->por_tec  = $request->por_tec;
 
           if ($servicio->save()) {
             if (isset($request->materiales)) {

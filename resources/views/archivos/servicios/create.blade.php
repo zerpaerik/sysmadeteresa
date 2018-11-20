@@ -25,20 +25,30 @@
 				<form class="form-horizontal" role="form" method="post" action="servicios/create">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<label class="col-sm-1 control-label">Detalle</label>
-						<div class="col-sm-3">
+						<label class="col-sm-2 control-label">Detalle</label>
+						<div class="col-sm-4">
 							<input type="text" class="form-control" name="detalle" placeholder="Detalle" data-toggle="tooltip" data-placement="bottom" title="Detalle">
 						</div>
-						<label class="col-sm-1 control-label">Precio</label>
-						<div class="col-sm-3">
+						<label class="col-sm-2 control-label">Precio</label>
+						<div class="col-sm-4">
 							<input type="text" class="form-control" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>
 
-						<label class="col-sm-1 control-label">Porcentaje</label>
-						<div class="col-sm-3">
+						<label class="col-sm-2 control-label">Porcentaje</label>
+						<div class="col-sm-4">
 							<input type="text" class="form-control" name="porcentaje" placeholder="porcentaje" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
 						</div>
 						
+						<label class="col-sm-2 control-label">Personaje Personal</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="por_per" placeholder="porcentaje personal" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
+						</div>
+
+						<label class="col-sm-2 control-label">Personaje Tecnólogo</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="por_tec" placeholder="porcentaje tecnólogo" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
+						</div>
+
 						<div class="form-group">
 							<div class="row">
 					            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales seleccionados</label>
