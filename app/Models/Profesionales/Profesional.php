@@ -9,8 +9,9 @@ class Profesional extends Model
 {
     protected $fillable = ["nombres", "apellidos", "dni", "cmp", "codigo", "especialidad", "nacimiento","phone"];
     public $table = "profesionales";
-
+/*
     public function getEspecialidadAttribute($value){
     	return Especialidad::where('id', '=', $value)->get(['nombre'])->first()->nombre;
     }
+*/
 }
