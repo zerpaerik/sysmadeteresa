@@ -105,7 +105,6 @@ class EventController extends Controller
     $exists = Event::where("date", "=", Carbon::createFromFormat('d/m/Y', $request->date))
       ->where("time", "=", $request->time)
       ->get()->first();
-
     if(!$exists){
       $evt = Event::create([
         "paciente" => $request->paciente,

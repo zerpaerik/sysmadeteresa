@@ -281,6 +281,12 @@ Route::post('consulta/create', 'Events\EventController@create');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
 
+//Servicios
+Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');
+Route::get('services-create','ServiceController@createView')->name('service.create');
+Route::post('services/create', 'ServiceController@create');
+Route::get('service-{id}','ServiceController@show');
+//Route::get('service-available-time/{e}/{d}/{m}/{y}', 'ServiceController@availableTime');
 /**
  * Reportes
  */

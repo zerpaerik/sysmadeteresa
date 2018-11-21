@@ -156,10 +156,23 @@
       </li>
       <li>
         <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li>      
+      </li>                
     </ul>
   </li>
-
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Servicios</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Nuevo Servicio</a>
+      </li> 
+      <li>
+        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Servicio</a>
+      </li>                  
+    </ul>
+  </li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
