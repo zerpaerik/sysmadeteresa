@@ -109,7 +109,10 @@ Route::get('paquetes-addItems-{paquete}', 'Archivos\PaquetesController@addItems'
 Route::post('paquetes/storeItems/{paquete}', 'Archivos\PaquetesController@storeItems');
 Route::get('paquetes-delete-{id}','Archivos\PaquetesController@delete');
 
-
+//Prenatal
+Route::get('prenatal-create', 'PrenatalController@createView')->name('prenatal.create')->middleware('auth');
+Route::post('prenatal/create', 'PrenatalController@create')->middleware('auth');
+Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
 
 /**
  * Atenciones
