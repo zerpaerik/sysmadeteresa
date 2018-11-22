@@ -162,14 +162,14 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Servicios</span>
+      <span class="hidden-xs">Programaciones</span>
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Nuevo Servicio</a>
+        <a href="{{route('service.create')}}"><i class="fa fa-plus-circle"></i> Programar Servicio</a>
       </li> 
       <li>
-        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Servicio</a>
+        <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
       </li>                  
     </ul>
   </li>
