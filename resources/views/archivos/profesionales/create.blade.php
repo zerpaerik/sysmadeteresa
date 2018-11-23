@@ -69,6 +69,14 @@
 						<label class="col-sm-1 control-label">Telèfono</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="phone" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telefono">
+						</div>
+
+						<label class="col-sm-1 control-label">Tecnólogo</label>
+						<div class="col-sm-3">
+							<select name="tipo">
+								<option value="3">Si</option>
+								<option value="2" selected="selected">No</option>
+							</select>
 						</div>								
 
 						<br>

@@ -63,7 +63,7 @@ class ProfesionalesController extends Controller
       $users= User::create([
         'name' => $request->name,
         'lastname' => $request->apellidos,
-        'tipo' => '2',
+        'tipo' => $request->tipo,
         'dni' => $request->dni
 
       ]);
@@ -90,7 +90,8 @@ class ProfesionalesController extends Controller
 
      public function editView($id){
       $p = Profesionales::find($id);
-      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"phone" => $p->phone,"id" => $p->id]);
+      $u = User::where('dni',$p->dni)->first();
+      return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"phone" => $p->phone,"id" => $p->id, "tipo" => $u->tipo]);
     }
 
      public function edit(Request $request){
@@ -104,6 +105,10 @@ class ProfesionalesController extends Controller
       $p->nacimiento = $request->nacimiento;
       $p->phone = $request->phone;
       $res = $p->save();
+      User::where('dni', $request->dni)
+          ->update([
+            "tipo" => $request->tipo
+          ]);
       return redirect()->action('Archivos\ProfesionalesController@index', ["edited" => $res]);
     }
 
