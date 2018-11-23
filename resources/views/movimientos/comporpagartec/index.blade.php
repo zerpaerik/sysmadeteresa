@@ -62,7 +62,7 @@
 								<td>{{$atec->laboratorio}}</td>
 								@endif
 								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
+								<td>{{$atec->por_tec}}</td>
 								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcomtec')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
@@ -79,55 +79,7 @@
 				</table>
 				{{$atenciones->links()}}	
 			</div>
-			<!-- <div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/comporpagar-search" method="get">
-						<h5>Rango de fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
-					</form>
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Porcentaje</th>
-							<th>Monto a Pagar</th>
-							<th>Fecha Atenciòn</th>
-							<th>Acciones</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($atenciones as $atec)	
-
-							<tr>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								@if($d->es_servicio =='1')
-								<td>{{$d->servicio}}</td>
-								@else
-								<td>{{$d->laboratorio}}</td>
-								@endif
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-                                <td>{{$atec->porcentaje}}</td>
-                                <td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							</tr>
-						@endforeach
-					</tbody>
-					<tfoot>
-						
-					</tfoot>
-				</table>
-			</div> -->
+		
 		</div>
 	</div>
 </div>

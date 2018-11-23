@@ -23,7 +23,7 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagartec-search" method="get">
-						<h4>Total de deuda: {{$total}}</h4>
+						<h4>Total: {{$total}}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
@@ -59,8 +59,8 @@
 								<td>{{$atec->laboratorio}}</td>
 								@endif
 								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-								<td>{{$atec->porcentaje}}</td>
+								<td>{{$atec->por_tec}}</td>
+								<td>{{$atec->monto * $atec->por_tec / 100}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcomtec')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
@@ -69,7 +69,7 @@
 					<tfoot>
 							<th>
 								{{ csrf_field() }}
-								<button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger"><input type="submit">Pagar Seleccionadas</button>
+								<button style="" type="submit" class="btn btn-xs btn-danger">Pagar Seleccionados</button>
 							</th>
 					</tfoot>
 					</form>
