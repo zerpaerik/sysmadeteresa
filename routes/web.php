@@ -149,6 +149,17 @@ Route::post('comporpagar/edit', 'ComporPagarController@edit');
 Route::post('pagarmultiple', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
+Route::get('comporpagartec', 'ComisionesPorPagarTecController@index')->name('comporpagartec.index')->middleware('auth');
+Route::get('comporpagartec-search', 'ComisionesPorPagarTecController@search')->name('comporpagartec.search')->middleware('auth');
+Route::get('comporpagartec-create', 'ComisionesPorPagarTecController@createView')->name('comporpagartec.create')->middleware('auth');
+Route::post('comporpagartec/create', 'ComisionesPorPagarTecController@create')->middleware('auth');
+Route::get('comporpagartec/{id}', 'ComisionesPorPagarTecController@delete')->middleware('auth');
+Route::get('comporpagartec-edit-{id}', 'ComisionesPorPagarTecController@editView')->name('comporpagartec.edit');
+Route::post('comporpagartec/edit', 'ComisionesPorPagarTecController@edit');
+Route::post('pagarmultipletec', 'ComisionesPorPagarTecController@pagarmultiple');
+Route::get('pagarcomtec/{id}', 'ComisionesPorPagarTecController@pagarcom')->middleware('auth');
+
+
 Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.index')->middleware('auth');
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
 Route::get('reversar/{id}', 'ComisionesPagadasController@reversar')->middleware('auth');

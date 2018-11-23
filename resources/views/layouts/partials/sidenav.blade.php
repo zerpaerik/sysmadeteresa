@@ -139,6 +139,9 @@
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comisiones por pagar</a>
       </li>
       <li>
+        <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comisiones Tecnólogos</a>
+      </li>
+      <li>
         <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
       </li>
 

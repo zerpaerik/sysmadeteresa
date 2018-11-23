@@ -1,0 +1,1 @@
+ALTER TABLE `resultados_servicios` ADD `user_id` INT NOT NULL AFTER `id_servicio`;

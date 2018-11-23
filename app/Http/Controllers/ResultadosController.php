@@ -125,7 +125,6 @@ class ResultadosController extends Controller
 
 	 public function edit($id,Request $request){
 
-
      $searchAtenciones = DB::table('atenciones')
                     ->select('*')
                    // ->where('estatus','=','1')
@@ -148,9 +147,9 @@ class ResultadosController extends Controller
             foreach ($searchAtencionesServicios as $servicios) {
                     $id_servicio = $servicios->id_servicio;
                 }
-
+                
                 $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;
+                $p->resultado = 1;        
                 $p->save();
 
 
@@ -158,6 +157,7 @@ class ResultadosController extends Controller
                 $creditos->id_atencion = $request->id;
                 $creditos->id_servicio = $id_servicio;
                 $creditos->descripcion= $request->descripcion;
+                $creditos->user_id = Auth::user()->id;
                 $creditos->save();
 
        } else {
