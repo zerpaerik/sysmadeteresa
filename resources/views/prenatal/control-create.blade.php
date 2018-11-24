@@ -23,78 +23,102 @@
         <form class="form-horizontal" role="form" method="post" action="control/create">
           {{ csrf_field() }}
           <div class="form-group">          
-            <h2>Control Prenatal de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
+            <h3>Control Prenatal de {{$paciente->nombres}} {{$paciente->apellidos}}</h3>
+            <br>
             
             <input type="hidden" name="id_paciente" value="{{$data->paciente}}">
             <input type="hidden" name="id_ficha_prenatal" value="{{$data->id}}">
             <label for="">Fecha Control</label>
-            <input type="date" name="fecha_cont"> 
-            <br>  
-            
-            <label for="">Edad Gestacion (Semanas)</label>
-            <input type="text" name="gesta_semanas">  
-            <br>
-
-            <label for="">Peso Madre</label>
-            <input type="text" name="peso_madre"> 
-            <br>
-
-            <label for="">Temperatura</label>
-            <input type="text" name="temp"> 
-            <br>
-
-            <label for="">Tension Arterialo</label>
-            <input type="text" name="tension"> 
+            <input type="date" name="fecha_cont" style="line-height: 20px"> 
             <br>  
 
-            <label for="">Altura Uterina</label>
-            <input type="text" name="altura_uterina"> 
-            <br>  
+            <label class="col-sm-1 control-label">Gestaciòn</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="gesta_semanas" placeholder="Semanas de gestacion" data-toggle="tooltip" data-placement="bottom" title="gesta_semanas">
+            </div>
 
-            <label for="">Presentacion</label>
-            <input type="text" name="presentacion"> 
-            <br>  
+            <label class="col-sm-1 control-label">PesoMadre.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="peso_madre" placeholder="Peso de Madre" data-toggle="tooltip" data-placement="bottom" title="m37m">
+            </div>
 
-            <label for="">F.C.F</label>
-            <input type="text" name="fcf"> 
+            <label class="col-sm-1 control-label">Temp.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="temp" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
+            </div>
+
+            <label class="col-sm-1 control-label">Tensiòn.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="tension" placeholder="tension arterial" data-toggle="tooltip" data-placement="bottom" title="tension">
+            </div>
+
+             <label class="col-sm-1 control-label">Alt.Ute.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="altura_uterina" placeholder="Altura Uterina" data-toggle="tooltip" data-placement="bottom" title="altura uterina">
+            </div>
+
+            <label class="col-sm-1 control-label">Presentaciòn.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="presentacion" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion">
+            </div>
+
+            <label class="col-sm-1 control-label">F.C.F.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="fcf" placeholder="FCF" data-toggle="tooltip" data-placement="bottom" title="fcf">
+            </div>
+
+             <label class="col-sm-1 control-label">Movimiento.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="movimiento_fetal" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal">
+            </div>
+
+             <label class="col-sm-1 control-label">Edema.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="edema" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema">
+            </div>
+
+             <label class="col-sm-1 control-label">Pulso.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="pulso_materno" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno">
+            </div>
+
+
+             <label class="col-sm-1 control-label">Consejeria</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="consejeria" placeholder="Consejeria PF" data-toggle="tooltip" data-placement="bottom" title="consejeria">
+            </div>
+
+
+             <label class="col-sm-1 control-label">Sulfato.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="sulfato" placeholder="Sulfato Ferroso" data-toggle="tooltip" data-placement="bottom" title="sulfato">
+            </div>
+
+
+             <label class="col-sm-1 control-label">Perfil.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="perfil_biofisico" placeholder="Perfil Biosfisico" data-toggle="tooltip" data-placement="bottom" title="perfil_biofisico">
+            </div>
+
+
+             <label class="col-sm-1 control-label">Visita.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
+            </div>
+
+             <label class="col-sm-1 control-label">Establ.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
+            </div>
+
+             <label class="col-sm-1 control-label">Responsable.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="responsable_control" placeholder="Responsable de Control" data-toggle="tooltip" data-placement="bottom" title="responsable_control">
+            </div> 
             <br>
-
-            <label for="">Movimiento Fetal</label>
-            <input type="text" name="movimiento_fetal"> 
-            <br>
-
-            <label for="">Edema</label>
-            <input type="text" name="edema"> 
-            <br>  
-
-            <label for="">Pulso Materno por Min</label>
-            <input type="text" name="pulso_materno"> 
-            <br>
-
-            <label for="">Consejeria PF</label>
-            <input type="text" name="consejeria">  
-            <br>
-
-            <label for="">Sulfato ferroso</label>
-            <input type="text" name="sulfato"> 
-            <br>
-
-            <label for="">Perfil Biofisico</label>
-            <input type="text" name="perfil_biofisico">  
-            <br>
-
-            <label for="">Visita a domicilio</label>
-            <input type="text" name="visita_domicilio">  
-            <br>   
-
-            <label for="">Establecimiento de la atencion</label>
-            <input type="text" name="establecimiento_atencion">  
-            <br>  
-
-            <label for="">Nombre del responsable de control</label>
-            <input type="text" name="responsable_control">  
-            <br>
-            <input type="submit" class="btn btn-primary" value="Guardar">                           
+            <div class="col-sm-3">
+            <input type="submit" class="btn btn-primary" value="Guardar">  
+            </div>                         
           </div>
           </div>                                                                                                                    
           </div>

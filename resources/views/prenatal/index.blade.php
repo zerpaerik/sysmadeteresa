@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Analisis de Laboratorio</strong></span>
+					<span><strong>Controles Prenatales</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -27,8 +27,8 @@
 							<th>Paciente</th>
 							<th>Registro</th>
 							<th>Ver Ficha</th>
-							<th>Registrat Control</th>
-							<th>Descargar</th>
+							<th>Registrar Control</th>
+							<th>Descargar Ficha</th>
 							
 						</tr>
 					</thead>

@@ -23,72 +23,87 @@
 				<form class="form-horizontal" role="form" method="post" action="prenatal/create">
 					{{ csrf_field() }}
 					<div class="form-group">					
-						<h2>Datos personales</h2>
+						<h3>Datos personales</h3>
 						<label for="">Seleccione un paciente</label>
-						<select name="paciente" id="">
+						<select name="paciente" id="el2">
 						@foreach($pacientes as $paciente)
 							<option value="{{$paciente->id}}">{{$paciente->nombres}} {{$paciente->apellidos}}</option>
 						@endforeach
 						</select>
-						<h2>Antecedentes Obstetricos</h2>
+						<br><br>
+						<h3>Antecedentes Obstetricos</h3>
 
-						<label for="">Gestas</label>
-						<input type="input" name="gesta"> 
-						<br>	
-						
-						<label for="">Aborto</label>
-						<input type="input" name="aborto">	
-						<br>
+						<label class="col-sm-1 control-label">Gestas</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="gesta" placeholder="gesta" data-toggle="tooltip" data-placement="bottom" title="gesta">
+						</div>
 
-						<label for="">Vaginales</label>
-						<input type="input" name="vaginales">	
-						<br>
+						<label class="col-sm-1 control-label">Aborto</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="aborto" placeholder="Noabortombres" data-toggle="tooltip" data-placement="bottom" title="aborto">
+						</div>
 
-						<label for="">Nacidos Vivos</label>
-						<input type="input" name="vivos">	
-						<br>
+						<label class="col-sm-1 control-label">Vaginales</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="vaginales" placeholder="vaginales" data-toggle="tooltip" data-placement="bottom" title="vaginales">
+						</div>
 
-						<label for="">Nacidos Muertos</label>
-						<input type="input" name="muertos">	
-						<br>	
+						<label class="col-sm-1 control-label">Nac.Vivos</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="vivos" placeholder="vivos" data-toggle="tooltip" data-placement="bottom" title="vivos">
+						</div>
 
-						<label for="">Viven</label>
-						<input type="input" name="viven">	
-						<br>	
+							<label class="col-sm-1 control-label">Nac.Muertoss</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="muertos" placeholder="muertos" data-toggle="tooltip" data-placement="bottom" title="muertos">
+						</div>
 
-						<label for="">Mueren 1era Semana</label>
-						<input type="input" name="semana1">	
-						<br>	
+							<label class="col-sm-1 control-label">Viven</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="viven" placeholder="viven" data-toggle="tooltip" data-placement="bottom" title="viven">
+						</div>
 
-						<label for="">Despues 1era Semana</label>
-						<input type="input" name="semana2">	
-						<br>
+							<label class="col-sm-1 control-label">Mueren.1Sem</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="semana1" placeholder="semana1" data-toggle="tooltip" data-placement="bottom" title="semana1">
+						</div>
 
-						<label for="">Cesareas</label>
-						<input type="input" name="cesaria">	
-						<br>
+							<label class="col-sm-1 control-label">Despues.1Sem</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="semana2" placeholder="semana2" data-toggle="tooltip" data-placement="bottom" title="semana2">
+						</div>
 
-						<label for="">Partos</label>
-						<input type="input" name="parto">	
-						<br>	
+							<label class="col-sm-1 control-label">Cesarea</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="cesaria" placeholder="cesarea" data-toggle="tooltip" data-placement="bottom" title="cesaria">
+						</div>
 
-						<label for="">0 ó +3</label>
-						<input type="input" name="num">	
-						<br>
+							<label class="col-sm-1 control-label">Partos</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="parto" placeholder="parto" data-toggle="tooltip" data-placement="bottom" title="parto">
+						</div>
 
-						<label for="">2500gr</label>
-						<input type="input" name="gr">	
-						<br>
+							<label class="col-sm-1 control-label">0 ó +3</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="num" placeholder="" data-toggle="tooltip" data-placement="bottom" title="">
+						</div>
 
-						<label for="">Gemelar</label>
-						<input type="input" name="gemelar">	
-						<br>
+						<label class="col-sm-1 control-label">250gr</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="gr" placeholder="250gr" data-toggle="tooltip" data-placement="bottom" title="250gr">
+						</div>
 
-						<label for="">37 Semanas</label>
-						<input type="input" name="m37m">	
-						<br>
+						<label class="col-sm-1 control-label">Gemelar</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="gemelar" placeholder="gemelar" data-toggle="tooltip" data-placement="bottom" title="gemelar">
+						</div>
+                        <label class="col-sm-3 control-label">37 Sem.</label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="m37m" placeholder="m37m" data-toggle="tooltip" data-placement="bottom" title="m37m">
+						</div>
 
-						<h2>Fin Gestacion Anterior</h2>
+					<br><br>
+						<h3>Fin Gestacion Anterior</h3>
 						<label for="">Terminacion</label>
 						<p>
 							<input type="radio" name="terminacion_gestacion" value="Parto">Parto
@@ -99,7 +114,7 @@
 							<input type="radio" name="terminacion_gestacion" value="No Aplica">No Aplica							
 						</p>								
 						<label for="">Fecha</label>
-						<input type="date" name="fecha_terminacion">
+						<input type="date" name="fecha_terminacion" style="line-height: 20px">
 						<br>
 						<label for="">Si fue aborto que tipo de aborto</label>
 						<p>
@@ -110,10 +125,12 @@
 							<input type="radio" name="aborto_gestacion" value="Otro">Otro
 							<input type="radio" name="aborto_gestacion" value="No Aplica">No Aplica	
 						</p>
+
+
 						<label for="">RN de mayor peso</label>
 						<input type="text" name="peso_gestacion">Gr
 
-						<h2>Antecedentes Familiares</h2>
+						<h3>Antecedentes Familiares</h3>
 						<label for="">Ninguno</label>
 						<input type="checkbox" name="ninguno_af"><br>
 						<label for="">Alergias</label>
@@ -137,7 +154,7 @@
 						<label for="">Otro</label>
 						<input type="text" name="otro_af"><br>		
 
-						<h2>Antecedentes Personales</h2>
+						<h3>Antecedentes Personales</h3>
 						<label for="">Ninguno</label>
 						<input type="checkbox" name="ninguno_ap"><br>
 						<label for="">Aborto Habitual</label>
@@ -195,13 +212,13 @@
 						<label for="">Otro</label>
 						<input type="checkbox" name="otro_ap"><br>
 
-						<h2>Peso y Talla</h2>
+						<h3>Peso y Talla</h3>
 						<label for="">Peso Pregestacional</label>
 						<input type="text" name="peso_pregestacional">
 						<label for="">Talla (Cm)</label>
 						<input type="text" name="talla_pregestacional">
 
-						<h2>Antitetanica</h2>
+						<h3>Antitetanica</h3>
 						<label for="">Numero de dosis previa</label>
 						<input type="text" name="dosis_previa">
 						<label for="">Primera Dosis</label>
@@ -209,7 +226,7 @@
 						<label for="">Segunda Dosis</label>
 						<input type="text" name="segunda_dosis">
 
-						<h2>Tipo de sangre</h2>		
+						<h3>Tipo de sangre</h3>		
 						<label for="">Grupo</label>
 							<p>
 								<input type="radio" name="sangre" value="A">A
@@ -228,39 +245,39 @@
 						<label for="">Numero de sesiones</label>		
 						<input type="text" name="sesion_sangre">
 
-						<h2>F.U.M</h2>
+						<h3>F.U.M</h3>
 						<label for="">Fecha Ultima Menstruacion</label>
-						<input type="date" name="ultima_menstruacion">
+						<input type="date" name="ultima_menstruacion" style="line-height: 20px">
 						<label for="">Fecha Probable de Parto</label>
-						<input type="date" name="parto_probable">
+						<input type="date" name="parto_probable" style="line-height: 20px">
 						<label for="">Eco: EG</label>
-						<input type="date" name="eco_eg">		
+						<input type="date" name="eco_eg" style="line-height: 20px">		
 
-						<h2>Serologia</h2>
+						<h3>Serologia</h3>
 						<label for="">1</label>
 							<p>
 								<input type="radio" name="1era" value="negativo">Negativo
 								<input type="radio" name="1era" value="positivo">Positivo	
 								<input type="radio" name="1era" value="no">No se hizo
-								<input type="date" name="serologia_1era">
+								<input type="date" name="serologia_1era" style="line-height: 20px">
 						</p>	
 						<label for="">2</label>
 							<p>
 								<input type="radio" name="2da" value="negativo">Negativo
 								<input type="radio" name="2da" value="positivo">Positivo	
 								<input type="radio" name="2da" value="no">No se hizo
-								<input type="date" name="serologia_2da">
+								<input type="date" name="serologia_2da" style="line-height: 20px">
 						</p>
 
-						<h2>Hemologbina</h2>
+						<h3>Hemologbina</h3>
 						<label for="">Hb (g %)</label>
 						<input type="text" name="hemoglobina">
 						<label for="">No se hizo </label>
 						<input type="checkbox" name="hemoglobina_no">
 						<label for="">Fecha</label>
-						<input type="date" name="hemoglobina_fecha">		
+						<input type="date" name="hemoglobina_fecha" style="line-height: 20px">		
 
-						<h2>Examenes</h2>
+						<h3>Examenes</h3>
 						<label for="">Clinico</label>			
 						<p>
 								<input type="radio" name="clinica" value="clinico_no">Sin Examen 
@@ -320,28 +337,28 @@
 								<input type="radio" name="torch" value="torch_anormal">Anormal							
 						</p>	
 
-						<h2>Patologia Materna (CIE 10)</h2>
+						<h3>Patologia Materna (CIE 10)</h3>
 						<label for="">1</label>
 						<input type="text" name="patologia_1">
-						<input type="date" name="patologia_1_date">
+						<input type="date" name="patologia_1_date" style="line-height: 20px">
 						<label for="">Otros(CIE 10)</label>
 						<input type="text" name="patologia_1_otro">
 						<br>		
 						<label for="">2</label>
 						<input type="text" name="patologia_2">
-						<input type="date" name="patologia_2_date">
+						<input type="date" name="patologia_2_date" style="line-height: 20px">
 						<label for="">Otros(CIE 10)</label>
 						<input type="text" name="patologia_2_otro">	
 						<br>
 						<label for="">3</label>
 						<input type="text" name="patologia_3">
-						<input type="date" name="patologia_3_date">
+						<input type="date" name="patologia_3_date" style="line-height: 20px">
 						<label for="">Otros(CIE 10)</label>
 						<input type="text" name="patologia_3_otro">	
 
-						<h2>Terminacion</h2>
+						<h3>Terminacion</h3>
 						<label for="">Fecha</label>
-						<input type="date" name="fecha_terminacion">
+						<input type="date" name="fecha_terminacion" style="line-height: 20px">
 							<p>
 								<input type="radio" name="terminacion" value="Espontanea">Espontanea
 								<input type="radio" name="terminacion" value="Cesarea">Cesarea	
@@ -349,7 +366,7 @@
 								<input type="radio" name="terminacion" value="Vacumm">Vacumm
 							</p>	
 
-						<h2>Atencion</h2>
+						<h3>Atencion</h3>
 						<label for="">Nivel</label>	
 						<p>
 							<input type="radio" name="nivel" value="Primario">Primario
@@ -404,7 +421,7 @@
 								<input type="radio" name="otro_atencion" value="Neonato">Neonato	
 							</p>																																																								
 
-							<h2>Recien Nacido</h2>
+							<h3>Recien Nacido</h3>
 							<label for="">Sexo</label>
 							<p>
 								<input type="radio" name="sexo_nacido" value="Femenino">Femenino
@@ -440,9 +457,9 @@
 							<br>
 							<label for="">Patologia del recion nacido</label>
 							<br>
-							1 <input type="text" name="patologia_recien_1">	<input type="date" name="patologia_recien_1_date"><br>
-							2 <input type="text" name="patologia_recien_2">	<input type="date" name="patologia_recien_2_date"><br>						
-							3 <input type="text" name="patologia_recien_3">	<input type="date" name="patologia_recien_3_date"><br>
+							1 <input type="text" name="patologia_recien_1">	<input type="date" name="patologia_recien_1_date" style="line-height: 20px"><br>
+							2 <input type="text" name="patologia_recien_2">	<input type="date" name="patologia_recien_2_date" style="line-height: 20px"><br>						
+							3 <input type="text" name="patologia_recien_3">	<input type="date" name="patologia_recien_3_date" style="line-height: 20px"><br>
 							<label for="">Otros (CIE 10)</label>	
 							<br>
 							1 <input type="text" name="otros_cie1_10"><br>
@@ -456,5 +473,45 @@
 			</div>	
 		</div>
 	</div>
-</div>	
+</div>
+@section('scripts')
+<script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+// Run Select2 on element
+function Select2Test(){
+	$("#el2").select2();
+	$("#el1").select2();
+	$("#el3").select2();
+  $("#el5").select2();
+  $("#el4").select2();
+}
+$(document).ready(function() {
+	// Load script of Select2 and run this
+	LoadSelect2Script(Select2Test);
+	LoadTimePickerScript(DemoTimePicker);
+	WinMove();
+});
+
+function DemoTimePicker(){
+	$('#input_date').datepicker({
+	setDate: new Date(),
+	minDate: 0});
+	$('#input_time').timepicker({
+		setDate: new Date(),
+		stepMinute: 10
+	});
+	$('#input_time2').timepicker({
+		setDate: new Date(),
+		stepMinute: 10
+	});
+}
+
+</script>
+
+
+   
+@endsection	
 @endsection

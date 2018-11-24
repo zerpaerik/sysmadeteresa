@@ -7,6 +7,7 @@ use App\Models\Pacientes\Paciente;
 use App\Prenatal;
 use App\Control;
 use DB;
+use Toastr;
 
 class PrenatalController extends Controller
 {
@@ -148,8 +149,7 @@ class PrenatalController extends Controller
 
     public function create(Request $request)
     {
-    	$prenatal = Prenatal::where('paciente',$request->paciente);
-    	if (!$prenatal) {
+
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
 				'gesta' =>$request->gesta,
@@ -245,8 +245,10 @@ class PrenatalController extends Controller
 				'otros_cie1_10' => $request->otros_cie1_10,
 				'otros_cie2_10' => $request->otros_cie2_10,
 			]);
-    	}
-		return back();
+
+		Toastr::success('Registrado Exitosamente.', 'Consulta Prenatal!', ['progressBar' => true]);
+
+		return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
     }
 
     public function verControl($id)
@@ -282,6 +284,8 @@ class PrenatalController extends Controller
 			"responsable_control" => $request->responsable_control,
     	]);
 
-    	return back();
+    	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
+
+		return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
     }
 }
