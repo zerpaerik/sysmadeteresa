@@ -111,7 +111,11 @@ Route::get('paquetes-delete-{id}','Archivos\PaquetesController@delete');
 
 //Prenatal
 Route::get('prenatal-create', 'PrenatalController@createView')->name('prenatal.create')->middleware('auth');
+Route::get('prenatal-ficha-{id}', 'PrenatalController@FichaView')->name('prenatal.ficha')->middleware('auth');
+Route::get('prenatal-control-{id}', 'PrenatalController@createControlView')->name('prenatal.control')->middleware('auth');
+Route::get('prenatal-vercontrol-{id}', 'PrenatalController@verControl')->name('prenatal.vercontrol')->middleware('auth');
 Route::post('prenatal/create', 'PrenatalController@create')->middleware('auth');
+Route::post('control/create', 'PrenatalController@createControl')->middleware('auth');
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
 
 /**
