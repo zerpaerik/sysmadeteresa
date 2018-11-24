@@ -147,10 +147,33 @@ class ResultadosController extends Controller
             foreach ($searchAtencionesServicios as $servicios) {
                     $id_servicio = $servicios->id_servicio;
                 }
+
+          $searchServicioTec = DB::table('servicios')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $id_servicio)
+                    ->get();
+
+            foreach ($searchServicioTec as $servicios) {
+                    $por_tec = $servicios->por_tec;
+                }
+
+
+
+          if ($por_tec > 0) {
                 
                 $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;        
+                $p->resultado = 1;  
+                $p->pago_com_tec = 0;      
                 $p->save();
+
+          } else {
+
+                $p = Atenciones::findOrFail($id);
+                $p->resultado = 1;  
+                $p->save();
+
+          }
 
 
                 $creditos = new ResultadosServicios();

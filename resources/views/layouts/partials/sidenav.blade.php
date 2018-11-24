@@ -136,10 +136,10 @@
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por cobrar</a>
       </li>
       <li>
-        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comisiones por pagar</a>
+        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
       <li>
-        <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comisiones Tecnólogos</a>
+        <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comis. Tecnólogos</a>
       </li>
       <li>
         <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
