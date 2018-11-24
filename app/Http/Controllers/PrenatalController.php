@@ -112,8 +112,7 @@ class PrenatalController extends Controller
 			 'p.apellidos',
 			 'p.id as idPaciente')
     	->join('pacientes as p','p.id','a.paciente')
-    	->paginate(20);
-    	
+    	->paginate(20);  	
     	return view('prenatal.index',[
     		 'data' => $data
     	]);     	
@@ -137,9 +136,14 @@ class PrenatalController extends Controller
 			'paciente' => $paciente
 		]);
 	}
-    public function FichaView($id)
+    public function show($id)
     {
-        return Prenatal::where('paciente',$id)->first();
+        $data = Prenatal::where('paciente', $id)->first();
+        $paciente = Paciente::where('id',$data->id)->first();
+        return view('prenatal.show',[
+        	'data' => $data,
+        	'paciente' => $paciente
+        ]);
     }
 
     public function create(Request $request)
