@@ -248,8 +248,10 @@ class PrenatalController extends Controller
     public function verControl($id)
     {
     	$control = Control::where('id_paciente',$id)->get();
-
-    	return $control;
+    	$view = \View::make('prenatal.reporte')->with('controles', $control);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('resultados_ver');
     }
 
     public function createControl(Request $request)
