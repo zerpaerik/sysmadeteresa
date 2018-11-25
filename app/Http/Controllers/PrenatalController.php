@@ -150,6 +150,15 @@ class PrenatalController extends Controller
     public function create(Request $request)
     {
 
+    	  $prenatal =Prenatal::where("paciente", '=',$request->paciente)->first();
+
+    	  if($prenatal) {
+    	  	
+           Toastr::error('DNI ya esta Registrado.', 'Paciente!', ['progressBar' => true]);
+		   return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
+	
+    	  }else{
+
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
 				'gesta' =>$request->gesta,
@@ -249,6 +258,7 @@ class PrenatalController extends Controller
 		Toastr::success('Registrado Exitosamente.', 'Consulta Prenatal!', ['progressBar' => true]);
 
 		return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
+		}
     }
 
     public function verControl($id)

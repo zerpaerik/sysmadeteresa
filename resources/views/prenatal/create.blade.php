@@ -78,7 +78,7 @@
 							<input type="text" class="form-control" name="cesaria" placeholder="cesarea" data-toggle="tooltip" data-placement="bottom" title="cesaria">
 						</div>
 
-							<label class="col-sm-1 control-label">Partos</label>
+						<label class="col-sm-1 control-label">Partos</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="parto" placeholder="parto" data-toggle="tooltip" data-placement="bottom" title="parto">
 						</div>
@@ -129,89 +129,61 @@
 
 						<label for="">RN de mayor peso</label>
 						<input type="text" name="peso_gestacion">Gr
-
+						<br>
+                      
 						<h3>Antecedentes Familiares</h3>
-						<label for="">Ninguno</label>
-						<input type="checkbox" name="ninguno_af"><br>
-						<label for="">Alergias</label>
-						<input type="checkbox" name="alergias_af"><br>
-						<label for="">Anomalias Congenitas</label>
-						<input type="checkbox" name="anomalias_af"><br>
-						<label for="">Epilepsia</label>
-						<input type="checkbox" name="epilepsia_af"><br>		
-						<label for="">Diabetes</label>
-						<input type="checkbox" name="diabetes_af"><br>
-						<label for="">Enfermedades Congenitas</label>
-						<input type="checkbox" name="enfermedades_af"><br>
-						<label for="">Gemelares</label>
-						<input type="checkbox" name="gemelares_af"><br>
-						<label for="">Hipertension Arterial</label>
-						<input type="checkbox" name="tension_af"><br>	
-						<label for="">Neoplasia</label>
-						<input type="checkbox" name="neoplasia_af"><br>
-						<label for="">TBC Pulmonar</label>
-						<input type="checkbox" name="pulmon_af"><br>
-						<label for="">Otro</label>
-						<input type="text" name="otro_af"><br>		
+					    <p>
+							<input type="checkbox" name="ninguno_af">Ninguno
+							<input type="checkbox" name="alergias_af">Alergias	
+							<input type="checkbox" name="anomalias_af">Anomalias Congenitas
+							<input type="checkbox" name="epilepsia_af">Epilepsia
+							<input type="checkbox" name="diabetes_af">Diabetes
+							<input type="checkbox" name="gemelares_af">Gemelares
+							<input type="checkbox" name="tension_af">Hipertension Arterial
+							<input type="checkbox" name="neoplasia_af">Neoplasia
+							<input type="checkbox" name="pulmon_af">TBC Pulmonar
+							<input type="checkbox" name="otro_af">Otro
+						</p>
+						<br>
 
-						<h3>Antecedentes Personales</h3>
-						<label for="">Ninguno</label>
-						<input type="checkbox" name="ninguno_ap"><br>
-						<label for="">Aborto Habitual</label>
-						<input type="checkbox" name="aborto_ap"><br>
-						<label for="">Aborto Recurrente</label>
-						<input type="checkbox" name="aborto2_ap"><br>
-						<label for="">Alcoholismo</label>
-						<input type="checkbox" name="alcohol_ap"><br>		
-						<label for="">Alergia a Medicamentos</label>
-						<input type="checkbox" name="alermedicamentos_ap"><br>
-						<label for="">Asma Bronquial</label>
-						<input type="checkbox" name="asmabron_ap"><br>
-						<label for="">Bajo de peso al nacer</label>
-						<input type="checkbox" name="pesonacimiento_ap"><br>
-						<label for="">Cardiopatia</label>
-						<input type="checkbox" name="cardiopatia_ap"><br>	
-						<label for="">Cirugia Uterina</label>
-						<input type="checkbox" name="cirugiauterina_ap"><br>
-						<label for="">Diabetes</label>
-						<input type="checkbox" name="diabetes_ap"><br>
+							<h3>Antecedentes Personales</h3>
+					    <p>
+							<input type="checkbox" name="ninguno_ap">Ninguno
+							<input type="checkbox" name="aborto_ap">Aborto Habitual	
+							<input type="checkbox" name="aborto2_ap">Aborto Recurrente
+							<input type="checkbox" name="alcohol_ap">Alcoholismo
+							<input type="checkbox" name="alermedicamentos_ap">Alergia a Medicamentos
+							<input type="checkbox" name="asmabron_ap">Asma Bronquial
+							<input type="checkbox" name="pesonacimiento_ap">Bajo de peso al nacer
+							<input type="checkbox" name="cardiopatia_ap">Cardiopatia
+							<input type="checkbox" name="cirugiauterina_ap">Cirugia Uterina
+						</p>
 
-						<label for="">Enfermedades Congenitas</label>
-						<input type="checkbox" name="congenitas_ap"><br>
-						<label for="">Enfermedades Infecciosas</label>
-						<input type="checkbox" name="infeccion_ap"><br>
-						<label for="">Epilepsia</label>
-						<input type="checkbox" name="epilepsia_ap"><br>
-						<label for="">Hemorragia Postparto</label>
-						<input type="checkbox" name="hemorragiapost_ap"><br>		
-						<label for="">Hipertension Arterial</label>
-						<input type="checkbox" name="htarterial_ap"><br>
-						<label for="">Hoja de coca</label>
-						<input type="checkbox" name="coca_ap"><br>
-						<label for="">Infertilidad</label>
-						<input type="checkbox" name="infertilidad_ap"><br>
-						<label for="">Neoplasias</label>
-						<input type="checkbox" name="neoplasias_ap"><br>	
-						<label for="">Otras Drogas</label>
-						<input type="checkbox" name="drogas_ap"><br>
-						<label for="">Parto Prolongado</label>
-						<input type="checkbox" name="partoprolongado_ap"><br>		
+						<p>
+							<input type="checkbox" name="congenitas_ap">Enfermedades Congenitas
+							<input type="checkbox" name="infeccion_ap">Enfermedades Infecciosas
+							<input type="checkbox" name="epilepsia_ap">Epilepsia
+							<input type="checkbox" name="hemorragiapost_ap">Hemorragia Postparto
+							<input type="checkbox" name="htarterial_ap">Hipertension Arterial
+							<input type="checkbox" name="coca_ap">Hoja de coca
+							<input type="checkbox" name="infertilidad_ap">Infertilidad
+							<input type="checkbox" name="neoplasias_ap">Neoplasias
+							<input type="checkbox" name="drogas_ap">Drogas
 
-						<label for="">Pre/Eclampsia</label>
-						<input type="checkbox" name="eclampsia_ap"><br>
-						<label for="">Prematuridad</label>
-						<input type="checkbox" name="prematuro_ap"><br>
-						<label for="">Retencion Placenta</label>
-						<input type="checkbox" name="placenta_ap"><br>
-						<label for="">Tabaco</label>
-						<input type="checkbox" name="tabaco_ap"><br>		
-						<label for="">TBC Pulmonar</label>
-						<input type="checkbox" name="pulmonar_ap"><br>
-						<label for="">VIH/SIDA</label>
-						<input type="checkbox" name="sida_ap"><br>
-						<label for="">Otro</label>
-						<input type="checkbox" name="otro_ap"><br>
+						</p>
 
+						<p>
+							<input type="checkbox" name="partoprolongado_ap">Parto Prolongado
+							<input type="checkbox" name="eclampsia_ap">Pre/Eclampsia
+							<input type="checkbox" name="prematuro_ap">Prematuridad
+							<input type="checkbox" name="placenta_ap">Retencion Placenta
+							<input type="checkbox" name="tabaco_ap">Tabaco
+							<input type="checkbox" name="pulmonar_ap">TBC Pulmonar
+							<input type="checkbox" name="sida_ap">VIH/SIDA
+							<input type="checkbox" name="otro_ap">Otro
+						
+						</p>
+						<br>
 						<h3>Peso y Talla</h3>
 						<label for="">Peso Pregestacional</label>
 						<input type="text" name="peso_pregestacional">
@@ -427,21 +399,38 @@
 								<input type="radio" name="sexo_nacido" value="Femenino">Femenino
 								<input type="radio" name="sexo_nacido" value="Masculino">Masculino	
 							</p>
-							<label for="">Talla</label>
-							<input type="text" name="talla_nacido"> <br>
-							<label for="">Peso</label>
-							<input type="text" name="peso_nacido"> <br>
-							<label for="">P.Cef</label>
-							<input type="text" name="cef_nacido"> <br>
-							<label for="">Temperatura</label>
-							<input type="text" name="temp_nacido"> <br>
+
+							<label class="col-sm-1 control-label">Talla</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" name="talla_nacido" placeholder="Talla" data-toggle="tooltip" data-placement="bottom" title="Talla">
+						</div>
+
+						<label class="col-sm-1 control-label">Peso</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" name="peso_nacido" placeholder="Peso" data-toggle="tooltip" data-placement="bottom" title="Peso">
+						</div>
+						<label class="col-sm-1 control-label">P.Cef</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" name="cef_nacido" placeholder="P.Cef" data-toggle="tooltip" data-placement="bottom" title="P.Cef">
+						</div>
+						<label class="col-sm-1 control-label">Temp.</label>
+						<div class="col-sm-2">
+							<input type="text" class="form-control" name="temp_nacido" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
+						</div>
 							<br>
-							<label for="">No. Hc RN</label>
-							<input type="text" name="no_rn"> <br>
-							<label for="">Nombre RN</label>
-							<input type="text" name="nombre_rn"> <br>
-							<label for="">Edad por semanas</label>
-							<input type="text" name="edad_semanas"> <br>
+						<label class="col-sm-1 control-label">No.HcRN.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="no_rn" placeholder="No. Hc RN" data-toggle="tooltip" data-placement="bottom" title="No. Hc RN">
+						</div>
+						<label class="col-sm-1 control-label">NombreRN.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="nombre_rn" placeholder="NombreRN" data-toggle="tooltip" data-placement="bottom" title="NombreRN">
+						</div>
+						<label class="col-sm-1 control-label">Edad.Sem</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="edad_semanas" placeholder="Edad por semanas" data-toggle="tooltip" data-placement="bottom" title="Edad por semanas">
+						</div>
+						
 							<br>
 							<label for="">Peso por edad Gestacion</label>
 							<p>
