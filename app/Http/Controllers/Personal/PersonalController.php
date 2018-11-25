@@ -45,6 +45,7 @@ class PersonalController extends Controller
         ]);
         if($validator->fails()) 
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
+        
 		$personal = Personal::create([
 	      'name' => $request->name,
 	      'lastname' => $request->lastname,
