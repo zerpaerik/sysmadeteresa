@@ -38,7 +38,7 @@
 								<td>{{$d->nombres}} {{$d->apellidos}}</td>
 								<td>{{$d->created_at}}</td>
 								<td><a href="prenatal-ver-{{$d->idPaciente}}" class="btn btn-success">Ver ficha</a></td>
-								<td><a href="prenatal-control-{{$d->idPaciente}}" class="btn btn-primary">registrar</a></td>
+								<td><a href="prenatal-control-{{$d->idPaciente}}" class="btn btn-primary">Registrar</a></td>
 								<td><a href="prenatal-vercontrol-{{$d->idPaciente}}" class="btn btn-danger">Descargar</a></td>
 							</tr>
 						@endforeach
