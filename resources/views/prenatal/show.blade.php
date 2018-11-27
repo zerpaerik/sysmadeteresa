@@ -77,12 +77,7 @@
             <h3>Fin Gestacion Anterior</h3>
             <label for="">Terminacion</label>
             <p>
-              <input type="radio" name="terminacion_gestacion" value="Parto">Parto
-              <input type="radio" name="terminacion_gestacion" value="Aborto">Aborto  
-              <input type="radio" name="terminacion_gestacion" value="Ectopipo">Ectopipo
-              <input type="radio" name="terminacion_gestacion" value="Molar">Molar
-              <input type="radio" name="terminacion_gestacion" value="Otro">Otro
-              <input type="radio" name="terminacion_gestacion" value="No Aplica">No Aplica              
+              <input type="text" name="terminacion_gestacion" value="{{$data->terminacion_gestacion}}">           
             </p>                
             <label for="">Fecha</label>
             <input type="date" name="fecha_terminacion" value="{{ $data->fecha_terminacion }}"  style="line-height: 20px">
@@ -95,57 +90,192 @@
             <br>
 
           <h3>Antecedentes Familiares</h3>
-              <p>
-              <input type="checkbox" name="ninguno_af" value="{{ $data->ninguno_af }}" >Ninguno
-              <input type="checkbox" name="alergias_af" value="{{ $data->alergias_af }}">Alergias  
-              <input type="checkbox" name="anomalias_af" value="{{ $data->anomalias_af }}">Anomalias Congenitas
-              <input type="checkbox" name="epilepsia_af" value="{{ $data->epilepsia_af }}">Epilepsia
-              <input type="checkbox" name="diabetes_af" value="{{ $data->diabetes_af }}">Diabetes
-              <input type="checkbox" name="gemelares_af" value="{{ $data->gemelares_af }}">Gemelares
-              <input type="checkbox" name="tension_af" value="{{ $data->tension_af }}">Hipertension Arterial
-              <input type="checkbox" name="neoplasia_af" value="{{ $data->neoplasia_af }}">Neoplasia
-              <input type="checkbox" name="pulmon_af" value="{{ $data->pulmon_af }}">TBC Pulmonar
-              <input type="checkbox" name="otro_af" value="{{ $data->otro_af }}">Otro
-            </p>
-            <br>
+              @if($data->ninguno_af)
+              <input type="text" name="ninguno_af" value="SI">Ninguno<br>         
+              @else
+              <input type="text" name="otro_ap" value="NO">Ninguno<br>
+              @endif
+              @if($data->alergias_af)
+              <input type="text" name="alergias_af" value="SI">Alergias<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Alergias<br>
+              @endif
+              @if($data->anomalias_af)
+              <input type="text" name="anomalias_af" value="SI">Anomalias Congenitas<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Anomalias Congenitas<br>
+              @endif
+              @if($data->epilepsia_af)
+              <input type="text" name="epilepsia_af" value="SI">Epilepsia<br>         
+              @else
+              <input type="text" name="otro_ap" value="NO">Epilepsia<br>
+              @endif
+              @if($data->diabetes_af)
+              <input type="text" name="diabetes_af" value="SI">Diabetes<br>         
+              @else
+              <input type="text" name="otro_ap" value="NO">Diabetes<br>
+              @endif
+              @if($data->gemelares_af)
+              <input type="text" name="gemelares_af" value="SI">Gemelares<br>         
+              @else
+              <input type="text" name="otro_ap" value="NO">Gemelares<br>
+              @endif
+              @if($data->tension_af)
+              <input type="text" name="tension_af" value="SI">Hipertension Arterial<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Hipertension Arterial<br>
+              @endif
+              @if($data->neoplasia_af)
+              <input type="text" name="neoplasia_af" value="SI">Neoplasia<br>         
+              @else
+              <input type="text" name="otro_ap" value="NO">Neoplasia<br>
+              @endif
+              @if($data->pulmon_af)
+              <input type="text" name="pulmon_af" value="SI">TBC Pulmonar<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">TBC Pulmonar<br>
+              @endif
+              @if($data->otro_af)
+              <input type="text" name="otro_af" value="SI">Otro<br> 
+              @else
+              <input type="text" name="otro_ap" value="NO">Otro<br>
+              @endif
 
               <h3>Antecedentes Personales</h3>
-              <p>
-              <input type="checkbox" name="ninguno_ap" value="{{ $data->ninguno_ap }}">Ninguno
-              <input type="checkbox" name="aborto_ap" value="{{ $data->aborto_ap }}">Aborto Habitual 
-              <input type="checkbox" name="aborto2_ap" value="{{ $data->aborto2_ap }}">Aborto Recurrente
-              <input type="checkbox" name="alcohol_ap" value="{{ $data->alcohol_ap }}">Alcoholismo
-              <input type="checkbox" name="alermedicamentos_ap" value="{{ $data->alermedicamentos_ap }}">Alergia a Medicamentos
-              <input type="checkbox" name="asmabron_ap" value="{{ $data->asmabron_ap }}">Asma Bronquial
-              <input type="checkbox" name="pesonacimiento_ap" value="{{ $data->pesonacimiento_ap }}">Bajo de peso al nacer
-              <input type="checkbox" name="cardiopatia_ap" value="{{ $data->cardiopatia_ap }}">Cardiopatia
-              <input type="checkbox" name="cirugiauterina_ap" value="{{ $data->cirugiauterina_ap }}">Cirugia Uterina
-            </p>
+              @if($data->ninguno_ap)
+              <input type="text" name="ninguno_ap" value="SI">Ninguno <br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Ninguno<br>
+              @endif
+              @if($data->aborto_ap)
+              <input type="text" name="aborto_ap" value="SI">Aborto Habitual <br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Aborto Habitual <br>
+              @endif
+              @if($data->aborto2_ap)
+              <input type="text" name="aborto2_ap" value="SI">Aborto Recurrente<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Aborto Recurrente<br>
+              @endif
+              @if($data->alcohol_ap)
+              <input type="text" name="alcohol_ap" value="SI">Alcoholismo<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Alcoholismo<br>
+              @endif
+              @if($data->alermedicamentos_ap)
+              <input type="text" name="alermedicamentos_ap" value="SI">Alergia a Medicamentos<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Alergia a Medicamentos<br>
+              @endif
+              @if($data->asmabron_ap)
+              <input type="text" name="asmabron_ap" value="SI">Asma Bronquial<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Asma Bronquial<br>
+              @endif
+              @if($data->pesonacimiento_ap)
+              <input type="text" name="pesonacimiento_ap" value="SI">Bajo de peso al nacer<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Bajo de peso al nacer<br>
+              @endif
+              @if($data->cardiopatia_ap)
+              <input type="text" name="cardiopatia_ap" value="SI">Cardiopatia<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Cardiopatia<br>
+              @endif
+              @if($data->cirugiauterina_ap)
+              <input type="text" name="cirugiauterina_ap" value="SI">Cirugia Uterina<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Cirugia Uterina<br>
+              @endif
 
-            <p>
-              <input type="checkbox" name="congenitas_ap" value="{{ $data->congenitas_ap }}">Enfermedades Congenitas
-              <input type="checkbox" name="infeccion_ap" value="{{ $data->infeccion_ap }}">Enfermedades Infecciosas
-              <input type="checkbox" name="epilepsia_ap" value="{{ $data->epilepsia_ap }}">Epilepsia
-              <input type="checkbox" name="hemorragiapost_ap" value="{{ $data->hemorragiapost_ap }}">Hemorragia Postparto
-              <input type="checkbox" name="htarterial_ap" value="{{ $data->htarterial_ap }}">Hipertension Arterial
-              <input type="checkbox" name="coca_ap" value="{{ $data->coca_ap }}">Hoja de coca
-              <input type="checkbox" name="infertilidad_ap" value="{{ $data->infertilidad_ap }}">Infertilidad
-              <input type="checkbox" name="neoplasias_ap" value="{{ $data->neoplasias_ap }}">Neoplasias
-              <input type="checkbox" name="drogas_ap" value="{{ $data->drogas_ap }}">Drogas
- 
-            </p>
+              @if($data->congenitas_ap)
+              <input type="text" name="congenitas_ap" value="SI">Enfermedades Congenitas<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Enfermedades Congenitas<br>
+              @endif
+              @if($data->infeccion_ap)
+              <input type="text" name="infeccion_ap" value="SI">Enfermedades Infecciosas<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Enfermedades Infecciosas<br>
+              @endif
+              @if($data->epilepsia_ap)
+              <input type="text" name="epilepsia_ap" value="SI">Epilepsia<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Epilepsia<br>
+              @endif
+              @if($data->hemorragiapost_ap)
+              <input type="text" name="hemorragiapost_ap" value="SI">Hemorragia Postparto<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Hemorragia Postparto<br>
+              @endif
+              @if($data->htarterial_ap)
+              <input type="text" name="htarterial_ap" value="SI">Hipertension Arterial<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Hipertension Arterial<br>
+              @endif
+              @if($data->coca_ap)
+              <input type="text" name="coca_ap" value="SI">Hoja de coca<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Hoja de coca<br>
+              @endif
+              @if($data->infertilidad_ap)
+              <input type="text" name="infertilidad_ap" value="SI">Infertilidad<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Infertilidad<br>
+              @endif
+              @if($data->neoplasias_ap)
+              <input type="text" name="neoplasias_ap" value="SI">Neoplasias<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Neoplasias<br>
+              @endif
+              @if($data->drogas_ap)
+              <input type="text" name="drogas_ap" value="SI">Drogas<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Drogas<br>
+              @endif
 
-            <p>
-              <input type="checkbox" name="partoprolongado_ap" value="{{ $data->partoprolongado_ap }}">Parto Prolongado
-              <input type="checkbox" name="eclampsia_ap" value="{{ $data->eclampsia_ap }}">Pre/Eclampsia
-              <input type="checkbox" name="prematuro_ap" value="{{ $data->prematuro_ap }}">Prematuridad
-              <input type="checkbox" name="placenta_ap" value="{{ $data->placenta_ap }}">Retencion Placenta
-              <input type="checkbox" name="tabaco_ap" value="{{ $data->tabaco_ap }}">Tabaco
-              <input type="checkbox" name="pulmonar_ap" value="{{ $data->pulmonar_ap }}">TBC Pulmonar
-              <input type="checkbox" name="sida_ap" value="{{ $data->sida_ap }}">VIH/SIDA
-              <input type="checkbox" name="otro_ap" value="{{ $data->otro_ap }}">Otro
-            
-            </p>
+
+              @if($data->partoprolongado_ap)
+              <input type="text" name="partoprolongado_ap" value="SI">Parto Prolongado<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Parto Prolongado<br>
+              @endif
+              @if($data->eclampsia_ap)
+              <input type="text" name="eclampsia_ap" value="SI">Pre/Eclampsia<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Pre/Eclampsia<br>
+              @endif
+              @if($data->prematuro_ap)
+              <input type="text" name="prematuro_ap" value="SI">Prematuridad<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Prematuridad<br>
+              @endif
+              @if($data->placenta_ap)
+              <input type="text" name="placenta_ap" value="SI">Retencion Placenta<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Retencion Placenta<br>
+              @endif
+              @if($data->tabaco_ap)
+              <input type="text" name="tabaco_ap" value="SI">Tabaco<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Tabaco<br>
+              @endif
+              @if($data->pulmonar_ap)
+              <input type="text" name="pulmonar_ap" value="SI">TBC Pulmonar<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">TBC Pulmonar<br>
+              @endif
+              @if($data->sida_ap)
+              <input type="text" name="sida_ap" value="SI">VIH/SIDA<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">VIH/SIDA<br>
+              @endif
+              @if($data->otro_ap)
+              <input type="text" name="otro_ap" value="SI">Otro<br>
+              @else
+              <input type="text" name="otro_ap" value="NO">Otro<br>
+              @endif
+
             <br>
             <h3>Peso y Talla</h3>
             <label for="">Peso Pregestacional</label>
@@ -164,17 +294,11 @@
             <h3>Tipo de sangre</h3>   
             <label for="">Grupo</label>
               <p>
-                <input type="radio" name="sangre" value="A">A
-                <input type="radio" name="sangre" value="B">B 
-                <input type="radio" name="sangre" value="AB">AB
-                <input type="radio" name="sangre" value="O">O
+                <input type="text" name="sangre" value="{{$data->sangre}}">
             </p>
             <label for="">RH</label>
               <p>
-                <input type="radio" name="sangre-rh" value="rh+">Rh +
-                <input type="radio" name="sangre-rh" value="rh-sd">Rh - Sen Desc  
-                <input type="radio" name="sangre-rh" value="rh-ns">Rh - No sen
-                <input type="radio" name="sangre-rh" value="rh-s">Rh - Sen
+                <input type="text" name="sangre-rh" value="{{$data->sangre_rh}}">
             </p>  
             <label for="">Psicoproxilasis Estimulacion</label>  
             <label for="">Numero de sesiones</label>    
@@ -191,16 +315,12 @@
             <h3>Serologia</h3>
             <label for="">1</label>
               <p>
-                <input type="radio" name="1era" value="negativo">Negativo
-                <input type="radio" name="1era" value="positivo">Positivo 
-                <input type="radio" name="1era" value="no">No se hizo
+                <input type="text" name="1era" value="{{ $data->s1era }}">
                 <input type="date" name="serologia_1era" value="{{ $data->serologia_1era }}" style="line-height: 20px">
             </p>  
             <label for="">2</label>
               <p>
-                <input type="radio" name="2da" value="negativo">Negativo
-                <input type="radio" name="2da" value="positivo">Positivo  
-                <input type="radio" name="2da" value="no">No se hizo
+                <input type="text" name="2da" value="{{ $data->s2era }}">Negativo
                 <input type="date" name="serologia_2da" value="{{ $data->serologia_2da }}" style="line-height: 20px">
             </p>
 
@@ -208,211 +328,166 @@
             <label for="">Hb (g %)</label>
             <input type="text" name="hemoglobina" value="{{ $data->hemoglobina }}">
             <label for="">No se hizo </label>
-            <input type="checkbox" name="hemoglobina_no" value="{{ $data->hemoglobina_no }}">
+            <input type="text" name="hemoglobina_no" value="{{ $data->hemoglobina_no }}">
             <label for="">Fecha</label>
             <input type="date" name="hemoglobina_fecha" value="{{ $data->hemoglobina_fecha }}" style="line-height: 20px">    
 
             <h3>Examenes</h3>
             <label for="">Clinico</label>     
             <p>
-                <input type="radio" name="clinica" value="clinico_no">Sin Examen 
-                <input type="radio" name="clinica" value="clinico_normal">Normal  
-                <input type="radio" name="clinica" value="clinico_patologico">Patologico              
+                <input type="text" name="clinica" value="{{$data->clinica}}">
             </p>    
             <label for="">Mamas</label>     
             <p>
-                <input type="radio" name="mamas"  value="{{ $data->mamas_no }}">Sin Examen 
-                <input type="radio" name="mamas" value="{{ $data->mamas_normal }}>Normal  
-                <input type="radio" name="mamas" value="{{ $data->mamas_anormal }}>Anormal              
+                <input type="text" name="mamas"  value="{{ $data->mamas }}">
             </p>  
             <label for="">Odontologia</label>     
             <p>
-                <input type="radio" name="odonto" value="odonto_no">Sin Examen 
-                <input type="radio" name="odonto" value="odonto_normal">Normal  
-                <input type="radio" name="odonto" value="odonto_anormal">Anormal              
+                <input type="text" name="odonto" value="{{ $data->odonto }}">
             </p>  
             <label for="">PAP</label>     
             <p>
-                <input type="radio" name="pap" value="pap_no">Sin Examen 
-                <input type="radio" name="pap" value="pap_normal">Normal  
-                <input type="radio" name="pap" value="pap_anormal">Anormal              
+                <input type="text" name="pap" value="{{ $data->pap}}">
             </p>
             <label for="">Orina</label>     
             <p>
-                <input type="radio" name="orina" value="orina_no">Sin Examen 
-                <input type="radio" name="orina" value="orina_normal">Normal  
-                <input type="radio" name="orina" value="orina_anormal">Anormal              
+                <input type="text" name="orina" value="{{ $data->orina}}">
             </p>
             <label for="">Glucosa</label>     
             <p>
-                <input type="radio" name="glucosa" value="glucosa_no">Sin Examen 
-                <input type="radio" name="glucosa" value="glucosa_normal">Normal  
-                <input type="radio" name="glucosa" value="glucosa_anormal">Anormal              
+                <input type="text" name="glucosa" value="{{ $data->glucosa}}">
             </p>  
             <label for="">HIV</label>     
             <p>
-                <input type="radio" name="hiv" value="hiv_no">Sin Examen 
-                <input type="radio" name="hiv" value="hiv_negativo_1er">Negativo 1er  
-                <input type="radio" name="hiv" value="hiv_negativo_2do">Negativo 2do
-                <input type="radio" name="hiv" value="hiv_positivo_1er">Positivo 1er  
-                <input type="radio" name="hiv" value="hiv_positivo_2do">Positivo 2do              
+                <input type="text" name="hiv" value="{{$data->hiv}}">
             </p>  
 
             <label for="">BK en esputo</label>      
             <p>
-                <input type="radio" name="bk" value="bk_no">Sin Examen 
-                <input type="radio" name="bk" value="bk_negativo">Negativo  
-                <input type="radio" name="bk" value="bk_no_aplica">No Aplica
-                <input type="radio" name="bk" value="bk_positivo">Positivo  
+                <input type="text" name="bk" value="{{$data->bk}}">  
             </p>
             <label for="">TORCH</label>     
             <p>
-                <input type="radio" name="torch" value="torch_no">Sin Examen 
-                <input type="radio" name="torch" value="torch_normal">Normal  
-                <input type="radio" name="torch" value="torch_anormal">Anormal    
-                <input type="radio" name="torch" value="torch_anormal">Anormal              
+                <input type="text" name="torch" value="{{$data->torch}}">     
             </p>  
 
             <h3>Patologia Materna (CIE 10)</h3>
             <label for="">1</label>
-            <input type="text" name="patologia_1">
-            <input type="date" name="patologia_1_date" style="line-height: 20px">
+            <input type="text" name="patologia_1" value="{{$data->patologia_1}}">
+            <input type="date" name="patologia_1_date" value="{{$data->patologia_1_date}}" style="line-height: 20px">
             <label for="">Otros(CIE 10)</label>
-            <input type="text" name="patologia_1_otro">
+            <input type="text" name="patologia_1_otro" value="{{$data->patologia_1_otro}}">
             <br>    
             <label for="">2</label>
-            <input type="text" name="patologia_2">
-            <input type="date" name="patologia_2_date" style="line-height: 20px">
+            <input type="text" name="patologia_2" value="{{$data->patologia_2}}">
+            <input type="date" name="patologia_2_date" value="{{$data->patologia_2_date}}" style="line-height: 20px">
             <label for="">Otros(CIE 10)</label>
-            <input type="text" name="patologia_2_otro"> 
+            <input type="text" name="patologia_2_otro" value="{{$data->patologia_2_otro}}"> 
             <br>
             <label for="">3</label>
-            <input type="text" name="patologia_3">
-            <input type="date" name="patologia_3_date" style="line-height: 20px">
+            <input type="text" name="patologia_3" value="{{$data->patologia_3}}">
+            <input type="date" name="patologia_3_date" value="{{$data->patologia_3_date}}" style="line-height: 20px">
             <label for="">Otros(CIE 10)</label>
-            <input type="text" name="patologia_3_otro"> 
+            <input type="text" name="patologia_3_otro" value="{{$data->patologia_3_otro}}"> 
 
             <h3>Terminacion</h3>
             <label for="">Fecha</label>
-            <input type="date" name="fecha_terminacion" style="line-height: 20px">
-              <p>
-                <input type="radio" name="terminacion" value="Espontanea">Espontanea
-                <input type="radio" name="terminacion" value="Cesarea">Cesarea  
-                <input type="radio" name="terminacion" value="Forceps">Forceps
-                <input type="radio" name="terminacion" value="Vacumm">Vacumm
-              </p>  
+            <input type="date" name="fecha_terminacion" value="{{$data->fecha_terminacion}}"style="line-height: 20px">
+            <input type="text" name="terminacion" value="{{$data->terminacion}}">
 
             <h3>Atencion</h3>
             <label for="">Nivel</label> 
             <p>
-              <input type="radio" name="nivel" value="Primario">Primario
-              <input type="radio" name="nivel" value="Secundario">Secundario  
-              <input type="radio" name="nivel" value="Terciario">Terciario
-              <input type="radio" name="nivel" value="Domiciliario">Domiciliario
-              <input type="radio" name="nivel" value="Otros">Otro
+              <input type="text" name="nivel" value="{{$data->nivel}}">  
             </p>  
               <label for="">Medico</label>
               <p>
-                <input type="radio" name="medico_atencion" value="Parto">Parto
-                <input type="radio" name="medico_atencion" value="Neonato">Neonato  
+                <input type="text" name="medico_atencion" value="{{$data->medico_atencion}}">
               </p>
               <label for="">Obstetriz</label>
               <p>
-                <input type="radio" name="obstetriz_atencion" value="Parto">Parto
-                <input type="radio" name="obstetriz_atencion" value="Neonato">Neonato 
+                <input type="text" name="obstetriz_atencion" value="{{$data->obstetriz_atencion}}"> 
               </p>    
               <label for="">Interno</label>
               <p>
-                <input type="radio" name="interno_atencion" value="Parto">Parto
-                <input type="radio" name="interno_atencion" value="Neonato">Neonato 
+                <input type="text" name="interno_atencion" value="{{$data->interno_atencion}}"> 
               </p>  
               <label for="">Estudiante</label>
               <p>
-                <input type="radio" name="estudiante_atencion" value="Parto">Parto
-                <input type="radio" name="estudiante_atencion" value="Neonato">Neonato  
+                <input type="text" name="estudiante_atencion" value="{{$data->estudiante_atencion}}">  
               </p>  
               <label for="">Empirica</label>
               <p>
-                <input type="radio" name="empirica_atencion" value="Parto">Parto
-                <input type="radio" name="empirica_atencion" value="Neonato">Neonato  
+                <input type="text" name="empirica_atencion" value="{{$data->empirica_atencion}}">  
               </p>  
               <label for="">Aux de Enfermeria</label>
               <p>
-                <input type="radio" name="enfermeria_atencion" value="Parto">Parto
-                <input type="radio" name="enfermeria_atencion" value="Neonato">Neonato  
+                <input type="text" name="enfermeria_atencion" value="{{$data->enfermeria_atencion}}">  
               </p>  
               <label for="">Enfermera</label>
               <p>
-                <input type="radio" name="enfermera_atencion" value="Parto">Parto
-                <input type="radio" name="enfermera_atencion" value="Neonato">Neonato 
+                <input type="text" name="enfermera_atencion" value="{{$data->enfermera_atencion}}"> 
               </p>
               <label for="">Familiar</label>
               <p>
-                <input type="radio" name="familiar_atencion" value="Parto">Parto
-                <input type="radio" name="familiar_atencion" value="Neonato">Neonato  
+                <input type="text" name="familiar_atencion" value="{{$data->familiar_atencion}}">  
               </p>  
               <label for="">Otro</label>
               <p>
-                <input type="radio" name="otro_atencion" value="Parto">Parto
-                <input type="radio" name="otro_atencion" value="Neonato">Neonato  
+                <input type="text" name="otro_atencion" value="{{$data->otro_atencion}}">  
               </p>                                                                                                                
 
               <h3>Recien Nacido</h3>
               <label for="">Sexo</label>
-              <p>
-                <input type="radio" name="sexo_nacido" value="Femenino">Femenino
-                <input type="radio" name="sexo_nacido" value="Masculino">Masculino  
-              </p>
+              <input type="text" name="sexo_nacido" value="{{$data->sexo_nacido}}">
 
               <label class="col-sm-1 control-label">Talla</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" name="talla_nacido" placeholder="Talla" data-toggle="tooltip" data-placement="bottom" title="Talla">
+              <input type="text" class="form-control" name="talla_nacido" value="{{$data->talla_nacido}}" placeholder="Talla" data-toggle="tooltip" data-placement="bottom" title="Talla">
             </div>
 
             <label class="col-sm-1 control-label">Peso</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" name="peso_nacido" placeholder="Peso" data-toggle="tooltip" data-placement="bottom" title="Peso">
+              <input type="text" class="form-control" name="peso_nacido" value="{{$data->peso_nacido}}" placeholder="Peso" data-toggle="tooltip" data-placement="bottom" title="Peso">
             </div>
             <label class="col-sm-1 control-label">P.Cef</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" name="cef_nacido" placeholder="P.Cef" data-toggle="tooltip" data-placement="bottom" title="P.Cef">
+              <input type="text" class="form-control" name="cef_nacido" value="{{$data->cef_nacido}}" placeholder="P.Cef" data-toggle="tooltip" data-placement="bottom" title="P.Cef">
             </div>
             <label class="col-sm-1 control-label">Temp.</label>
             <div class="col-sm-2">
-              <input type="text" class="form-control" name="temp_nacido" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
+              <input type="text" class="form-control" name="temp_nacido" value="{{$data->temp_nacido}}" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
             </div>
               <br>
             <label class="col-sm-1 control-label">No.HcRN.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="no_rn" placeholder="No. Hc RN" data-toggle="tooltip" data-placement="bottom" title="No. Hc RN">
+              <input type="text" class="form-control" name="no_rn" value="{{$data->no_rn}}" placeholder="No. Hc RN" data-toggle="tooltip" data-placement="bottom" title="No. Hc RN">
             </div>
             <label class="col-sm-1 control-label">NombreRN.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="nombre_rn" placeholder="NombreRN" data-toggle="tooltip" data-placement="bottom" title="NombreRN">
+              <input type="text" class="form-control" name="nombre_rn" value="{{$data->nombre_rn}}" placeholder="NombreRN" data-toggle="tooltip" data-placement="bottom" title="NombreRN">
             </div>
             <label class="col-sm-1 control-label">Edad.Sem</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="edad_semanas" placeholder="Edad por semanas" data-toggle="tooltip" data-placement="bottom" title="Edad por semanas">
+              <input type="text" class="form-control" name="edad_semanas" value="{{$data->edad_semanas}}" placeholder="Edad por semanas" data-toggle="tooltip" data-placement="bottom" title="Edad por semanas">
             </div>
             
               <br>
               <label for="">Peso por edad Gestacion</label>
               <p>
-                <input type="radio" name="edad_gestacion" value="Adecuado">Adecuado
-                <input type="radio" name="edad_gestacion" value="Pequeño">Pequeño 
-                <input type="radio" name="edad_gestacion" value="Grande">Grande
+                <input type="text" name="edad_gestacion" value="{{$data->edad_gestacion}}">
               </p>  
               <label for="">APGAR</label>
               <br>
-              1 <input type="text" name="apgar_1">
+              1 <input type="text" name="apgar_1" value="{{$data->apgar_1}}">
               <br>
-              2 <input type="text" name="apgar_2">  
+              2 <input type="text" name="apgar_2" value="{{$data->apgar_2}}">  
               <br>
               <label for="">Patologia del recion nacido</label>
               <br>
-              1 <input type="text" name="patologia_recien_1"> <input type="date" name="patologia_recien_1_date" value="{{ $data->patologia_recien_1_date }}" style="line-height: 20px"><br>
-              2 <input type="text" name="patologia_recien_2"> <input type="date" name="patologia_recien_2_date" value="{{ $data->patologia_recien_2_date }}" style="line-height: 20px"><br>            
-              3 <input type="text" name="patologia_recien_3"> <input type="date" name="patologia_recien_3_date" value="{{ $data->patologia_recien_3_date }}"  style="line-height: 20px"><br>
+              1 <input type="text" name="patologia_recien_1" value="{{$data->patologia_recien_1}}"> <input type="date" name="patologia_recien_1_date" value="{{ $data->patologia_recien_1_date }}" style="line-height: 20px"><br>
+              2 <input type="text" name="patologia_recien_2" value="{{$data->patologia_recien_2}}"> <input type="date" name="patologia_recien_2_date" value="{{ $data->patologia_recien_2_date }}" style="line-height: 20px"><br>            
+              3 <input type="text" name="patologia_recien_3" value="{{$data->patologia_recien_3}}"> <input type="date" name="patologia_recien_3_date" value="{{ $data->patologia_recien_3_date }}"  style="line-height: 20px"><br>
               <label for="">Otros (CIE 10)</label>  
               <br>
               1 <input type="text" name="otros_cie1_10" value="{{ $data->otros_cie1_10 }}"><br>

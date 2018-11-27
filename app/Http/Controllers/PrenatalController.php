@@ -29,7 +29,7 @@ class PrenatalController extends Controller
 			'a.num',
 			'a.gr',
 			'a.gemelar',
-			'a.37m',
+			'a.m37m',
 			'a.fecha_terminacion',
 			'a.peso_gestacion',
 			'a.ninguno_af',
@@ -158,7 +158,6 @@ class PrenatalController extends Controller
 		   return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
 	
     	  }else{
-
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
 				'gesta' =>$request->gesta,
@@ -173,7 +172,7 @@ class PrenatalController extends Controller
 				'num' =>$request->num,
 				'gr' =>$request->gr,
 				'gemelar' =>$request->gemelar,
-				'37m' =>$request->m37m,
+				'm37m' =>$request->m37m,
 				'fecha_terminacion' =>$request->fecha_terminacion,
 				'peso_gestacion' =>$request->peso_gestacion,
 				'ninguno_af' =>$request->ninguno_af,
@@ -253,6 +252,37 @@ class PrenatalController extends Controller
 				'patologia_recien_3_date' => $request->patologia_recien_3_date,
 				'otros_cie1_10' => $request->otros_cie1_10,
 				'otros_cie2_10' => $request->otros_cie2_10,
+				'terminacion_gestacion' => $request->terminacion_gestacion,
+				'otros_cie2_10' => $request->otros_cie2_10,
+				'aborto_gestacion' => $request->aborto_gestacion,
+				'sangre' => $request->sangre,
+				'aborto_gestacion' => $request->aborto_gestacion,
+				'sangre_rh' => $request->sangrerh,
+				's1era' => $request->p1era,
+				's2era' => $request->s2da,
+				'clinica' => $request->clinica,
+				'mamas' => $request->mamas,
+				'clinica' => $request->clinica,
+				'odonto' => $request->odonto,
+				'pap' => $request->pap,
+				'orina' => $request->orina,
+				'glucosa' => $request->glucosa,
+				'hiv' => $request->hiv,
+				'bk' => $request->bk,
+				'torch' => $request->torch,
+				'terminacion' => $request->terminacion,
+				'nivel' => $request->nivel,
+				'medico_atencion' => $request->medico_atencion,
+				'obstetriz_atencion' => $request->obstetriz_atencion,
+				'interno_atencion' => $request->interno_atencion,
+				'estudiante_atencion' => $request->estudiante_atencion,
+				'empirica_atencion' => $request->empirica_atencion,
+				'enfermeria_atencion' => $request->enfermeria_atencion,
+				'enfermera_atencion' => $request->enfermera_atencion,
+				'familiar_atencion' => $request->familiar_atencion,
+				'otro_atencion' => $request->otro_atencion,
+				'sexo_nacido' => $request->sexo_nacido,
+				'edad_gestacion' => $request->edad_gestacion,
 			]);
 
 		Toastr::success('Registrado Exitosamente.', 'Consulta Prenatal!', ['progressBar' => true]);

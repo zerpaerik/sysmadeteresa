@@ -208,10 +208,10 @@
 						</p>
 						<label for="">RH</label>
 							<p>
-								<input type="radio" name="sangre-rh" value="rh+">Rh +
-								<input type="radio" name="sangre-rh" value="rh-sd">Rh - Sen Desc	
-								<input type="radio" name="sangre-rh" value="rh-ns">Rh - No sen
-								<input type="radio" name="sangre-rh" value="rh-s">Rh - Sen
+								<input type="radio" name="sangrerh" value="rh+">Rh +
+								<input type="radio" name="sangrerh" value="rh-sd">Rh - Sen Desc	
+								<input type="radio" name="sangrerh" value="rh-ns">Rh - No sen
+								<input type="radio" name="sangrerh" value="rh-s">Rh - Sen
 						</p>	
 						<label for="">Psicoproxilasis Estimulacion</label>	
 						<label for="">Numero de sesiones</label>		
@@ -228,16 +228,16 @@
 						<h3>Serologia</h3>
 						<label for="">1</label>
 							<p>
-								<input type="radio" name="1era" value="negativo">Negativo
-								<input type="radio" name="1era" value="positivo">Positivo	
-								<input type="radio" name="1era" value="no">No se hizo
+								<input type="radio" name="p1era" value="negativo">Negativo
+								<input type="radio" name="p1era" value="positivo">Positivo	
+								<input type="radio" name="p1era" value="no">No se hizo
 								<input type="date" name="serologia_1era" style="line-height: 20px">
 						</p>	
 						<label for="">2</label>
 							<p>
-								<input type="radio" name="2da" value="negativo">Negativo
-								<input type="radio" name="2da" value="positivo">Positivo	
-								<input type="radio" name="2da" value="no">No se hizo
+								<input type="radio" name="s2da" value="negativo">Negativo
+								<input type="radio" name="s2da" value="positivo">Positivo	
+								<input type="radio" name="s2da" value="no">No se hizo
 								<input type="date" name="serologia_2da" style="line-height: 20px">
 						</p>
 
@@ -340,7 +340,7 @@
 
 						<h3>Atencion</h3>
 						<label for="">Nivel</label>	
-						<p>
+						<p>sangre
 							<input type="radio" name="nivel" value="Primario">Primario
 							<input type="radio" name="nivel" value="Secundario">Secundario	
 							<input type="radio" name="nivel" value="Terciario">Terciario
