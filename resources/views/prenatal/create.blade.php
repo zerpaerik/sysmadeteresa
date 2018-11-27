@@ -108,7 +108,7 @@
 						<p>
 							<input type="radio" name="terminacion_gestacion" value="Parto">Parto
 							<input type="radio" name="terminacion_gestacion" value="Aborto">Aborto	
-							<input type="radio" name="terminacion_gestacion" value="Ectopipo">Ectopipo
+							<input type="radio" name="terminacion_gestacion" value="Ectopipo">Ectopico
 							<input type="radio" name="terminacion_gestacion" value="Molar">Molar
 							<input type="radio" name="terminacion_gestacion" value="Otro">Otro
 							<input type="radio" name="terminacion_gestacion" value="No Aplica">No Aplica							
