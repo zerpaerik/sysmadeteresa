@@ -31,7 +31,30 @@ class PaquetesController extends Controller
         $paquetes_servicios = new PaqueteServ();
         $paquetes_analises = new PaqueteLab();
 
-        return view('archivos.paquetes.index', compact('paquetes','paquetes_servicios','paquetes_analises'));
+        return view('archivos.paquetes.index', [
+          'paquetes' => $paquetes,
+          'paquetes_servicios' => $paquetes_servicios,
+          'paquetes_analises' => $paquetes_analises,
+          'model' => 'paquetes'
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+      $paquetes = DB::table('paquetes as a')
+      ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus')
+      ->where('a.estatus','=',1)
+      ->where('a.detalle','like','%'.$request->nom.'%')
+      ->paginate(5000);
+      $paquetes_servicios = new PaqueteServ();
+      $paquetes_analises = new PaqueteLab();
+
+      return view('archivos.paquetes.index', [
+        'paquetes' => $paquetes,
+        'paquetes_servicios' => $paquetes_servicios,
+        'paquetes_analises' => $paquetes_analises,
+        'model' => 'paquetes'
+      ]);
     }
 
     public function createView()

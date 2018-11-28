@@ -34,6 +34,28 @@ class AnalisisController extends Controller
       ]);  
 	}
 
+  public function search(Request $request)
+  {
+    $analisis = DB::table('analises as a')
+          ->select('a.id','a.name','a.preciopublico','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
+          ->join('laboratorios as b','a.laboratorio','b.id')
+          ->orderby('a.id','desc')
+          ->where('a.estatus','=', 1)
+          ->where('a.name','like', '%'.$request->nom.'%')
+          ->paginate(5000);     
+          return view('generics.index', [
+          "icon" => "fa-list-alt",
+          "model" => "analisis",
+          "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio", "Editar", "Eliminar"],
+          "data" => $analisis,
+          "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio"],
+            "actions" => [
+              '<button type="button" class="btn btn-info">Transferir</button>',
+              '<button type="button" class="btn btn-warning">Editar</button>'
+            ]
+        ]);  
+  }
+
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
           'name' => 'required|string|max:255',

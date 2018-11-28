@@ -29,9 +29,52 @@ class PacientesController extends Controller
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
       ]);  
+  }
 
-        
-    }
+  public function search(Request $request){
+
+      $search = $request->nom;
+      $split = explode(" ",$search);
+      
+      if (!isset($split[1])) {
+      
+      $split[1] = '';
+      $pacientes =Pacientes::where("estatus", '=', 1)
+      ->where('nombres','like','%'.$split[0].'%')
+      ->where('apellidos','like','%'.$split[1].'%')
+      ->get();
+      return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "pacientes",
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn", "Editar", "Eliminar"],
+        "data" => $pacientes,
+        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]); 
+
+      }else{
+
+      $pacientes =Pacientes::where("estatus", '=', 1)
+      ->where('nombres','like','%'.$split[0].'%')
+      ->where('apellidos','like','%'.$split[1].'%')
+      ->get();
+      return view('generics.index', [
+        "icon" => "fa-list-alt",
+        "model" => "pacientes",
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn", "Editar", "Eliminar"],
+        "data" => $pacientes,
+        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);  
+     }     
+     
+  }    
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [

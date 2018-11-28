@@ -2,14 +2,16 @@
 
 @section('content')
 </br>
+
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
+
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Laboratorios</strong></span>
-					<a href="{{route('laboratorios.create')}}" class="btn btn-primary">Agregar</a>
+					<i class="fa {{$icon}}"></i>
+					<span><strong>{{ucfirst($model)}}</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -22,25 +24,43 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+				<form action="/{{$model}}-search" method="get">
+					<label for="">Nombre</label>
+					<input type="text" name="nom">
+					<input type="submit" value="Buscar" class="btn btn-primary">
+				</form>
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<thead>
+					<thead> 
 						<tr>
-							<th>Nombre</th>
-							<th>Direcciòn</th>
-							<th>Referencia</th>
+							@foreach($headers as $header)
+								<th>{{$header}}</th>
+							@endforeach
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($laboratorios as $lab)					
-							<tr>
-								<td>{{$lab->name}}</td>
-								<td>{{$lab->direccion}}</td>
-								<td>{{$lab->referencia}}</td>
-								<td><a href="laboratorios/{{$lab->id}}" class="btn btn-danger">Eliminar</a></td>
-							</tr>
-						@endforeach
+						@foreach($data as $d)
+						<tr>
+							@foreach($fields as $f)
+								<td>{{$d->$f}}</td>
+							@endforeach					
+							@if($model == 'servicios')
+								<td>
+									<a id="{{$d->id}}" onclick="view(this)" class="btn btn-primary">Ver</a>
+									<a href="servicios-addItems-{{$d->id}}" class="btn btn-success"> Agregar items</a>
+								</td>
+							@endif	
+							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+
+						</tr>
+						@endforeach						
 					</tbody>
 					<tfoot>
+						<tr>
+							<th>
+								<button type="button" class="btn btn-danger">Eliminar</button>
+							</th>
+						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -52,26 +72,116 @@
 	  A simple success alert—check it out!
 	</div>
 @endif
+
 <script type="text/javascript">
-// Run Datables plugin and create 3 variants of settings
-function AllTables(){
-	TestTable1();
-	TestTable2();
-	TestTable3();
-	LoadSelect2Script(MakeSelect2);
-}
-function MakeSelect2(){
-	$('select').select2();
-	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
-	});
-}
-$(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
-});
+	function del(id){
+		$.ajax({
+      url: "{{$model}}-delete-"+id,
+      headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "delete",
+      dataType: "json",
+      data: {},
+      success: function(res){
+      	location.reload(true);
+      }
+    });
+	}
+
+	function closeModal(){
+		$('#myModal').modal('hide');
+	}
+
+	function openmodal(){
+		$("#myModal").show();
+	}
+
 </script>
 
+<div id="myModal" class="modal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Modal Body</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if ($model == 'servicios')
+	<!-- MODAL SECTION -->
+    <div class="modal fade" id="viewServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="myModalLabel">Detalles del servicio</h4>
+          </div>
+          <div class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+	<script type="text/javascript">
+		function view(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/servicio/view/"+id,
+		        success: function (data) {
+		            $("#viewServicio .modal-body").html(data);
+		            $('#viewServicio').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+		function eliminar(e) {
+			var id = $(e).attr('id');
+			var r = confirm("Seguro que deseas eliminar este material!");
+			if (r) {
+				//$(e).parent('div').hide('slow');
+				$.ajax({
+		        type: "GET",
+			        url: "/servicio/material_eliminar/"+id,
+			        success: function (data) {
+			        	if (data == 1) {
+			        		$(e).parent('div').hide('slow');
+			            	toastr.success('El materia ha sido eliminado.', 'Servicios!');
+			        	} else {
+			        		toastr.error('El material no pudo ser eliminado.', 'Servicios!')
+			        	}
+			        },
+			        error: function (data) {
+			            toastr.error('Se genero un problema al momento de realizar el proceso de eliminación.', 'Servicios!')
+			        }
+			    });
+			}
+			
+		}
+	</script>
+	<style type="text/css">
+		.modal-backdrop.in {
+		    filter: alpha(opacity=50);
+		    opacity: 0;
+		    z-index: 0;
+		}
+
+		.modal {
+			top:35px;
+		}
+	</style>
+@endif
 @endsection

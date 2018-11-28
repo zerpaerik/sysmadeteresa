@@ -27,6 +27,11 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+				<form action="/{{$model}}-search" method="get">
+					<label for="">Nombre</label>
+					<input type="text" name="nom">
+					<input type="submit" value="Buscar" class="btn btn-primary">
+				</form>					
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>

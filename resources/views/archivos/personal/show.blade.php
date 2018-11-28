@@ -24,7 +24,7 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<form action="/profesionales-search" method="get">
+				<form action="/search-personal" method="get">
 					<label for="">Nombre</label>
 					<input type="text" name="nom">
 					<input type="submit" value="Buscar" class="btn btn-primary">

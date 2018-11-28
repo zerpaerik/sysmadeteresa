@@ -21,7 +21,7 @@ class PersonalController extends Controller
 
       //$personal = Personal::all();
       $personal =Personal::where("estatus", '=', 1)->get();
-      return view('generics.index', [
+      return view('archivos.personal.index', [
         "icon" => "fa-list-alt",
         "model" => "personal",
         "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
@@ -34,6 +34,48 @@ class PersonalController extends Controller
       ]);  
 
          
+    }
+
+    public function search(Request $request)
+    {
+      $search = $request->nom;
+      $split = explode(" ",$search);
+      
+      if (!isset($split[1])) {
+
+        $split[1] = '';
+        $personal = Personal::where('name','like','%'.$split[0].'%')
+                    ->where('lastname','like','%'.$split[1].'%')
+                    ->get();
+       return view('archivos.personal.show', [
+        "icon" => "fa-list-alt",
+        "model" => "personal",
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
+        "data" => $personal,
+        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);                      
+
+      }else{
+        $personal = Personal::where('name','like','%'.$split[0].'%')
+                    ->where('lastname','like','%'.$split[1].'%')
+                    ->get();
+       return view('archivos.personal.show', [
+        "icon" => "fa-list-alt",
+        "model" => "personal",
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
+        "data" => $personal,
+        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);      
+      }
+      
     }
 
 	public function create(Request $request){

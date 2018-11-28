@@ -13,7 +13,7 @@ class LaboratoriosController extends Controller
 	 public function index(){
 
       $laboratorios =Laboratorios::where("estatus", '=', 1)->get();
-      return view('generics.index', [
+      return view('archivos.laboratorios.index', [
         "icon" => "fa-list-alt",
         "model" => "laboratorios",
         "headers" => ["id", "Nombre", "Direcciòn", "Referencia", "Editar", "Eliminar"],
@@ -24,6 +24,24 @@ class LaboratoriosController extends Controller
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
       ]);     
+    }
+
+    public function search(Request $request)
+    {
+      $laboratorios =Laboratorios::where("estatus", '=', 1)
+      ->where('name','like','%'.$request->nom.'%')
+      ->get();
+      return view('archivos.laboratorios.index', [
+        "icon" => "fa-list-alt",
+        "model" => "laboratorios",
+        "headers" => ["id", "Nombre", "Direcciòn", "Referencia", "Editar", "Eliminar"],
+        "data" => $laboratorios,
+        "fields" => ["id", "name", "direccion", "referencia"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);           
     }
 
 	public function create(Request $request){

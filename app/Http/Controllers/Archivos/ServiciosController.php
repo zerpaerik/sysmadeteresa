@@ -27,12 +27,25 @@ class ServiciosController extends Controller
             '<button type="button" class="btn btn-warning">Editar</button>'
           ]
       ]);  
-
-
-
     }
 
-  
+  public function search(Request $request)
+  {
+    $servicios =Servicios::where("estatus", '=', 1)
+    ->where('detalle','like','%'.$request->non.'%')
+    ->get();
+    return view('generics.index', [
+      "icon" => "fa-list-alt",
+      "model" => "servicios",
+      "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal", "Porcentaje Tecnólogo", "Opciones"],
+      "data" => $servicios,
+      "fields" => ["id", "detalle", "precio","porcentaje","por_per", "por_tec"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]);     
+  }
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
