@@ -14,16 +14,10 @@ class ConsultaController extends Controller
     		'pulso' => $request->pulso,
     		'temperatura' => $request->temperatura,
     		'peso' => $request->peso,
-    		'g' => $request->g,
-    		'p' => $request->p,
     		'fur' => $request->fur,
-    		'rc' => $request->rc,
-    		'MAC' => $request->mac,
-    		'fecha_ultimo_pap' => $request->pap,
     		'motivo_consulta' => $request->motivo_consulta,
     		'tipo_enfermedad' => $request->tipo_enfermedad,
     		'evolucion_enfermedad' => $request->evolucion_enfermedad,
-    		'funciones_biologicas' => $request->funciones_biologicas,
     		'examen_fisico_regional' => $request->examen_fisico,
     		'presuncion_diagnostica' => $request->presuncion_diagnostica,
     		'diagnostico_final' => $request->diagnostico_final,
@@ -34,6 +28,16 @@ class ConsultaController extends Controller
     		'obervaciones' => $request->observaciones,
     		'paciente_id' => $request->paciente_id,
     		'profesional_id' => $request->profesional_id,
+            'prox' => $request->prox,
+            'personal' => $request->personal,
+            'apetito' => $request->apetito,
+            'sed' => $request->sed,
+            'card' => $request->card,
+            'animo' => $request->animo,
+            'deposiciones' => $request->deposiciones,
+            'orina' => $request->orina
+
+
     	]);
 
     	return back();

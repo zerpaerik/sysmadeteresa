@@ -25,7 +25,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<form action="/personal-search" method="get">
-					<label for="">Nombre</label>
+					<label for="">Buscar</label>
 					<input type="text" name="nom">
 					<input type="submit" value="Buscar" class="btn btn-primary">
 				</form>

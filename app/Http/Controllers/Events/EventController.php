@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Events;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pacientes\Paciente;
+use App\Models\Personal;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
@@ -43,10 +44,12 @@ class EventController extends Controller
 
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $personal = Personal::where('estatus','=',1)->get();
     return view('events.show',[
       'data' => $event,
       'historial' => $historial,
-      'consultas' => $consultas
+      'consultas' => $consultas,
+      'personal' => $personal
     ]);
   }
 
