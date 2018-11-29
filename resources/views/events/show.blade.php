@@ -180,20 +180,33 @@
 				<input  required class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
 			</div>
 
-			<label for="" class="col-sm-2 ">CIE-X</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="ciex1">
-			</div>
+		
+			<label class="col-sm-2">CIE-X:</label>
+			<div class="col-sm-4">
+				<select id="el1" name="ciex1">
+					@foreach($ciex as $x)
+					<option value="{{$x->nombre}}">
+						{{$x->codigo}} {{$x->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
 
 			<label for="" class="col-sm-2 ">Diag.Final</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
 			</div>
 
-			<label for="" class="col-sm-2 ">CIE-X</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="ciex2">
-			</div>
+			<label class="col-sm-2">CIE-X:</label>
+			<div class="col-sm-4">
+				<select id="el2" name="ciex2">
+					@foreach($ciex as $x)
+					<option value="{{$x->nombre}}">
+						{{$x->codigo}} {{$x->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
 
 			<label for="" class="col-sm-2 ">Examen Auxiliar</label>
 			<div class="col-sm-4">	
@@ -239,6 +252,8 @@
   });
   function Select2Test(){
     $("#el1").select2();
+    $("#el2").select2();
+
   }
 </script>
 @endsection

@@ -10,6 +10,7 @@ use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
 use App\Models\Events;
+use App\Models\Ciex;
 use Calendar;
 use Carbon\Carbon;
 use DB;
@@ -45,11 +46,13 @@ class EventController extends Controller
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
     $personal = Personal::where('estatus','=',1)->get();
+    $ciex = Ciex::all();
     return view('events.show',[
       'data' => $event,
       'historial' => $historial,
       'consultas' => $consultas,
-      'personal' => $personal
+      'personal' => $personal,
+      'ciex' => $ciex
     ]);
   }
 
