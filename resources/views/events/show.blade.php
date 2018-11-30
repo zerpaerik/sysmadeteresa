@@ -6,6 +6,17 @@
 	<p>Fecha de cita: {{$data->date}}</p>
 	<p>Hora: {{$data->start_time}} Hasta las {{$data->end_time}}</p>
 	<br>
+
+	<h2>Datos del paciente</h2>
+	<p>Nombre: {{$data->nombres}} {{$data->apellidos}} </p>
+	<p>DNI paciente: {{$data->dni}}</p>
+	<p>Direccion del paciente: {{$data->direccion}}</p>
+	<p>Telefono del paciente: {{$data->telefono}}</p>
+	<p>Fecha de nacimiento: {{$data->fechanac}}</p>
+	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
+	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
+	<br>	
+
 	@if($historial)
 	<h2>Historia Base de {{$data->nombres}} {{$data->apellidos}}</h2>
 		<p>Alergias: {{$historial->alergias}}</p>

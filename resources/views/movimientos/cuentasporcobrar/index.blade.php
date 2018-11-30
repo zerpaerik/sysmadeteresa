@@ -27,8 +27,10 @@
 						<h5>Buscar por pacientes</h5>
 						<label for="">Nombre</label>
 						<input type="text" name="nom">
+						<label for="">Fecha</label>
+						<input type="date" name="date">
 						<input type="submit" class="btn btn-primary" value="Buscar">
-					</form>		
+					</form>	
 					<thead>
 						<tr>
 							@foreach($headers as $header)
