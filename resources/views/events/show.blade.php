@@ -169,6 +169,8 @@
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="text" name="tipo_enfermedad">
 			</div>
+			<br>
+			<label for="" class="col-sm-12 "><strong>Solo para pacientes Femeninas:</strong></label>
 
 			<label for="" class="col-sm-2 ">FUR:</label>
 			<div class="col-sm-4">	
