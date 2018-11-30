@@ -27,7 +27,8 @@
 						<label for="">Nombre</label>
 						<input type="text" name="nom">
 						<label for="">Fecha</label>
-						<input type="date" name="date">
+						<input type="date" name="date" style="margin-right: 10px;">
+						<input type="date" name="date_end">
 						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>
 					<thead>

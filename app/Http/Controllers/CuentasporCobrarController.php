@@ -19,7 +19,7 @@ class CuentasporCobrarController extends Controller
 	public function index()
   {
         $initial = Carbon::now()->toDateString();
-        $cuentasporcobrar = $this->elasticSearch($initial,'','');
+        $cuentasporcobrar = $this->elasticSearch($initial,$initial,'','');
         return view('movimientos.cuentasporcobrar.index', [
         "icon" => "fa-list-alt",
         "model" => "cuentasporcobrar",
@@ -42,7 +42,7 @@ class CuentasporCobrarController extends Controller
     if (!isset($split[1])) {
      
       $split[1] = '';
-      $cuentasporcobrar = $this->elasticSearch($request->date,$split[0],$split[1]);   
+      $cuentasporcobrar = $this->elasticSearch($request->date,$request->date_end,$split[0],$split[1]);   
       return view('movimientos.cuentasporcobrar.index', [
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
@@ -56,7 +56,7 @@ class CuentasporCobrarController extends Controller
         ]
     ]); 
     }else{
-      $cuentasporcobrar = $this->elasticSearch($request->initial,$split[0],$split[1]);  
+      $cuentasporcobrar = $this->elasticSearch($request->date,$request->date_end,$split[0],$split[1]);  
       return view('movimientos.cuentasporcobrar.index', [
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
@@ -108,7 +108,7 @@ class CuentasporCobrarController extends Controller
       return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
     }
 
-  private function elasticSearch($initial, $nom, $ape)
+  private function elasticSearch($initial,$end, $nom, $ape)
   {
      $cuentasporcobrar = DB::table('atenciones as a')
     ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
@@ -117,7 +117,7 @@ class CuentasporCobrarController extends Controller
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     //->join('profesionales as f','f.id','a.origen_usuario')
-    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($end))])
     ->where('b.nombres','like','%'.$nom.'%')
     ->where('b.apellidos','like','%'.$ape.'%')
     ->where('a.pendiente','>',0)
