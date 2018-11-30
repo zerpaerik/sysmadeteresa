@@ -234,6 +234,11 @@ Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
 
 
+Route::get('generalatenciones', 'ReporteIngresosController@indexa')->name('generalatenciones.indexa')->middleware('auth');
+Route::get('generalatenciones-search', 'ReporteIngresosController@searcha')->name('generalatenciones.searcha')->middleware('auth');
+
+Route::get('generalegresos', 'ReporteIngresosController@indexe')->name('generalegresos.indexe')->middleware('auth');
+Route::get('generalegresos-search', 'ReporteIngresosController@searche')->name('generalegresos.searche')->middleware('auth');
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
 

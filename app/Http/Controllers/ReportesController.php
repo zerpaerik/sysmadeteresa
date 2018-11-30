@@ -275,6 +275,26 @@ class ReportesController extends Controller
     }
 
 
+    public function general_ingresos(Reques $request){
+
+
+     $otrosingresos = DB::table('creditos as a')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->orderby('a.id','desc')
+        ->get();
+
+
+
+
+
+
+
+
+    }
+
+
 
 
 

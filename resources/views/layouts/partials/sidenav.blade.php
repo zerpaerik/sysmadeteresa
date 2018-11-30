@@ -121,19 +121,19 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('atenciones.index')}}"><i class="fa fa-plus-circle"></i> Ingreso de atenciones</a>
+        <a href="{{route('atenciones.index')}}"><i class="fa fa-plus-circle"></i> Ingreso de Atenciones</a>
       </li>
       <li>
-        <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de gastos</a>
+        <a href="{{route('gastos.index')}}"><i class="fa fa-random"></i> Relación de Gastos</a>
       </li>
       <li>
-        <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por pagar</a>
+        <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
       </li>
       <li>
-        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros ingresos</a>
+        <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
       </li>
       <li>
-        <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por cobrar</a>
+        <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
@@ -242,7 +242,13 @@
         <a href="reporte-solicitar_consolidado"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-file-o"></i> Reporte General</a>
+        <a href="{{route('generalatenciones.indexa')}}"><i class="fa fa-file-o"></i> General Atenciones</a>
+      </li>
+       <li>
+        <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
+      </li>
+       <li>
+        <a href="#"><i class="fa fa-file-o"></i> Mov.Productos</a>
       </li>
     </ul>
   </li>

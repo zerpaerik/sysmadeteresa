@@ -28,8 +28,8 @@
 						<label for="">Nombre</label>
 						<input type="text" name="nom">
 						<label for="">Fechas</label>
-						<input type="date" name="date" style="margin-right: 10px;">
-						<input type="date" name="date_end">
+						<input type="date" name="date" style="margin-right: 10px;line-height: 20px;">
+						<input type="date" name="date_end" style="line-height: 20px;">	
 						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>		
 					<thead>
