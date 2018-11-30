@@ -78,6 +78,10 @@
 				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
 				<p class="col-sm-6"><strong>peso:</strong> {{ $consulta->peso }}</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
+				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
+			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->mac }}</p>
+				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }}</p>
+				<p class="col-sm-6"><strong>G:</strong> {{ $consulta->g }}</p>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
 				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
@@ -157,15 +161,39 @@
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="text" name="pulso">
 			</div>
-			<label for="" class="col-sm-2 ">Evolucion de la enfermedad</label>
+			<label for="" class="col-sm-2 ">Evol.Enf</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="evolucion_enfermedad">
+				<input  required class="form-control" placeholder="Evolucion de la enfermedad" type="text" name="evolucion_enfermedad">
 			</div>	
 			<label for="" class="col-sm-2 ">Tipo de enfermedad:</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" type="text" name="tipo_enfermedad">
 			</div>
 
+			<label for="" class="col-sm-2 ">FUR:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="date" name="fur">
+			</div>
+
+			<label for="" class="col-sm-2 ">PAP:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="date" name="pap">
+			</div>
+
+			<label for="" class="col-sm-2 ">MAC:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="mac">
+			</div>
+
+			<label for="" class="col-sm-2 ">P:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="p">
+			</div>
+
+			<label for="" class="col-sm-2 ">G:</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" type="text" name="g">
+			</div>
 
 
 			<br>
@@ -181,32 +209,20 @@
 			</div>
 
 		
-			<label class="col-sm-2">CIE-X:</label>
-			<div class="col-sm-4">
-				<select id="el1" name="ciex1">
-					@foreach($ciex as $x)
-					<option value="{{$x->nombre}}">
-						{{$x->codigo}} {{$x->nombre}}
-					</option>
-					@endforeach
-				</select>
-			</div> 
+			<label for="" class="col-sm-2">CIE-X</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" placeholder="" type="text" name="ciex1">
+			</div>
 
 			<label for="" class="col-sm-2 ">Diag.Final</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
 			</div>
 
-			<label class="col-sm-2">CIE-X:</label>
-			<div class="col-sm-4">
-				<select id="el2" name="ciex2">
-					@foreach($ciex as $x)
-					<option value="{{$x->nombre}}">
-						{{$x->codigo}} {{$x->nombre}}
-					</option>
-					@endforeach
-				</select>
-			</div> 
+			<label for="" class="col-sm-2">CIE-X</label>
+			<div class="col-sm-4">	
+				<input  required class="form-control" placeholder="" type="text" name="ciex2">
+			</div>
 
 			<label for="" class="col-sm-2 ">Examen Auxiliar</label>
 			<div class="col-sm-4">	
