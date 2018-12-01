@@ -23,16 +23,15 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					
 					<form action="/cuentasporcobrar-search" method="get">
-						<h5>Buscar</h5>
 						<label for="">Buscar</label>
-						<input type="text" name="nom">
-						<label for="">Fechas</label>
-						<input type="date" name="date" style="margin-right: 10px;">
-						<input type="date" name="date_end">						
-						<input type="submit" class="btn btn-primary" value="Buscar">
-					</form>	
+						<input type="text" placeholder="Buscador" name="nom" style="line-height: 20px; margin-left: 30px;">
+						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
+					</form>
 					<thead>
+
+						Buscar
 						<tr>
 							@foreach($headers as $header)
 								<th>{{$header}}</th>

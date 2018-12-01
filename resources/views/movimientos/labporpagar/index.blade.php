@@ -23,16 +23,14 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/labporpagar-search" method="get">
-						<h5>Buscar por pacientes</h5>
-						<label for="">Nombre</label>
-						<input type="text" name="nom">
-						<label for="">Fechas</label>
-						<input type="date" name="date" style="margin-right: 10px;">
-						<input type="date" name="date_end">						
-						<input type="submit" class="btn btn-primary" value="Buscar">
-					</form>				
+						
+						<label for="">Buscar</label>
+						<input type="text" placeholder="Buscador" name="nom" style="line-height: 20px;">
+						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
+					</form>			
 					<thead>
 						<tr>
+							<th>Fecha Atenciòn</th>
 							<th>Paciente</th>
 							<th>Analisis</th>
 							<th>Laboratorio a Pagar</th>
@@ -44,6 +42,7 @@
 					<tbody>
 						@foreach($atenciones as $atec)					
 							<tr>
+								<td>{{$atec->created_at}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->nombreana}}</td>
 							    <td>{{$atec->nombrelab}}</td>

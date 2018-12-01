@@ -10,6 +10,7 @@ use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
 use App\Models\Servicios;
 use App\Models\Events;
+use App\Models\Pacientes;
 use Calendar;
 use Carbon\Carbon;
 use DB;
@@ -69,11 +70,12 @@ class ServiceController extends Controller
   public function show($id)
   {
     $services = DB::table('services as s')
-    ->select('s.id','s.especialista_id','s.title','s.especialidad_id','s.servicio_id','s.date','s.hora_id','e.nombre as nomEspecialidad','e.id','pro.name as nombrePro','pro.apellidos as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId')
+    ->select('s.id','s.especialista_id','s.title','s.especialidad_id','s.paciente_id','s.servicio_id','s.date','s.hora_id','e.nombre as nomEspecialidad','e.id','pro.name as nombrePro','pro.apellidos as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
     ->join('especialidades as e','e.id','=','s.especialidad_id')
     ->join('profesionales as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
+    ->join('pacientes as pc','pc.id','=','s.paciente_id')
     ->where('s.id','=',$id)
     ->first();
     return view('service.show',[
@@ -85,7 +87,8 @@ class ServiceController extends Controller
       "especialistas" => Profesional::all(),
       "especialidades" => Especialidad::all(),
       "servicios" => Servicios::all(),
-      "tiempos" => RangoConsulta::all()
+      "tiempos" => RangoConsulta::all(),
+      "pacientes" => Pacientes::where("estatus", '=', 1)->get()
     ];
 
     //dd($data);
@@ -118,6 +121,7 @@ class ServiceController extends Controller
       $evt = Service::create([
         "especialista_id" => $request->especialista,
         "especialidad_id" => $request->especialidad,
+        "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "hora_id" => $request->time,
         "servicio_id" => $request->servicios,

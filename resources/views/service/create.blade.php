@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Nuevo servicio</strong></span>
+					<span><strong>Nueva Programación</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -25,6 +25,17 @@
 				<form class="form-horizontal" role="form" method="post" action="services/create">
 					{{ csrf_field() }}
 					<div class="form-group">
+
+					    <label class="col-sm-1 control-label">Pacientes</label>
+						<div class="col-sm-3">
+							<select id="el4" name="paciente">
+								@foreach($pacientes as $pac)
+									<option value="{{$pac->id}}">
+										{{$pac->nombres}} {{$pac->apellidos}}
+									</option>
+								@endforeach
+							</select>
+						</div>
 						
 						<label class="col-sm-1 control-label">Especialistas</label>
 						<div class="col-sm-3">
@@ -94,6 +105,7 @@ $(document).ready(function() {
 		$("#el2").select2();
 		$("#el9").select2();
 		$("#el1").select2();
+		$("#el4").select2();
 		$("#el3").select2({disabled : true});
 	});
 	WinMove();
