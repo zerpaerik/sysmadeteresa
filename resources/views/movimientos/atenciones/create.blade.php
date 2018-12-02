@@ -227,6 +227,20 @@
             <!-- /sheepIt Form --> 
             
           </div>
+          <br>
+
+            <label class="col-sm-3 control-label">Còmo llego a Madre Teresa:</label>
+            <div class="col-sm-3">
+              <select id="el6" name="comollego">
+                  <option value="Seleccione">Seleccione</option>
+                  <option value="Recomendaciòn">Recomendaciòn</option>
+                  <option value="Redes">Redes</option>
+                  <option value="Avisos">Avisos</option>
+                  <option value="Otros">Otros</option>
+
+              </select>
+            </div>
+
           <hr>
            <div class="form-group form-inline">
             <div class="col-sm-8 col-sm-offset-7">
@@ -267,6 +281,8 @@
               <input type="text" name="total_g" class="number form-control" value="0.00" id="total_g" readonly="readonly" style="width: 150px">
             </div>
           </div>
+
+
 
 											
 						<br>
@@ -524,6 +540,7 @@ function Select2Test(){
 	$("#el3").select2();
   $("#el5").select2();
   $("#el4").select2();
+  $("#el6").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this

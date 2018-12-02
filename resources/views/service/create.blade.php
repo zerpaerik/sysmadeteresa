@@ -31,7 +31,7 @@
 							<select id="el4" name="paciente">
 								@foreach($pacientes as $pac)
 									<option value="{{$pac->id}}">
-										{{$pac->nombres}} {{$pac->apellidos}}
+										{{$pac->nombres}} {{$pac->apellidos}} - {{$pac->dni}}
 									</option>
 								@endforeach
 							</select>
