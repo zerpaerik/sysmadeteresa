@@ -126,6 +126,8 @@ Route::get('prenatal-vercontrol-{id}', 'PrenatalController@verControl')->name('p
 Route::post('prenatal/create', 'PrenatalController@create')->middleware('auth');
 Route::post('control/create', 'PrenatalController@createControl')->middleware('auth');
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
+Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.search')->middleware('auth');
+
 
 /**
  * Atenciones

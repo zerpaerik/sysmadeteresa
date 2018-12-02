@@ -11,9 +11,37 @@ use Toastr;
 
 class PrenatalController extends Controller
 {
-    public function index()
+
+	public function index(){
+    
+        $prenatal = $this->elasticSearch('','');
+   
+        return view('prenatal.index', ["prenatal" => $prenatal]);
+	}
+
+    public function search(Request $request)
     {
-    	$data = $atenciones = DB::table('prenatals as a')
+      $search = $request->dni;
+      $split = explode(" ",$search);
+    
+
+      if (!isset($split[1])) {
+       
+        $split[1] = '';
+        $prenatal = $this->elasticSearch($split[0],$split[1]);
+      
+        return view('prenatal.search', ["prenatal" => $prenatal]); 
+
+      }else{
+        $prenatal = $this->elasticSearch($split[0],$split[1]); 
+      
+        return view('prenatal.search', ["prenatal" => $prenatal]);   
+      }    
+    }
+
+      private function elasticSearch($dni)
+  { 
+      $prenatal = DB::table('prenatals as a')
     	->select( 'a.id',
     		'a.paciente',
     		'a.created_at',
@@ -111,13 +139,13 @@ class PrenatalController extends Controller
 			 'a.otros_cie2_10',
 			 'p.nombres',
 			 'p.apellidos',
+			 'p.dni',
 			 'p.id as idPaciente')
     	->join('pacientes as p','p.id','a.paciente')
-    	->paginate(20);  	
-    	return view('prenatal.index',[
-    		 'data' => $data
-    	]);     	
-    }
+        ->where('p.dni','like','%'.$dni.'%')
+        ->paginate(20);
+        return $prenatal;
+  }
 
     public function createView()
     {
