@@ -27,7 +27,7 @@
 						<label for="">Seleccione un paciente</label>
 						<select name="paciente" id="el2">
 						@foreach($pacientes as $paciente)
-							<option value="{{$paciente->id}}">{{$paciente->nombres}} {{$paciente->apellidos}}</option>
+							<option value="{{$paciente->id}}">{{$paciente->nombres}} {{$paciente->apellidos}}-{{$paciente->dni}}</option>
 						@endforeach
 						</select>
 						<br><br>

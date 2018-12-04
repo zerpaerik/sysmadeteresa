@@ -24,9 +24,9 @@ class CuentasporCobrarController extends Controller
         "icon" => "fa-list-alt",
         "model" => "cuentasporcobrar",
         "model1" => "Cuentas Por Cobrar",
-        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
+        "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Fecha Atenciòn","Acción"],
         "data" => $cuentasporcobrar,
-        "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
+        "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente","created_at"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -47,9 +47,9 @@ class CuentasporCobrarController extends Controller
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
       "model1" => "Cuentas Por Cobrar",
-      "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
+      "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Fecha Atenciòn","Acción"],
       "data" => $cuentasporcobrar,
-      "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
+      "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente","created_at"],
         "actions" => [
           '<button type="button" class="btn btn-info">Transferir</button>',
           '<button type="button" class="btn btn-warning">Editar</button>'
@@ -61,9 +61,9 @@ class CuentasporCobrarController extends Controller
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
       "model1" => "Cuentas Por Cobrar",
-      "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Acción"],
+      "headers" => ["id", "Nombre Paciente", "Apellido Paciente","Monto","Monto Abonado","Monto Pendiente","Fecha Atenciòn","Acción"],
       "data" => $cuentasporcobrar,
-      "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente"],
+      "fields" => ["id", "nombres", "apellidos","monto","abono","pendiente","created_at"],
         "actions" => [
           '<button type="button" class="btn btn-info">Transferir</button>',
           '<button type="button" class="btn btn-warning">Editar</button>'

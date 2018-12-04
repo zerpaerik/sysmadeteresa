@@ -251,7 +251,7 @@
         <a href="{{route('generalegresos.indexe')}}"><i class="fa fa-file-o"></i> General Egresos</a>
       </li>
        <li>
-        <a href="#"><i class="fa fa-file-o"></i> Mov.Productos</a>
+        <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Còmo llego el Paciente?</a>
       </li>
     </ul>
   </li>
