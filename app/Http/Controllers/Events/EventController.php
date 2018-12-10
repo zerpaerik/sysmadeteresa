@@ -14,8 +14,10 @@ use App\Models\Ciex;
 use Calendar;
 use Carbon\Carbon;
 use DB;
+use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
+
 class EventController extends Controller
 {
 
@@ -33,7 +35,7 @@ class EventController extends Controller
     }
   }
 
-  public function show($id)
+  public function show(Request $request,$id)
   {
     $event = DB::table('events as e')
     ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','pro.name as nombrePro','pro.apellidos as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id')
@@ -46,12 +48,14 @@ class EventController extends Controller
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
     $personal = Personal::where('estatus','=',1)->get();
+	$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
    // $ciex = Ciex::all();
     return view('events.show',[
       'data' => $event,
       'historial' => $historial,
       'consultas' => $consultas,
       'personal' => $personal,
+	  'productos' => $productos
       //'ciex' => $ciex
     ]);
   }

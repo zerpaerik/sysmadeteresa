@@ -7,6 +7,9 @@ use App\Consulta;
 use App\Http\Requests\CreateConsultaRequest;
 use Carbon\Carbon;
 use DB;
+use App\Models\ConsultaMateriales;
+use App\Models\Existencias\{Producto, Existencia, Transferencia};
+use Toastr;
 
 
 class ConsultaController extends Controller
@@ -64,40 +67,69 @@ class ConsultaController extends Controller
 
     public function create(Request $request)
     {
-    	Consulta::create([
-    		'pa' => $request->pa,
-    		'pulso' => $request->pulso,
-    		'temperatura' => $request->temperatura,
-    		'peso' => $request->peso,
-    		'fur' => $request->fur,
-            'mac' => $request->mac,
-            'g' => $request->g,
-            'p' => $request->p,
-            'pap' => $request->pap,
-    		'motivo_consulta' => $request->motivo_consulta,
-    		'tipo_enfermedad' => $request->tipo_enfermedad,
-    		'evolucion_enfermedad' => $request->evolucion_enfermedad,
-    		'examen_fisico_regional' => $request->examen_fisico,
-    		'presuncion_diagnostica' => $request->presuncion_diagnostica,
-    		'diagnostico_final' => $request->diagnostico_final,
-    		'CIEX' => $request->ciex1,
-    		'CIEX2' => $request->ciex2,
-    		'examen_auxiliar' => $request->examen_auxiiar,
-    		'plan_tratamiento' => $request->plan_tratamiento,
-    		'obervaciones' => $request->observaciones,
-    		'paciente_id' => $request->paciente_id,
-    		'profesional_id' => $request->profesional_id,
-            'prox' => $request->prox,
-            'personal' => $request->personal,
-            'apetito' => $request->apetito,
-            'sed' => $request->sed,
-            'card' => $request->card,
-            'animo' => $request->animo,
-            'deposiciones' => $request->deposiciones,
-            'orina' => $request->orina
+    	
+		$consulta = new Consulta;
+		$consulta->pa =$request->pa;
+		$consulta->pulso =$request->pulso;
+		$consulta->temperatura =$request->temperatura;
+		$consulta->peso =$request->peso;
+		$consulta->fur =$request->fur;
+		$consulta->mac =$request->mac;
+		$consulta->motivo_consulta =$request->motivo_consulta;
+		$consulta->tipo_enfermedad =$request->tipo_enfermedad;
+		$consulta->evolucion_enfermedad =$request->evolucion_enfermedad;
+		$consulta->examen_fisico_regional =$request->examen_fisico_regional;
+		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
+		$consulta->diagnostico_final =$request->diagnostico_final;
+		$consulta->ciex =$request->ciex;
+		$consulta->ciex2=$request->ciex2;
+		$consulta->examen_auxiliar=$request->examen_auxiliar;
+		$consulta->plan_tratamiento =$request->plan_tratamiento;
+		$consulta->observaciones =$request->observaciones;
+		$consulta->paciente_id =$request->paciente_id;
+		$consulta->profesional_id =$request->profesional_id;
+		$consulta->prox =$request->prox;
+		$consulta->personal =$request->personal;
+		$consulta->apetito =$request->apetito;
+		$consulta->sed =$request->sed;
+		$consulta->orina =$request->orina;
+		$consulta->animo =$request->animo;
+		$consulta->g =$request->g;
+		$consulta->p =$request->p;
+		$consulta->pap =$request->pap;
+		$consulta->deposiciones =$request->deposiciones;
+		$consulta->card =$request->card;
+		$consulta->save();
+		
+		
+	 if (isset($request->id_laboratorio)) {
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        if (!is_null($laboratorio['laboratorio'])) {
+          $pro = new ConsultaMateriales();
+          $pro->id_consulta = $consulta->id;
+          $pro->id_material =  $laboratorio['laboratorio'];
+          $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+          $pro->save();
+		  
+		  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
+          ->first();
+		  $cantactual= $SearchMaterial->cantidad;
+	
+		
+	  $p = Producto::find($laboratorio['laboratorio']);
+      $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+      $res = $p->save();
+	  Toastr::success('Registrado Exitosamente.', 'Consulta!', ['progressBar' => true]);
+      return redirect()->action('Events\EventController@index', ["edited" => $res]);
+		  
+		  
+	
+        } else {
 
+        }
+      }
+    }
 
-    	]);
 
     	return back();
 
