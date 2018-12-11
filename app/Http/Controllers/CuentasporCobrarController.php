@@ -99,7 +99,7 @@ class CuentasporCobrarController extends Controller
                     $creditos->id_atencion = $atencion;
                     $creditos->monto= $request->monto;
                     $creditos->id_sede = $request->session()->get('sede');
-                    $creditos->tipo_ingreso = 'EF';
+                    $creditos->tipo_ingreso = $request->tipopago;
                     $creditos->descripcion = 'CUENTAS POR COBRAR';
                     $creditos->save();
 
