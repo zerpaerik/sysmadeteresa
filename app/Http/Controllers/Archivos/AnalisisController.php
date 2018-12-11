@@ -89,7 +89,7 @@ class AnalisisController extends Controller
 
   public function createView() {
 
-    $laboratorios = Laboratorios::all();
+	$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 
     return view('archivos.analisis.create', compact('laboratorios'));
   }

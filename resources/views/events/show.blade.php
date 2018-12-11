@@ -215,27 +215,44 @@
 				<input  required class="form-control" type="text" name="examen_fisico_regional">
 			</div>
 			<br>
-
+            <div class="row">
 			<label for="" class="col-sm-2">Pres.Diag</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
 			</div>
 
 		
-			<label for="" class="col-sm-2">CIE-X</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="" type="text" name="ciex1">
+			<label class="col-sm-2">CIE-X:</label>
+			<div class="col-sm-4">
+				<select id="el3" name="ciex1">
+					@foreach($ciex as $c)
+					<option value="{{$c->codigo}}-{{$c->nombre}}">
+						{{$c->codigo}}-{{$c->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
+			
 			</div>
-
+            
+		<div class="row">
 			<label for="" class="col-sm-2 ">Diag.Final</label>
 			<div class="col-sm-4">	
 				<input  required class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
 			</div>
 
-			<label for="" class="col-sm-2">CIE-X</label>
-			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="" type="text" name="ciex2">
-			</div>
+			<label class="col-sm-2">CIE-X:</label>
+			<div class="col-sm-4">
+				<select id="el4" name="ciex2">
+					@foreach($ciex as $c)
+					<option value="{{$c->nombre}}">
+						{{$c->codigo}}-{{$c->nombre}}
+					</option>
+					@endforeach
+				</select>
+			</div> 
+			
+		</div>
 
 			<label for="" class="col-sm-2 ">Examen Auxiliar</label>
 			<div class="col-sm-4">	

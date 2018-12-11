@@ -74,7 +74,21 @@ class PacientesController extends Controller
       ]);  
      }     
      
-  }    
+  }  
+  
+
+     public function show($id)
+    {
+	  
+	   $pacientes = DB::table('pacientes as a')
+              
+			  ->select('a.id','a.nombres','a.apellidos','a.dni','a.historia','a.direccion','a.gradoinstruccion','a.telefono','a.fechanac','a.ocupacion','a.distrito','b.nombre')
+              ->join('distritos as b','b.id','a.distrito')
+			  ->where('a.id','=', $id)
+              ->first();
+	  
+      return view('archivos.pacientes.show', compact('pacientes'));
+    }	  
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [

@@ -43,7 +43,7 @@
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
 							@endforeach					
-							@if($model == 'servicios')
+							@if($model == 'pacientes')
 								<td>
 									<a id="{{$d->id}}" onclick="view(this)" class="btn btn-primary">Ver</a>
 									<a href="servicios-addItems-{{$d->id}}" class="btn btn-success"> Agregar items</a>
@@ -117,14 +117,14 @@
     </div>
 </div>
 
-@if ($model == 'servicios')
+@if ($model == 'pacientes')
 	<!-- MODAL SECTION -->
-    <div class="modal fade" id="viewServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="viewPaciente" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-            <h4 class="modal-title" id="myModalLabel">Detalles del servicio</h4>
+            <h4 class="modal-title" id="myModalLabel">Detalles del Paciente</h4>
           </div>
           <div class="modal-body"></div>
         </div>
@@ -137,10 +137,10 @@
 		    
 		    $.ajax({
 		        type: "GET",
-		        url: "/servicio/view/"+id,
+		        url: "/paciente/view/"+id,
 		        success: function (data) {
-		            $("#viewServicio .modal-body").html(data);
-		            $('#viewServicio').modal('show');
+		            $("#viewPaciente .modal-body").html(data);
+		            $('#viewPaciente').modal('show');
 		        },
 		        error: function (data) {
 		            console.log('Error:', data);
