@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Debitos;
+use App\Models\Historiales;
 use DB;
 use Carbon\Carbon;
 
@@ -61,6 +62,15 @@ class GastosController extends Controller
 	      'origen' => 'RELACION DE GASTOS',
 	      'id_sede' => $request->session()->get('sede')
    		]);
+		
+		  $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Gasto';
+		  $historial->detalle = $request->descripcion;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
+		  
 		return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);
 	}    
 

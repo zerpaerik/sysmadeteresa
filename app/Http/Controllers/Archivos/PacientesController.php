@@ -10,6 +10,7 @@ use App\Models\Provincias;
 use App\Models\Distritos;
 use App\Models\GradoInstruccion;
 use App\Models\HistoriaPacientes;
+use App\Models\Historiales;
 use Carbon\Carbon;
 class PacientesController extends Controller
 {
@@ -116,6 +117,15 @@ class PacientesController extends Controller
 	      'historia' => HistoriaPacientes::generarHistoria()
 	  
    		]);
+		
+		  $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Paciente';
+		  $historial->detalle =$request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
+		  
 		return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
 	}   
 
@@ -139,6 +149,13 @@ class PacientesController extends Controller
         'historia' => HistoriaPacientes::generarHistoria()
     
       ]);
+	  
+	     $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Paciente';
+		  $historial->detalle =$request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+          $historial->save();
 
     return redirect()->route('atenciones.create');
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);

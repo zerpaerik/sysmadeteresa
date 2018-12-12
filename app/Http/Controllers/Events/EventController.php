@@ -11,6 +11,7 @@ use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
 use App\Models\Events;
 use App\Models\Ciex;
+use App\Models\Historiales;
 use Calendar;
 use Carbon\Carbon;
 use DB;
@@ -133,6 +134,14 @@ class EventController extends Controller
         "tipo_ingreso" => 'EF',
         "id_sede" => $request->session()->get('sede'),
       ]);
+	  
+	  $historial = new Historial();
+          $historial->accion ='Registro';
+          $historial->origen ='Consultas';
+		  $historial->detalle = $paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
     }
 
     $calendar = Calendar::addEvents($this->getEvents())

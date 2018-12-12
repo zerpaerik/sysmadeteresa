@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Archivos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Laboratorios;
+use App\Models\Historiales;
 use Toastr;
 
 class LaboratoriosController extends Controller
@@ -57,6 +58,14 @@ class LaboratoriosController extends Controller
 	      'referencia' => $request->referencia,
 	  
    		]);
+		
+		  $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Laboratorio';
+		  $historial->detalle =$request->name;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
 
         Toastr::success('Registrado Exitosamente.', 'Laboratorio!', ['progressBar' => true]);
 

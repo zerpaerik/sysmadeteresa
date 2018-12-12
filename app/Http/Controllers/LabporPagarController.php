@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\Historiales;
 use Auth;
 
 
@@ -67,7 +68,14 @@ class LabporPagarController extends Controller
                 $debitos->monto= $costo;
                 $debitos->id_sede = $request->session()->get('sede');
                 $debitos->descripcion = $name;
-                $debitos->save();     
+                $debitos->save();  
+
+                 $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Lab por Pagar';
+		  $historial->detalle = $costo;
+          $historial->id_usuario = \Auth::user()->id;
+          $historial->save();				
 
     return redirect()->route('labporpagar.index');
 

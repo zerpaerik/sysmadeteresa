@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pacientes\Paciente;
+use App\Models\Historiales;
 use App\Prenatal;
 use App\Control;
 use DB;
@@ -312,6 +313,14 @@ class PrenatalController extends Controller
 				'sexo_nacido' => $request->sexo_nacido,
 				'edad_gestacion' => $request->edad_gestacion,
 			]);
+			
+			 $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Control Prenatal';
+		  $historial->detalle ='Prenatal';
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
 
 		Toastr::success('Registrado Exitosamente.', 'Consulta Prenatal!', ['progressBar' => true]);
 

@@ -12,6 +12,7 @@ use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\Models\Paquetes;
+use App\Models\Historiales;
 use App\Models\Existencias\Producto;
 use App\Models\ServicioMaterial;
 use App\User;
@@ -103,7 +104,13 @@ class AtencionesController extends Controller
                     ->where('id','=', $request->origen_usuario)
                     ->first();    
 
-
+          $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Ingreso de Atenciones';
+		  $historial->detalle = $request->id_paciente;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
 
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
@@ -141,6 +148,8 @@ class AtencionesController extends Controller
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'INGRESO DE ATENCIONES';
               $creditos->save();
+			  
+		
 
 
         } else {
@@ -202,6 +211,9 @@ class AtencionesController extends Controller
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'INGRESO DE ATENCIONES';
               $creditos->save();
+			  
+			
+
         } else {
 
         }
@@ -248,6 +260,7 @@ class AtencionesController extends Controller
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
+		  
         } else {
 
         }

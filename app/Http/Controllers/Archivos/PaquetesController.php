@@ -7,6 +7,7 @@ use App\Models\PaqueteServ;
 use App\Models\Servicios;
 use App\Models\Analisis;
 use App\Models\PaqueteLab;
+use App\Models\Historiales;
 use DB;
 use Silber\Bouncer\Database\Role;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +93,14 @@ class PaquetesController extends Controller
               $lab->save();
             }
           }
+		  
+		  $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Paquetes';
+		  $historial->detalle =$request->detalle;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
       }
 
       return redirect()->route('paquetes.index');

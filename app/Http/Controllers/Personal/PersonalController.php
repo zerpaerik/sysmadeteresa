@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Personal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Personal;
+use App\Models\Historiales;
 use App\User;
 use Toastr;
+use Auth;
 
 
 class PersonalController extends Controller
@@ -105,6 +107,18 @@ class PersonalController extends Controller
         'dni' => $request->dni
 
       ]);
+	  
+	
+	  
+	      $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Personal';
+		  $historial->detalle =$request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
+	  
+	  
 
 
     Toastr::success('Registrado Exitosamente.', 'Personal!', ['progressBar' => true]);

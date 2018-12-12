@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Profesionales;
 use App\Models\Especialidades;
 use App\Models\Centros;
+use App\Models\Historiales;
 use App\User;
 use DB;
 use Toastr;
@@ -120,6 +121,15 @@ class ProfesionalesController extends Controller
         'dni' => $request->dni
 
       ]);
+	  
+	      $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Profesional de Apoyo';
+		  $historial->detalle = $request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
+          
 
      Toastr::success('Registrado Exitosamente.', 'Profesional de Apoyo!', ['progressBar' => true]);
 

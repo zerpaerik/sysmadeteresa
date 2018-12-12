@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Analisis;
 use App\Models\Laboratorios;
+use App\Models\Historiales;
 use DB;
 use Toastr;
 
@@ -75,6 +76,15 @@ class AnalisisController extends Controller
 	    
 
    		]);
+           
+          $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Analisis de Laboratorio';
+		  $historial->detalle =$request->name;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();		   
+		
             Toastr::success('Registrado Exitosamente.', 'Analisis de Laboratorio!', ['progressBar' => true]);
 
 		return redirect()->action('Archivos\AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);

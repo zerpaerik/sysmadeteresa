@@ -8,6 +8,7 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\Historiales;
 use Auth;
 use Toastr;
 
@@ -65,6 +66,14 @@ class ComporPagarController extends Controller
                       'pagado_com' => 1,
                       'recibo' => 'REC'.date('Y').'-'.str_pad($last+1, 4, "0", STR_PAD_LEFT)
                   ]);
+				  
+		  $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Comisiones por Pagar';
+		  $historial->detalle ='Comision Por Pagar';
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
      
     Toastr::success('La comisión ha sido pagada.', 'Comisiones!', ['progressBar' => true]);
     return redirect()->route('comporpagar.index');

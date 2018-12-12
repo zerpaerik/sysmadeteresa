@@ -9,6 +9,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
+use App\Models\Historiales;
 use Auth;
 
 
@@ -102,6 +103,14 @@ class CuentasporCobrarController extends Controller
                     $creditos->tipo_ingreso = $request->tipopago;
                     $creditos->descripcion = 'CUENTAS POR COBRAR';
                     $creditos->save();
+					
+					$historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Cuentas por Cobrar';
+		  $historial->detalle = $request->monto;
+          $historial->id_usuario = \Auth::user()->id;
+		  $historial->sede = $request->session()->get('sede');
+          $historial->save();
 
 
 

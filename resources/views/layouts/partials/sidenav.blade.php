@@ -253,6 +253,9 @@
        <li>
         <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Còmo llego el Paciente?</a>
       </li>
+	   <li>
+        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      </li>
     </ul>
   </li>
 
