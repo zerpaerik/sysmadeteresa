@@ -8,7 +8,7 @@ use App\Http\Requests\CreateConsultaRequest;
 use Carbon\Carbon;
 use DB;
 use App\Models\ConsultaMateriales;
-use App\Models\Existencias\{Producto, Existencia, Transferencia};
+use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use Toastr;
 
 

@@ -135,7 +135,7 @@ class EventController extends Controller
         "id_sede" => $request->session()->get('sede'),
       ]);
 	  
-	  $historial = new Historial();
+	  $historial = new Historiales();
           $historial->accion ='Registro';
           $historial->origen ='Consultas';
 		  $historial->detalle = $paciente->nombres . " " . $paciente->apellidos . " Paciente.";
