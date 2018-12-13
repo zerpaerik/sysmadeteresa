@@ -437,18 +437,15 @@
     });
 
     $(document).on('change','.selectServ',function(){
-      var selectId = $(this).attr('id');
-      var selectArr = selectId.split('_');
-      var id = selectArr[1];
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
 
       $.ajax({
          type: "GET",
          url:  "servicios/getServicio/"+$(this).val(),
          success: function(a) {
-            $.each(a.materiales, function(i, item) {
-                $("#load-materiales_"+id).append('\r\n'+item.material.nombre);
-            });
-            $("#materiales_"+id).show();
+           
             $('#servicios_'+id+'_montoHidden').val(a.precio);
             $('#servicios_'+id+'_monto').val(a.precio);
             var total = parseFloat($('#total').val());

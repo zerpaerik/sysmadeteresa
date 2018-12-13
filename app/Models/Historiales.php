@@ -9,7 +9,7 @@ class Historiales extends Model
 	protected $table="historial";
 
     protected $fillable = [
-    	'accion', 'origen', 'id_usuario','detalle','sede
+    	'accion', 'origen', 'id_usuario','detalle','sede'
     ];
 
    

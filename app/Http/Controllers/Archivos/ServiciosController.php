@@ -119,7 +119,8 @@ class ServiciosController extends Controller
 
     public function getServicio($servicio)
     {
-        return Servicios::where('id', $servicio)->with('materiales.material')->first();      
+        return Servicios::findOrFail($servicio);
+    
     }
 
     public function show($id)
