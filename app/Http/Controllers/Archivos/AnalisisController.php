@@ -9,6 +9,7 @@ use App\Models\Laboratorios;
 use App\Models\Historiales;
 use DB;
 use Toastr;
+use Auth;
 
 class AnalisisController extends Controller
 {
@@ -17,17 +18,18 @@ class AnalisisController extends Controller
 
 
 	$analisis = DB::table('analises as a')
-        ->select('a.id','a.name','a.preciopublico','a.costlab','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio')
+        ->select('a.id','a.name','a.preciopublico','a.costlab','a.usuario','a.estatus','a.costlab','a.tiempo','a.material','b.name as laboratorio','c.name as user','c.lastname')
         ->join('laboratorios as b','a.laboratorio','b.id')
+		->join('users as c','c.id','a.usuario')
         ->orderby('a.id','desc')
         ->where('a.estatus','=', 1)
         ->paginate(5000);     
         return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "analisis",
-        "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Precio al Pùblico", "Costo", "Tiempo", "Material","Laboratorio","Registrado Por:", "Editar", "Eliminar"],
         "data" => $analisis,
-        "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio"],
+        "fields" => [ "name", "preciopublico", "costlab", "tiempo", "material","laboratorio","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -72,7 +74,9 @@ class AnalisisController extends Controller
 	      'laboratorio' => $request->laboratorio,
         'porcentaje' => $request->porcentaje,
 	      'tiempo' => $request->tiempo,
-	      'material' => $request->material
+	      'material' => $request->material,
+		  'usuario' => 	Auth::user()->id
+
 	    
 
    		]);

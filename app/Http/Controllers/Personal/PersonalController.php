@@ -9,6 +9,7 @@ use App\Models\Historiales;
 use App\User;
 use Toastr;
 use Auth;
+use DB;
 
 
 class PersonalController extends Controller
@@ -22,13 +23,19 @@ class PersonalController extends Controller
   public function index(){
 
       //$personal = Personal::all();
-      $personal =Personal::where("estatus", '=', 1)->get();
+    //  $personal =Personal::where("estatus", '=', 1)->get();
+	  $personal = DB::table('personals as a')
+        ->select('a.id','a.name','a.lastname','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
+		->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get();  
+		
       return view('archivos.personal.index', [
         "icon" => "fa-list-alt",
         "model" => "personal",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
         "data" => $personal,
-        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
+        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -98,6 +105,8 @@ class PersonalController extends Controller
 	      'dni' => $request->dni,
 	      'address' => $request->address,
         'cargo' => $request->cargo,
+	    'usuario' => 	Auth::user()->id
+
    		]);
 
     $users= User::create([

@@ -11,6 +11,7 @@ use App\Models\Historiales;
 use App\User;
 use DB;
 use Toastr;
+use Auth;
 
 class ProfesionalesController extends Controller
 {
@@ -19,18 +20,19 @@ class ProfesionalesController extends Controller
 
 
       	$profesionales = DB::table('profesionales as a')
-        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro')
+        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro','d.name as user','d.lastname')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
+		->join('users as d','d.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->orderby('a.dni','desc')
         ->paginate(5000);
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
         "model" => "profesionales",
-        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro","Registrado Por:", "Editar", "Eliminar"],
         "data" => $profesionales,
-        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro"],
+        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -70,9 +72,10 @@ class ProfesionalesController extends Controller
 
       }else{
         $profesionales = DB::table('profesionales as a')
-        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro')
+        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.usuario','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro','d.name as user','d.lastname')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
+		->join('users as d','d.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->where('a.name','like', '%'.$split[0].'%')
         ->where('a.name','like', '%'.$split[1].'%')
@@ -81,9 +84,9 @@ class ProfesionalesController extends Controller
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
         "model" => "profesionales",
-        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro","Registrado Por:", "Editar", "Eliminar"],
         "data" => $profesionales,
-        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro"],
+        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -110,8 +113,8 @@ class ProfesionalesController extends Controller
 	      'nacimiento' => $request->nacimiento,
 	      'especialidad' => $request->especialidad,
 	      'centro' => $request->centro,
-        'phone' => $request->phone,
-
+          'phone' => $request->phone,
+		  'usuario' => 	Auth::user()->id,
    		]);
 
       $users= User::create([

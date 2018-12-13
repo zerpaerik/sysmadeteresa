@@ -8,21 +8,28 @@ use App\Models\Servicios;
 use App\Models\Historiales;
 use App\Models\ServicioMaterial;
 use App\Models\Existencias\Producto;
-
+use Auth;
 use Toastr;
+use DB;
 
 class ServiciosController extends Controller
 {
 
  public function index(){
 
-      $servicios =Servicios::where("estatus", '=', 1)->get();
+      //$servicios =Servicios::where("estatus", '=', 1)->get();
+	  $servicios = DB::table('servicios as a')
+        ->select('a.id','a.detalle','a.precio','a.porcentaje','a.por_per','a.por_tec','a.usuario','c.name as user','c.lastname')
+		->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get();  
+	  
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal", "Porcentaje Tecnólogo", "Opciones"],
+        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal", "Porcentaje Tecnólogo","Registrado Por:", "Opciones"],
         "data" => $servicios,
-        "fields" => ["id", "detalle", "precio","porcentaje","por_per", "por_tec"],
+        "fields" => ["id", "detalle", "precio","porcentaje","por_per", "por_tec","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -64,6 +71,8 @@ class ServiciosController extends Controller
           $servicio->porcentaje  = $request->porcentaje;
           $servicio->por_per  = $request->por_per;
           $servicio->por_tec  = $request->por_tec;
+		  $servicio->usuario = Auth::user()->id;
+
 
           if ($servicio->save()) {
             if (isset($request->materiales)) {

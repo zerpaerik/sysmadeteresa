@@ -7,19 +7,26 @@ use App\Http\Controllers\Controller;
 use App\Models\Laboratorios;
 use App\Models\Historiales;
 use Toastr;
+use Auth;
+use DB;
 
 class LaboratoriosController extends Controller
 {
 
 	 public function index(){
 
-      $laboratorios =Laboratorios::where("estatus", '=', 1)->get();
+      //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
+	  $laboratorios = DB::table('laboratorios as a')
+        ->select('a.id','a.name','a.direccion','a.referencia','a.usuario','c.name as user','c.lastname')
+		->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get();  
       return view('archivos.laboratorios.index', [
         "icon" => "fa-list-alt",
         "model" => "laboratorios",
-        "headers" => ["id", "Nombre", "Direcciòn", "Referencia", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Direcciòn", "Referencia","Registrado Por:", "Editar", "Eliminar"],
         "data" => $laboratorios,
-        "fields" => ["id", "name", "direccion", "referencia"],
+        "fields" => ["id", "name", "direccion", "referencia","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -56,6 +63,8 @@ class LaboratoriosController extends Controller
 	      'name' => $request->name,
 	      'direccion' => $request->direccion,
 	      'referencia' => $request->referencia,
+		  'usuario' => 	Auth::user()->id
+
 	  
    		]);
 		

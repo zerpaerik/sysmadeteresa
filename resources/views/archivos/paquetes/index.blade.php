@@ -38,6 +38,7 @@
 							<th>Nombre</th>
 							<th>Precio</th>
 							<th>Porcentaje</th>
+							<th>Registrado Por:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -46,6 +47,8 @@
 								<td>{{$paq->detalle}}</td>
 								<td>{{$paq->precio}}</td>
 								<td>{{$paq->porcentaje}}</td>
+							    <td>{{$paq->user}}-{{$paq->lastname}}</td>
+
 								<td>
 									<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$paq->id}}">ver</a>
 									<a href="paquetes-edit-{{$paq->id}}" class="btn btn-warning edit">Editar</a>

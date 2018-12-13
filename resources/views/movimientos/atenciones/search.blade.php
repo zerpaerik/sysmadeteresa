@@ -42,6 +42,7 @@
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Fecha</th>
+						    <th>Registrado Por:</th>
 							<th>Acciones</th>
 							<th></th>
 						</tr>
@@ -61,19 +62,16 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
-						<td>{{$d->created_at}}</td>				
+						<td>{{$d->created_at}}</td>
+						<td>{{$d->user}}-{{$d->userap}}</td>
+
+												
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
+					
 				</table>
 				{{$data->links()}}
 			</div>

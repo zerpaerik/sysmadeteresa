@@ -10,10 +10,10 @@ use App\Models\PaqueteLab;
 use App\Models\Historiales;
 use DB;
 use Silber\Bouncer\Database\Role;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use Auth;
 
 use Toastr;
 
@@ -26,7 +26,8 @@ class PaquetesController extends Controller
         
 
         $paquetes = DB::table('paquetes as a')
-        ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus')
+        ->select('a.id','a.detalle','a.precio', 'a.porcentaje','a.estatus','a.usuario','b.name as user','b.lastname')
+		->join('users as b','b.id','a.usuario')
         ->where('a.estatus','=',1)
         ->paginate(5000);
         $paquetes_servicios = new PaqueteServ();
@@ -74,6 +75,8 @@ class PaquetesController extends Controller
       $paquete->detalle    = $request->detalle;
       $paquete->precio     = $request->precio;
       $paquete->porcentaje = $request->porcentaje;
+	  $paquete->usuario = 	Auth::user()->id;
+
      
       if ($paquete->save()) {
           if (isset($request->id_servicio)) {

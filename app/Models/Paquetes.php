@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Paquetes extends Model
 {
     protected $fillable = [
-    	'detalle', 'precio','porcentaje'
+    	'detalle', 'precio','porcentaje','usuario'
     ];
 
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Centros;
 use App\Models\Historiales;
 use Toastr;
+use DB;
+use Auth;
 
 class CentrosController extends Controller
 {
@@ -18,13 +20,19 @@ class CentrosController extends Controller
 
    public function index(){
 
-      $centros =Centros::where("estatus", '=', 1)->get();
+      ///$centros =Centros::where("estatus", '=', 1)->get();
+	   $centros = DB::table('centros as a')
+        ->select('a.id','a.name','a.direccion','a.referencia','a.usuario','c.name as user','c.lastname')
+		->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get();  
+		
       return view('archivos.centros.index', [
         "icon" => "fa-list-alt",
         "model" => "centros",
-        "headers" => ["id", "Nombre", "Direcciòn", "Referencia", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Direcciòn", "Referencia","Registrado Por:", "Editar", "Eliminar"],
         "data" => $centros,
-        "fields" => ["id", "name", "direccion", "referencia"],
+        "fields" => ["id", "name", "direccion", "referencia","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -59,6 +67,8 @@ class CentrosController extends Controller
 	      'name' => $request->name,
 	      'direccion' => $request->direccion,
 	      'referencia' => $request->referencia,
+		  'usuario' => 	Auth::user()->id
+
 	  
    		]);
 		

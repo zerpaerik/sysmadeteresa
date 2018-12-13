@@ -138,6 +138,7 @@ class AtencionesController extends Controller
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->id_sede = $request->session()->get('sede');
               $paq->estatus = 1;
+			  $paq->usuario = Auth::user()->id;
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -201,6 +202,7 @@ class AtencionesController extends Controller
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
+			  $serv->usuario = Auth::user()->id;
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -250,6 +252,7 @@ class AtencionesController extends Controller
           $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
+		  $lab->usuario = Auth::user()->id;
           $lab->save();
 
           $creditos = new Creditos();
@@ -358,12 +361,13 @@ class AtencionesController extends Controller
   private function elasticSearch($initial,$nombre,$apellido)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete','g.name as user','g.lastname as userap')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
+	 ->join('users as g','g.id','a.usuario')
     ->whereNotIn('a.monto',[0,0.00])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('a.id_sede','=', \Session::get("sede"))

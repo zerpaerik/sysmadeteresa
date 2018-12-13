@@ -12,19 +12,28 @@ use App\Models\GradoInstruccion;
 use App\Models\HistoriaPacientes;
 use App\Models\Historiales;
 use Carbon\Carbon;
+use Auth;
+use DB;
 class PacientesController extends Controller
 {
 
 	
   public function index(){
 
-      $pacientes =Pacientes::where("estatus", '=', 1)->get();
+     // $pacientes =Pacientes::where("estatus", '=', 1)->get();
+	  
+	  $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
+		->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get();  
+	  
       return view('generics.index', [
         "icon" => "fa-list-alt",
         "model" => "pacientes",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","Registrado Por:", "Editar", "Eliminar"],
         "data" => $pacientes,
-        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion"],
+        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -114,6 +123,7 @@ class PacientesController extends Controller
 	      'gradoinstruccion' => $request->gradoinstruccion,
 	      'ocupacion' => $request->ocupacion,
 	      'estatus' => 1,
+		  'usuario' => 	Auth::user()->id,
 	      'historia' => HistoriaPacientes::generarHistoria()
 	  
    		]);
