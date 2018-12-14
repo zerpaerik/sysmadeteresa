@@ -42,7 +42,6 @@
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Fecha</th>
-						    <th>Registrado Por:</th>
 							<th>Acciones</th>
 							<th></th>
 						</tr>
@@ -63,7 +62,6 @@
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>
-						<td>{{$d->user}}-{{$d->userap}}</td>
 
 												
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
