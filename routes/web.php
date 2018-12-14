@@ -137,7 +137,7 @@ Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.searc
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
 Route::get('atenciones-search', 'AtencionesController@search')->name('atenciones.search')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');
-Route::post('atenciones/create', 'AtencionesController@create')->middleware('auth');
+Route::post('atenciones-create', 'AtencionesController@create')->middleware('auth');
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
