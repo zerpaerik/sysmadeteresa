@@ -138,7 +138,7 @@ class AtencionesController extends Controller
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->id_sede = $request->session()->get('sede');
               $paq->estatus = 1;
-			  $paq->usuario = Auth::user()->id;
+			//  $paq->usuario = Auth::user()->id;
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -202,7 +202,7 @@ class AtencionesController extends Controller
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
-			  $serv->usuario = Auth::user()->id;
+			 // $serv->usuario = Auth::user()->id;
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -252,7 +252,7 @@ class AtencionesController extends Controller
           $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
-		  $lab->usuario = Auth::user()->id;
+		  //$lab->usuario = Auth::user()->id;
           $lab->save();
 
           $creditos = new Creditos();
