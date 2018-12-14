@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Servicios extends Model
 {
     protected $fillable = [
-    	'id','detalle', 'precio', 'porcentaje','estatus', 'por_per', 'por_tec','usuario'
+    	'id','detalle', 'precio', 'porcentaje','estatus', 'por_per', 'por_tec','usuario','programa'
     ];
 
     public function atenciones()

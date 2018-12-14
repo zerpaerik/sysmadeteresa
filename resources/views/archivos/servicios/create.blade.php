@@ -48,6 +48,14 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="por_tec" placeholder="porcentaje tecnólogo" data-toggle="tooltip" data-placement="bottom" title="porcentaje">
 						</div>
+						
+						<label class="col-sm-2 control-label">Se Programa?</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="programa">
+							<option value="1">No</option>
+							<option value="2">Si</option>
+						</select>
+						</div>
 
 						<div class="form-group">
 							<div class="row">

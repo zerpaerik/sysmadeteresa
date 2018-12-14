@@ -11,8 +11,8 @@
       <select id="el1" name="especialista">
         @foreach($especialistas as $especialista)
           <option value="{{$especialista->id}}">
-            {{$especialista->name}} {{$especialista->apellidos}}
-            / {{$especialista->especialidad}}
+            {{$especialista->name}} {{$especialista->lastname}}
+            / {{$especialista->dni}}
           </option>
         @endforeach
       </select>

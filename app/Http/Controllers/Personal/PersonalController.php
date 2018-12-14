@@ -105,6 +105,7 @@ class PersonalController extends Controller
 	      'dni' => $request->dni,
 	      'address' => $request->address,
         'cargo' => $request->cargo,
+		'tipo' => $request->tipo,
 	    'usuario' => 	Auth::user()->id
 
    		]);

@@ -71,6 +71,7 @@ class ServiciosController extends Controller
           $servicio->porcentaje  = $request->porcentaje;
           $servicio->por_per  = $request->por_per;
           $servicio->por_tec  = $request->por_tec;
+		  $servicio->programa = $request->programa;
 		  $servicio->usuario = Auth::user()->id;
 
 

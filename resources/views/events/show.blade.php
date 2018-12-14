@@ -119,106 +119,109 @@
 			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
            <div class="row">
-            <label for="" class="col-sm-2 ">Motivo de Consulta</label>
-			<div class="col-sm-4">	
+            <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
+			<div class="col-sm-4 control-label">	
 				<input  required class="form-control" type="text" name="motivo_consulta">		
 			</div>
 		  </div>
 
 		  <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 ">Func.Biològicas</label>
+		  	            <label for="" class="col-sm-2 control-label">Func.Biològicas</label>
 		  </div>
 		   <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 ">Func.Vitales</label>
+		  	            <label for="" class="col-sm-2 control-label">Func.Vitales</label>
 		  </div>
-			 <label for="" class="col-sm-2 ">Apetito</label>
+			 <label for="" class="col-sm-2 control-label">Apetito</label>
 			<div class="col-sm-4">
-				<input type="text" name="apetito" class="form-control" required>
+				<input type="text" name="apetito" class="form-control">
 			</div>
-			<label for="" class="col-sm-2 ">P/A</label>
+			
+		
+			<label for="" class="col-sm-2 control-label">P/A</label>
 			<div class="col-sm-4">
-				<input type="text" name="pa" class="form-control" required>
+				<input type="text" name="pa" class="form-control">
 			</div>
-			<label for="" class="col-sm-2 ">Sed:</label>
+			<label for="" class="col-sm-2 control-label">Sed:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="sed">
+				<input  class="form-control" type="text" name="sed">
 			</div>
-				<label for=""class="col-sm-2 ">Frec.Cardìaca</label>
+			<label for=""class="col-sm-2 control-label">Frec.Cardìaca</label>
 			<div class="col-sm-4">
-				<input  required class="form-control" type="text" name="card">
+				<input class="form-control" type="text" name="card">
 			</div>
+			
 
-			<label for="" class="col-sm-2 ">Frecuencia.Micciones</label>
+			<label for="" class="col-sm-2 control-label">Frecuencia.Micciones</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="Frecuencia Micciones" type="text" name="orina">
+				<input   class="form-control" placeholder="Frecuencia Micciones" type="text" name="orina">
 			</div>
-			<label for="" class="col-sm-2 ">Peso</label>
+			<label for="" class="col-sm-2 control-label">Peso</label>
 			<div class="col-sm-4">			
-				<input  required class="form-control" type="text" name="peso">
+				<input  class="form-control" type="text" name="peso">
 			</div>
-			<label for="" class="col-sm-2 ">Animo</label>
+			<label for="" class="col-sm-2 control-label">Animo</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="animo">
+				<input   class="form-control" type="text" name="animo">
 			</div>
-			<label for="" class="col-sm-2 ">Temperatura</label>
+			<label for="" class="col-sm-2 control-label">Temperatura</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="temperatura">
+				<input   class="form-control" type="text" name="temperatura">
 			</div>
-			<label for="" class="col-sm-2 ">Frecuencia.Deposiciones</label>
+			<label for="" class="col-sm-2 control-label">Frecuencia.Deposiciones</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones">
+				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones">
 			</div>
-			<label for="" class="col-sm-2 ">Pulso:</label>
+			<label for="" class="col-sm-2 control-label">Pulso:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="pulso">
+				<input   class="form-control" type="text" name="pulso">
 			</div>
-			<label for="" class="col-sm-2 ">Evol.Enf</label>
+			<label for="" class="col-sm-2 control-label">Evol.Enf</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="Evolucion de la enfermedad" type="text" name="evolucion_enfermedad">
+				<input   class="form-control" placeholder="Evolucion de la enfermedad" type="text" name="evolucion_enfermedad">
 			</div>	
-			<label for="" class="col-sm-2 ">Tipo de enfermedad:</label>
+			<label for="" class="col-sm-2 control-label">Tipo de enfermedad:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="tipo_enfermedad">
+				<input   class="form-control" type="text" name="tipo_enfermedad">
 			</div>
 			<br>
-			<label for="" class="col-sm-12 "><strong>Solo para pacientes Femeninas:</strong></label>
+			<label for="" class="col-sm-12 control-label"><strong>Solo para pacientes Femeninas:</strong></label>
 
-			<label for="" class="col-sm-2 ">FUR:</label>
+			<label for="" class="col-sm-2 control-label">FUR:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="date" name="fur">
+				<input class="form-control" type="date" name="fur">
 			</div>
 
-			<label for="" class="col-sm-2 ">PAP:</label>
+			<label for="" class="col-sm-2 control-label">PAP:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="date" name="pap">
+				<input   class="form-control" type="date" name="pap">
 			</div>
 
-			<label for="" class="col-sm-2 ">MAC:</label>
+			<label for="" class="col-sm-2 control-label">MAC:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="mac">
+				<input  class="form-control" type="text" name="mac">
 			</div>
 
-			<label for="" class="col-sm-2 ">P:</label>
+			<label for="" class="col-sm-2 control-label">P:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="p">
+				<input  class="form-control" type="text" name="p">
 			</div>
 
-			<label for="" class="col-sm-2 ">G:</label>
+			<label for="" class="col-sm-2 control-label">G:</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="g">
+				<input   class="form-control" type="text" name="g">
 			</div>
 
 
 			<br>
 			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
 			<div class="col-sm-12">	
-				<input  required class="form-control" type="text" name="examen_fisico_regional">
+				<input   class="form-control" type="text" name="examen_fisico_regional">
 			</div>
 			<br>
             <div class="row">
-			<label for="" class="col-sm-2">Pres.Diag</label>
+			<label for="" class="col-sm-2 control-label">Pres.Diag</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
+				<input   class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
 			</div>
 
 		
@@ -238,7 +241,7 @@
 		<div class="row">
 			<label for="" class="col-sm-2 ">Diag.Final</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
+				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
 			</div>
 
 			<label class="col-sm-2">CIE-X:</label>
@@ -254,23 +257,23 @@
 			
 		</div>
 
-			<label for="" class="col-sm-2 ">Examen Auxiliar</label>
+			<label for="" class="col-sm-2 control-label">Examen Auxiliar</label>
 			<div class="col-sm-4">	
-				<input  required class="form-control" type="text" name="examen_auxiiar">
+				<input   class="form-control" type="text" name="examen_auxiiar">
 			</div>
 
-			<label for="" class="col-sm-12 ">Plan de Tratamiento</label>
+			<label for="" class="col-sm-12 control-label">Plan de Tratamiento</label>
 			<div class="col-sm-12">	
-				<input  required class="form-control" type="text" name="plan_tratamiento">
+				<input   class="form-control" type="text" name="plan_tratamiento">
 			</div>
 
-			<label for="" class="col-sm-2 ">Observaciones</label>
+			<label for="" class="col-sm-2 control-label">Observaciones</label>
 			<div class="col-sm-10">	
-				<textarea name="observaciones" cols="10" rows="10" class="form-control" required></textarea>
+				<textarea name="observaciones" cols="10" rows="10" class="form-control" ></textarea>
 			</div>
 			<label for="" class="col-sm-2 ">Pròxima Cita</label>
 			<div class="col-sm-3">
-				<input type="date" name="prox" class="form-control" required>
+				<input type="date" name="prox" class="form-control" >
 			</div>
 			<label class="col-sm-2">Personal Responsable:</label>
 			<div class="col-sm-3">

@@ -54,9 +54,20 @@
 						</div>	
 
 						<label class="col-sm-1 control-label">Cargo</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="cargo" placeholder="cargo" data-toggle="tooltip" data-placement="bottom" title="cargo">
-						</div>								
+						</div>
+                        
+                       <label class="col-sm-1 control-label">Tipo</label>
+						<div class="col-sm-2">
+							<select class="form-control" name="tipo">
+							<option value="Especialista">Especialista</option>
+							<option value="Tecnòlogo">Tecnòlogo</option>
+							<option value="ProfSalud">Prof. de Salud</option>
+                            <option value="Otro">Otro</option>
+
+						</select>
+						</div>							
 
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">

@@ -123,6 +123,7 @@ class AtencionesController extends Controller
               $paq->id_paquete = $paquete->id;
               $paq->comollego = $request->comollego;
               $paq->es_paquete =  true;
+			  $paq->serv_prog = FALSE;
               $paq->tipopago = $request->tipopago;
               $paq->porc_pagar = $paquete->porcentaje;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
@@ -153,8 +154,10 @@ class AtencionesController extends Controller
       $searchServicio = DB::table('servicios')
               ->select('*')
               ->where('id','=', $request->id_servicio)
-              ->first();   
+              ->first();  
+			  
       $porcentaje = $searchServicio->porcentaje;
+	  $programa = $searchServicio->programa;
 
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
@@ -183,6 +186,7 @@ class AtencionesController extends Controller
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
+			  $serv->serv_prog =  $programa;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
@@ -230,6 +234,7 @@ class AtencionesController extends Controller
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
           $lab->porc_pagar = $porcentaje;
+		  $lab->serv_prog = FALSE;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];

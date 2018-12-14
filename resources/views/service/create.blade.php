@@ -26,12 +26,12 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 
-					    <label class="col-sm-1 control-label">Pacientes</label>
+					    <label class="col-sm-1 control-label">Atenciones</label>
 						<div class="col-sm-3">
-							<select id="el4" name="paciente">
-								@foreach($pacientes as $pac)
-									<option value="{{$pac->id}}">
-										{{$pac->nombres}} {{$pac->apellidos}} - {{$pac->dni}}
+							<select id="el4" name="atencion">
+								@foreach($atenciones as $atec)
+									<option value="{{$atec->id}}">
+										ID:{{$atec->id}} Fecha:{{$atec->created_at}}
 									</option>
 								@endforeach
 							</select>
@@ -42,30 +42,8 @@
 							<select id="el1" name="especialista">
 								@foreach($especialistas as $especialista)
 									<option value="{{$especialista->id}}">
-										{{$especialista->name}} {{$especialista->apellidos}}
-										/ {{$especialista->especialidad}}
-									</option>
-								@endforeach
-							</select>
-						</div>
-
-					<label class="col-sm-1 control-label">Especialidad</label>
-						<div class="col-sm-3">
-							<select id="el2" name="especialidad">
-								@foreach($especialidades as $especialidad)
-									<option value="{{$especialidad->id}}">
-										{{$especialidad->nombre}}
-									</option>
-								@endforeach
-							</select>
-						</div>
-
-					<label class="col-sm-1 control-label">Servicio</label>
-						<div class="col-sm-3">
-							<select id="el9" name="servicios">
-								@foreach($servicios as $servicio)
-									<option value="{{$servicio->id}}">
-										{{$servicio->detalle}}
+										{{$especialista->name}} {{$especialista->lastname}}
+										/ {{$especialista->tipo}}
 									</option>
 								@endforeach
 							</select>

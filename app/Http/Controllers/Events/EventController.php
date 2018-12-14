@@ -26,22 +26,22 @@ class EventController extends Controller
   {
     if($request->isMethod('get')){
       $calendar = false;
-      return view('events.index', ["calendar" => $calendar, "especialistas" => Profesional::all()]);
+      return view('events.index', ["calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
         'locale' => 'es',
       ]);
-      return view('events.index',[ "calendar" => $calendar, "especialistas" => Profesional::all()]);
+      return view('events.index',[ "calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
     }
   }
 
   public function show(Request $request,$id)
   {
     $event = DB::table('events as e')
-    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','pro.name as nombrePro','pro.apellidos as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
     ->join('pacientes as p','p.id','=','e.paciente')
-    ->join('profesionales as pro','pro.id','=','e.profesional')
+    ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->where('e.id','=',$id)
     ->first();
@@ -167,7 +167,7 @@ class EventController extends Controller
 
   public function createView($extra = []){
     $data = [
-      "especialistas" => Profesional::all(),
+      "especialistas" => Personal::where("tipo","=","Especialista")->where("estatus","=",1)->get(),
       "pacientes" => Paciente::all(),
       "tiempos" => RangoConsulta::all(),
 	  "ciex" => Ciex::all(),
