@@ -253,7 +253,8 @@ class AtencionesController extends Controller
         }
       }
     }
-    
+    	 Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+
     return redirect()->route('atenciones.index');
   }
 

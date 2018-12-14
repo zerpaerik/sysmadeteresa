@@ -33,9 +33,9 @@ class PersonalController extends Controller
       return view('archivos.personal.index', [
         "icon" => "fa-list-alt",
         "model" => "personal",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
         "data" => $personal,
-        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo","user"],
+        "fields" => ["name", "lastname", "dni", "phone", "address","email","cargo","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -59,9 +59,9 @@ class PersonalController extends Controller
        return view('archivos.personal.show', [
         "icon" => "fa-list-alt",
         "model" => "personal",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
+        "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo", "Editar", "Eliminar"],
         "data" => $personal,
-        "fields" => ["id", "name", "lastname", "dni", "phone", "address","email","cargo"],
+        "fields" => ["name", "lastname", "dni", "phone", "address","email","cargo"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
