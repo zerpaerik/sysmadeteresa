@@ -22,7 +22,7 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="atenciones-create">
+				<form class="form-horizontal" role="form" method="post" action="atenciones/create">
 					{{ csrf_field() }}
 					<div class="form-group">
 
