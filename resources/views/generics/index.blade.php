@@ -137,7 +137,7 @@
 		    
 		    $.ajax({
 		        type: "GET",
-		        url: "/paciente/view/"+id,
+		        url: "/pacientes/view/"+id,
 		        success: function (data) {
 		            $("#viewPaciente .modal-body").html(data);
 		            $('#viewPaciente').modal('show');
