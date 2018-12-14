@@ -65,7 +65,7 @@
 
 												
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
+							<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
 						</tr>
 						@endforeach						
 					</tbody>

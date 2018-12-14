@@ -363,4 +363,17 @@ class AtencionesController extends Controller
 
     return $atenciones;
   }
+  
+   public function delete($id){
+    $atenciones = Atenciones::find($id);
+    $atenciones->delete();
+	
+	$creditos = Creditos::where('id_atencion','=',$id);
+    $creditos->delete();
+  
+	 Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+
+     return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
+	
+  }
 }
