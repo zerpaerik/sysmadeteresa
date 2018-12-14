@@ -85,10 +85,10 @@ class AtencionesController extends Controller
     //$laboratorios = Analisis::all();
     //$pacientes = Pacientes::all();
     //$paquetes = Paquetes::all();
-    $servicios =Servicios::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $laboratorios =Analisis::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $pacientes =Pacientes::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $paquetes =Paquetes::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
+    $servicios =Servicios::where("estatus", '=', 1)->get();
+    $laboratorios =Analisis::where("estatus", '=', 1)->get();
+    $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    $paquetes =Paquetes::where("estatus", '=', 1)->get();
 
 
     
@@ -262,7 +262,6 @@ class AtencionesController extends Controller
        $personal = DB::table('users')
                     ->select('*')
                    // ->where('estatus','=','1')
-				    ->where('sede','=', \Auth::user()->sede)
                     ->where('tipo','=','1')
                     ->get();  
 
@@ -274,7 +273,6 @@ class AtencionesController extends Controller
         $profesional = DB::table('users')
                     ->select('*')
                    // ->where('estatus','=','1')
-				    ->where('sede','=', \Auth::user()->sede)
                     ->where('tipo','=','2')
                     ->get();  
 
@@ -287,10 +285,10 @@ class AtencionesController extends Controller
     //$laboratorios = Analisis::all();
     //$pacientes = Pacientes::all();
 
-    $servicios =Servicios::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $laboratorios =Analisis::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $pacientes =Pacientes::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
-    $paquetes =Paquetes::where("estatus", '=', 1)->where('sede','=', \Auth::user()->sede)->get();
+    $servicios =Servicios::where("estatus", '=', 1)->get();
+    $laboratorios =Analisis::where("estatus", '=', 1)->get();
+    $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    $paquetes =Paquetes::where("estatus", '=', 1)->get();
     //$personal = Personal::all();
     //$profesional = Profesionales::all();
     $users = User::all();
