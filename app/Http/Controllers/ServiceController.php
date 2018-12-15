@@ -85,7 +85,7 @@ class ServiceController extends Controller
   }  
   public function createView($extra = []){
   
-      $especialistas = Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnologo')->orwhere('estatus','=','1')->get();
+      $especialistas = Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get();
       $servicios = Servicios::all();
       $tiempos = RangoConsulta::all();
       $pacientes = Pacientes::where("estatus", '=', 1)->get();

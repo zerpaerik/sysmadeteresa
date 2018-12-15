@@ -71,14 +71,7 @@
 							<input type="text" class="form-control" name="phone" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telefono">
 						</div>
 
-						<label class="col-sm-1 control-label">Tecnólogo</label>
-						<div class="col-sm-3">
-							<select name="tipo">
-								<option value="3">Si</option>
-								<option value="2" selected="selected">No</option>
-							</select>
-						</div>								
-
+												
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-4 btn btn-primary" value="Agregar">
 

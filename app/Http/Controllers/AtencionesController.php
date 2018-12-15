@@ -158,6 +158,8 @@ class AtencionesController extends Controller
 			  
       $porcentaje = $searchServicio->porcentaje;
 	  $programa = $searchServicio->programa;
+	  
+	
 
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {

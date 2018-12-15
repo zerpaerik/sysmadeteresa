@@ -52,8 +52,8 @@
 						<label class="col-sm-2 control-label">Se Programa?</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="programa">
-							<option value="1">No</option>
-							<option value="2">Si</option>
+							<option value="0">No</option>
+							<option value="1">Si</option>
 						</select>
 						</div>
 

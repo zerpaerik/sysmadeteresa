@@ -82,13 +82,8 @@
                           </option>
                         @endforeach
                       </select>
-                      <div class="col-sm-3" id="materiales_#index#">
-                        <strong>Materiales</strong>
-                        <p id="load-materiales_#index#" style="width: 115px;">
-                          
-                        </p>
-                      </div>
-                    </div>
+                     
+                    </div>S
 
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
                     <div class="col-sm-2">
@@ -97,7 +92,7 @@
                       <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto] type="text" class="number form-control monto" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="0.00">
                     </div>
 
-                    <label for="servicios_#index#_monto" class="col-sm-1 control-label">Abono</label>
+                    <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono</label>
                     <div class="col-sm-2">
 
                       <input id="servicios_#index#_abonoS" name="monto_abos[servicios][#index#][abono] type="text" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
@@ -326,6 +321,7 @@
       var selectArr = selectId.split('_');
       
       switch(selectArr[0]){
+
         case 'servicios':
             if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
                 alert('La cantidad insertada en abono es mayor al monto.');
@@ -335,6 +331,7 @@
                 calculo_general();
             }
           break;
+
         case 'laboratorios':
             if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
                 alert('La cantidad insertada en abono es mayor al monto.');
@@ -344,6 +341,7 @@
                 calculo_general();
             }
           break;
+
         case 'paquetes':
             if(parseFloat($(this).val()) > parseFloat($("#paquetes_"+selectArr[1]+"_monto").val())){
               alert('La cantidad insertada en abono es mayor al monto.');

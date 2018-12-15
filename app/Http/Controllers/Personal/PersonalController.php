@@ -25,7 +25,7 @@ class PersonalController extends Controller
       //$personal = Personal::all();
     //  $personal =Personal::where("estatus", '=', 1)->get();
 	  $personal = DB::table('personals as a')
-        ->select('a.id','a.name','a.lastname','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
+        ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
 		->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
@@ -35,7 +35,7 @@ class PersonalController extends Controller
         "model" => "personal",
         "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
         "data" => $personal,
-        "fields" => ["name", "lastname", "dni", "phone", "address","email","cargo","user"],
+        "fields" => ["name", "apellido", "dni", "phone", "address","email","cargo","user"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
