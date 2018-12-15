@@ -27,7 +27,7 @@
 					<div class="form-group">
 
 					    <label class="col-sm-1 control-label">Atenciones</label>
-						<div class="col-sm-3">
+						<div class="col-sm-4">
 							<select id="el4" name="atencion">
 								@foreach($atenciones as $atec)
 									<option value="{{$atec->id}}">
@@ -50,7 +50,7 @@
 						</div>
 
 						<label class="col-sm-1 control-label">Fecha</label>
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date" required="required">
 						</div>
 						<label class="col-sm-1 control-label">Hora</label>
