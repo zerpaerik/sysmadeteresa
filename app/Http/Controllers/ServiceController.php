@@ -84,18 +84,15 @@ class ServiceController extends Controller
     ]);
   }  
   public function createView($extra = []){
-    $data = [
-      "especialistas" => Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnologo')->orwhere('estatus','=','1')->get(),
-      "especialidades" => Especialidad::all(),
-      "especialidades" => Especialidad::all(),
-      "servicios" => Servicios::all(),
-      "tiempos" => RangoConsulta::all(),
-      "pacientes" => Pacientes::where("estatus", '=', 1)->get(),
-	  "atenciones" => Atenciones::where("es_servicio",'=',1)->where("serv_prog",'=',1)->get()
-    ];
+  
+      $especialistas = Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnologo')->orwhere('estatus','=','1')->get();
+      $servicios = Servicios::all();
+      $tiempos = RangoConsulta::all();
+      $pacientes = Pacientes::where("estatus", '=', 1)->get();
 	
-	 /*$atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.serv_prog','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+	
+	 $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.serv_prog','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -103,10 +100,11 @@ class ServiceController extends Controller
     ->join('paquetes as f','f.id','a.id_paquete')
 	->where('a.serv_prog','=',1)
     ->orderby('a.id','desc')
-    ->get();*/
+    ->get();
 
     //dd($data);
-    return view('service.create', $data + $extra);
+    return view('service.create', compact('especialistas', 'atenciones','servicios','tiempos','pacientes'));
+	
   }
 
    public function create(Request $request){
