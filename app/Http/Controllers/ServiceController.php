@@ -22,11 +22,12 @@ use App\Service;
 
 class ServiceController extends Controller
 {
+
 	public function index(Request $request)
   	{
     if($request->isMethod('get')){
       $calendar = false;
-      return view('service.index', ["calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
+      return view('service.index', ["calendar" => $calendar, "especialistas" =>  Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get()]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
