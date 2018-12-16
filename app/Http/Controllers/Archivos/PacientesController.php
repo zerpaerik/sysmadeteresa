@@ -14,6 +14,7 @@ use App\Models\Historiales;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Toastr;
 class PacientesController extends Controller
 {
 
@@ -103,10 +104,12 @@ class PacientesController extends Controller
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
           'nombres' => 'required|string|max:255',
-          'apellidos' => 'required|string|max:255'
+          'apellidos' => 'required|string|max:255',
+		  'dni' => 'required|unique:pacientes'
           
         ]);
         if($validator->fails()) 
+	      Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\PacientesController@createView', ['errors' => $validator->errors()]);
 		$pacientes = Pacientes::create([
 		  	'dni' => $request->dni,
@@ -136,6 +139,7 @@ class PacientesController extends Controller
 		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 		  
+		Toastr::error('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
 		return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
 	}   
 

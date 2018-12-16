@@ -63,7 +63,7 @@ class AtencionesController extends Controller
     ]); 
     }else{
       $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);  
-
+      $fecha = $request->inicio;
       return view('movimientos.atenciones.search', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
@@ -156,11 +156,16 @@ class AtencionesController extends Controller
               ->where('id','=', $request->id_servicio)
               ->first();  
 			  
-      $porcentaje = $searchServicio->porcentaje;
+     // $porcentaje = $searchServicio->porcentaje;
 	  $programa = $searchServicio->programa;
 	  
+	  if ($request->origen == 1 ){
+		    $porcentaje = $searchServicio->por_per;
+	  } else {
+		    $porcentaje = $searchServicio->porcentaje;
+	  }
+	  
 	
-
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
               $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])

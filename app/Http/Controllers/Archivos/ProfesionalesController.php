@@ -104,6 +104,7 @@ class ProfesionalesController extends Controller
 
         ]);
         if($validator->fails()) 
+	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
 		$centros = Profesionales::create([
 	      'name' => $request->name,

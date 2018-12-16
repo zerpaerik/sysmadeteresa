@@ -22,15 +22,14 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/generalegresos-search" method="get">
+					<form action="/comollego-search" method="get">
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
 						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-					
+						<label for=""></label>
 						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
 					</form>
-					<form action="/pagarmultiple" method="post">
 				<thead>
 						<tr>
 							<th>No Selecciono</th>
@@ -44,16 +43,16 @@
 					<tbody>
 
 							<tr>
-								<td>1</td>
-								<td>2</td>
-								<td>3</td>
-								<td>4</td>
+								<td>{{$seleccione->cantidad}}</td>
+								<td>{{$recomendacion->cantidad}}</td>
+								<td>{{$redes->cantidad}}</td>
+								<td>{{$avisos->cantidad}}</td>
+								<td>{{$otros->cantidad}}</td>
 							</tr>
 					</tbody>
 					
 					</form>
 				</table>
-				{{$atenciones->links()}}	
 			</div>
 	
 		</div>

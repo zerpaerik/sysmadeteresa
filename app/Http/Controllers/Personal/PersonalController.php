@@ -95,6 +95,7 @@ class PersonalController extends Controller
          
         ]);
         if($validator->fails()) 
+	     Toastr::error('Error Registrando.', 'Personal- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
         
 		$personal = Personal::create([

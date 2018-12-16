@@ -36,7 +36,7 @@
 					<thead> 
 						<tr>
 							<th>Id</th>
-							<th>Paciente</th>
+							<th style="background=red";>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>

@@ -51,7 +51,7 @@ class ComporPagarController extends Controller
       }    
     }
 
-	public function pagarcom($id) {
+	public function pagarcom($id, Request $request) {
 
           $last = Atenciones::select('recibo')->orderby('recibo', 'DESC')->first();
           if (!empty($last->recibo)) {
