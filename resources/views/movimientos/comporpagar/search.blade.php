@@ -32,12 +32,13 @@
 						<input type="submit" value="Buscar" class="btn btn-primary">
 					</form>
 					<form action="/pagarmultiple" method="post">
+					
 					<thead>
 						<tr>
-							<th>Marcar Varios</th>
+							<th>Marcar</th>
 							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
+							<th width="20%">Paciente</th>
+							<th width="20%">Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Porcentaje</th>
@@ -66,13 +67,12 @@
 							</tr>
 						@endforeach
 					</tbody>
-					<tfoot>
-							<th>
+							<td>
 								{{ csrf_field() }}
-								<button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger"><input type="submit">Pagar Seleccionadas</button>
-							</th>
-					</tfoot>
-					</form>
+								<button style="margin-left: -5px;" type="submit" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
+							</td>
+					
+					
 				</table>
 			</div>
 		</div>
