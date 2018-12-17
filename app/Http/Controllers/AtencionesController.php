@@ -29,6 +29,7 @@ class AtencionesController extends Controller
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
+	  "model1" => "ticket",
       "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
       "data" => $atenciones,
       "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],

@@ -242,6 +242,8 @@ Route::post('resultadosguardados-update-{id}', 'ReportesController@update')->nam
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
 
+Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
+
 
 Route::get('generalatenciones', 'ReporteIngresosController@indexa')->name('generalatenciones.indexa')->middleware('auth');
 Route::get('generalatenciones-search', 'ReporteIngresosController@searcha')->name('generalatenciones.searcha')->middleware('auth');

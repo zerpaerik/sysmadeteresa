@@ -36,12 +36,12 @@
 					<thead> 
 						<tr>
 							<th>Id</th>
-							<th style="background=red";>Paciente</th>
-							<th>Origen</th>
+							<th width="15%">Paciente</th>
+							<th width="15%">Origen</th>
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
-							<th>Fecha</th>
+							<th width="10%">Fecha</th>
 							<th>Acciones</th>
 							<th></th>
 						</tr>
@@ -63,7 +63,7 @@
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>
 
-												
+		                     <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 							<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
 						</tr>

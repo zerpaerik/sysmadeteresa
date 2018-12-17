@@ -28,25 +28,34 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/resultados-search" method="get">
-						<h5>Nombre de paciente</h5>
 						<label for="">Nombre y apellido</label>
 						<input type="text" name="nom" value="" style="line-height: 20px">					
 						<input type="submit" class="btn btn-primary" value="Buscar">
 					</form>
 					<thead>
 						<tr>
-							@foreach($headers as $header)
-								<th>{{$header}}</th>
-							@endforeach
+								<th width="10%">Fecha</th>
+								<th width="20%">Paciente</th>
+								<th width="20%">Origen</th>
+								<th>Detalle</th>
+								<th width="20%">Informe</th>
+								<th width="10%">Accion</th>
+
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
-							@foreach($fields as $f)
-								<td>{{$d->$f}}</td>
-							@endforeach						
-							<td>
+								<td>{{$d->created_at}}</td>
+						        <td>{{$d->nombres}},{{$d->apellidos}}</td>
+								<td>{{$d->name}},{{$d->lastname}}</td>
+								@if($d->es_servicio =='1')
+								<td>{{$d->servicio}}</td>
+							    @else
+								<td>{{$d->laboratorio}}</td>
+							    @endif
+
+							  <td>
 								<form action="{{$model . '-edit-' .$d->id}}" method="get">
 								<select name="informe" id="informe">
 								@foreach($informes as $informe)

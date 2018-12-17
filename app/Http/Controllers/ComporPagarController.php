@@ -91,7 +91,7 @@ class ComporPagarController extends Controller
        // ->join('profesionales as f','f.id','a.origen_usuario')
 	    ->whereNotIn('a.monto',[0,0.00])
 	    ->whereNotIn('a.porcentaje',[0,0.00])
-	     ->whereNotIn('a.porc_pagar',[0,0.00])
+	     >whereNotIn('a.porc_pagar',[0,0.00])
         ->where('a.pagado_com','=', NULL)
         ->where('e.name','like','%'.$nom.'%')
         ->where('e.lastname','like','%'.$ape.'%')

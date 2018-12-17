@@ -113,6 +113,60 @@ class ReportesController extends Controller
         $pdf->loadHTML($view);
         return $pdf->stream('resultados_ver');
     }
+	
+	
+	 public function verTicket($id){
+       
+                $searchtipo = DB::table('atenciones')
+                ->select('id','es_servicio','es_laboratorio')
+                ->where('id','=', $id)
+                ->first();
+           
+                $es_servicio = $searchtipo->es_servicio;
+                $es_laboratorio = $searchtipo->es_laboratorio;
+				
+		
+                if (!is_null($es_servicio)) {
+
+                $ticket = DB::table('atenciones as a')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_servicio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.detalle','a.created_at','a.abono','a.pendiente','a.monto')
+                ->join('users as b','b.id','a.origen_usuario')
+                ->join('pacientes as c','c.id','a.id_paciente')
+                ->join('servicios as e','e.id','a.id_servicio')
+                ->where('a.id','=', $id)
+                ->first();
+				
+			 
+
+                } else {
+
+                $ticket = DB::table('atenciones as a')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+                ->join('users as b','b.id','a.origen_usuario')
+                ->join('pacientes as c','c.id','a.id_paciente')
+                ->join('analises as e','e.id','a.id_laboratorio')
+                ->where('a.id','=', $id)
+                ->first();
+
+
+                }
+
+        if(!is_null($ticket)){
+            return $ticket;
+         }else{
+            return false;
+         }  
+
+     }
+	
+	 public function ticket_ver($id) 
+    {
+        $ticket =ReportesController::verTicket($id);
+        $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+        return $pdf->stream('ticket_ver');
+    }
 
     public function formDiario()
     {
