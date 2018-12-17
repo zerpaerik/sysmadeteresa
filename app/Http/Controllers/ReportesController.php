@@ -164,6 +164,7 @@ class ReportesController extends Controller
         $ticket =ReportesController::verTicket($id);
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
         $pdf = \App::make('dompdf.wrapper');
+        $pdf->setPaper(array(0,0,867.00,343.80));
         $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
     }
