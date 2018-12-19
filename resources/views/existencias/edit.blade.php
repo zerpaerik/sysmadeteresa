@@ -30,10 +30,6 @@
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" value="{{$nombre}}" title="Nombre">
 						</div>
 
-						<label class="col-sm-1 control-label">Còdigo</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="codigo" placeholder="codigo" data-toggle="tooltip" data-placement="bottom" value="{{$codigo}}" title="codigo">
-						</div>
 
 						<label class="col-sm-1 control-label">Categoria</label>
 						<div class="col-sm-3">
