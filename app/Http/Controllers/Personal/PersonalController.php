@@ -94,10 +94,10 @@ class PersonalController extends Controller
           'dni' => 'required|unique:personals'
          
         ]);
-        if($validator->fails()) 
+        if($validator->fails()) {
 	     Toastr::error('Error Registrando.', 'Personal- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Personal\PersonalController@createView', ['errors' => $validator->errors()]);
-        
+		} else { 
 		$personal = Personal::create([
 	      'name' => $request->name,
 	      'lastname' => $request->lastname,
@@ -129,7 +129,7 @@ class PersonalController extends Controller
 		  $historial->sede = $request->session()->get('sede');
           $historial->save();
 	  
-	  
+		}
 
 
     Toastr::success('Registrado Exitosamente.', 'Personal!', ['progressBar' => true]);
