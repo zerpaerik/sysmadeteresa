@@ -97,11 +97,7 @@ class ProfesionalesController extends Controller
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
-          'name' => 'required|string|max:255',
-          'apellidos' => 'required|string|max:255',
-          'cmp' => 'required|unique:profesionales' ,
-          'dni' => 'required|unique:profesionales' 
-
+          
         ]);
         if($validator->fails()) 
 	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
