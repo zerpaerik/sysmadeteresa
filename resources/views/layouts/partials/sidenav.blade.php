@@ -265,7 +265,7 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
-      @if(\Auth::user()->role_id == 1)
+      @if(\Auth::user()->role_id == 4)
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
@@ -274,7 +274,10 @@
       </li>     
       <li>
         <a href="{{route('sedes.index')}}"><i class="fa fa-hospital-o"></i> Sedes</a>
-      </li>      
+      </li>  
+      <li>
+        <a href="{{route('proveedores.index')}}"><i class="fa fa-hospital-o"></i> Proveedores</a>
+      </li>	  
       @endif
     </ul>
   </li>

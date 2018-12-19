@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
+use App\Models\Creditos;
 use Toastr;
 
 
@@ -72,7 +73,7 @@ class ProductoController extends Controller
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get(['id', 'nombre','cantidad']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    
@@ -80,7 +81,7 @@ class ProductoController extends Controller
 
     public function productTransView(){
       $sedes = Sede::whereNotIn("id", [\Session::get('sede')])->get(["id", "name"]);
-      return view('existencias.transferir', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get(['id', 'nombre']), "sedes" => $sedes]);    
+      return view('existencias.transferir', ["productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get(['id', 'nombre']), "sedes" => $sedes]);    
     }
 
     public function getProduct($id){
@@ -89,57 +90,42 @@ class ProductoController extends Controller
     }
 
     public function addCant(Request $request){
-
+	
        $searchProduct = DB::table('productos')
                     ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
+                    ->where('almacen','=','2')
+                    ->where('id','=', $request->producto)
                     ->first();   
 
                     $nombre = $searchProduct->nombre;
-      
-      $p = Producto::where("id", "=", $request->id)->where("sede_id", "=", $request->sede)->get()->first();
-      if($p){
-        $p->cantidad = $p->cantidad + $request->cantidadplus;
-        $p->nombre = $nombre;
-        $res = $p->save();
-      }else{
-
-        $searchProduct = DB::table('productos')
-                    ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
-                    ->first();   
-
-                    $nombre = $searchProduct->nombre;
-
-        $p = Existencia::create([
-          "producto" => $request->id,
-          "cantidad" => $request->cantidadplus,
-          "sede_id"  => $request->sede,
-          "nombre" => $nombre
-        ]);
-
-        $p = Producto::find($request->id);
-        $p->cantidad = $request->cantidadplus;
-        $res = $p->update();
-
-        $res = true;
-      }
-      if($res){
-        $trans = Transferencia::create([
-          "code" => $request->code,
-          "producto" => $request->id,
-          "cantidad" => $request->cantidadplus,
-          "origen" => ($request->cantidadplus > 0) ? -1 : 0,
-          "destino" => $request->sede,
-          "proveedor" => $request->proveedor
-        ]);
-      }else{$trans = [];}
-      return response()->json(["success" => $res, "producto" => $p, "trans" => $trans], 200);
+					$cantidadactual = $searchProduct->cantidad;
+		if( $request->cantidadplus > $cantidadactual){
+		 Toastr::error('Cantidad excede Maximo en stock', 'Error!', ['progressBar' => true]);
+		 return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
+		} else {
+			
+		  Producto::where('id', $request->producto)
+                  ->update([
+                      'cantidad' => $cantidadactual - $request->cantidadplus,
+                  ]);
+				  
+		      $creditos = new Creditos();
+              $creditos->origen = 'VENTA DE PRODUCTOS';
+              $creditos->id_atencion = NULL;
+              $creditos->monto= $request->monto;
+              $creditos->id_sede = $request->session()->get('sede');
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'VENTA DE PRODUCTOS';
+              $creditos->save();
+			  
+       Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
+      return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
+		}
+    
     }
 
     public function transfer(Request $request){
+		
       $pfrom = Producto::where('sede_id', '=', \Session::get("sede"))
       ->where("id", '=', $request->id)
       ->get()->first();

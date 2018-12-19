@@ -282,7 +282,7 @@ Route::get('existencias-trans', 'Existencias\ProductoController@productTransView
 Route::get('existencia/{prod}/{sede}', 'Existencias\ProductoController@getExist');
 Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
 Route::post('transfer', 'Existencias\ProductoController@transfer');
-Route::patch('producto', 'Existencias\ProductoController@addCant');
+Route::post('producto/add', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
 
@@ -309,6 +309,10 @@ Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores
 Route::get('proveedores-create', 'Config\ProveedorController@createView')->name('proveedores.create');
 Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name('proveedores.edit');
 Route::post('proveedor/create', 'Config\ProveedorController@create');
+Route::post('proveedores/edit', 'Config\ProveedorController@edit');
+Route::get('proveedores-delete-{id}','Config\ProveedorController@delete');
+
+
 
 //Categorias
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
