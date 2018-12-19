@@ -21,9 +21,9 @@ class ProductoController extends Controller
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
         "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre","Còdigo","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+				"headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre","codigo", "medida", "categoria","cantidad","preciounidad","precioventa"],
+				"fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -38,9 +38,9 @@ class ProductoController extends Controller
         "icon" => "fa-list-alt",
         "model" => "existencias",
         "model1" => "Productos en Almacen Local",
-        "headers" => ["id", "Nombre","Còdigo", "Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
         "data" => $producto,
-        "fields" => ["id", "nombre","codigo", "medida", "categoria","cantidad","preciounidad","precioventa"],
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -205,17 +205,11 @@ class ProductoController extends Controller
     public function create(Request $request){
       $validator = \Validator::make($request->all(), [
         'nombre' => 'required|string|max:255',
-        'codigo' => 'required|unique:productos'
       ]);
 
       if($validator->fails()) $this->createView(["created" => false]);
 
-      If (ProductoController::codigoProduct($request)){ 
-
-        Toastr::error('El Còdigo de Producto ya esta en Uso.', 'Producto!', ['progressBar' => true]);
-        return redirect()->action('Existencias\ProductoController@createView', ["created" => false]);
-
-      } else {
+    
 
        $producto = Producto::create([
         "nombre" => $request->nombre,
@@ -227,10 +221,12 @@ class ProductoController extends Controller
         "sede_id" => $request->session()->get('sede'),
         "almacen" => 1
       ]);
+	  
+	    
        Toastr::success('Registrado Exitosamente.', 'Producto!', ['progressBar' => true]);
        return redirect()->action('Existencias\ProductoController@index', ["created" => true]);
        
-     }
+     
 
 
    }
