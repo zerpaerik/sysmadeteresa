@@ -9,7 +9,6 @@
 				<div class="box-name">
 					<i class="fa fa-users"></i>
 					<span><strong>Sedes</strong></span>
-					<a href="{{route('sedes.create')}}" class="btn btn-primary">Agregar</a>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -39,13 +38,6 @@
 							</tr>
 						@endforeach
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
-					</tfoot>
 				</table>
 			</div>
 		</div>
