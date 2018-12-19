@@ -8,7 +8,7 @@
       <a href="{{route('personal.index')}}"><i class="fa fa-users"></i> Personal</a>
     </li>
     <li>
-      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros medicos</a>
+      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros Medicos</a>
     </li>
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
@@ -23,7 +23,7 @@
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de servicios</a>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de Servicios</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
@@ -76,14 +76,14 @@
 @if(Session::get('sedeName') == 'PROCERES')
 
     <li>
-      <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de transferencias</a>
+      <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de Transferencias</a>
     </li>
 @endif
 
 @if(Session::get('sedeName') == 'PROCERES')
   
     <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de productos</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-share"></i> Ingreso de Productos</a>
         <ul class="dropdown-menu">
           <li>
             <a href="{{route('productos.in')}}"><i class="fa fa-plus-square-o"></i> Ingresos</a>
@@ -94,7 +94,7 @@
 
 
     <li>
-      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de productos</a>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de Productos</a>
         <ul class="dropdown-menu">
           <li>
             <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
