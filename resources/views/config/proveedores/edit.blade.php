@@ -26,13 +26,18 @@
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombre</label>
-						<div class="col-sm-4">
+						<div class="col-sm-3">
 							<input type="text" class="form-control"  name="nombre" value="{{$nombre}}" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" title="Nombre">
 						</div>
 
 						<label class="col-sm-1 control-label">Codigo</label>
-						<div class="col-sm-6">
+						<div class="col-sm-3">
 							<input type="text" class="form-control" name="codigo" value="{{$codigo}}" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
+						</div>	
+						
+						<label class="col-sm-1 control-label">Telèfono</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="telefono" value="{{$telefono}}" placeholder="Codigo" data-toggle="tooltip" data-placement="bottom">
 						</div>	
 
 						<input type="hidden" name="id" value="{{$id}}">

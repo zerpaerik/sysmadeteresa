@@ -27,6 +27,7 @@
 						<tr>
 							<th>Nombre</th>
 							<th>Codigo</th>
+							<th>Telèfono</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 							
@@ -37,6 +38,7 @@
 							<tr>
 								<td>{{$ana->nombre}}</td>
 								<td>{{$ana->codigo}}</td>
+							    <td>{{$ana->telefono}}</td>
 								<td><a href="proveedores-edit-{{$ana->id}}" class="btn btn-primary">Editar</a></td>
 					            <td><a href="proveedores-delete-{{$ana->id}}" class="btn btn-danger">Eliminar</a></td>
 

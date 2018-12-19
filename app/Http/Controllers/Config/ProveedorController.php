@@ -20,7 +20,7 @@ class ProveedorController extends Controller
 
 	public function editView($id){
 		 $p = Proveedor::find($id);
-      return view('config.proveedores.edit', ["id" => $p->id,"nombre" => $p->nombre, "codigo" => $p->codigo]);
+      return view('config.proveedores.edit', ["id" => $p->id,"nombre" => $p->nombre, "codigo" => $p->codigo,"telefono" => $p->telefono]);
 	}
 
 	public function createView(){
@@ -31,6 +31,7 @@ class ProveedorController extends Controller
       $p = Proveedor::find($request->id);
       $p->nombre = $request->nombre;
       $p->codigo = $request->codigo;
+	  $p->telefono = $request->telefono;
       $res = $p->save();
       return redirect()->action('Config\ProveedorController@index', ["edited" => $res]);
     }
