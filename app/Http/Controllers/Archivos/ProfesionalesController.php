@@ -99,9 +99,10 @@ class ProfesionalesController extends Controller
         $validator = \Validator::make($request->all(), [
           
         ]);
-        if($validator->fails()) 
+        if($validator->fails()) {
 	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
+		} else {
 		$centros = Profesionales::create([
 	      'name' => $request->name,
 	      'apellidos' => $request->apellidos,
@@ -134,7 +135,8 @@ class ProfesionalesController extends Controller
      Toastr::success('Registrado Exitosamente.', 'Profesional de Apoyo!', ['progressBar' => true]);
 
 		return redirect()->action('Archivos\ProfesionalesController@index', ["created" => true, "centros" => Profesionales::all()]);
-	}    
+		}
+	}
 
   public function delete($id){
     $centros = Profesionales::find($id);
