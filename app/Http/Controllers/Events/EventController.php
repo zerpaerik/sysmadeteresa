@@ -24,10 +24,13 @@ class EventController extends Controller
 
   public function index(Request $request)
   {
-	   $personal = DB::table('personals as e')
+	 $personal = DB::table('personals as e')
     ->select('e.id','e.name','e.lastname','e.dni')
-    ->join('events as p','p.id','=','e.id')
+    ->join('events as p','p.profesional','=','e.id')
     ->get();
+	
+	dd($personal);
+	die();
 	
     if($request->isMethod('get')){
       $calendar = false;
