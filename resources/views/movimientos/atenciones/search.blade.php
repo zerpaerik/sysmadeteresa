@@ -24,6 +24,8 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+			               <div class="box-content no-padding table-responsive">				
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/atenciones-search" method="get">
 						<h5>Rango de fechas</h5>
@@ -71,6 +73,7 @@
 					</tbody>
 					
 				</table>
+				</div>
 				{{$data->links()}}
 			</div>
 		</div>

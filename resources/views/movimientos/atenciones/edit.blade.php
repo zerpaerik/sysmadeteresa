@@ -49,7 +49,6 @@
 						</div>
 						<br>
 						<div class="row">
-
 						<label class="col-sm-1 control-label">Origen</label>
 						<div class="col-sm-3">
 							<select id="el2" name="origen">
