@@ -27,6 +27,7 @@ class EventController extends Controller
 	 $personal = DB::table('personals as e')
     ->select('e.id','e.name','e.lastname','e.dni')
     ->join('events as p','p.profesional','=','e.id')
+	->groupBy('p.profesional')
     ->get();
 	
 
