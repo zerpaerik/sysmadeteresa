@@ -164,6 +164,7 @@ class ReportesController extends Controller
         $ticket =ReportesController::verTicket($id);
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
         $pdf = \App::make('dompdf.wrapper');
+		$pdf->setPaper(array(0,0,600.00,360.00));
         $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
     }
@@ -173,7 +174,7 @@ class ReportesController extends Controller
         return view('reportes.form_diario');
     }
 
-      public function formConsolidado()
+    public function formConsolidado()
     {
         return view('reportes.form_consolidado');
     }
