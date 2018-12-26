@@ -29,8 +29,7 @@ class EventController extends Controller
     ->join('events as p','p.profesional','=','e.id')
     ->get();
 	
-	dd($personal);
-	die();
+
 	
     if($request->isMethod('get')){
       $calendar = false;
