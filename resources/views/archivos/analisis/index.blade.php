@@ -22,7 +22,8 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+			<div class="table-responsive">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>Nombre</th>
@@ -49,6 +50,7 @@
 					<tfoot>
 					</tfoot>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>

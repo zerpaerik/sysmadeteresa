@@ -29,6 +29,8 @@
 					<input type="text" name="nom">
 					<input type="submit" value="Buscar" class="btn btn-primary">
 				</form>
+				             <div class="box-content no-padding table-responsive">
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead> 
 						<tr>
@@ -63,6 +65,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -183,5 +186,27 @@
 			top:35px;
 		}
 	</style>
+	
+			<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 @endif
 @endsection
