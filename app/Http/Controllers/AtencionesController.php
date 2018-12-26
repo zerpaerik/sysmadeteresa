@@ -185,7 +185,6 @@ class AtencionesController extends Controller
                 $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
                 $sm->material->save();
               }
-
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
