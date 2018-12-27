@@ -12,10 +12,10 @@ use Carbon\Carbon;
 class GastosController extends Controller
 {
 
-	public function index(){
+	public function index(Request $request){
 
     $initial = Carbon::now()->toDateString();
-    $gastos = $this->elasticSearch($initial);
+    $gastos = $this->elasticSearch($request,$initial);
 
         return view('movimientos.gastos.index', [
         "icon" => "fa-list-alt",
@@ -33,7 +33,7 @@ class GastosController extends Controller
 
   public function search(Request $request){
     
-       $gastos = $this->elasticSearch($request->inicio);
+       $gastos = $this->elasticSearch($request,$request->inicio);
 
         return view('movimientos.gastos.search', [
         "icon" => "fa-list-alt",
@@ -100,12 +100,13 @@ class GastosController extends Controller
       return redirect()->action('GastosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial)
+    private function elasticSearch(Request $request,$initial)
     {
       $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.created_at')
+        ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        ->orderby('a.id','desc')
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+		->orderby('a.id','desc')
         ->paginate(20);  
 
         return $gastos;

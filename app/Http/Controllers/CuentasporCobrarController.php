@@ -17,10 +17,10 @@ class CuentasporCobrarController extends Controller
 
 {
 
-	public function index()
+	public function index(Request $request)
   {
         $initial = Carbon::now()->toDateString();
-        $cuentasporcobrar = $this->elasticSearch('','');
+        $cuentasporcobrar = $this->elasticSearch($request,'','');
         return view('movimientos.cuentasporcobrar.index', [
         "icon" => "fa-list-alt",
         "model" => "cuentasporcobrar",
@@ -43,7 +43,7 @@ class CuentasporCobrarController extends Controller
     if (!isset($split[1])) {
      
       $split[1] = '';
-      $cuentasporcobrar = $this->elasticSearch($split[0],$split[1]);   
+      $cuentasporcobrar = $this->elasticSearch($request,$split[0],$split[1]);   
       return view('movimientos.cuentasporcobrar.index', [
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
@@ -57,7 +57,7 @@ class CuentasporCobrarController extends Controller
         ]
     ]); 
     }else{
-      $cuentasporcobrar = $this->elasticSearch($split[0],$split[1]);  
+      $cuentasporcobrar = $this->elasticSearch($request,$split[0],$split[1]);  
       return view('movimientos.cuentasporcobrar.index', [
       "icon" => "fa-list-alt",
       "model" => "cuentasporcobrar",
@@ -117,10 +117,10 @@ class CuentasporCobrarController extends Controller
       return redirect()->action('CuentasporCobrarController@index', ["edited" => $res]);
     }
 
-  private function elasticSearch($nom, $ape)
+  private function elasticSearch(Request $request,$nom, $ape)
   {
      $cuentasporcobrar = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -130,7 +130,7 @@ class CuentasporCobrarController extends Controller
     ->where('b.apellidos','like','%'.$ape.'%')
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.id_sede','=', \Session::get("sede"))
+    ->where('a.id_sede','=', $request->session()->get('sede'))
     ->orderby('a.id','desc')
     ->paginate(15); 
 

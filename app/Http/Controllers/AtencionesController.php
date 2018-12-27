@@ -23,9 +23,9 @@ class AtencionesController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
     $initial = Carbon::now()->toDateString();
-    $atenciones = $this->elasticSearch(Request $request,$initial,'','');
+    $atenciones = $this->elasticSearch($request,$initial,'','');
     return view('movimientos.atenciones.index', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
@@ -49,7 +49,7 @@ class AtencionesController extends Controller
     if (!isset($split[1])) {
      
       $split[1] = '';
-      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);
+      $atenciones = $this->elasticSearch($request,$request->inicio,$split[0],$split[1]);
       
       return view('movimientos.atenciones.search', [
       "icon" => "fa-list-alt",
@@ -63,7 +63,7 @@ class AtencionesController extends Controller
         ]
     ]); 
     }else{
-      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1]);  
+      $atenciones = $this->elasticSearch($request,$request->inicio,$split[0],$split[1]);  
       $fecha = $request->inicio;
       return view('movimientos.atenciones.search', [
       "icon" => "fa-list-alt",
@@ -366,7 +366,7 @@ class AtencionesController extends Controller
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-    //->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('b.nombres','like','%'.$nombre.'%')
     ->where('b.apellidos','like','%'.$apellido.'%')
     ->orderby('a.id','desc')

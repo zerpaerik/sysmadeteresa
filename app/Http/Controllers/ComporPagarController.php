@@ -16,11 +16,11 @@ class ComporPagarController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
         $total = 0;
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','');
+        $atenciones = $this->elasticSearch($request,$inicio,$final,'','');
         foreach ($atenciones as $aten) {
           $total = $total + $aten->porcentaje; 
         }
@@ -36,14 +36,14 @@ class ComporPagarController extends Controller
       if (!isset($split[1])) {
        
         $split[1] = '';
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
+        $atenciones = $this->elasticSearch($request,$request->inicio,$request->final,$split[0],$split[1]);
         foreach ($atenciones as $aten) {
           $total = $total + $aten->porcentaje; 
         }
         return view('movimientos.comporpagar.search', ["atenciones" => $atenciones,"total" => $total]); 
 
       }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
+        $atenciones = $this->elasticSearch($request,$request->inicio,$request->final,$split[0],$split[1]); 
         foreach ($atenciones as $aten) {
           $total = $total + $aten->porcentaje; 
         } 
@@ -80,15 +80,16 @@ class ComporPagarController extends Controller
 
   }
 
-  private function elasticSearch($initial, $final,$nom,$ape)
+  private function elasticSearch(Request $request,$initial, $final,$nom,$ape)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.id_sede','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
        // ->join('profesionales as f','f.id','a.origen_usuario')
+	     ->where('a.id_sede','=', $request->session()->get('sede'))
 	    ->whereNotIn('a.monto',[0,0.00])
 	    ->whereNotIn('a.porcentaje',[0,0.00])
 	     ->whereNotIn('a.porc_pagar',[0,0.00])
