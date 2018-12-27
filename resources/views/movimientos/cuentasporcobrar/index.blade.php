@@ -45,7 +45,8 @@
 						<tr>
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
-							@endforeach						
+							@endforeach	
+							
 							<td><a class="btn btn-primary" href="{{$model . '-edit-' .$d->id}}">Cobrar</a></td>
 						</tr>
 						@endforeach						

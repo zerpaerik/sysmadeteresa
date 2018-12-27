@@ -49,7 +49,9 @@
 								<td>{{$atec->nombreana}}</td>
 							    <td>{{$atec->nombrelab}}</td>
 								<td>{{$atec->costo}}</td>
+							@if(\Auth::user()->role_id <> 6)							 
 								<td><a href="{{asset('/pagar')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
+							@endif
 							</tr>
 						@endforeach
 					</tbody>

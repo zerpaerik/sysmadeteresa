@@ -45,9 +45,12 @@
 						<tr>
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
-							@endforeach						
+							@endforeach	
+                                @if(\Auth::user()->role_id <> 6)							 
+						
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
+								@endif
 						</tr>
 						@endforeach						
 					</tbody>
