@@ -88,11 +88,15 @@ class CuentasporCobrarController extends Controller
                     //->get();
                     
                     $pendiente = $searchAtencionID->pendiente;
+					$abono = $searchAtencionID->abono;
                     $atencion = $searchAtencionID->id;
+					$paciente = $searchAtencionID->id_paciente;
+				    $monto = $searchAtencionID->monto;
 
 
                     $p = Atenciones::find($request->id);
                     $p->pendiente = $pendiente-$request->monto;
+					$p->abono = $abono + $request->monto;
                     $res = $p->save();
 
                     $creditos = new Creditos();

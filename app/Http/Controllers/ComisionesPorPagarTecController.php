@@ -72,7 +72,7 @@ class ComisionesPorPagarTecController extends Controller
   private function elasticSearch(Request $request,$initial, $final,$nom,$ape)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.id_sede','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.pendiente','a.id_sede','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -84,6 +84,7 @@ class ComisionesPorPagarTecController extends Controller
         ->where('b.nombres','like','%'.$nom.'%')
         ->where('b.nombres','like','%'.$ape.'%')
         ->whereNotIn('a.monto',[0,0.00])
+		->whereNotIn('a.pendiente','>',0)
         ->whereNotIn('a.porcentaje',[0,0.00])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])

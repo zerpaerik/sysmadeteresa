@@ -83,7 +83,7 @@ class ComporPagarController extends Controller
   private function elasticSearch(Request $request,$initial, $final,$nom,$ape)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.id_sede','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.id_sede','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.pendiente','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -93,6 +93,7 @@ class ComporPagarController extends Controller
 	    ->whereNotIn('a.monto',[0,0.00])
 	    ->whereNotIn('a.porcentaje',[0,0.00])
 	     ->whereNotIn('a.porc_pagar',[0,0.00])
+		 ->whereNotIn('a.pendiente','>',0)
         ->where('a.pagado_com','=', NULL)
         ->where('e.name','like','%'.$nom.'%')
         ->where('e.lastname','like','%'.$ape.'%')
