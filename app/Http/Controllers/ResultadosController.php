@@ -232,16 +232,22 @@ class ResultadosController extends Controller
                 }
 
 
-                 $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;
-                $p->save();
+                $p = Atenciones::findOrFail($id);
+                $p->resultado = 1;  
+                $p->save();   
+				
+				$product=new ResultadosLaboratorios;
+				$img = $request->file('informe');
+				$nombre_imagen=$img->getClientOriginalName();
+				$product->id_atencion=$request->id;
+				$product->id_laboratorio=$id_laboratorio;
+				$product->informe=$nombre_imagen;
+				$product->user_id=Auth::user()->id;
+				if ($product->save()) {
+					 \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
-
-                $creditos = new ResultadosLaboratorios();
-                $creditos->id_atencion = $request->id;
-                $creditos->id_laboratorio = $id_laboratorio;
-                $creditos->descripcion= $request->descripcion;
-                $creditos->save();
+				}
+				\DB::commit();
 
        }
           

@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/informes
 /public/storage
 /storage/*.key
 /storage/edicion.doc

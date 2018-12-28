@@ -190,13 +190,10 @@
         <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
       </li>
       <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>
       </li>
       <li>
-        <a href="{{route('resultados.informe-index')}}"><i class="fa fa-list-alt"></i> Lista Modelos de Informe</a>
-      </li>
-      <li>
-        <a href="{{route('resultados.informe')}}"><i class="fa fa-plus-circle"></i> Crear Modelo de Informe</a>
+        <a href="{{route('resultadosguardados1.index1')}}"><i class="fa fa-search"></i> Consultar Resultados Lab.</a>
       </li>
     </ul>
   </li>
@@ -462,7 +459,7 @@
       </li>                  
     </ul>
   </li>
-  <li class="dropdown">
+ <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -472,13 +469,10 @@
         <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
       </li>
       <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>
       </li>
       <li>
-        <a href="{{route('resultados.informe-index')}}"><i class="fa fa-list-alt"></i> Lista Modelos de Informe</a>
-      </li>
-      <li>
-        <a href="{{route('resultados.informe')}}"><i class="fa fa-plus-circle"></i> Crear Modelo de Informe</a>
+        <a href="{{route('resultadosguardados1.index1')}}"><i class="fa fa-search"></i> Consultar Resultados Lab.</a>
       </li>
     </ul>
   </li>
@@ -683,7 +677,7 @@
       </li>                  
     </ul>
   </li>
-  <li class="dropdown">
+ <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
       <span class="hidden-xs">Resultados</span>
@@ -693,7 +687,10 @@
         <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
       </li>
       <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>
+      </li>
+      <li>
+        <a href="{{route('resultadosguardados1.index1')}}"><i class="fa fa-search"></i> Consultar Resultados Lab.</a>
       </li>
     </ul>
   </li>
@@ -756,13 +753,10 @@
         <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
       </li>
       <li>
-        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados</a>
+        <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>
       </li>
       <li>
-        <a href="{{route('resultados.informe-index')}}"><i class="fa fa-list-alt"></i> Lista Modelos de Informe</a>
-      </li>
-      <li>
-        <a href="{{route('resultados.informe')}}"><i class="fa fa-plus-circle"></i> Crear Modelo de Informe</a>
+        <a href="{{route('resultadosguardados1.index1')}}"><i class="fa fa-search"></i> Consultar Resultados Lab.</a>
       </li>
     </ul>
   </li>

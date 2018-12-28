@@ -11,7 +11,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						 {!! Form::model($atencion, ['method' => 'PUT', 'route' => ['informes1.update', $atencion->id],'enctype'=>'multipart/form-data']) !!}
+						 {!! Form::model($atencion, ['method' => 'PUT', 'route' => ['informes.update', $atencion->id],'enctype'=>'multipart/form-data']) !!}
 							<div class="row">
 							
 						

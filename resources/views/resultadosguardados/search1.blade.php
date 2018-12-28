@@ -10,7 +10,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class=""></i>
-					<span><strong>Informes de Servicios</strong></span>
+					<span><strong>Informes de Laboratorios</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -24,7 +24,7 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/resultadosguardados-search" method="get">
+					<form action="/resultadosguardados1-search1" method="get">
 						<h5>Rango de fechas</h5>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
@@ -57,10 +57,10 @@
 						<td>{{$d->created_at}}</td>
 						<td>						
                         <a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
-						@if(\Auth::user()->role_id == 4)
+												@if(\Auth::user()->role_id == 4)
 
-						<td><a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a></td>
-                        						@endif
+						<td><a class="btn btn-success" href="/resultadosg-editarl-{{$d->id2}}">Actualizar Informe</a></td>
+						@endif
 
 						</td>
 						</tr>
@@ -81,3 +81,6 @@
 
 
 @endsection
+
+
+

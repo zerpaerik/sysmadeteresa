@@ -245,6 +245,15 @@ Route::get('resultadosguardados-editar-{id}', 'ReportesController@editar')->name
 Route::post('resultadosguardados-update-{id}', 'ReportesController@update')->name('resultadosguardados.update')->middleware('auth');
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
+Route::get('resultadosguardados1', 'ResultadosGuardadosController@index1')->name('resultadosguardados1.index1')->middleware('auth');
+Route::get('resultadosguardados1-search1', 'ResultadosGuardadosController@search1')->name('resultadosguardados1.search1')->middleware('auth');
+Route::get('resultadosg-editar-{id}', 'ResultadosGuardadosController@editars')->name('resultadosg.editars');
+Route::get('resultadosg-editarl-{id}', 'ResultadosGuardadosController@editarl')->name('resultadosg.editarl');
+Route::put('resultadosg-edits-{id}', 'ResultadosGuardadosController@edits')->name('informes.update');
+Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->name('informes1.update');;
+
+
+
 
 Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
 
