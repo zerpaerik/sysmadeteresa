@@ -34,12 +34,12 @@
 					</form>
 					<thead>
 						<tr>
-								<th width="10%">Fecha</th>
+								<th>Fecha</th>
 								<th width="20%">Paciente</th>
-								<th width="20%">Origen</th>
+								<th>Origen</th>
 								<th>Detalle</th>
-								<th width="20%">Informe</th>
-								<th width="10%">Accion</th>
+								<th>Informe</th>
+								<th>Accion</th>
 
 						</tr>
 					</thead>
@@ -55,15 +55,25 @@
 								<td>{{$d->laboratorio}}</td>
 							    @endif
 
-							  <td>
-								<form action="{{$model . '-edit-' .$d->id}}" method="get">
+							  
+							@if($d->informe)
+						<td>						
+                        <a href="{{route('descargar',$d->informe)}}" class="btn btn-danger" target="_blank">Descargar Modelo</a>
+						</td>	
+							<td><a class="btn btn-primary" href="/resultados-guardar-{{$d->id}}">Adjuntar Informe</a></td>
+
+							@else
+								<td>
+								<form action="{{$model . '-asoc-' .$d->id}}" method="get">
 								<select name="informe" id="informe">
-								@foreach($informes as $informe)
-									<option value="{{$informe->id}}">{{$informe->title}}</option>
-								@endforeach
+									<option value="">Seleccione</option>
+                                    <option value="OBST III DOPPLER NIVEL II-3p.docx">OBST III DOPPLER NIVEL II-3p</option>
+
 								</select>
 							</td>
-							<td><input type="submit" class="btn btn-success" value="Redactar"></td>
+							<td><input type="submit" class="btn btn-success" value="Asociar"></td>
+							@endif
+							
 						</tr>
 						</form>
 						@endforeach						

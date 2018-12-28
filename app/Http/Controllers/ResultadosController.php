@@ -12,6 +12,7 @@ use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Informe;
 use Auth;
+use Toastr;
 
 
 class ResultadosController extends Controller
@@ -22,7 +23,7 @@ class ResultadosController extends Controller
 
 
       	$resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -120,15 +121,23 @@ class ResultadosController extends Controller
 
       return back();
     }
+	
+    public function guardar($id){
 
-	 public function edit($id,Request $request){
+    $atencion = Atenciones::findOrFail($id);
+
+    return view('resultados.guardar', compact('atencion'));
+
+    }
+	
+	 public function edit1($id,Request $request){
 
      $searchAtenciones = DB::table('atenciones')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('id','=', $request->id)
                     ->get();
-
+		
             foreach ($searchAtenciones as $atenciones) {
                     $es_servicio = $atenciones->es_servicio;
                     $es_laboratorio = $atenciones->es_laboratorio;
@@ -167,19 +176,48 @@ class ResultadosController extends Controller
 
           } else {
 
-                $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;  
-                $p->save();
 
           }
 
 
-                $creditos = new ResultadosServicios();
+              /*  $creditos = new ResultadosServicios();
                 $creditos->id_atencion = $request->id;
                 $creditos->id_servicio = $id_servicio;
                 $creditos->descripcion= $request->descripcion;
                 $creditos->user_id = Auth::user()->id;
-                $creditos->save();
+                $creditos->save();*/
+				
+				
+		$imgname = DB::table('resultados_servicios')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('informe','=', $request->file('informe')->getClientOriginalName())
+                    ->first();
+				
+			   if($imgname){
+				        Toastr::error('Ya Existe un archivo con ese Nombre.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
+						return redirect()->action('ResultadosController@index');
+
+			   } else {
+				   
+				$p = Atenciones::findOrFail($id);
+                $p->resultado = 1;  
+                $p->save();   
+				
+				$product=new ResultadosServicios;
+				$img = $request->file('informe');
+				$nombre_imagen=$img->getClientOriginalName();
+				$product->id_atencion=$request->id;
+				$product->id_servicio=$id_servicio;
+				$product->informe=$nombre_imagen;
+				$product->user_id=Auth::user()->id;
+				if ($product->save()) {
+					 \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+
+				}
+				\DB::commit();
+				
+			   }
 
        } else {
 
@@ -206,10 +244,24 @@ class ResultadosController extends Controller
                 $creditos->save();
 
        }
-                
+          
+       	 Toastr::success('Adjuntado Exitosamente.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
+		  
       return redirect()->action('ResultadosController@index');
 
     }
+	
+	 public function asoc($id,Request $request){
+
+      $p = Atenciones::findOrFail($id);
+      $p->informe = $request->informe;
+      $p->save();    
+      return redirect()->action('ResultadosController@index');
+
+    }
+	
+	
+
 
     private function elasticSearch($nom, $ape)
     {     

@@ -389,4 +389,18 @@ class AtencionesController extends Controller
      return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
 	
   }
+  
+  public function asoc(Request $request,$id){
+    $atenciones = Atenciones::find($id);
+	$atenciones->informe = $request->informe;
+    $atenciones->save();
+	
+	$creditos = Creditos::where('id_atencion','=',$id);
+    $creditos->delete();
+  
+	 Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+
+     return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
+	
+  }
 }

@@ -48,11 +48,12 @@ class ResultadosGuardadosController extends Controller
   {
 
    $resultadosguardados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','r.informe','r.id as id2')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+		->join('resultados_servicios as r','a.id','r.id_atencion')
         ->whereNotIn('a.monto',[0,0.00])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         ->where('a.id_sede','=', \Session::get("sede"))
@@ -69,6 +70,14 @@ class ResultadosGuardadosController extends Controller
     $atencion = Atenciones::findOrFail($id);
 
     return view('resultados.create', compact('atencion'));
+
+    }
+	
+	public function guardar($id){
+
+    $atencion = Atenciones::findOrFail($id);
+
+    return view('resultados.guardar', compact('atencion'));
 
     }
 
