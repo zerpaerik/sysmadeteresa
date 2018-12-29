@@ -86,9 +86,9 @@ class AtencionesController extends Controller
     //$laboratorios = Analisis::all();
     //$pacientes = Pacientes::all();
     //$paquetes = Paquetes::all();
-    $servicios =Servicios::where("estatus", '=', 1)->get();
-    $laboratorios =Analisis::where("estatus", '=', 1)->get();
-    $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    $servicios =Servicios::where("estatus", '=', 1)->orderby('detalle','asc')->get();
+    $laboratorios =Analisis::where("estatus", '=', 1)->orderby('name','asc')->get();
+    $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
     $paquetes =Paquetes::where("estatus", '=', 1)->get();
 
 
@@ -173,13 +173,7 @@ class AtencionesController extends Controller
                                         ->with('material', 'servicio')
                                         ->get();
 
-              foreach ($serMateriales as $sm) {
-                if ($sm->material->cantidad < $sm->cantidad) {
-                  Toastr::error('El servicio '.$sm->servicio->detalle.' no se puede ofrecer', 'Servicio', ['progressBar' => true]);
-                  Toastr::error('No se tiene la cantidad suficiente de '.$sm->material->nombre, 'Material', ['progressBar' => true]);
-                  return back();
-                }
-              }
+          
 
               foreach ($serMateriales as $sm) {
                 $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
