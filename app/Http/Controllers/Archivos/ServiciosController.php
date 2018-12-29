@@ -40,7 +40,7 @@ class ServiciosController extends Controller
   public function search(Request $request)
   {
     $servicios =Servicios::where("estatus", '=', 1)
-    ->where('detalle','like','%'.$request->non.'%')
+    ->where('detalle','like','%'.$request->nom.'%')
     ->get();
     return view('generics.index', [
       "icon" => "fa-list-alt",
