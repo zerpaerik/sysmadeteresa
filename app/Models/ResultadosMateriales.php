@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ConsultaMateriales extends Model
+class ResultadosMateriales extends Model
 {
     protected $fillable = [
-    	'id_consulta', 'id_material', "cantidad"
+    	'id_resultado', 'id_material', "cantidad"
     ];
 }

@@ -261,10 +261,13 @@
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="examen_auxiiar">
 			</div>
-
-			<label for="" class="col-sm-12 control-label">Plan de Tratamiento</label>
+			
+			
+			<div class="row">
+			<label for="" class="col-sm-3 control-label">Plan de Tratamiento</label>
 			<div class="col-sm-12">	
 				<input   class="form-control" type="text" name="plan_tratamiento">
+			</div>
 			</div>
 
 			<label for="" class="col-sm-2 control-label">Observaciones</label>

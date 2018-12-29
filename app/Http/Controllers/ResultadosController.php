@@ -10,6 +10,8 @@ use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Models\ResultadosMateriales;
+use App\Models\Existencias\Producto;
 use App\Informe;
 use Auth;
 use Toastr;
@@ -122,11 +124,13 @@ class ResultadosController extends Controller
       return back();
     }
 	
-    public function guardar($id){
+    public function guardar($id,Request $request){
 
     $atencion = Atenciones::findOrFail($id);
+		$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
 
-    return view('resultados.guardar', compact('atencion'));
+
+    return view('resultados.guardar', compact('atencion','productos'));
 
     }
 	
@@ -217,6 +221,29 @@ class ResultadosController extends Controller
 				}
 				\DB::commit();
 				
+				////PARA MATERIALES
+				 if (isset($request->id_laboratorio)) {
+				  foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+					if (!is_null($laboratorio['laboratorio'])) {
+					  $pro = new ResultadosMateriales();
+					  $pro->id_resultado = $product->id;
+					  $pro->id_material =  $laboratorio['laboratorio'];
+					  $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+					  $pro->save();
+					  
+					  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
+					  ->first();
+					  $cantactual= $SearchMaterial->cantidad;
+				
+					
+				  $p = Producto::find($laboratorio['laboratorio']);
+				  $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+				  $res = $p->save();
+				  
+					} 
+				  }
+				}
+				//////
 			   }
 
        } else {
@@ -252,7 +279,9 @@ class ResultadosController extends Controller
        }
           
        	 Toastr::success('Adjuntado Exitosamente.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
-		  
+		 Toastr::success('Registrado Exitosamente.', 'MATERIALES USADOS!', ['progressBar' => true]);
+
+		 
       return redirect()->action('ResultadosController@index');
 
     }
