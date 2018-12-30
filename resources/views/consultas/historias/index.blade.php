@@ -37,16 +37,7 @@
 		
 						</tr>
 					</thead>
-					<tbody>
-						@foreach($historias as $d)					
-							<tr>
-								<td>{{$d->nombres}} {{$d->apellidos}}</td>
-								<td>{{$d->dni}}</td>
-								<td>{{$d->created_at}}</td>
-								<td><a href="historias-{{$d->paciente}}" class="btn btn-success">Ver ficha</a></td>
-							</tr>
-						@endforeach
-					</tbody>
+					
 					<tfoot>
 					</tfoot>
 				</table>

@@ -73,9 +73,8 @@ class ConsultaController extends Controller
   
      public function indexh(){
     
-        $historias = $this->elasticSearch1('','');
    
-        return view('consultas.historias.index', ["historias" => $historias]);
+        return view('consultas.historias.index');
 	}
 	
 	public function searchh(Request $request)

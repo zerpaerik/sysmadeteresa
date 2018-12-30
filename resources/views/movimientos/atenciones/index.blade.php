@@ -38,11 +38,11 @@
 					<thead> 
 						<tr>
 							<th>Id</th>
-							<th width="15%">Paciente</th>
-							<th width="15%">Origen</th>
-							<th>Detalle</th>
+							<th width="20%">Paciente</th>
+							<th width="20%">Origen</th>
+							<th width="20%">Detalle</th>
 							<th>Monto</th>
-							<th>Monto Abonado</th>
+							<th width="5%">Monto Abonado</th>
 							<th width="10%">Fecha</th>
 							<th>Acciones</th>
 							<th></th>
