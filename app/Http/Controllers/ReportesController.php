@@ -185,7 +185,7 @@ class ReportesController extends Controller
         $atenciones = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
 									->whereNotIn('monto',[0,0.00])
-                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
                                     ->first();
         if ($atenciones->cantidad == 0) {
             $atenciones->monto = 0;
