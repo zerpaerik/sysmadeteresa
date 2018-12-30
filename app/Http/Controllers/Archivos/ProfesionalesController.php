@@ -24,8 +24,9 @@ class ProfesionalesController extends Controller
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
 		->join('users as d','d.id','a.usuario')
+		->orderBy('a.id')
         ->where('a.estatus','=', 1)
-        ->orderby('a.dni','desc')
+        //->orderby('a.dni','desc')
         ->get();
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
@@ -56,7 +57,7 @@ class ProfesionalesController extends Controller
         ->where('a.estatus','=', 1)
         ->where('a.name','like', '%'.$split[0].'%')
         ->where('a.name','like', '%'.$split[1].'%')
-        ->orderby('a.dni','desc')
+        ->orderby('a.id')
         ->get();
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
