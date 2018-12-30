@@ -182,8 +182,7 @@ class ReportesController extends Controller
 
     public function relacion_diario(Request $request)
     {
-        $atenciones = Atenciones::where('monto','>',0)
-		                            ->where('id_sede','=', $request->session()->get('sede'))
+        $atenciones = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
 									->whereNotIn('monto',[0,0.00])
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
