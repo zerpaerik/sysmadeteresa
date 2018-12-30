@@ -222,6 +222,8 @@ Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
+Route::get('movimientos/atencion/particular','AtencionesController@particular');
+
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
 Route::get('resultados-search', 'ResultadosController@search')->name('resultados.search')->middleware('auth');
@@ -342,6 +344,9 @@ Route::post('historial/create','HistorialController@create')->name('historials.c
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
+Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
+Route::get('historias-search', 'ConsultaController@searchh')->name('historias.search')->middleware('auth');
+Route::get('historias-{id}','ConsultaController@show');
 
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');

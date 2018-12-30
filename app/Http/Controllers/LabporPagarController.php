@@ -91,6 +91,7 @@ class LabporPagarController extends Controller
 		->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.es_laboratorio','=',1)
         ->where('a.pagado_lab','=',NULL)
+		->whereNotIn('a.id_laboratorio',[1])
         ->whereNotIn('c.costlab',[0])
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('b.nombres','like','%'.$nom.'%')

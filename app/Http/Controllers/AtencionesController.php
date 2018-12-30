@@ -98,13 +98,171 @@ class AtencionesController extends Controller
 
   public function create(Request $request)
   {
+	
+   if($request->origen == 3){
+	   
+	   if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
+      return redirect()->route('atenciones.create');
+    }
+
+    if (isset($request->id_paquete)) {
+      
+      foreach ($request->id_paquete['paquetes'] as $key => $paquete) {
+        if (!is_null($paquete['paquete'])) {
+              $paquete = Paquetes::findOrFail($paquete['paquete']);
+              $paq = new Atenciones();
+              $paq->id_paciente = $request->id_paciente;
+              $paq->origen = $request->origen;
+              $paq->origen_usuario = 99999999;
+              $paq->id_laboratorio =  1;
+              $paq->id_servicio =  1;
+              $paq->id_paquete = $paquete->id;
+              $paq->comollego = $request->comollego;
+              $paq->es_paquete =  true;
+			  $paq->serv_prog = FALSE;
+              $paq->tipopago = $request->tipopago;
+              $paq->porc_pagar = $paquete->porcentaje;
+              $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
+              $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
+              $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
+              $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
+              $paq->id_sede =$request->session()->get('sede');
+              $paq->estatus = 1;
+              $paq->save(); 
+
+              $creditos = new Creditos();
+              $creditos->origen = 'ATENCIONES';
+              $creditos->id_atencion = $paq->id;
+              $creditos->monto= $request->monto_abop['paquetes'][$key]['abono'];
+              $creditos->id_sede = $request->session()->get('sede');
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'INGRESO DE ATENCIONES';
+              $creditos->save();
+
+
+        } else {
+
+        }
+      }
+    }
+
+    if (isset($request->id_servicio)) {
+      $searchServicio = DB::table('servicios')
+              ->select('*')
+              ->where('id','=', $request->id_servicio)
+              ->first();  
+			  
+     // $porcentaje = $searchServicio->porcentaje;
+	  $programa = $searchServicio->programa;
+	  
+	  if ($request->origen == 1 ){
+		    $porcentaje = $searchServicio->por_per;
+	  } else {
+		    $porcentaje = $searchServicio->porcentaje;
+	  }
+	  
+	
+      foreach ($request->id_servicio['servicios'] as $key => $servicio) {
+        if (!is_null($servicio['servicio'])) {
+              $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])
+                                        ->with('material', 'servicio')
+                                        ->get();
+
+          
+
+              foreach ($serMateriales as $sm) {
+                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
+                $sm->material->save();
+              }
+              $serv = new Atenciones();
+              $serv->id_paciente = $request->id_paciente;
+              $serv->origen = $request->origen;
+              $serv->origen_usuario = 99999999;
+              $serv->id_laboratorio =  1;
+              $serv->id_paquete =  1;
+              $serv->id_servicio =  $servicio['servicio'];
+              $serv->es_servicio =  true;
+			  $serv->serv_prog =  $programa;
+              $serv->tipopago = $request->tipopago;
+              $serv->porc_pagar = $porcentaje;
+              $serv->comollego = $request->comollego;
+              $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
+              $serv->monto = $request->monto_s['servicios'][$key]['monto'];
+              $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
+              $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
+              $serv->id_sede = $request->session()->get('sede');
+              $serv->estatus = 1;
+              $serv->save(); 
+
+              $creditos = new Creditos();
+              $creditos->origen = 'ATENCIONES';
+              $creditos->id_atencion = $serv->id;
+              $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
+              $creditos->id_sede = $request->session()->get('sede');
+              $creditos->tipo_ingreso = $request->tipopago;
+              $creditos->descripcion = 'INGRESO DE ATENCIONES';
+              $creditos->save();
+        } else {
+
+        }
+      }
+    }
+
+    if (isset($request->id_laboratorio)) {
+
+       $searchAnalisis = DB::table('analises')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id_laboratorio)
+                    ->first();   
+                   
+                   $porcentaje =  $searchAnalisis->porcentaje;
+
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        if (!is_null($laboratorio['laboratorio'])) {
+          $lab = new Atenciones();
+          $lab->id_paciente = $request->id_paciente;
+          $lab->origen = $request->origen;
+          $lab->origen_usuario = 99999999;
+          $lab->id_servicio = 1;
+          $lab->id_paquete =  1;
+          $lab->id_laboratorio =  $laboratorio['laboratorio'];
+          $lab->es_laboratorio =  true;
+          $lab->tipopago = $request->tipopago;
+          $lab->porc_pagar = $porcentaje;
+		  $lab->serv_prog = FALSE;
+          $lab->comollego = $request->comollego;
+          $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
+          $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
+          $lab->pendiente = $request->total_g;
+          $lab->id_sede = $request->session()->get('sede');
+          $lab->estatus = 1;
+          $lab->save();
+
+          $creditos = new Creditos();
+          $creditos->origen = 'ATENCIONES';
+          $creditos->id_atencion = $lab->id;
+          $creditos->monto= $request->monto_abol['laboratorios'][$key]['abono'];
+          $creditos->id_sede = $request->session()->get('sede');
+          $creditos->tipo_ingreso = $request->tipopago;
+          $creditos->descripcion = 'INGRESO DE ATENCIONES';
+          $creditos->save();
+        } else {
+
+        }
+      }
+    }
+		
+		
+  } else {		
     
     $searchUsuarioID = DB::table('users')
                     ->select('*')
                     ->where('id','=', $request->origen_usuario)
                     ->first();    
-
-
+ 
 
     if (is_null($request->id_servicio['servicios'][0]['servicio']) && is_null($request->id_laboratorio['laboratorios'][0]['laboratorio'])){
       return redirect()->route('atenciones.create');
@@ -259,6 +417,9 @@ class AtencionesController extends Controller
         }
       }
     }
+	}
+	
+	
     	 Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
 
     return redirect()->route('atenciones.index');
@@ -284,6 +445,11 @@ class AtencionesController extends Controller
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));
+  }
+  
+  public function particular(){
+     
+    return view('movimientos.atenciones.particular');
   }
 
   public function editView($id)

@@ -404,6 +404,24 @@ class ReportesController extends Controller
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
                                     ->select(DB::raw('SUM(abono) as abono'))
                                     ->first();
+		 $paquetes = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('paquetes as c','c.id','a.id_paquete')
+        ->join('users as e','e.id','a.origen_usuario')
+		->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_paquete','=', 1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->whereNotIn('a.monto',[0,0.00])
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalPaquetes = Atenciones::where('es_paquete',1)
+		                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(abono) as abono'))
+                                    ->first();						
        
          $consultas = DB::table('events as a')
         ->select('a.id','a.profesional','a.paciente','a.monto','a.created_at','b.nombres','b.apellidos','c.name','c.apellidos as apepro')
@@ -451,7 +469,7 @@ class ReportesController extends Controller
      
 
        
-        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar'));
+        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

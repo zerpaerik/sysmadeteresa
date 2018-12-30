@@ -8,8 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Usuarios</strong></span>
-					<a href="{{route('user.create')}}" class="btn btn-primary">Agregar</a>
+					<span><strong>Historias de Pacientes</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -23,30 +22,32 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<form action="/historias-search" method="get">
+						<label for=""></label>
+						<input type="text" placeholder="Buscar por DNI" name="dni" style="line-height: 20px;">
+						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
+					</form>
 					<thead>
 						<tr>
-							<th>Nombres</th>
-							<th>Apellidos</th>
-							<th>Rol</th>
-							<th>Email</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Registro</th>
+							<th>Historia</th>
+							
+		
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($users as $user)					
+						@foreach($historias as $d)					
 							<tr>
-								<td>{{$user->name}}</td>
-								<td>{{$user->lastname}}</td>
-							    <td>{{$user->rol}}</td>
-								<td>{{$user->email}}</td>
+								<td>{{$d->nombres}} {{$d->apellidos}}</td>
+								<td>{{$d->dni}}</td>
+								<td>{{$d->created_at}}</td>
+								<td><a href="historias-{{$d->paciente}}" class="btn btn-success">Ver ficha</a></td>
 							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
-						</tr>
 					</tfoot>
 				</table>
 			</div>
@@ -55,7 +56,7 @@
 </div>
 @if(isset($created))
 	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
+	  A simple success alertâ€”check it out!
 	</div>
 @endif
 <script type="text/javascript">

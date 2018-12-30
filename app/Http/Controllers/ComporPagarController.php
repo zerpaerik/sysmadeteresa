@@ -232,6 +232,7 @@ class ComporPagarController extends Controller
 	    ->whereNotIn('a.monto',[0,0.00])
 	    ->whereNotIn('a.porcentaje',[0,0.00])
 	    ->whereNotIn('a.porc_pagar',[0,0.00])
+		->whereNotIn('a.origen_usuario',[99999999])
         ->where('a.pagado_com','=', NULL)
         ->where('e.name','like','%'.$nom.'%')
         ->where('e.lastname','like','%'.$ape.'%')
@@ -242,7 +243,6 @@ class ComporPagarController extends Controller
         ->paginate(20);
         return $atenciones;
   }
-
 
 
 

@@ -200,6 +200,7 @@ class ComisionesPorPagarTecController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
        // ->join('profesionales as f','f.id','a.origen_usuario')
 	   	->where('a.id_sede','=', $request->session()->get('sede'))
+		->whereNotIn('a.origen_usuario',[99999999])
         ->where('a.pago_com_tec','=', 0)
         ->where('a.es_servicio','=', 1)
         ->where('b.nombres','like','%'.$nom.'%')

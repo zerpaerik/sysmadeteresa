@@ -48,6 +48,7 @@ class ComisionesPagadasController extends Controller
 	  ->where('a.id_sede','=', $request->session()->get('sede'))
       ->where('a.pagado_com','=', 1)
       ->whereNotIn('a.monto',[0,0.00])
+	  ->whereNotIn('a.origen_usuario',[99999999])
       ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
       ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
       ->groupBy('a.recibo')

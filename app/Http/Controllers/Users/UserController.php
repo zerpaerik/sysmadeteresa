@@ -7,11 +7,18 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Models\Role;
 use App\Models\Config\Sede;
+use DB;
 
 class UserController extends Controller
 {
 	public function index(){
-		$users = User::all();
+		//$users = User::all();
+		$users = DB::table('users as a')
+        ->select('a.id','a.name','a.lastname','a.dni','a.tipo','a.email','a.role_id','b.name as rol')
+		->join('roles as b','b.id','a.role_id')
+        ->orderby('a.id','desc')
+		->where('a.tipo','=',NULL)
+        ->get();  
 		return view('archivos.users.index', ["users" => $users]);
 	}
 
