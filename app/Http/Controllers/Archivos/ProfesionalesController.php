@@ -56,7 +56,7 @@ class ProfesionalesController extends Controller
         ->join('centros as c','a.centro','c.id')
         ->where('a.estatus','=', 1)
         ->where('a.name','like', '%'.$split[0].'%')
-        ->where('a.name','like', '%'.$split[1].'%')
+        ->where('a.apellidos','like', '%'.$split[1].'%')
         ->orderby('a.id')
         ->get();
         return view('archivos.profesionales.index', [
