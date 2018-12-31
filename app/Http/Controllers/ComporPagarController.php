@@ -231,12 +231,12 @@ class ComporPagarController extends Controller
 	    ->where('a.id_sede','=', $request->session()->get('sede'))
 	    ->whereNotIn('a.monto',[0,0.00])
 		->whereNotIn('a.origen_usuario',[99999999])
-		->where('a.pendiente','<=',0)
+		->where('a.pendiente','=',0)
         ->where('a.pagado_com','=', NULL)
         ->where('e.name','like','%'.$nom.'%')
         ->where('e.lastname','like','%'.$ape.'%')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($final))])
+       // ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
         ->orderby('a.id','desc')
         ->paginate(20);
         return $atenciones;
