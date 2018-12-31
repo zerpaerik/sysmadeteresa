@@ -25,7 +25,6 @@
 
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h4>Total de deuda: {{$total}}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
@@ -51,25 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atenciones as $atec)	
-
-							<tr>
-								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								@if($atec->es_servicio =='1')
-								<td>{{$atec->servicio}}</td>
-								@else
-								<td>{{$atec->laboratorio}}</td>
-								@endif
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-								<td>{{$atec->porcentaje}}</td>
-								<td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							</tr>
-						@endforeach
+					
 					</tbody>
 					<tfoot>
 							<th>
@@ -80,7 +61,6 @@
 					</form>
 				</table>
 				</div>
-				{{$atenciones->links()}}	
 			</div>
 			
 		</div>

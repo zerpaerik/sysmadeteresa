@@ -156,15 +156,9 @@ class ComporPagarController extends Controller
 
 {
 
-	public function index(Request $request){
-        $total = 0;
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','',$request);
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->porcentaje; 
-        }
-        return view('movimientos.comporpagar.index', ["atenciones" => $atenciones, "total" => $total]);
+	public function index(){
+       
+        return view('movimientos.comporpagar.index');
 	}
 
     public function search(Request $request)
