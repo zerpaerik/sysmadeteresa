@@ -34,6 +34,7 @@
 					</form>
 					<thead>
 						<tr>
+						        <th>ID</th>
 								<th>Fecha</th>
 								<th width="20%">Paciente</th>
 								<th>Origen</th>
@@ -46,6 +47,7 @@
 					<tbody>
 						@foreach($data as $d)
 						<tr>
+						        <td>{{$d->id}}</td>
 								<td>{{$d->created_at}}</td>
 						        <td>{{$d->nombres}},{{$d->apellidos}}</td>
 								<td>{{$d->name}},{{$d->lastname}}</td>
@@ -79,7 +81,6 @@
 						@endforeach						
 					</tbody>
 				</table>
-				{{$data->links()}}
 			</div>
 		</div>
 	</div>

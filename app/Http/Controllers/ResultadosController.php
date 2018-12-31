@@ -30,6 +30,7 @@ class ResultadosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+		->where('a.es_paquete','<>',1)
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
@@ -306,12 +307,14 @@ class ResultadosController extends Controller
       ->join('servicios as c','c.id','a.id_servicio')
       ->join('analises as d','d.id','a.id_laboratorio')
       ->join('users as e','e.id','a.origen_usuario')
-      ->whereNotIn('a.monto',[0,0.00])
+     // ->whereNotIn('a.monto',[0,0.00])
+	  ->where('a.es_servicio','=',1)
+	  ->where('a.es_laboratorio','=',1)
       ->where('a.resultado','=', NULL)
       ->where('b.nombres','like','%'.$nom.'%')
       ->where('b.apellidos','like','%'.$ape.'%')
       ->orderby('a.id','desc')
-      ->paginate(5000);
+      ->get();
 
 
       $informe = Informe::all();
