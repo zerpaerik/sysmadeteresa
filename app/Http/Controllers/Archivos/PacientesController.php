@@ -108,9 +108,10 @@ class PacientesController extends Controller
 		  'dni' => 'required|unique:pacientes'
           
         ]);
-        if($validator->fails()) 
+        if($validator->fails()) {
 	      Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\PacientesController@createView', ['errors' => $validator->errors()]);
+        } else {
 		$pacientes = Pacientes::create([
 		  	'dni' => $request->dni,
 	      'nombres' => $request->nombres,
@@ -126,7 +127,7 @@ class PacientesController extends Controller
 	      'gradoinstruccion' => $request->gradoinstruccion,
 	      'ocupacion' => $request->ocupacion,
 	      'estatus' => 1,
-		  'usuario' => 	Auth::user()->id,
+		    'usuario' => 	Auth::user()->id,
 	      'historia' => HistoriaPacientes::generarHistoria()
 	  
    		]);
@@ -138,8 +139,8 @@ class PacientesController extends Controller
           $historial->id_usuario = \Auth::user()->id;
 		  $historial->sede = $request->session()->get('sede');
           $historial->save();
-		  
-		Toastr::error('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
+		  }
+		Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
 		return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
 	}   
 
