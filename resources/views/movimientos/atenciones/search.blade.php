@@ -63,7 +63,7 @@
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>
 
-												
+		                    <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>							
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
 						</tr>
