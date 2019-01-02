@@ -60,7 +60,7 @@
 							  
 							@if($d->informe)
 						<td>						
-                        <a href="{{route('descargar',$d->informe)}}" class="btn btn-danger" target="_blank">Descargar Modelo</a>
+                        <a href="/modelo-informe-{{$d->id}}-{{$d->informe}}" class="btn btn-danger" target="_blank">Descargar Modelo</a>
 						</td>	
 							<td><a class="btn btn-primary" href="/resultados-guardar-{{$d->id}}">Adjuntar Informe</a></td>
 

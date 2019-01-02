@@ -226,6 +226,7 @@ Route::get('movimientos/atencion/particular','AtencionesController@particular');
 
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
+Route::get('modelo-informe-{id}-{informe}', 'ReportesController@modelo_informe')->name('resultados.modelo-informe')->middleware('auth');
 Route::get('resultados-search', 'ResultadosController@search')->name('resultados.search')->middleware('auth');
 Route::get('resultados-informe', 'ResultadosController@informe')->name('resultados.informe')->middleware('auth');
 Route::get('resultados-informe-index', 'ResultadosController@informeIndex')->name('resultados.informe-index')->middleware('auth');
