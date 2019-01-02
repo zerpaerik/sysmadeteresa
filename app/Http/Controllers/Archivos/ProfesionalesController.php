@@ -24,9 +24,10 @@ class ProfesionalesController extends Controller
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
 		->join('users as d','d.id','a.usuario')
+		->orderBy('a.id')
         ->where('a.estatus','=', 1)
-        ->orderby('a.dni','desc')
-        ->paginate(5000);
+        //->orderby('a.dni','desc')
+        ->get();
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
         "model" => "profesionales",
@@ -55,9 +56,9 @@ class ProfesionalesController extends Controller
         ->join('centros as c','a.centro','c.id')
         ->where('a.estatus','=', 1)
         ->where('a.name','like', '%'.$split[0].'%')
-        ->where('a.name','like', '%'.$split[1].'%')
-        ->orderby('a.dni','desc')
-        ->paginate(5000);
+        ->where('a.apellidos','like', '%'.$split[1].'%')
+        ->orderby('a.id')
+        ->get();
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
         "model" => "profesionales",
@@ -80,7 +81,7 @@ class ProfesionalesController extends Controller
         ->where('a.name','like', '%'.$split[0].'%')
         ->where('a.name','like', '%'.$split[1].'%')
         ->orderby('a.dni','desc')
-        ->paginate(5000);
+        ->get();
         return view('archivos.profesionales.index', [
         "icon" => "fa-list-alt",
         "model" => "profesionales",
@@ -97,15 +98,12 @@ class ProfesionalesController extends Controller
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [
-          'name' => 'required|string|max:255',
-          'apellidos' => 'required|string|max:255',
-          'cmp' => 'required|unique:profesionales' ,
-          'dni' => 'required|unique:profesionales' 
-
+          
         ]);
-        if($validator->fails()) 
+        if($validator->fails()) {
 	      Toastr::error('Error Registrando.', 'Profesional- DNI YA REGISTRADO!', ['progressBar' => true]);
           return redirect()->action('Archivos\ProfesionalesController@createView', ['errors' => $validator->errors()]);
+		} else {
 		$centros = Profesionales::create([
 	      'name' => $request->name,
 	      'apellidos' => $request->apellidos,
@@ -138,7 +136,8 @@ class ProfesionalesController extends Controller
      Toastr::success('Registrado Exitosamente.', 'Profesional de Apoyo!', ['progressBar' => true]);
 
 		return redirect()->action('Archivos\ProfesionalesController@index', ["created" => true, "centros" => Profesionales::all()]);
-	}    
+		}
+	}
 
   public function delete($id){
     $centros = Profesionales::find($id);

@@ -28,7 +28,8 @@
 					<label for="">Buscar</label>
 					<input type="text" name="nom">
 					<input type="submit" value="Buscar" class="btn btn-primary">
-				</form>				
+				</form>	
+               <div class="box-content no-padding table-responsive">				
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead> 
 						<tr>
@@ -42,15 +43,18 @@
 						<tr>
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
-							@endforeach					
+							@endforeach
+                           @if(\Auth::user()->role_id <> 6)							
 							@if($model == 'pacientes')
 								<td>
 									<a id="{{$d->id}}" onclick="view(this)" class="btn btn-primary">Ver</a>
 									<a href="servicios-addItems-{{$d->id}}" class="btn btn-success"> Agregar items</a>
 								</td>
 							@endif	
+
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+							@endif
 
 						</tr>
 						@endforeach						
@@ -63,6 +67,7 @@
 						</tr>
 					</tfoot>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -183,5 +188,27 @@
 			top:35px;
 		}
 	</style>
+	
+	<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 @endif
 @endsection

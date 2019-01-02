@@ -12,10 +12,10 @@ use DB;
 class OtrosIngresosController extends Controller
 {
 
-	public function index()
+	public function index(Request $request)
   {
         $inicio = Carbon::now()->toDateString();
-        $ingresos = $this->elasticSearch($inicio);
+        $ingresos = $this->elasticSearch($request,$inicio);
         return view('movimientos.otrosingresos.index', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
@@ -31,7 +31,7 @@ class OtrosIngresosController extends Controller
 
   public function search(Request $request)
   {
-    $ingresos = $this->elasticSearch($request->inicio);
+    $ingresos = $this->elasticSearch($request,$request->inicio);
     return view('movimientos.otrosingresos.search', [
         "icon" => "fa-list-alt",
         "model" => "ingresos",
@@ -96,11 +96,12 @@ class OtrosIngresosController extends Controller
       return redirect()->action('OtrosIngresosController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch($initial)
+    private function elasticSearch(Request $request,$initial)
     {
       $ingresos = DB::table('creditos as a')
             ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
             ->orderby('a.id','desc')
+			->where('a.id_sede','=', $request->session()->get('sede'))
             ->where('a.origen','=','OTROS INGRESOS')
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
             ->paginate(20);     

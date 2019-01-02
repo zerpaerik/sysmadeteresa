@@ -33,7 +33,7 @@
 							<select id="el1" name="id_paciente">
 								@foreach($pacientes as $pac)
 									<option value="{{$pac->id}}">
-										{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
+										{{$pac->apellidos}} {{$pac->nombres}}-{{$pac->dni}}
 									</option>
 								@endforeach
 							</select>
@@ -51,6 +51,7 @@
 								    <option value="0">Seleccione el Origen</option>
 									<option value="1">Personal</option>
 									<option value="2">Profesional</option>
+					                <option value="3">Particular</option>
 							</select>
 						</div>
 
@@ -226,7 +227,7 @@
 
             <label class="col-sm-3 control-label">Còmo llego a Madre Teresa:</label>
             <div class="col-sm-3">
-              <select id="el6" name="comollego">
+              <select id="el6" name="comollego" required="true">
                   <option value="Seleccione">Seleccione</option>
                   <option value="Recomendaciòn">Recomendaciòn</option>
                   <option value="Redes">Redes</option>
@@ -581,9 +582,11 @@ function createPac(e){
           var link;
           if ($(this).val() ==  1) {
             link = '/movimientos/atencion/personal/';
-          }else{
+          }else if ($(this).val() ==  2){
             link = '/movimientos/atencion/profesional/';
-          }
+          } else {
+		    link = '/movimientos/atencion/particular/';
+		  }
 
           $.ajax({
                  type: "get",

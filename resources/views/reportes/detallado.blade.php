@@ -94,7 +94,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{$totalServicios}}</td>
+			<td width="80">{{$totalServicios->abono}}</td>
 		</tr>
 	</table>
 </div>
@@ -127,7 +127,40 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalLaboratorios }}</td>
+			<td width="80">{{ $totalLaboratorios->abono }}</td>
+		</tr>
+	</table>
+</div>
+<div style="font-weight: bold; font-size: 14px">
+		PAQUETES
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Ticket</th>
+			<th>Detalle</th>
+			<th>Paciente</th>
+			<th>Monto Total</th>
+		    <th>Monto Abonado</th>
+			<th>Tipo de Pago</th>
+		</tr>
+		@foreach ($paquetes as $serv)
+			<tr>
+				<td>{{ $serv->id }}</td>
+				<td>{{ $serv->paquete }}</td>
+				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td>{{ $serv->monto }}</td>
+				<td>{{ $serv->abono }}</td>
+			    <td>{{ $serv->tipopago }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total Abonado</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{$totalPaquetes->abono}}</td>
 		</tr>
 	</table>
 </div>
@@ -155,7 +188,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalconsultas }}</td>
+			<td width="80">{{ $totalconsultas->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -182,7 +215,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalotrosingresos }}</td>
+			<td width="80">{{ $totalotrosingresos->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -209,7 +242,7 @@
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalcuentasporcobrar }}</td>
+			<td width="80">{{ $totalcuentasporcobrar->monto }}</td>
 		</tr>
 	</table>
 </div>

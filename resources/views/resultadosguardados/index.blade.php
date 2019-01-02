@@ -10,7 +10,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa {{$icon}}"></i>
-					<span><strong>Resultados Guardados</strong></span>
+					<span><strong>Informes de Servicios</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -55,9 +55,13 @@
 						<td>{{$d->paquete}}</td>
 						@endif
 						<td>{{$d->created_at}}</td>
-												
-							<td><a class="btn btn-warning" href="{{asset('resultadosguardados')}}-ver-{{$d->id}}">Ver informe</a>
-							<a class="btn btn-danger" href="{{asset('resultadosguardados')}}-editar-{{$d->id}}">Editar Informe</a></td>
+						<td>						
+                        <a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
+						@if(\Auth::user()->role_id == 4)
+
+						<td><a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a></td>
+                        @endif
+						</td>
 						</tr>
 						@endforeach						
 					</tbody>

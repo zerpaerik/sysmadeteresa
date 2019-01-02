@@ -49,7 +49,6 @@
 						</div>
 						<br>
 						<div class="row">
-
 						<label class="col-sm-1 control-label">Origen</label>
 						<div class="col-sm-3">
 							<select id="el2" name="origen">
@@ -69,36 +68,10 @@
 							  <div id="origen1">
                 @if($atencion->origen == 1)
                   <label class="col-sm-3 control-label">Personal</label>
-                  <!--div class="col-sm-6">
-                    <select id="el4" name="origen_usuario">
-                      @foreach($personal as $pac)
-                        @if($atencion->origen_usuario == $pac->id)
-                          <option value="{{$pac->id}}" selected="selected">
-                            {{$pac->name}} {{$pac->lastname}}-{{$pac->dni}}
-                          </option>
-                        @else
-                          <option value="{{$pac->id}}">
-                            {{$pac->name}} {{$pac->lastname}}-{{$pac->dni}}
-                          </option>
-                        @endif
-                      @endforeach
-                    </select>
-                  </div-->
+                  
                 @else
                   <label class="col-sm-3 control-label">Profesional</label>
-                  <!--div class="col-sm-6">
-                    <select id="el4" name="origen_usuario">
-                      @if($atencion->origen_usuario == $pac->id)
-                          <option value="{{$pac->id}}" selected="selected">
-                            {{$pac->name}} {{$pac->apellidos}}-{{$pac->dni}}
-                          </option>
-                      @else
-                          <option value="{{$pac->id}}">
-                            {{$pac->name}} {{$pac->apellidos}}-{{$pac->dni}}
-                          </option>
-                      @endif
-                    </select>
-                  </div-->
+                
                 @endif
                   <div class="col-sm-6">
                     <select id="el4" name="origen_usuario">

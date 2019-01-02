@@ -16,9 +16,9 @@ class LabporPagarController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
         $initial = Carbon::now()->toDateString(); 
-        $atenciones = $this->elasticSearch('','');
+        $atenciones = $this->elasticSearch($request,'','');
         return view('movimientos.labporpagar.index', ["atenciones" => $atenciones]);
 	}
 
@@ -28,11 +28,11 @@ class LabporPagarController extends Controller
         if (!isset($split[1])) {
 
             $split[1] = '';
-            $atenciones = $this->elasticSearch($split[0],$split[1]);
+            $atenciones = $this->elasticSearch($request,$split[0],$split[1]);
             return view('movimientos.labporpagar.search', ["atenciones" => $atenciones]);
           
         }else{
-            $atenciones = $this->elasticSearch($split[0],$split[1]);  
+            $atenciones = $this->elasticSearch($request,$split[0],$split[1]);  
             return view('movimientos.labporpagar.search', ["atenciones" => $atenciones]);            
         }   
     }
@@ -80,16 +80,18 @@ class LabporPagarController extends Controller
     return redirect()->route('labporpagar.index');
 
   }
-  private function elasticSearch($nom,$ape)
+  private function elasticSearch(Request $request,$nom,$ape)
   {
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.created_at','a.origen','a.es_laboratorio','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
+        ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.created_at','a.id_sede','a.origen','a.es_laboratorio','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','c.name as nombreana','c.costlab as costo','c.laboratorio','f.name as nombrelab')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as c','c.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('laboratorios as f','f.id','c.laboratorio')
+		->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.es_laboratorio','=',1)
         ->where('a.pagado_lab','=',NULL)
+		->whereNotIn('a.id_laboratorio',[1])
         ->whereNotIn('c.costlab',[0])
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('b.nombres','like','%'.$nom.'%')

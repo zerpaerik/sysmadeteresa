@@ -21,9 +21,10 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+												               <div class="box-content no-padding table-responsive">				
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/comporpagar-search" method="get">
-						<h4>Total de deuda: {{$total}}</h4>
 						<label for="">Inicio</label>
 						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
 						<label for="">Final</label>
@@ -49,25 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atenciones as $atec)	
-
-							<tr>
-								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								@if($atec->es_servicio =='1')
-								<td>{{$atec->servicio}}</td>
-								@else
-								<td>{{$atec->laboratorio}}</td>
-								@endif
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-								<td>{{$atec->porcentaje}}</td>
-								<td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							</tr>
-						@endforeach
+					
 					</tbody>
 					<tfoot>
 							<th>
@@ -77,57 +60,9 @@
 					</tfoot>
 					</form>
 				</table>
-				{{$atenciones->links()}}	
+				</div>
 			</div>
-			<!-- <div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/comporpagar-search" method="get">
-						<h5>Rango de fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
-					</form>
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Porcentaje</th>
-							<th>Monto a Pagar</th>
-							<th>Fecha Atenciòn</th>
-							<th>Acciones</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($atenciones as $atec)	
-
-							<tr>
-								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								@if($d->es_servicio =='1')
-								<td>{{$d->servicio}}</td>
-								@else
-								<td>{{$d->laboratorio}}</td>
-								@endif
-								<td>{{$atec->monto}}</td>
-								<td>{{$atec->porc_pagar}}</td>
-                                <td>{{$atec->porcentaje}}</td>
-                                <td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							</tr>
-						@endforeach
-					</tbody>
-					<tfoot>
-						
-					</tfoot>
-				</table>
-			</div> -->
+			
 		</div>
 	</div>
 </div>
@@ -136,5 +71,28 @@
 	  A simple success alert—check it out!
 	</div>
 @endif
+
+
+		<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 
 @endsection

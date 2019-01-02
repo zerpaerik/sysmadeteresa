@@ -10,23 +10,28 @@ use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Models\ResultadosMateriales;
+use App\Models\Existencias\Producto;
 use App\Informe;
 use Auth;
+use Toastr;
 
 
 class ResultadosController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
 
 
       	$resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.id_sede','=',$request->session()->get('sede'))
+		    // ->where('a.es_paquete','<>',1)
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
@@ -120,15 +125,25 @@ class ResultadosController extends Controller
 
       return back();
     }
+	
+    public function guardar($id,Request $request){
 
-	 public function edit($id,Request $request){
+    $atencion = Atenciones::findOrFail($id);
+		$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+
+
+    return view('resultados.guardar', compact('atencion','productos'));
+
+    }
+	
+	 public function edit1($id,Request $request){
 
      $searchAtenciones = DB::table('atenciones')
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('id','=', $request->id)
                     ->get();
-
+		
             foreach ($searchAtenciones as $atenciones) {
                     $es_servicio = $atenciones->es_servicio;
                     $es_laboratorio = $atenciones->es_laboratorio;
@@ -167,19 +182,71 @@ class ResultadosController extends Controller
 
           } else {
 
-                $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;  
-                $p->save();
 
           }
 
 
-                $creditos = new ResultadosServicios();
+              /*  $creditos = new ResultadosServicios();
                 $creditos->id_atencion = $request->id;
                 $creditos->id_servicio = $id_servicio;
                 $creditos->descripcion= $request->descripcion;
                 $creditos->user_id = Auth::user()->id;
-                $creditos->save();
+                $creditos->save();*/
+				
+				
+		$imgname = DB::table('resultados_servicios')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('informe','=', $request->file('informe')->getClientOriginalName())
+                    ->first();
+				
+			   if($imgname){
+				        Toastr::error('Ya Existe un archivo con ese Nombre.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
+						return redirect()->action('ResultadosController@index');
+
+			   } else {
+				   
+				$p = Atenciones::findOrFail($id);
+                $p->resultado = 1;  
+                $p->save();   
+				
+				$product=new ResultadosServicios;
+				$img = $request->file('informe');
+				$nombre_imagen=$img->getClientOriginalName();
+				$product->id_atencion=$request->id;
+				$product->id_servicio=$id_servicio;
+				$product->informe=$nombre_imagen;
+				$product->user_id=Auth::user()->id;
+				if ($product->save()) {
+					 \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+
+				}
+				\DB::commit();
+				
+				////PARA MATERIALES
+				 if (isset($request->id_laboratorio)) {
+				  foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+					if (!is_null($laboratorio['laboratorio'])) {
+					  $pro = new ResultadosMateriales();
+					  $pro->id_resultado = $product->id;
+					  $pro->id_material =  $laboratorio['laboratorio'];
+					  $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+					  $pro->save();
+					  
+					  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
+					  ->first();
+					  $cantactual= $SearchMaterial->cantidad;
+				
+					
+				  $p = Producto::find($laboratorio['laboratorio']);
+				  $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+				  $res = $p->save();
+				  
+					} 
+				  }
+				}
+				//////
+			   }
 
        } else {
 
@@ -194,22 +261,44 @@ class ResultadosController extends Controller
                 }
 
 
-                 $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;
-                $p->save();
+                $p = Atenciones::findOrFail($id);
+                $p->resultado = 1;  
+                $p->save();   
+				
+				$product=new ResultadosLaboratorios;
+				$img = $request->file('informe');
+				$nombre_imagen=$img->getClientOriginalName();
+				$product->id_atencion=$request->id;
+				$product->id_laboratorio=$id_laboratorio;
+				$product->informe=$nombre_imagen;
+				$product->user_id=Auth::user()->id;
+				if ($product->save()) {
+					 \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
-
-                $creditos = new ResultadosLaboratorios();
-                $creditos->id_atencion = $request->id;
-                $creditos->id_laboratorio = $id_laboratorio;
-                $creditos->descripcion= $request->descripcion;
-                $creditos->save();
+				}
+				\DB::commit();
 
        }
-                
+          
+       	 Toastr::success('Adjuntado Exitosamente.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
+		 Toastr::success('Registrado Exitosamente.', 'MATERIALES USADOS!', ['progressBar' => true]);
+
+		 
       return redirect()->action('ResultadosController@index');
 
     }
+	
+	 public function asoc($id,Request $request){
+
+      $p = Atenciones::findOrFail($id);
+      $p->informe = $request->informe;
+      $p->save();    
+      return redirect()->action('ResultadosController@index');
+
+    }
+	
+	
+
 
     private function elasticSearch($nom, $ape)
     {     
@@ -220,11 +309,12 @@ class ResultadosController extends Controller
       ->join('analises as d','d.id','a.id_laboratorio')
       ->join('users as e','e.id','a.origen_usuario')
       ->whereNotIn('a.monto',[0,0.00])
+	   ->where('a.es_paquete','<>',1)
       ->where('a.resultado','=', NULL)
       ->where('b.nombres','like','%'.$nom.'%')
       ->where('b.apellidos','like','%'.$ape.'%')
       ->orderby('a.id','desc')
-      ->paginate(5000);
+      ->get();
 
 
       $informe = Informe::all();

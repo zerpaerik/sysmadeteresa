@@ -49,13 +49,13 @@
 							<input type="text" class="form-control" id="medida" name="medida" data-toggle="tooltip" data-placement="bottom" title="Medida" disabled="disabled">
 						</div>
 
-						<label class="col-sm-2 control-label">Cantidad actual</label>
-						<div class="col-sm-2">
+						<label class="col-sm-1 control-label">Cant.Act</label>
+						<div class="col-sm-3">
 							<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad actual" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" disabled="disabled">
 						</div>
 
 						<label class="col-sm-1 control-label">Sede</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<select id="sede" name="sede">
 								@foreach($sedes as $sede)
 									<option value="{{$sede->id}}">{{$sede->name}}</option>
@@ -77,13 +77,13 @@
 							<input type="text" class="form-control" name="factura" id="factura" placeholder="Nº Factura" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" >
 						</div>
 
-						<label class="col-sm-1 control-label">Monto Factura</label>
+						<label class="col-sm-1 control-label">MontoFact.</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="monto" id="monto" placeholder="Monto Factura" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0">
 						</div>
 
-						<label class="col-sm-3 control-label">Agregar</label>
-						<div class="col-sm-2">
+						<label class="col-sm-1 control-label">Agregar</label>
+						<div class="col-sm-3">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
 						</div>
 

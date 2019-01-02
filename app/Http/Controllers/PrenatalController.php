@@ -336,6 +336,7 @@ class PrenatalController extends Controller
     	$prenatal = Prenatal::where('paciente',$id)->get();
     	$view = \View::make('prenatal.reporte')->with('controles', $control)->with('pacientes', $paciente)->with('prenatal', $prenatal);
         $pdf = \App::make('dompdf.wrapper');
+     //   $pdf->setPaper(array(0,0,867.00,343.80));
         $pdf->loadHTML($view);
         return $pdf->stream('resultados_ver');
     }

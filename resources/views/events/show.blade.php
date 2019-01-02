@@ -104,6 +104,7 @@
 				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
 				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
 				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->obervaciones }}</p>
 
 				<br>
@@ -261,10 +262,13 @@
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="examen_auxiiar">
 			</div>
-
-			<label for="" class="col-sm-12 control-label">Plan de Tratamiento</label>
+			
+			
+			<div class="row">
+			<label for="" class="col-sm-3 control-label">Plan de Tratamiento</label>
 			<div class="col-sm-12">	
 				<input   class="form-control" type="text" name="plan_tratamiento">
+			</div>
 			</div>
 
 			<label for="" class="col-sm-2 control-label">Observaciones</label>
@@ -279,7 +283,7 @@
 			<div class="col-sm-3">
 				<select id="el1" name="personal">
 					@foreach($personal as $per)
-					<option value="{{$per->id}}">
+					<option value="{{$per->name}},{{$per->lastname}}">
 						{{$per->name}} {{$per->lastname}}
 					</option>
 					@endforeach

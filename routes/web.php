@@ -141,6 +141,7 @@ Route::post('atenciones/create', 'AtencionesController@create')->middleware('aut
 Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
+Route::post('atenciones/asoc/{id}', 'AtencionesController@asoc');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
 
 
@@ -221,6 +222,8 @@ Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
+Route::get('movimientos/atencion/particular','AtencionesController@particular');
+
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
 Route::get('resultados-search', 'ResultadosController@search')->name('resultados.search')->middleware('auth');
@@ -234,13 +237,25 @@ Route::get('resultados-create', 'ResultadosController@createView')->name('result
 Route::post('resultados/create', 'ResultadosController@create')->middleware('auth');
 Route::get('resultados/{id}', 'ResultadosController@delete')->middleware('auth');
 Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resultados.edit');
-Route::post('resultados/edit/{id}', 'ResultadosController@edit');
+Route::get('resultados-guardar-{id}', 'ResultadosController@guardar')->name('resultados.guardar');
+Route::put('resultados-edit1-{id}', 'ResultadosController@edit1')->name('products.update');;
+Route::get('resultados-asoc-{id}', 'ResultadosController@asoc');
+
 
 Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')->name('resultados.ver');
 Route::get('resultadosguardados-editar-{id}', 'ReportesController@editar')->name('resultadosguardados.editar')->middleware('auth');
 Route::post('resultadosguardados-update-{id}', 'ReportesController@update')->name('resultadosguardados.update')->middleware('auth');
 Route::get('resultadosguardados', 'ResultadosGuardadosController@index')->name('resultadosguardados.index')->middleware('auth');
 Route::get('resultadosguardados-search', 'ResultadosGuardadosController@search')->name('resultadosguardados.search')->middleware('auth');
+Route::get('resultadosguardados1', 'ResultadosGuardadosController@index1')->name('resultadosguardados1.index1')->middleware('auth');
+Route::get('resultadosguardados1-search1', 'ResultadosGuardadosController@search1')->name('resultadosguardados1.search1')->middleware('auth');
+Route::get('resultadosg-editar-{id}', 'ResultadosGuardadosController@editars')->name('resultadosg.editars');
+Route::get('resultadosg-editarl-{id}', 'ResultadosGuardadosController@editarl')->name('resultadosg.editarl');
+Route::put('resultadosg-edits-{id}', 'ResultadosGuardadosController@edits')->name('informes.update');
+Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->name('informes1.update');;
+
+
+
 
 Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
 
@@ -282,7 +297,7 @@ Route::get('existencias-trans', 'Existencias\ProductoController@productTransView
 Route::get('existencia/{prod}/{sede}', 'Existencias\ProductoController@getExist');
 Route::get('producto/{id}', 'Existencias\ProductoController@getProduct');
 Route::post('transfer', 'Existencias\ProductoController@transfer');
-Route::patch('producto', 'Existencias\ProductoController@addCant');
+Route::post('producto/add', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
 
@@ -309,6 +324,10 @@ Route::get('proveedores', 'Config\ProveedorController@index')->name('proveedores
 Route::get('proveedores-create', 'Config\ProveedorController@createView')->name('proveedores.create');
 Route::get('proveedores-edit-{id}', 'Config\ProveedorController@editView')->name('proveedores.edit');
 Route::post('proveedor/create', 'Config\ProveedorController@create');
+Route::post('proveedores/edit', 'Config\ProveedorController@edit');
+Route::get('proveedores-delete-{id}','Config\ProveedorController@delete');
+
+
 
 //Categorias
 Route::get('categorias', 'Config\CategoriaController@index')->name('categorias.index');
@@ -325,6 +344,9 @@ Route::post('historial/create','HistorialController@create')->name('historials.c
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
+Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
+Route::get('historias-search', 'ConsultaController@searchh')->name('historias.search')->middleware('auth');
+Route::get('historias-{id}','ConsultaController@show');
 
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');
@@ -344,3 +366,42 @@ Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesiona
 
 Route::get('historial', 'HistorialesController@index')->name('historial.index')->middleware('auth');
 Route::get('historial-search', 'HistorialesController@search')->name('historial.search')->middleware('auth');
+
+
+Route::get('download/{filename}', function($filename)
+{
+    // Check if file exists in 
+    $file_path = public_path().'/modelos_informes/'. $filename;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path),
+            'Content-Type: ' . mime_content_type($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})->name('descargar');
+
+Route::get('download2/{filename}', function($filename)
+{
+    // Check if file exists in 
+    $file_path = public_path().'/informes/'. $filename;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path),
+            'Content-Type: ' . mime_content_type($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})->name('descargar2');

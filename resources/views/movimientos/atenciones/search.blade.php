@@ -24,6 +24,8 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+			               <div class="box-content no-padding table-responsive">				
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/atenciones-search" method="get">
 						<h5>Rango de fechas</h5>
@@ -62,15 +64,18 @@
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>
-
-		                    <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>							
-							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
+						      @if(\Auth::user()->role_id <> 6)							 
+											<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+						
+		                   <td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+		                     @endif
 						</tr>
 						@endforeach						
 					</tbody>
 					
 				</table>
+				</div>
 				{{$data->links()}}
 			</div>
 		</div>

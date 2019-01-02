@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use App\Consulta;
 use App\Http\Requests\CreateConsultaRequest;
 use Carbon\Carbon;
+use App\Historial;
 use DB;
 use App\Models\ConsultaMateriales;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
+use App\Models\Pacientes\Paciente;
+use App\Models\Personal;
+use App\Models\Profesionales\Profesional;
+use App\Models\Events\{Event, RangoConsulta};
+use App\Models\Creditos;
+use App\Models\Events;
+use App\Models\Ciex;
 use Toastr;
 
 
@@ -62,6 +70,75 @@ class ConsultaController extends Controller
         return $atenciones;
 
   }
+  
+     public function indexh(){
+    
+   
+        return view('consultas.historias.index');
+	}
+	
+	public function searchh(Request $request)
+    {
+      $search = $request->dni;
+      $split = explode(" ",$search);
+    
+
+      if (!isset($split[1])) {
+       
+        $split[1] = '';
+        $historias = $this->elasticSearch1($split[0],$split[1]);
+      
+        return view('consultas.historias.search', ["historias" => $historias]); 
+
+      }else{
+        $historias = $this->elasticSearch1($split[0],$split[1]); 
+      
+        return view('consultas.historias.search', ["historias" => $historias]);   
+      }    
+    }
+	
+
+  
+  
+      private function elasticSearch1($dni)
+  { 
+        $historias = DB::table('events as e')
+        ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
+		'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
+		'a.pa','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+		'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
+		->join('consultas as a','a.paciente_id','e.paciente')
+		->join('historials as b','e.paciente','b.paciente_id')
+		->join('pacientes as p','p.id','=','e.paciente')
+		->join('personals as per','per.id','=','e.profesional')
+		->join('rangoconsultas as rg','rg.id','=','e.time')
+		->where('p.dni','like','%'.$dni.'%')
+		->groupBy('e.paciente')
+        ->get();
+        return $historias;
+
+  }
+  
+  public function show(Request $request,$id)
+  {
+    $event = DB::table('events as e')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('e.paciente','=',$id)
+    ->first();
+
+    $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
+    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $personal = Personal::where('estatus','=',1)->get();
+    return view('consultas.historias.show',[
+      'data' => $event,
+      'historial' => $historial,
+      'consultas' => $consultas,
+      'personal' => $personal,
+    ]);
+  }
 
 
 
@@ -102,36 +179,10 @@ class ConsultaController extends Controller
 		$consulta->save();
 		
 		
-	 if (isset($request->id_laboratorio)) {
-      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
-        if (!is_null($laboratorio['laboratorio'])) {
-          $pro = new ConsultaMateriales();
-          $pro->id_consulta = $consulta->id;
-          $pro->id_material =  $laboratorio['laboratorio'];
-          $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
-          $pro->save();
-		  
-		  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
-          ->first();
-		  $cantactual= $SearchMaterial->cantidad;
 	
-		
-	  $p = Producto::find($laboratorio['laboratorio']);
-      $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
-      $res = $p->save();
 	  Toastr::success('Registrado Exitosamente.', 'Consulta!', ['progressBar' => true]);
-      return redirect()->action('Events\EventController@index', ["edited" => $res]);
-		  
-		  
-	
-        } else {
-
-        }
-      }
-    }
-
-
-    	return back();
+      return redirect()->action('Events\EventController@index', ["edited" => $consulta]);
+		 
 
     }
 }

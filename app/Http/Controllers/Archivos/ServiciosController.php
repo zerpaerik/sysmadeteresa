@@ -40,7 +40,7 @@ class ServiciosController extends Controller
   public function search(Request $request)
   {
     $servicios =Servicios::where("estatus", '=', 1)
-    ->where('detalle','like','%'.$request->non.'%')
+    ->where('detalle','like','%'.$request->nom.'%')
     ->get();
     return view('generics.index', [
       "icon" => "fa-list-alt",
@@ -114,7 +114,7 @@ class ServiciosController extends Controller
    
      public function editView($id){
       $p = Servicios::find($id);
-      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"porcentaje" => $p->porcentaje,"id" => $p->id,]);
+      return view('archivos.servicios.edit', ["detalle" => $p->detalle, "precio" => $p->precio,"porcentaje" => $p->porcentaje,"por_per" => $p->por_per,"por_tec" => $p->por_tec,"id" => $p->id,]);
       
     } 
 
@@ -123,6 +123,8 @@ class ServiciosController extends Controller
       $p->detalle = $request->detalle;
       $p->precio = $request->precio;
       $p->porcentaje = $request->porcentaje;
+	  $p->por_per = $request->por_per;
+      $p->por_tec = $request->por_tec;
       $res = $p->save();
       return redirect()->action('Archivos\ServiciosController@index', ["edited" => $res]);
     }

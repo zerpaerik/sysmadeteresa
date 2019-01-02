@@ -16,11 +16,11 @@ use Toastr;
 class ReporteIngresosController extends Controller
 {
 	
-	public function indexa(){
+	public function indexa(Request $request){
         $total = 0;
         $inicio = Carbon::now()->toDateString();
         $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','');
+        $atenciones = $this->elasticSearch($inicio,$final,'','',$request);
         
         foreach ($atenciones as $aten) {
           $total = $total + $aten->abono;
@@ -38,14 +38,14 @@ class ReporteIngresosController extends Controller
       if (!isset($split[1])) {
        
         $split[1] = '';
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1],$request);
         foreach ($atenciones as $aten) {
           $total = $total + $aten->abono;
         }
         return view('reportes.general_atenciones.search', ["atenciones" => $atenciones,"total" => $total]); 
 
       }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1],$request); 
         foreach ($atenciones as $aten) {
           $total =  $total + $aten->abono; 
         } 
@@ -53,24 +53,29 @@ class ReporteIngresosController extends Controller
       }    
     }
 
-  private function elasticSearch($initial, $final,$nom,$ape)
+  private function elasticSearch($initial, $final,$nom,$ape,Request $request)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+	     ->where('a.id_sede','=', $request->session()->get('sede'))
        // ->join('profesionales as f','f.id','a.origen_usuario')
         ->where('b.nombres','like','%'.$nom.'%')
-        ->where('b.nombres','like','%'.$ape.'%')
+        ->where('b.apellidos','like','%'.$ape.'%')
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereNotIn('a.porcentaje',[0,0.00])
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+        //->whereNotIn('a.porcentaje',[0,0.00])
+		->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->inicio)), date('Y-m-d 23:59:59', strtotime($request->final))])
+        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
         ->orderby('a.id','desc')
         ->paginate(20);
         return $atenciones;
+		
+		 //->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->inicio)), date('Y-m-d 23:59:59', strtotime($request->final))])
+
   }
 
     public function indexe(){

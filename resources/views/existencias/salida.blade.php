@@ -15,7 +15,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Salida de productos</strong></span>
+					<span><strong>Venta de productos</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -48,57 +48,37 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" id="medida" name="medida" data-toggle="tooltip" data-placement="bottom" title="Medida" disabled="disabled">
 						</div>
-
-						<label class="col-sm-2 control-label">Cantidad actual</label>
-						<div class="col-sm-2">
-							<input type="number" class="form-control" name="cantidad" id="cantidad" placeholder="Cantidad actual" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" disabled="disabled">
-						</div>
-
-						<label class="col-sm-1 control-label">Sede</label>
-						<div class="col-sm-2">
-							<select id="sede" name="sede">
-								@foreach($sedes as $sede)
-									<option value="{{$sede->id}}">{{$sede->name}}</option>
-								@endforeach
-							</select>
-						</div>
-
-						<label class="col-sm-1 control-label">Proveedor</label>
+						
+						<label class="col-sm-1 control-label">Cantidad</label>
 						<div class="col-sm-3">
-							<select id="provee" name="provee">
-								@foreach($proveedores as $proveedor)
-									<option value="{{$proveedor->id}}">{{$proveedor->codigo}} - {{$proveedor->nombre}}</option>
-								@endforeach
-							</select>
-						</div>
-
-						<label class="col-sm-3 control-label">Salir</label>
-						<div class="col-sm-2">
 							<input type="number" class="form-control" id="cantidadplus" name="cantidadplus" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
 						</div>
 
+						<label class="col-sm-1 control-label">Monto</label>
+						<div class="col-sm-3">
+							<input type="number" class="form-control" id="monto" name="monto" data-toggle="tooltip" data-placement="bottom" title="Cantidad" min="0" required="required">
+						</div>
+						
+						<label class="col-sm-1 control-label">TipoPago</label>
+						<div class="col-sm-3">
+							<select class="form-control" name="tipopago">
+							<option value="EF">Efectivo</option>
+							<option value="TJ">Tarjeta</option>
+						</select>
+						</div>	
+
+				
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+							<input type="submit" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>				
 
 					</form>	
 					</div>			
 			</div>
 		</div>
-		<div class="alert alert-success invisible" id="successalrt" role="alert">Actualizado</div>
 	</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Tipo</th>
-				<th>Producto</th>
-				<th>Cantidad</th>
-			</tr>
-		</thead>
-		<tbody id="table-b">
-		</tbody>
-	</table>
+	
 
 <script type="text/javascript">
 

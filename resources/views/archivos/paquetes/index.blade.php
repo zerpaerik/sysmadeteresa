@@ -31,7 +31,9 @@
 					<label for="">Buscar</label>
 					<input type="text" name="nom">
 					<input type="submit" value="Buscar" class="btn btn-primary">
-				</form>					
+				</form>	
+                 								             <div class="box-content no-padding table-responsive">
+				
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
@@ -51,11 +53,13 @@
 
 								<td>
 									<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$paq->id}}">ver</a>
+								@if(\Auth::user()->role_id <> 6)
 									<a href="paquetes-edit-{{$paq->id}}" class="btn btn-warning edit">Editar</a>
 									<a href="paquetes-delete-{{$paq->id}}" class="btn btn-danger">Eliminar</a>
 									@if ($paq->id != 1)
 										<a href="paquetes-addItems-{{$paq->id}}" class="btn btn-success">Agregar items</a>
 									@endif
+								@endif	
 								</td>
 							</tr>
 						@endforeach
@@ -63,6 +67,7 @@
 					<tfoot>
 					</tfoot>
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -168,6 +173,28 @@ function eliminarLab(e) {
 	}
 	
 }
+</script>
+
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
 </script>
 
 @endsection

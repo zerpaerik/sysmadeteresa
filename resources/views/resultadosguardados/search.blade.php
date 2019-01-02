@@ -9,8 +9,8 @@
 
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Resultados Guardados</strong></span>
+					<i class=""></i>
+					<span><strong>Informes de Servicios</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -38,30 +38,36 @@
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($resultadosguardados as $d)
 						<tr>
-							<td>{{$d->id}}</td>
-							<td>{{$d->nombres}},{{$d->apellidos}}</td>
-							<td>{{$d->name}},{{$d->lastname}}</td>
-							@if($d->es_servicio =='1')
-							<td>{{$d->servicio}}</td>
-							@elseif($d->es_laboratorio =='1')
-							<td>{{$d->laboratorio}}</td>
-							@else
-							<td>{{$d->paquete}}</td>
-							@endif
-							<td>{{$d->created_at}}</td>			
-							<td><a class="btn btn-warning" href="{{asset('resultadosguardados')}}-ver-{{$d->id}}">Ver Informe</a>
-							<a class="btn btn-danger" href="{{asset('resultadosguardados')}}-editar-{{$d->id}}">Editar Informe</a></td>
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
+						<td>{{$d->created_at}}</td>
+						<td>						
+                        <a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
+						@if(\Auth::user()->role_id == 4)
+
+						<td><a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a></td>
+                        						@endif
+
+						</td>
 						</tr>
 						@endforeach						
 					</tbody>
 					
 				</table>
-				{{$resultadosguardados->links()}}
 			</div>
 		</div>
 	</div>
@@ -71,6 +77,7 @@
 	  A simple success alert—check it out!
 	</div>
 @endif
+
 
 
 @endsection

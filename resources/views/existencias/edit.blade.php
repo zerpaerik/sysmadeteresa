@@ -30,10 +30,6 @@
 							<input type="text" class="form-control" name="nombre" placeholder="Nombre" data-toggle="tooltip" data-placement="bottom" value="{{$nombre}}" title="Nombre">
 						</div>
 
-						<label class="col-sm-1 control-label">Còdigo</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="codigo" placeholder="codigo" data-toggle="tooltip" data-placement="bottom" value="{{$codigo}}" title="codigo">
-						</div>
 
 						<label class="col-sm-1 control-label">Categoria</label>
 						<div class="col-sm-3">
@@ -56,6 +52,16 @@
 						<label class="col-sm-1 control-label">Cantidad</label>
 						<div class="col-sm-3">
 							<input type="number" class="form-control" name="cantidad" placeholder="Cantidad inicial" data-toggle="tooltip" data-placement="bottom" title="Cantidad" value="{{$cantidad}}" min="0">
+						</div>
+						
+						<label class="col-sm-1 control-label">Precio Unit.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="preciounidad" value="{{$preciounidad}}" placeholder="preciounidad" data-toggle="tooltip" data-placement="bottom" title="preciounidad">
+						</div>
+
+						<label class="col-sm-1 control-label">Precio Venta.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="precioventa" value="{{$precioventa}}" placeholder="precioventa" data-toggle="tooltip" data-placement="bottom" title="precioventa">
 						</div>
 
 						<input type="hidden" name="id" value="{{$id}}">

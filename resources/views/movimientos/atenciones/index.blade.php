@@ -24,6 +24,8 @@
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
+			               <div class="box-content no-padding table-responsive">				
+
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<form action="/atenciones-search" method="get">
 						<h5>Rango de fechas</h5>
@@ -36,11 +38,11 @@
 					<thead> 
 						<tr>
 							<th>Id</th>
-							<th width="15%">Paciente</th>
-							<th width="15%">Origen</th>
-							<th>Detalle</th>
+							<th width="20%">Paciente</th>
+							<th width="20%">Origen</th>
+							<th width="20%">Detalle</th>
 							<th>Monto</th>
-							<th>Monto Abonado</th>
+							<th width="5%">Monto Abonado</th>
 							<th width="10%">Fecha</th>
 							<th>Acciones</th>
 							<th></th>
@@ -63,14 +65,17 @@
 						<td>{{$d->abono}}</td>
 						<td>{{$d->created_at}}</td>
 
-		                     <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
+		                     <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>
+                          @if(\Auth::user()->role_id <> 6)							 
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 							<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
-						</tr>
+					      @endif
+					</tr>
 						@endforeach						
 					</tbody>
 					
 				</table>
+				</div>
 				{{$data->links()}}
 			</div>
 		</div>
@@ -125,5 +130,27 @@
         </div>
     </div>
 </div>
+
+			<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 
 @endsection

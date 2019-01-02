@@ -25,21 +25,19 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
 						<tr>
-							<th>Id</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th>Email</th>
 							<th>Rol</th>
+							<th>Email</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($users as $user)					
 							<tr>
-								<td>{{$user->id}}</td>
 								<td>{{$user->name}}</td>
 								<td>{{$user->lastname}}</td>
+							    <td>{{$user->rol}}</td>
 								<td>{{$user->email}}</td>
-								<td>{{($user->role_id == 1) ? 'admin' : 'regular'}}</td>
 							</tr>
 						@endforeach
 					</tbody>

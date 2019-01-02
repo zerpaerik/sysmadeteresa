@@ -24,15 +24,23 @@ class EventController extends Controller
 
   public function index(Request $request)
   {
+	 $personal = DB::table('personals as e')
+    ->select('e.id','e.name','e.lastname','e.dni')
+    ->join('events as p','p.profesional','=','e.id')
+	->groupBy('p.profesional')
+    ->get();
+	
+
+	
     if($request->isMethod('get')){
       $calendar = false;
-      return view('events.index', ["calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
+      return view('events.index', ["calendar" => $calendar, "especialistas" => $personal]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
         'locale' => 'es',
       ]);
-      return view('events.index',[ "calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
+      return view('events.index',[ "calendar" => $calendar, "especialistas" => $personal]);
     }
   }
 

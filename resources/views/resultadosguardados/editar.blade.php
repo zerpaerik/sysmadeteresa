@@ -1,46 +1,43 @@
 @extends('layouts.app')
-
-@section('content')
-<br>
+@section("content")
 <div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Editar Resultado</strong></span>
+	<div class="col-md-12">
+		<div class="card">
+			<div class="card-block">
+				<div class="row">
+					<div class="col-md-12">
+						<h4 class="card-title">Actualizar Informe</h4>
+					</div>
 				</div>
-				<div class="box-icons">
-					<a class="collapse-link">
-						<i class="fa fa-chevron-up"></i>
-					</a>
-					<a class="expand-link">
-						<i class="fa fa-expand"></i>
-					</a>
-				</div>
-				<div class="no-move"></div>
-			</div>
-			<div class="box-content">
-				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="resultadosguardados-update-{{$resultados->id}}">
-					{{ csrf_field() }}
-					<div class="form-group">
+				<div class="row">
+					<div class="col-md-12">
+						 {!! Form::model($atencion, ['method' => 'PUT', 'route' => ['informes1.update', $atencion->id],'enctype'=>'multipart/form-data']) !!}
+							<div class="row">
+							
 						
-
-						<div class="panel-body">
-							<form>
-								<textarea class="ckeditor" name="descripcion" id="descripcion" rows="10" cols="80">  
-									{{$resultados->descripcion}}
-								</textarea>
-							</form>
-						</div>
-					
-						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Guardar">
-
-						<a href="{{route('resultadosguardados.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
-					</div>			
-				</form>	
+								<div class="col-md-6">
+									<div class="form-group row">
+										<label for="form-1-1" class="col-md-12 control-label">
+											Informe
+										</label>
+										<div class="col-md-12">
+											{{Form::file('informe', ["class"=>"form-control", "required"])}}
+										</div>
+									</div>
+								</div>
+							
+								
+								
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-success">
+										<i class="ti-save pdd-right-5"></i>
+										<span>Guardar</span>
+									</button>
+								</div>
+							</div>
+						{!! Form::close() !!}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
