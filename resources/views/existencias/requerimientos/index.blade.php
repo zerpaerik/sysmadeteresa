@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
+
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Requerimientos Enviados</strong></span>
-					<a href="{{route('requerimientos.create')}}" class="btn btn-primary">Agregar</a>
+					<i class="fa fa-linux"></i>
+					<span>Requerimientos/Enviados</span>
+				    <a href="{{route('requerimientos.create')}}" class="btn btn-success">Agregar</a>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -18,13 +20,14 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-			                 								             <div class="box-content no-padding table-responsive">
-
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
 							<th>Dirigida A:</th>
@@ -34,11 +37,12 @@
 							<th>Cantidad Entregada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
-							
+
+
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($requerimientos as $req)					
+					@foreach($requerimientos as $req)					
 							<tr>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
@@ -53,39 +57,31 @@
 						@endforeach
 					</tbody>
 					<tfoot>
+						<tr>
+							<th>Dirigida A:</th>
+							<th>Usuario Solicitante</th>
+							<th>Producto Solicitado</th>
+							<th>Cantidad</th>
+							<th>Cantidad Entregada</th>
+							<th>Estatus</th>
+							<th>Fecha</th>
+						</tr>
 					</tfoot>
 				</table>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
-<script type="text/javascript">
-// Run Datables plugin and create 3 variants of settings
-function AllTables(){
-	TestTable1();
-	TestTable2();
-	TestTable3();
-	LoadSelect2Script(MakeSelect2);
-}
-function MakeSelect2(){
-	$('select').select2();
-	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
-	});
-}
-$(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
-});
-</script>
+
+</body>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
 
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
@@ -108,5 +104,4 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-
 @endsection
