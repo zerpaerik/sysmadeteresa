@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
 
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-
 			<div class="box-header">
 				<div class="box-name">
-					<i class=""></i>
-					<span><strong>Informes de Laboratorios</strong></span>
+					<i class="fa fa-linux"></i>
+					<span>Informes/Laboratorios</span>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -19,18 +19,15 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/resultadosguardados1-search1" method="get">
-						<h5>Rango de fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit" class="btn btn-primary" value="Buscar">
-					</form>
-					<thead> 
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+					<thead>
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
@@ -38,12 +35,14 @@
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
-							<th></th>
+							
+
+
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($resultadosguardados as $d)
-						<tr>
+				@foreach($resultadosguardados as $d)
+	
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
@@ -55,29 +54,62 @@
 						<td>{{$d->paquete}}</td>
 						@endif
 						<td>{{$d->created_at}}</td>
-						<td>						
-                        <a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
-												@if(\Auth::user()->role_id == 4)
+						<td>
+					     <a href="resultadosg-reversarl-{{$d->id}}-{{$d->id2}}" class="btn btn-danger">Reversar</a>
+		
+						<a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
 
-						<td><a class="btn btn-success" href="/resultadosg-editarl-{{$d->id2}}">Actualizar Informe</a></td>
-                         @endif
+						<a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a>
+							
 						</td>
-						</tr>
-						@endforeach						
+
+				@endforeach
 					</tbody>
-					
+					<tfoot>
+						<tr>
+						   <th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Detalle</th>
+							<th>Fecha</th>
+							<th>Acciones</th>
+						</tr>
+					</tfoot>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
+
+</body>
 
 
 
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
+
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 @endsection
-

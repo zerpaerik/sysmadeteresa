@@ -22,19 +22,9 @@ class ResultadosGuardadosController extends Controller
 	public function index(){
 
      $initial = Carbon::now()->toDateString();
-     $resultadosguardados = $this->elasticSearch($initial);
+     $resultadosguardados = $this->elasticSearch();
 
-       return view('resultadosguardados.index', [
-      "icon" => "fa-list-alt",
-      "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
-      "data" => $resultadosguardados,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
-      "actions" => [
-        '<button type="button" class="btn btn-info">Transferir</button>',
-        '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]); 
+       return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados]); 
 	}
 	
 	public function index1(){
@@ -62,7 +52,7 @@ class ResultadosGuardadosController extends Controller
 
   }
 
-   private function elasticSearch($initial)
+   private function elasticSearch()
   {
 
    $resultadosguardados = DB::table('atenciones as a')
@@ -71,9 +61,9 @@ class ResultadosGuardadosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-		->join('resultados_servicios as r','a.id','r.id_atencion')
-        ->whereNotIn('a.monto',[0,0.00])
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+		     ->join('resultados_servicios as r','a.id','r.id_atencion')
+       // ->whereNotIn('a.monto',[0,0.00])
+        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('a.resultado','=', 1)
         ->orderby('a.id','desc')
@@ -263,7 +253,40 @@ class ResultadosGuardadosController extends Controller
 
        }
                 
-      return redirect()->action('ResultadosController@index');
+      return redirect()->action('ResultadosGuardadosController@index');
+
+    }
+
+     public function reversar($id,$id2){
+
+
+                $p = Atenciones::findOrFail($id);
+                $p->informe =NULL;
+                $p->resultado =NULL;
+                $p->save();
+
+
+                $resultadosg = ResultadosServicios::findOrFail($id2);
+                $resultadosg->delete();
+
+      return redirect()->action('ResultadosGuardadosController@index');
+
+    }
+
+
+     public function reversarl($id,$id2){
+
+
+                $p = Atenciones::findOrFail($id);
+                $p->informe =NULL;
+                $p->resultado =NULL;
+                $p->save();
+
+
+                $resultadosg = ResultadosLaboratorios::findOrFail($id2);
+                $resultadosg->delete();
+
+      return redirect()->action('ResultadosGuardadosController@index');
 
     }
 

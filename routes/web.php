@@ -245,6 +245,8 @@ Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resul
 Route::get('resultados-guardar-{id}', 'ResultadosController@guardar')->name('resultados.guardar');
 Route::put('resultados-edit1-{id}', 'ResultadosController@edit1')->name('products.update');;
 Route::get('resultados-asoc-{id}', 'ResultadosController@asoc');
+Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
+
 
 
 Route::get('resultadosguardados-ver-{id}', 'ReportesController@resultados_ver')->name('resultados.ver');
@@ -256,6 +258,10 @@ Route::get('resultadosguardados1', 'ResultadosGuardadosController@index1')->name
 Route::get('resultadosguardados1-search1', 'ResultadosGuardadosController@search1')->name('resultadosguardados1.search1')->middleware('auth');
 Route::get('resultadosg-editar-{id}', 'ResultadosGuardadosController@editars')->name('resultadosg.editars');
 Route::get('resultadosg-editarl-{id}', 'ResultadosGuardadosController@editarl')->name('resultadosg.editarl');
+Route::get('resultadosg-reversar-{id}-{id2}', 'ResultadosGuardadosController@reversar')->name('resultadosg.reversar');
+
+Route::get('resultadosg-reversarl-{id}-{id2}', 'ResultadosGuardadosController@reversarl')->name('resultadosg.reversarl');
+
 Route::put('resultadosg-edits-{id}', 'ResultadosGuardadosController@edits')->name('informes.update');
 Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->name('informes1.update');;
 

@@ -36,6 +36,7 @@ class ResultadosController extends Controller
         ->where('a.resultado','=', NULL)
         ->orderby('a.id','desc')
         ->paginate(10);
+        
         $informe = Informe::all();
 
          return view('resultados.index', [
@@ -296,6 +297,16 @@ class ResultadosController extends Controller
       return redirect()->action('ResultadosController@index');
 
     }
+
+     public function desoc($id){
+
+      $p = Atenciones::findOrFail($id);
+      $p->informe =NULL;
+      $p->save();    
+      return redirect()->action('ResultadosController@index');
+
+    }
+  
 	
 	
 
