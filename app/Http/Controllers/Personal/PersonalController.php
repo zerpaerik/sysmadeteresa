@@ -26,23 +26,12 @@ class PersonalController extends Controller
     //  $personal =Personal::where("estatus", '=', 1)->get();
 	  $personal = DB::table('personals as a')
         ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
-		->join('users as c','c.id','a.usuario')
+		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
 		
-      return view('archivos.personal.index', [
-        "icon" => "fa-list-alt",
-        "model" => "personal",
-        "headers" => ["Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","E-mail","Cargo","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $personal,
-        "fields" => ["name", "apellido", "dni", "phone", "address","email","cargo","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+      return view('archivos.personal.index', ['personal' => $personal]);  
 
-         
     }
 
     public function search(Request $request)
