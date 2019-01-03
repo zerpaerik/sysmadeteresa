@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
 
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
@@ -28,9 +28,9 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th width="">Id</th>
-							<th width="10%">Nombres</th>
-							<th width="10%">Apellidos</th>
+							<th>Id</th>
+							<th>Nombres</th>
+							<th>Apellidos</th>
 							<th>DNI</th>
 							<th>Telefono</th>
 							<th>Direcciòn</th>
@@ -82,17 +82,13 @@
 	</div>
 </div>
 
+</body>
+
 
 
 <script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{{url('/tema/plugins/bootstrap/bootstrap.min.js')}}"></script>
-<script src="{{url('/tema/plugins/justified-gallery/jquery.justifiedGallery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/tinymce/tinymce.min.js')}}"></script>
-<script src="{{url('/tema/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
-<!-- All functions for this theme + document.ready processing -->
-<script src="{{url('/tema/js/devoops.js')}}"></script>
+
 
 
 

@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\Style\Font;
 use HTMLtoOpenXML;
+use File;
 class ReportesController extends Controller
 
 {
@@ -360,16 +361,16 @@ class ReportesController extends Controller
 
     public function modelo_informe($id,$informe)
     {
+        File::delete(File::glob('*.docx'));
         $informe = $templateProcessor = new TemplateProcessor(public_path('modelos_informes/'.$informe));
-
         $resultados = ReportesController::elasticSearch($id);
-
         $informe->setValue('name', $resultados->nombrePaciente. ' '.$resultados->apellidoPaciente);
         $informe->setValue('descripcion',$resultados->servicio);
         $informe->setValue('indicacion',$resultados->resultado);
         $informe->setValue('date',$resultados->created_at);
-        $informe->saveAs('text.docx');
-        return response()->download('text.docx');
+        $informe->saveAs($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
+        return response()->download($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
+
     }
 
     public function relacion_detallado(Request $request)
@@ -488,7 +489,7 @@ class ReportesController extends Controller
 
     private function elasticSearch($id){
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','b.dni')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
