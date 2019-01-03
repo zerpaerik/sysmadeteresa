@@ -223,6 +223,7 @@ class ResultadosController extends Controller
 				}
 				\DB::commit();
 				
+
 				////PARA MATERIALES
 				 if (isset($request->id_laboratorio)) {
 				  foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
@@ -281,7 +282,6 @@ class ResultadosController extends Controller
        }
           
        	 Toastr::success('Adjuntado Exitosamente.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
-		 Toastr::success('Registrado Exitosamente.', 'MATERIALES USADOS!', ['progressBar' => true]);
 
 		 
       return redirect()->action('ResultadosController@index');

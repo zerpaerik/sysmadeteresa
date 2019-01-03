@@ -31,8 +31,10 @@
 						</div>
 						<label class="col-sm-2 control-label">Precio</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="precio" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+							<input type="text" class="form-control" name="precio" placeholder="Precio Particular" data-toggle="tooltip" data-placement="bottom" title="Precio">
 						</div>
+
+					
 
 						<label class="col-sm-2 control-label">Porcentaje</label>
 						<div class="col-sm-4">
