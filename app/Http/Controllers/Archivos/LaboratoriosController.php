@@ -21,17 +21,7 @@ class LaboratoriosController extends Controller
 		->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->get();  
-      return view('archivos.laboratorios.index', [
-        "icon" => "fa-list-alt",
-        "model" => "laboratorios",
-        "headers" => ["id", "Nombre", "Direcciòn", "Referencia","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $laboratorios,
-        "fields" => ["id", "name", "direccion", "referencia","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('archivos.laboratorios.index', ['laboratorios' => $laboratorios]);     
     }
 
     public function search(Request $request)

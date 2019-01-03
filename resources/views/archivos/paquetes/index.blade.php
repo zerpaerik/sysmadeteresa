@@ -1,20 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
+
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-			@if(session('created'))
-				<div class="alert alert-success" role="alert">
-				  A simple success alert—check it out!
-				</div>
-			@endif
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Paquetes</strong></span>
-					<a href="{{route('paquetes.create')}}" class="btn btn-primary">Agregar</a>
+					<i class="fa fa-linux"></i>
+					<span>Archivos/Paquetes</span>
+				    <a href="{{route('paquetes.create')}}" class="btn btn-success">Agregar</a>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -23,58 +20,64 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<form action="/{{$model}}-search" method="get">
-					<label for="">Buscar</label>
-					<input type="text" name="nom">
-					<input type="submit" value="Buscar" class="btn btn-primary">
-				</form>	
-                 								             <div class="box-content no-padding table-responsive">
-				
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
+							<th>Id</th>
 							<th>Nombre</th>
 							<th>Precio</th>
 							<th>Porcentaje</th>
 							<th>Registrado Por:</th>
+							<th>Acciones:</th>
+
+
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($paquetes as $paq)					
-							<tr>
-								<td>{{$paq->detalle}}</td>
-								<td>{{$paq->precio}}</td>
-								<td>{{$paq->porcentaje}}</td>
-							    <td>{{$paq->user}}-{{$paq->lastname}}</td>
+					@foreach($paquetes as $p)					
+						<tr>
+						<td>{{$p->id}}</td>
+						<td>{{$p->detalle}}</td>
+						<td>{{$p->precio}}</td>
+						<td>{{$p->porcentaje}}</td>
+						<td>{{$p->user}}</td>
+						<td>
+						<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$p->id}}">ver</a>
+						<a href="paquetes-edit-{{$p->id}}" class="btn btn-warning edit">Editar</a>
+						<a href="paquetes-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="paquetes-addItems-{{$p->id}}" class="btn btn-success">Agregar items</a>
 
-								<td>
-									<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$paq->id}}">ver</a>
-								@if(\Auth::user()->role_id <> 6)
-									<a href="paquetes-edit-{{$paq->id}}" class="btn btn-warning edit">Editar</a>
-									<a href="paquetes-delete-{{$paq->id}}" class="btn btn-danger">Eliminar</a>
-									@if ($paq->id != 1)
-										<a href="paquetes-addItems-{{$paq->id}}" class="btn btn-success">Agregar items</a>
-									@endif
-								@endif	
-								</td>
-							</tr>
-						@endforeach
+						</td>
+						</tr>
+						
+				    @endforeach
 					</tbody>
 					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Porcentaje</th>
+							<th>Registrado Por:</th>
+							<th>Acciones:</th>
+
+
+						</tr>
 					</tfoot>
 				</table>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- MODAL SECTION -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -85,17 +88,9 @@
             </div>
           </div>
         </div>
-<style type="text/css">
-	.modal-backdrop.in {
-	    filter: alpha(opacity=50);
-	    opacity: 0;
-	    z-index: 0;
-	}
 
-	.modal {
-		top:35px;
-	}
-</style>
+</body>
+
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
@@ -175,6 +170,26 @@ function eliminarLab(e) {
 }
 </script>
 
+<style type="text/css">
+		.modal-backdrop.in {
+		    filter: alpha(opacity=50);
+		    opacity: 0;
+		    z-index: 0;
+		}
+
+		.modal {
+			top:35px;
+		}
+</style>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
+
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
@@ -196,5 +211,4 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-
 @endsection

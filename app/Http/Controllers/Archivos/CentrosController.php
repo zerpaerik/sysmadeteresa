@@ -27,17 +27,7 @@ class CentrosController extends Controller
         ->where('a.estatus','=', 1)
         ->get();  
 		
-      return view('archivos.centros.index', [
-        "icon" => "fa-list-alt",
-        "model" => "centros",
-        "headers" => ["id", "Nombre", "Direcciòn", "Referencia","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $centros,
-        "fields" => ["id", "name", "direccion", "referencia","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('archivos.centros.index', ['centros' => $centros]);     
     }
 
     public function  show(Request $request)

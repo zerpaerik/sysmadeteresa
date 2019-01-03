@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
 
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
-
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model)}}</strong></span>
+					<i class="fa fa-linux"></i>
+					<span>Archivos/{{ucfirst($model)}}</span>
+				<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -20,26 +20,24 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<form action="/{{$model}}-search" method="get">
-					<label for="">Buscar</label>
-					<input type="text" name="nom">
-					<input type="submit" value="Buscar" class="btn btn-primary">
-				</form>	
-               <div class="box-content no-padding table-responsive">				
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<thead> 
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+					<thead>
 						<tr>
-							@foreach($headers as $header)
+								@foreach($headers as $header)
 								<th>{{$header}}</th>
 							@endforeach
+
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($data as $d)
+					@foreach($data as $d)
 						<tr>
 							@foreach($fields as $f)
 								<td>{{$d->$f}}</td>
@@ -57,70 +55,27 @@
 							@endif
 
 						</tr>
-						@endforeach						
+						@endforeach		
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
+							@foreach($headers as $header)
+								<th>{{$header}}</th>
+							@endforeach
 						</tr>
 					</tfoot>
 				</table>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
 
-<script type="text/javascript">
-	function del(id){
-		$.ajax({
-      url: "{{$model}}-delete-"+id,
-      headers: {
-    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  		},
-      type: "delete",
-      dataType: "json",
-      data: {},
-      success: function(res){
-      	location.reload(true);
-      }
-    });
-	}
+</body>
 
-	function closeModal(){
-		$('#myModal').modal('hide');
-	}
 
-	function openmodal(){
-		$("#myModal").show();
-	}
 
-</script>
-
-<div id="myModal" class="modal" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Confirmation</h4>
-            </div>
-            <div class="modal-body">
-                <p>Modal Body</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 @if ($model == 'pacientes')
 	<!-- MODAL SECTION -->
@@ -211,4 +166,29 @@ $(document).ready(function() {
 });
 </script>
 @endif
+
+
+
+
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	TestTable2();
+	TestTable3();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>
 @endsection

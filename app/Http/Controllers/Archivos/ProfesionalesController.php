@@ -28,17 +28,7 @@ class ProfesionalesController extends Controller
         ->where('a.estatus','=', 1)
         //->orderby('a.dni','desc')
         ->get();
-        return view('archivos.profesionales.index', [
-        "icon" => "fa-list-alt",
-        "model" => "profesionales",
-        "headers" => ["id", "Nombre", "Apellidos", "DNI", "Especialidad", "Centro","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $profesionales,
-        "fields" => ["id", "name", "apellidos", "dni", "especialidad", "centro","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+        return view('archivos.profesionales.index', ['profesionales' => $profesionales]);  
 
 	}
 

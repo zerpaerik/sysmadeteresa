@@ -29,17 +29,7 @@ class PacientesController extends Controller
         ->where('a.estatus','=', 1)
         ->get();  
 	  
-      return view('generics.index', [
-        "icon" => "fa-list-alt",
-        "model" => "pacientes",
-        "headers" => ["id", "Nombre", "Apellido", "DNI", "Telèfono", "Direcciòn","Registrado Por:", "Editar", "Eliminar"],
-        "data" => $pacientes,
-        "fields" => ["id", "nombres", "apellidos", "dni", "telefono", "direccion","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+      return view('archivos.pacientes.index', ['pacientes' => $pacientes]);  
   }
 
   public function search(Request $request){

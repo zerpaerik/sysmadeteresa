@@ -10,6 +10,8 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Archivos/Personal</span>
+				    <a href="{{route('personal.create')}}" class="btn btn-success">Agregar</a>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">

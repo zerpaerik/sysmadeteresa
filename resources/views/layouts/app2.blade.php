@@ -156,6 +156,16 @@
 <script src="{{url('/tema/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
 <script src="{{url('/tema/ckeditor/ckeditor.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{url('/tema/plugins/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{url('/tema/plugins/justified-gallery/jquery.justifiedGallery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/tinymce/tinymce.min.js')}}"></script>
+<script src="{{url('/tema/plugins/tinymce/jquery.tinymce.min.js')}}"></script>
+<!-- All functions for this theme + document.ready processing -->
+<script src="{{url('/tema/js/devoops.js')}}"></script>
 {!! Toastr::render() !!}
 
 <!-- All functions for this theme + document.ready processing -->
