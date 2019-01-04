@@ -180,6 +180,17 @@ class ComporPagarController extends Controller
    ->orderby('a.id','desc')
    ->paginate(20000);
 
+   $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pendiente','=',0)
+                                     ->where('pagado_com','=', NULL)
+                                    ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
 
  }else{
 
@@ -198,13 +209,25 @@ class ComporPagarController extends Controller
    ->orderby('a.id','desc')
    ->paginate(20000);
 
+    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                      ->whereNotIn('monto',[0,0.00])
+                      ->whereNotIn('origen_usuario',[99999999])
+                      ->where('pendiente','=',0)
+                      ->where('pagado_com','=', NULL)
+                      ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                      ->select(DB::raw('SUM(porcentaje) as monto'))
+                      ->first();
+        if ($aten->monto == 0) {
+        }
+
+
 
 
 
 
  }
        
-        return view('movimientos.comporpagar.index', ['atenciones' => $atenciones]);
+        return view('movimientos.comporpagar.index', ['atenciones' => $atenciones,'aten' => $aten]);
 	}
 
    

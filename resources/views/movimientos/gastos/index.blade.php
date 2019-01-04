@@ -66,21 +66,20 @@
 						</tr>
 					</thead>
 					<tbody>
+
+						@foreach($gastos as $d)
 						<tr>
-							@foreach($gastos as $d)
+						<td>{{$d->id}}</td>
+						<td>{{$d->descripcion}}</td>
+						<td>{{$d->monto}}</td>
+						<td>{{$d->created_at}}</td>
+						<td>
+						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
+						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
+						</td>
 
-							<td>{{$d->id}}</td>
-							<td>{{$d->descripcion}}</td>
-							<td>{{$d->monto}}</td>
-							<td>{{$d->created_at}}</td>
-							<td>
-								<a  class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
-								<a _blank" class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
-							</td>
-
-							@endforeach
-						</tr>
-						
+				        @endforeach
+				    </tr>
 					</tbody>
 					<tfoot>
 						<tr>

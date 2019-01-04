@@ -59,6 +59,12 @@
 				</div>
 			</div>	
 
+			<div class="row">
+				<strong>Monto a Pagar:</strong>{{$aten->monto}}
+				
+			</div>
+
+
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 				<form action="/pagarmultiple" method="post">
@@ -101,20 +107,15 @@
 						<tr>
 							<th>Marcar</th>
 							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Porcentaje</th>
-							<th>Monto a Pagar</th>
-							<th>Fecha Atenciòn</th>
-							<th>Acciones</th>
 						</tr>
 						    <th>
 								{{ csrf_field() }}
 								<button style="margin-left: -5px;" type="submit" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
 							</th>
+
 					</tfoot>
+											</form>
+
 				</table>
 			</div>
 		</div>

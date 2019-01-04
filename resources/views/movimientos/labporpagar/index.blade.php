@@ -29,7 +29,8 @@
 				<div class="no-move"></div>
 				
 			</div>
-		
+
+			
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
@@ -42,25 +43,25 @@
 							<th>Laboratorio a Pagar</th>
 							<th>Monto a Pagar</th>
 							<th>Acciones:</th>
-
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							@foreach($atenciones as $d)
 
-							<td>{{$d->id}}</td>
-							<td>{{$d->created_at}}</td>
-							<td>{{$d->nombres}},{{$d->apellidos}}</td>
-							<td>{{$d->nombreana}}</td>
-							<td>{{$d->nombrelab}}</td>
-							<td>{{$d->costo}}</td>
-							<td>
-							<a href="{{asset('/pagar')}}/{{$d->id}}" class="btn btn-xs btn-danger">Pagar</a>	
-							</td>
-							@endforeach
-						</tr>
-						
+						@foreach($atenciones as $d)
+						<tr>
+						<td>{{$d->id}}</td>
+						<td>{{$d->created_at}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->nombreana}}</td>
+						<td>{{$d->nombrelab}}</td>
+						<td>{{$d->costo}}</td>
+						<td>
+
+						<a  class="btn btn-success" href="pagar/{{$d->id}}">Editar</a>	
+						</td>
+
+				        @endforeach
+				    </tr>
 					</tbody>
 					<tfoot>
 						<tr>
