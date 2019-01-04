@@ -170,7 +170,9 @@ class ProductoController extends Controller
     public function delete($id){
       $p = Producto::find($id);
       $res = $p->delete();
-      return response()->json(["deleted" => $res]);
+      
+       Toastr::success('Eliminado Exitosamente.', 'Producto!', ['progressBar' => true]);
+        return redirect()->action('Existencias\ProductoController@index2', ["created" => false]);
     }
 
     public function getExist($prod, $sede){

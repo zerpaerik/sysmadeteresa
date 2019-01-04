@@ -301,7 +301,7 @@ Route::post('producto/create', 'Existencias\ProductoController@create')->name('p
 Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
 Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
 Route::post('producto/edit', 'Existencias\ProductoController@edit');
-Route::delete('existencias-delete-{id}', 'Existencias\ProductoController@delete');
+Route::get('existencias-delete-{id}', 'Existencias\ProductoController@delete');
 Route::get('existencias-in', 'Existencias\ProductoController@productInView')->name('productos.in');
 Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->name('productos.out');
 Route::get('existencias-trans', 'Existencias\ProductoController@productTransView')->name('productos.trans');
