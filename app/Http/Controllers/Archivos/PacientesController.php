@@ -25,9 +25,12 @@ class PacientesController extends Controller
 	  
 	  $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.nombres','a.apellidos','a.direccion','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
-		->join('users as c','c.id','a.usuario')
+		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
-        ->get();  
+        ->get(); 
+
+        dd($pacientes);
+        die(); 
 	  
       return view('archivos.pacientes.index', ['pacientes' => $pacientes]);  
   }
