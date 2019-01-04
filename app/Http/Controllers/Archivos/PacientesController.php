@@ -29,8 +29,7 @@ class PacientesController extends Controller
         ->where('a.estatus','=', 1)
         ->get(); 
 
-        dd($pacientes);
-        die(); 
+      
 	  
       return view('archivos.pacientes.index', ['pacientes' => $pacientes]);  
   }
