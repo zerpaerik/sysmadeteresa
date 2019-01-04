@@ -346,11 +346,16 @@ Route::get('categorias-create', 'Config\CategoriaController@createView')->name('
 Route::get('categorias-edit-{id}', 'Config\CategoriaController@editView')->name('categorias.edit');
 
 //Consultas
+Route::get('consulta','Events\EventController@all')->name('consultas.inicio')->middleware('auth');
+Route::get('consulta-edit-{id}','Events\EventController@editView_consulta')->name('consultas.edit')->middleware('auth');
+Route::get('consulta-delete-{id}','Events\EventController@delete_consulta')->name('consultas.delete')->middleware('auth');
+Route::get('consulta-ticket-ver-{id}','Events\EventController@ticket_ver');
 Route::get('event-{id}','Events\EventController@show');
 Route::match(['get', 'post'], 'events', 'Events\EventController@index')->name('consultas.index');
 Route::get('available-time/{e}/{d}/{m}/{y}', 'Events\EventController@availableTime');
 Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');
 Route::post('consulta/create', 'Events\EventController@create');
+Route::post('consulta/edit', 'Events\EventController@edit_consulta');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');

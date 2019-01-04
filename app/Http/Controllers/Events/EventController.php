@@ -15,6 +15,7 @@ use App\Models\Historiales;
 use Calendar;
 use Carbon\Carbon;
 use DB;
+use PDF;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
@@ -44,6 +45,67 @@ class EventController extends Controller
     }
   }
 
+  public function all()
+  {
+    $event = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.title','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->get();
+
+    return view('consultas.index',[
+      'eventos' => $event
+    ]);
+  }
+
+  public function delete_consulta($id)
+  {
+    $consulta = Event::find($id);
+    $consulta->delete();
+    return back();
+  } 
+
+  public function editView_consulta($id)
+  {
+  
+    $paciente = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.title','e.profesional','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('e.id','=',$id)
+    ->first();
+
+    $especialistas =  Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get();
+
+    $tiempos = RangoConsulta::all();
+    
+    $ciex = Ciex::all();
+
+    return view('consultas.edit',[
+      'paciente' => $paciente,
+      'especialistas' => $especialistas,
+      'tiempos' => $tiempos,
+      'ciex' => $ciex
+    ]);   
+  
+  }
+
+  public function edit_consulta(Request $request)
+  {
+    DB::table('events')
+            ->where('id', $request->event)
+            ->update([
+              'profesional' => $request->especialista,
+              'paciente' => $request->paciente,
+              'date' => Carbon::createFromFormat('d/m/Y', $request->date),
+              'time' => $request->time,
+              'monto' => $request->monto
+            ]);
+  return redirect('consulta');            
+  }
+
   public function show(Request $request,$id)
   {
     $event = DB::table('events as e')
@@ -67,6 +129,24 @@ class EventController extends Controller
 	  'productos' => $productos,
       'ciex' => $ciex
     ]);
+  }
+
+  public function ticket_ver($id) 
+  {
+    $paciente = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.title','e.profesional','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('e.id','=',$id)
+    ->first();
+
+    $view = \View::make('consultas.ticket_consulta')->with('paciente', $paciente);
+    $pdf = \App::make('dompdf.wrapper');
+    $pdf->setPaper('A5', 'landscape');
+    $pdf->loadHTML($view);
+    
+    return $pdf->stream('ticket_ver');
   }
 
   private static function toggleType($type){
