@@ -14,40 +14,33 @@ class GastosController extends Controller
 
 	public function index(Request $request){
 
-    $initial = Carbon::now()->toDateString();
-    $gastos = $this->elasticSearch($request,$initial);
+  if(! is_null($request->fecha)) {
 
-        return view('movimientos.gastos.index', [
-        "icon" => "fa-list-alt",
-        "model" => "gastos",
-        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
-        "data" => $gastos,
-        "fields" => ["descripcion", "monto","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+      $gastos = DB::table('debitos as a')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->whereDate('a.created_at','=' ,$request->fecha)
+      ->where('a.id_sede','=', $request->session()->get('sede'))
+      ->orderby('a.id','desc')
+      ->paginate(200000);  
+
+    } else {
+
+       $gastos = DB::table('debitos as a')
+      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
+      ->where('a.id_sede','=', $request->session()->get('sede'))
+      ->orderby('a.id','desc')
+      ->paginate(200000);  
+
+
+    }  
+
+
+        return view('movimientos.gastos.index', ['gastos' => $gastos]);  
 	}
 
 
-  public function search(Request $request){
-    
-       $gastos = $this->elasticSearch($request,$request->inicio);
 
-        return view('movimientos.gastos.search', [
-        "icon" => "fa-list-alt",
-        "model" => "gastos",
-        "headers" => ["Descripciòn", "Monto","Fecha", "Editar", "Eliminar"],
-        "data" => $gastos,
-        "fields" => ["descripcion", "monto","created_at"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
-  }
-  
 
 	public function create(Request $request){
         $validator = \Validator::make($request->all(), [

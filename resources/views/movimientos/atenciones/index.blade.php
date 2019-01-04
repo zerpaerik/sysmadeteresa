@@ -13,6 +13,8 @@
 					<a href="{{route('atenciones.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
+
+
 				<div class="box-icons">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -26,7 +28,32 @@
 				</div>
 
 				<div class="no-move"></div>
+				
 			</div>
+			{!! Form::open(['method' => 'get', 'route' => ['atenciones.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					{!! Form::label('fecha', 'Seleccione una Fecha', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha'))
+					<p class="help-block">
+						{{ $errors->first('fecha') }}
+					</p>
+					@endif
+
+					
+				</div>
+				<div class="col-md-2">
+
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				
+			</div>	
+
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>

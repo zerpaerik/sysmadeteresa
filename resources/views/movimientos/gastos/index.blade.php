@@ -1,18 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
 
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
-						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
-
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa {{$icon}}"></i>
-					<span><strong>{{ucfirst($model)}}</strong></span>
+					<i class="fa fa-linux"></i>
+					<span>Movimientos/Gastos</span>
+					<a href="{{route('gastos.create')}}" class="btn btn-success">Agregar</a>
+
 				</div>
+
+
 				<div class="box-icons">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -20,105 +22,92 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
-				<div class="no-move"></div>
-			</div>
-			<div class="box-content no-padding">
-						               <div class="box-content no-padding table-responsive">				
 
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-				<form action="/gastos-search" method="get">
-						<h5>Rango de fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit" class="btn btn-primary" value="Buscar">
-					</form>
-					<thead> 
+				<div class="no-move"></div>
+				
+			</div>
+			{!! Form::open(['method' => 'get', 'route' => ['gastos.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					{!! Form::label('fecha', 'Seleccione una Fecha', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha'))
+					<p class="help-block">
+						{{ $errors->first('fecha') }}
+					</p>
+					@endif
+
+					
+				</div>
+				<div class="col-md-2">
+
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				
+			</div>	
+
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+					<thead>
 						<tr>
-							@foreach($headers as $header)
-								<th>{{$header}}</th>
-							@endforeach
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Monto</th>
+							<th>Fecha</th>
+							<th>Acciones:</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($data as $d)
 						<tr>
-							@foreach($fields as $f)
-								<td>{{$d->$f}}</td>
-							@endforeach	
-						      @if(\Auth::user()->role_id <> 6)							 
-							
-							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" onclick="del({{$d->id}})">Eliminar</a></td>
-								@endif
+							@foreach($gastos as $d)
+
+							<td>{{$d->id}}</td>
+							<td>{{$d->descripcion}}</td>
+							<td>{{$d->monto}}</td>
+							<td>{{$d->created_at}}</td>
+							<td>
+								<a  class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
+								<a _blank" class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
+							</td>
+
+							@endforeach
 						</tr>
-						@endforeach						
+						
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
-							</th>
+							<th>Id</th>
+							<th>Descripcion</th>
+							<th>Monto</th>
+							<th>Fecha</th>
+							<th>Acciones:</th>
 						</tr>
 					</tfoot>
 				</table>
-				</div>
-				{{$data->links()}}
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
+
+</body>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
 
 <script type="text/javascript">
-	function del(id){
-		$.ajax({
-      url: "{{$model}}-delete-"+id,
-      headers: {
-    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-  		},
-      type: "delete",
-      dataType: "json",
-      data: {},
-      success: function(res){
-      	location.reload(true);
-      }
-    });
-	}
-
-	function closeModal(){
-		$('#myModal').modal('hide');
-	}
-
-	function openmodal(){
-		$("#myModal").show();
-	}
-
-</script>
-
-<div id="myModal" class="modal" data-backdrop="static">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Confirmation</h4>
-            </div>
-            <div class="modal-body">
-                <p>Modal Body</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-		<script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
 	TestTable1();
@@ -139,5 +128,4 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-
 @endsection

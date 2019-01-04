@@ -1,15 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
+
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Laboratorios por Pagar</strong></span>
+					<i class="fa fa-linux"></i>
+					<span>Movimientos/Laboratorios Por Pagar</span>
+
 				</div>
+
+
 				<div class="box-icons">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -17,61 +21,75 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
-				<div class="no-move"></div>
-			</div>
-			<div class="box-content no-padding">
-									               <div class="box-content no-padding table-responsive">				
 
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/labporpagar-search" method="get">
-						
-						<label for="">Buscar</label>
-						<input type="text" placeholder="Buscador" name="nom" style="line-height: 20px;">
-						<input type="submit" value="Buscar" class="btn btn-primary" style="margin-left: 30px;">
-					</form>			
+				<div class="no-move"></div>
+				
+			</div>
+		
+
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Fecha Atenciòn</th>
+							<th>Id</th>
+							<th>Fecha</th>
 							<th>Paciente</th>
 							<th>Analisis</th>
 							<th>Laboratorio a Pagar</th>
-							<th>Monto por Pagar</th>
-							<th>Acciones</th>
+							<th>Monto a Pagar</th>
+							<th>Acciones:</th>
 
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atenciones as $atec)					
-							<tr>
-								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nombreana}}</td>
-							    <td>{{$atec->nombrelab}}</td>
-								<td>{{$atec->costo}}</td>
-							@if(\Auth::user()->role_id <> 6)							 
-								<td><a href="{{asset('/pagar')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
-							@endif
-							</tr>
-						@endforeach
+						<tr>
+							@foreach($atenciones as $d)
+
+							<td>{{$d->id}}</td>
+							<td>{{$d->created_at}}</td>
+							<td>{{$d->nombres}},{{$d->apellidos}}</td>
+							<td>{{$d->nombreana}}</td>
+							<td>{{$d->nombrelab}}</td>
+							<td>{{$d->costo}}</td>
+							<td>
+							<a href="{{asset('/pagar')}}/{{$d->id}}" class="btn btn-xs btn-danger">Pagar</a>	
+							</td>
+							@endforeach
+						</tr>
+						
 					</tbody>
 					<tfoot>
-						
+						<tr>
+							<th>Id</th>
+							<th>Fecha</th>
+							<th>Paciente</th>
+							<th>Analisis</th>
+							<th>Laboratorio a Pagar</th>
+							<th>Monto a Pagar</th>
+							<th>Acciones:</th>
+						</tr>
 					</tfoot>
 				</table>
-				</div>
-				{{$atenciones->links()}}
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
 
-		<script type="text/javascript">
+</body>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
+
+<script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
 	TestTable1();
@@ -92,5 +110,4 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-
 @endsection
