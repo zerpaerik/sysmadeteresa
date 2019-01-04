@@ -153,6 +153,7 @@ class PacientesController extends Controller
         'gradoinstruccion' => $request->gradoinstruccion,
         'ocupacion' => $request->ocupacion,
         'estatus' => 1,
+        'usuario' =>  Auth::user()->id,
         'historia' => HistoriaPacientes::generarHistoria()
     
       ]);
