@@ -97,7 +97,7 @@ class PacientesController extends Controller
         $validator = \Validator::make($request->all(), [
           'nombres' => 'required|string|max:255',
           'apellidos' => 'required|string|max:255',
-		  'dni' => 'required|unique:pacientes'
+		      'dni' => 'required|unique:pacientes'
           
         ]);
         if($validator->fails()) {
@@ -137,6 +137,18 @@ class PacientesController extends Controller
 	}   
 
     public function create2(Request $request){
+
+
+       $validator = \Validator::make($request->all(), [
+          'nombres' => 'required|string|max:255',
+          'apellidos' => 'required|string|max:255',
+          'dni' => 'required|unique:pacientes'
+          
+        ]);
+        if($validator->fails()) {
+        Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
+          return redirect()->action('Archivos\PacientesController@createView2', ['errors' => $validator->errors()]);
+        } else {
         
     $pacientes = Pacientes::create([
         'dni' => $request->dni,
@@ -165,11 +177,26 @@ class PacientesController extends Controller
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
 
+      }
+    Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
     return redirect()->route('atenciones.create');
+
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
   }  
 
    public function create3(Request $request){
+
+     $validator = \Validator::make($request->all(), [
+          'nombres' => 'required|string|max:255',
+          'apellidos' => 'required|string|max:255',
+          'dni' => 'required|unique:pacientes'
+          
+        ]);
+        if($validator->fails()) {
+        Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
+          return redirect()->action('Archivos\PacientesController@createView3', ['errors' => $validator->errors()]);
+        } else {
+        
         
     $pacientes = Pacientes::create([
         'dni' => $request->dni,
@@ -198,7 +225,10 @@ class PacientesController extends Controller
           $historial->id_usuario = \Auth::user()->id;
           $historial->save();
 
+     }
+    Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
     return redirect()->route('consultas.create');
+
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
   }    
 
