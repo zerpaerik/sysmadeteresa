@@ -48,11 +48,6 @@
 								@endforeach
 							</select>
 						</div>
-
-						<label class="col-sm-1 control-label">Cantidad</label>
-						<div class="col-sm-3">
-							<input type="number" class="form-control" name="cantidad" placeholder="Cantidad inicial" data-toggle="tooltip" data-placement="bottom" title="Cantidad" value="{{$cantidad}}" min="0">
-						</div>
 						
 						<label class="col-sm-1 control-label">Precio Unit.</label>
 						<div class="col-sm-3">
@@ -62,6 +57,11 @@
 						<label class="col-sm-1 control-label">Precio Venta.</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="precioventa" value="{{$precioventa}}" placeholder="precioventa" data-toggle="tooltip" data-placement="bottom" title="precioventa">
+						</div>
+
+						<label class="col-sm-1 control-label">Vencimiento</label>
+						<div class="col-sm-3">
+							<input type="date" class="form-control" name="vence" placeholder="Cantidad inicial" data-toggle="tooltip" data-placement="bottom" title="vence" value="{{$vence}}" min="0">
 						</div>
 
 						<input type="hidden" name="id" value="{{$id}}">

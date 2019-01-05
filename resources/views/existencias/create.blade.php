@@ -58,6 +58,11 @@
 							<input type="text" class="form-control" name="precioventa" placeholder="precioventa" data-toggle="tooltip" data-placement="bottom" title="precioventa">
 						</div>
 
+						<label class="col-sm-1 control-label">Vencimiento.</label>
+						<div class="col-sm-3">
+							<input type="date" class="form-control" name="vence" placeholder="vence" data-toggle="tooltip" data-placement="bottom" title="vence">
+						</div>
+
 						<div class="col-sm-8">
 							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
 							<a href="{{route('productos.index')}}" class="col-sm-2 btn btn-danger">Volver</a>

@@ -21,9 +21,9 @@ class ProductoController extends Controller
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
         "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+				"headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
 				"data" => $producto,
-				"fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa"],
+				"fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -38,9 +38,9 @@ class ProductoController extends Controller
         "icon" => "fa-list-alt",
         "model" => "existencias",
         "model1" => "Productos en Almacen Local",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta", "Editar", "Eliminar"],
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
         "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa"],
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
           "actions" => [
             '<button type="button" class="btn btn-info">Transferir</button>',
             '<button type="button" class="btn btn-warning">Editar</button>'
@@ -54,7 +54,7 @@ class ProductoController extends Controller
 
     public function editView($id){
       $p = Producto::find($id);
-      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa]);
+      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa]);
       
     }
 
@@ -145,6 +145,7 @@ class ProductoController extends Controller
             "nombre" => $pfrom->nombre,
             "categoria" => $pfrom->getOriginal("categoria"),
             "medida" => $pfrom->getOriginal("medida"),
+            "vence" => $pfrom->getOriginal("medida"),
             "cantidad" => $request->cantidadplus,
             "sede_id" => $request->sede,
             "almacen" => 2
@@ -163,6 +164,7 @@ class ProductoController extends Controller
 	  $p->preciounidad = $request->preciounidad;
       $p->precioventa = $request->precioventa;
       $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
       $res = $p->save();
       return redirect()->action('Existencias\ProductoController@index', ["edited" => $res]);
     }
@@ -222,6 +224,7 @@ class ProductoController extends Controller
         "medida" => $request->medida,
         "preciounidad" => $request->preciounidad,
         "precioventa" => $request->precioventa,
+        "vence" => $request->vence,
         "sede_id" => $request->session()->get('sede'),
         "almacen" => 1
       ]);
