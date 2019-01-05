@@ -167,7 +167,40 @@ class PacientesController extends Controller
 
     return redirect()->route('atenciones.create');
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
-  }   
+  }  
+
+   public function create3(Request $request){
+        
+    $pacientes = Pacientes::create([
+        'dni' => $request->dni,
+        'nombres' => $request->nombres,
+        'apellidos' => $request->apellidos,
+        'direccion' => $request->direccion,
+        'referencia' => $request->referencia,
+        'fechanac' => $request->fechanac,
+        'edocivil' => $request->edocivil,
+        'provincia' => $request->provincia,
+        'distrito' => $request->distrito,
+        'telefono' => $request->telefono,
+        'referencia' => $request->referencia,
+        'gradoinstruccion' => $request->gradoinstruccion,
+        'ocupacion' => $request->ocupacion,
+        'estatus' => 1,
+        'usuario' =>  Auth::user()->id,
+        'historia' => HistoriaPacientes::generarHistoria()
+    
+      ]);
+    
+       $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Paciente';
+      $historial->detalle =$request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+          $historial->save();
+
+    return redirect()->route('consultas.create');
+   // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
+  }    
 
   public function delete($id){
     $pacientes = Pacientes::find($id);
@@ -192,6 +225,15 @@ class PacientesController extends Controller
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create2', compact('provincias','distritos','edocivil','gradoinstruccion'));
+  }
+
+    public function createView3() {
+ 
+    $provincias = Provincias::all();
+    $distritos = Distritos::all();
+    $edocivil = EdoCivil::all();
+    $gradoinstruccion = GradoInstruccion::all();
+    return view('archivos.pacientes.create3', compact('provincias','distritos','edocivil','gradoinstruccion'));
   }
 
    public function createpac() {

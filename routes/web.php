@@ -94,8 +94,10 @@ Route::get('pacientes', 'Archivos\PacientesController@index')->name('pacientes.i
 Route::get('pacientes-search', 'Archivos\PacientesController@search')->name('pacientes.search')->middleware('auth');
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::get('pacientes-create2', 'Archivos\PacientesController@createView2')->name('pacientes.create2')->middleware('auth');
+Route::get('pacientes-create3', 'Archivos\PacientesController@createView3')->name('pacientes.create3')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
 Route::post('pacientes/create2', 'Archivos\PacientesController@create2')->middleware('auth');
+Route::post('pacientes/create3', 'Archivos\PacientesController@create3')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
