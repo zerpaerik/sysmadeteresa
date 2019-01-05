@@ -16,7 +16,7 @@ class ProductoController extends Controller
 
     public function index(){
 		//	$producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->get();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->orderBy('nombre','ASC')->get();
 			return view('generics.index5', [
 				"icon" => "fa-list-alt",
 				"model" => "existencias",
@@ -33,7 +33,7 @@ class ProductoController extends Controller
 
       public function index2(){
     //  $producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
       return view('generics.index5', [
         "icon" => "fa-list-alt",
         "model" => "existencias",

@@ -17,115 +17,128 @@ class ReporteIngresosController extends Controller
 {
 	
 	public function indexa(Request $request){
-        $total = 0;
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearch($inicio,$final,'','',$request);
-        
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->abono;
-        }
 
-        return view('reportes.general_atenciones.index', ["atenciones" => $atenciones, "total" => $total]);
-	}
+    if(! is_null($request->fecha)) {
 
-    public function searcha(Request $request)
-    {
-      $search = $request->nom;
-      $split = explode(" ",$search);
-      $total = 0;
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;    
 
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1],$request);
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->abono;
-        }
-        return view('reportes.general_atenciones.search', ["atenciones" => $atenciones,"total" => $total]); 
 
-      }else{
-        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1],$request); 
-        foreach ($atenciones as $aten) {
-          $total =  $total + $aten->abono; 
-        } 
-        return view('reportes.general_atenciones.search', ["atenciones" => $atenciones, "total" => $total]);   
-      }    
-    }
-
-  private function elasticSearch($initial, $final,$nom,$ape,Request $request)
-  { 
-        $atenciones = DB::table('atenciones as a')
+       $atenciones = DB::table('atenciones as a')
         ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-	     ->where('a.id_sede','=', $request->session()->get('sede'))
-       // ->join('profesionales as f','f.id','a.origen_usuario')
-        ->where('b.nombres','like','%'.$nom.'%')
-        ->where('b.apellidos','like','%'.$ape.'%')
+        ->where('a.id_sede','=', $request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
-        //->whereNotIn('a.porcentaje',[0,0.00])
-		->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->inicio)), date('Y-m-d 23:59:59', strtotime($request->final))])
-        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
-        ->paginate(20);
-        return $atenciones;
-		
-		 //->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->inicio)), date('Y-m-d 23:59:59', strtotime($request->final))])
+        ->paginate(20000000);
 
-  }
 
-    public function indexe(){
-        $total = 0;
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $atenciones = $this->elasticSearche($inicio,$final,'','');
-        
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->monto;
+         $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                       ->whereNotIn('monto',[0,0.00])
+                       ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                       ->select(DB::raw('SUM(abono) as monto'))
+                       ->first();
+        if ($aten->monto == 0) {
         }
 
-        return view('reportes.general_egresos.index', ["atenciones" => $atenciones, "total" => $total]);
-  }
 
-    public function searche(Request $request)
-    {
-      $search = $request->nom;
-      $split = explode(" ",$search);
-      $total = 0;
 
-      if (!isset($split[1])) {
+
+      } else {
+
+          $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','c.por_tec','e.name','e.lastname','d.name as laboratorio')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->whereNotIn('a.monto',[0,0.00])
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+        ->orderby('a.id','desc')
+        ->paginate(20000000);
+
+
+         $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                       ->whereNotIn('monto',[0,0.00])
+                        ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->select(DB::raw('SUM(abono) as monto'))
+                       ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+      }
+
+
+
+
+
+
        
-        $split[1] = '';
-        $atenciones = $this->elasticSearche($request->inicio,$request->final,$split[0],$split[1]);
-        foreach ($atenciones as $aten) {
-          $total = $total + $aten->monto;
-        }
-        return view('reportes.general_egresos.search', ["atenciones" => $atenciones,"total" => $total]); 
 
-      }else{
-        $atenciones = $this->elasticSearche($request->inicio,$request->final,$split[0],$split[1]); 
-        foreach ($atenciones as $aten) {
-          $total =  $total + $aten->monto; 
-        } 
-        return view('reportes.general_egresos.search', ["atenciones" => $atenciones, "total" => $total]);   
-      }    
-    }
+        return view('reportes.general_atenciones.index', ["atenciones" => $atenciones,"aten" => $aten]);
+	}
 
-  private function elasticSearche($initial, $final,$nom,$ape)
-  { 
+    
+
+
+
+    public function indexe(Request $request){
+
+       if(! is_null($request->fecha)) {
+
+          $f1 = $request->fecha;
+          $f2 = $request->fecha2;    
+
+
+
         $atenciones = DB::table('debitos as a')
         ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
         ->whereNotIn('a.monto',[0,0.00])
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
-        ->paginate(20);
-        return $atenciones;
+        ->paginate(200000000);
+
+          $aten = Debitos::where('id_sede','=', $request->session()->get('sede'))
+                        ->whereNotIn('monto',[0,0.00])
+                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
+        if ($aten->monto == 0) {
+        }
+
+      } else {
+
+
+        $atenciones = DB::table('debitos as a')
+        ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+        ->whereNotIn('a.monto',[0,0.00])
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+        ->orderby('a.id','desc')
+        ->paginate(200000000);
+
+
+          $aten = Debitos::where('id_sede','=', $request->session()->get('sede'))
+                        ->whereNotIn('monto',[0,0.00])
+                        ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+
+      }
+        
+        return view('reportes.general_egresos.index', ["atenciones" => $atenciones, "aten" => $aten]);
   }
+
+    
 
  
 }

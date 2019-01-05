@@ -24,6 +24,7 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->where('a.id_sede_solicita', '=', \Session::get("sede"))
+                    ->orderby('a.created_at','desc')
                     ->get();  
 
 			return view('existencias.requerimientos.index',compact('requerimientos'));   	
@@ -31,29 +32,20 @@ class RequerimientosController extends Controller
 
      public function index2(){
 
-        $inicio = Carbon::now()->toDateString();
-        $final = Carbon::now()->addDay()->toDateString();
-        $requerimientos2 = $this->elasticSearch();
+       $requerimientos2 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->orderby('a.created_at','desc')
+                    ->paginate(20);
+
         return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]);   	
     }
 
-     public function search(Request $request)
-    {
-      $search = $request->sede;
-      $split = explode(" ",$search);
-
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $requerimientos2 = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
-        return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]); 
-
-      }else{
-        $requerimientos2 = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);  
-        return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]); 
-          
-      }    
-    }
+   
 
      private function elasticSearch()
   { 
@@ -73,6 +65,15 @@ class RequerimientosController extends Controller
 
         return $requerimientos2;
   }
+
+
+      public function delete($id){
+      $p = Requerimientos::find($id);
+      $res = $p->delete();
+      
+       Toastr::success('Eliminado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
+        return redirect()->action('Existencias\RequerimientosController@index', ["created" => false]);
+    }
 
 
 

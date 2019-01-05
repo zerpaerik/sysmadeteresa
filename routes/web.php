@@ -322,6 +322,8 @@ Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@edi
 Route::get('procesar/{id}', 'Existencias\RequerimientosController@procesar')->middleware('auth');
 //Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
 Route::get('requerimientos-edit', 'Existencias\RequerimientosController@edit');
+Route::get('requerimientos-delete-{id}', 'Existencias\RequerimientosController@delete');
+
 
 
 

@@ -37,6 +37,8 @@
 							<th>Cantidad Entregada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
+							<th>Acciones:</th>
+
 
 
 						</tr>
@@ -51,6 +53,11 @@
 								<td>{{$req->cantidadd}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
+								<td>
+								@if($req->estatus=='Solicitado')
+								<a href="requerimientos-delete-{{$req->id}}" class="btn btn-danger">Eliminar</a>
+								@endif
+								</td>
 
 
 							</tr>
@@ -65,6 +72,7 @@
 							<th>Cantidad Entregada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
+							<th>Acciones:</th>
 						</tr>
 					</tfoot>
 				</table>
