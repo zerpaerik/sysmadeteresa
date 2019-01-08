@@ -226,8 +226,8 @@ class ResultadosController extends Controller
 				
 
 				////PARA MATERIALES
-				 if (isset($request->id_laboratorio)) {
-				  foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+				 if (isset($request->id_laboratoriop)) {
+				  foreach ($request->id_laboratoriop['laboratorios'] as $key => $laboratorio) {
 					if (!is_null($laboratorio['laboratorio'])) {
 					  $pro = new ResultadosMateriales();
 					  $pro->id_resultado = $product->id;
