@@ -1,450 +1,167 @@
-0016 090c 00e1 010c 0005 090c 00df 010c
-0000 090c 00db 010c 04fb 1325 7800 da01
-0c00 f209 0c00 d901 0c00 d509 0c00 d701
-0c00 d009 0c00 d001 0c00 cb09 0c00 cf01
-0c00 be09 0c00 ce2e c800 00b1 0914 00cb
-0120 00ac 090c 00c8 010c 00a3 090c 00c7
-010c 009e 090c 00c5 010c 0095 090c 00c4
-010c 0088 090c 00c2 010c 007f 090c 00bf
-010c 007a 090c 00bd 010c 0071 090c 00bc
-010c 006c 090c 00ba 010c 0063 090c 00b9
-010c 0056 090c 00b7 010c 004d 090c 00b4
-010c 0040 090c 00b2 010c 0037 090c 00af
-010c 0032 090c 00ad 2ec8 0000 2909 1400
-ac01 2000 1809 0c00 aa01 0c00 1309 0c00
-a601 0c00 0a09 0c00 a501 0c04 fd12 2548
-00a3 010c 00f8 090c 00a0 010c 00f3 090c
-009f 010c 00ee 090c 009e 010c 00e9 090c
-009d 010c 00e0 090c 009c 010c 00db 090c
-009a 010c 00d6 090c 0099 010c 00d1 090c
-0098 010c 00c8 090c 0097 010c 00bf 090c
-0095 010c 00ba 090c 0093 2ec8 0000 b109
-1400 9201 2000 ac09 0c00 9001 0c00 9f09
-0c00 8f01 0c00 9209 0c00 8c01 0c00 8d09
-0c00 8901 0c00 7c09 0c00 8801 0c00 7309
-0c00 8401 0c00 6209 0c00 8201 0c00 5309
-0c00 7e01 0c00 4e09 0c00 7b01 0c00 4109
-0c00 7a01 0c00 3c09 0c00 7701 0c00 3709
-0c00 7601 0c00 2a09 0c00 7501 0c00 1d09
-0c00 7201 0c00 1809 0c00 6f2e c800 0013
-0914 006e 0120 000a 090c 006d 010c 04fd
-1125 7800 6b01 0c00 f809 0c00 6801 0c00
-ef09 0c00 6701 0c00 ea09 0c00 6501 0c00
-e509 0c00 6401 0c00 e009 0c00 6301 0c00
-db09 0c00 6201 0c00 d609 0c00 6101 0c00
-d109 0c00 6001 0c00 cc09 0c00 5f01 0c00
-c709 0c00 5e01 0c00 c209 0c00 5d01 0c00
-b909 0c00 5c01 0c00 b009 0c00 5a2e c800
-00ab 0914 0058 0120 00a6 090c 0057 010c
-009d 090c 0056 010c 0094 090c 0054 010c
-008b 090c 0052 010c 006e 090c 0050 010c
-0060 090c 0049 010c 005b 090c 0047 010c
-0056 090c 0046 010c 004d 090c 0045 010c
-0048 090c 0043 010c 0043 090c 0042 010c
-003e 090c 0041 010c 0039 090c 0040 010c
-0028 090c 003f 010c 0023 090c 003b 2ec8
-0000 1e09 1400 3a01 2000 1909 0c00 3901
-0c00 0c09 0c00 3801 0c00 0709 0c00 3501
-0c04 fa10 25a8 0034 010c 00f5 090c 0031
-010c 00e8 090c 0030 010c 00e3 090c 002d
-010c 00de 090c 002c 010c 00c1 090c 002b
-010c 00b3 090c 0024 010c 00ae 090c 0022
-010c 00a1 090c 0021 010c 009c 090c 001e
-010c 0097 090c 001d 010c 008e 090c 001c
-2ec8 0000 8109 1400 1a01 2000 7c09 0c00
-1701 0c00 7709 0c00 1601 0c00 6e09 0c00
-1501 0c00 6509 0c00 1301 0c00 5009 0c00
-1101 0c00 3909 0c00 0c01 0c00 3009 0c00
-0701 0c00 1309 0c00 0501 0c00 0e09 0c14
-fe3d 0807 0205 090c 00fd 010c 04f8 0f25
-1c00 fb01 0c00 ef09 0c00 f801 0c00 ea09
-0c00 f601 0c00 e509 0c00 f501 0c00 dc09
-0c04 f43d dd40 00d7 0914 00f2 0120 00ca
-090c 00f1 010c 00c5 090c 00ee 010c 00c0
-090c 00ed 010c 00b7 090c 00ec 010c 00ae
-090c 00ea 010c 00a5 090c 00e8 010c 009c
-090c 00e6 010c 0093 090c 00e4 010c 008e
-090c 00e2 010c 0081 090c 00e1 010c 007c
-090c 00de 010c 0073 090c 00dd 010c 006e
-090c 00db 010c 0069 090c 00da 010c 0064
-090c 00d9 2ec8 0000 5f09 1404 d83d 0ea6
-0ff0 53c8 0000 0090 0100 0058 0200 0020
-0300 00e8 0300 00b0 0400 0078 0500 0040
-0600 0008 0700 00d0 0700 0098 0800 0060
-0900 0028 0a00 00f0 0a00 00b8 0b00 0080
-0c00 0048 0d00 0010 0e00 00d8 0e00 00a0
-0f00 0015 0000 0001 1460 154e 8c20 5c00
-0f02 0002 0000 3201 0401 520f 0100 0000
-00d7 3d08 0702 4d09 0c00 d401 0c00 4009
-0c00 d301 0c00 3b09 0c00 d001 0c00 2e09
-0c00 cf01 0c00 2909 0c00 cc01 0c00 2409
-0c00 cb01 0c00 1f09 0c00 ca01 0c00 0e09
-0c00 c901 0c00 0409 0c00 c501 0c04 ef0e
-0578 00c4 010c 00e6 090c 00bf 010c 00e1
-090c 00bd 010c 00dc 090c 00bc 010c 00d7
-090c 00bb 010c 00d2 090c 04ba 3d1d c800
-cd09 1400 b901 2000 c809 0c00 b801 0c00
-bb09 0c00 b701 0c00 b209 0c00 b401 0c00
-a109 0c00 b201 0c00 9a09 0c00 ae01 0c00
-8109 0c00 ad01 0c00 7c09 0c00 a701 0c00
-7709 0c00 a601 0c00 6e09 0c00 a501 0c00
-6509 0c00 a301 0c00 6009 0c00 a101 0c00
-5b09 0c00 a001 0c00 5609 0c00 9f01 0c00
-4d09 0c00 9e01 0c00 4409 0c00 9c2e c800
-003f 0914 009a 0120 0036 090c 0099 010c
-0029 090c 0097 010c 0024 090c 0094 010c
-001b 090c 0093 010c 000e 090c 0091 010c
-0009 090c 008e 010c 0000 090c 008d 010c
-04fb 0d25 7800 8b01 0c00 f209 0c00 8a01
-0c00 ed09 0c00 8801 0c00 e809 0c00 8701
-0c00 e309 0c00 8601 0c00 de09 0c00 8501
-0c00 c509 0c00 8401 0c00 af09 0c00 7e2e
-c800 00aa 0914 007a 0120 00a5 090c 0079
-010c 00a0 090c 0078 010c 008f 090c 0077
-010c 0085 090c 0073 010c 0070 090c 0072
-010c 006b 090c 006d 010c 0062 090c 006c
-010c 0059 090c 006a 010c 0048 090c 0068
-010c 003b 090c 0064 010c 0036 090c 0061
-010c 002d 090c 0060 010c 0028 090c 005e
-010c 0023 090c 005d 010c 0012 090c 005c
-2ec8 0000 0809 1400 5801 2000 0309 0c00
-5701 0c04 fa0c 2548 0056 010c 00f5 090c
-0054 010c 00f0 090c 0053 010c 00eb 090c
-0052 010c 00c6 090c 0051 010c 0099 090c
-0048 010c 0092 090c 003d 010c 0089 090c
-003c 010c 0084 090c 003a 010c 006f 090c
-0039 010c 006a 090c 0034 010c 0065 090c
-0033 010c 0054 090c 0032 010c 004a 090c
-002e 2ec8 0000 4509 1400 2d01 2000 4009
-0c00 2c01 0c00 3b09 0c00 2b01 0c00 3209
-0c00 2a01 0c00 2d09 0c00 2801 0c00 2809
-0c00 2701 0c00 2309 0c00 2601 0c00 1a09
-0c00 2501 0c00 1509 0c00 2301 0c00 1009
-0c00 2201 0c04 f70b 2528 0021 010c 00f2
-090c 001b 010c 00ed 090c 001a 010c 00e8
-090c 0019 010c 00d7 090c 0018 010c 00ca
-090c 0014 2ec8 0000 c509 1400 1101 2000
-bc09 0c00 1001 0c00 af09 0c00 0e01 0c00
-aa09 0c00 0b01 0c00 a509 0c00 0a01 0c00
-a009 0c00 0901 0c00 8b09 0c00 0801 0c00
-8109 0c00 0301 0c00 7409 0c00 0201 0c00
-6f09 0c14 ff3c 0807 0256 090c 00fe 010c
-0045 090c 00f8 010c 003b 090c 00f4 010c
-0036 090c 00f3 010c 002d 090c 00f2 010c
-0024 090c 04f0 3c9d b000 1309 1400 ee01
-2000 0509 0c00 ea01 0c04 f80a 2530 00e8
-010c 00f3 090c 00e5 010c 00ee 090c 00e4
-010c 00e5 090c 00e3 010c 00e0 090c 00e1
-010c 00cf 090c 00e0 010c 00b9 090c 00dc
-010c 00b4 090c 00d8 010c 00af 090c 00d7
-010c 00a6 090c 00d6 010c 00a1 090c 00d4
-010c 0098 090c 00d3 010c 0093 090c 00d1
-010c 008e 090c 00d0 2ec8 0000 8909 1400
-cf01 2000 8409 0c00 ce01 0c00 7b09 0c00
-cd01 0c00 6a09 0c00 cb01 0c00 5109 0c00
-c701 0c00 4a09 0c00 c101 0c00 4509 0c00
-c001 0c00 3c09 0c00 bf01 0c00 1b09 0c00
-bd01 0c00 1609 0c00 b501 0c00 1109 0c00
-b401 0c00 0c09 0c00 b301 0c00 0709 0c00
-b201 0c00 0209 0c00 b101 0c04 fd09 2558
-00b0 010c 00f4 090c 00af 2ec8 0000 ef09
-1400 ad01 2000 e609 0c00 ac01 0c00 dd09
-0c00 aa01 0c00 cc09 0c00 a801 0c00 be09
-0c00 a401 0c00 b909 0c00 a201 0c00 b409
-0c00 a101 0c00 af09 0c00 a001 0c00 a609
-0c00 9f01 0c00 9509 0c00 9d01 0c00 8409
-0c00 9901 0c00 7309 0c00 9501 0c00 6e09
-0c00 9101 0c00 5d09 0c00 9001 0c00 5809
-0c00 8c01 0c00 4b09 0c00 8b2e c800 0046
-0914 0088 0120 0041 090c 0087 010c 0038
-090c 0086 010c 0033 090c 0084 010c 002a
-090c 0083 010c 0025 090c 0081 010c 000c
-090c 0080 010c 0005 090c 007a 010c 04fc
-0825 4800 7901 0c00 f709 0c00 7701 0c00
-f209 0c00 7601 0c00 ed09 0c00 7501 0c00
-d409 0c00 7401 0c00 cf09 0c00 6e01 0c00
-ca09 0c00 6d01 0c00 c509 0c00 6c2e c800
-00bc 0914 006b 0120 00ab 090c 0069 010c
-009e 090c 0065 010c 0099 090c 0062 010c
-0088 090c 0061 010c 007f 090c 005d 010c
-006e 090c 005b 010c 0065 090c 0057 010c
-0060 090c 0055 010c 005b 090c 0054 010c
-0056 090c 0053 010c 0045 090c 0052 010c
-0040 090c 004e 010c 003b 090c 004d 010c
-002e 090c 004c 010c 0029 090c 0049 2ec8
-0000 2409 1400 4801 2000 1f09 0c00 4701
-0c00 1a09 0c00 4601 0c00 1109 0c00 4501
-0c00 0c09 0c00 4301 0c00 0709 0c00 4201
-0c00 0209 0c00 4101 0c04 f907 2584 0040
-010c 00f4 090c 003e 010c 00ef 090c 003d
-010c 00ea 090c 003c 010c 00e5 090c 003b
-010c 00e0 090c 003a 010c 00db 090c 0039
-010c 00d6 090c 0038 010c 00d1 090c 0037
-2ec8 0000 cc09 1400 3601 2000 bf09 0c00
-3501 0c00 a609 0c00 3201 0c00 9809 0c00
-2c01 0c00 9309 0c00 2a01 0c00 8209 0c00
-2901 0c00 7509 0c00 2501 0c00 7009 0c00
-2201 0c00 6709 0c00 2101 0c00 6209 0c00
-1f01 0c00 5909 0c00 1e01 0c00 4c09 0c00
-1c01 0c00 3b09 0c00 1901 0c00 3209 0c00
-1501 0c00 2109 0c00 1301 0c00 1709 0c00
-0f2e c800 0012 0914 000e 0120 0009 090c
-000d 010c 0004 090c 000b 010c 04e3 0625
-6000 0a01 0c00 d209 0c00 0201 0c00 cd09
-0c14 fe3b 0807 02c8 090c 00fd 010c 00c3
-090c 00fc 010c 00a6 090c 00fb 010c 009f
-090c 00f4 010c 009a 090c 00f3 010c 008d
-090c 00f2 010c 0078 090c 00ef 010c 006b
-090c 00ea 010c 0066 090c 00e7 010c 005d
-090c 0ce6 3b00 0f22 b80b 004c 0914 00e4
-0120 003f 090c 00e0 010c 0032 090c 00dd
-010c 002d 090c 00da 010c 0028 090c 00d9
-010c 0023 090c 00d8 010c 001e 090c 00d7
-010c 0009 090c 00d6 010c 0000 090c 00d1
-010c 04fb 0525 1000 cf01 0c00 f209 0c00
-ce01 0c00 e109 0c00 cc01 0c00 b709 0c00
-c801 0c00 aa09 0c00 bf01 0c00 a509 0c00
-bc01 0c00 a009 0c00 bb2e c800 009b 0914
-00ba 0120 0096 090c 00b9 010c 0085 090c
-00b8 010c 007b 090c 00b4 010c 0076 090c
-00b3 010c 006d 090c 00b2 010c 0060 090c
-00b0 010c 004f 090c 00ad 010c 002d 090c
-00a9 010c 0024 090c 00a2 010c 000f 090c
-00a0 010c 000a 090c 009b 010c 0005 090c
-009a 010c 04fc 0405 f800 9901 0c00 f309
-0c00 9701 0c00 ee09 0c00 952e c800 00e9
-0914 0094 0120 00e4 090c 0093 010c 00df
-090c 0092 010c 00d6 090c 0091 010c 00d1
-090c 008f 010c 00c4 090c 008e 010c 00b7
-090c 008b 010c 00ae 090c 0088 010c 00a1
-090c 0086 010c 008c 090c 0083 010c 0082
-090c 007e 010c 0075 090c 007d 010c 0068
-090c 007a 010c 0063 090c 0077 010c 0056
-090c 0076 010c 0045 090c 0073 2ec8 0000
-4009 1400 6f01 2000 3b09 0c00 6e01 0c00
-2e09 0c00 6d01 0c00 2909 0c00 6a01 0c00
-1c09 0c00 6901 0c00 1309 0c00 6601 0c00
-0209 0c00 6401 0c04 fd03 2548 0060 010c
-00f0 090c 005f 010c 00eb 090c 005c 010c
-00da 090c 005b 010c 00d5 090c 0057 010c
-00d0 090c 0056 010c 00bf 090c 0055 010c
-00b2 090c 0051 010c 00a5 090c 004e 2ec8
-0000 9c09 1400 4b01 2000 8b09 0c00 4901
-0c00 7c09 0c00 4501 0c00 7709 0c00 4201
-0c00 6a09 0c00 4101 0c00 6509 0c00 3e01
-0c00 6009 0c00 3d01 0c00 5b09 0c00 3c01
-0c00 4a09 0c00 3b01 0c00 3c09 0c00 3701
-0c00 3709 0c00 3501 0c00 3209 0c00 3401
-0c00 2109 0c00 3301 0c00 1709 0c00 2f01
-0c00 0e09 0c00 2e01 0c00 0909 0c00 2c2e
-c800 04fc 0225 3c04 2b3b 0ea6 0ff0 53c8
-0000 0090 0100 0058 0200 0020 0300 00e8
-0300 00b0 0400 0078 0500 0040 0600 0008
-0700 00d0 0700 0098 0800 0060 0900 0028
-0a00 00f0 0a00 00b8 0b00 0080 0c00 0048
-0d00 0010 0e00 00d8 0e00 00a0 0f00 0015
-0000 0001 76e3 3653 8c20 5c00 0f02 0002
-0000 3201 0401 f302 0100 0000 0028 3b08
-0702 ee09 0c00 2601 0c00 e109 0c00 2501
-0c00 d009 0c00 2201 0c00 ba09 0c00 1e01
-0c00 ad09 0c00 1a01 0c00 a009 0c00 1701
-0c00 9309 0c00 1401 0c00 8209 0c00 1101
-0c00 7809 0c00 0d01 0c00 7309 0c00 0c01
-0c00 6e09 0c00 0b01 0c00 6909 0c00 0a01
-0c00 6409 0c00 0901 0c00 5f09 0c00 0801
-0c00 5209 0c04 073b 1dc8 004d 0914 0004
-0120 0040 090c 0003 010c 0033 090c 0000
-010c 0022 090c 14fd 3a08 0702 1809 0c00
-f901 0c00 0b09 0c00 f801 0c00 0609 0c00
-f501 0c00 0109 0c00 f401 0c04 f801 2528
-00f3 010c 00eb 090c 00f1 010c 00da 090c
-00ee 010c 00c8 090c 00ea 010c 00c3 090c
-00e7 010c 00be 090c 00e6 010c 00b9 090c
-00e5 010c 00b0 090c 04e4 3a1d c800 9b09
-1400 e201 2000 8a09 0c00 dd01 0c00 7109
-0c00 d901 0c00 6809 0c00 d301 0c00 6309
-0c00 d101 0c00 5e09 0c00 d001 0c00 5509
-0c00 cf01 0c00 4409 0c00 cd01 0c00 3a09
-0c00 c901 0c00 3509 0c00 c801 0c00 2009
-0c00 c701 0c00 0f09 0c00 c201 0c00 0209
-0c00 be01 0c04 fd00 2504 00bb 010c 00f4
-090c 00ba 010c 00ef 090c 00b8 2ec8 0000
-e609 1400 b701 2000 e109 0c00 b501 0c00
-d409 0c00 b401 0c00 bf09 0c00 b101 0c00
-b109 0c00 ac01 0c00 ac09 0c00 aa01 0c00
-9f09 0c00 a901 0c00 8609 0c00 a601 0c00
-7f09 0c00 a001 0c00 7609 0c00 9f01 0c00
-5d09 0c00 9d01 0c00 5809 0c00 9701 0c00
-4b09 0c00 9601 0c00 3209 0c00 9301 0c00
-2109 0c00 8d01 0c00 0309 0c00 892e c800
-04fe ff61 1f04 0083 0120 00e5 090c 0082
-010c 00e0 090c 007c 010c 00cf 090c 007b
-010c 00ca 090c 0077 010c 00c1 090c 0076
-010c 00ac 090c 0074 010c 009a 090c 006f
-010c 0095 090c 006c 010c 0090 090c 006b
-010c 008b 090c 006a 010c 007a 090c 0069
-010c 006c 090c 0065 010c 0067 090c 0063
-010c 0062 090c 0062 010c 0055 090c 0061
-2ec8 0000 4009 1400 5e01 2000 3b09 0c00
-5901 0c00 3609 0c00 5801 0c00 2109 0c00
-5701 0c00 1009 0c00 5201 0c00 0609 0c00
-4e01 0c04 f1fe 2510 004d 010c 00b0 090c
-0048 010c 00a7 090c 0038 010c 00a2 090c
-0036 010c 0099 090c 0035 010c 0094 090c
-0033 010c 008b 090c 0032 010c 0086 090c
-0030 010c 0081 090c 002f 010c 007c 090c
-002e 2ec8 0000 7309 1400 2d01 2000 6a09
-0c00 2b01 0c00 6509 0c00 2901 0c00 6009
-0c00 2801 0c00 5709 0c00 2701 0c00 5209
-0c00 2501 0c00 4d09 0c00 2401 0c00 4809
-0c00 2301 0c00 3309 0c00 2201 0c00 2109
-0c00 1d01 0c00 1409 0c00 1a01 0c00 0709
-0c00 1701 0c08 fefd 0001 0100 1401 0c00
-f109 0c00 1201 0c00 cc09 0c00 0f01 0c00
-b709 0c00 062e c800 0096 0914 0001 0120
-007d 090c 14f9 3908 0702 7809 0c00 f301
-0c00 6f09 0c00 f201 0c00 6a09 0c00 f001
-0c00 6509 0c00 ef01 0c00 6009 0c00 ee01
-0c00 5b09 0c00 ed01 0c00 4e09 0c00 ec01
-0c00 4109 0c00 e901 0c00 3809 0c00 e601
-0c00 2b09 0c00 e401 0c00 2209 0c00 e101
-0c00 0909 0c00 df01 0c00 0209 0c00 d901
-0c04 fdfc 01eb 0800 d839 9db0 00f0 0914
-00d7 0120 00cf 090c 00d4 010c 00b2 090c
-00cc 010c 00ad 090c 00c5 010c 00a8 090c
-00c4 010c 00a3 090c 00c3 010c 009e 090c
-00c2 010c 0099 090c 00c1 010c 0094 090c
-00c0 010c 008f 090c 00bf 010c 008a 090c
-00be 010c 0085 090c 00bd 010c 0080 090c
-00bc 010c 007b 090c 00bb 010c 006e 090c
-00ba 010c 0069 090c 00b7 2ec8 0000 5809
-1400 b601 2000 5309 0c00 b201 0c00 4e09
-0c00 b101 0c00 4909 0c00 b001 0c00 4409
-0c00 af01 0c00 3709 0c00 ae01 0c00 2e09
-0c00 ab01 0c00 2909 0c00 a901 0c00 2409
-0c00 a801 0c04 fffb 2548 00a7 010c 00f2
-090c 009e 010c 00e5 090c 009b 010c 00e0
-090c 0098 010c 00d7 090c 0097 010c 00d2
-090c 0095 010c 00cd 090c 0094 2ec8 0000
-c809 1400 9301 2000 c309 0c00 9201 0c00
-ba09 0c00 9101 0c00 b509 0c00 8f01 0c00
-b009 0c00 8e01 0c00 ab09 0c00 8d01 0c00
-a609 0c00 8c01 0c00 a109 0c00 8b01 0c00
-9409 0c00 8a01 0c00 8f09 0c00 8701 0c00
-8a09 0c00 8601 0c00 8509 0c00 8501 0c00
-8009 0c00 8401 0c00 7b09 0c00 8301 0c00
-7609 0c00 8201 0c00 6d09 0c00 812e c800
-0060 0914 007f 0120 004b 090c 007c 010c
-003a 090c 0077 010c 0029 090c 0073 010c
-0017 090c 006f 010c 000e 090c 006c 010c
-0009 090c 006a 010c 0000 090c 0069 010c
-04fb fa25 8400 6701 0c00 f209 0c00 6601
-0c00 e909 0c00 6401 0c00 e009 0c00 6201
-0c00 d709 0c00 6001 0c00 d209 0c00 5e01
-0c00 cd09 0c00 5d01 0c00 bc09 0c00 5c2e
-c800 00a3 0914 0058 0120 009e 090c 0052
-010c 0095 090c 0051 010c 0090 090c 004f
-010c 007f 090c 004e 010c 006d 090c 004a
-010c 0068 090c 0047 010c 005f 090c 0046
-010c 005a 090c 0044 010c 0055 090c 0043
-010c 0044 090c 0042 010c 0036 090c 003e
-010c 002d 090c 003c 010c 0028 090c 003a
-010c 0023 090c 0039 010c 001e 090c 0038
-2ec8 0000 1909 1400 3701 2000 1009 0c00
-3601 0c04 fff9 2548 0034 010c 00fa 090c
-0030 010c 00ed 090c 002f 010c 00e0 090c
-002c 010c 00cb 090c 0029 010c 00b9 090c
-0024 010c 00ac 090c 0021 010c 009f 090c
-001e 010c 009a 090c 001b 010c 008d 090c
-001a 010c 0070 090c 0017 010c 0063 090c
-0010 010c 005e 090c 000d 010c 0055 090c
-000c 2ec8 0000 5009 1400 0a01 2000 4b09
-0c00 0901 0c00 4609 0c00 0801 0c00 3909
-0c00 0701 0c00 2c09 0c00 0401 0c00 2709
-0c00 0101 0c00 1a09 0c00 0001 0c04 f9f8
-2504 14fd 3808 0702 eb09 0c00 f501 0c00
-e609 0c00 f301 0c00 e109 0c00 f201 0c00
-d009 0c00 f101 0c00 bb09 0c00 ed01 0c00
-aa09 0c00 e801 0c00 9109 0c00 e401 0c00
-8209 0c04 de38 bd78 007d 0914 00db 0120
-0078 090c 00da 010c 0067 090c 00d9 010c
-0062 090c 00d5 010c 0055 090c 00d4 010c
-0050 090c 00d1 010c 004b 090c 00d0 010c
-0046 090c 00cf 010c 0041 090c 00ce 010c
-0030 090c 00cd 010c 0023 090c 00c9 010c
-001a 090c 00c6 010c 0015 090c 00c4 010c
-0004 090c 00c3 010c 04fa f725 1c00 bf01
-0c00 f109 0c00 be2e c800 00ec 0914 00bc
-0120 00e7 090c 00bb 010c 00d2 090c 00ba
-010c 00c5 090c 00b5 010c 00c0 090c 00b2
-010c 00b7 090c 00b1 010c 00a6 090c 00af
-010c 0094 090c 00ab 010c 008b 090c 00a8
-010c 0082 090c 00a6 010c 006d 090c 00a4
-010c 0058 090c 009f 010c 0053 090c 009a
-010c 0032 090c 0099 010c 0009 090c 0091
-010c 0004 090c 0087 2ec8 0004 fff6 05e8
-0086 0120 00f6 090c 0085 010c 00e5 090c
-0083 010c 00d3 090c 007f 010c 00ce 090c
-007c 010c 00c1 090c 007b 010c 00bc 090c
-0078 010c 0063 090c 0077 010c 005a 090c
-0061 010c 0055 090c 005f 010c 0050 090c
-005e 010c 004b 090c 005d 010c 003a 090c
-005c 010c 0020 090c 0058 010c 001b 090c
-0053 010c 0002 090c 0052 2ec8 0004 fdf5
-05c8 004c 0120 00f8 090c 004b 010c 00f3
-090c 004a 010c 00ee 090c 0049 010c 00d9
-090c 0048 010c 00c8 090c 0043 010c 00b2
-090c 003f 010c 0075 090c 003b 010c 0068
-090c 002c 010c 0057 090c 0029 010c 004a
-090c 0025 010c 0041 090c 0022 010c 003c
-090c 0020 010c 0037 090c 001f 010c 001e
-090c 001e 010c 0017 090c 0018 2ec8 0000
-0609 1400 1701 2004 f5f4 05d4 0013 010c
-00eb 090c 000f 010c 00e6 090c 000e 010c
-00e1 090c 000d 010c 00c4 090c 000c 010c
-00bf 090c 0005 010c 00b6 090c 0004 010c
-00a5 090c 0002 010c 0094 090c 14fe 3708
-0702 8f09 0c00 fa01 0c00 8209 0c00 f901
-0c00 7909 0c00 f601 0c00 6809 0c00 f401
-0c00 5609 0c00 f001 0c00 4d09 0c04 ed37
-7de8 0024 0914 04eb 3701 c3f0 53c8 0000
-0090 0100 0058 0200 0020 0300 00e8 0300
-00b0 0400 0078 0500 0040 0600 0008 0700
-00d0 0700 0098 0800 0060 0900 0028 0a00
-00f0 0a00 00b8 0b00 0080 0c00 0048 0d00
-0010 0e00 00d8 0e00 00a0 0f00 0015 0000
-0001 19ae 2a37 8c20 3400 0f02 0002 0000
-3201 0401 1bf4 0001 0114 e137 0807 020a
-090c 00df 010c 04fd f301 1704 00db 010c
-00f4 090c 00d8 010c 00ef 090c 00d6 010c
-00e6 090c 00d5 010c 00d9 090c 00d3 010c
-00d4 090c 00d0 010c 00cf 090c 00cf 010c
-00ca 090c 00ce 010c 00b9 090c 00cd 010c
-00af 090c 00c9 010c 009e 090c 00c8 010c
-0099 090c 00c4 010c 0094 090c 00c3 010c
-008f 090c 04c2 371d c800 8209 1400 c101
-2000 7d09 0c00 be01 0c00 7809 0c00 bd01
-0c00 6f09 0c00 bc01 0c00 6a09 0c00 ba01
-0c00 5909 0c00 b901 0c00 4009 0c00 b501
-0c00 3b09 0c00 af01 0c00 3609 0c00 ae01
-0c00 3109 0c00 ad01 0c00 2c09 0c00 ac01
-0c00 1b09 0c00 ab01 0c04 fdf2 2540 00a7
-010c 00e8 090c 00a1 010c 00d3 090c 009c
-010c 00ce 090c 0097 2ec8 0000 b509 1400
-9601 2000 b009 0c00 9001 0c00 ab09 0c00
-8f01 0c00 a209 0c00 8e01 0c00 9d09 0c00
-8c01 0c00 9409 0c00 8b01 0c00 8309 0c00
-8901 0c00 6d09 0c00 8501 0c00 5809 0c00
-8101 0c00 5309 0c00 7c01 0c00 4209 0c00
-7b01 0c00 2909 0c00 7701 0c00 2409 0c00
-7101 0c00 1709 0c00 7001 0c00 0a09 0c00
-6d01 0c00 0509 0c00 6a2e c800 04fc f125
-0000 6901 2000 e309 0c00 6701 0c00 c609
-0c00 6101 0c00 bd09 0c00 5a01 0c00 b009
-0c00 5801 0c00 a309 0c00 5501 0c00 9e09
-0c00 5201 0c00 9909 0c00 5101 0c00 9409
-0c00 5001 0c00 8f09 0c00 4f01 0c00 8209
-0c00 4e01 0c00 6d09 0c00 4b01 0c00 6409
-0c00 4601 0c00 5b09 0c00 4401 0c00 5209
-0c00 4201 0c00 3909 0c00 402e c800 0032
-0914 003a 0120 0025 090c 0039 
+<?php 
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use App\Consulta;
+use App\Http\Requests\CreateConsultaRequest;
+use Carbon\Carbon;
+use App\Historial;
+use DB;
+use App\Models\ConsultaMateriales;
+use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
+use App\Models\Pacientes\Paciente;
+use App\Models\Personal;
+use App\Models\Profesionales\Profesional;
+use App\Models\Events\{Event, RangoConsulta};
+use App\Models\Creditos;
+use App\Models\Events;
+use App\Models\Ciex;
+use Toastr;
+class ConsultaController extends Controller
+{
+   public function index(){
+        $inicio = Carbon::now()->toDateString();
+        $final = Carbon::now()->addDay()->toDateString();
+        $atenciones = $this->elasticSearch($inicio,$final,'','');
+       
+        return view('consultas.proxima.index', ["atenciones" => $atenciones]);
+    }
+    public function search(Request $request)
+    {
+      $search = $request->nom;
+      $split = explode(" ",$search);
+      if (!isset($split[1])) {
+       
+        $split[1] = '';
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]);
+   
+       
+        return view('consultas.proxima.search', ["atenciones" => $atenciones]); 
+      }else{
+        $atenciones = $this->elasticSearch($request->inicio,$request->final,$split[0],$split[1]); 
+      
+       
+        return view('consultas.proxima.search', ["atenciones" => $atenciones]);   
+      }    
+    }
+     private function elasticSearch($initial, $final,$nom,$ape)
+  { 
+        $atenciones = DB::table('consultas as a')
+        ->select('a.id','a.paciente_id','a.created_at','a.profesional_id','a.prox','b.nombres','b.apellidos','c.name as nompro','c.apellidos as apepro')
+        ->join('pacientes as b','b.id','a.paciente_id')
+        ->join('profesionales as c','c.id','a.profesional_id')
+        ->where('b.nombres','like','%'.$nom.'%')
+        ->where('b.nombres','like','%'.$ape.'%')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
+        ->orderby('a.id','desc')
+        ->paginate(20);
+        return $atenciones;
+  }
+  
+     public function indexh(){
+    
+   
+        return view('consultas.historias.index');
+	}
+	
+	public function searchh(Request $request)
+    {
+      $search = $request->dni;
+      $split = explode(" ",$search);
+    
+      if (!isset($split[1])) {
+       
+        $split[1] = '';
+        $historias = $this->elasticSearch1($split[0],$split[1]);
+      
+        return view('consultas.historias.search', ["historias" => $historias]); 
+      }else{
+        $historias = $this->elasticSearch1($split[0],$split[1]); 
+      
+        return view('consultas.historias.search', ["historias" => $historias]);   
+      }    
+    }
+	
+  
+  
+      private function elasticSearch1($dni)
+  { 
+        $historias = DB::table('events as e')
+        ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
+		'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
+		'a.pa','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+		'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
+		->join('consultas as a','a.paciente_id','e.paciente')
+		->join('historials as b','e.paciente','b.paciente_id')
+		->join('pacientes as p','p.id','=','e.paciente')
+		->join('personals as per','per.id','=','e.profesional')
+		->join('rangoconsultas as rg','rg.id','=','e.time')
+		->where('p.dni','like','%'.$dni.'%')
+		->groupBy('e.paciente')
+        ->get();
+        return $historias;
+  }
+  
+  public function show(Request $request,$id)
+  {
+    $event = DB::table('events as e')
+    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('e.paciente','=',$id)
+    ->first();
+    $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
+    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $personal = Personal::where('estatus','=',1)->get();
+    return view('consultas.historias.show',[
+      'data' => $event,
+      'historial' => $historial,
+      'consultas' => $consultas,
+      'personal' => $personal,
+    ]);
+  }
+    public function create(Request $request)
+    {
+    	
+		$consulta = new Consulta;
+		$consulta->pa =$request->pa;
+		$consulta->pulso =$request->pulso;
+		$consulta->temperatura =$request->temperatura;
+		$consulta->peso =$request->peso;
+		$consulta->fur =$request->fur;
+		$consulta->mac =$request->mac;
+		$consulta->motivo_consulta =$request->motivo_consulta;
+		$consulta->tipo_enfermedad =$request->tipo_enfermedad;
+		$consulta->evolucion_enfermedad =$request->evolucion_enfermedad;
+		$consulta->examen_fisico_regional =$request->examen_fisico_regional;
+		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
+		$consulta->diagnostico_final =$request->diagnostico_final;
+		$consulta->ciex =$request->ciex;
+		$consulta->ciex2=$request->ciex2;
+		$consulta->examen_auxiliar=$request->examen_auxiliar;
+		$consulta->plan_tratamiento =$request->plan_tratamiento;
+		$consulta->observaciones =$request->observaciones;
+		$consulta->paciente_id =$request->paciente_id;
+		$consulta->profesional_id =$request->profesional_id;
+		$consulta->prox =$request->prox;
+		$consulta->personal =$request->personal;
+		$consulta->apetito =$request->apetito;
+		$consulta->sed =$request->sed;
+		$consulta->orina =$request->orina;
+		$consulta->animo =$request->animo;
+		$consulta->g =$request->g;
+		$consulta->p =$request->p;
+		$consulta->pap =$request->pap;
+		$consulta->deposiciones =$request->deposiciones;
+		$consulta->card =$request->card;
+		$consulta->save();
+		
+		
+	
+	  Toastr::success('Registrado Exitosamente.', 'Consulta!', ['progressBar' => true]);
+      return redirect()->action('Events\EventController@index', ["edited" => $consulta]);
+		 
+    }
+}
+ ?>
