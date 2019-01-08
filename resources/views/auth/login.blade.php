@@ -27,6 +27,11 @@
 						   <img src="{{url('img/logo.jpeg')}}" style="width: 100%;">
 					</div>
 					<form method="POST" action="login">
+						@if($data)
+							<div class="alert alert-danger" role="alert">
+								Data invalida
+							</div>
+						@endif						
 						{{ csrf_field() }}
 					<div class="form-group">
 						<label class="control-label">E-mail</label>
@@ -53,5 +58,7 @@
 		</div>
 	</div>
 </div>
+​  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
 </body>
 </html>

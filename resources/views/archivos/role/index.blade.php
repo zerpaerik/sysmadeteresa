@@ -42,7 +42,7 @@
 					<tfoot>
 						<tr>
 							<th>
-								<button type="button" class="btn btn-danger">Eliminar</button>
+								<button type="button" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</button>
 							</th>
 						</tr>
 					</tfoot>

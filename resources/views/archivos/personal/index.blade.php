@@ -58,7 +58,7 @@
 						<td>{{$p->user}}</td>
 						<td>
 						<a href="personal-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
-						<a href="personal-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="personal-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
 						</td>
 						</tr>

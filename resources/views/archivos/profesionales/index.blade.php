@@ -54,7 +54,7 @@
 						<td>{{$p->user}}</td>
 						<td>
 						<a href="profesionales-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
-						<a href="profesionales-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="profesionales-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
 						</td>
 						</tr>

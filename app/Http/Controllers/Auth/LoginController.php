@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\Config\Sede;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -42,11 +43,19 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
+        $credentials = $request->only('email', 'password');
 
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);
+        }
+
+        if (!Auth::attempt($credentials)) {
+            return view('auth.login', [
+                "sedes" => Sede::all(),
+                "data" => true
+            ]);
         }
 
         if ($this->attemptLogin($request)) {

@@ -51,7 +51,7 @@
 						<td>
 						<a href="#" class="btn btn-primary view" onclick="view(this)" data-id="{{$p->id}}">ver</a>
 						<a href="paquetes-edit-{{$p->id}}" class="btn btn-warning edit">Editar</a>
-						<a href="paquetes-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="paquetes-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 						<a href="paquetes-addItems-{{$p->id}}" class="btn btn-success">Agregar items</a>
 
 						</td>

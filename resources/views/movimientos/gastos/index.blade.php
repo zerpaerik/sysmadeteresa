@@ -75,7 +75,7 @@
 						<td>{{$d->created_at}}</td>
 						<td>
 						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
-						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}">Eliminar</a>	
+						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 						</td>
 
 				        @endforeach

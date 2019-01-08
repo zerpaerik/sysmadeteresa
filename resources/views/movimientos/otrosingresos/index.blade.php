@@ -77,7 +77,7 @@
 
 						<a  class="btn btn-success" href="ingresos-edit-{{$d->id}}">Editar</a>	
 
-						<a _blank" class="btn btn-warning" href="ingresos-delete-{{$d->id}}">Eliminar</a>	
+						<a _blank" class="btn btn-warning" href="ingresos-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 							
 
 						</td>

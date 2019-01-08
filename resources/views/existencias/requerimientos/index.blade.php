@@ -55,7 +55,7 @@
 								<td>{{$req->created_at}}</td>
 								<td>
 								@if($req->estatus=='Solicitado')
-								<a href="requerimientos-delete-{{$req->id}}" class="btn btn-danger">Eliminar</a>
+								<a href="requerimientos-delete-{{$req->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 								@endif
 								</td>
 

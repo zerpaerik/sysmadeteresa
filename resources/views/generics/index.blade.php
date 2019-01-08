@@ -51,7 +51,7 @@
 							@endif	
 
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
 							@endif
 
 						</tr>

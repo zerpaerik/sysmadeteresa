@@ -43,7 +43,7 @@
 								<td>{{$ana->tiempo}}</td>
 								<td>{{$ana->material}}</td>
 						
-								<td><a href="analisis/{{$ana->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td><a href="analisis/{{$ana->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
 							</tr>
 						@endforeach
 					</tbody>

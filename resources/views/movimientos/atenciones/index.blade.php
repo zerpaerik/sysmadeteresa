@@ -91,7 +91,7 @@
 
 						<a  class="btn btn-success" href="atenciones-edit-{{$d->id}}">Editar</a>	
 
-						<a _blank" class="btn btn-warning" href="atenciones-delete-{{$d->id}}">Eliminar</a>	
+						<a _blank" class="btn btn-warning" href="atenciones-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 							
 
 						</td>

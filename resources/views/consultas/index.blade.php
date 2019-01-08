@@ -83,7 +83,7 @@
 
 						<a  class="btn btn-success" href="consulta-edit-{{$d->EventId}}">Editar</a>	
 
-						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}">Eliminar</a>	
+						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 							
 
 						</td>

@@ -51,7 +51,7 @@ class UserController extends Controller
   }
 
   public function loginView(){
-    return view('auth.login', ["sedes" => Sede::all()]);
+    return view('auth.login', ["sedes" => Sede::all(),"data" => false]);
   }
 
   public function createView() {

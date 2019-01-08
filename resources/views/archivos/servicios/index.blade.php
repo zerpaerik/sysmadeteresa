@@ -36,7 +36,7 @@
 								<td>{{$serv->detalle}}</td>
 								<td>{{$serv->precio}}</td>
 								
-								<td><a href="servicios/{{$serv->id}}" class="btn btn-danger">Eliminar</a></td>
+								<td><a href="servicios/{{$serv->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
 							</tr>
 						@endforeach
 					</tbody>

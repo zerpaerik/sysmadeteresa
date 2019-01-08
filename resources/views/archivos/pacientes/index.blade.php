@@ -55,7 +55,7 @@
 						<td>
 						<a id="{{$p->id}}" onclick="view(this)" class="btn btn-success">Ver</a>
 						<a href="pacientes-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
-						<a href="pacientes-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="pacientes-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
 						</td>
 						</tr>

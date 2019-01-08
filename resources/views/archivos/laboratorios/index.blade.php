@@ -50,7 +50,7 @@
 						<td>{{$p->user}}</td>
 						<td>
 						<a href="laboratorios-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
-						<a href="laboratorios-delete-{{$p->id}}" class="btn btn-danger">Eliminar</a>
+						<a href="laboratorios-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
 						</td>
 						</tr>
