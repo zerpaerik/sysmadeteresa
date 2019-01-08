@@ -279,6 +279,12 @@
 			<div class="col-sm-3">
 				<input type="date" name="prox" class="form-control" >
 			</div>
+
+
+
+
+
+
 			<label class="col-sm-2">Personal Responsable:</label>
 			<div class="col-sm-3">
 				<select id="el1" name="personal">
@@ -289,6 +295,8 @@
 					@endforeach
 				</select>
 			</div> 
+
+				
 			
 			<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
             <!-- sheepIt Form -->
