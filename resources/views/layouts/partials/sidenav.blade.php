@@ -74,12 +74,7 @@
 
         </ul>      
     </li>
-@if(Session::get('sedeName') == 'PROCERES')
 
-    <li>
-      <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de Transferencias</a>
-    </li>
-@endif
 
 @if(Session::get('sedeName') == 'PROCERES')
   

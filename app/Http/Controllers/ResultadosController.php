@@ -206,7 +206,7 @@ class ResultadosController extends Controller
 						return redirect()->action('ResultadosController@index');
 
 			   } else {
-				   
+	   
 				$p = Atenciones::findOrFail($id);
                 $p->resultado = 1;  
                 $p->save();   
@@ -226,14 +226,16 @@ class ResultadosController extends Controller
 				
 
 				////PARA MATERIALES
-				 if (isset($request->id_laboratoriop)) {
-				  foreach ($request->id_laboratoriop['laboratorios'] as $key => $laboratorio) {
+				 if (!is_null($request->material)) {
+				  foreach ($request->material['laboratorios'] as $key => $laboratorio) {
 					if (!is_null($laboratorio['laboratorio'])) {
 					  $pro = new ResultadosMateriales();
 					  $pro->id_resultado = $product->id;
 					  $pro->id_material =  $laboratorio['laboratorio'];
 					  $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
 					  $pro->save();
+
+
 					  
 					  $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
 					  ->first();

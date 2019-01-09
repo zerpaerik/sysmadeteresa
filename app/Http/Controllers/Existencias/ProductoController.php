@@ -48,6 +48,17 @@ class ProductoController extends Controller
       ]);     
     }
 
+    
+   public function entrada(Request $request){
+    
+          $p = Producto::find($request->producto);
+          $p->cantidad = $p->cantidad + $request->cantidadplus;
+          $res = $p->save();
+          Toastr::success('La Entrada se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
+          return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
+  
+    }
+
     public function createView($extraArgs = []){
     	return view('existencias.create', ["categorias" => Categoria::all(), "medidas" => Medida::all()] + $extraArgs);
     }

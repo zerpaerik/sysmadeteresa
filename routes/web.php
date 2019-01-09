@@ -313,6 +313,8 @@ Route::post('transfer', 'Existencias\ProductoController@transfer');
 Route::post('producto/add', 'Existencias\ProductoController@addCant');
 Route::get('historico', 'Existencias\ProductoController@historicoView')->name('historico');
 Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->name('transferencia');
+Route::post('entrada', 'Existencias\ProductoController@entrada');
+
 
 
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
