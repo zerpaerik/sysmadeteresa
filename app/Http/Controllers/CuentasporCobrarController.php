@@ -10,6 +10,7 @@ use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Historiales;
+use App\Models\HistorialCobros;
 use Auth;
 
 
@@ -62,6 +63,15 @@ class CuentasporCobrarController extends Controller
                     $p->pendiente = $pendiente-$request->monto;
 					$p->abono = $abono + $request->monto;
                     $res = $p->save();
+
+                    $historialcobros = new HistorialCobros();
+                    $historialcobros->id_atencion = $atencion;
+                    $historialcobros->id_paciente = $paciente;
+                    $historialcobros->monto= $monto;
+                    $historialcobros->abono = $abono + $request->monto;
+          $historialcobros->abono_parcial = $request->monto;
+                    $historialcobros->pendiente = $p->pendiente;
+                    $historialcobros->save();
 
                     $creditos = new Creditos();
                     $creditos->origen = 'CUENTAS POR COBRAR';

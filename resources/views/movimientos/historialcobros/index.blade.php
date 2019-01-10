@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Pròximas Citas</span>
+					<span>Movimientos/Historial de Cobros a Pacientes</span>
 
 				</div>
 
@@ -29,7 +29,7 @@
 				<div class="no-move"></div>
 				
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['proximacita.index']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['historialcobros.index']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
@@ -59,40 +59,48 @@
 				</div>
 			</div>	
 
-		
-
-
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-				<form action="/pagarmultiple" method="post">
 					<thead>
 						<tr>
+						    <th>Nº Atenciòn</th>
 							<th>Paciente</th>
-							<th>Profesional</th>
-							<th>Fecha de Pròxima Cita</th>
+							<th>DNI</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
 						</tr>
 					</thead>
 					<tbody>
-                        	@foreach($atenciones as $atec)	
+                         	@foreach($atenciones as $atec)	
 
 							<tr>
+								<td>{{$atec->id_atencion}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
-								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
-								<td>{{$atec->prox}}</td>
-								
+								<td>{{$atec->dni}}</td>
+								<td>{{$atec->monto}}</td>
+								<td>{{$atec->abono_parcial}}</td>
+								<td>{{$atec->abono}}</td>
+								<td>{{$atec->pendiente}}</td>
+								<td>{{$atec->updated_at}}</td>
 							</tr>
 						@endforeach
 					</tbody>
+					</tbody>
 					<tfoot>
-						<tr>
+					<tr>
+						    <th>Nº Atenciòn</th>
 							<th>Paciente</th>
-							<th>Profesional</th>
-							<th>Fecha de Pròxima Cita</th>
+							<th>Monto Total</th>
+							<th>Monto Abonado</th>
+							<th>Monto Total Abonado</th>
+							<th>Monto Pendiente</th>
+							<th>Fecha</th>
 						</tr>
-						    
 
 					</tfoot>
-											</form>
 
 				</table>
 			</div>

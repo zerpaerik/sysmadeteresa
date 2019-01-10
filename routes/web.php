@@ -226,6 +226,9 @@ Route::get('cuentasporcobrar/{id}', 'CuentasporCobrarController@delete')->middle
 Route::get('cuentasporcobrar-edit-{id}', 'CuentasporCobrarController@editView')->name('cuentasporcobrar.edit');
 Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
+Route::get('historialcobros', 'HistorialCobrosController@index')->name('historialcobros.index')->middleware('auth');
+
+
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 Route::get('movimientos/atencion/particular','AtencionesController@particular');

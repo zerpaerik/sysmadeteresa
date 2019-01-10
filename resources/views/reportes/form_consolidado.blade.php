@@ -8,7 +8,7 @@
 					<div class="col-xs-6">
 						<label class="control-label">Fecha a solictar</label>
 						<input type="date" name="fecha" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<button type="submit">Generar Reporte</button>
+						<button target="_blank" type="submit">Generar Reporte</button>
 						{{ csrf_field() }}
 					</div>
 				</div>

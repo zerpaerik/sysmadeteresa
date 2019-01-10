@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
 use App\Models\Config\{Sede, Proveedor};
-use Illuminate\Support\Facades\Auth;
 use DB;
 use Toastr;
 use Carbon\Carbon;
+use Auth;
+
 
 
 
@@ -24,6 +25,7 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->where('a.id_sede_solicita', '=', \Session::get("sede"))
+                    ->where('a.usuario','=',Auth::user()->id)
                     ->orderby('a.created_at','desc')
                     ->get();  
 
@@ -38,6 +40,7 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
                     ->orderby('a.created_at','desc')
                     ->paginate(20);
@@ -94,7 +97,7 @@ class RequerimientosController extends Controller
           $lab->id_producto =  $laboratorio['laboratorio'];
           $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];;
           $lab->id_sede_solicita = $request->session()->get('sede');
-          $lab->usuario = 1;
+          $lab->usuario = Auth::user()->id;
           $lab->id_sede_solicitada = 1;
           $lab->estatus = 'Solicitado';
           $lab->save();

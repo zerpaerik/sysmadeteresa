@@ -131,6 +131,10 @@
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
+
+      <li>
+        <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
+      </li>
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
@@ -718,6 +722,27 @@
   </li>
 
  @elseif(\Auth::user()->role_id == 7)
+
+ <li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-refresh"></i>
+    <span class="hidden-xs">Existencias</span>
+  </a>
+  <ul class="dropdown-menu">
+
+    <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Requerimientos</a>
+        <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('requerimientos.index')}}"><i class="fa fa-plus-square-o"></i> Enviados</a>
+          </li>
+
+        </ul>      
+    </li>
+
+  </ul>
+</li>
  
  <li class="dropdown">
     <a href="#" class="dropdown-toggle">
