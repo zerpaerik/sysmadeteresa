@@ -136,7 +136,13 @@ Route::post('control/create', 'PrenatalController@createControl')->middleware('a
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
 Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.search')->middleware('auth');
 
-
+Route::get('metodos', 'MetodosController@index')->name('metodos.index')->middleware('auth');
+Route::get('metodos-create', 'MetodosController@createView')->name('metodos.create')->middleware('auth');
+Route::post('metodos/create', 'MetodosController@create')->middleware('auth');
+Route::get('metodos/{id}', 'MetodosController@delete')->middleware('auth');
+Route::get('metodos-edit-{id}', 'MetodosController@editView')->name('metodos.edit');
+Route::post('metodos/edit', 'MetodosController@edit');
+Route::get('metodos-delete-{id}','MetodosController@delete');
 /**
  * Atenciones
  */
@@ -322,6 +328,7 @@ Route::post('entrada', 'Existencias\ProductoController@entrada');
 
 Route::get('requerimientos', 'Existencias\RequerimientosController@index')->name('requerimientos.index')->middleware('auth');
 Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->name('requerimientos.index2')->middleware('auth');
+Route::get('requerimientos2', 'Existencias\RequerimientosController@index3')->name('requerimientos.index3')->middleware('auth');
 Route::get('requerimientos-search', 'Existencias\RequerimientosController@search')->name('requerimientos.search')->middleware('auth');
 Route::get('requerimientos-create', 'Existencias\RequerimientosController@createView')->name('requerimientos.create')->middleware('auth');
 Route::post('requerimientos/create', 'Existencias\RequerimientosController@create')->middleware('auth');

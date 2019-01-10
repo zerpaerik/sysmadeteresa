@@ -603,6 +603,7 @@ class AtencionesController extends Controller
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','1')
+                    ->orderBy('lastname','asc')
                     ->get();  
 
     return view('movimientos.atenciones.personal', compact('personal'));
@@ -614,6 +615,7 @@ class AtencionesController extends Controller
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','2')
+                    ->orderBy('lastname','asc')
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));

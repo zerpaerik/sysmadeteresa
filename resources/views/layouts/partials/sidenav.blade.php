@@ -69,6 +69,10 @@
           <li>
             <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
           </li>
+
+          <li>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
+          </li>
 @endif
 
 
@@ -183,6 +187,18 @@
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
       </li>                  
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>          
     </ul>
   </li>
   <li class="dropdown">
@@ -467,6 +483,17 @@
       </li>                  
     </ul>
   </li>
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>          
+    </ul>
+  </li>
  <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-copy"></i>
@@ -654,7 +681,7 @@
     </ul>
   </li>
   
-   <li class="dropdown">
+<li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
@@ -665,13 +692,27 @@
       </li>
       <li>
         <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li>  
-	   <li>
-        <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
+      </li> 
+      <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
+      </li>        
+     <li>
+        <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>          
     </ul>
   </li>
   <li class="dropdown">
@@ -686,6 +727,18 @@
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
       </li>                  
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>          
     </ul>
   </li>
  <li class="dropdown">

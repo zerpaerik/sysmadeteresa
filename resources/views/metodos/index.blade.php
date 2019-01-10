@@ -9,9 +9,12 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Requerimientos/Recibidos</span>
+					<span>Métodos Anticonceptivos</span>
+					<a href="{{route('metodos.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
+
+
 				<div class="box-icons">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -23,9 +26,11 @@
 						<i class="fa fa-times"></i>
 					</a>
 				</div>
+
 				<div class="no-move"></div>
+				
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['requerimientos.index2']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['metodos.index']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
@@ -54,37 +59,57 @@
 
 				</div>
 			</div>	
+
+		
+
+
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Solicitado Por:</th>
-							<th>Usuario Solicitante</th>
-							<th>Producto</th>
-							<th>Cantidad Solicitada</th>
-							<th>Estatus</th>
-							<th>Fecha</th>
-							<th>Cantidad a Entregar</th>
-						
+							<th>Fecha de Registro</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Método</th>
+							<th>Monto</th>
+							<th>Próxima Aplicación</th>
+						    <th>Registrado Por:</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($requerimientos2 as $req)					
+                          @foreach($metodos as $atec)	
 
-						<tr>
-								<td>{{$req->sede}}</td>
-								<td>{{$req->solicitante}}</td>
-								<td>{{$req->nombre}}</td>
-							    <td>{{$req->cantidad}}</td>
-								<td>{{$req->estatus}}</td>
-								<td>{{$req->created_at}}</td>
-							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
-						
+							<tr>
+								<td>{{$atec->created_at}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->dni}}</td>
+								<td>{{$atec->producto}}</td>
+								<td>{{$atec->monto}}</td>
+								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
+								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								<td>
+							    <a href="metodos-edit-{{$atec->id}}" class="btn btn-primary">Editar</a>
+							    <a href="metodos-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+								</td>
 							</tr>
 						@endforeach
-				
 					</tbody>
-					
+					<tfoot>
+						<tr>
+							<th>Fecha de Registro</th>
+							<th>Paciente</th>
+							<th>DNI</th>
+							<th>Método</th>
+							<th>Monto</th>
+							<th>Próxima Aplicación</th>
+						    <th>Registrado Por:</th>
+							<th>Acciones</th>
+						</tr>
+						  
+
+					</tfoot>
+
 				</table>
 			</div>
 		</div>

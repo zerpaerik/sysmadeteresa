@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Requerimientos/Recibidos</span>
+					<span>Requerimientos/Procesados</span>
 
 				</div>
 				<div class="box-icons">
@@ -25,7 +25,8 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['requerimientos.index2']]) !!}
+
+			{!! Form::open(['method' => 'get', 'route' => ['requerimientos.index3']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
@@ -53,7 +54,7 @@
 					{!! Form::close() !!}
 
 				</div>
-			</div>	
+			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -62,24 +63,24 @@
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
 							<th>Cantidad Solicitada</th>
+						    <th>Cantidad Entregada</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
-							<th>Cantidad a Entregar</th>
 						
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($requerimientos2 as $req)					
+						@foreach($requerimientos3 as $req)					
 
 						<tr>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
 							    <td>{{$req->cantidad}}</td>
+							    <td>{{$req->cantidadd}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
-							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
-						
+							   	
 							</tr>
 						@endforeach
 				
