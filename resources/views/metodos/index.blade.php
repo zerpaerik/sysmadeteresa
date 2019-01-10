@@ -70,6 +70,7 @@
 							<th>Fecha de Registro</th>
 							<th>Paciente</th>
 							<th>DNI</th>
+							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
 							<th>Próxima Aplicación</th>
@@ -84,6 +85,7 @@
 								<td>{{$atec->created_at}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->dni}}</td>
+								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->monto}}</td>
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
@@ -100,12 +102,12 @@
 							<th>Fecha de Registro</th>
 							<th>Paciente</th>
 							<th>DNI</th>
+							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
 							<th>Próxima Aplicación</th>
 						    <th>Registrado Por:</th>
 							<th>Acciones</th>
-						</tr>
 						  
 
 					</tfoot>

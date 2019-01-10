@@ -26,7 +26,7 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -37,7 +37,7 @@ class MetodosController extends Controller
       } else {
 
       	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
