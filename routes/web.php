@@ -137,12 +137,15 @@ Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->midd
 Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.search')->middleware('auth');
 
 Route::get('metodos', 'MetodosController@index')->name('metodos.index')->middleware('auth');
+Route::get('metodos1', 'MetodosController@index1')->name('metodos.index1')->middleware('auth');
 Route::get('metodos-create', 'MetodosController@createView')->name('metodos.create')->middleware('auth');
 Route::post('metodos/create', 'MetodosController@create')->middleware('auth');
 Route::get('metodos/{id}', 'MetodosController@delete')->middleware('auth');
 Route::get('metodos-edit-{id}', 'MetodosController@editView')->name('metodos.edit');
 Route::post('metodos/edit', 'MetodosController@edit');
 Route::get('metodos-delete-{id}','MetodosController@delete');
+Route::get('metodos-llamar-{id}','MetodosController@llamar');
+
 /**
  * Atenciones
  */

@@ -31,7 +31,7 @@ class MetodosController extends Controller
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
 		->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-        ->orderBy('a.created_at','desc')
+        ->orderBy('a.created_at','asc')
         ->get(); 
 
       } else {
@@ -41,7 +41,7 @@ class MetodosController extends Controller
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
-        ->orderBy('a.created_at','desc')
+        ->orderBy('a.created_at','asc')
         ->get(); 
 
 
@@ -53,20 +53,42 @@ class MetodosController extends Controller
     }
 
 
+    public function index1(Request $request){
+
+
+
+        $metodos = DB::table('metodos as a')
+            ->select('a.id','a.id_paciente','a.id_usuario','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+           ->join('users as c','c.id','a.id_usuario')
+           ->join('pacientes as b','b.id','a.id_paciente')
+           ->join('productos as d','d.id','a.id_producto')
+           ->where('a.proximo','=',Carbon::today()->toDateString())
+            ->orderBy('a.created_at','asc')
+            ->get(); 
+
+    
+
+
+      return view('metodos.index1', ['metodos' => $metodos]);     
+    }
+
+
+
 	public function create(Request $request){
 
 
          $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));
 
  
-		  $metodos = new Metodos();
-          $metodos->id_paciente =$request->paciente;
-          $metodos->id_producto =$request->producto;
-		  $metodos->monto =$request->monto;
-		  $metodos->proximo = $proximo;
-          $metodos->id_usuario = \Auth::user()->id;
-		  $metodos->sede = $request->session()->get('sede');
-          $metodos->save();
+         $metodos = new Metodos();
+         $metodos->id_paciente =$request->paciente;
+         $metodos->id_producto =$request->producto;
+         $metodos->monto =$request->monto;
+         $metodos->proximo = $proximo;
+         $metodos->estatus ='No Llamado';
+         $metodos->id_usuario = \Auth::user()->id;
+         $metodos->sede = $request->session()->get('sede');
+         $metodos->save();
 
 
           $credito = Creditos::create([
@@ -95,6 +117,23 @@ class MetodosController extends Controller
 
 
     return redirect()->action('MetodosController@index', ["deleted" => true, "metodo" => Metodos::all()]);
+  }
+
+
+    public function llamar($id){
+
+
+      DB::table('metodos')
+            ->where('id',$id)
+            ->update([
+              'estatus' =>'Fue Llamado'
+            ]);
+
+  
+    Toastr::success('Llamado Exitosamente.', 'Paciente!', ['progressBar' => true]);
+
+
+    return redirect()->action('MetodosController@index1', ["deleted" => true, "metodo" => Metodos::all()]);
   }
 
   public function createView() {
