@@ -32,12 +32,11 @@
 						<label class="col-sm-1 control-label">Especialistas</label>
 						<div class="col-sm-3">
 							<select id="el1" name="especialista">
-								@foreach($especialistas as $especialista)
-									<option value="{{$especialista->id}}">
-										{{$especialista->name}} {{$especialista->lastname}}
-										/ {{$especialista->dni}}
-									</option>
-								@endforeach
+									<option value="33">ALEX CALERO</option>
+						            <option value="19">JENNY MOLINA</option>
+									<option value="35">ROSA GOLINDARO</option>
+									<option value="36">OTROS</option>
+
 							</select>
 						</div>
 
