@@ -100,6 +100,27 @@ class MetodosController extends Controller
 		        "id_metodo" => $metodos->id
 		      ]);
 
+         $searchproducto = DB::table('productos')
+        ->select('*')
+                   // ->where('estatus','=','1')
+        ->where('id','=', $request->producto)
+        ->first();
+
+
+
+        $cantidad = $searchproducto->cantidad;
+
+      
+
+
+
+      DB::table('productos')
+            ->where('id',$request->producto)
+            ->update([
+              'cantidad' => $cantidad - 1,
+            ]);
+    
+
 
         Toastr::success('Registrado Exitosamente.', 'Método!', ['progressBar' => true]);
 
