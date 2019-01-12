@@ -26,21 +26,23 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
 		->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+    ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
         ->get(); 
 
       } else {
 
       	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
         ->get(); 
 
@@ -58,10 +60,11 @@ class MetodosController extends Controller
 
 
         $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.id_usuario','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+            ->select('a.id','a.id_paciente','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
            ->join('users as c','c.id','a.id_usuario')
            ->join('pacientes as b','b.id','a.id_paciente')
            ->join('productos as d','d.id','a.id_producto')
+          ->where('a.sede','=',$request->session()->get('sede'))
            ->where('a.proximo','=',Carbon::today()->toDateString())
             ->orderBy('a.created_at','asc')
             ->get(); 

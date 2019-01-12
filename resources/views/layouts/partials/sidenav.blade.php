@@ -495,7 +495,11 @@
     <ul class="dropdown-menu">
       <li>
         <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
-      </li>          
+      </li>  
+
+      <li>
+        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
+      </li>           
     </ul>
   </li>
  <li class="dropdown">
@@ -716,7 +720,10 @@
     <ul class="dropdown-menu">
       <li>
         <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
-      </li>          
+      </li>  
+      <li>
+        <a href="{{route('metodos.index1')}}"><i class="fa fa-plus-circle"></i> Pacientes por Llamar</a>
+      </li>           
     </ul>
   </li>
   <li class="dropdown">
@@ -833,6 +840,18 @@
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
       </li>                  
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-bell"></i>
+      <span class="hidden-xs">Métodos Anticonceptivos</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('metodos.index')}}"><i class="fa fa-plus-circle"></i>Listar Métodos</a>
+      </li>          
     </ul>
   </li>
   <li class="dropdown">
