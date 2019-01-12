@@ -15,6 +15,9 @@
 	<p>Fecha de nacimiento: {{$data->fechanac}}</p>
 	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
 	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
+    <p>Edad del paciente: {{$edad}} años</p>	
+
+
 	<br>	
 
 	@if($historial)
@@ -106,6 +109,7 @@
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
 		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
 				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+
 
 				<br>
 			</div>

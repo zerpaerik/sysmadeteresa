@@ -116,6 +116,7 @@ class EventController extends Controller
     ->where('e.id','=',$id)
     ->first();
 
+    $edad = Carbon::parse($event->fechanac)->age;
     $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
     $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
     $personal = Personal::where('estatus','=',1)->get();
@@ -127,7 +128,8 @@ class EventController extends Controller
       'consultas' => $consultas,
       'personal' => $personal,
 	  'productos' => $productos,
-      'ciex' => $ciex
+      'ciex' => $ciex,
+      'edad' => $edad
     ]);
   }
 
