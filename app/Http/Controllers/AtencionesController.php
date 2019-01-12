@@ -39,8 +39,8 @@ class AtencionesController extends Controller
     ->whereDate('a.created_at', '=',$request->fecha)
    // ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->orderby('a.id','desc')
-    ->paginate(100000);
+    ->orderby('a.id','ASC')
+    ->get();
  } else {
 
 
@@ -55,8 +55,8 @@ class AtencionesController extends Controller
     ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
    // ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->orderby('a.id','desc')
-    ->paginate(100000);
+    ->orderby('a.id','ASC')
+    ->get();
 
 
 
