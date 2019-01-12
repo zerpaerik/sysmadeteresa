@@ -37,6 +37,8 @@
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
+						    <th>Fecha</th>
+							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Monto Pendiente</th>
@@ -49,6 +51,14 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->created_at}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->pendiente}}</td>
@@ -66,6 +76,8 @@
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
+						    <th>Fecha</th>
+							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Monto Pendiente</th>
