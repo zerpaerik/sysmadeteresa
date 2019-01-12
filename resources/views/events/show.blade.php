@@ -105,7 +105,7 @@
 				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
 		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->obervaciones }}</p>
+				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
 
 				<br>
 			</div>
