@@ -28,6 +28,7 @@ class PersonalController extends Controller
         ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
 		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
+        ->orderBy('a.id','DESC')
         ->get();  
 		
       return view('archivos.personal.index', ['personal' => $personal]);  
