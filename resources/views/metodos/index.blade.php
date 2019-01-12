@@ -91,6 +91,7 @@
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>
+							    <a target="_blank" href="metodos-ticket-ver-{{$atec->id}}" class="btn btn-success">Ver Ticket</a>
 							    <a href="metodos-edit-{{$atec->id}}" class="btn btn-primary">Editar</a>
 							    <a href="metodos-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 								</td>

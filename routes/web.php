@@ -145,6 +145,8 @@ Route::get('metodos-edit-{id}', 'MetodosController@editView')->name('metodos.edi
 Route::post('metodos/edit', 'MetodosController@edit');
 Route::get('metodos-delete-{id}','MetodosController@delete');
 Route::get('metodos-llamar-{id}','MetodosController@llamar');
+Route::get('metodos-ticket-ver-{id}','MetodosController@ticket_ver');
+
 
 /**
  * Atenciones

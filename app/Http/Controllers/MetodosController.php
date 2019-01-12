@@ -72,6 +72,23 @@ class MetodosController extends Controller
       return view('metodos.index1', ['metodos' => $metodos]);     
     }
 
+  public function ticket_ver($id) 
+  {
+    $metodos = DB::table('metodos as a')
+            ->select('a.id','a.id_paciente','a.id_usuario','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+           ->join('users as c','c.id','a.id_usuario')
+           ->join('pacientes as b','b.id','a.id_paciente')
+           ->join('productos as d','d.id','a.id_producto')
+            ->where('a.id','=',$id)
+            ->first();
+
+    $view = \View::make('metodos.ticket')->with('metodos', $metodos);
+    $pdf = \App::make('dompdf.wrapper');
+   /// $pdf->setPaper('A5', 'landscape');
+    $pdf->loadHTML($view);
+    
+    return $pdf->stream('ticket_ver');
+  }
 
 
 	public function create(Request $request){
