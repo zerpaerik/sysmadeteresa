@@ -439,9 +439,9 @@ class AtencionesController extends Controller
               $s->id_paquete = 1;
               $s->comollego = $request->comollego;
               $s->es_paquete =  FALSE;
-			  $s->es_servicio =  1;
+			        $s->es_servicio =  1;
               $s->es_laboratorio =  FALSE;
-			  $s->serv_prog = FALSE;
+			        $s->serv_prog = FALSE;
               $s->tipopago = $request->tipopago;
               $s->porc_pagar = 0;
               $s->pendiente = 0;

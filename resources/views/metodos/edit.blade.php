@@ -57,7 +57,7 @@
 						<input type="hidden" name="id" value="{{$id}}">
 
 						<div class="col-sm-8">
-							<input type="submit" class="col-sm-2 btn btn-primary" value="Editar">
+							<input type="button" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Editar">
 							<a href="{{route('metodos.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			

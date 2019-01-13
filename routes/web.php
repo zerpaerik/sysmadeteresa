@@ -95,9 +95,11 @@ Route::get('pacientes-search', 'Archivos\PacientesController@search')->name('pac
 Route::get('pacientes-create', 'Archivos\PacientesController@createView')->name('pacientes.create')->middleware('auth');
 Route::get('pacientes-create2', 'Archivos\PacientesController@createView2')->name('pacientes.create2')->middleware('auth');
 Route::get('pacientes-create3', 'Archivos\PacientesController@createView3')->name('pacientes.create3')->middleware('auth');
+Route::get('pacientes-create4', 'Archivos\PacientesController@createView4')->name('pacientes.create4')->middleware('auth');
 Route::post('pacientes/create', 'Archivos\PacientesController@create')->middleware('auth');
 Route::post('pacientes/create2', 'Archivos\PacientesController@create2')->middleware('auth');
 Route::post('pacientes/create3', 'Archivos\PacientesController@create3')->middleware('auth');
+Route::post('pacientes/create4', 'Archivos\PacientesController@create4')->middleware('auth');
 Route::get('pacientes/{id}', 'Archivos\PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'Archivos\PacientesController@editView')->name('pacientes.edit');
 Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
@@ -379,11 +381,16 @@ Route::post('consulta/create', 'Events\EventController@create');
 Route::post('consulta/edit', 'Events\EventController@edit_consulta');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
+Route::post('observacion/edit','ConsultaController@edit')->name('observacions.edit');
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
 Route::get('historias-search', 'ConsultaController@searchh')->name('historias.search')->middleware('auth');
 Route::get('historias-{id}','ConsultaController@show');
+Route::get('historiasp', 'ConsultaController@indexp')->name('historias.indexp')->middleware('auth');
+Route::get('historiasp-edit-{id}','ConsultaController@editview')->name('historiasp.edit')->middleware('auth');
+
+
 
 //Servicios
 Route::match(['get', 'post'],'services','ServiceController@index')->name('service.index');

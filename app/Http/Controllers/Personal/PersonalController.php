@@ -101,14 +101,28 @@ class PersonalController extends Controller
 
    		]);
 
+    if($request->tipo == 'Tecnologo'){
+
     $users= User::create([
         'name' => $request->name,
         'lastname' => $request->lastname,
         'tipo' => '1',
-        'dni' => $request->dni
+        'dni' => $request->dni,
+        'tec' => 1
 
       ]);
-	  
+	  } else {
+
+       $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->lastname,
+        'tipo' => '1',
+        'dni' => $request->dni,
+
+      ]);
+
+
+    }
 	
 	  
 	      $historial = new Historiales();

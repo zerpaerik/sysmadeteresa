@@ -86,7 +86,7 @@
 								
 								
 								<div class="col-md-12">
-									<button type="submit" class="btn btn-success">
+									<button type="button" onclick="form.submit()" class="btn btn-success">
 										<i class="ti-save pdd-right-5"></i>
 										<span>Guardar</span>
 									</button>

@@ -22,7 +22,7 @@
 			</div>
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="pacientes/create">
+				<form class="form-horizontal" role="form" method="post" action="pacientes/create4">
 					{{ csrf_field() }}
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombres</label>
@@ -103,7 +103,7 @@
 						<br>
 						<input type="button" onclick="form.submit()" style="margin-left:20px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
 
-						<a href="{{route('pacientes.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-danger">Volver</a>
+						<a href="{{route('metodos.create')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-danger">Volver</a>
 					</div>			
 				</form>	
 			</div>
