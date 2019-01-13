@@ -190,6 +190,120 @@
                                     <option value="RENAL QT SIMPLE.docx">RENAL QT SIMPLEL</option>
                                     <option value="RENAL Y VIAS URINARIAS.docx">RENAL Y VIAS URINARIAS</option>
 
+                                    <option value="RX. ANTEBRAZO NRML.docx">RX. ANTEBRAZO NRML</option>
+                                    <option value="RX. BRAZO NRML.docx">RX. BRAZO NRML</option>
+                                    <option value="RX. CADERA NRML.docx">RX. CADERA NRML</option>
+                                    <option value="RX. CALCANEO ESPOLON.docx">RX. CALCANEO ESPOLON</option>
+                                    <option value="RX. CALCANEOS.docx">RX. CALCANEOS</option>
+                                    <option value="RX. CAVUM HIPERTROFIA.docx">RX. CAVUM HIPERTROFIA</option>
+                                    <option value="RX. CAVUM.docx">RX. CAVUM</option>
+                                    <option value="RX. CLAVICULA NRML.docx">RX. CLAVICULA NRML</option>
+                                    <option value="RX. CODO.docx">RX. CODO</option>
+                                    <option value="RX. COLUMNA CERV NRML.docx">RX. COLUMNA CERV NRML</option>
+                                    <option value="RX. COLUMNA CERVICAL ESPOND.docx">RX. COLUMNA CERVICAL ESPOND</option>
+                                    <option value="RX. COLUMNA DORSAL ESPOND, ESC.docx">RX. COLUMNA DORSAL ESPOND, ESC</option>
+                                    <option value="RX. COLUMNA DORSAL NRML.docx">RX. COLUMNA DORSAL NRML</option>
+                                    <option value="RX. COLUMNA DORSOLUMBAR ESPONDILOSIS, ESCOLIOSIS.docx">RX. COLUMNA DORSOLUMBAR ESPONDILOSIS, ESCOLIOSIS</option>
+                                    <option value="RX. COLUMNA LUMB SACRA NRML.docx">RX. COLUMNA LUMB SACRA NRML</option>
+                                    <option value="RX. COLUMNA LUMB SACRA PINZ L5 S1.docx">RX. COLUMNA LUMB SACRA PINZ L5 S1</option>
+                                    <option value="RX. COLUMNA LUMBO SACRA ESPOND.docx">RX. COLUMNA LUMBO SACRA ESPOND</option>
+                                    <option value="RX. COLUMNA SACRO COXIS NRML.docx">RX. COLUMNA SACRO COXIS NRML</option>
+                                    <option value="RX. CRANEO.docx">RX. CRANEO</option>
+                                    <option value="RX. FEMUR NRML.docx">RX. FEMUR NRML</option>
+                                    <option value="RX. HOMBRO.docx">RX. HOMBRO</option>
+                                    <option value="RX. HPN FX.docx">RX. HPN FX</option>
+                                    <option value="RX. MANO EDAD OSEA NRML.docx">RX. MANO EDAD OSEA NRML</option>
+                                    <option value="RX. MANO.docx">RX. MANO</option>
+                                    <option value="RX. MUÑECA NRML.docx">RX. MUÑECA NRML</option>
+                                    <option value="RX. PARRILLA COSTAL NRML.docx">RX. PARRILLA COSTAL NRML</option>
+                                    <option value="RX. PELVIS AP DISPLASIA NEGAT.docx">RX. PELVIS AP DISPLASIA NEGAT</option>
+                                    <option value="RX. PELVIS AP NRML.docx">RX. PELVIS AP NRML</option>
+                                    <option value="RX. PIE.docx">RX. PIE</option>
+                                    <option value="RX. PIERNA NRML.docx">RX. PIERNA NRML</option>
+                                    <option value="RX. RODILLA.docx">RX. RODILLA</option>
+                                    <option value="RX. SIMPLE DE ABDOMEN.docx">RX. SIMPLE DE ABDOMEN</option>
+                                    <option value="RX. SPN PROCESO ALERGICO.docx">RX. SPN PROCESO ALERGICO</option>
+                                    <option value="RX. SPN RINOSINUSITIS.docx">RX. SPN RINOSINUSITIS</option>
+                                    <option value="RX. SPN SINUSOPATIA.docx">RX. SPN SINUSOPATIA</option>
+                                    <option value="RX. SPN.docx">RRX. SPN</option>
+                                    <option value="RX. TOBILLO.docx">RX. TOBILLO</option>
+                                    <option value="RX. TORAX ATELECTASIA.docx">RX. TORAX ATELECTASIA</option>
+                                    <option value="RX. TORAX DERRAME PLEURAL.docx">RX. TORAX DERRAME PLEURAL</option>
+                                    <option value="RX. TORAX FIBROSIS PULMONAR.docx">RX. TORAX FIBROSIS PULMONAR</option>
+                                    <option value="RX. TORAX INFLAMT BRONQ.docx">RX. TORAX INFLAMT BRONQ</option>
+                                    <option value="RX. TORAX NRML NIÑO.docx">RX. TORAX NRML NIÑO</option>
+                                    <option value="RX. TORAX NRML.docx">RX. TORAX NRML</option>
+                                    <option value="RX. TORAX PEP.docx">RX. TORAX PEP</option>
+                                    <option value="RX. TORAX SECUELAS DE PEP.docx">RX. TORAX SECUELAS DE PEP</option>
+
+                                    <option value="ACIDO URICO.docx">ACIDO URICO</option>
+                                    <option value="AGLUTINACIONES.docx">AGLUTINACIONES</option>
+                                    <option value="ALFA FETOPROTEINAS.docx">ALFA FETOPROTEINASsss</option>
+                                    <option value="AMILASA SERICA.docx">AMILASA SERICA</option>
+                                    <option value="ASO.docx">ASO</option>
+                                    <option value="BETA HCG(cuantitativo).docx">BETA HCG(cuantitativo)</option>
+                                    <option value="BK-SERIADO.docx">BK-SERIADO</option>
+                                    <option value="CAMPAÑA.docx">CAMPAÑA</option>
+                                    <option value="COLESTEROL TOTAL.docx">COLESTEROL TOTAL</option>
+                                    <option value="COPROFUNCIONAL.docx">COPROFUNCIONAL</option>
+                                    <option value="CPK-MB.docx">CPK-MB</option>
+                                    <option value="CREATININA.docx">CREATININA</option>
+                                    <option value="CULTIVO SECRECION.docx">CULTIVO SECRECION</option>
+                                    <option value="DOSAJE DE POTASIO.docx">DOSAJE DE POTASIO</option>
+                                    <option value="EX. COMPLETO DE ORINA.docx">EX. COMPLETO DE ORINA</option>
+                                    <option value="EXTRADIOL.docx">EXTRADIOL</option>
+                                    <option value="FTA.docx">FTA</option>
+                                    <option value="GLOCOSA POST PANDRIAL.docx">GLOCOSA POST PANDRIAL</option>
+                                    <option value="GLOCOSA.docx">GLOCOSA</option>
+                                    <option value="GLU - COLT - TRIG.docx">GLU - COLT - TRIG</option>
+                                    <option value="GRUPO SANGUINEO.docx">GRUPO SANGUINEO</option>
+                                    <option value="HEMOGLOBINA GLUCOSILADA.docx">HEMOGLOBINA GLUCOSILADA</option>
+                                    <option value="HEPATITIS B.docx">HEPATITIS B</option>
+                                    <option value="HIV.docx">HIV</option>
+                                    <option value="LIPASA.docx">LIPASA</option>
+                                    <option value="PARASITO SERIADO.docx">PARASITO SERIADO</option>
+                                    <option value="PARASITOLOGICO SIMPLE.docx">PARASITOLOGICO SIMPLE</option>
+                                    <option value="PCR.docx">PCR</option>
+                                    <option value="PERFIL DE COAGULACION.docx">PERFIL DE COAGULACION</option>
+                                    <option value="PERFIL HEPATICO.docx">PERFIL HEPATICO</option>
+                                    <option value="PERFIL LIPIDICO.docx">PERFIL LIPIDICOs</option>
+                                    <option value="PERFIL OBSTETRICO.docx">PERFIL OBSTETRICO</option>
+                                    <option value="PERFIL TIROIDEO.docx">PERFIL TIROIDEO</option>
+                                    <option value="PROTENURIA.docx">PROTENURIA</option>
+                                    <option value="PSA TOTAL.docx">PSA TOTAL</option>
+                                    <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
+                                    <option value="RPR.docx">RPR</option>
+                                    <option value="RX.INFLAMATORIO.docx">RX.INFLAMATORIO</option>
+                                    <option value="SECRECION VAGINAL.docx">SECRECION VAGINAL</option>
+                                    <option value="TEST DE GRAHAM.docx">TEST DE GRAHAM</option>
+                                    <option value="THEVENON.docx">THEVENON</option>
+                                    <option value="TIEMPO DE COAGULACION - TIEMPO DE SANGRIA.docx">TIEMPO DE COAGULACION - TIEMPO DE SANGRIA</option>
+                                    <option value="TRIGLICERIDOS.docx">TRIGLICERIDOS</option>
+                                    <option value="TSH.docx">TSH</option>
+                                    <option value="UREA.docx">UREA</option>
+                                    <option value="UROCULTIVO NEGATIVO.docx">UROCULTIVO NEGATIVO</option>
+                                    <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
+                                    <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
+                                    <option value="VSG.docx">VSG</option>
+
+
+
+
+
+
+
+
+
+
+                                 
+
+
+
+
+
+
+
+
 
 
 
