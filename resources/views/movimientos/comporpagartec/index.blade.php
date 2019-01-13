@@ -93,7 +93,7 @@
 								<td>{{$atec->porc_pagar}}</td>
 								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
+								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
 					</tbody>
