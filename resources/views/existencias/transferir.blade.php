@@ -69,7 +69,7 @@
 						</div>
 
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+							<input type="button" onclick="forma.submit()" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>						
 
 						<input type="hidden" name="id" id="idp">

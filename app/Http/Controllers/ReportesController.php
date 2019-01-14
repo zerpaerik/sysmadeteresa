@@ -165,7 +165,7 @@ class ReportesController extends Controller
         $ticket =ReportesController::verTicket($id);
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->setPaper('A5', 'landscape');
+        //$pdf->setPaper('A5', 'landscape');
 		//$pdf->setPaper(array(0,0,600.00,360.00));
         $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
@@ -246,7 +246,16 @@ class ReportesController extends Controller
             $tarjeta->monto = 0;
         }
 
-        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto;
+          $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($metodos->cantidad == 0) {
+            $metodos->monto = 0;
+        }
+
+        $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
 
         $totalEgresos = 0;
 
@@ -254,13 +263,13 @@ class ReportesController extends Controller
             $totalEgresos += $egreso->monto;
         }
 
-        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos'));
+        $view = \View::make('reportes.diario', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar', 'egresos', 'tarjeta', 'efectivo', 'totalEgresos', 'totalIngresos','metodos'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
      
        
-        return $pdf->download('diario_'.$request->fecha.'.pdf');
+        return $pdf->stream('diario_'.$request->fecha.'.pdf');
 
     }
 
@@ -473,18 +482,36 @@ class ReportesController extends Controller
                                     ->where('id_sede','=', $request->session()->get('sede'))
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
+
+          $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->orderBy('a.created_at','desc')
+        ->get(); 
+
+
+        $totalmetodos = Creditos::where('origen','METODOS ANTICONCEPTIVOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+
     
     
      
 
        
-        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes'));
+        $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes','metodos','totalmetodos'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
      
        
-        return $pdf->download('detallado'.$request->fecha.'.pdf');
+        return $pdf->stream('detallado'.$request->fecha.'.pdf');
 
     }
 

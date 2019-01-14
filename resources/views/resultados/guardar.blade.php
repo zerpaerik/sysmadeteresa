@@ -35,8 +35,8 @@
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Materiales</label>
                     <div class="col-sm-4">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratoriop[laboratorios][#index#][laboratorio]" class="selectLab form-control">
-                        <option value="1">Seleccionar Material</option>
+                      <select id="laboratorios_#index#_laboratorio" name="material[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="">Seleccionar Material</option>
                         @foreach($productos as $pac)
                           <option value="{{$pac->id}}">
                             {{$pac->nombre}}
@@ -86,7 +86,7 @@
 								
 								
 								<div class="col-md-12">
-									<button type="submit" class="btn btn-success">
+									<button type="button" onclick="form.submit()" class="btn btn-success">
 										<i class="ti-save pdd-right-5"></i>
 										<span>Guardar</span>
 									</button>

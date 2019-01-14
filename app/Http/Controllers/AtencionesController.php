@@ -24,47 +24,62 @@ class AtencionesController extends Controller
 {
 
 	public function index(Request $request){
+    $initial = Carbon::now()->toDateString();
+    $atenciones = $this->elasticSearch($initial,'','',$request);
+    return view('movimientos.atenciones.index', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "model1" => "ticket",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+      "actions" => [
+        '<button type="button" class="btn btn-info">Transferir</button>',
+        '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]); 
 
-   // $fechahoy = Carbon::today()->toDateString();
-    if(! is_null($request->fecha)) {
+  }
 
-    $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->whereDate('a.created_at', '=',$request->fecha)
-   // ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial), date('Y-m-d 23:59:59', strtotime($initial))])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->orderby('a.id','desc')
-    ->paginate(100000);
- } else {
+    public function search(Request $request){
 
+    $search = $request->nom;
+    $split = explode(" ",$search);
 
-  $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
-   // ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial), date('Y-m-d 23:59:59', strtotime($initial))])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->orderby('a.id','desc')
-    ->paginate(100000);
+    if (!isset($split[1])) {
+     
+      $split[1] = '';
+      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1],$request);
+      
+      return view('movimientos.atenciones.search', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "model1" => "ticket",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]); 
+    }else{
+      $atenciones = $this->elasticSearch($request->inicio,$split[0],$split[1],$request);  
 
+      return view('movimientos.atenciones.search', [
+      "icon" => "fa-list-alt",
+      "model" => "atenciones",
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "data" => $atenciones,
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+        "actions" => [
+          '<button type="button" class="btn btn-info">Transferir</button>',
+          '<button type="button" class="btn btn-warning">Editar</button>'
+        ]
+    ]);         
+    }      
+  }
 
-
- }
-
-    return view('movimientos.atenciones.index', ['atenciones' => $atenciones]); 
-
-	}
 
    
 
@@ -424,9 +439,9 @@ class AtencionesController extends Controller
               $s->id_paquete = 1;
               $s->comollego = $request->comollego;
               $s->es_paquete =  FALSE;
-			  $s->es_servicio =  1;
+			        $s->es_servicio =  1;
               $s->es_laboratorio =  FALSE;
-			  $s->serv_prog = FALSE;
+			        $s->serv_prog = FALSE;
               $s->tipopago = $request->tipopago;
               $s->porc_pagar = 0;
               $s->pendiente = 0;
@@ -603,6 +618,7 @@ class AtencionesController extends Controller
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','1')
+                    ->orderBy('lastname','asc')
                     ->get();  
 
     return view('movimientos.atenciones.personal', compact('personal'));
@@ -614,6 +630,7 @@ class AtencionesController extends Controller
                     ->select('*')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','2')
+                    ->orderBy('lastname','asc')
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));
@@ -687,7 +704,7 @@ class AtencionesController extends Controller
     }
   }
 
-  private function elasticSearch(Request $request)
+  /*private function elasticSearch(Request $request)
   {
     $atenciones = DB::table('atenciones as a')
     ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
@@ -703,6 +720,28 @@ class AtencionesController extends Controller
     ->paginate(20);
 	
 	
+
+    return $atenciones;
+  }*/
+
+    private function elasticSearch($initial,$nombre,$apellido,Request $request)
+  {
+    $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->whereNotIn('a.monto',[0,0.00])
+    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
+    ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('b.nombres','like','%'.$nombre.'%')
+    ->where('b.apellidos','like','%'.$apellido.'%')
+    ->orderby('a.id','desc')
+    ->get();
+  
+  
 
     return $atenciones;
   }

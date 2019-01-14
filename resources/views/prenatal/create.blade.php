@@ -453,7 +453,7 @@
 							<br>
 							1 <input type="text" name="otros_cie1_10"><br>
 							2 <input type="text" name="otros_cie2_10"><br>	
-							<input type="submit" class="btn btn-primary" value="Guardar">														
+							<input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">														
 					</div>
 					</div>																																																										
 					</div>

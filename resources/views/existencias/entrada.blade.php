@@ -30,7 +30,7 @@
 
 			<div class="box-content">
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="producto/add">
+				<form class="form-horizontal" role="form" method="post" action="entrada">
 						<div class="form-group">
 						{{ csrf_field() }}
 
@@ -88,7 +88,7 @@
 						</div>
 
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" id="updatepro" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+							<input type="button" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>				
 
 					</form>	
@@ -98,17 +98,7 @@
 		<div class="alert alert-success invisible" id="successalrt" role="alert">Actualizado</div>
 	</div>
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Tipo</th>
-				<th>Producto</th>
-				<th>Cantidad</th>
-			</tr>
-		</thead>
-		<tbody id="table-b">
-		</tbody>
-	</table>
+	
 
 <script type="text/javascript">
 

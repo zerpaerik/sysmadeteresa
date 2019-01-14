@@ -232,6 +232,54 @@ class PacientesController extends Controller
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
   }    
 
+     public function create4(Request $request){
+
+     $validator = \Validator::make($request->all(), [
+          'nombres' => 'required|string|max:255',
+          'apellidos' => 'required|string|max:255',
+          'dni' => 'required|unique:pacientes'
+          
+        ]);
+        if($validator->fails()) {
+        Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
+          return redirect()->action('Archivos\PacientesController@createView3', ['errors' => $validator->errors()]);
+        } else {
+        
+        
+    $pacientes = Pacientes::create([
+        'dni' => $request->dni,
+        'nombres' => $request->nombres,
+        'apellidos' => $request->apellidos,
+        'direccion' => $request->direccion,
+        'referencia' => $request->referencia,
+        'fechanac' => $request->fechanac,
+        'edocivil' => $request->edocivil,
+        'provincia' => $request->provincia,
+        'distrito' => $request->distrito,
+        'telefono' => $request->telefono,
+        'referencia' => $request->referencia,
+        'gradoinstruccion' => $request->gradoinstruccion,
+        'ocupacion' => $request->ocupacion,
+        'estatus' => 1,
+        'usuario' =>  Auth::user()->id,
+        'historia' => HistoriaPacientes::generarHistoria()
+    
+      ]);
+    
+       $historial = new Historiales();
+          $historial->accion ='Registro';
+          $historial->origen ='Paciente';
+      $historial->detalle =$request->dni;
+          $historial->id_usuario = \Auth::user()->id;
+          $historial->save();
+
+     }
+    Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
+    return redirect()->route('metodos.create');
+
+   // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
+  }   
+
   public function delete($id){
     $pacientes = Pacientes::find($id);
     $pacientes->estatus= 0;
@@ -265,6 +313,16 @@ class PacientesController extends Controller
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create3', compact('provincias','distritos','edocivil','gradoinstruccion'));
   }
+
+  public function createView4() {
+ 
+    $provincias = Provincias::all();
+    $distritos = Distritos::all();
+    $edocivil = EdoCivil::all();
+    $gradoinstruccion = GradoInstruccion::all();
+    return view('archivos.pacientes.create4', compact('provincias','distritos','edocivil','gradoinstruccion'));
+  }
+
 
    public function createpac() {
  

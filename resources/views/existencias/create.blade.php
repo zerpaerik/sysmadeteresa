@@ -64,7 +64,7 @@
 						</div>
 
 						<div class="col-sm-8">
-							<input type="submit" class="col-sm-2 btn btn-primary" value="Agregar">
+							<input type="button" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Agregar">
 							<a href="{{route('productos.index')}}" class="col-sm-2 btn btn-danger">Volver</a>
 						</div>
 					</div>			

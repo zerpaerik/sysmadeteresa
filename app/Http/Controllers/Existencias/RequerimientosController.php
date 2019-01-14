@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
 use App\Models\Config\{Sede, Proveedor};
-use Illuminate\Support\Facades\Auth;
 use DB;
 use Toastr;
 use Carbon\Carbon;
+use Auth;
+
 
 
 
@@ -24,13 +25,19 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->where('a.id_sede_solicita', '=', \Session::get("sede"))
+                    ->where('a.usuario','=',Auth::user()->id)
                     ->orderby('a.created_at','desc')
                     ->get();  
 
 			return view('existencias.requerimientos.index',compact('requerimientos'));   	
     }
 
-     public function index2(){
+     public function index2(Request $request){
+
+        if(! is_null($request->fecha)) {
+
+        $f1 = $request->fecha;
+        $f2 = $request->fecha2;  
 
        $requerimientos2 = DB::table('requerimientos as a')
                     ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
@@ -38,11 +45,75 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->where('a.estatus','=','Solicitado')
                     ->orderby('a.created_at','desc')
-                    ->paginate(20);
+                    ->get();
+
+         } else {
+
+          $requerimientos2 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->where('a.estatus','=','Solicitado')
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
+         }           
 
         return view('existencias.requerimientos.index2', ["requerimientos2" => $requerimientos2]);   	
+    }
+
+     public function index3(Request $request){
+
+
+      if(! is_null($request->fecha)) {
+
+        $f1 = $request->fecha;
+        $f2 = $request->fecha2;  
+
+
+
+       $requerimientos3 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('a.estatus','=','Procesado')
+                    ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
+           } else {
+
+
+       $requerimientos3 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.estatus','=','Procesado')
+                    ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
+
+
+           }         
+
+        return view('existencias.requerimientos.index3', ["requerimientos3" => $requerimientos3]);    
     }
 
    
@@ -80,7 +151,7 @@ class RequerimientosController extends Controller
 
 
     public function createView(){
-    	return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->where('almacen','=',1)->get(["id", "nombre"])]);
+    	return view('existencias.requerimientos.create', ["productos" => Producto::where('sede_id','=', 1)->where('almacen','=',1)->orderBy('nombre','asc')->get(["id", "nombre"])]);
     }
 
 
@@ -94,7 +165,7 @@ class RequerimientosController extends Controller
           $lab->id_producto =  $laboratorio['laboratorio'];
           $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];;
           $lab->id_sede_solicita = $request->session()->get('sede');
-          $lab->usuario = 1;
+          $lab->usuario = Auth::user()->id;
           $lab->id_sede_solicitada = 1;
           $lab->estatus = 'Solicitado';
           $lab->save();

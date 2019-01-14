@@ -91,6 +91,11 @@
 			<td>{{ $cuentasXcobrar->monto }}</td>
 		</tr>
 		<tr>
+			<td>Métodos Anticonceptivos</td>
+			<td>{{ $metodos->cantidad }}</td>
+			<td>{{ $metodos->monto }}</td>
+		</tr>
+		<tr>
 			<td>TOTAL</td>
 			<td></td>
 			<td></td>

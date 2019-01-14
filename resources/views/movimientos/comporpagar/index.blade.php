@@ -99,7 +99,7 @@
 								<td>{{$atec->porc_pagar}}</td>
 								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->created_at}}</td>
-								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" class="btn btn-xs btn-danger">Pagar</a></td>
+								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
 						@endforeach
 					</tbody>
@@ -110,7 +110,7 @@
 						</tr>
 						    <th>
 								{{ csrf_field() }}
-								<button style="margin-left: -5px;" type="submit" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
+								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
 							</th>
 
 					</tfoot>

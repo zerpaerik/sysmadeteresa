@@ -28,6 +28,7 @@ class PersonalController extends Controller
         ->select('a.id','a.name','a.lastname as apellido','a.dni','a.phone','a.address','a.email','a.cargo','c.name as user','c.lastname')
 		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
+        ->orderBy('a.id','DESC')
         ->get();  
 		
       return view('archivos.personal.index', ['personal' => $personal]);  
@@ -100,14 +101,28 @@ class PersonalController extends Controller
 
    		]);
 
+    if($request->tipo == 'Tecnologo'){
+
     $users= User::create([
         'name' => $request->name,
         'lastname' => $request->lastname,
         'tipo' => '1',
-        'dni' => $request->dni
+        'dni' => $request->dni,
+        'tec' => 1
 
       ]);
-	  
+	  } else {
+
+       $users= User::create([
+        'name' => $request->name,
+        'lastname' => $request->lastname,
+        'tipo' => '1',
+        'dni' => $request->dni,
+
+      ]);
+
+
+    }
 	
 	  
 	      $historial = new Historiales();

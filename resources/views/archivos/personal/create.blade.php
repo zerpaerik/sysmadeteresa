@@ -62,7 +62,7 @@
 						<div class="col-sm-2">
 							<select class="form-control" name="tipo">
 							<option value="Especialista">Especialista</option>
-							<option value="Tecnòlogo">Tecnòlogo</option>
+							<option value="Tecnologo">Tecnòlogo</option>
 							<option value="ProfSalud">Prof. de Salud</option>
                             <option value="Otro">Otro</option>
 
@@ -70,7 +70,7 @@
 						</div>							
 
 						<br>
-						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
+						<input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 
 						<a href="{{route('personal.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>			

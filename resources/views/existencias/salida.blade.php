@@ -69,7 +69,7 @@
 
 				
 						<div class="col-sm-12" style="float:right;">
-							<input type="submit" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
+							<input type="button" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Ejecutar" style="float:right;">
 						</div>				
 
 					</form>	

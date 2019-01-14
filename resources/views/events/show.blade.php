@@ -15,6 +15,9 @@
 	<p>Fecha de nacimiento: {{$data->fechanac}}</p>
 	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
 	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
+    <p>Edad del paciente: {{$edad}} años</p>	
+
+
 	<br>	
 
 	@if($historial)
@@ -65,7 +68,7 @@
 				</div>
 				<br>
 				<div class="col-sm-12">
-					<input type="submit" value="Registrar" class="btn btn-success">
+					<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success">
 				</div>
 			</div>
 		</form>
@@ -99,13 +102,14 @@
 				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong>{{ $consulta->examen_fisico_regional }}</p>
 				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
 				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX1 }}</p>
+				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
 				<p class="col-sm-6"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
 				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
 				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
 		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->obervaciones }}</p>
+				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+
 
 				<br>
 			</div>
@@ -119,12 +123,24 @@
 		<div class="form-group">
 			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
+			<input type="hidden" name="evento" value="{{$data->id}}">
+             <div class="row">
+			  <label class="col-sm-3">DEJAR PENDIENTE?:</label>
+			<div class="col-sm-2">
+				<select id="el3" name="pendiente" required="true">
+					<option value="0">No</option>
+					<option value="1">Si</option>
+				</select>
+			</div> 
+			</div>
            <div class="row">
             <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
 			<div class="col-sm-4 control-label">	
 				<input  required class="form-control" type="text" name="motivo_consulta">		
 			</div>
 		  </div>
+
+		
 
 		  <div class="col-md-6">
 		  	            <label for="" class="col-sm-2 control-label">Func.Biològicas</label>
@@ -228,7 +244,7 @@
 		
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el3" name="ciex1">
+				<select id="el3" name="ciex">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
 						{{$c->codigo}}-{{$c->nombre}}
@@ -260,7 +276,7 @@
 
 			<label for="" class="col-sm-2 control-label">Examen Auxiliar</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="examen_auxiiar">
+				<input   class="form-control" type="text" name="examen_auxiliar">
 			</div>
 			
 			
@@ -356,7 +372,7 @@
 			
 		
 			<div class="col-sm-12">
-				<input type="submit" value="Registrar" class="btn btn-success" class="form-control">
+				<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success" class="form-control">
 			</div>
 		</div>
 		</div>

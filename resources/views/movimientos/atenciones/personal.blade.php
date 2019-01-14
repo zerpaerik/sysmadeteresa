@@ -3,7 +3,7 @@
 							<select id="el4" name="origen_usuario">
 								@foreach($personal as $pac)
 									<option value="{{$pac->id}}">
-										{{$pac->name}} {{$pac->lastname}}-{{$pac->dni}}
+										{{$pac->lastname}} {{$pac->name}}-{{$pac->dni}}
 									</option>
 								@endforeach
 							</select>

@@ -25,12 +25,39 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
+			{!! Form::open(['method' => 'get', 'route' => ['requerimientos.index2']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha'))
+					<p class="help-block">
+						{{ $errors->first('fecha') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
+					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha2'))
+					<p class="help-block">
+						{{ $errors->first('fecha2') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+			</div>	
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-					@foreach($requerimientos2 as $req)					
-						  @if($req->estatus == 'Solicitado')
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
@@ -38,21 +65,13 @@
 							<th>Estatus</th>
 							<th>Fecha</th>
 							<th>Cantidad a Entregar</th>
-							@else
-							<th>Solicitado Por:</th>
-							<th>Usuario Solicitante</th>
-							<th>Producto</th>
-							<th>Cantidad</th>
-						    <th>Cantidad Entregada</th>
-							<th>Estatus</th>
-							<th>Fecha</th>
-							@endif
+						
 						</tr>
 					</thead>
 					<tbody>
+						@foreach($requerimientos2 as $req)					
 
 						<tr>
-							   @if($req->estatus == 'Solicitado')
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
@@ -60,15 +79,7 @@
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
-								@else
-								<td>{{$req->sede}}</td>
-								<td>{{$req->solicitante}}</td>
-								<td>{{$req->nombre}}</td>
-							    <td>{{$req->cantidad}}</td>
-							    <td>{{$req->cantidadd}}</td>
-								<td>{{$req->estatus}}</td>
-								<td>{{$req->created_at}}</td>
-								@endif
+						
 							</tr>
 						@endforeach
 				

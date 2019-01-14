@@ -41,8 +41,9 @@
 						</tr>
 					</thead>
 					<tbody>
-				@foreach($resultadosguardados as $d)
-	
+							@foreach($resultadosguardados as $d)
+							<tr>
+
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
@@ -55,19 +56,27 @@
 						@endif
 						<td>{{$d->created_at}}</td>
 						<td>
-					     <a href="resultadosg-reversar-{{$d->id}}-{{$d->id2}}" class="btn btn-danger">Reversar</a>
+                        @if(\Auth::user()->role_id <> 7)
+
+						<a href="resultadosg-reversar-{{$d->id}}-{{$d->id2}}" class="btn btn-danger">Reversar</a>
+						<a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a>
+
+						@endif
 		
 						<a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
 
-						<a class="btn btn-success" href="/resultadosg-editar-{{$d->id2}}">Actualizar Informe</a>
 							
+
 						</td>
 
-				@endforeach
+
+                            </tr>
+							@endforeach
+
 					</tbody>
 					<tfoot>
 						<tr>
-						   <th>Id</th>
+						    <th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>

@@ -247,6 +247,36 @@
 	</table>
 </div>
 
+<div style="font-weight: bold; font-size: 14px">
+		MÉTODOS ANTICONCEPTIVOS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Paciente</th>
+			<th>Método</th>
+			<th>Monto</th>
+			<th>Tipo de Pago</th>
+		</tr>
+		@foreach ($metodos as $serv)
+			<tr>
+				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td>{{ $serv->producto }}</td>
+				<td>{{ $serv->monto }}</td>
+			    <td>EF</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td width="80">{{$totalmetodos->monto}}</td>
+		</tr>
+	</table>
+</div>
+
 
 
 
