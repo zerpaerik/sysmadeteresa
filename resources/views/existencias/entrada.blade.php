@@ -153,6 +153,7 @@
 	$("#sede").on('change', getQuan);
 
 	$("#updatepro").on('click', function(evt){
+		var prod = $("#prod").val();
 		evt.preventDefault();
 
 		if($('#prod').val() < 1) return;
@@ -172,11 +173,11 @@
 		};
 
 		$.ajax({
-      url: "producto/",
+      url: "producto/"+prod,
       headers: {
     		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   		},
-      type: "patch",
+      type: "post",
       data: d,
       success: function(res){
       	if(res.success){
