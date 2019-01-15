@@ -5,6 +5,10 @@ margin-left: 100px;
 margin-top: 45px;
 margin-bottom: 2px;
 }
+
+
+
+
 .fecha {
 
 margin-left: 100px;
@@ -61,10 +65,14 @@ margin-top: -20px;
 </head>
 <body>
 
+<div style="margin-left: 600px;margin-bottom:-35px;">
+		<p><strong>{{$ticket->ticket}}</strong></p>
+	</div>
 
 <div class="paciente">
 		<p><strong>{{$ticket->nombres}},{{$ticket->apellidos}}</strong></p>
 	</div>
+
 
 	<div class="fecha">
 		<p><strong>{{ $ticket->created_at}}</strong></p>

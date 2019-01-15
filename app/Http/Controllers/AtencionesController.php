@@ -12,6 +12,7 @@ use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\Models\Paquetes;
+use App\Models\Correlativo;
 use App\Models\Existencias\Producto;
 use App\Models\ServicioMaterial;
 use App\User;
@@ -98,6 +99,43 @@ class AtencionesController extends Controller
     
     return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes','paquetes'));
   }
+
+
+
+  public static function generarId(Request $request){
+  
+        $searchContador= DB::table('correlativos')
+                    ->select('*')
+                    ->where('sede','=', $request->session()->get('sede'))
+                    ->get();
+
+        $numero=1;
+          if(count($searchContador) ==0){
+            $numero=1;
+          
+            $correlativo = new Correlativo;
+            $correlativo->numero=$numero;
+            $correlativo->sede=$request->session()->get('sede');
+            $correlativo->save();
+
+          
+        } else {
+         foreach ($searchContador as $correlativo){
+            $numero=$correlativo->numero+1;
+
+         
+            $correlativo=Correlativo::findOrFail($correlativo->id);
+            $correlativo->numero=$numero;
+            $correlativo->updated_at=date('Y-m-d');
+            $correlativo->update();
+
+        } 
+    }
+
+
+    return str_pad($numero, 6, "0", STR_PAD_LEFT);
+
+    }
 
   public function create(Request $request)
   {
@@ -551,6 +589,7 @@ class AtencionesController extends Controller
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->particular = $request->particular;
+              $serv->ticket =AtencionesController::generarId($request);
               $serv->save(); 
 
               $creditos = new Creditos();

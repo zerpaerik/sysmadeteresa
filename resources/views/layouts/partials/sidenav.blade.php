@@ -159,12 +159,6 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
-      </li>
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li> 
-      <li>
         <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
       </li>        
 	   <li>
@@ -291,6 +285,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('correlativo.index')}}"><i class="fa fa-hospital-o"></i> Nùmeros de Ticket</a>
+      </li> 
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
@@ -462,21 +459,20 @@
       <span class="hidden-xs">Consultas</span>
     </a>
     <ul class="dropdown-menu">
+      <ul class="dropdown-menu">
       <li>
-        <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
-      </li>
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li> 
-<li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
+      </li>        
+     <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
-      </li>  	  
+      </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
+    </ul>          
     </ul>
   </li>
   <li class="dropdown">
@@ -701,12 +697,7 @@
       <span class="hidden-xs">Consultas</span>
     </a>
     <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
-      </li>
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li> 
+      <ul class="dropdown-menu">
       <li>
         <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
       </li>        
@@ -715,10 +706,11 @@
       </li>  
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
-      </li> 
+      </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
+    </ul>             
     </ul>
   </li>
   <li class="dropdown">
@@ -827,13 +819,11 @@
       <span class="hidden-xs">Consultas</span>
     </a>
     <ul class="dropdown-menu">
+       <ul class="dropdown-menu">
       <li>
-        <a href="{{route('consultas.create')}}"><i class="fa fa-plus-circle"></i> Nueva Consulta</a>
-      </li>
-      <li>
-        <a href="{{route('consultas.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Consultas</a>
-      </li>  
-	 <li>
+        <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
+      </li>        
+     <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
       <li>
@@ -841,7 +831,8 @@
       </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
-      </li>  
+      </li>              
+    </ul>
     </ul>
   </li>
   <li class="dropdown">

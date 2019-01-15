@@ -312,6 +312,14 @@ Route::get('sedes', 'Config\SedeController@index')->name('sedes.index')->middlew
 Route::get('sedes-create', 'Config\SedeController@createView')->name('sedes.create');
 Route::post('sede/create', 'Config\SedeController@create')->middleware('auth');
 
+
+Route::get('correlativo', 'Config\CorrelativoController@index')->name('correlativo.index')->middleware('auth');
+
+Route::get('correlativo-create', 'Config\CorrelativoController@createView')->name('correlativo.create');
+Route::post('correlativo/create', 'Config\CorrelativoController@create')->middleware('auth');
+Route::get('correlativo-delete-{id}','Config\CorrelativoController@delete');
+
+
 //Productos
 Route::get('productos', 'Existencias\ProductoController@index')->name('productos.index');
 Route::get('productos2', 'Existencias\ProductoController@index2')->name('productos.index2');
