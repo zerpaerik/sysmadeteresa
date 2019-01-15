@@ -17,14 +17,14 @@ use Auth;
 class RequerimientosController extends Controller
 {
 
-    public function index(){
+    public function index(Request $request){
 
       $requerimientos = DB::table('requerimientos as a')
                     ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.cantidadd','a.cantidad','a.estatus','b.name as sede','a.created_at','c.name as solicitante','d.nombre')
                     ->join('sedes as b','a.id_sede_solicitada','b.id')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
-                    ->where('a.id_sede_solicita', '=', \Session::get("sede"))
+                    ->where('a.id_sede_solicita', '=', $request->session()->get('sede'))
                     ->where('a.usuario','=',Auth::user()->id)
                     ->orderby('a.created_at','desc')
                     ->get();  
@@ -46,8 +46,8 @@ class RequerimientosController extends Controller
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
                     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                    ->where('a.usuario','=',Auth::user()->id)
-                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                   // ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->where('a.estatus','=','Solicitado')
                     ->orderby('a.created_at','desc')
                     ->get();
@@ -60,11 +60,13 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
-                    ->where('a.usuario','=',Auth::user()->id)
-                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                   // ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->where('a.estatus','=','Solicitado')
                     ->orderby('a.created_at','desc')
                     ->get();
+
+
 
          }           
 
@@ -90,7 +92,7 @@ class RequerimientosController extends Controller
                     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                     ->where('a.estatus','=','Procesado')
                     ->where('a.usuario','=',Auth::user()->id)
-                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
 
@@ -105,7 +107,7 @@ class RequerimientosController extends Controller
                     ->join('sedes as e','e.id','a.id_sede_solicita')
                     ->where('a.estatus','=','Procesado')
                     ->where('a.usuario','=',Auth::user()->id)
-                    ->where('a.id_sede_solicitada', '=', \Session::get("sede"))
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
 

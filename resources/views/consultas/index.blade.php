@@ -34,7 +34,7 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Seleccione una Fecha', ['class' => 'control-label']) !!}
+					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
 					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
 					<p class="help-block"></p>
 					@if($errors->has('fecha'))
@@ -42,16 +42,22 @@
 						{{ $errors->first('fecha') }}
 					</p>
 					@endif
-
-					
 				</div>
 				<div class="col-md-2">
-
+					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha2'))
+					<p class="help-block">
+						{{ $errors->first('fecha2') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
 
 				</div>
-				
 			</div>	
 
 			<div class="box-content no-padding">
@@ -64,6 +70,7 @@
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Estatus</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -72,18 +79,26 @@
 						@foreach($eventos as $d)
 						<tr>
 						<td>{{$d->EventId}}</td>
-						<td>{{$d->nombres}} {{$d->nombres}}</td>
+						<td>{{$d->nombres}} {{$d->apellidos}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
+						@if($d->atendido == 1)
+						<td style="background: #82FA58;">Fue Atendido</td>
+						@else
+						<td style="background: #FE642E;">No ha sido Atendido</td>
+						@endif
 						<td>
 
-						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
+						<a class="btn btn-danger" href="event-{{$d->EventId}}">Atender</a>
+						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ticket</a>
+						@if(\Auth::user()->role_id <> 6)							 
 
 						<a  class="btn btn-success" href="consulta-edit-{{$d->EventId}}">Editar</a>	
 
 						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						@endif
 							
 
 						</td>

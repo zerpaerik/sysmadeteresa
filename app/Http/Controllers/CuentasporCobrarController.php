@@ -29,9 +29,18 @@ class CuentasporCobrarController extends Controller
     ->join('paquetes as p','p.id','a.id_paquete')
     ->join('users as e','e.id','a.origen_usuario')
     ->where('a.pendiente','>',0)
+    //->where('a.abono','<','a.monto')
     ->whereNotIn('a.monto',[0,0.00])
     ->where('a.id_sede','=', $request->session()->get('sede'))
+<<<<<<< HEAD
     ->paginate(2000000); 
+=======
+    ->orderby('a.id','desc')
+    ->get(); 
+
+
+        
+>>>>>>> f302061755ad900b935017d50c749af77acde818
         return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar]); 
 	}
 

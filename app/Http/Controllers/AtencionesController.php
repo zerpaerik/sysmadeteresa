@@ -12,6 +12,7 @@ use App\Models\Personal;
 use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\Models\Paquetes;
+use App\Models\Correlativo;
 use App\Models\Existencias\Producto;
 use App\Models\ServicioMaterial;
 use App\User;
@@ -99,6 +100,43 @@ class AtencionesController extends Controller
     return view('movimientos.atenciones.create', compact('servicios','laboratorios','pacientes','paquetes'));
   }
 
+
+
+  public static function generarId(Request $request){
+  
+        $searchContador= DB::table('correlativos')
+                    ->select('*')
+                    ->where('sede','=', $request->session()->get('sede'))
+                    ->get();
+
+        $numero=1;
+          if(count($searchContador) ==0){
+            $numero=1;
+          
+            $correlativo = new Correlativo;
+            $correlativo->numero=$numero;
+            $correlativo->sede=$request->session()->get('sede');
+            $correlativo->save();
+
+          
+        } else {
+         foreach ($searchContador as $correlativo){
+            $numero=$correlativo->numero+1;
+
+         
+            $correlativo=Correlativo::findOrFail($correlativo->id);
+            $correlativo->numero=$numero;
+            $correlativo->updated_at=date('Y-m-d');
+            $correlativo->update();
+
+        } 
+    }
+
+
+    return str_pad($numero, 6, "0", STR_PAD_LEFT);
+
+    }
+
   public function create(Request $request)
   {
 	
@@ -126,11 +164,12 @@ class AtencionesController extends Controller
               $paq->tipopago = $request->tipopago;
               $paq->porc_pagar = $paquete->porcentaje;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
-              $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
-              $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
+              $paq->monto = (float)$request->monto_p['paquetes'][$key]['monto'];
+              $paq->abono = (float)$request->monto_abop['paquetes'][$key]['abono'];
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->id_sede =$request->session()->get('sede');
               $paq->estatus = 1;
+              $paq->particular = $request->particular;
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -192,6 +231,7 @@ class AtencionesController extends Controller
               $s->porcentaje =0;
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
+              $s->particular = $request->particular;
               $s->save(); 
              
          }
@@ -227,6 +267,7 @@ class AtencionesController extends Controller
               $l->porcentaje =0;
               $l->id_sede =$request->session()->get('sede');
               $l->estatus = 1;
+              $l->particular = $request->particular;
               $l->save(); 
 
          }
@@ -287,11 +328,12 @@ class AtencionesController extends Controller
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
               $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
-              $serv->monto = $request->monto_s['servicios'][$key]['monto'];
-              $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
+              $serv->monto = (float)$request->monto_s['servicios'][$key]['monto'];
+              $serv->abono = (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
+              $serv->particular = $request->particular;
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -333,12 +375,13 @@ class AtencionesController extends Controller
 		  $lab->serv_prog = FALSE;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
-          $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
-          $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->monto = (float)$request->monto_l['laboratorios'][$key]['monto'];
+          $lab->abono = (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
           $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
+          $lab->particular = $request->particular;
           $lab->save();
 
           $creditos = new Creditos();
@@ -382,15 +425,16 @@ class AtencionesController extends Controller
               $paq->id_paquete = $paquete->id;
               $paq->comollego = $request->comollego;
               $paq->es_paquete =  true;
-			  $paq->serv_prog = FALSE;
+			      $paq->serv_prog = FALSE;
               $paq->tipopago = $request->tipopago;
               $paq->porc_pagar = $paquete->porcentaje;
               $paq->pendiente = (float)$request->monto_p['paquetes'][$key]['monto'] - (float)$request->monto_abop['paquetes'][$key]['abono'];
-              $paq->monto = $request->monto_p['paquetes'][$key]['monto'];
-              $paq->abono = $request->monto_abop['paquetes'][$key]['abono'];
+              $paq->monto = (float)$request->monto_p['paquetes'][$key]['monto'];
+              $paq->abono = (float)$request->monto_abop['paquetes'][$key]['abono'];
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->id_sede =$request->session()->get('sede');
               $paq->estatus = 1;
+              $paq->particular = $request->particular;
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -450,6 +494,7 @@ class AtencionesController extends Controller
               $s->porcentaje =0;
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
+              $s->particular = $request->particular;
               $s->save(); 
              
          }
@@ -484,6 +529,7 @@ class AtencionesController extends Controller
               $l->abono = 0;
               $l->porcentaje =0;
               $l->id_sede =$request->session()->get('sede');
+              $l->particular = $request->particular;
               $l->estatus = 1;
               $l->save(); 
 
@@ -537,11 +583,13 @@ class AtencionesController extends Controller
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
               $serv->pendiente = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abos['servicios'][$key]['abono'];
-              $serv->monto = $request->monto_s['servicios'][$key]['monto'];
-              $serv->abono = $request->monto_abos['servicios'][$key]['abono'];
+              $serv->monto = (float)$request->monto_s['servicios'][$key]['monto'];
+              $serv->abono = (float)$request->monto_abos['servicios'][$key]['abono'];
               $serv->porcentaje = ((float)$request->monto_s['servicios'][$key]['monto']* $porcentaje)/100;
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
+              $serv->particular = $request->particular;
+              $serv->ticket =AtencionesController::generarId($request);
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -583,12 +631,13 @@ class AtencionesController extends Controller
 		  $lab->serv_prog = FALSE;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
-          $lab->monto = $request->monto_l['laboratorios'][$key]['monto'];
-          $lab->abono = $request->monto_abol['laboratorios'][$key]['abono'];
+          $lab->monto = (float)$request->monto_l['laboratorios'][$key]['monto'];
+          $lab->abono = (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
           $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
+          $lab->particular = $request->particular;
           $lab->save();
 
           $creditos = new Creditos();

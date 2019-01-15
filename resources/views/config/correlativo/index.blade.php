@@ -9,7 +9,8 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Cuentas Por Cobrar</span>
+					<span>Correlativos de Tickets</span>
+					<a href="{{route('correlativo.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
 
@@ -35,51 +36,30 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-						    <th>Fecha</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Monto Pendiente</th>
-							<th>Acciones:</th>
+							<th>Correlativo</th>
+							<th>Sede</th>
+							<th>Acciones</th>
+	
 						</tr>
 					</thead>
-					<tbody>	
+					<tbody>
 
-					  @foreach($cuentasporcobrar as $d)
-					  <tr>
-					    <td>{{$d->id}}</td>
-						<td>{{$d->nombres}},{{$d->apellidos}}</td>
-						<td>{{$d->created_at}}</td>
-						@if($d->es_servicio =='1')
-						<td>{{$d->servicio}}</td>
-						@elseif($d->es_laboratorio =='1')
-						<td>{{$d->laboratorio}}</td>
-						@else
-						<td>{{$d->paquete}}</td>
-						@endif
-						<td>{{$d->monto}}</td>
-						<td>{{$d->abono}}</td>
-						<td>{{$d->pendiente}}</td>
+						@foreach($correlativo as $d)
+						<tr>
+						<td>{{$d->numero}}</td>
+						<td>{{$d->nomsede}}</td>
 						<td>
-						<a  class="btn btn-success" href="cuentasporcobrar-edit-{{$d->id}}">Cobrar</a>	
+							<a href="correlativo-delete-{{$d->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 						</td>
-						</tr>
 
-					     @endforeach					
-					
+				        @endforeach
+				    </tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-						    <th>Fecha</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Monto Pendiente</th>
-							<th>Acciones:</th>
+						   <th>Correlativo</th>
+							<th>Sede</th>
+							<th>Acciones</th>
 						</tr>
 					</tfoot>
 				</table>

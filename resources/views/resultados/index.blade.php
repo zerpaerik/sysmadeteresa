@@ -285,6 +285,8 @@
                                     <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
                                     <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
                                     <option value="VSG.docx">VSG</option>
+                                    <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
+                                    <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
 
 
 
