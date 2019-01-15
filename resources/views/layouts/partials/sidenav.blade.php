@@ -691,13 +691,12 @@
     </ul>
   </li>
   
-<li class="dropdown">
+ <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
       <span class="hidden-xs">Consultas</span>
     </a>
     <ul class="dropdown-menu">
-      <ul class="dropdown-menu">
       <li>
         <a href="{{route('consultas.inicio')}}"><i class="fa fa-plus-circle"></i> Lista de Consultas</a>
       </li>        
@@ -710,7 +709,6 @@
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
-    </ul>             
     </ul>
   </li>
   <li class="dropdown">
