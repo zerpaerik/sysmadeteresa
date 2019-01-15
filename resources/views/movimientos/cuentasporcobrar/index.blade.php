@@ -45,10 +45,10 @@
 							<th>Acciones:</th>
 						</tr>
 					</thead>
-					<tbody>
-
-						@foreach($cuentasporcobrar as $d)
+					<tbody>						
 						<tr>
+						@foreach($cuentasporcobrar as $d)
+						@if($d->abono < $d->monto)
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->created_at}}</td>
@@ -63,12 +63,9 @@
 						<td>{{$d->abono}}</td>
 						<td>{{$d->pendiente}}</td>
 						<td>
-
 						<a  class="btn btn-success" href="cuentasporcobrar-edit-{{$d->id}}">Cobrar</a>	
-
-							
 						</td>
-
+						@endif
 				        @endforeach
 				    </tr>
 					</tbody>
