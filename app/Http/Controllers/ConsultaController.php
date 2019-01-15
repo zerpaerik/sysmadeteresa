@@ -245,14 +245,15 @@ class ConsultaController extends Controller
 		$consulta->save();
 
 
+
     $evento = Event::find($request->evento);
-    $evento->atendido =1;
-    $evento->save();
+    $evento->atendido=1;
+    $evento->update();
 		
 		
 	
 	  Toastr::success('Registrado Exitosamente.', 'Consulta!', ['progressBar' => true]);
-      return redirect()->action('Events\EventController@index', ["edited" => $consulta]);
+      return redirect()->action('Events\EventController@all', ["edited" => $consulta]);
 		 
     }
       public function edit(Request $request)
