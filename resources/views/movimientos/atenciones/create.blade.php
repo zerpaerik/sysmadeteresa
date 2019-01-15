@@ -38,7 +38,6 @@
 								@endforeach
 							</select>
 						</div>
-
             <a href="{{route('pacientes.create2')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes</a>
            
 						</div>

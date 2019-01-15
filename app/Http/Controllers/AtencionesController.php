@@ -362,6 +362,7 @@ class AtencionesController extends Controller
 
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
+          //dd($request->total_g);
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
@@ -378,7 +379,7 @@ class AtencionesController extends Controller
           $lab->monto = (float)$request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
-          $lab->pendiente = $request->total_g;
+         // $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->particular = $request->particular;
@@ -634,7 +635,7 @@ class AtencionesController extends Controller
           $lab->monto = (float)$request->monto_l['laboratorios'][$key]['monto'];
           $lab->abono = (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->porcentaje = ((float)$request->monto_l['laboratorios'][$key]['monto']* $porcentaje)/100;
-          $lab->pendiente = $request->total_g;
+         // $lab->pendiente = $request->total_g;
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->particular = $request->particular;
