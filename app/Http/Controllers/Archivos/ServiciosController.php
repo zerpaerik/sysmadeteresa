@@ -24,17 +24,7 @@ class ServiciosController extends Controller
         ->where('a.estatus','=', 1)
         ->get();  
 	  
-      return view('generics.index', [
-        "icon" => "fa-list-alt",
-        "model" => "servicios",
-        "headers" => ["id", "Detalle", "Precio","Porcentaje", "Porcentaje Personal", "Porcentaje Tecnólogo","Registrado Por:", "Opciones"],
-        "data" => $servicios,
-        "fields" => ["id", "detalle", "precio","porcentaje","por_per", "por_tec","user"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);  
+      return view('archivos.servicios.index', ['servicios' => $servicios]);  
     }
 
   public function search(Request $request)

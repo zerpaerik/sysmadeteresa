@@ -1,15 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-</br>
+
+<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Servicios</strong></span>
-					<a href="{{route('servicios.create')}}" class="btn btn-primary">Agregar</a>
+					<i class="fa fa-linux"></i>
+					<span>Archivos/Centros</span>
+					<a href="{{route('centros.create')}}" class="btn btn-success">Agregar</a>
+
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -18,40 +20,73 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
 				</div>
+
 				<div class="no-move"></div>
 			</div>
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
 							<th>Detalle</th>
 							<th>Precio</th>
-							
+							<th>Porcentaje Prof.</th>
+							<th>Porcentaje Pers.</th>
+							<th>Porcentaje Tecn.</th>
+							<th>Registrado Por:</th>
+							<th>Acciones:</th>
+
+
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($servicios as $serv)					
-							<tr>
-								<td>{{$serv->detalle}}</td>
-								<td>{{$serv->precio}}</td>
-								
-								<td><a href="servicios/{{$serv->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
-							</tr>
-						@endforeach
+					@foreach($servicios as $p)					
+						<tr>
+						<td>{{$p->detalle}}</td>
+						<td>{{$p->precio}}</td>
+						<td>{{$p->porcentaje}}</td>
+						<td>{{$p->por_per}}</td>
+						<td>{{$p->por_tec}}</td>
+						<td>{{$p->user}},{{$p->lastname}}</td>
+						<td>
+						<a href="servicios-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
+						<a href="servicios-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+
+						</td>
+						</tr>
+						
+				    @endforeach
 					</tbody>
 					<tfoot>
+						<tr>
+								<th>Detalle</th>
+							<th>Precio</th>
+							<th>Porcentaje Prof.</th>
+							<th>Porcentaje Pers.</th>
+							<th>Porcentaje Tecn.</th>
+							<th>Registrado Por:</th>
+							<th>Acciones:</th>
+						</tr>
 					</tfoot>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
-@if(isset($created))
-	<div class="alert alert-success" role="alert">
-	  A simple success alert—check it out!
-	</div>
-@endif
+
+</body>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
+
 <script type="text/javascript">
 // Run Datables plugin and create 3 variants of settings
 function AllTables(){
@@ -73,5 +108,4 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
-
 @endsection
