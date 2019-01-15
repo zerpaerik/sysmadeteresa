@@ -9,8 +9,8 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Archivos/Centros</span>
-					<a href="{{route('centros.create')}}" class="btn btn-success">Agregar</a>
+					<span>Archivos/Servicios</span>
+					<a href="{{route('servicios.create')}}" class="btn btn-success">Agregar</a>
 
 				</div>
 				<div class="box-icons">
