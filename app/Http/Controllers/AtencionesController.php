@@ -169,7 +169,9 @@ class AtencionesController extends Controller
               $paq->porcentaje = ((float)$request->monto_p['paquetes'][$key]['monto']* $paquete->porcentaje)/100;
               $paq->id_sede =$request->session()->get('sede');
               $paq->estatus = 1;
+              $paq->usuario = Auth::user()->id;
               $paq->particular = $request->particular;
+                            $paq->ticket =AtencionesController::generarId($request);
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -232,6 +234,8 @@ class AtencionesController extends Controller
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
               $s->particular = $request->particular;
+              $s->usuario = Auth::user()->id;
+                            $s->ticket =AtencionesController::generarId($request);
               $s->save(); 
              
          }
@@ -268,6 +272,8 @@ class AtencionesController extends Controller
               $l->id_sede =$request->session()->get('sede');
               $l->estatus = 1;
               $l->particular = $request->particular;
+                            $l->usuario = Auth::user()->id;
+                                          $l->ticket =AtencionesController::generarId($request);
               $l->save(); 
 
          }
@@ -334,6 +340,8 @@ class AtencionesController extends Controller
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->particular = $request->particular;
+                            $serv->usuario = Auth::user()->id;
+                                          $serv->ticket =AtencionesController::generarId($request);
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -383,6 +391,8 @@ class AtencionesController extends Controller
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->particular = $request->particular;
+                        $lab->usuario = Auth::user()->id;
+                                      $lab->ticket =AtencionesController::generarId($request);
           $lab->save();
 
           $creditos = new Creditos();
@@ -436,6 +446,8 @@ class AtencionesController extends Controller
               $paq->id_sede =$request->session()->get('sede');
               $paq->estatus = 1;
               $paq->particular = $request->particular;
+                            $paq->usuario = Auth::user()->id;
+                                          $paq->ticket =AtencionesController::generarId($request);
               $paq->save(); 
 
               $creditos = new Creditos();
@@ -496,6 +508,8 @@ class AtencionesController extends Controller
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
               $s->particular = $request->particular;
+                            $s->usuario = Auth::user()->id;
+                                          $s->ticket =AtencionesController::generarId($request);
               $s->save(); 
              
          }
@@ -532,6 +546,8 @@ class AtencionesController extends Controller
               $l->id_sede =$request->session()->get('sede');
               $l->particular = $request->particular;
               $l->estatus = 1;
+              $l->usuario = Auth::user()->id;
+                            $l->ticket =AtencionesController::generarId($request);
               $l->save(); 
 
          }
@@ -591,6 +607,7 @@ class AtencionesController extends Controller
               $serv->estatus = 1;
               $serv->particular = $request->particular;
               $serv->ticket =AtencionesController::generarId($request);
+              $serv->usuario = Auth::user()->id;
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -639,6 +656,8 @@ class AtencionesController extends Controller
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->particular = $request->particular;
+          $lab->usuario = Auth::user()->id;
+         $lab->ticket =AtencionesController::generarId($request);
           $lab->save();
 
           $creditos = new Creditos();
@@ -777,11 +796,12 @@ class AtencionesController extends Controller
     private function elasticSearch($initial,$nombre,$apellido,Request $request)
   {
     $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
     ->whereNotIn('a.monto',[0,0.00])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
