@@ -91,7 +91,7 @@ class RequerimientosController extends Controller
                     ->join('sedes as e','e.id','a.id_sede_solicita')
                     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                     ->where('a.estatus','=','Procesado')
-                    ->where('a.usuario','=',Auth::user()->id)
+                    //->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
@@ -106,7 +106,7 @@ class RequerimientosController extends Controller
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
                     ->where('a.estatus','=','Procesado')
-                    ->where('a.usuario','=',Auth::user()->id)
+                  //  ->where('a.usuario','=',Auth::user()->id)
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
