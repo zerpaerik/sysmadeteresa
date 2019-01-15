@@ -260,7 +260,7 @@ class EventController extends Controller
     ->setOptions([
       'locale' => 'es',
     ]);
-    return redirect()->action('Events\EventController@index');
+    return redirect()->action('Events\EventController@all');
 
   }
 
