@@ -59,6 +59,7 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
+						   <th>ID:</th>
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
 							<th>Producto</th>
@@ -73,6 +74,7 @@
 						@foreach($requerimientos3 as $req)					
 
 						<tr>
+								<td>{{$req->id}}</td>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
 								<td>{{$req->nombre}}</td>
