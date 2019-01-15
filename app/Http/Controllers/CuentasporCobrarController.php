@@ -31,9 +31,7 @@ class CuentasporCobrarController extends Controller
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
     ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->orderby('a.id','desc')
     ->paginate(2000000); 
-        
         return view('movimientos.cuentasporcobrar.index', ['cuentasporcobrar' => $cuentasporcobrar]); 
 	}
 
