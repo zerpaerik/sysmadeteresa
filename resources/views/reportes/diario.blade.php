@@ -61,7 +61,7 @@
 	</div> 
 </div>
 <div style="width: 49%;padding: 8px 5px;font-size: 18px;">
-		Fecha de Consulta:
+		Fecha de Consulta: {{$hoy}}
 </div>
 <div style="background: #eaeaea;">
 	<table>

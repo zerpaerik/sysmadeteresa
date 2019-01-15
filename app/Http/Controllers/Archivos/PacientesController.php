@@ -288,9 +288,9 @@ class PacientesController extends Controller
   }
 
   public function createView() {
- 
-  	$provincias = Provincias::all();
-  	$distritos = Distritos::all();
+
+    $provincias =Provincias::orderBy('nombre','asc')->get();
+    $distritos =Distritos::orderBy('nombre','asc')->get();
   	$edocivil = EdoCivil::all();
   	$gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create', compact('provincias','distritos','edocivil','gradoinstruccion'));
@@ -298,8 +298,8 @@ class PacientesController extends Controller
 
     public function createView2() {
  
-    $provincias = Provincias::all();
-    $distritos = Distritos::all();
+     $provincias =Provincias::orderBy('nombre','asc')->get();
+    $distritos =Distritos::orderBy('nombre','asc')->get();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create2', compact('provincias','distritos','edocivil','gradoinstruccion'));
@@ -307,8 +307,8 @@ class PacientesController extends Controller
 
     public function createView3() {
  
-    $provincias = Provincias::all();
-    $distritos = Distritos::all();
+     $provincias =Provincias::orderBy('nombre','asc')->get();
+    $distritos =Distritos::orderBy('nombre','asc')->get();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create3', compact('provincias','distritos','edocivil','gradoinstruccion'));
@@ -316,8 +316,8 @@ class PacientesController extends Controller
 
   public function createView4() {
  
-    $provincias = Provincias::all();
-    $distritos = Distritos::all();
+    $provincias =Provincias::orderBy('nombre','asc')->get();
+    $distritos =Distritos::orderBy('nombre','asc')->get();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.create4', compact('provincias','distritos','edocivil','gradoinstruccion'));
@@ -326,8 +326,8 @@ class PacientesController extends Controller
 
    public function createpac() {
  
-    $provincias = Provincias::all();
-    $distritos = Distritos::all();
+     $provincias =Provincias::orderBy('nombre','asc')->get();
+    $distritos =Distritos::orderBy('nombre','asc')->get();
     $edocivil = EdoCivil::all();
     $gradoinstruccion = GradoInstruccion::all();
     return view('archivos.pacientes.createpac', compact('provincias','distritos','edocivil','gradoinstruccion'));

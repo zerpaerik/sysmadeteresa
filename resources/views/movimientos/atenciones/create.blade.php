@@ -55,7 +55,7 @@
 							</select>
 						</div>
 
-						<div class="col-sm-3">
+						<div class="col-sm-6">
 							  <div id="origen1">
 						</div>
 

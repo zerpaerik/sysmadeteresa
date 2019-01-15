@@ -182,60 +182,96 @@ class ResultadosController extends Controller
                     $es_laboratorio = $atenciones->es_laboratorio;
                 }
 
-
-     
-
+        
         if (!is_null($es_servicio)) {
 
-           $searchAtencionesServicios = DB::table('atenciones')
-                    ->select('*')
+         $searchAtencionesServicios = DB::table('atenciones')
+         ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
-                    ->get();
+         ->where('id','=', $request->id)
+         ->get();
 
-            foreach ($searchAtencionesServicios as $servicios) {
-                    $id_servicio = $servicios->id_servicio;
-                    $id_paciente = $servicios->id_paciente;
-                    $origen = $servicios->origen;
-                    $origen_usuario = $servicios->origen_usuario;
-                    $monto = $servicios->monto;
-                    $pendiente = $servicios->pendiente;
-                    $tipopago = $servicios->tipopago;
-                    $abono = $servicios->abono;
-                    $sede = $servicios->id_sede;
-                    $comollego = $servicios->comollego;
+         foreach ($searchAtencionesServicios as $servicios) {
+          $id_servicio = $servicios->id_servicio;
+          $id_paciente = $servicios->id_paciente;
+          $origen = $servicios->origen;
+          $origen_usuario = $servicios->origen_usuario;
+          $monto = $servicios->monto;
+          $pendiente = $servicios->pendiente;
+          $tipopago = $servicios->tipopago;
+          $abono = $servicios->abono;
+          $sede = $servicios->id_sede;
+          $comollego = $servicios->comollego;
 
-                }
+        }
 
-          $searchServicioTec = DB::table('servicios')
-                    ->select('*')
+        $searchServicioTec = DB::table('servicios')
+        ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('id','=', $id_servicio)
-                    ->get();
+        ->where('id','=', $id_servicio)
+        ->get();
 
-            foreach ($searchServicioTec as $servicios) {
-                    $por_tec = $servicios->por_tec;
-                }
+        foreach ($searchServicioTec as $servicios) {
+          $por_tec = $servicios->por_tec;
+        }
 
-            $searchUser = DB::table('users')
-                    ->select('*')
+
+        $searchUser = DB::table('users')
+        ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('id','=', Auth::user()->id)
-                    ->get();
+        ->where('id','=', Auth::user()->id)
+        ->get();
+
+        $imgname = DB::table('resultados_servicios')
+        ->select('*')
+                   // ->where('estatus','=','1')
+        ->where('informe','=', $request->file('informe')->getClientOriginalName())
+        ->first();
+
+        
+                if($por_tec < 0){
 
 
-            foreach ($searchUser as $user) {
-                    $tec = $user->tec;
-                }
+
+                  $p = Atenciones::findOrFail($id);
+                  $p->resultado = 1;  
+                  $p->save();   
 
 
+                  $product=new ResultadosServicios;
+                  $img = $request->file('informe');
+                  $nombre_imagen=$img->getClientOriginalName();
+                  $product->id_atencion=$request->id;
+                  $product->id_servicio=$id_servicio;
+                  $product->informe=$nombre_imagen;
+                  $product->user_id=Auth::user()->id;
+                  if ($product->save()) {
+                   \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
+                 }
+                 \DB::commit();
 
-          if ($por_tec > 0 && $tec <> NULL) {
-                
+               } else {
+
+               
+
                 $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;  
-                $p->save();
+          $p->resultado = 1;  
+          $p->save();   
+
+
+          $product=new ResultadosServicios;
+          $img = $request->file('informe');
+          $nombre_imagen=$img->getClientOriginalName();
+          $product->id_atencion=$request->id;
+          $product->id_servicio=$id_servicio;
+          $product->informe=$nombre_imagen;
+          $product->user_id=Auth::user()->id;
+          if ($product->save()) {
+           \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+
+         }
+         \DB::commit();
 
 
               $s = new Atenciones();
@@ -261,42 +297,55 @@ class ResultadosController extends Controller
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
               $s->save(); 
-             
 
+               }
 
-                $imgname = DB::table('resultados_servicios')
-                    ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('informe','=', $request->file('informe')->getClientOriginalName())
-                    ->first();
+         ///PARA MATERIALES
         
-         if($imgname){
-                Toastr::error('Ya Existe un archivo con ese Nombre.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
-            return redirect()->action('ResultadosController@index');
+      }
 
-         } else {
      
-        $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;  
-                $p->save();   
+
+           if(!is_null($es_laboratorio)){
+
+          
+
+
+        $searchAtencionesLaboratorios=DB::table('atenciones')
+         ->select('*')
+         ->where('id','=', $request->id)
+         ->get();
+
+
+         foreach ($searchAtencionesLaboratorios as $laboratorio) {
+          $id_laboratorio = $laboratorio->id_laboratorio;
+        }
+
+       
+
+
+          $p = Atenciones::findOrFail($id);
+        $p->resultado = 1;  
+        $p->save();   
         
-        $product=new ResultadosServicios;
+        $product=new ResultadosLaboratorios;
         $img = $request->file('informe');
         $nombre_imagen=$img->getClientOriginalName();
         $product->id_atencion=$request->id;
-        $product->id_servicio=$id_servicio;
+        $product->id_laboratorio=$id_laboratorio;
         $product->informe=$nombre_imagen;
         $product->user_id=Auth::user()->id;
         if ($product->save()) {
-           \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+         \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
-        }
-        \DB::commit();
-        
+       }
+       \DB::commit();
 
-        ////PARA MATERIALES
-         if (!is_null($request->material)) {
-          foreach ($request->material['laboratorios'] as $key => $laboratorio) {
+
+       ////materiales
+
+       if (!is_null($request->material)) {
+        foreach ($request->material['laboratorios'] as $key => $laboratorio) {
           if (!is_null($laboratorio['laboratorio'])) {
             $pro = new ResultadosMateriales();
             $pro->id_resultado = $product->id;
@@ -309,68 +358,20 @@ class ResultadosController extends Controller
             $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
             ->first();
             $cantactual= $SearchMaterial->cantidad;
-        
-          
-          $p = Producto::find($laboratorio['laboratorio']);
-          $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
-          $res = $p->save();
-          
+
+
+            $p = Producto::find($laboratorio['laboratorio']);
+            $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+            $res = $p->save();
+
           } 
-          }
         }
-        //////
-         }
-
-          } else {
+      }
 
 
-             $searchAtencionesLaboratorios = DB::table('atenciones')
-                    ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id)
-                    ->get();
+           }
 
-            foreach ($searchAtencionesLaboratorios as $laboratorio) {
-                    $id_laboratorio = $laboratorio->id_laboratorio;
-                }
-
-
-                $p = Atenciones::findOrFail($id);
-                $p->resultado = 1;  
-                $p->save();   
-        
-        $product=new ResultadosLaboratorios;
-        $img = $request->file('informe');
-        $nombre_imagen=$img->getClientOriginalName();
-        $product->id_atencion=$request->id;
-        $product->id_laboratorio=$id_laboratorio;
-        $product->informe=$nombre_imagen;
-        $product->user_id=Auth::user()->id;
-        if ($product->save()) {
-           \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
-
-        }
-        \DB::commit();
-
-
-          }
-
-
-              /*  $creditos = new ResultadosServicios();
-                $creditos->id_atencion = $request->id;
-                $creditos->id_servicio = $id_servicio;
-                $creditos->descripcion= $request->descripcion;
-                $creditos->user_id = Auth::user()->id;
-                $creditos->save();*/
-				
-				
-		
-
-       }
-          
-       	 Toastr::success('Adjuntado Exitosamente.', 'INFORME DE RESULTADOS!', ['progressBar' => true]);
-
-		 
+      Toastr::success('Registrado Exitosamente.', 'Informe!', ['progressBar' => true]);
       return redirect()->action('ResultadosController@index');
 
     }

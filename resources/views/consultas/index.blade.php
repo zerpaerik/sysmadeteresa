@@ -80,10 +80,12 @@
 						<td>
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ver Ticket</a>
+						@if(\Auth::user()->role_id <> 6)							 
 
 						<a  class="btn btn-success" href="consulta-edit-{{$d->EventId}}">Editar</a>	
 
 						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+						@endif
 							
 
 						</td>
