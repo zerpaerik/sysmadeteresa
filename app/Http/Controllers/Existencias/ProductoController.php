@@ -221,11 +221,15 @@ class ProductoController extends Controller
 
     public function create(Request $request){
       $validator = \Validator::make($request->all(), [
-        'nombre' => 'required|string|max:255',
+        'nombre' => 'required|unique:productos'
       ]);
 
-      if($validator->fails()) $this->createView(["created" => false]);
+        if($validator->fails()) {
 
+          Toastr::error('Error Registrando.', 'Nombre de Producto ya EXISTE!', ['progressBar' => true]);
+          return redirect()->action('Existencias\ProductoController@createView', ['errors' => $validator->errors()]);
+
+      } else {
     
 
        $producto = Producto::create([
@@ -239,6 +243,8 @@ class ProductoController extends Controller
         "sede_id" => $request->session()->get('sede'),
         "almacen" => 1
       ]);
+
+       }
 	  
 	    
        Toastr::success('Registrado Exitosamente.', 'Producto!', ['progressBar' => true]);

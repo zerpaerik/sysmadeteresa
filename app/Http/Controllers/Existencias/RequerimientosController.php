@@ -234,6 +234,8 @@ class RequerimientosController extends Controller
                     $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
                     }  
 
+              
+
       $p = Requerimientos::find($request->id);
       $p->estatus = 'Procesado';
       $p->cantidadd= $request->cantidadd;
@@ -244,7 +246,7 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("codigo", "=", $codigo)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
+      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
 
       if($p){
         $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
