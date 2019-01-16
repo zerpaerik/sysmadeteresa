@@ -186,7 +186,7 @@ class ReportesController extends Controller
     {
         $atenciones = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
-									->whereNotIn('monto',[0,0.00])
+									->whereNotIn('monto',[0,0.00,99999])
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
                                     ->first();
         if ($atenciones->cantidad == 0) {
@@ -397,12 +397,13 @@ class ReportesController extends Controller
         ->where('a.es_servicio','=', 1)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->where('a.id_sede','=', $request->session()->get('sede'))
-        ->whereNotIn('a.monto',[0,0.00])
+         ->whereNotIn('a.monto',[0,0.00,99999])
         ->orderby('a.id','desc')
         ->get();
 
         $totalServicios = Atenciones::where('es_servicio',1)
 		                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereNotIn('monto',[0,0.00,99999])
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
                                     ->select(DB::raw('SUM(abono) as abono'))
                                     ->first();
@@ -416,11 +417,12 @@ class ReportesController extends Controller
         ->where('a.es_laboratorio','=', 1)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->where('a.id_sede','=', $request->session()->get('sede'))
-        ->whereNotIn('a.monto',[0,0.00])
+         ->whereNotIn('a.monto',[0,0.00,99999])
         ->orderby('a.id','desc')
         ->get();
 
         $totalLaboratorios = Atenciones::where('es_laboratorio',1)
+                                    ->whereNotIn('monto',[0,0.00,99999])
 		                            ->where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
                                     ->select(DB::raw('SUM(abono) as abono'))
@@ -434,11 +436,12 @@ class ReportesController extends Controller
         ->where('a.es_paquete','=', 1)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
         ->where('a.id_sede','=', $request->session()->get('sede'))
-        ->whereNotIn('a.monto',[0,0.00])
+        ->whereNotIn('a.monto',[0,0.00,99999])
         ->orderby('a.id','desc')
         ->get();
 
         $totalPaquetes = Atenciones::where('es_paquete',1)
+                                     ->whereNotIn('monto',[0,0.00,99999])
 		                            ->where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
                                     ->select(DB::raw('SUM(abono) as abono'))
