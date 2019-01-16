@@ -31,7 +31,7 @@
 			<div class="row">
 				<div class="col-md-2">
 					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '']) !!}
 					<p class="help-block"></p>
 					@if($errors->has('fecha'))
 					<p class="help-block">
@@ -41,7 +41,7 @@
 				</div>
 				<div class="col-md-2">
 					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '']) !!}
 					<p class="help-block"></p>
 					@if($errors->has('fecha2'))
 					<p class="help-block">
@@ -49,6 +49,16 @@
 					</p>
 					@endif
 				</div>
+                        <div class="col-md-3">
+                              {!! Form::label('name', '*', ['class' => 'control-label']) !!}
+                            {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'Buscar por Detalle']) !!}
+                            <p class="help-block"></p>
+                            @if($errors->has('name'))
+                            <p class="help-block">
+                                {{ $errors->first('name') }}
+                          </p>
+                          @endif
+                    </div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
@@ -341,7 +351,6 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 
