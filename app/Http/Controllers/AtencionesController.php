@@ -368,6 +368,12 @@ class AtencionesController extends Controller
                    
                    $porcentaje =  $searchAnalisis->porcentaje;
 
+    if ($request->origen == 2 ){
+        $porcentaje = $searchAnalisis->porcentaje;
+    } else {
+        $porcentaje = 0;
+    }           
+
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
           //dd($request->total_g);

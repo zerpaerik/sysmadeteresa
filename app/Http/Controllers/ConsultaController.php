@@ -245,14 +245,6 @@ class ConsultaController extends Controller
 		$consulta->save();
 
 
-    dd($request->evento);
-    die();
-
-
-
-    $evento = Event::find($request->evento);
-    $evento->atendido=1;
-    $evento->update();
 		
 		
 	
