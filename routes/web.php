@@ -380,6 +380,7 @@ Route::get('categorias-edit-{id}', 'Config\CategoriaController@editView')->name(
 Route::get('consulta','Events\EventController@all')->name('consultas.inicio')->middleware('auth');
 Route::get('consulta-edit-{id}','Events\EventController@editView_consulta')->name('consultas.edit')->middleware('auth');
 Route::get('consulta-delete-{id}','Events\EventController@delete_consulta')->name('consultas.delete')->middleware('auth');
+Route::get('consulta-atendido-{id}','Events\EventController@atendido')->name('consultas.atendido')->middleware('auth');
 Route::get('consulta-ticket-ver-{id}','Events\EventController@ticket_ver');
 Route::get('event-{id}','Events\EventController@show');
 Route::match(['get', 'post'], 'events', 'Events\EventController@index')->name('consultas.index');

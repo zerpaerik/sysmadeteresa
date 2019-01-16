@@ -91,7 +91,8 @@
 						@endif
 						<td>
 
-						<a class="btn btn-danger" href="event-{{$d->EventId}}">Atender</a>
+						<a class="btn btn-danger" href="consulta-atendido-{{$d->EventId}}">Atender</a>
+						<a class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ticket</a>
 						@if(\Auth::user()->role_id <> 6)							 
 

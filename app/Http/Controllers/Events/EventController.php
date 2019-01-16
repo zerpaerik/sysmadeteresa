@@ -19,6 +19,7 @@ use PDF;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
 use App\Consulta;
+use Toastr;
 
 class EventController extends Controller
 {
@@ -85,6 +86,16 @@ class EventController extends Controller
   {
     $consulta = Event::find($id);
     $consulta->delete();
+    return back();
+  } 
+
+    public function atendido($id)
+  {
+    $consulta = Event::find($id);
+    $consulta->atendido=1;
+    $consulta->update();
+
+    Toastr::success('Atendido Exitosamente.', 'Consulta!', ['progressBar' => true]);
     return back();
   } 
 
