@@ -245,6 +245,8 @@ class ConsultaController extends Controller
 		$consulta->save();
 
 
+    dd($request->evento);
+    die();
 
 
 
