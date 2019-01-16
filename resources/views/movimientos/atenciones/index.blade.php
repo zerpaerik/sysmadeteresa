@@ -63,8 +63,8 @@
 						<td>{{$d->paquete}}</td>
 						@endif
 						<td>{{$d->monto}}</td>
-						<td>{{$d->abono}}</td>
-						<td>{{$d->created_at}}</td>
+						<td>{{$d->abono}}</td>s
+						<td>{{date('d-m-Y', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
 						      @if(\Auth::user()->role_id <> 6)							 
