@@ -803,7 +803,7 @@ class AtencionesController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->join('users as h','h.id','a.usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
-    ->whereNotIn('a.monto',[0,0.00])
+    ->whereNotIn('a.monto',[0,0.00,99999])
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
     ->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('b.nombres','like','%'.$nombre.'%')

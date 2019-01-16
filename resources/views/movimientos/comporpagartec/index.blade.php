@@ -86,8 +86,10 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>
-								@else
+								@elseif($atec->es_laboratorio =='1')
 								<td>{{$atec->laboratorio}}</td>
+								@else
+								<td>{{$atec->paquete}}</td>
 								@endif
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->porc_pagar}}</td>
