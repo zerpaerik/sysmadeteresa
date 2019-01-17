@@ -209,7 +209,10 @@
     </a>
     <ul class="dropdown-menu">
       <li>
-        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados</a>
+        <a href="{{route('resultados.index')}}"><i class="fa fa-list-alt"></i> Redactar Resultados Serv.</a>
+      </li>
+      <li>
+        <a href="{{route('resultados.index1')}}"><i class="fa fa-list-alt"></i> Redactar Resultados Lab.</a>
       </li>
       <li>
         <a href="{{route('resultadosguardados.index')}}"><i class="fa fa-search"></i> Consultar Resultados Serv.</a>

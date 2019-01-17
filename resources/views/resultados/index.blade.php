@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Resultados/Redactar</span>
+					<span>Resultados/Redactar Servicios</span>
 
 				</div>
 				<div class="box-icons">
@@ -73,7 +73,7 @@
 							<th>Fecha</th>
 							<th>Paciente</th>
 							<th>Origen</th>
-							<th>Detalle</th>
+							<th>Servicio</th>
 							<th>Informe</th>
 							<th>Acciones:</th>
 							
@@ -88,11 +88,8 @@
 						<td>{{$p->created_at}}</td>
 						<td>{{$p->nombres}},{{$p->apellidos}}</td>
 						<td>{{$p->name}},{{$p->lastname}}</td>
-						@if($p->es_servicio =='1')
 						<td>{{$p->servicio}}</td>
-						@else
-						<td>{{$p->laboratorio}}</td>
-						@endif
+						
 					
 						  
 							@if($p->informe)
@@ -246,57 +243,7 @@
                                     <option value="RX. TORAX PEP.docx">RX. TORAX PEP</option>
                                     <option value="RX. TORAX SECUELAS DE PEP.docx">RX. TORAX SECUELAS DE PEP</option>
 
-                                    <option value="ACIDO URICO.docx">ACIDO URICO</option>
-                                    <option value="AGLUTINACIONES.docx">AGLUTINACIONES</option>
-                                    <option value="ALFA FETOPROTEINAS.docx">ALFA FETOPROTEINASsss</option>
-                                    <option value="AMILASA SERICA.docx">AMILASA SERICA</option>
-                                    <option value="ASO.docx">ASO</option>
-                                    <option value="BETA HCG(cuantitativo).docx">BETA HCG(cuantitativo)</option>
-                                    <option value="BK-SERIADO.docx">BK-SERIADO</option>
-                                    <option value="CAMPAÑA.docx">CAMPAÑA</option>
-                                    <option value="COLESTEROL TOTAL.docx">COLESTEROL TOTAL</option>
-                                    <option value="COPROFUNCIONAL.docx">COPROFUNCIONAL</option>
-                                    <option value="CPK-MB.docx">CPK-MB</option>
-                                    <option value="CREATININA.docx">CREATININA</option>
-                                    <option value="CULTIVO SECRECION.docx">CULTIVO SECRECION</option>
-                                    <option value="DOSAJE DE POTASIO.docx">DOSAJE DE POTASIO</option>
-                                    <option value="EX. COMPLETO DE ORINA.docx">EX. COMPLETO DE ORINA</option>
-                                    <option value="EXTRADIOL.docx">EXTRADIOL</option>
-                                    <option value="FTA.docx">FTA</option>
-                                    <option value="GLOCOSA POST PANDRIAL.docx">GLOCOSA POST PANDRIAL</option>
-                                    <option value="GLOCOSA.docx">GLOCOSA</option>
-                                    <option value="GLU - COLT - TRIG.docx">GLU - COLT - TRIG</option>
-                                    <option value="GRUPO SANGUINEO.docx">GRUPO SANGUINEO</option>
-                                    <option value="HEMOGLOBINA GLUCOSILADA.docx">HEMOGLOBINA GLUCOSILADA</option>
-                                    <option value="HEPATITIS B.docx">HEPATITIS B</option>
-                                    <option value="HIV.docx">HIV</option>
-                                    <option value="LIPASA.docx">LIPASA</option>
-                                    <option value="PARASITO SERIADO.docx">PARASITO SERIADO</option>
-                                    <option value="PARASITOLOGICO SIMPLE.docx">PARASITOLOGICO SIMPLE</option>
-                                    <option value="PCR.docx">PCR</option>
-                                    <option value="PERFIL DE COAGULACION.docx">PERFIL DE COAGULACION</option>
-                                    <option value="PERFIL HEPATICO.docx">PERFIL HEPATICO</option>
-                                    <option value="PERFIL LIPIDICO.docx">PERFIL LIPIDICOs</option>
-                                    <option value="PERFIL OBSTETRICO.docx">PERFIL OBSTETRICO</option>
-                                    <option value="PERFIL TIROIDEO.docx">PERFIL TIROIDEO</option>
-                                    <option value="PROTENURIA.docx">PROTENURIA</option>
-                                    <option value="PSA TOTAL.docx">PSA TOTAL</option>
-                                    <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
-                                    <option value="RPR.docx">RPR</option>
-                                    <option value="RX.INFLAMATORIO.docx">RX.INFLAMATORIO</option>
-                                    <option value="SECRECION VAGINAL.docx">SECRECION VAGINAL</option>
-                                    <option value="TEST DE GRAHAM.docx">TEST DE GRAHAM</option>
-                                    <option value="THEVENON.docx">THEVENON</option>
-                                    <option value="TIEMPO DE COAGULACION - TIEMPO DE SANGRIA.docx">TIEMPO DE COAGULACION - TIEMPO DE SANGRIA</option>
-                                    <option value="TRIGLICERIDOS.docx">TRIGLICERIDOS</option>
-                                    <option value="TSH.docx">TSH</option>
-                                    <option value="UREA.docx">UREA</option>
-                                    <option value="UROCULTIVO NEGATIVO.docx">UROCULTIVO NEGATIVO</option>
-                                    <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
-                                    <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
-                                    <option value="VSG.docx">VSG</option>
-                                    <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
-                                    <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
+                            
 
 
 
