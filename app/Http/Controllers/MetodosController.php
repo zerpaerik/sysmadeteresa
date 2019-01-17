@@ -180,7 +180,7 @@ class MetodosController extends Controller
   public function createView() {
 
    $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
-   $productos =Producto::where("almacen",'=',2)->orderby('nombre','asc')->get();
+   $productos =Producto::where("almacen",'=',2)->where("categoria",'=',3)->orderby('nombre','asc')->get();
 
     return view('metodos.create', compact('pacientes','productos'));
   }

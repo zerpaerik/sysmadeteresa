@@ -156,7 +156,7 @@ class ProductoController extends Controller
             "nombre" => $pfrom->nombre,
             "categoria" => $pfrom->getOriginal("categoria"),
             "medida" => $pfrom->getOriginal("medida"),
-            "vence" => $pfrom->getOriginal("medida"),
+            "vence" => $pfrom->getOriginal("vence"),
             "cantidad" => $request->cantidadplus,
             "sede_id" => $request->sede,
             "almacen" => 2

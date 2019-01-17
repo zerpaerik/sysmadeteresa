@@ -523,6 +523,7 @@ class ReportesController extends Controller
     }
 
     private function elasticSearch($id){
+        
         $resultados = DB::table('atenciones as a')
         ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','b.dni')
         ->join('pacientes as b','b.id','a.id_paciente')
