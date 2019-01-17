@@ -165,11 +165,12 @@ class ComporPagarController extends Controller
 
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+   ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
    ->join('users as e','e.id','a.origen_usuario')
+   ->join('paquetes as p','p.id','a.id_paquete')
    //->whereBetween('a.created_at', [$f1, $f2])
    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('a.id_sede','=', $request->session()->get('sede'))
