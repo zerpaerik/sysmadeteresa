@@ -188,7 +188,6 @@ class ComisionesPorPagarTecController extends Controller
 	}
 
    
-
 	public function pagarcom($id) {
           $last = Atenciones::select('recibo')->orderby('recibo', 'DESC')->first();
           if (!empty($last->recibo)) {

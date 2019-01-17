@@ -192,7 +192,6 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
-
  }else{
 
   $atenciones = DB::table('atenciones as a')
