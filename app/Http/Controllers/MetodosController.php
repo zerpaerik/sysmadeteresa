@@ -42,6 +42,7 @@ class MetodosController extends Controller
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
+       ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
         ->get(); 
