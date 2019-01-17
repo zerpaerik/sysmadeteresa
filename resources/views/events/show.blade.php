@@ -244,7 +244,7 @@
 		
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el3" name="ciex">
+				<select id="el6" name="ciex">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
 						{{$c->codigo}}-{{$c->nombre}}
@@ -512,6 +512,7 @@ function Select2Test(){
 	$("#el3").select2();
   $("#el5").select2();
   $("#el4").select2();
+    $("#el6").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
