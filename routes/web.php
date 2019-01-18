@@ -161,6 +161,7 @@ Route::get('atenciones/{id}', 'AtencionesController@delete')->middleware('auth')
 Route::get('atenciones-edit-{id}', 'AtencionesController@editView')->name('atenciones.edit');
 Route::post('atenciones/edit/{id}', 'AtencionesController@edit');
 Route::post('atenciones/asoc/{id}', 'AtencionesController@asoc');
+Route::post('atenciones/asoc1/{id}', 'AtencionesController@asoc1');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
 
 
@@ -264,6 +265,7 @@ Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resul
 Route::get('resultados-guardar-{id}', 'ResultadosController@guardar')->name('resultados.guardar');
 Route::put('resultados-edit1-{id}', 'ResultadosController@edit1')->name('products.update');;
 Route::get('resultados-asoc-{id}', 'ResultadosController@asoc');
+Route::get('resultados-asoc1-{id}', 'ResultadosController@asoc1');
 Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
 
 

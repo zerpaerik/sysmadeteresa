@@ -106,7 +106,7 @@
 
 							@else
 								<td>
-								<form action="{{$model . '-asoc-' .$p->id}}" method="get">
+								<form action="{{$model . '-asoc1-' .$p->id}}" method="get">
 								<select name="informe" id="informe">
 									<option value="">Seleccione</option>
                                  
