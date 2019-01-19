@@ -352,6 +352,28 @@ class ReportesController extends Controller
      }*/
     }
 
+      public function recibo_caja_ver($id) 
+    {
+
+    
+      
+      $caja = DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->where('a.id','=',$id)
+        ->get();
+
+      
+       $view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);;
+       $pdf = \App::make('dompdf.wrapper');
+       $pdf->setPaper('A5', 'landscape');
+       $pdf->loadHTML($view);
+       return $pdf->stream('recibo_cierre_caja_ver');
+    /* }else{
+      return response()->json([false]);
+     }*/
+    }
+
 
     public function general_ingresos(Reques $request){
 

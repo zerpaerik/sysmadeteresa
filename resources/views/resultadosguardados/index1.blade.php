@@ -42,6 +42,8 @@
 					</thead>
 					<tbody>
 						@foreach($resultadosguardados as $d)
+													<tr>
+
 						<td>{{$d->id}}</td>
 						<td>{{$d->nombres}},{{$d->apellidos}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
@@ -64,6 +66,7 @@
 
 							
 						</td>
+					</tr>
 
 						@endforeach
 					</tbody>

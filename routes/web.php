@@ -423,6 +423,9 @@ Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
 
+Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
+
+
 
 Route::get('historial', 'HistorialesController@index')->name('historial.index')->middleware('auth');
 Route::get('historial-search', 'HistorialesController@search')->name('historial.search')->middleware('auth');

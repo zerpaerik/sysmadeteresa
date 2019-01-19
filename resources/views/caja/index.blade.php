@@ -1,37 +1,143 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Cierre de caja de turno {{$mensaje}}</h1>
-<p>Total del dia: {{$total}}</p>
-<form action="/cierre-caja-create" method="post">
-  {{ csrf_field() }}
-  <h3>Cerrar turno</h3>
-  <input type="hidden" value="{{$total}}" name="total">
-  <input type="submit" class="btn btn-danger" value="Cerrar">
-</form>
-<table class="table table-bordered table-striped table-hover table-heading table-datatable">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Fecha</th>
-      <th>Cierre</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($caja as $c)
-    <tr>
-      <td>{{$c->id}}</td>
-      <td>{{$c->fecha}}</td>
-      @if($c->cierre_matutino)
-      <td>Matutino: {{$c->cierre_matutino}}</td>
-      @else
-      <td>Vespertino: {{$c->cierre_vespertino}}</td>
-      @endif
-    </tr>
-    @endforeach
-  </tbody>
-</table>
-@section('scripts')
-<script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
-@endsection
+
+<body>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <div class="box-name">
+          <i class="fa fa-linux"></i>
+          <span>Cierres de Caja</span>
+        </div>
+        <div class="box-icons">
+          <a class="collapse-link">
+            <i class="fa fa-chevron-up"></i>
+          </a>
+          <a class="expand-link">
+            <i class="fa fa-expand"></i>
+          </a>
+          <a class="close-link">
+            <i class="fa fa-times"></i>
+          </a>
+        </div>
+
+        <div class="no-move"></div>
+      </div>
+        {!! Form::open(['method' => 'get', 'route' => ['cierre.index']]) !!}
+
+      <div class="row">
+        <div class="col-md-2">
+          {!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
+          {!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+          <p class="help-block"></p>
+          @if($errors->has('fecha'))
+          <p class="help-block">
+            {{ $errors->first('fecha') }}
+          </p>
+          @endif
+        </div>
+        <div class="col-md-2">
+          {!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
+          {!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+          <p class="help-block"></p>
+          @if($errors->has('fecha2'))
+          <p class="help-block">
+            {{ $errors->first('fecha2') }}
+          </p>
+          @endif
+        </div>
+        <div class="col-md-2">
+          {!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+          {!! Form::close() !!}
+
+        </div>
+      </div>  
+
+      <div class="row">
+        <strong>Total de Ingresos:</strong>{{$total}}
+        
+      </div>
+         <div class="row">
+        <form action="/cierre-caja-create" method="post">
+        {{ csrf_field() }}
+        <input type="hidden" value="{{$total}}" name="total">
+        <input type="submit" class="btn btn-danger" value="Cerrar Turno">
+      </form>
+    </div>
+      <div class="box-content no-padding">
+        <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Fecha</th>
+              <th>Cierre</th>
+              <th>Registrado Por:</th>
+              <th>Recibo:</th>
+           
+
+
+            </tr>
+          </thead>
+          <tbody>
+          @foreach($caja as $c)          
+            <tr>
+                <td>{{$c->id}}</td>
+                <td>{{$c->fecha}}</td>
+                @if($c->cierre_matutino)
+                <td>Matutino: {{$c->cierre_matutino}}</td>
+                @else
+                <td>Vespertino: {{$c->cierre_vespertino}}</td>
+                @endif
+                <td>{{$c->name}},{{$c->lastname}}</td>
+                <td>
+                  <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">Ver</a>
+                </td>
+
+            </tr>
+            
+            @endforeach
+          </tbody>
+          <tfoot>
+            <tr>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+
+
+<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
+<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
+
+
+
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+  TestTable1();
+  TestTable2();
+  TestTable3();
+  LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+  $('select').select2();
+  $('.dataTables_filter').each(function(){
+    $(this).find('label input[type=text]').attr('placeholder', 'Search');
+  });
+}
+$(document).ready(function() {
+  // Load Datatables and run plugin on tables 
+  LoadDataTablesScripts(AllTables);
+  // Add Drag-n-Drop feature
+  WinMove();
+});
+</script>
 @endsection

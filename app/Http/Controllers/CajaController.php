@@ -17,12 +17,61 @@ class CajaController extends Controller
 {
     public function index(Request $request)
     {
-	    $caja = DB::table('cajas')->select('*')->where('fecha','=',Carbon::now()->toDateString())->get();
-	    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;  
+
+     // $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->whereBetween('fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])->get();
+
+
+      $caja = DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->get();
+
+        $aten = Creditos::where('id_sede','=', $request->session()->get('sede'))
+                       ->whereNotIn('monto',[0,0.00])
+                       ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                       ->select(DB::raw('SUM(monto) as monto'))
+                       ->first();
+      
+
+        $mensaje;                      
+
+        if (count($caja) == 0) {
+            $mensaje = 'Matutino';
+        }
+
+        if(count($caja) >= 1)
+        {
+            $mensaje = 'Vespertino';
+        }  
+
+
+
+} else {
+
+
+	 //  $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->where('fecha','=',Carbon::now()->toDateString())->get();
+
+        $caja = DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->where('a.fecha','=',Carbon::now()->toDateString())
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->get();
+
+	    $aten = Creditos::where('id_sede','=', $request->session()->get('sede'))
 	                   ->whereNotIn('monto',[0,0.00])
 	                   ->whereDate('created_at', '=',Carbon::today()->toDateString())
-	                   ->select(DB::raw('SUM(abono) as monto'))
+	                   ->select(DB::raw('SUM(monto) as monto'))
 	                   ->first();
+      
+
 		$mensaje;	                   
 
     	if (count($caja) == 0) {
@@ -33,6 +82,8 @@ class CajaController extends Controller
     	{
     		$mensaje = 'Vespertino';
     	}
+
+        }
 		
 	    return view('caja.index',[
 	    	'total' => $aten->monto,
@@ -43,14 +94,16 @@ class CajaController extends Controller
 
     public function create(Request $request)
     {
-    	$caja = DB::table('cajas')->select('*')->where('fecha','=',Carbon::now()->toDateString())->get();
+    	$caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->where('fecha','=',Carbon::now()->toDateString())->get();
 
     	if (count($caja) == 0) {
     		Caja::create([
     			'cierre_matutino' => $request->total,
     			'cierre_vespertino' => 0,
     			'fecha' => Carbon::now()->toDateString(),
-    			'balance' => $request->total
+    			'balance' => $request->total,
+                'sede' => $request->session()->get('sede'),
+                'usuario' => Auth::user()->id
     		]);
     	}
 
@@ -60,7 +113,10 @@ class CajaController extends Controller
     			'cierre_matutino' => 0,
     			'cierre_vespertino' => $request->total - $caja[0]->cierre_matutino,
     			'fecha' => Carbon::now()->toDateString(),
-    			'balance' => $request->total
+    			'balance' => $request->total,
+                'sede' => $request->session()->get('sede'),
+                'usuario' => Auth::user()->id
+
     		]);
     	}
     	return redirect('/cierre-caja');
