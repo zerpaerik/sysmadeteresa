@@ -27,10 +27,11 @@
       @else
       <td>Vespertino: {{$c->cierre_vespertino}}</td>
       @endif
+      @endforeach
     </tr>
-    @endforeach
   </tbody>
 </table>
+<a href="cierre-caja-reporte-{{$c->fecha}}" class="btn btn-primary" target="_blank">Reporte del dia</a>
 @section('scripts')
 <script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
 @endsection

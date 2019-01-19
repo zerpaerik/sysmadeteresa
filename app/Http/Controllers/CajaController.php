@@ -12,6 +12,8 @@ use App\Models\Creditos;
 use App\Caja;
 use Auth;
 use Toastr;
+use PDF;
+
 
 
 class CajaController extends Controller
@@ -38,6 +40,7 @@ class CajaController extends Controller
 	    	'total' => $totalIngresos,
 	    	'mensaje' => $mensaje,
 	    	'caja' => $caja,
+	    	'fecha' => Carbon::now()->toDateString()
 	    ]);    	
     }
 
@@ -71,6 +74,22 @@ class CajaController extends Controller
     	}
     	return redirect('/cierre-caja');
 
+    }
+
+    public function reporte_pdf($fecha,Request $request)
+    {
+    	$caja = DB::table('cajas as c')
+    	->select('c.*','s.name','s.id')
+    	->join('sedes as s','s.id','c.id_sede')
+    	->where('fecha','=',$fecha)
+    	->where('id_sede','=', $request->session()->get('sede'))
+    	->get();
+
+        $view = \View::make('caja.reporte_dia')->with('caja', $caja);
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream('reporte_dia');
     }
 
     private function totalIngresos(Request $request)
