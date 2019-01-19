@@ -33,6 +33,9 @@ Route::get('personal-edit-{id}', 'Personal\PersonalController@editView')->name('
 Route::post('personal/edit', 'Personal\PersonalController@edit');
 Route::get('personal-delete-{id}','Personal\PersonalController@delete');
 
+Route::get('cierre-caja','CajaController@index')->name('cierre.index')->middleware('auth');
+Route::post('cierre-caja-create','CajaController@create')->name('cierre.create')->middleware('auth');
+
 Route::get('centros', 'Archivos\CentrosController@index')->name('centros.index')->middleware('auth');
 Route::get('centros-search', 'Archivos\CentrosController@show')->name('centros.show')->middleware('auth');
 Route::get('centros-create', 'Archivos\CentrosController@createView')->name('centros.create')->middleware('auth');
