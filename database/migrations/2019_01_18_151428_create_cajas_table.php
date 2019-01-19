@@ -17,7 +17,9 @@ class CreateCajasTable extends Migration
             $table->increments('id');
             $table->string('cierre_matutino');
             $table->string('cierre_vespertino');
+            $table->date('fecha');
             $table->string('balance');
+            $table->string('id_sede');
             $table->timestamps();
         });
     }

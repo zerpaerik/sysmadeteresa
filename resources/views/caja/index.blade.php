@@ -10,7 +10,10 @@
         <div class="box-name">
           <i class="fa fa-linux"></i>
           <span>Cierres de Caja</span>
+
         </div>
+
+
         <div class="box-icons">
           <a class="collapse-link">
             <i class="fa fa-chevron-up"></i>
@@ -24,8 +27,9 @@
         </div>
 
         <div class="no-move"></div>
+        
       </div>
-        {!! Form::open(['method' => 'get', 'route' => ['cierre.index']]) !!}
+      {!! Form::open(['method' => 'get', 'route' => ['cierre.index']]) !!}
 
       <div class="row">
         <div class="col-md-2">
@@ -56,32 +60,33 @@
       </div>  
 
       <div class="row">
-        <strong>Total de Ingresos:</strong>{{$total}}
+        <strong>Total Ingresos:</strong>{{$total->monto}}
         
       </div>
-         <div class="row">
+
+      <div class="row">
         <form action="/cierre-caja-create" method="post">
         {{ csrf_field() }}
         <input type="hidden" value="{{$total}}" name="total">
         <input type="submit" class="btn btn-danger" value="Cerrar Turno">
       </form>
     </div>
+
+
       <div class="box-content no-padding">
         <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
           <thead>
             <tr>
-              <th>Id</th>
+               <th>Id</th>
               <th>Fecha</th>
               <th>Cierre</th>
               <th>Registrado Por:</th>
               <th>Recibo:</th>
            
-
-
             </tr>
           </thead>
           <tbody>
-          @foreach($caja as $c)          
+                  @foreach($caja as $c)          
             <tr>
                 <td>{{$c->id}}</td>
                 <td>{{$c->fecha}}</td>
@@ -99,10 +104,8 @@
             
             @endforeach
           </tbody>
-          <tfoot>
-            <tr>
-            </tr>
-          </tfoot>
+        
+
         </table>
       </div>
     </div>

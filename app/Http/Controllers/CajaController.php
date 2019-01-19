@@ -12,6 +12,9 @@ use App\Models\Creditos;
 use App\Caja;
 use Auth;
 use Toastr;
+use PDF;
+
+
 
 class CajaController extends Controller
 {
@@ -74,6 +77,9 @@ class CajaController extends Controller
 
 		$mensaje;	                   
 
+
+    	
+    	
     	if (count($caja) == 0) {
     		$mensaje = 'Matutino';
     	}
@@ -85,16 +91,23 @@ class CajaController extends Controller
 
         }
 		
+
 	    return view('caja.index',[
-	    	'total' => $aten->monto,
+	    	'total' => $aten,
 	    	'mensaje' => $mensaje,
 	    	'caja' => $caja,
+	    	'fecha' => Carbon::now()->toDateString()
 	    ]);    	
     }
 
     public function create(Request $request)
     {
-    	$caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->where('fecha','=',Carbon::now()->toDateString())->get();
+    	
+    	$caja = DB::table('cajas')
+    	->select('*')
+    	->where('fecha','=',Carbon::now()->toDateString())
+    	->where('sede','=', $request->session()->get('sede'))
+    	->get();
 
     	if (count($caja) == 0) {
     		Caja::create([
@@ -102,8 +115,8 @@ class CajaController extends Controller
     			'cierre_vespertino' => 0,
     			'fecha' => Carbon::now()->toDateString(),
     			'balance' => $request->total,
-                'sede' => $request->session()->get('sede'),
-                'usuario' => Auth::user()->id
+                'usuario' => Auth::user()->id,
+    			'sede' =>  $request->session()->get('sede')
     		]);
     	}
 
@@ -114,12 +127,14 @@ class CajaController extends Controller
     			'cierre_vespertino' => $request->total - $caja[0]->cierre_matutino,
     			'fecha' => Carbon::now()->toDateString(),
     			'balance' => $request->total,
-                'sede' => $request->session()->get('sede'),
-                'usuario' => Auth::user()->id
-
+                'usuario' => Auth::user()->id,
+    			'sede' =>  $request->session()->get('sede')
     		]);
     	}
     	return redirect('/cierre-caja');
 
     }
+
+   
+    
 }
