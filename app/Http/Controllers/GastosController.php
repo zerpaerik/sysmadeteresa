@@ -17,7 +17,7 @@ class GastosController extends Controller
   if(! is_null($request->fecha)) {
 
       $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede')
       ->whereDate('a.created_at','=' ,$request->fecha)
       ->where('a.id_sede','=', $request->session()->get('sede'))
       ->orderby('a.id','desc')
@@ -26,7 +26,7 @@ class GastosController extends Controller
     } else {
 
        $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede')
       ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
       ->where('a.id_sede','=', $request->session()->get('sede'))
       ->orderby('a.id','desc')
@@ -52,6 +52,7 @@ class GastosController extends Controller
 		$gastos = Debitos::create([
 	      'descripcion' => $request->descripcion,
 	      'monto' => $request->monto,
+        'nombre' => $request->nombre,
 	      'origen' => 'RELACION DE GASTOS',
 	      'id_sede' => $request->session()->get('sede')
    		]);
@@ -82,13 +83,14 @@ class GastosController extends Controller
 
     public function editView($id){
       $p = Debitos::find($id);
-      return view('movimientos.gastos.edit', ["descripcion" => $p->descripcion, "monto" => $p->monto,"id" => $p->id]);
+      return view('movimientos.gastos.edit', ["descripcion" => $p->descripcion,"nombre" => $p->nombre, "monto" => $p->monto,"id" => $p->id]);
     }
 
       public function edit(Request $request){
       $p = Debitos::find($request->id);
       $p->descripcion = $request->descripcion;
       $p->monto = $request->monto;
+      $p->nombre = $request->nombre;
       $res = $p->save();
       return redirect()->action('GastosController@index', ["edited" => $res]);
     }

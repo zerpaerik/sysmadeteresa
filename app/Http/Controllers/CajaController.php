@@ -30,7 +30,7 @@ class CajaController extends Controller
 
 
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname','a.created_at')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->where('a.sede','=',$request->session()->get('sede'))
@@ -62,7 +62,7 @@ class CajaController extends Controller
 	 //  $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->where('fecha','=',Carbon::now()->toDateString())->get();
 
         $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname','a.created_at')
         ->join('users as b','b.id','a.usuario')
         ->where('a.fecha','=',Carbon::now()->toDateString())
         ->where('a.sede','=',$request->session()->get('sede'))

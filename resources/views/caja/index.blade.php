@@ -89,7 +89,7 @@
                   @foreach($caja as $c)          
             <tr>
                 <td>{{$c->id}}</td>
-                <td>{{$c->fecha}}</td>
+                <td>{{$c->created_at}}</td>
                 @if($c->cierre_matutino)
                 <td>Matutino: {{$c->cierre_matutino}}</td>
                 @else
@@ -97,7 +97,11 @@
                 @endif
                 <td>{{$c->name}},{{$c->lastname}}</td>
                 <td>
-                  <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">Ver</a>
+                  @if($c->cierre_matutino > 0)
+                  <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM</a>
+                  @else
+                  <a  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerT</a>
+                  @endif
                   <a class="btn btn-danger" href="caja-delete-{{$c->id}}"  onclick="return confirm('¿Desea Reversar este Cierre de Caja?')">Reversar</a> 
                 </td>
 

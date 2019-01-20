@@ -45,6 +45,9 @@
 		padding: 8px 5px;
 	}
 </style>
+<head>
+	<title>Cierre de Caja</title>
+</head>
 
 <div>
 	<div class="text-center title-header col-12">
@@ -78,7 +81,11 @@
                 <td>Vespertino: {{$caja->cierre_vespertino}}</td>
                 @endif			
                 <td>{{$caja->created_at}}</td>
-			    <td>{{$caja->balance}}</td>
+                @if($caja->cierre_matutino)
+                <td>{{$caja->cierre_matutino}}</td>
+                @else
+                <td>{{$caja->cierre_vespertino}}</td>
+                @endif	
 			    <td>{{$caja->name}},{{$caja->lastname}}</td>
 		</tr>
 	
@@ -119,6 +126,76 @@
 			<td>{{ $metodos->monto }}</td>
 		</tr>
 		
+	</table>
+</div>
+
+<div style="font-weight: bold; font-size: 14px">
+		EGRESOS
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table style="">
+		<tr>
+			<th>Descripción</th>
+			<th>Origen</th>
+			<th>Monto</th>
+		</tr>
+		@foreach ($egresos as $egreso)
+			<tr>
+				<td>{{ $egreso->descripcion }}</td>
+				<td>{{ $egreso->origen }}</td>
+				<td>{{ $egreso->monto }}</td>
+			</tr>
+		@endforeach
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td></td>
+			<td width="80">{{ $totalEgresos }}</td>
+		</tr>
+	</table>
+</div>
+<div style="font-weight: bold; font-size: 14px">
+		TIPO DE INGRESO AL CIERRE
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table>
+		<tr>
+			<th>Total efectivo</th>
+			<th>Total tarjeta</th>
+		</tr>
+		<tr>
+			<td>{{ $efectivo->monto }}</td>
+			<td>{{ $tarjeta->monto }}</td>
+		</tr>
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td width="80">
+				{{ $efectivo->monto + $tarjeta->monto }}
+			</td>
+		</tr>
+	</table>
+</div>
+<div style="font-weight: bold; font-size: 14px">
+		SALDO AL CIERRE
+</div>
+<div style="margin-top:10px; background: #eaeaea;">
+	<table>
+		<tr>
+			<th>Ingresos</th>
+			<th>Egresos</th>
+		</tr>
+		<tr>
+			<td>{{ $totalIngresos }}</td>
+			<td>{{ $totalEgresos }}</td>
+		</tr>
+		<tr>
+			<td>Total</td>
+			<td></td>
+			<td width="80">
+				{{ $totalIngresos - $totalEgresos }}
+			</td>
+		</tr>
 	</table>
 </div>
 

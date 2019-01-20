@@ -60,6 +60,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Descripcion</th>
+							<th>Recibido Por:</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
@@ -71,6 +72,7 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->descripcion}}</td>
+						<td>{{$d->nombre}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->created_at}}</td>
 						<td>
@@ -79,6 +81,7 @@
 						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
 						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 						@endif
+						 <a  href="{{asset('recibo_gasto_ver')}}/{{$d->id}}" class="btn btn-xs btn-danger">Recibo</a>
 						</td>
 
 				        @endforeach
@@ -88,6 +91,7 @@
 						<tr>
 							<th>Id</th>
 							<th>Descripcion</th>
+							<th>Recibido Por:</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 							<th>Acciones:</th>
