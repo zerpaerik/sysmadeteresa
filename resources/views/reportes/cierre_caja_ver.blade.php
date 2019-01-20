@@ -61,6 +61,8 @@
 	</div> 
 </div>
 
+
+
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
@@ -69,19 +71,53 @@
 			<th>MONTO DE CIERRE</th>
             <th>CERRADO POR:</th>
 		</tr>
-@foreach($caja as $c)		
 		<tr>
-                @if($c->cierre_matutino)
-                <td>Matutino: {{$c->cierre_matutino}}</td>
+                @if($caja->cierre_matutino)
+                <td>Matutino: {{$caja->cierre_matutino}}</td>
                 @else
-                <td>Vespertino: {{$c->cierre_vespertino}}</td>
+                <td>Vespertino: {{$caja->cierre_vespertino}}</td>
                 @endif			
-                <td>{{$c->created_at}}</td>
-			    <td>{{$c->balance}}</td>
-			    <td>{{$c->name}},{{$c->lastname}}</td>
+                <td>{{$caja->created_at}}</td>
+			    <td>{{$caja->balance}}</td>
+			    <td>{{$caja->name}},{{$caja->lastname}}</td>
 		</tr>
-@endforeach		
 	
+		
+	</table>
+</div>
+
+<div style="background: #eaeaea;">
+	<table>
+		<tr>
+			<th>INGRESOS</th>
+			<th>CANTIDAD</th>
+			<th>MONTO</th>
+		</tr>
+		<tr>
+			<td>Atenciones</td>
+			<td>{{ $atenciones->cantidad }}</td>
+			<td>{{ $atenciones->monto }}</td>
+		</tr>
+		<tr>
+			<td>Consultas</td>
+			<td>{{ $consultas->cantidad }}</td>
+			<td>{{ $consultas->monto }}</td>
+		</tr>
+		<tr>
+			<td>Otros Ingresos</td>
+			<td>{{ $otros_servicios->cantidad }}</td>
+			<td>{{ $otros_servicios->monto }}</td>
+		</tr>
+		<tr>
+			<td>Cuentas por Cobrar</td>
+			<td>{{ $cuentasXcobrar->cantidad }}</td>
+			<td>{{ $cuentasXcobrar->monto }}</td>
+		</tr>
+		<tr>
+			<td>Métodos Anticonceptivos</td>
+			<td>{{ $metodos->cantidad }}</td>
+			<td>{{ $metodos->monto }}</td>
+		</tr>
 		
 	</table>
 </div>

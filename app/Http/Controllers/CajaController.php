@@ -171,6 +171,20 @@ class CajaController extends Controller
 
     }
 
+  
+
+    public function delete($id){
+
+    $caja = Caja::find($id);
+    $caja->delete();
+
+    Toastr::success('Reversado Exitosamente.', 'Cierre de Caja!', ['progressBar' => true]);
+
+     return redirect()->action('CajaController@index', ["created" => true, "caja" => Caja::all()]);
+    
+    
+  }
+
    
     
 }

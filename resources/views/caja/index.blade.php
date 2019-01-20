@@ -98,6 +98,7 @@
                 <td>{{$c->name}},{{$c->lastname}}</td>
                 <td>
                   <a  href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">Ver</a>
+                  <a class="btn btn-danger" href="caja-delete-{{$c->id}}"  onclick="return confirm('¿Desea Reversar este Cierre de Caja?')">Reversar</a> 
                 </td>
 
             </tr>

@@ -365,7 +365,7 @@ class ReportesController extends Controller
      }*/
     }
 
-      public function recibo_caja_ver($id) 
+      public function recibo_caja_ver(Request $request,$id) 
     {
 
     
@@ -374,12 +374,70 @@ class ReportesController extends Controller
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->where('a.id','=',$id)
-        ->get();
+        ->first();
 
+        $fecha=$caja->created_at;
+
+     
+   
+
+
+        $atenciones = Creditos::where('origen', 'ATENCIONES')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+
+        if ($atenciones->cantidad == 0) {
+            $atenciones->monto = 0;
+        }
+
+         $consultas = Creditos::where('origen', 'CONSULTAS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($consultas->cantidad == 0) {
+            $consultas->monto = 0;
+        }
+
+        $otros_servicios = Creditos::where('origen', 'OTROS INGRESOS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($otros_servicios->cantidad == 0) {
+            $otros_servicios->monto = 0;
+        }
+
+        $cuentasXcobrar = Creditos::where('origen', 'CUENTAS POR COBRAR')
+                                     ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($cuentasXcobrar->cantidad == 0) {
+            $cuentasXcobrar->monto = 0;
+        }
+
+         $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($fecha)), date('Y-m-d 23:59:59', strtotime($fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($metodos->cantidad == 0) {
+            $metodos->monto = 0;
+        }
+        
+
+       // $fecha = $caja->fecha;
+
+       
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja'));
       
-       $view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);;
+       //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
-       $pdf->setPaper('A5', 'landscape');
+       //$pdf->setPaper('A4', 'landscape');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_cierre_caja_ver');
     /* }else{

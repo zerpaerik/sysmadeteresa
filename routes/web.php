@@ -36,6 +36,8 @@ Route::get('personal-delete-{id}','Personal\PersonalController@delete');
 Route::get('cierre-caja','CajaController@index')->name('cierre.index')->middleware('auth');
 Route::get('cierre-caja-reporte-{fecha}','CajaController@reporte_pdf')->name('cierre.reporte')->middleware('auth');
 Route::post('cierre-caja-create','CajaController@create')->name('cierre.create')->middleware('auth');
+Route::get('caja-delete-{id}','CajaController@delete');
+
 
 Route::get('centros', 'Archivos\CentrosController@index')->name('centros.index')->middleware('auth');
 Route::get('centros-search', 'Archivos\CentrosController@show')->name('centros.show')->middleware('auth');
