@@ -178,6 +178,8 @@ Route::post('gastos/create', 'GastosController@create')->middleware('auth');
 Route::get('gastos/{id}', 'GastosController@delete')->middleware('auth');
 Route::get('gastos-edit-{id}', 'GastosController@editView')->name('gastos.edit');
 Route::post('gastos/edit', 'GastosController@edit');
+Route::get('gastos-delete-{id}','GastosController@delete');
+
 
 Route::get('labporpagar', 'LabporPagarController@index')->name('labporpagar.index')->middleware('auth');
 Route::get('labporpagar-search', 'LabporPagarController@search')->name('labporpagar.search')->middleware('auth');
