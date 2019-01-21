@@ -594,6 +594,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+        <li>
+        <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
+      </li>     
       <li>
         <a href="{{route('users.index')}}"><i class="fa fa-users"></i> Usuarios</a>
       </li>
@@ -902,6 +905,19 @@
       <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Control</a>
       </li>
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-cog"></i>
+      <span class="hidden-xs">Administración</span>
+    </a>
+    <ul class="dropdown-menu">
+        <li>
+        <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
+      </li>     
+        
     </ul>
   </li>
  
