@@ -685,8 +685,17 @@ class ReportesController extends Controller
         $resultados = ReportesController::elasticSearch($id);
         $informe->setValue('name', $resultados->nombrePaciente. ' '.$resultados->apellidoPaciente);
         $informe->setValue('descripcion',$resultados->servicio);
-        $informe->setValue('indicacion',$resultados->resultado);
-        $informe->setValue('date',$resultados->created_at);
+        $informe->setValue('date',$resultados->created_at);        
+        //dd($resultados->origen);
+        if ($resultados->origen == 1) {
+            $informe->setValue('indicacion','MADRE TERESA');
+        }
+        if ($resultados->origen == 2) {
+            $informe->setValue('indicacion',$resultados->origen_usuario);
+        }
+        if ($resultados->origen == 3 ) {
+            $informe->setValue('indicacion','PARTICULAR');
+        }        
         $informe->saveAs($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
         return response()->download($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
 
