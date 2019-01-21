@@ -234,7 +234,7 @@ class ReportesController extends Controller
             $cuentasXcobrar->monto = 0;
         }
 
-        $egresos = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($request->fecha)), date('Y-m-d', strtotime($request->fecha))])
+        $egresos = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
 		                    ->where('id_sede','=', $request->session()->get('sede'))
                             ->select(DB::raw('origen, descripcion, monto'))
                             ->get();

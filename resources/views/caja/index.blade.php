@@ -59,10 +59,7 @@
         </div>
       </div>  
 
-      <div class="row">
-        <strong>Total Ingresos:</strong>{{$total->monto}}
-        
-      </div>
+      
 
       <div class="row">
         <form action="/cierre-caja-create" method="post">
