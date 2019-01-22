@@ -54,9 +54,9 @@
 						<td>{{$p->user}}</td>
 						<td>
 						<a id="{{$p->id}}" onclick="view(this)" class="btn btn-success">Ver</a>
-												 @if(\Auth::user()->role_id <> 6)							
 
 						<a href="pacientes-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
+																		 @if(\Auth::user()->role_id <> 6)	
 						<a href="pacientes-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
 						@endif

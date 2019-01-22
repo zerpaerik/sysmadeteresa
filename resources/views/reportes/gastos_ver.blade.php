@@ -19,7 +19,7 @@
             <center><p><strong>DESCRIPCIÒN:</strong>{{$gastos->descripcion}}</p></center>
             <center><p><strong>MONTO:</strong>{{$gastos->monto}}</p></center>
             <center><p><strong>RECIBIDO POR:</strong>{{$gastos->nombre}}</p></center>
-            <center><p><strong>ENTREGADO POR:</strong>________________________________</p></center>
+            <center><p><strong>ENTREGADO POR:</strong>{{$gastos->name}},{{$gastos->lastname}}</p></center>
         </fieldset> 
      </div>
 

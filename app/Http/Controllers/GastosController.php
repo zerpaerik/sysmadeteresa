@@ -8,6 +8,8 @@ use App\Models\Debitos;
 use App\Models\Historiales;
 use DB;
 use Carbon\Carbon;
+use Auth;
+
 
 class GastosController extends Controller
 {
@@ -54,7 +56,8 @@ class GastosController extends Controller
 	      'monto' => $request->monto,
         'nombre' => $request->nombre,
 	      'origen' => 'RELACION DE GASTOS',
-	      'id_sede' => $request->session()->get('sede')
+	      'id_sede' => $request->session()->get('sede'),
+        'usuario' => Auth::user()->id
    		]);
 		
 		  $historial = new Historiales();

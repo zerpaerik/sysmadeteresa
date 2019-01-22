@@ -73,6 +73,14 @@
 								</select>
 							</div>	
 
+							<label class="col-sm-1 control-label">TipoPago</label>
+							<div class="col-sm-3">
+								<select id="el3" name="tipopago">
+										<option value="EF">EF</option>
+										<option value="EF">TJ</option>
+								</select>
+							</div>		
+
 						<br>
 						<input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-3 btn btn-primary" value="Agregar">
 

@@ -643,7 +643,8 @@ class ReportesController extends Controller
 
   
      $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede','a.usuario','b.name','b.lastname')
+      ->join('users as b','b.id','a.usuario')
       ->where('a.id','=',$id)
       ->first();
        
