@@ -24,6 +24,10 @@ Route::get('role-create', 'Users\RoleController@createView')->name('role.create'
 Route::post('role/create', 'Users\RoleController@create')->middleware('auth');
 Route::get('role/{id}', 'Users\RoleController@delete')->middleware('auth');
 
+Route::get('users-password-edit', 'Users\UserController@updatepasswd')->name('users.password');
+Route::post('users/updatepassw', 'Users\UserController@updatepass');
+
+
 Route::get('personal', 'Personal\PersonalController@index')->name('personal.index')->middleware('auth');
 Route::get('personal-search', 'Personal\PersonalController@search')->name('personal.search')->middleware('auth');
 Route::get('personal-create', 'Personal\PersonalController@createView')->name('personal.create')->middleware('auth');
@@ -307,7 +311,6 @@ Route::get('generalegresos', 'ReporteIngresosController@indexe')->name('generale
 Route::get('generalegresos-search', 'ReporteIngresosController@searche')->name('generalegresos.searche')->middleware('auth');
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
-
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');
 Route::get('user/{id}', 'Users\UserController@delete')->middleware('auth');
 

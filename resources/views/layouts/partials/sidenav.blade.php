@@ -291,6 +291,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li> 
       <li>
         <a href="{{route('correlativo.index')}}"><i class="fa fa-hospital-o"></i> Nùmeros de Ticket</a>
       </li> 
@@ -594,6 +597,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li> 
         <li>
         <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
       </li>     
@@ -611,6 +617,8 @@
       </li>	  
     </ul>
   </li>
+
+
   
  @elseif(\Auth::user()->role_id == 6)
  
@@ -804,6 +812,19 @@
     </ul>
   </li>
 
+      <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-cog"></i>
+      <span class="hidden-xs">Administración</span>
+    </a>
+    <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li> 
+      
+    </ul>
+  </li>
+
  @elseif(\Auth::user()->role_id == 7)
 
  <li class="dropdown">
@@ -917,6 +938,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li> 
         <li>
         <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
       </li>     
