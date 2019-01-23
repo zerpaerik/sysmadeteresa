@@ -142,6 +142,15 @@ class EventController extends Controller
               'time' => $request->time,
               'monto' => $request->monto
             ]);
+
+    DB::table('creditos')
+            ->where('id_event', $request->event)
+            ->update([
+              'monto' => $request->monto
+            ]);        
+     
+
+
   return redirect('consulta');            
   }
 
