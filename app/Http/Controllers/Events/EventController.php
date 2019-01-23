@@ -86,6 +86,12 @@ class EventController extends Controller
   {
     $consulta = Event::find($id);
     $consulta->delete();
+
+
+    $creditos = Creditos::where('id_event','=',$id);
+    $creditos->delete();
+
+
     return back();
   } 
 
@@ -240,15 +246,16 @@ class EventController extends Controller
       ->where("time", "=", $request->time)
       ->get()->first();
     if(!$exists){
-      $evt = Event::create([
-        "paciente" => $request->paciente,
-        "profesional" => $request->especialista,
-        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
-        "time" => $request->time,
-        "title" => $paciente->nombres . " " . $paciente->apellidos . " Paciente.",
-        "monto" => $request->monto,
-        "sede" => $request->session()->get('sede')
-      ]);
+    
+        $evt = new Event;
+        $evt->paciente=$request->paciente;
+        $evt->profesional=$request->especialista;
+        $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
+        $evt->time=$request->time;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=$request->monto;
+        $evt->sede=$request->session()->get('sede');
+        $evt->save();
 
       $credito = Creditos::create([
         "origen" => 'CONSULTAS',
@@ -256,6 +263,7 @@ class EventController extends Controller
         "monto" => $request->monto,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
+        "id_event" => $evt->id
       ]);
 	  
 	  $historial = new Historiales();
