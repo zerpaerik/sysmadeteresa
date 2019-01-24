@@ -83,7 +83,7 @@
 
 							<tr>
 								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->dni}}</td>
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>

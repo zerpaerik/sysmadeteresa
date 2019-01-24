@@ -74,7 +74,7 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Servicio</th>
-							<th>Informe</th>
+							<th width="40%">Informe</th>
 							<th>Acciones:</th>
 							
 
@@ -86,8 +86,8 @@
 						<tr>
 						<td>{{$p->id}}</td>
 						<td>{{$p->created_at}}</td>
-						<td>{{$p->nombres}},{{$p->apellidos}}</td>
-						<td>{{$p->name}},{{$p->lastname}}</td>
+						<td>{{$p->apellidos}},{{$p->nombres}}</td>
+						<td>{{$p->lastname}},{{$p->name}}</td>
 						<td>{{$p->servicio}}</td>
 						
 					
@@ -104,8 +104,8 @@
 							@else
 								<td>
 								<form action="{{$model . '-asoc-' .$p->id}}" method="get">
-								<select name="informe" id="informe">
-									<option value="">Seleccione</option>
+					     <select id="el2" name="informe">
+						<option value="">Seleccione</option>
                                     <option value="ABDOMEN COLECISTITIS CRONICA FASE AGUDA.docx">ABDOMEN COLECISTITIS CRONICA FASE AGUDA</option>
                                     <option value="ABDOMEN COLECISTITIS CRONICA.docx">ABDOMEN COLECISTITIS CRONICA</option>
                                     <option value="ABDOMEN ESTEATOSIS LEVE, CCC.docx">ABDOMEN ESTEATOSIS LEVE, CCC</option>
@@ -118,8 +118,8 @@
                                     <option value="ABDOMEN POLIPO VB.docx">ABDOMEN POLIPO VB</option>
                                     <option value="ABDOMEN POLIPOSIS VB.docx">ABDOMEN POLIPOSIS VB</option>
                                     <option value="ABDOMEN STATUS POST COLECISTECTOMIA.docx">ABDOMEN STATUS POST COLECISTECTOMIA</option>
-                                     <option value="COLPOSCOPIA POSITIVO.docx">COLPOSCOPIA POSITIVO</option>
-                                      <option value="COLPOSCOPIA NEGATIVO.docx">COLPOSCOPIA NEGATIVO</option>
+                                     <option value="COLPOSCOPIAPOSITIVO.docx">COLPOSCOPIAPOSITIVO</option>
+                                      <option value="COLPOSCOPIANEGATIVO.docx">COLPOSCOPIANEGATIVO</option>
                                     <option value="GIN EPI.docx">GIN EPI</option>
                                     <option value="GIN NRML.docx">GIN NRML</option>
                                     <option value="GIN POLIFOL, EPI.docx">GIN POLIFOL, EPI</option>
@@ -244,32 +244,6 @@
                                     <option value="RX. TORAX NRML.docx">RX. TORAX NRML</option>
                                     <option value="RX. TORAX PEP.docx">RX. TORAX PEP</option>
                                     <option value="RX. TORAX SECUELAS DE PEP.docx">RX. TORAX SECUELAS DE PEP</option>
-
-                            
-
-
-
-
-
-
-
-
-
-
-                                 
-
-
-
-
-
-
-
-
-
-
-
-
-
 								</select>
 							</td>
 							<td><input type="submit" class="btn btn-success" value="Asociar"></td>
@@ -305,25 +279,47 @@
 
 
 
+@section('scripts')
 <script type="text/javascript">
-// Run Datables plugin and create 3 variants of settings
-function AllTables(){
-	TestTable1();
-	TestTable2();
-	TestTable3();
-	LoadSelect2Script(MakeSelect2);
-}
-function MakeSelect2(){
-	$('select').select2();
-	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
-	});
-}
+// Run Select2 on element
 $(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
+      LoadTimePickerScript(DemoTimePicker);
+      LoadSelect2Script(function (){
+            $("#el2").select2();
+            $("#el1").select2();
+            $("#el3").select2({disabled : true});
+      });
+      WinMove();
 });
+
+$('#input_date').on('change', getAva);
+$('#el1').on('change', getAva);
+
+function getAva (){
+            var d = $('#input_date').val();
+            var e = $("#el1").val();
+            if(!d) return;
+            $.ajax({
+      url: "available-time/"+e+"/"+d,
+      headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+      type: "get",
+      success: function(res){
+            $('#el3').find('option').remove().end();
+            for(var i = 0; i < res.length; i++){
+                              var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
+                              $('#el3').append(newOption).trigger('change');
+            }
+      }
+    });     
+}
+
+function DemoTimePicker(){
+      $('#input_date').datepicker({
+      setDate: new Date(),
+      minDate: 0});
+}
 </script>
+@endsection
 @endsection
