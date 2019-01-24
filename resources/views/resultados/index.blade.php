@@ -86,8 +86,8 @@
 						<tr>
 						<td>{{$p->id}}</td>
 						<td>{{$p->created_at}}</td>
-						<td>{{$p->nombres}},{{$p->apellidos}}</td>
-						<td>{{$p->name}},{{$p->lastname}}</td>
+						<td>{{$p->apellidos}},{{$p->nombres}}</td>
+						<td>{{$p->lastname}},{{$p->name}}</td>
 						<td>{{$p->servicio}}</td>
 						
 					
@@ -104,8 +104,8 @@
 							@else
 								<td>
 								<form action="{{$model . '-asoc-' .$p->id}}" method="get">
-								<select id="el1" name="informe">
-									<option value="">Seleccione</option>
+					     <select id="el2" name="informe">
+						<option value="">Seleccione</option>
                                     <option value="ABDOMEN COLECISTITIS CRONICA FASE AGUDA.docx">ABDOMEN COLECISTITIS CRONICA FASE AGUDA</option>
                                     <option value="ABDOMEN COLECISTITIS CRONICA.docx">ABDOMEN COLECISTITIS CRONICA</option>
                                     <option value="ABDOMEN ESTEATOSIS LEVE, CCC.docx">ABDOMEN ESTEATOSIS LEVE, CCC</option>
