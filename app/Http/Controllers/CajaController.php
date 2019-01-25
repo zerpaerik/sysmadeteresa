@@ -39,7 +39,7 @@ class CajaController extends Controller
         $aten = Creditos::where('id_sede','=', $request->session()->get('sede'))
                        ->whereNotIn('monto',[0,0.00])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                       ->select(DB::raw('SUM(monto)b as monto'))
+                       ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
       
 
