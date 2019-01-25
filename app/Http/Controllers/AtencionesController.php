@@ -370,8 +370,10 @@ class AtencionesController extends Controller
 
     if ($request->origen == 2 ){
         $porcentaje = $searchAnalisis->porcentaje;
-    } else {
+    } elseif($request->origen == 1) {
         $porcentaje = 0;
+    } else {
+      $porcentaje=0;
     }           
 
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
@@ -387,7 +389,7 @@ class AtencionesController extends Controller
           $lab->es_laboratorio =  true;
           $lab->tipopago = $request->tipopago;
           $lab->porc_pagar = $porcentaje;
-		  $lab->serv_prog = FALSE;
+		      $lab->serv_prog = FALSE;
           $lab->comollego = $request->comollego;
           $lab->pendiente = (float)$request->monto_l['laboratorios'][$key]['monto'] - (float)$request->monto_abol['laboratorios'][$key]['abono'];
           $lab->monto = (float)$request->monto_l['laboratorios'][$key]['monto'];
@@ -397,8 +399,8 @@ class AtencionesController extends Controller
           $lab->id_sede = $request->session()->get('sede');
           $lab->estatus = 1;
           $lab->particular = $request->particular;
-                        $lab->usuario = Auth::user()->id;
-                                      $lab->ticket =AtencionesController::generarId($request);
+       $lab->usuario = Auth::user()->id;
+         $lab->ticket =AtencionesController::generarId($request);
           $lab->save();
 
           $creditos = new Creditos();
@@ -638,7 +640,12 @@ class AtencionesController extends Controller
                     ->where('id','=', $request->id_laboratorio)
                     ->first();   
                    
-                   $porcentaje =  $searchAnalisis->porcentaje;
+                   
+    if ($request->origen == 2 ){
+        $porcentaje = $searchAnalisis->porcentaje;
+    } else {
+      $porcentaje=0;
+    }   
 
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
