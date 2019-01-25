@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-	<h2>Ficha Prenatal de {{ $paciente->nombres }} {{ $paciente->apellidos }} </h2>
+	<h2>Ficha Prenatal de {{ $data->nombres }} {{ $data->apellidos }} </h2>
 
   <h3>Antecedentes Obstetricos</h3>
 
@@ -22,11 +22,6 @@
             <label class="col-sm-1 control-label">Nac.Vivos</label>
             <div class="col-sm-3">
               <input type="text" class="form-control" name="vivos" value="{{ $data->vivos }}" placeholder="vivos" data-toggle="tooltip" data-placement="bottom" title="vivos">
-            </div>
-
-              <label class="col-sm-1 control-label">Nac.Muertoss</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="muertos" value="{{ $data->muertos }}" placeholder="muertos" data-toggle="tooltip" data-placement="bottom" title="muertos">
             </div>
 
               <label class="col-sm-1 control-label">Viven</label>
@@ -77,7 +72,7 @@
             <h3>Fin Gestacion Anterior</h3>
             <label for="">Terminacion</label>
             <p>
-              <input type="text" name="terminacion_gestacion" value="{{$data->terminacion_gestacion}}">           
+              <input type="text" name="terminacion_gestacion" value="{{$data->terminacion}}">           
             </p>                
             <label for="">Fecha</label>
             <input type="date" name="fecha_terminacion" value="{{ $data->fecha_terminacion }}"  style="line-height: 20px">
@@ -327,8 +322,6 @@
             <h3>Hemologbina</h3>
             <label for="">Hb (g %)</label>
             <input type="text" name="hemoglobina" value="{{ $data->hemoglobina }}">
-            <label for="">No se hizo </label>
-            <input type="text" name="hemoglobina_no" value="{{ $data->hemoglobina_no }}">
             <label for="">Fecha</label>
             <input type="date" name="hemoglobina_fecha" value="{{ $data->hemoglobina_fecha }}" style="line-height: 20px">    
 
@@ -394,7 +387,7 @@
             <label for="">Fecha</label>
             <input type="date" name="fecha_terminacion" value="{{$data->fecha_terminacion}}"style="line-height: 20px">
             <input type="text" name="terminacion" value="{{$data->terminacion}}">
-
+hemoglobina
             <h3>Atencion</h3>
             <label for="">Nivel</label> 
             <p>
