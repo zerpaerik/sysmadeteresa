@@ -32,12 +32,16 @@
 			{!! Form::open(['method' => 'get', 'route' => ['historial.pacientes']]) !!}
 
 			<div class="row">
-					<div class="col-md-4">
-						<div class="col-sm-10">
-							<input type="text" class="form-control" name="paciente" placeholder="Tipear DNI del Paciente" data-toggle="tooltip" data-placement="bottom" title="Nombre" required="true">
-						</div>
+					<div class="col-md-6">
+
+							<select id="el1"  name="paciente">
+								<option value="">Busque el Paciente</option>
+								@foreach($pacientes as $role)
+									<option value="{{$role->dni}}">{{$role->apellidos}},{{$role->nombres}}-{{$role->dni}}</option>
+								@endforeach
+							</select>
 						</div>	
-				<div class="col-md-2">
+				<div class="col-md-6">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
 
@@ -187,26 +191,47 @@
 
 
 
-
+@section('scripts')
 <script type="text/javascript">
-// Run Datables plugin and create 3 variants of settings
-function AllTables(){
-	TestTable1();
-	TestTable2();
-	TestTable3();
-	LoadSelect2Script(MakeSelect2);
-}
-function MakeSelect2(){
-	$('select').select2();
-	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
-	});
-}
+// Run Select2 on element
 $(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
+      LoadTimePickerScript(DemoTimePicker);
+      LoadSelect2Script(function (){
+            $("#el2").select2();
+            $("#el1").select2();
+            $("#el3").select2({disabled : true});
+      });
+      WinMove();
 });
+
+$('#input_date').on('change', getAva);
+$('#el1').on('change', getAva);
+
+function getAva (){
+            var d = $('#input_date').val();
+            var e = $("#el1").val();
+            if(!d) return;
+            $.ajax({
+      url: "available-time/"+e+"/"+d,
+      headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+      type: "get",
+      success: function(res){
+            $('#el3').find('option').remove().end();
+            for(var i = 0; i < res.length; i++){
+                              var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
+                              $('#el3').append(newOption).trigger('change');
+            }
+      }
+    });     
+}
+
+function DemoTimePicker(){
+      $('#input_date').datepicker({
+      setDate: new Date(),
+      minDate: 0});
+}
 </script>
+@endsection
 @endsection
