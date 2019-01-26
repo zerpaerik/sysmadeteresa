@@ -8,6 +8,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
+use App\Models\Pacientes;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Models\Events\Event;
@@ -76,6 +77,48 @@ class ReportesController extends Controller
         $resultados = ReportesController::verResultado($id);
 
         return view('resultadosguardados.editar', ["resultados" => $resultados]);
+    }
+
+    public function historialp(Request $request)
+    {
+         $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','cr.tipo_ingreso')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->join('creditos as cr','cr.id_atencion','a.id')
+    ->whereNotIn('a.monto',[0,0.00,99999])
+    ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('b.dni','=',$request->paciente)
+    ->orderby('a.id','desc')
+    ->get();
+
+    $event = DB::table('events as e')
+    ->select('e.id as EventId','e.paciente','e.created_at','e.atendido','e.title','e.sede','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
+    ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->where('p.dni','=',$request->paciente)
+    ->get();
+
+     $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','b.telefono','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->where('b.dni','=',$request->paciente)
+        ->orderBy('a.created_at','asc')
+        ->get(); 
+
+
+
+
+       $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
+
+        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"atenciones" => $atenciones,"event" => $event,"metodos" => $metodos]);
     }
 
     public function update($id,Request $request)

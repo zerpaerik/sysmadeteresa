@@ -440,6 +440,9 @@ Route::get('recibo_caja_ver2/{id}','ReportesController@recibo_caja_ver2');
 
 Route::get('recibo_gasto_ver/{id}','ReportesController@recibo_gasto_ver');
 
+Route::get('historial_pacientes', 'ReportesController@historialp')->name('historial.pacientes');
+
+
 
 
 
