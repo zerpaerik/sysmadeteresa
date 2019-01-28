@@ -96,7 +96,7 @@
 				<p class="col-sm-6"><strong>peso:</strong> {{ $consulta->peso }}</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}kG</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->mac }}</p>
+			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
@@ -307,7 +307,7 @@
 			<div class="col-sm-4">
 				<select id="el4" name="ciex2">
 					@foreach($ciex as $c)
-					<option value="{{$c->nombre}}">
+					<option value="{{$c->codigo}}-{{$c->nombre}}">
 						{{$c->codigo}}-{{$c->nombre}}
 					</option>
 					@endforeach
