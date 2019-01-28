@@ -514,8 +514,11 @@ class ResultadosController extends Controller
 
       $p = Atenciones::findOrFail($id);
       $p->informe = $request->informe;
-      $p->save();    
-      return redirect()->action('ResultadosController@index');
+      $p->save();
+
+      return back();
+  
+     // return redirect()->action('ResultadosController@index');
 
     }
 

@@ -54,7 +54,13 @@
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
 				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong>{{ $consulta->examen_fisico_regional }}</p>
+				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong></p>
+        <p class="col-sm-6"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
+        <p class="col-sm-6"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
+        <p class="col-sm-6"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
+        <p class="col-sm-6"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
+        <p class="col-sm-6"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
+        <p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
 				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
 				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
 				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX1 }}</p>

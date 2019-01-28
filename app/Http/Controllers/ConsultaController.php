@@ -222,7 +222,15 @@ class ConsultaController extends Controller
 		$consulta->motivo_consulta =$request->motivo_consulta;
 		$consulta->tipo_enfermedad =$request->tipo_enfermedad;
 		$consulta->evolucion_enfermedad =$request->evolucion_enfermedad;
-		$consulta->examen_fisico_regional =$request->examen_fisico_regional;
+		//$consulta->examen_fisico_regional =$request->examen_fisico_regional;
+
+    $consulta->piel =$request->piel;
+    $consulta->mamas =$request->mamas;
+    $consulta->abdomen =$request->abdomen;
+    $consulta->genext =$request->genext;
+    $consulta->genint =$request->genint;
+    $consulta->miembros =$request->miembros;
+
 		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
 		$consulta->diagnostico_final =$request->diagnostico_final;
 		$consulta->ciex =$request->ciex;

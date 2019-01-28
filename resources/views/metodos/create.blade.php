@@ -56,6 +56,19 @@
 						</div>
 
 
+						<label class="col-sm-1 control-label">Lo Aplicara:</label>
+						<div class="col-sm-3">
+							<select id="el3" name="personal">
+								@foreach($personal as $paciente)
+									<option value="{{$paciente->lastname}},{{$paciente->name}}">
+										{{$paciente->dni}} - 
+										{{$paciente->lastname}} {{$paciente->name}}
+									</option>
+								@endforeach
+							</select>
+						</div>
+
+
 
 					
 													
@@ -77,6 +90,7 @@ $(document).ready(function() {
 	LoadSelect2Script(function (){
 		$("#el2").select2();
 		$("#el1").select2();
+				$("#el3").select2();
 		$("#el3").select2({disabled : true});
 	});
 	WinMove();

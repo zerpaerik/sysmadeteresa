@@ -729,7 +729,7 @@ class ReportesController extends Controller
         $resultados = ReportesController::elasticSearch($id);
         $informe->setValue('name', $resultados->nombrePaciente. ' '.$resultados->apellidoPaciente);
         $informe->setValue('descripcion',$resultados->servicio);
-        $informe->setValue('date',$resultados->created_at);        
+        $informe->setValue('date',Carbon::today()->toDateString());        
         //dd($resultados->origen);
         if ($resultados->origen == 1) {
             $informe->setValue('indicacion','MADRE TERESA');

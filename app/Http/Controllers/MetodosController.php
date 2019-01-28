@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pacientes;
+use App\Models\Personal;
 use App\Models\Metodos;
 use App\Models\Creditos;
 use App\Models\Existencias\Producto;
@@ -26,7 +27,7 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -38,10 +39,11 @@ class MetodosController extends Controller
       } else {
 
       	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
+
        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
@@ -61,7 +63,7 @@ class MetodosController extends Controller
 
 
         $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto')
+            ->select('a.id','a.id_paciente','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
            ->join('users as c','c.id','a.id_usuario')
            ->join('pacientes as b','b.id','a.id_paciente')
            ->join('productos as d','d.id','a.id_producto')
@@ -106,6 +108,7 @@ class MetodosController extends Controller
          $metodos->id_producto =$request->producto;
          $metodos->monto =$request->monto;
          $metodos->proximo = $proximo;
+         $metodos->personal = $request->personal;
          $metodos->estatus ='No Llamado';
          $metodos->id_usuario = \Auth::user()->id;
          $metodos->sede = $request->session()->get('sede');
@@ -181,9 +184,10 @@ class MetodosController extends Controller
   public function createView() {
 
    $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
+   $personal =Personal::where("estatus", '=', 1)->orderby('lastname','asc')->get();
    $productos =Producto::where("almacen",'=',2)->where("categoria",'=',3)->orderby('nombre','asc')->get();
 
-    return view('metodos.create', compact('pacientes','productos'));
+    return view('metodos.create', compact('pacientes','productos','personal'));
   }
 
    public function editView($id){
