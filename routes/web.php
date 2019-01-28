@@ -266,6 +266,9 @@ Route::get('ap/ningunop','ConsultaController@ningunop');
 Route::get('apa/otros','ConsultaController@apa');
 Route::get('apa/ningunopa','ConsultaController@ningunopa');
 
+Route::get('alerg/si','ConsultaController@alsi');
+Route::get('alerg/no','ConsultaController@alno');
+
 
 
 

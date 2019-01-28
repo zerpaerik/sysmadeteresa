@@ -136,6 +136,16 @@ class ConsultaController extends Controller
       
     return view('consultas.ningunopa');
   }
+
+    public function alsi(){
+      
+    return view('consultas.alsi');
+  }
+
+     public function alno(){
+      
+    return view('consultas.alno');
+  }
 	
 	public function searchh(Request $request)
     {

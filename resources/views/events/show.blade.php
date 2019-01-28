@@ -90,11 +90,20 @@
 
 				<label for="" class="col-sm-3">Alergias</label>
 				<div class="col-sm-3">
-					<select id="el10" name="alergias">
-					<option value="No">No</option>
-					<option value="Si">Si</option>
+					<select id="el10" name="al">
+					<option value="0">Seleccione</option>
+					<option value="1">No</option>
+					<option value="2">Si</option>
 				</select>
+
 				</div>
+					<div class="col-sm-3">
+					<div id="alerg"></div>
+				</div>
+
+					</div>
+				
+
 
 				<label for="" class="col-sm-3">Menarquia</label>
 				<div class="col-sm-3">
@@ -104,7 +113,7 @@
 				<div class="col-sm-3">
 					<input type="text" name="prs"> años.
 				</div>
-			</div>
+			
 			
 				<br>
 				<div class="col-sm-12">
@@ -682,6 +691,32 @@ function DemoTimePicker(){
                  url:  link,
                  success: function(a) {
                     $('#apa1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el10').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/alerg/si/';
+          } else {
+           link = '/alerg/no/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#alerg').html(a);
                  }
           });
 
