@@ -36,7 +36,6 @@
 			<div class="rows">
 				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
 				<p class="col-sm-6"><strong>P/A:</strong> {{ $consulta->pa }}</p>
-
 				<p class="col-sm-6"><strong>Sed:</strong> {{ $consulta->sed }}</p>
 				<p class="col-sm-6"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
 				<p class="col-sm-6"><strong>Animo:</strong> {{ $consulta->animo }}</p>
@@ -48,9 +47,8 @@
 				<p class="col-sm-6"><strong>peso:</strong> {{ $consulta->peso }}</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->mac }}</p>
-				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }}</p>
-				<p class="col-sm-6"><strong>G:</strong> {{ $consulta->g }}</p>
+			  <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->mac }}</p>
+				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G:</strong>{{ $consulta->g }}</p>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
 				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
@@ -63,14 +61,13 @@
         <p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
 				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
 				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX1 }}</p>
+				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
 				<p class="col-sm-6"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
 				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
 				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
 				<p class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->obervaciones }}</p>
-
+				<p class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
 				<br>
 			</div>
 		</div>

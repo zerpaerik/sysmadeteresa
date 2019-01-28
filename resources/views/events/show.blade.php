@@ -97,8 +97,7 @@
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}kG</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
 			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->mac }}</p>
-				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }}</p>
-				<p class="col-sm-6"><strong>G:</strong> {{ $consulta->g }}</p>
+				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
 				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
 				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
 				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
@@ -222,7 +221,9 @@
 				<input   class="form-control" type="text" name="tipo_enfermedad">
 			</div>
 			<br>
-			<label for="" class="col-sm-12 control-label"><strong>Solo para pacientes Femeninas:</strong></label>
+			<div class="row">
+			<label for="" class="col-sm-3 control-label"><strong>Solo para pacientes Femeninas:</strong></label>
+		    </div>
 
 			<label for="" class="col-sm-2 control-label">FUR:</label>
 			<div class="col-sm-4">	
@@ -240,12 +241,12 @@
 			</div>
 
 			<label for="" class="col-sm-2 control-label">P:</label>
-			<div class="col-sm-4">	
+			<div class="col-sm-1">	
 				<input  class="form-control" type="text" name="p">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-4">	
+			<div class="col-sm-1">	
 				<input   class="form-control" type="text" name="g">
 			</div>
 
@@ -319,13 +320,19 @@
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="examen_auxiliar">
 			</div>
+
+			<label for="" class="col-sm-2 control-label"></label>
+			<div class="col-sm-4">	
+				<input   class="form-control" type="text" name="" disabled="true">
+			</div>
 			
 			
 			<div class="row">
-			<label for="" class="col-sm-3 control-label">Plan de Tratamiento</label>
+			<label for="" class="col-sm-2 control-label"><strong>Plan de Tratamiento:</strong></label>
+		    </div>
+
 			<div class="col-sm-12">	
 				<input   class="form-control" type="text" name="plan_tratamiento">
-			</div>
 			</div>
 
 			<label for="" class="col-sm-2 control-label">Observaciones</label>
