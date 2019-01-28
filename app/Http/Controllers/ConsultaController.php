@@ -103,6 +103,39 @@ class ConsultaController extends Controller
    
         return view('consultas.historiasp.index', ["historias" => $historias]);
   }
+
+   public function af(){
+     
+      
+    return view('consultas.afotros');
+  }
+
+  public function ningunof(){
+      
+    return view('consultas.ningunof');
+  }
+
+   public function ap(){
+     
+      
+    return view('consultas.apotros');
+  }
+
+    public function ningunop(){
+      
+    return view('consultas.ningunop');
+  }
+
+   public function apa(){
+     
+      
+    return view('consultas.apaotros');
+  }
+
+    public function ningunopa(){
+      
+    return view('consultas.ningunopa');
+  }
 	
 	public function searchh(Request $request)
     {
@@ -202,11 +235,6 @@ class ConsultaController extends Controller
     ]);   
   
   }
-
-
-
-
-
 
 
 

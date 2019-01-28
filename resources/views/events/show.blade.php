@@ -38,37 +38,74 @@
 				<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 				<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
 				<h3>Antecedentes Medicos</h3>
+				<div class="row">
 
-				<label for="" class="col-sm-12">Antecedentes familiares</label>
-				<div class="col-sm-12">
-					<input required type="text" name="a_familiares">
+				<label for="" class="col-sm-3">Antecedentes familiares</label>
+				<div class="col-sm-3">
+					<select id="el12" name="af">
+							<option value="0">Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+				<div class="col-sm-3">
+					<div id="af1"></div>
 				</div>
 
-				<label for="" class="col-sm-12">Antecedentes personales</label>
-				<div class="col-sm-12">			
-					<input required type="text" name="a_personales">
+
+
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Antecedentes personales</label>
+				<div class="col-sm-3">			
+						<select id="el11" name="ap">
+														<option value="0">Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
 				</div>
 
-				<label for="" class="col-sm-12">Antecedentes patologicos</label>
-				<div class="col-sm-12">			
-					<input required type="text" name="a_patologicos">
+				<div class="col-sm-3">
+					<div id="ap1"></div>
+				</div>
+			  </div>
+
+			  <div class="row">
+
+				<label for="" class="col-sm-3">Antecedentes patologicos</label>
+				<div class="col-sm-3">			
+					<select id="el14" name="apa">
+													<option value="0">Seleccione</option>
+							<option value="1">Ninguno</option>
+							<option value="2">Otros</option>
+						</select>
+				</div>
+					<div class="col-sm-3">
+					<div id="apa1"></div>
 				</div>
 
-				<label for="" class="col-sm-12">Alergias</label>
-				<div class="col-sm-12">
+				</div>
+				<div class="row">
+
+				<label for="" class="col-sm-3">Alergias</label>
+				<div class="col-sm-3">
 					<select id="el10" name="alergias">
 					<option value="No">No</option>
 					<option value="Si">Si</option>
 				</select>
 				</div>
-				<label for="" class="col-sm-12">Menarquia</label>
-				<div class="col-sm-12">
+
+				<label for="" class="col-sm-3">Menarquia</label>
+				<div class="col-sm-3">
 					<input type="text" name="menarquia"> años.
 				</div>
-				<label for="" class="col-sm-12">1º R.S</label>
-				<div class="col-sm-12">
+				<label for="" class="col-sm-3">1º R.S</label>
+				<div class="col-sm-3">
 					<input type="text" name="prs"> años.
 				</div>
+			</div>
+			
 				<br>
 				<div class="col-sm-12">
 					<input type="button" onclick="form.submit()" value="Registrar" class="btn btn-success">
@@ -550,6 +587,9 @@ function Select2Test(){
   $("#el10").select2();
   $("#el11").select2();
   $("#el12").select2();
+    $("#el13").select2();
+  $("#el14").select2();
+
 
 
 }
@@ -574,6 +614,84 @@ function DemoTimePicker(){
 	});
 }
 </script>
+
+
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el12').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/af/otros/';
+          } else {
+           link = '/af/ningunof/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#af1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el11').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/ap/otros/';
+          } else {
+           link = '/ap/ningunop/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#ap1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+        <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el14').on('change',function(){
+          var link;
+          if ($(this).val() ==  2) {
+            link = '/apa/otros/';
+          } else {
+           link = '/apa/ningunopa/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#apa1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
 
 
 @endsection

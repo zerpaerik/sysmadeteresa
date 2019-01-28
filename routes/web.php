@@ -259,6 +259,16 @@ Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 Route::get('movimientos/atencion/particular','AtencionesController@particular');
 
+Route::get('af/otros','ConsultaController@af');
+Route::get('af/ningunof','ConsultaController@ningunof');
+Route::get('ap/otros','ConsultaController@ap');
+Route::get('ap/ningunop','ConsultaController@ningunop');
+Route::get('apa/otros','ConsultaController@apa');
+Route::get('apa/ningunopa','ConsultaController@ningunopa');
+
+
+
+
 
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index')->middleware('auth');
 Route::get('resultados1', 'ResultadosController@index1')->name('resultados.index1')->middleware('auth');

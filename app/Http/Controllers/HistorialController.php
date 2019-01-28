@@ -8,6 +8,8 @@ use App\Http\Requests\CreateHistorialRequest;
 class HistorialController extends Controller
 {
     public function create(Request $request){
+
+
     	Historial::create([
     		'antecedentes_familiar' => $request->a_familiares,
     		'antecedentes_personales' => $request->a_personales,
