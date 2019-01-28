@@ -131,7 +131,7 @@
 		<div class="form-group">
 			<input type="hidden" name="paciente_id" value="{{$data->pacienteId}}">
 			<input type="hidden" name="profesional_id" value="{{$data->profesionalId}}">
-			<input type="hidden" name="evento" value="{{$data->id}}">
+		    <input type="hidden" name="evento" value="{{$evento->id}}">
              <div class="row">
 			  <label class="col-sm-3">DEJAR PENDIENTE?:</label>
 			<div class="col-sm-2">

@@ -91,7 +91,6 @@
 						@endif
 						<td>
 
-						<a class="btn btn-danger" href="consulta-atendido-{{$d->EventId}}">Atender</a>
 						<a class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 

@@ -214,8 +214,7 @@ class ConsultaController extends Controller
     public function create(Request $request)
     {
 
-
-
+  
       $users = DB::table('users')
             ->select('*')
             ->where('id','=',\Auth::user()->id)
@@ -262,6 +261,10 @@ class ConsultaController extends Controller
 		$consulta->card =$request->card;
     $consulta->pendiente =$request->pendiente;
 		$consulta->save();
+
+    $event = Event::find($request->evento);
+    $event->atendido=1;
+    $event->update();
 
 
 		
