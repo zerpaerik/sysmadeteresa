@@ -15,6 +15,8 @@ use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
 use App\Models\Ciex;
 use Toastr;
+use Auth;
+
 class ConsultaController extends Controller
 {
    public function index(Request $request){
@@ -211,6 +213,13 @@ class ConsultaController extends Controller
 
     public function create(Request $request)
     {
+
+
+
+      $users = DB::table('users')
+            ->select('*')
+            ->where('id','=',\Auth::user()->id)
+            ->first();
     	
 		$consulta = new Consulta;
 		$consulta->pa =$request->pa;
@@ -241,7 +250,7 @@ class ConsultaController extends Controller
 		$consulta->paciente_id =$request->paciente_id;
 		$consulta->profesional_id =$request->profesional_id;
 		$consulta->prox =$request->prox;
-		$consulta->personal =$request->personal;
+		$consulta->personal =$users->name . " " .$users->lastname;
 		$consulta->apetito =$request->apetito;
 		$consulta->sed =$request->sed;
 		$consulta->orina =$request->orina;
