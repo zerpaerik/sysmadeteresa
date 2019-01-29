@@ -944,6 +944,19 @@
     </ul>
   </li>
 
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs">Reportes</span>
+    </a>
+    <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
+      </li> 
+    
+    </ul>
+  </li>
+
    <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-cog"></i>
@@ -956,10 +969,7 @@
        <li>
         <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
       </li> 
-        <li>
-        <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
-      </li>     
-        
+     
     </ul>
   </li>
  
