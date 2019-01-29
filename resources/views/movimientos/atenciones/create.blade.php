@@ -73,8 +73,8 @@
 
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-3">
-                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                        <option value="1">Seleccionar servicio</option>}
+                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selector">
+                        <option value="1">Seleccionar servicio</option>
                         option
                         @foreach($servicios as $pac)
                           <option value="{{$pac->id}}">
@@ -128,7 +128,7 @@
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
                     <div class="col-sm-3">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selector1">
                         <option value="1">Seleccionar laboratorio</option>
                         @foreach($laboratorios as $pac)
                           <option value="{{$pac->id}}">
@@ -181,7 +181,7 @@
 
                     <label for="paquetes_#index#_paquete" class="col-sm-1 control-label">Paq</label>
                     <div class="col-sm-3">
-                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selectPaq form-control">
+                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selector2">
                         <option value="1">Seleccionar paquete</option>
                         @foreach($paquetes as $pac)
                           <option value="{{$pac->id}}">
@@ -434,7 +434,7 @@
         }
     });
 
-    $(document).on('change','.selectServ',function(){
+    $(document).on('change','.selector',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -454,7 +454,7 @@
       });
     })
 
-    $(document).on('change', '.selectLab', function(){
+    $(document).on('change', '.selector1', function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -473,7 +473,7 @@
       });
     })
 
-    $(document).on('change', '.selectPaq', function(){
+    $(document).on('change', '.selector2', function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -536,6 +536,12 @@ function Select2Test(){
   $("#el5").select2();
   $("#el4").select2();
   $("#el6").select2();
+    $('.selector').select2();
+        $('.selector1').select2();
+    $('.selector2').select2();
+
+
+
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this

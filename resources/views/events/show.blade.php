@@ -260,16 +260,22 @@
 			</div>
 			<label for="" class="col-sm-2 control-label">Evol.Enf</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Evolucion de la enfermedad" type="text" name="evolucion_enfermedad">
+				<select id="el16" name="evolucion_enfermedad">
+					<option value="Insidioso">Insidioso</option>
+					<option value="Progresivo">Progresivo</option>
+					
+				</select>
 			</div>	
 			<label for="" class="col-sm-2 control-label">Tipo de enfermedad:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="tipo_enfermedad">
+					<select id="el15" name="tipo_enfermedad">
+					<option value="Agudo">Agudo</option>
+					<option value="Crònico">Crònico</option>
+					
+				</select>
 			</div>
 			<br>
-			<div class="row">
-			<label for="" class="col-sm-3 control-label"><strong>Solo para pacientes Femeninas:</strong></label>
-		    </div>
+		
 
 			<label for="" class="col-sm-2 control-label">FUR:</label>
 			<div class="col-sm-4">	
@@ -286,15 +292,17 @@
 				<input  class="form-control" type="text" name="mac">
 			</div>
 
+			<label for="" class="col-sm-2 control-label">G:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="g">
+			</div>
+
 			<label for="" class="col-sm-2 control-label">P:</label>
 			<div class="col-sm-1">	
 				<input  class="form-control" type="text" name="p">
 			</div>
 
-			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="g">
-			</div>
+			
 
 
 			<br>
@@ -598,6 +606,12 @@ function Select2Test(){
   $("#el12").select2();
     $("#el13").select2();
   $("#el14").select2();
+    $("#el15").select2();
+
+  $("#el16").select2();
+
+  $("#el17").select2();
+
 
 
 
