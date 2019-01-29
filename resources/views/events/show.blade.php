@@ -139,8 +139,8 @@
 				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}x min</p>
 				<p class="col-sm-6"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
 				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
-				<p class="col-sm-6"><strong>peso:</strong> {{ $consulta->peso }}</p>
-				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}kG</p>
+				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
 			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
