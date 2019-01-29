@@ -580,6 +580,9 @@
         <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Consolidado</a>
       </li>
        <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
+      </li> 
+       <li>
         <a href="reporte-solicitar_consolidado"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
       </li>
       <li>
@@ -806,6 +809,9 @@
       <span class="hidden-xs">Reportes</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
+      </li> 
       <li>
         <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
       </li>   
@@ -944,6 +950,9 @@
       <span class="hidden-xs">Administración</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
+      </li> 
        <li>
         <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
       </li> 
