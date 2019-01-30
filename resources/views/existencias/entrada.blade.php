@@ -39,7 +39,7 @@
 							<select id="prod" name="producto"  data-toggle="tooltip" data-placement="bottom">
 								<option value="0">Seleccione un producto</option>
 								@foreach($productos as $producto)
-									<option value="{{$producto->id}}">{{$producto->nombre}}</option>
+									<option value="{{$producto->id}}">{{$producto->nombre}}-{{$producto->codigo}}</option>
 								@endforeach
 							</select>
 						</div>						

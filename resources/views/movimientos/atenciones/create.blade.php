@@ -63,7 +63,7 @@
 					</div>
 					<br>
 					
-          <div class="row">
+   <div class="row">
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Servicios seleccionados</label>
             <!-- sheepIt Form -->
             <div id="servicios" class="embed ">
@@ -73,8 +73,8 @@
 
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-3">
-                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selector">
-                        <option value="1">Seleccionar servicio</option>
+                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
+                        <option value="1">Seleccionar servicio</option>}
                         option
                         @foreach($servicios as $pac)
                           <option value="{{$pac->id}}">
@@ -117,8 +117,9 @@
             </div>
             <!-- /sheepIt Form --> 
           </div>
+          <br>
 					<br>
-					<div class="row">
+			<div class="row">
 
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios seleccionados</label>
             <!-- sheepIt Form -->
@@ -128,7 +129,7 @@
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
                     <div class="col-sm-3">
-                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selector1">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
                         <option value="1">Seleccionar laboratorio</option>
                         @foreach($laboratorios as $pac)
                           <option value="{{$pac->id}}">
@@ -168,10 +169,10 @@
                 <!-- /Controls -->
             </div>
             <!-- /sheepIt Form --> 
-						
-					</div>
+            
+          </div>
 
-          <div class="row">
+       <div class="row">
 
             <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Paquetes seleccionados</label>
             <!-- sheepIt Form -->
@@ -181,7 +182,7 @@
 
                     <label for="paquetes_#index#_paquete" class="col-sm-1 control-label">Paq</label>
                     <div class="col-sm-3">
-                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selector2">
+                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selectPaq form-control">
                         <option value="1">Seleccionar paquete</option>
                         @foreach($paquetes as $pac)
                           <option value="{{$pac->id}}">
@@ -434,7 +435,7 @@
         }
     });
 
-    $(document).on('change','.selector',function(){
+    $(document).on('change','.selectServ',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -454,7 +455,7 @@
       });
     })
 
-    $(document).on('change', '.selector1', function(){
+    $(document).on('change', '.selectLab', function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -473,7 +474,7 @@
       });
     })
 
-    $(document).on('change', '.selector2', function(){
+    $(document).on('change', '.selectPaq', function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
       var id = labArr[1];
@@ -541,14 +542,16 @@ function Select2Test(){
     $('.selector2').select2();
 
 
-
 }
+
+
 $(document).ready(function() {
 	// Load script of Select2 and run this
 	LoadSelect2Script(Select2Test);
 	LoadTimePickerScript(DemoTimePicker);
 	WinMove();
 });
+
 
 function DemoTimePicker(){
 	$('#input_date').datepicker({
