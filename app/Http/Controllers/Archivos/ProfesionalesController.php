@@ -27,6 +27,7 @@ class ProfesionalesController extends Controller
         ->join('users as e','e.lastname','a.apellidos')
 	    	->orderBy('a.id')
         ->where('a.estatus','=', 1)
+        ->groupBy('a.apellidos')
         //->orderby('a.dni','desc')
         ->get();
         return view('archivos.profesionales.index', ['profesionales' => $profesionales]);  
