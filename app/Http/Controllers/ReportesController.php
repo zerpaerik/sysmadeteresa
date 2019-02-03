@@ -732,7 +732,7 @@ class ReportesController extends Controller
         $informe->setValue('date',date('d-m-Y'));        
         //dd($resultados->origen);
         if ($resultados->origen == 1) {
-            $informe->setValue('indicacion','MADRE TERESA');
+            $informe->setValue('indicacion','P'. '-'.$resultados->dniprof);
         }
         if ($resultados->origen == 2) {
             $informe->setValue('indicacion',$resultados->origen_usuario);
@@ -884,7 +884,7 @@ class ReportesController extends Controller
     private function elasticSearch($id){
         
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','b.dni')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.dni as dniprof','e.lastname','d.name as laboratorio','b.dni')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
