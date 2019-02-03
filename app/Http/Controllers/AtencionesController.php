@@ -281,16 +281,18 @@ class AtencionesController extends Controller
          }
         }
 
+         
+        $paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
+          
          $searchConsPaq = DB::table('paquete_consultas')
         ->select('*')
         ->where('paquete_id','=', $value)
         ->get();
 
 
-        $paciente = DB::table('pacientes')
-        ->select('*')
-        ->where('id','=', $request->id_paciente)
-        ->first();
 
           foreach ($searchConsPaq as $cons) {
             $cantidad=$cons->cantidad;
@@ -306,7 +308,7 @@ class AtencionesController extends Controller
         $evt->paciente=$request->id_paciente;
         $evt->profesional=36;
         $evt->date=date('Y-m-d');
-        $evt->time=1;
+        $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=0;
         $evt->sede=$request->session()->get('sede');
@@ -342,7 +344,7 @@ class AtencionesController extends Controller
         $evt->paciente=$request->id_paciente;
         $evt->profesional=36;
         $evt->date=date('Y-m-d');
-        $evt->time=1;
+        $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=0;
         $evt->sede=$request->session()->get('sede');
@@ -635,17 +637,19 @@ class AtencionesController extends Controller
          }
         }
 
-        $searchConsPaq = DB::table('paquete_consultas')
-        ->select('*')
-        ->where('paquete_id','=', $value)
-        ->get();
-
-
         $paciente = DB::table('pacientes')
         ->select('*')
         ->where('id','=', $request->id_paciente)
         ->first();
 
+        $searchConsPaq = DB::table('paquete_consultas')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+        
+        if(count($searchConsPaq) > 0){
+    
           foreach ($searchConsPaq as $cons) {
             $cantidad=$cons->cantidad;
              }
@@ -660,7 +664,7 @@ class AtencionesController extends Controller
         $evt->paciente=$request->id_paciente;
         $evt->profesional=36;
         $evt->date=date('Y-m-d');
-        $evt->time=1;
+        $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=0;
         $evt->sede=$request->session()->get('sede');
@@ -670,6 +674,12 @@ class AtencionesController extends Controller
            $contador++;
          } 
 
+          } 
+
+$paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
 
            $searchContPaq = DB::table('paquete_controles')
         ->select('*')
@@ -677,10 +687,10 @@ class AtencionesController extends Controller
         ->get();
 
 
-        $paciente = DB::table('pacientes')
-        ->select('*')
-        ->where('id','=', $request->id_paciente)
-        ->first();
+        
+
+        if(count($searchContPaq) > 0){
+
 
           foreach ($searchContPaq as $cons) {
             $cantidad=$cons->cantidad;
@@ -696,7 +706,7 @@ class AtencionesController extends Controller
         $evt->paciente=$request->id_paciente;
         $evt->profesional=36;
         $evt->date=date('Y-m-d');
-        $evt->time=1;
+        $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=0;
         $evt->sede=$request->session()->get('sede');
@@ -704,7 +714,9 @@ class AtencionesController extends Controller
         $evt->save();
 
            $contador++;
-         }    
+         }   
+
+          }   
    
 
 
@@ -1004,6 +1016,7 @@ class AtencionesController extends Controller
     ->where('b.nombres','like','%'.$nombre.'%')
     ->where('b.apellidos','like','%'.$apellido.'%')
     ->orderby('a.id','desc')
+    ->groupBy('a.id')
     ->get();
   
   
