@@ -735,6 +735,7 @@ class ReportesController extends Controller
             $informe->setValue('indicacion','P'. '-'.$resultados->dniprof);
         }
         if ($resultados->origen == 2) {
+           
             $informe->setValue('indicacion',$resultados->origen_usuario);
         }
         if ($resultados->origen == 3 ) {
@@ -889,6 +890,23 @@ class ReportesController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
+        ->whereNotIn('a.monto',[0,0.00])
+        ->where('a.resultado','=', NULL)
+        ->where('a.id','=',$id)
+        ->first();
+
+        return $resultados;
+    }
+
+     private function elasticSearch1($id){
+        
+        $resultados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','c.detalle as servicio','e.name','e.dni as ident','e.lastname','d.name as laboratorio','b.dni','f.dni as profdni')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('profesionales as f','e.ident','f.dni')
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('a.id','=',$id)

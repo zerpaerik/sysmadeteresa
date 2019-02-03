@@ -20,11 +20,12 @@ class ProfesionalesController extends Controller
 
 
       	$profesionales = DB::table('profesionales as a')
-        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro','d.name as user','d.lastname')
+        ->select('a.id','a.name','a.apellidos','a.dni','a.cmp','a.estatus','a.nacimiento','b.nombre as especialidad','c.name as centro','d.name as user','d.lastname','e.id as codigo')
         ->join('especialidades as b','a.especialidad','b.id')
         ->join('centros as c','a.centro','c.id')
-		->join('users as d','d.id','a.usuario')
-		->orderBy('a.id')
+	    	->join('users as d','d.id','a.usuario')
+        ->join('users as e','e.lastname','a.apellidos')
+	    	->orderBy('a.id')
         ->where('a.estatus','=', 1)
         //->orderby('a.dni','desc')
         ->get();

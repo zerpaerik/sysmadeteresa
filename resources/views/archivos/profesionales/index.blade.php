@@ -30,7 +30,7 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Id</th>
+							<th>Còdigo</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
 							<th>DNI</th>
@@ -45,7 +45,7 @@
 					<tbody>
 					@foreach($profesionales as $p)					
 						<tr>
-						<td>{{$p->id}}</td>
+						<td>{{$p->codigo}}</td>
 						<td>{{$p->name}}</td>
 						<td>{{$p->apellidos}}</td>
 						<td>{{$p->dni}}</td>
@@ -63,7 +63,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<th>Id</th>
+							<th>Còdigo</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
 							<th>DNI</th>
