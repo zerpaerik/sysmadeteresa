@@ -121,6 +121,53 @@
 					</div>
 
 					<div class="form-group">
+						<div class="row">
+				            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Cantidad de Consultas</label>
+				            <!-- sheepIt Form -->
+				            <div id="consultas" class="embed ">
+				                <!-- Form template-->
+				                <div id="consultas_template" class="template row">
+
+				                    <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Cantidad</label>
+				                    <div class="col-sm-3">
+				                      <input type="text" class="form-control" name="consultas" placeholder="Cantidad de Consultas" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+				                    </div>
+				                 
+				                </div>
+				                <!-- /Form template-->
+				                
+				                <!-- No forms template -->
+				             
+				                <!-- /Controls -->
+				            </div>
+				            <!-- /sheepIt Form --> 
+				          </div>
+					</div>
+
+					<div class="form-group">
+						<div class="row">
+				            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Cantidad de Controles</label>
+				            <!-- sheepIt Form -->
+				            <div id="controles" class="embed ">
+				                <!-- Form template-->
+				                <div id="controles_template" class="template row">
+
+				                    <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Cantidad</label>
+				                    <div class="col-sm-3">
+				                       <input type="text" class="form-control" name="controles" placeholder="Cantidad de Controles" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+				                    </div>
+				                   				                </div>
+				                <!-- /Form template-->
+				                
+				                <!-- No forms template -->
+				                
+				                <!-- /Controls -->
+				            </div>
+				            <!-- /sheepIt Form --> 
+				          </div>
+					</div>
+
+					<div class="form-group">
 						<input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 						<a href="{{route('paquetes.index')}}" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>		
@@ -145,7 +192,7 @@
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 0,
         iniFormsCount: 0,
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?'
@@ -160,7 +207,7 @@
         allowRemoveLast: true,
 
         // Limits
-        maxFormsCount: 10,
+        maxFormsCount: 15,
         minFormsCount: 0,
         iniFormsCount: 0,
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?'

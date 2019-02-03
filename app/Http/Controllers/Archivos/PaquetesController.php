@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Archivos;
 
 use App\Models\Paquetes;
 use App\Models\PaqueteServ;
+use App\Models\PaqueteCons;
+use App\Models\PaqueteCont;
 use App\Models\Servicios;
 use App\Models\Analisis;
 use App\Models\PaqueteLab;
@@ -96,6 +98,20 @@ class PaquetesController extends Controller
               $lab->save();
             }
           }
+
+            if (isset($request->consultas)) {
+              $consultas = new PaqueteCons;
+              $consultas->paquete_id     = $paquete->id;
+              $consultas->cantidad = $request->consultas;
+              $consultas->save();
+          }
+
+          if (isset($request->controles)) {
+              $controles = new PaqueteCont;
+              $controles->paquete_id     = $paquete->id;
+              $controles->cantidad = $request->controles;
+              $controles->save();
+          }
 		  
 		  $historial = new Historiales();
           $historial->accion ='Registro';
@@ -114,8 +130,11 @@ class PaquetesController extends Controller
       $paquete = Paquetes::findOrFail($id);
       $servicios = PaqueteServ::where('paquete_id', $paquete->id)->with('servicio')->get();
       $laboratorios = PaqueteLab::where('paquete_id', $paquete->id)->with('laboratorio')->get();
+      $consultas = PaqueteCons::where('paquete_id', $paquete->id)->get();
+      $controles = PaqueteCont::where('paquete_id', $paquete->id)->get();
+
       
-      return view('archivos.paquetes.show', compact('paquete', 'servicios', 'laboratorios'));
+      return view('archivos.paquetes.show', compact('paquete', 'servicios', 'laboratorios','consultas','controles'));
     }
 
     public function edit($id)
@@ -125,8 +144,11 @@ class PaquetesController extends Controller
       $laboratoriosP = PaqueteLab::where('paquete_id',$id)->with('laboratorio')->get();
       $servicios = Servicios::all();
       $laboratorios = Analisis::all();
+
+      $consultasP = PaqueteCons::where('paquete_id',$id)->get();
+      $controlesP = PaqueteCont::where('paquete_id',$id)->get();
      
-      return view('archivos.paquetes.edit', compact('paquete','serviciosP','laboratoriosP','servicios','laboratorios'));  
+      return view('archivos.paquetes.edit', compact('paquete','serviciosP','laboratoriosP','servicios','laboratorios','consultasP','controlesP'));  
     }
 
     public function update(Request $request, $id)
@@ -153,6 +175,21 @@ class PaquetesController extends Controller
                               'laboratorio_id' => $laboratorio['laboratorio']
                           ]);
           }
+        }
+        if (isset($request->consultas)) {
+            PaqueteCons::where('paquete_id', $id)
+                          ->update([
+                              'cantidad' => $request->consultas
+                          ]);
+         
+        }
+
+           if (isset($request->controles)) {
+            PaqueteCont::where('paquete_id', $id)
+                          ->update([
+                              'cantidad' => $request->controles
+                          ]);
+         
         }
       }
 

@@ -19,6 +19,8 @@ use App\User;
 use Auth;
 use Carbon\Carbon;
 use Toastr;
+use App\Models\Events\{Event, RangoConsulta};
+
 
 class AtencionesController extends Controller
 
@@ -278,6 +280,78 @@ class AtencionesController extends Controller
 
          }
         }
+
+         $searchConsPaq = DB::table('paquete_consultas')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+
+        $paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
+
+          foreach ($searchConsPaq as $cons) {
+            $cantidad=$cons->cantidad;
+             }
+
+
+
+         $contador=0;
+         
+        while ($contador < $cantidad) {
+        
+        $evt = new Event;
+        $evt->paciente=$request->id_paciente;
+        $evt->profesional=36;
+        $evt->date=date('Y-m-d');
+        $evt->time=1;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=0;
+        $evt->sede=$request->session()->get('sede');
+        $evt->tipo='CONSULTAS';
+        $evt->save();
+
+           $contador++;
+         } 
+
+
+           $searchContPaq = DB::table('paquete_controles')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+
+        $paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
+
+          foreach ($searchContPaq as $cons) {
+            $cantidad=$cons->cantidad;
+             }
+
+
+
+         $contador=0;
+         
+        while ($contador < $cantidad) {
+        
+        $evt = new Event;
+        $evt->paciente=$request->id_paciente;
+        $evt->profesional=36;
+        $evt->date=date('Y-m-d');
+        $evt->time=1;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=0;
+        $evt->sede=$request->session()->get('sede');
+        $evt->tipo='CONTROLES';
+        $evt->save();
+
+           $contador++;
+         }    
+   
 
 
 }
@@ -560,6 +634,113 @@ class AtencionesController extends Controller
 
          }
         }
+
+        $searchConsPaq = DB::table('paquete_consultas')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+
+        $paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
+
+          foreach ($searchConsPaq as $cons) {
+            $cantidad=$cons->cantidad;
+             }
+
+
+
+         $contador=0;
+         
+        while ($contador < $cantidad) {
+        
+        $evt = new Event;
+        $evt->paciente=$request->id_paciente;
+        $evt->profesional=36;
+        $evt->date=date('Y-m-d');
+        $evt->time=1;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=0;
+        $evt->sede=$request->session()->get('sede');
+        $evt->tipo='CONSULTAS';
+        $evt->save();
+
+           $contador++;
+         } 
+
+
+           $searchContPaq = DB::table('paquete_controles')
+        ->select('*')
+        ->where('paquete_id','=', $value)
+        ->get();
+
+
+        $paciente = DB::table('pacientes')
+        ->select('*')
+        ->where('id','=', $request->id_paciente)
+        ->first();
+
+          foreach ($searchContPaq as $cons) {
+            $cantidad=$cons->cantidad;
+             }
+
+
+
+         $contador=0;
+         
+        while ($contador < $cantidad) {
+        
+        $evt = new Event;
+        $evt->paciente=$request->id_paciente;
+        $evt->profesional=36;
+        $evt->date=date('Y-m-d');
+        $evt->time=1;
+        $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
+        $evt->monto=0;
+        $evt->sede=$request->session()->get('sede');
+        $evt->tipo='CONTROLES';
+        $evt->save();
+
+           $contador++;
+         }    
+   
+
+
+
+        ////
+        /*EJEMPLO
+
+         $contador=1;
+          if(count($searchContador) ==0){
+            $contador=1;
+          
+            $correlativo = new Correlativo;
+            $correlativo->contador=$contador;
+            $correlativo->id_org=$id_org;
+            $correlativo->id_dep=$id_dep;
+            $correlativo->id_tipo_correspondencia=$id_tipo_correspondencia;
+            $correlativo->tipo_correlativo='2';
+            $correlativo->save();
+
+          
+        } else {
+         foreach ($searchContador as $correlativo){
+            $contador=$correlativo->contador+1;
+
+         
+            $correlativo=Correlativo::findOrFail($correlativo->id);
+            $correlativo->contador=$contador;
+            $correlativo->updated_at=date('Y-m-d H:i:s');
+            $correlativo->update();
+
+        } 
+
+
+
+
+        */
 
 
 }

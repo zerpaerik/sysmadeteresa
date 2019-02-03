@@ -24,7 +24,7 @@
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de Servicios</a>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
@@ -343,7 +343,7 @@
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de Servicios</a>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>
@@ -644,7 +644,7 @@
       <a href="{{route('servicios.index')}}"><i class="fa fa-dropbox"></i> Servicios</a>
     </li>
     <li>
-      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes de Servicios</a>
+      <a href="{{route('paquetes.index')}}"><i class="fa fa-dropbox"></i> Paquetes</a>
     </li>
     <li>
       <a href="{{route('pacientes.index')}}"><i class="fa fa-wheelchair"></i> Pacientes</a>

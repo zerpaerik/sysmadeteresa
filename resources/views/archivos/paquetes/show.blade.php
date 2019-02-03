@@ -48,6 +48,38 @@
 					</div>
 				@endif
 
+					@if(count($consultas) > 0)
+					<div class="row">
+						<div class="col-sm-12" style="padding: 5px 0 5px 15px; margin: 5px 0; background: #f5f5f5;">
+							<strong>Cantidad de Consultas</strong>
+						</div>
+								@foreach($consultas as $cn)
+
+							<div class="col-sm-12">
+								{{$cn->cantidad}}
+							</div>
+
+							@endforeach
+
+					</div>
+				@endif
+
+					@if(count($controles) > 0)
+					<div class="row">
+						<div class="col-sm-12" style="padding: 5px 0 5px 15px; margin: 5px 0; background: #f5f5f5;">
+							<strong>Cantidad de Controles</strong>
+						</div>
+								@foreach($controles as $cn)
+
+							<div class="col-sm-12">
+								{{$cn->cantidad}}
+							</div>
+
+							@endforeach
+
+					</div>
+				@endif
+
 			</div>
 		</div>
 	</div>
