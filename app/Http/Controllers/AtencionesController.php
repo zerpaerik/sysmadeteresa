@@ -292,6 +292,7 @@ class AtencionesController extends Controller
         ->where('paquete_id','=', $value)
         ->get();
 
+                if(count($searchConsPaq) > 0){
 
 
           foreach ($searchConsPaq as $cons) {
@@ -318,6 +319,8 @@ class AtencionesController extends Controller
            $contador++;
          } 
 
+       }
+
 
            $searchContPaq = DB::table('paquete_controles')
         ->select('*')
@@ -329,6 +332,9 @@ class AtencionesController extends Controller
         ->select('*')
         ->where('id','=', $request->id_paciente)
         ->first();
+
+                if(count($searchContPaq) > 0){
+
 
           foreach ($searchContPaq as $cons) {
             $cantidad=$cons->cantidad;
@@ -352,7 +358,9 @@ class AtencionesController extends Controller
         $evt->save();
 
            $contador++;
-         }    
+         }   
+
+         } 
    
 
 
@@ -906,6 +914,7 @@ $paciente = DB::table('pacientes')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','2')
                     ->orderBy('lastname','asc')
+                    ->whereNotIn('a.id',[99999999])
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));
