@@ -914,7 +914,7 @@ $paciente = DB::table('pacientes')
                    // ->where('estatus','=','1')
                     ->where('tipo','=','2')
                     ->orderBy('lastname','asc')
-                    ->whereNotIn('a.id',[99999999])
+                    ->whereNotIn('id',[99999999])
                     ->get();  
 
     return view('movimientos.atenciones.profesional', compact('profesional'));
