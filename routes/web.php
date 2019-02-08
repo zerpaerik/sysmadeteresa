@@ -253,6 +253,8 @@ Route::get('cuentasporcobrar-edit-{id}', 'CuentasporCobrarController@editView')-
 Route::post('cuentasporcobrar/edit', 'CuentasporCobrarController@edit');
 
 Route::get('historialcobros', 'HistorialCobrosController@index')->name('historialcobros.index')->middleware('auth');
+Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
+
 
 
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
@@ -449,7 +451,7 @@ Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
 
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
-Route::get('recibo_caja_ver2/{id}','ReportesController@recibo_caja_ver2');
+Route::get('recibo_caja_ver2/{id}/{f1?}/{f2?}','ReportesController@recibo_caja_ver2');
 
 Route::get('recibo_gasto_ver/{id}','ReportesController@recibo_gasto_ver');
 
