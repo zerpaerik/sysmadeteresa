@@ -55,7 +55,8 @@
 						</div>
 
 						<div class="col-sm-6">
-							  <div id="origen1">
+							  <div id="origen1" class="origen1">
+
 						</div>
 
 
@@ -536,7 +537,9 @@ function Select2Test(){
 	$("#el3").select2();
   $("#el5").select2();
   $("#el4").select2();
-  $("#el6").select2();
+  $("#el41").select2();
+    $("#el6").select2();
+        $('.origen1').select2();
     $('.selector').select2();
         $('.selector1').select2();
     $('.selector2').select2();

@@ -9,8 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Gastos</span>
-					<a href="{{route('gastos.create')}}" class="btn btn-success">Agregar</a>
+					<span>Movimientos/Laboratorios Pagados</span>
 
 				</div>
 
@@ -30,11 +29,11 @@
 				<div class="no-move"></div>
 				
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['gastos.index']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['labpagados.index']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Seleccione una Fecha', ['class' => 'control-label']) !!}
+					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
 					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
 					<p class="help-block"></p>
 					@if($errors->has('fecha'))
@@ -42,61 +41,59 @@
 						{{ $errors->first('fecha') }}
 					</p>
 					@endif
-
-					
 				</div>
 				<div class="col-md-2">
-
+					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
+					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+					<p class="help-block"></p>
+					@if($errors->has('fecha2'))
+					<p class="help-block">
+						{{ $errors->first('fecha2') }}
+					</p>
+					@endif
+				</div>
+				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
 
 				</div>
-				
 			</div>	
+
+		
+
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Descripcion</th>
-							<th>Recibido Por:</th>
+							<th>Laboratorio</th>
+							<th>Analisis</th>
 							<th>Monto</th>
 							<th>Fecha</th>
-							<th>Acciones:</th>
+							<th>Paciente</th>
+							<th>Registrado Por</th>
 						</tr>
 					</thead>
 					<tbody>
+                          @foreach($pagados as $atec)	
 
-						@foreach($gastos as $d)
-						<tr>
-						<td>{{$d->id}}</td>
-						<td>{{$d->descripcion}}</td>
-						<td>{{$d->nombre}}</td>
-						<td>{{$d->monto}}</td>
-						<td>{{$d->created_at}}</td>
-						<td>
+							<tr>
+								<td>{{$atec->laboratorio}}</td>
+								<td>{{$atec->analisis}}</td>
+								<td>{{$atec->monto}}</td>
+								<td>{{$atec->created_at}}</td>
+								<td>{{$atec->nombre}},{{$atec->apellido}}</td>
+							   <td>{{$atec->nombre}},{{$atec->apellido}}</td>
 
-						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
-						@if(\Auth::user()->role_id <> 6)
-						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
-						@endif
-						 <a  href="{{asset('recibo_gasto_ver')}}/{{$d->id}}" class="btn btn-xs btn-danger">Recibo</a>
-						</td>
-
-				        @endforeach
-				    </tr>
+							
+							</tr>
+						@endforeach
 					</tbody>
 					<tfoot>
-						<tr>
-							<th>Id</th>
-							<th>Descripcion</th>
-							<th>Recibido Por:</th>
-							<th>Monto</th>
-							<th>Fecha</th>
-							<th>Acciones:</th>
-						</tr>
+						
+
 					</tfoot>
+
 				</table>
 			</div>
 		</div>

@@ -543,7 +543,7 @@ class ReportesController extends Controller
     {
 
      $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.created_at','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  

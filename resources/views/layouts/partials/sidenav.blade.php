@@ -165,6 +165,9 @@
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
       <li>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
+      </li> 
+      <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
       </li>  
        <li>
@@ -225,20 +228,7 @@
       </li>
     </ul>
   </li>
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-      <i class="fa fa-copy"></i>
-      <span class="hidden-xs"> Control Prenatal</span>
-    </a>
-    <ul class="dropdown-menu">
-      <li>
-        <a href="{{route('prenatal.create')}}"><i class="fa fa-list-alt"></i> Registrar Control</a>
-      </li>
-      <li>
-        <a href="{{route('prenatal.index')}}"><i class="fa fa-search"></i> Buscar Control</a>
-      </li>
-    </ul>
-  </li>
+
 
     <li class="dropdown">
     <a href="#" class="dropdown-toggle">
@@ -479,6 +469,9 @@
       </li>        
      <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
+      </li> 
+       <li>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li>  
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
@@ -730,6 +723,9 @@
      <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
       </li>  
+       <li>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
+      </li> 
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
       </li>  
@@ -871,6 +867,9 @@
       </li>        
      <li>
         <a href="{{route('historias.index')}}"><i class="fa fa-plus-circle"></i> Ver Historias</a>
+      </li> 
+       <li>
+        <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li>  
       <li>
         <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>

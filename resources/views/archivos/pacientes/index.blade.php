@@ -10,7 +10,9 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Archivos/Pacientes</span>
+					@if(\Auth::user()->role_id <> 6)
 				    <a href="{{route('pacientes.create')}}" class="btn btn-success">Agregar</a>
+				    @endif
 
 				</div>
 				<div class="box-icons">

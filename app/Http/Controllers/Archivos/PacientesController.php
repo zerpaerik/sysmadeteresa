@@ -34,6 +34,23 @@ class PacientesController extends Controller
       return view('archivos.pacientes.index', ['pacientes' => $pacientes]);  
   }
 
+
+
+   public function indexr(Request $request){
+
+     // $pacientes =Pacientes::where("estatus", '=', 1)->get();
+    
+    $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.direccion','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
+        ->join('users as c','c.id','a.usuario')
+        ->where('a.estatus','=', 1)
+        ->get(); 
+
+      
+    
+      return view('archivos.pacientes.reporte', ['pacientes' => $pacientes]);  
+  }
+
   public function search(Request $request){
 
       $search = $request->nom;
