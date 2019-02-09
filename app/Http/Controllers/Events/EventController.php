@@ -271,7 +271,7 @@ class EventController extends Controller
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=$request->monto;
         $evt->sede=$request->session()->get('sede');
-        $evt->tipo='CONSULTAS';
+        $evt->tipo=$request->tipo;
         $evt->save();
 
       $credito = Creditos::create([

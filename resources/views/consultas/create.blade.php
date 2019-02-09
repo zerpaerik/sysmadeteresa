@@ -79,6 +79,14 @@
 										<option value="EF">EF</option>
 										<option value="EF">TJ</option>
 								</select>
+							</div>	
+
+							<label class="col-sm-1 control-label">Tipo</label>
+							<div class="col-sm-2">
+								<select id="el3" name="tipo">
+										<option value="CONSULTAS">CONSULTAS</option>
+										<option value="CONTROLES">CONTROLES</option>
+								</select>
 							</div>		
 
 						<br>
