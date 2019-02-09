@@ -173,17 +173,25 @@
                       
             <div class="row">
             <h3>V. Peso y Talla</h3>
-            <div class="col-md-4">
+            <div class="col-md-3">
             <label for="">Peso Gr.</label>
             <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" readonly="">
               </div>
-              <div class="col-md-4">
+              <div class="col-md-3">
             <label for="">Talla (Cm)</label>
             <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" readonly="">>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
             <label for="">Conclusiòn</label>
+         
+
+                            {{$data->conclusion}}
+
+            </div>
+
+            <div class="col-md-3">
+            <label for="">IMC</label>
          
 
                             {{$data->conclusion}}
@@ -313,6 +321,166 @@
 
             
           </div>
+
+           @foreach($control as $c)
+
+    <h2>Control Mensual de {{$data->nombres}} {{$data->apellidos}}</h2>
+    <h2>Fecha {{$c->created_at}}</h2>
+
+     <div class="row">
+
+            <label class="col-sm-1 control-label">Gestaciòn</label>
+            <div class="col-sm-3">
+              {{$c->gesta_semanas}}
+            </div>
+
+            <label class="col-sm-1 control-label">PesoMadre.</label>
+            <div class="col-sm-3">
+             
+              {{$c->peso_madre}}
+            </div>
+
+            <label class="col-sm-1 control-label">Temp.</label>
+            <div class="col-sm-3">
+              {{$c->temp}}
+            </div>
+
+            </div>
+            <div class="row">
+
+            <label class="col-sm-1 control-label">Tensiòn.</label>
+            <div class="col-sm-3">
+              {{$c->tension}}
+            </div>
+
+             <label class="col-sm-1 control-label">Alt.Ute.</label>
+            <div class="col-sm-3">
+            {{$c->altura_uterina}}
+            </div>
+
+            <label class="col-sm-1 control-label">Presentaciòn.</label>
+            <div class="col-sm-3">
+               {{$c->presentacion}}
+            </div>
+
+            </div>
+
+                        <div class="row">
+
+
+            <label class="col-sm-1 control-label">F.C.F.</label>
+            <div class="col-sm-3">
+              {{$c->fcf}}
+            </div>
+
+             <label class="col-sm-1 control-label">Movimiento.</label>
+            <div class="col-sm-3">
+               {{$c->movimiento_fetal}}
+            </div>
+
+             <label class="col-sm-1 control-label">Edema.</label>
+            <div class="col-sm-3">
+               {{$c->edema}}
+            </div>
+        </div>
+
+                    <div class="row">
+
+
+             <label class="col-sm-1 control-label">Pulso.</label>
+            <div class="col-sm-3">
+               {{$c->pulso_materno}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Consejeria</label>
+            <div class="col-sm-3">
+              {{$c->consejeria}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Sulfato.</label>
+            <div class="col-sm-3">
+              {{$c->sulfato}}
+            </div>
+
+        </div>
+
+                    <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Perfil.</label>
+            <div class="col-sm-3">
+              {{$c->perfil_biofisico}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Visita.</label>
+            <div class="col-sm-3">
+               {{$c->visita_domicilio}}
+            </div>
+
+             <label class="col-sm-1 control-label">Establ.</label>
+            <div class="col-sm-3">
+            
+               {{$c->establecimiento_atencion}}
+            </div>
+
+        </div>
+
+             <label class="col-sm-1 control-label">Responsable.</label>
+            <div class="col-sm-3">
+
+                             {{$c->responsable_control}}
+
+            </div> 
+
+            <label class="col-sm-1 control-label">Examenes.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
+            </div> 
+
+
+            <label class="col-sm-1 control-label">.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
+            </div> 
+
+
+
+          
+                    <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Serologia</label>
+            <div class="col-sm-3">
+            <strong>Resultado:</strong>:{{$c->sero}}
+             <strong>Fecha:</strong>:{{$c->serod}}
+
+
+            </div>
+
+
+             <label class="col-sm-1 control-label">Glucosa</label>
+            <div class="col-sm-3">
+                 <strong>Resultado:</strong>:{{$c->glu}}
+             <strong>Fecha:</strong>:{{$c->glud}}
+
+            </div>
+
+             <label class="col-sm-1 control-label">VIH</label>
+            <div class="col-sm-3">
+                  <strong>Resultado:</strong>:{{$c->vih}}
+             <strong>Fecha:</strong>:{{$c->vihd}}
+
+            </div>
+
+        </div>
+
+
+   @endforeach
 
 
 

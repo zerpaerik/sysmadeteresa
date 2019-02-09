@@ -100,7 +100,7 @@
 						<a class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>
 						@else
 
-						<a class="btn btn-danger" href="prenatal-create-{{$d->paciente}}">Cargar Control</a>
+						<a class="btn btn-danger" href="prenatal-create-{{$d->paciente}}-{{$d->EventId}}">Cargar Control</a>
 						@endif
 
 						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->EventId}}">Ticket</a>

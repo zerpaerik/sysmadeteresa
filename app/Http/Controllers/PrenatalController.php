@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pacientes\Paciente;
 use App\Models\Historiales;
+use App\Models\Events\{Event, RangoConsulta};
 use App\Prenatal;
 use App\Control;
 use DB;
@@ -94,16 +95,23 @@ class PrenatalController extends Controller
 			 'p.id as idPaciente')
     	->join('pacientes as p','p.id','a.paciente')
         ->where('p.dni','like','%'.$dni.'%')
-        ->paginate(20);
+        ->groupBy('a.paciente')
+        ->get();
         return $prenatal;
   }
 
-    public function createView($paciente)
+    public function createView($paciente,$evento)
     {
+    	$event= Event::where('id','=',$evento)->first();
+    	$control  = Control::where('id_paciente','=',$paciente)->get();
+    	$prenatal = Prenatal::where('paciente',$paciente)->first();
     	$paciente = Paciente::where('id','=',$paciente)->first();
 
     	return view('prenatal.create',[
-    		 'paciente' => $paciente
+    		 'paciente' => $paciente,
+    		 'prenatal' => $prenatal,
+    		 'control' => $control,
+    		 'evento' =>$event
     	]); 
     }
 	public function createControlView($id)
@@ -134,6 +142,7 @@ class PrenatalController extends Controller
 				'a.parto' ,
 				'a.num' ,
 				'a.muertos',
+				'a.imc',
 				'a.gr' ,
 				'a.gemelar' ,
 				'a.m37m' ,
@@ -143,15 +152,12 @@ class PrenatalController extends Controller
 				'a.aborto_gestacion',
 				'a.peso_pregestacional' ,
 				'a.talla_pregestacional' ,
-			
 				'a.ultima_menstruacion' ,
 				'a.parto_probable' ,
 				'a.eco_eg' ,
 				'a.conclusion',
-				
 				'a.sangre' ,
 				'a.sangrerh' ,
-				
 				'a.orina' ,
 				'a.orinad',
 				'a.urea',
@@ -163,7 +169,6 @@ class PrenatalController extends Controller
 				'a.torch',
 				'a.torchd',
 				'a.terminacion' ,
-				
 				'a.af',
 				'a.ap',
 			 'p.nombres',
@@ -174,8 +179,11 @@ class PrenatalController extends Controller
         ->where('p.id','=',$id)
         ->first();
 
+       $control = Control::where('id_paciente','=',$id)->get();
+
         return view('prenatal.show',[
-        	'data' => $data
+        	'data' => $data,
+        	'control' => $control
         ]);
     }
 
@@ -221,10 +229,15 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
+				'imc' => $request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)
 
 
 				
 			]);
+
+			
+
+			
 			
 			
 
@@ -250,7 +263,7 @@ class PrenatalController extends Controller
     public function createControl(Request $request)
     {
     	Control::create([
-    		"id_paciente" => $request->id_paciente,
+    		"id_paciente" => $request->paciente,
 			"id_ficha_prenatal" => $request->id_ficha_prenatal,
 			"fecha_cont" => $request->fecha_cont,
 			"gesta_semanas" => $request->gesta_semanas,
@@ -269,7 +282,20 @@ class PrenatalController extends Controller
 			"visita_domicilio" => $request->visita_domicilio,
 			"establecimiento_atencion" => $request->establecimiento_atencion,
 			"responsable_control" => $request->responsable_control,
+			"sero" => $request->sero,
+			"serod" => $request->serod,
+			"glu" => $request->gluco,
+			"glud" => $request->glucod,
+			"vih" => $request->vih,
+			"vihd" => $request->vihd,
+			"hemo" => $request->hemo,
+			"hemod" => $request->hemod
+
     	]);
+
+    	 $event = Event::find($request->evento);
+		    $event->atendido=1;
+		    $event->update();
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
 
