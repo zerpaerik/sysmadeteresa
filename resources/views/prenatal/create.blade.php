@@ -1,24 +1,5 @@
 @extends('layouts.app')
 @section('content')
-<br>
-<div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<div class="box-name">
-					<i class="fa fa-users"></i>
-					<span><strong>Control Prenatal</strong></span>
-				</div>
-				<div class="box-icons">
-					<a class="collapse-link">
-						<i class="fa fa-chevron-up"></i>
-					</a>
-					<a class="expand-link">
-						<i class="fa fa-expand"></i>
-					</a>
-				</div>
-				<div class="no-move"></div>
-			</div>
 
 	@if($prenatal)
 	<h2>Control Prenatal Base de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
@@ -172,177 +153,6 @@
 	</div>
 	
 </div>
-<br>
-   
-   @foreach($control as $c)
-
-   	<h2>Control Mensual de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
-   	<h2>Fecha {{$c->created_at}}</h2>
-
-   	 <div class="row">
-
-            <label class="col-sm-1 control-label">Gestaciòn</label>
-            <div class="col-sm-3">
-              {{$c->gesta_semanas}}
-            </div>
-
-            <label class="col-sm-1 control-label">PesoMadre.</label>
-            <div class="col-sm-3">
-             
-              {{$c->peso_madre}}
-            </div>
-
-            <label class="col-sm-1 control-label">Temp.</label>
-            <div class="col-sm-3">
-              {{$c->temp}}
-            </div>
-
-            </div>
-            <div class="row">
-
-            <label class="col-sm-1 control-label">Tensiòn.</label>
-            <div class="col-sm-3">
-              {{$c->tension}}
-            </div>
-
-             <label class="col-sm-1 control-label">Alt.Ute.</label>
-            <div class="col-sm-3">
-            {{$c->altura_uterina}}
-            </div>
-
-            <label class="col-sm-1 control-label">Presentaciòn.</label>
-            <div class="col-sm-3">
-               {{$c->presentacion}}
-            </div>
-
-            </div>
-
-                        <div class="row">
-
-
-            <label class="col-sm-1 control-label">F.C.F.</label>
-            <div class="col-sm-3">
-              {{$c->fcf}}
-            </div>
-
-             <label class="col-sm-1 control-label">Movimiento.</label>
-            <div class="col-sm-3">
-               {{$c->movimiento_fetal}}
-            </div>
-
-             <label class="col-sm-1 control-label">Edema.</label>
-            <div class="col-sm-3">
-               {{$c->edema}}
-            </div>
-        </div>
-
-                    <div class="row">
-
-
-             <label class="col-sm-1 control-label">Pulso.</label>
-            <div class="col-sm-3">
-               {{$c->pulso_materno}}
-            </div>
-
-
-             <label class="col-sm-1 control-label">Consejeria</label>
-            <div class="col-sm-3">
-              {{$c->consejeria}}
-            </div>
-
-
-             <label class="col-sm-1 control-label">Sulfato.</label>
-            <div class="col-sm-3">
-              {{$c->sulfato}}
-            </div>
-
-        </div>
-
-                    <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Perfil.</label>
-            <div class="col-sm-3">
-              {{$c->perfil_biofisico}}
-            </div>
-
-
-             <label class="col-sm-1 control-label">Visita.</label>
-            <div class="col-sm-3">
-               {{$c->visita_domicilio}}
-            </div>
-
-             <label class="col-sm-1 control-label">Establ.</label>
-            <div class="col-sm-3">
-            
-               {{$c->establecimiento_atencion}}
-            </div>
-
-        </div>
-
-             <label class="col-sm-1 control-label">Responsable.</label>
-            <div class="col-sm-3">
-
-                             {{$c->responsable_control}}
-
-            </div> 
-
-            <label class="col-sm-1 control-label">Examenes.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
-            <label class="col-sm-1 control-label">.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
-
-          
-                    <div class="row">
-
-
-
-             <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-2">
-            <strong>Resultado:</strong>:{{$c->sero}}
-             <strong>Fecha:</strong>:{{$c->serod}}
-
-
-            </div>
-
-
-             <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-2">
-                 <strong>Resultado:</strong>:{{$c->glu}}
-             <strong>Fecha:</strong>:{{$c->glud}}
-
-            </div>
-
-             <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->vih}}
-             <strong>Fecha:</strong>:{{$c->vihd}}
-
-            </div>
-
-               <label class="col-sm-1 control-label">Hemoglobina</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->hemo}}
-             <strong>Fecha:</strong>:{{$c->hemod}}
-
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-   @endforeach
-
 
 	@else
 	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
@@ -697,6 +507,7 @@
 						
 							<input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">														
 					</div>
+
 					</div>																																																										
 					</div>
 				</div>
@@ -704,8 +515,165 @@
 			</div>	
 		</div>
 		@endif
-	</div>
-	   <div class="box-content"> 
+
+    @foreach($control as $c)
+
+   	<h2>Control Mensual de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
+   	<h2>Fecha {{$c->created_at}}</h2>
+
+   	<div class="box-content">
+
+   	        <div class="row">
+
+            <label class="col-sm-1 control-label">Gestaciòn</label>
+            <div class="col-sm-3">
+              {{$c->gesta_semanas}}
+            </div>
+
+            <label class="col-sm-1 control-label">PesoMadre.</label>
+            <div class="col-sm-3">
+             
+              {{$c->peso_madre}}
+            </div>
+
+            <label class="col-sm-1 control-label">Temp.</label>
+            <div class="col-sm-3">
+              {{$c->temp}}
+            </div>
+
+            </div>
+            <div class="row">
+
+            <label class="col-sm-1 control-label">Tensiòn.</label>
+            <div class="col-sm-3">
+              {{$c->tension}}
+            </div>
+
+             <label class="col-sm-1 control-label">Alt.Ute.</label>
+            <div class="col-sm-3">
+            {{$c->altura_uterina}}
+            </div>
+
+            <label class="col-sm-1 control-label">Presentaciòn.</label>
+            <div class="col-sm-3">
+               {{$c->presentacion}}
+            </div>
+
+            </div>
+
+                        <div class="row">
+
+
+            <label class="col-sm-1 control-label">F.C.F.</label>
+            <div class="col-sm-3">
+              {{$c->fcf}}
+            </div>
+
+             <label class="col-sm-1 control-label">Movimiento.</label>
+            <div class="col-sm-3">
+               {{$c->movimiento_fetal}}
+            </div>
+
+             <label class="col-sm-1 control-label">Edema.</label>
+            <div class="col-sm-3">
+               {{$c->edema}}
+            </div>
+        </div>
+
+                    <div class="row">
+
+
+             <label class="col-sm-1 control-label">Pulso.</label>
+            <div class="col-sm-3">
+               {{$c->pulso_materno}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Consejeria</label>
+            <div class="col-sm-3">
+              {{$c->consejeria}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Sulfato.</label>
+            <div class="col-sm-3">
+              {{$c->sulfato}}
+            </div>
+
+        </div>
+
+                    <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Perfil.</label>
+            <div class="col-sm-3">
+              {{$c->perfil_biofisico}}
+            </div>
+
+
+             <label class="col-sm-1 control-label">Visita.</label>
+            <div class="col-sm-3">
+               {{$c->visita_domicilio}}
+            </div>
+
+             <label class="col-sm-1 control-label">Establ.</label>
+            <div class="col-sm-3">
+            
+               {{$c->establecimiento_atencion}}
+            </div>
+
+        </div>
+
+             <label class="col-sm-1 control-label">Responsable.</label>
+            <div class="col-sm-3">
+
+                             {{$c->responsable_control}}
+
+            </div> 
+
+         
+                    <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Serologia</label>
+            <div class="col-sm-2">
+            <strong>Resultado:</strong>:{{$c->sero}}
+             <strong>Fecha:</strong>:{{$c->serod}}
+
+
+            </div>
+
+
+             <label class="col-sm-1 control-label">Glucosa</label>
+            <div class="col-sm-2">
+                 <strong>Resultado:</strong>:{{$c->glu}}
+             <strong>Fecha:</strong>:{{$c->glud}}
+
+            </div>
+
+             <label class="col-sm-1 control-label">VIH</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->vih}}
+             <strong>Fecha:</strong>:{{$c->vihd}}
+
+            </div>
+
+               <label class="col-sm-1 control-label">Hemoglobina</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->hemo}}
+             <strong>Fecha:</strong>:{{$c->hemod}}
+
+            </div>
+
+        </div>
+    </div>
+
+
+   @endforeach
+
+ <div class="box-content"> 
         <form class="form-horizontal" role="form" method="post" action="control/create">
           {{ csrf_field() }}
           <div class="form-group">          
@@ -817,29 +785,8 @@
 
         </div>
 
-             <label class="col-sm-1 control-label">Responsable.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="responsable_control" placeholder="Responsable de Control" data-toggle="tooltip" data-placement="bottom" title="responsable_control">
-            </div> 
 
-            <label class="col-sm-1 control-label">Examenes.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
-            <label class="col-sm-1 control-label">.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="EXAMENES" placeholder="EXAMENES" data-toggle="tooltip" data-placement="bottom" title="responsable_control" readonly="true">
-            </div> 
-
-
-
-          
                     <div class="row">
-
-
-
              <label class="col-sm-1 control-label">Serologia</label>
             <div class="col-sm-3">
              <select id="el12" name="sero">
@@ -897,11 +844,19 @@
             <div class="col-sm-3">
             <input type="button" onclick="form.submit()" class="btn btn-primary" value="Guardar">  
             </div>                         
-          </div>
-          </div> 
       </form>
   </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
 @section('scripts')
 <script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
 

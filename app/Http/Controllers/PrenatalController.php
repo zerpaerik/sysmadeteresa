@@ -8,8 +8,11 @@ use App\Models\Historiales;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Prenatal;
 use App\Control;
+use App\User;
 use DB;
 use Toastr;
+use Auth;
+
 
 class PrenatalController extends Controller
 {
@@ -263,6 +266,13 @@ class PrenatalController extends Controller
 
     public function createControl(Request $request)
     {
+
+        $usuario = User::where('id','=', Auth::user()->id)->first();
+
+
+
+
+
     	Control::create([
     		"id_paciente" => $request->paciente,
 			"id_ficha_prenatal" => $request->id_ficha_prenatal,
@@ -282,7 +292,7 @@ class PrenatalController extends Controller
 			"perfil_biofisico" => $request->perfil_biofisico,
 			"visita_domicilio" => $request->visita_domicilio,
 			"establecimiento_atencion" => $request->establecimiento_atencion,
-			"responsable_control" => $request->responsable_control,
+			"responsable_control" => $usuario->name.' '.$usuario->lastname,
 			"sero" => $request->sero,
 			"serod" => $request->serod,
 			"glu" => $request->gluco,
