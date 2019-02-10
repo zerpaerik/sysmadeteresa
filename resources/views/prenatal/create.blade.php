@@ -433,7 +433,7 @@
 					    <p>
 							
                          <div class="col-sm-12">
-							<select id="el12" multiple="true" name="af[]" style="width: 350px;">
+							<select id="my-select" multiple="true" name="af[]" style="width: 350px;">
 							<option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
@@ -457,7 +457,7 @@
 					    <p>
 							
                          <div class="col-sm-12">
-							<select id="el12" multiple="true" name="ap[]" style="width: 350px;">
+							<select id="my-select2" multiple="true" name="ap[]" style="width: 350px;">
 							<option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
@@ -905,6 +905,9 @@
 @section('scripts')
 <script src="{{ asset('plugins/sheepit/jquery.sheepItPlugin.min.js') }}" type="text/javascript"></script>
 
+<script src="{{ asset('plugins/multi-select/js/jquery.multi-select.js') }}" type="text/javascript"></script>
+
+
 
 <script type="text/javascript">
 
@@ -938,6 +941,15 @@ function DemoTimePicker(){
 }
 
 </script>
+<script type="text/javascript">
+
+$('#my-select').multiSelect()
+$('#my-select2').multiSelect()
+
+
+
+</script>
+
 
 
    

@@ -189,6 +189,7 @@ class PrenatalController extends Controller
 
     public function create(Request $request)
     {
+
           
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
@@ -229,7 +230,7 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => $request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)
+				'imc' => 0
 
 
 				
