@@ -63,16 +63,20 @@
 
     <div class="row">
     <strong><p>IV. Peso y Talla</p></strong>
-    	<div class="col-md-4">
+    	<div class="col-md-3">
     		<strong>Peso:</strong>{{ $prenatal->peso_pregestacional }}
     	</div>
 
-    	<div class="col-md-4">
-    		    		<strong>Talla:</strong>{{ $prenatal->peso_pregestacional }}
+    	<div class="col-md-3">
+    		    		<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }}
 
     	</div>
-    	<div class="col-md-4">
-    		   <strong>Conclusiòn:</strong>{{ $prenatal->talla_conclusion }}
+    	<div class="col-md-3">
+    		   <strong>Conclusiòn:</strong>{{ $prenatal->conclusion }}
+    	</div>
+
+    	<div class="col-md-3">
+    		   <strong>IMC:</strong>{{ $prenatal->imc }}
     	</div>
     	
     </div>
@@ -343,7 +347,7 @@
 						<div class="row">
 						<h3>V. Peso y Talla</h3>
 						<div class="col-md-4">
-						<label for="">Peso Gr.</label>
+						<label for="">Peso KG.</label>
 						<input type="text" name="peso_pregestacional">
 					    </div>
 					    <div class="col-md-4">

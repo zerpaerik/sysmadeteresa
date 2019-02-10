@@ -233,7 +233,7 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => 0
+				'imc' => $request->peso_pregestacional / $request->talla_pregestacional * $request->talla_pregestacional
 
 
 				

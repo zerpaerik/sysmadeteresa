@@ -165,7 +165,7 @@
         <div class="col-md-3">
 
             <label for="">RN de mayor peso</label>
-            <input readonly="true" type="text"  value="{{$data->peso_gestacion}}" readonly="">Gr
+            <input readonly="true" type="text"  value="{{$data->peso_gestacion}}" disabled="">Gr
             <br>
           </div>
 
@@ -175,11 +175,11 @@
             <h3>V. Peso y Talla</h3>
             <div class="col-md-3">
             <label for="">Peso Gr.</label>
-            <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" readonly="">
+            <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" disabled="">
               </div>
               <div class="col-md-3">
             <label for="">Talla (Cm)</label>
-            <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" readonly="">>
+            <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" disabled="">>
             </div>
 
             <div class="col-md-3">
@@ -194,7 +194,7 @@
             <label for="">IMC</label>
          
 
-                            {{$data->conclusion}}
+                            {{$data->imc}}
 
             </div>
 
@@ -230,18 +230,18 @@
 
                <div class="col-md-2">
                         <label for="">FUM</label>
-            <input type="date" name="ultima_menstruacion" value="{{$data->ultima_menstruacion}}" style="line-height: 20px" >
+            <input type="date" name="ultima_menstruacion" value="{{$data->ultima_menstruacion}}" style="line-height: 20px" disabled="">
                </div>
 
 
                <div class="col-md-2">
                         <label for="">FPP</label>
-            <input type="date" name="parto_probable" value="{{$data->parto_probable}}"  style="line-height: 20px">
+            <input type="date" name="parto_probable" value="{{$data->parto_probable}}"  style="line-height: 20px" disabled>
                </div>
 
                 <div class="col-md-2">
                         <label for="">Eco: EG</label>
-            <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px"> 
+            <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px" disabled=""> 
                </div>
 
 
@@ -261,7 +261,7 @@
                     {{$data->orina}}
 
 
-            <input type="date" name="orinad" style="line-height: 20px" value="{{$data->orinad}}"> 
+            <input type="date" name="orinad" style="line-height: 20px" value="{{$data->orinad}}" disabled=""> 
             </p>
 
           </div>  
@@ -271,9 +271,9 @@
           <h3>Urea</h3> 
           <p>
               
-            <input type="text" name="urea" style="line-height: 20px" value="{{$data->urea}}"> 
+            <input type="text" name="urea" style="line-height: 20px" value="{{$data->urea}}" disabled=""> 
 
-            <input type="date" name="uread" style="line-height: 20px" value="{{$data->uread}}">  
+            <input type="date" name="uread" style="line-height: 20px" value="{{$data->uread}}" disabled="">  
             </p>
 
           </div>  
@@ -283,9 +283,9 @@
           <h3>Creati.</h3>  
           <p>
               
-            <input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px" value="{{$data->creatinina}}">  
+            <input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px" value="{{$data->creatinina}}" disabled="">  
 
-            <input type="date" name="creatininad" style="line-height: 20px" value="{{$data->creatininad}}">  
+            <input type="date" name="creatininad" style="line-height: 20px" value="{{$data->creatininad}}" disabled="">  
             </p>
 
           </div>
@@ -299,7 +299,7 @@
                                 {{$data->bic}}
 
 
-            <input type="date" name="bicd" style="line-height: 20px" value="{{$data->bicd}}"> 
+            <input type="date" name="bicd" style="line-height: 20px" value="{{$data->bicd}}" disabled=""> 
             </p>
 
           </div>  
@@ -313,7 +313,7 @@
                                             {{$data->torch}}
 
 
-            <input type="date" name="torchd" style="line-height: 20px" value="{{$data->torchd}}"> 
+            <input type="date" name="torchd" style="line-height: 20px" value="{{$data->torchd}}" disabled=""> 
             </p>
 
           </div>    
