@@ -55,7 +55,7 @@
 
     <div class="col-md-3">
 
-    <strong>RN Mayor Peso:</strong>{{ $prenatal->peso_gestacion }}
+    <strong>RN Mayor Peso:</strong>{{ $prenatal->peso_gestacion }} Kg
    	
    </div>
 
@@ -64,11 +64,11 @@
     <div class="row">
     <strong><p>IV. Peso y Talla</p></strong>
     	<div class="col-md-3">
-    		<strong>Peso:</strong>{{ $prenatal->peso_pregestacional }}
+    		<strong>Peso:</strong>{{ $prenatal->peso_pregestacional }} Kg
     	</div>
 
     	<div class="col-md-3">
-    		    		<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }}
+    		    		<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }} Cms
 
     	</div>
     	<div class="col-md-3">

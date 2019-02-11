@@ -210,6 +210,7 @@ class PrenatalController extends Controller
 				'gr' =>$request->gr,
 				'gemelar' =>$request->gemelar,
 				'm37m' =>$request->m37m,
+				'terminacion_gestacion' =>$request->terminacion_gestacion,
 				'fecha_terminacion' =>$request->fecha_terminacion,
 				'peso_gestacion' =>$request->peso_gestacion,
 				'aborto_gestacion' =>$request->aborto_gestacion,
@@ -247,7 +248,8 @@ class PrenatalController extends Controller
 
 		Toastr::success('Registrado Exitosamente.', 'Consulta Prenatal!', ['progressBar' => true]);
 
-		return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
+       return back();
+
 		
     }
 
@@ -310,6 +312,7 @@ class PrenatalController extends Controller
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
 
-		return redirect()->action('PrenatalController@index', ["created" => true, "prenatal" => Prenatal::all()]);
+		return back();
+
     }
 }
