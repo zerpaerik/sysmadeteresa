@@ -18,7 +18,7 @@
 
 		     <p class="col-sm-2"><strong>Partos:</strong> {{ $prenatal->parto }}</p>
 		    <p class="col-sm-2"><strong>0 ó +3:</strong> {{ $prenatal->num }}</p>
-		    <p class="col-sm-2"><strong>250gr:</strong> {{ $prenatal->gr }}</p>
+		    <p class="col-sm-2"><strong>>2500gr:</strong> {{ $prenatal->gr }}</p>
 		    <p class="col-sm-2"><strong>Gemelar:</strong> {{ $prenatal->gemelar }}</p>
 		    <p class="col-sm-2"><strong>37 Sem.:</strong> {{ $prenatal->m37m }}</p>
 		    <br>
@@ -223,7 +223,7 @@
 							<input type="text" class="form-control" name="num" placeholder="" data-toggle="tooltip" data-placement="bottom" title="">
 						</div>
 
-						<label class="col-sm-1 control-label">250gr</label>
+						<label class="col-sm-1 control-label">2500gr</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="gr" placeholder="250gr" data-toggle="tooltip" data-placement="bottom" title="250gr">
 						</div>
@@ -245,11 +245,13 @@
 
 
 						   <h3>II. Antecedentes Familiares</h3>
-					    <p>
+					  
 							
                          <div class="col-sm-12">
-							<select id="my-select" multiple="true" name="af[]" style="width: 350px;">
-							<option value="Ninguno">Ninguno</option>
+
+			         <select id="el4" name="af[]" multiple="true">
+
+                          <option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
 							<option value="Epilepsia">Epilepsia</option>
@@ -259,21 +261,24 @@
 							<option value="Neoplasia">Neoplasia</option>
 							<option value="TBC Pulmonar">TBC Pulmonar</option>
 							<option value="Otro">Otro</option>
-						    </select>
-						</div>
-						</p>
+                      </select>
+                    </div>
+               </div>
 
-						          </div>
+               
+					
 
-										<div class="col-md-6">
+							<div class="col-md-6">
 
 
-						   <h3>III. Antecedentes Personales</h3>
-					    <p>
+						   <h3>II. Antecedentes Personales</h3>
+					  
 							
                          <div class="col-sm-12">
-							<select id="my-select2" multiple="true" name="ap[]" style="width: 350px;">
-							<option value="Ninguno">Ninguno</option>
+
+			         <select id="el5" name="ap[]" multiple="true">
+
+                          <option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
 							<option value="Epilepsia">Epilepsia</option>
@@ -283,14 +288,14 @@
 							<option value="Neoplasia">Neoplasia</option>
 							<option value="TBC Pulmonar">TBC Pulmonar</option>
 							<option value="Otro">Otro</option>
-						    </select>
-						</div>
-						</p>
+                      </select>
+                    </div>
+               </div>
 
-						          </div>
+           </div>
+                     
 
-
-          </div>
+                 
 
           <br>
 
@@ -419,6 +424,7 @@
 					      <div class="col-md-2">
                         <label for="">Eco: EG</label>
 						<input type="date" name="eco_eg" style="line-height: 20px">	
+						<input type="text" name="eco_eg_input" placeholder="ECO EG">
 					     </div>
 
 
@@ -842,7 +848,10 @@
 
 
 
+
 <script type="text/javascript">
+
+ 
 
 // Run Select2 on element
 function Select2Test(){
@@ -851,6 +860,24 @@ function Select2Test(){
 	$("#el3").select2();
   $("#el5").select2();
   $("#el4").select2();
+  $("#el6").select2();
+  $("#el7").select2();
+  $("#el8").select2();
+  $("#el9").select2();
+  $("#el10").select2();
+  $("#el11").select2();
+  $("#el12").select2();
+    $("#el13").select2();
+  $("#el14").select2();
+    $("#el15").select2();
+
+  $("#el16").select2();
+
+  $("#el17").select2();
+
+
+
+
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
@@ -872,15 +899,6 @@ function DemoTimePicker(){
 		stepMinute: 10
 	});
 }
-
-</script>
-<script type="text/javascript">
-
-$('#my-select').multiSelect()
-$('#my-select2').multiSelect()
-
-
-
 </script>
 
 
