@@ -526,7 +526,7 @@
 
    <div class="box-content">
    	<div style="background: #eaeaea;">
-	<table style="width: 100%;text-align: center;margin: 10px 0;">
+	<table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
 
 		<tr>
 
@@ -541,99 +541,99 @@
   <tr>
     
 
-    <th style="background: #81BEF7;">Fecha de Control</th>
+    <th style="background: #81BEF7;border: 1px solid black;">Fecha de Control</th>
  @foreach($control as $c)
-    <td>{{$c->created_at}}</td>
+    <td style="border: 1px solid black;">{{$c->created_at}}</td>
   @endforeach
   </tr>
 
    <tr>
 
-    <th style="background: #81BEF7;">Edad Gest(Semanas)</th>
+    <th style="background: #81BEF7;border: 1px solid black;">Edad Gest(Semanas)</th>
  @foreach($control as $c)
-    <td>{{$c->gesta_semanas}}</td>
+    <td style="border: 1px solid black;">{{$c->gesta_semanas}}</td>
   @endforeach
   </tr>
 
    <tr>
 
-    <th style="background: #81BEF7;">PesoMadre(Kg)</th>
+    <th style="background: #81BEF7;border: 1px solid black;">PesoMadre(Kg)</th>
  @foreach($control as $c)
-    <td>{{$c->peso_madre}}</td>
+    <td style="border: 1px solid black;">{{$c->peso_madre}}</td>
   @endforeach
   </tr>
 
   <tr>
 
-    <th style="background: #81BEF7;">Temperatura(ºC)</th>
+    <th style="background: #81BEF7;border: 1px solid black;">Temperatura(ºC)</th>
  @foreach($control as $c)
-    <td>{{$c->temp}}</td>
+    <td style="border: 1px solid black;">{{$c->temp}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Tensiòn Arterial(mmHg)</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Tensiòn Arterial(mmHg)</th>
  @foreach($control as $c)
-    <td>{{$c->tension}}</td>
+    <td style="border: 1px solid black;">{{$c->tension}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Altura Uterina</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Altura Uterina</th>
  @foreach($control as $c)
-    <td>{{$c->altura_uterina}}</td>
+    <td style="border: 1px solid black;">{{$c->altura_uterina}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Presentaciòn(C/P/T/NA)</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Presentaciòn(C/P/T/NA)</th>
  @foreach($control as $c)
-    <td>{{$c->presentacion}}</td>
+    <td style="border: 1px solid black;">{{$c->presentacion}}</td>
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;">FCF</th>
+     <th style="background: #81BEF7;border: 1px solid black;">FCF</th>
  @foreach($control as $c)
-    <td>{{$c->fcf}}</td>
+    <td style="border: 1px solid black;">{{$c->fcf}}</td>
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;">Mov. Fetal</th>
+     <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
  @foreach($control as $c)
-    <td>{{$c->movimiento_fetal}}</td>
+    <td style="border: 1px solid black;">{{$c->movimiento_fetal}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Edema</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Edema</th>
  @foreach($control as $c)
-    <td>{{$c->edema}}</td>
+    <td style="border: 1px solid black;">{{$c->edema}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Pulso Materno</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Pulso Materno</th>
  @foreach($control as $c)
-    <td>{{$c->pulso}}</td>
+    <td style="border: 1px solid black;">{{$c->pulso_materno}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Consejeria PF</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Consejeria PF</th>
  @foreach($control as $c)
-    <td>{{$c->consejeria}}</td>
+    <td style="border: 1px solid black;">{{$c->consejeria}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Sulfato Ferroso</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Sulfato Ferroso</th>
  @foreach($control as $c)
-    <td>{{$c->sulfato}}</td>
+    <td style="border: 1px solid black;">{{$c->sulfato}}</td>
   @endforeach
   </tr>
 
-     <th style="background: #81BEF7;">Perfìl Biofìsico</th>
+     <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
  @foreach($control as $c)
-    <td>{{$c->perfil_biofisico}}</td>
+    <td style="border: 1px solid black;">{{$c->perfil_biofisico}}</td>
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;">Responsable</th>
+   <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
  @foreach($control as $c)
-    <td>{{$c->responsable_control}}</td>
+    <td style="border: 1px solid black;">{{$c->responsable_control}}</td>
   @endforeach
   </tr>
 
