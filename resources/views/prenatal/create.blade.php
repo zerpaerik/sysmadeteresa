@@ -127,11 +127,14 @@
 	<div class="col-md-2">
 
 		<strong>Orina</strong>: {{ $prenatal->orina }}
+	    <strong>Fecha</strong>: {{ $prenatal->orinad }}
 		
 	</div>
 
 		<div class="col-md-2">
 					<strong>Urea</strong>: {{ $prenatal->urea }}
+						    <strong>Fecha</strong>: {{ $prenatal->uread }}
+
 
 		
 	</div>
@@ -139,6 +142,7 @@
 		<div class="col-md-2">
 
 					<strong>Creatinina</strong>: {{ $prenatal->creatinina }}
+											    <strong>Fecha</strong>: {{ $prenatal->creatininad }}
 
 		
 	</div>
@@ -146,6 +150,7 @@
 		<div class="col-md-2">
 
 					<strong>BK</strong>: {{ $prenatal->bic }}
+					<strong>Fecha</strong>: {{ $prenatal->bicd }}
 
 		
 	</div>
@@ -153,6 +158,7 @@
 		<div class="col-md-2">
 
 					<strong>Torch</strong>: {{ $prenatal->torch }}
+										<strong>Fecha</strong>: {{ $prenatal->torchd }}
 
 		
 	</div>
