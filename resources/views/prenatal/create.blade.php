@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 
@@ -520,162 +521,135 @@
 		</div>
 		@endif
 
-    @foreach($control as $c)
-
-   	<h2>Control Mensual de {{$paciente->nombres}} {{$paciente->apellidos}}</h2>
-   	<h2>Fecha {{$c->created_at}}</h2>
-
-   	<div class="box-content">
-
-   	        <div class="row">
-
-            <label class="col-sm-1 control-label">Gestaciòn</label>
-            <div class="col-sm-3">
-              {{$c->gesta_semanas}}
-            </div>
-
-            <label class="col-sm-1 control-label">PesoMadre.</label>
-            <div class="col-sm-3">
-             
-              {{$c->peso_madre}}
-            </div>
-
-            <label class="col-sm-1 control-label">Temp.</label>
-            <div class="col-sm-3">
-              {{$c->temp}}
-            </div>
-
-            </div>
-            <div class="row">
-
-            <label class="col-sm-1 control-label">Tensiòn.</label>
-            <div class="col-sm-3">
-              {{$c->tension}}
-            </div>
-
-             <label class="col-sm-1 control-label">Alt.Ute.</label>
-            <div class="col-sm-3">
-            {{$c->altura_uterina}}
-            </div>
-
-            <label class="col-sm-1 control-label">Presentaciòn.</label>
-            <div class="col-sm-3">
-               {{$c->presentacion}}
-            </div>
-
-            </div>
-
-                        <div class="row">
+ 
 
 
-            <label class="col-sm-1 control-label">F.C.F.</label>
-            <div class="col-sm-3">
-              {{$c->fcf}}
-            </div>
+   <div class="box-content">
+   	<div style="background: #eaeaea;">
+	<table style="width: 100%;text-align: center;margin: 10px 0;">
 
-             <label class="col-sm-1 control-label">Movimiento.</label>
-            <div class="col-sm-3">
-               {{$c->movimiento_fetal}}
-            </div>
+		<tr>
 
-             <label class="col-sm-1 control-label">Edema.</label>
-            <div class="col-sm-3">
-               {{$c->edema}}
-            </div>
-        </div>
-
-                    <div class="row">
+    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}</th>
 
 
-             <label class="col-sm-1 control-label">Pulso.</label>
-            <div class="col-sm-3">
-               {{$c->pulso_materno}}
-            </div>
+  
 
 
-             <label class="col-sm-1 control-label">Consejeria</label>
-            <div class="col-sm-3">
-              {{$c->consejeria}}
-            </div>
+  </tr>
 
+  <tr>
+    
 
-             <label class="col-sm-1 control-label">Sulfato.</label>
-            <div class="col-sm-3">
-              {{$c->sulfato}}
-            </div>
+    <th style="background: #81BEF7;">Fecha de Control</th>
+ @foreach($control as $c)
+    <td>{{$c->created_at}}</td>
+  @endforeach
+  </tr>
 
-        </div>
+   <tr>
 
-                    <div class="row">
+    <th style="background: #81BEF7;">Edad Gest(Semanas)</th>
+ @foreach($control as $c)
+    <td>{{$c->gesta_semanas}}</td>
+  @endforeach
+  </tr>
 
+   <tr>
 
+    <th style="background: #81BEF7;">PesoMadre(Kg)</th>
+ @foreach($control as $c)
+    <td>{{$c->peso_madre}}</td>
+  @endforeach
+  </tr>
 
-             <label class="col-sm-1 control-label">Perfil.</label>
-            <div class="col-sm-3">
-              {{$c->perfil_biofisico}}
-            </div>
+  <tr>
 
+    <th style="background: #81BEF7;">Temperatura(ºC)</th>
+ @foreach($control as $c)
+    <td>{{$c->temp}}</td>
+  @endforeach
+  </tr>
 
-             <label class="col-sm-1 control-label">Visita.</label>
-            <div class="col-sm-3">
-               {{$c->visita_domicilio}}
-            </div>
+   <th style="background: #81BEF7;">Tensiòn Arterial(mmHg)</th>
+ @foreach($control as $c)
+    <td>{{$c->tension}}</td>
+  @endforeach
+  </tr>
 
-             <label class="col-sm-1 control-label">Establ.</label>
-            <div class="col-sm-3">
-            
-               {{$c->establecimiento_atencion}}
-            </div>
+   <th style="background: #81BEF7;">Altura Uterina</th>
+ @foreach($control as $c)
+    <td>{{$c->altura_uterina}}</td>
+  @endforeach
+  </tr>
 
-        </div>
+   <th style="background: #81BEF7;">Presentaciòn(C/P/T/NA)</th>
+ @foreach($control as $c)
+    <td>{{$c->presentacion}}</td>
+  @endforeach
+  </tr>
 
-             <label class="col-sm-1 control-label">Responsable.</label>
-            <div class="col-sm-3">
+     <th style="background: #81BEF7;">FCF</th>
+ @foreach($control as $c)
+    <td>{{$c->fcf}}</td>
+  @endforeach
+  </tr>
 
-                             {{$c->responsable_control}}
+     <th style="background: #81BEF7;">Mov. Fetal</th>
+ @foreach($control as $c)
+    <td>{{$c->movimiento_fetal}}</td>
+  @endforeach
+  </tr>
 
-            </div> 
+   <th style="background: #81BEF7;">Edema</th>
+ @foreach($control as $c)
+    <td>{{$c->edema}}</td>
+  @endforeach
+  </tr>
 
-         
-                    <div class="row">
+   <th style="background: #81BEF7;">Pulso Materno</th>
+ @foreach($control as $c)
+    <td>{{$c->pulso}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;">Consejeria PF</th>
+ @foreach($control as $c)
+    <td>{{$c->consejeria}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;">Sulfato Ferroso</th>
+ @foreach($control as $c)
+    <td>{{$c->sulfato}}</td>
+  @endforeach
+  </tr>
+
+     <th style="background: #81BEF7;">Perfìl Biofìsico</th>
+ @foreach($control as $c)
+    <td>{{$c->perfil_biofisico}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;">Responsable</th>
+ @foreach($control as $c)
+    <td>{{$c->responsable_control}}</td>
+  @endforeach
+  </tr>
 
 
 
-             <label class="col-sm-1 control-label">Serologia</label>
-            <div class="col-sm-2">
-            <strong>Resultado:</strong>:{{$c->sero}}
-             <strong>Fecha:</strong>:{{$c->serod}}
 
 
-            </div>
+
+	
+	
+	</table>
+</div>
 
 
-             <label class="col-sm-1 control-label">Glucosa</label>
-            <div class="col-sm-2">
-                 <strong>Resultado:</strong>:{{$c->glu}}
-             <strong>Fecha:</strong>:{{$c->glud}}
-
-            </div>
-
-             <label class="col-sm-1 control-label">VIH</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->vih}}
-             <strong>Fecha:</strong>:{{$c->vihd}}
-
-            </div>
-
-               <label class="col-sm-1 control-label">Hemoglobina</label>
-            <div class="col-sm-2">
-                  <strong>Resultado:</strong>:{{$c->hemo}}
-             <strong>Fecha:</strong>:{{$c->hemod}}
-
-            </div>
-
-        </div>
-    </div>
-
-
-   @endforeach
+   	
+   </div>
 
  <div class="box-content"> 
         <form class="form-horizontal" role="form" method="post" action="control/create">
