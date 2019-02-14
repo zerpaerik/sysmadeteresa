@@ -132,6 +132,7 @@
                                     <option value="GLU - COLT - TRIG.docx">GLU - COLT - TRIG</option>
                                     <option value="GRUPO SANGUINEO.docx">GRUPO SANGUINEO</option>
                                     <option value="HEMOGLOBINA GLUCOSILADA.docx">HEMOGLOBINA GLUCOSILADA</option>
+                                    <option value="HEMOGLOBINA -HEMATOCRITO.docx">HEMOGLOBINA -HEMATOCRITO</option>
                                     <option value="HEPATITIS B.docx">HEPATITIS B</option>
                                     <option value="HIV.docx">HIV</option>
                                     <option value="LIPASA.docx">LIPASA</option>
@@ -147,8 +148,13 @@
                                     <option value="PSA TOTAL.docx">PSA TOTAL</option>
                                     <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
                                     <option value="RPR.docx">RPR</option>
+                                    <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
                                     <option value="RX.INFLAMATORIO.docx">RX.INFLAMATORIO</option>
                                     <option value="SECRECION VAGINAL.docx">SECRECION VAGINAL</option>
+                                      <option value="SECRECION FARINGEA.docx">SECRECION FARINGEA</option>
+                                    <option value="SECRECION URETRAL.docx">SECRECION URETRAL</option>
+                                    <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
+                                    <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
                                     <option value="TEST DE GRAHAM.docx">TEST DE GRAHAM</option>
                                     <option value="THEVENON.docx">THEVENON</option>
                                     <option value="TIEMPO DE COAGULACION - TIEMPO DE SANGRIA.docx">TIEMPO DE COAGULACION - TIEMPO DE SANGRIA</option>
@@ -159,13 +165,9 @@
                                     <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
                                     <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
                                     <option value="VSG.docx">VSG</option>
-                                    <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
-                                    <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
+                                  
 
-                                    <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
-                                    <option value="HEMOGLOBINA -HEMATOCRITO.docx">HEMOGLOBINA -HEMATOCRITO</option>
-                                    <option value="SECRECION FARINGEA.docx">SECRECION FARINGEA</option>
-                                    <option value="SECRECION URETRAL.docx">SECRECION URETRAL</option>
+                                    
 
 
 
