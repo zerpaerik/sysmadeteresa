@@ -184,9 +184,23 @@
 
             <div class="col-md-3">
             <label for="">Conclusiòn</label>
-         
-
-                            {{$data->conclusion}}
+           @if($prenatal->imc < 16)
+           Infrapeso: Delgadez Severa
+           @elseif($prenatal->imc >= 16 && $prenatal->imc < 17)
+           Infrapeso: Delgadez Moderada
+           @elseif($prenatal->imc >= 17 && $prenatal->imc <= 18.49)
+           Infrapeso: Delgadez Aceptable
+           @elseif($prenatal->imc >= 18.50 && $prenatal->imc <= 24.99)
+           Peso Normal
+           @elseif($prenatal->imc >= 25 && $prenatal->imc <= 29.99)
+           Sobrepeso
+           @elseif($prenatal->imc >= 30 && $prenatal->imc <= 34.99)
+           Obeso:Tipo I
+           @elseif($prenatal->imc >= 35 && $prenatal->imc <= 40)
+           Obeso:Tipo II
+           @else
+           Obeso:Tipo II
+           @endif
 
             </div>
 
