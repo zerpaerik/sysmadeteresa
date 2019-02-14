@@ -54,7 +54,10 @@
 						<td>{{$p->user}}</td>
 						<td>
 						<a href="profesionales-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
+												      @if(\Auth::user()->role_id == 4)							 
+
 						<a href="profesionales-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+						@endif
 
 						</td>
 						</tr>
