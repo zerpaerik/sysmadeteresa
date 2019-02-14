@@ -148,6 +148,8 @@ Route::post('control/create', 'PrenatalController@createControl')->middleware('a
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
 Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.search')->middleware('auth');
 
+Route::get('prenatal-eliminar-{id}', 'PrenatalController@deletebase');
+
 Route::get('metodos', 'MetodosController@index')->name('metodos.index')->middleware('auth');
 Route::get('metodos1', 'MetodosController@index1')->name('metodos.index1')->middleware('auth');
 Route::get('metodos-create', 'MetodosController@createView')->name('metodos.create')->middleware('auth');

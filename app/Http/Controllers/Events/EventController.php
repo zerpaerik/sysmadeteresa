@@ -77,6 +77,9 @@ class EventController extends Controller
 
   }
 
+
+
+
     return view('consultas.index',[
       'eventos' => $event
     ]);

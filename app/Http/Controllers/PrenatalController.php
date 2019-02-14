@@ -316,4 +316,13 @@ class PrenatalController extends Controller
 		return back();
 
     }
+
+     public function deletebase($id)
+  {
+  
+
+
+    $prenatal = Prenatal::where('paciente','=',$id)->delete();
+    return back();
+  }
 }
