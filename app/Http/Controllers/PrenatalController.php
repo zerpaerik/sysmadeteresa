@@ -323,6 +323,9 @@ class PrenatalController extends Controller
 
 
     $prenatal = Prenatal::where('paciente','=',$id)->delete();
+
+    $control = Control::where('id_paciente','=',$id)->delete();
+
     return back();
   }
 }
