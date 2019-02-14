@@ -162,6 +162,12 @@
                                     <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
                                     <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
 
+                                    <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
+                                    <option value="HEMOGLOBINA -HEMATOCRITO.docx">HEMOGLOBINA -HEMATOCRITO</option>
+                                    <option value="SECRECION FARINGEA.docx">SECRECION FARINGEA</option>
+                                    <option value="SECRECION URETRAL.docx">SECRECION URETRAL</option>
+
+
 
 
 
