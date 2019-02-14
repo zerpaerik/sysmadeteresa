@@ -123,7 +123,11 @@
                                     <option value="CPK-MB.docx">CPK-MB</option>
                                     <option value="CREATININA.docx">CREATININA</option>
                                     <option value="CULTIVO SECRECION.docx">CULTIVO SECRECION</option>
+                                    <option value="CONSTANTES CORPUSCULARES.docx">CONSTANTES CORPUSCULARES</option>
+                                    <option value="CULTIVO DE SECRECION VAGINAL POSITIVO.docx">CULTIVO DE SECRECION VAGINAL POSITIVO</option>
+                                    <option value="CULTIVO DE SEMEN  NEGATIVO.docx">CULTIVO DE SEMEN  NEGATIVO</option>
                                     <option value="DOSAJE DE POTASIO.docx">DOSAJE DE POTASIO</option>
+                                    <option value="ESPERMATOGRAMA.docx">ESPERMATOGRAMA</option>
                                     <option value="EX. COMPLETO DE ORINA.docx">EX. COMPLETO DE ORINA</option>
                                     <option value="EXTRADIOL.docx">EXTRADIOL</option>
                                     <option value="FTA.docx">FTA</option>
@@ -131,6 +135,8 @@
                                     <option value="GLOCOSA.docx">GLOCOSA</option>
                                     <option value="GLU - COLT - TRIG.docx">GLU - COLT - TRIG</option>
                                     <option value="GRUPO SANGUINEO.docx">GRUPO SANGUINEO</option>
+                                    <option value="HEMOGLOBINA.docx">HEMOGLOBINA</option>
+                                    <option value="HEMOGRAMA COMPLETA.docx">HEMOGRAMA COMPLETA</option>
                                     <option value="HEMOGLOBINA GLUCOSILADA.docx">HEMOGLOBINA GLUCOSILADA</option>
                                     <option value="HEMOGLOBINA -HEMATOCRITO.docx">HEMOGLOBINA -HEMATOCRITO</option>
                                     <option value="HEPATITIS B.docx">HEPATITIS B</option>
@@ -165,6 +171,12 @@
                                     <option value="UROCULTIVO POSITIVO.docx">UROCULTIVO POSITIVO</option>
                                     <option value="VOLUMEN CORPUSCULARES.docx">VOLUMEN CORPUSCULARES</option>
                                     <option value="VSG.docx">VSG</option>
+
+
+
+
+
+
                                   
 
                                     
