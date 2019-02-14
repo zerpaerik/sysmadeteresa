@@ -950,6 +950,20 @@
  
 @elseif(\Auth::user()->role_id == 8)
 
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle">
+    <i class="fa fa-inbox"></i>
+    <span class="hidden-xs">Archivos</span>
+  </a>
+  <ul class="dropdown-menu">
+   
+    <li>
+      <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
+    </li>
+    
+  </ul>
+</li>
+
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-truck"></i>
