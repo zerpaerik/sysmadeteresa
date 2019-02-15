@@ -328,4 +328,30 @@ class PrenatalController extends Controller
 
     return back();
   }
+
+
+ public function imprimir($id)
+    {
+
+    	$control = Control::where('id_paciente',$id)->get();
+    	$paciente = Paciente::where('id',$id)->get();
+    	$prenatal = Prenatal::where('paciente',$id)->get();
+    	$view = \View::make('prenatal.reporte')->with('controles', $control)->with('pacientes', $paciente)->with('prenatal', $prenatal);
+        $pdf = \App::make('dompdf.wrapper');
+     //   $pdf->setPaper(array(0,0,867.00,343.80));
+       // $pdf->setPaper('A4', 'landscape');
+        $pdf->loadHTML($view);
+        return $pdf->stream('historias_prenatal_ver');
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

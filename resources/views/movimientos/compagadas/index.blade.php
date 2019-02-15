@@ -52,6 +52,16 @@
 					</p>
 					@endif
 				</div>
+				<div class="col-md-3">
+                              {!! Form::label('origen', '*', ['class' => 'control-label']) !!}
+                            {!! Form::text('origen', old('origen'), ['class' => 'form-control', 'placeholder' => 'Buscar por Origen']) !!}
+                            <p class="help-block"></p>
+                            @if($errors->has('origen'))
+                            <p class="help-block">
+                                {{ $errors->first('origen') }}
+                          </p>
+                          @endif
+                    </div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
@@ -102,8 +112,7 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 
 
 
