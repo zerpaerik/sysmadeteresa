@@ -392,9 +392,9 @@ class ComporPagarController extends Controller
                   ]);
       }
 
-      return back();
     } 
 
+      return back();
   }
        
    
