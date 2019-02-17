@@ -25,31 +25,32 @@
 				<form class="form-horizontal" role="form" method="post" action="pacientes/create3">
 					{{ csrf_field() }}
 					<div class="form-group">
+							<label class="col-sm-1 control-label">Apellidos</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="apellidos" placeholder="Apellidos" data-toggle="tooltip" data-placement="bottom" title="Apellidos" onkeyup="mayus(this);">
+						</div>
 						<label class="col-sm-1 control-label">Nombres</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="nombres" placeholder="Nombres" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+							<input type="text" class="form-control" name="nombres" placeholder="Nombres" data-toggle="tooltip" data-placement="bottom" title="Nombres" onkeyup="mayus(this);">
 						</div>
-						<label class="col-sm-1 control-label">Apellidos</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="apellidos" placeholder="Apellidos" data-toggle="tooltip" data-placement="bottom" title="Apellidos">
-						</div>
+					
 						<label class="col-sm-1 control-label">DNI</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="dni" placeholder="DNI" data-toggle="tooltip" data-placement="bottom" title="DNI">
+							<input type="text" class="form-control" name="dni" placeholder="DNI" data-toggle="tooltip" data-placement="bottom" title="DNI" onkeyup="mayus(this);">
 						</div>
 						<label class="col-sm-1 control-label">Telèfono</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="telefono" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telèfono">
+							<input type="text" class="form-control" name="telefono" placeholder="Telèfono" data-toggle="tooltip" data-placement="bottom" title="Telèfono" onkeyup="mayus(this);">
 						</div>
 						
 						<label class="col-sm-1 control-label">Dirección</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="direccion" placeholder="Dirección" data-toggle="tooltip" data-placement="bottom" title="Dirección">
+							<input type="text" class="form-control" name="direccion" placeholder="Dirección" data-toggle="tooltip" data-placement="bottom" title="Dirección" onkeyup="mayus(this);">
 						</div>	
 						
 						<label class="col-sm-1 control-label">Referencia</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="Referencia" placeholder="Referencia" data-toggle="tooltip" data-placement="bottom" title="Referencia">
+							<input type="text" class="form-control" name="Referencia" placeholder="Referencia" data-toggle="tooltip" data-placement="bottom" title="Referencia" onkeyup="mayus(this);">
 						</div>
 
 						<label class="col-sm-1 control-label">Provincia</label>
@@ -82,7 +83,7 @@
 
 						<label class="col-sm-1 control-label">Ocupaciòn</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="ocupacion" placeholder="ocupacion" data-toggle="tooltip" data-placement="bottom" title="ocupacion">
+							<input type="text" class="form-control" name="ocupacion" placeholder="ocupacion" data-toggle="tooltip" data-placement="bottom" title="ocupacion" onkeyup="mayus(this);">
 						</div>
 
 
@@ -111,3 +112,9 @@
 	</div>
 </div>
 @endsection
+
+<script type="text/javascript">
+	function mayus(e) {
+    e.value = e.value.toUpperCase();
+}
+</script>

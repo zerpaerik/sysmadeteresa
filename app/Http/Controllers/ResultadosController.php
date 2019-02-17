@@ -44,7 +44,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-        ->orwhere('d.name','like','%'.$request->name.'%')
+        ->where('d.name','like','%'.$request->name.'%')
         ->orderby('a.id','desc')
         ->get();
         
@@ -78,7 +78,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-        ->orwhere('d.name','like','%'.$request->name.'%')
+        ->where('d.name','like','%'.$request->name.'%')
         ->orderby('a.id','desc')
         ->get();
 
@@ -92,7 +92,7 @@ class ResultadosController extends Controller
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-                ->where('a.es_laboratorio','=',1)
+        ->where('a.es_laboratorio','=',1)
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
@@ -189,7 +189,7 @@ class ResultadosController extends Controller
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
-                ->where('a.es_servicio','=',1)
+        ->where('a.es_servicio','=',1)
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])

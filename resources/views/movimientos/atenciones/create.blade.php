@@ -74,7 +74,7 @@
 
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-3">
-                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
+                      <select id="servicios_#index#_servicio"  name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
                         <option value="1">Seleccionar servicio</option>}
                         option
                         @foreach($servicios as $pac)
@@ -84,7 +84,7 @@
                         @endforeach
                       </select>
                      
-                    </div>S
+                    </div>
 
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
                     <div class="col-sm-2">
@@ -539,10 +539,12 @@ function Select2Test(){
   $("#el4").select2();
   $("#el41").select2();
     $("#el6").select2();
+        $("#el7").select2();
         $('.origen1').select2();
     $('.selector').select2();
         $('.selector1').select2();
     $('.selector2').select2();
+    $(".selectServ").select2();
 
 
 }
