@@ -74,11 +74,12 @@ class ResultadosController extends Controller
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-                ->where('a.es_laboratorio','=',1)
+        ->where('a.es_laboratorio','=',1)
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('d.name','like','%'.$request->name.'%')
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
         ->get();
 
@@ -132,7 +133,7 @@ class ResultadosController extends Controller
 
 
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -142,6 +143,7 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('c.detalle','like','%'.$request->name.'%')
+        ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
         
@@ -151,7 +153,7 @@ class ResultadosController extends Controller
            $f2 = $request->fecha2; 
 
           $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -160,6 +162,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+        ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
 
@@ -167,7 +170,7 @@ class ResultadosController extends Controller
         } elseif(! is_null($request->name)){
 
             $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -176,6 +179,8 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('c.detalle','like','%'.$request->name.'%')
+        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+        ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
 
@@ -185,7 +190,7 @@ class ResultadosController extends Controller
 
 
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -194,6 +199,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+        ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
 

@@ -193,6 +193,22 @@
     </ul>
   </li>
 
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs"> Control de Sesiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('sesiones.index')}}"><i class="fa fa-list-alt"></i> Atender Sesiones</a>
+      </li>
+      <li>
+        <a href="{{route('sesionesa.index')}}"><i class="fa fa-list-alt"></i> Consultar Sesiones</a>
+      </li>
+      
+    </ul>
+  </li>
+
    <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
@@ -495,6 +511,21 @@
       </li>                  
     </ul>
   </li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs"> Control de Sesiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('sesiones.index')}}"><i class="fa fa-list-alt"></i> Atender Sesiones</a>
+      </li>
+      <li>
+        <a href="{{route('sesionesa.index')}}"><i class="fa fa-list-alt"></i> Consultar Sesiones</a>
+      </li>
+      
+    </ul>
+  </li>
    <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
@@ -750,6 +781,22 @@
     </ul>
   </li>
 
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs"> Control de Sesiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('sesiones.index')}}"><i class="fa fa-list-alt"></i> Atender Sesiones</a>
+      </li>
+      <li>
+        <a href="{{route('sesionesa.index')}}"><i class="fa fa-list-alt"></i> Consultar Sesiones</a>
+      </li>
+      
+    </ul>
+  </li>
+
    <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-bell"></i>
@@ -878,6 +925,22 @@
       <li>
         <a href="{{route('service.index')}}"><i class="fa fa-plus-circle"></i> Mostrar Programaciòn</a>
       </li>                  
+    </ul>
+  </li>
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-copy"></i>
+      <span class="hidden-xs"> Control de Sesiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="{{route('sesiones.index')}}"><i class="fa fa-list-alt"></i> Atender Sesiones</a>
+      </li>
+      <li>
+        <a href="{{route('sesionesa.index')}}"><i class="fa fa-list-alt"></i> Consultar Sesiones</a>
+      </li>
+      
     </ul>
   </li>
 

@@ -213,6 +213,7 @@ class AtencionesController extends Controller
 			->first();
 			
 			$detalle = $servdetalle->detalle;
+      $sesion = $servdetalle->sesion;
 
             if(! is_null($id_servicio)){
               $s = new Atenciones();
@@ -233,6 +234,7 @@ class AtencionesController extends Controller
               $s->monto = 99999;
               $s->abono = 0;
               $s->porcentaje =0;
+              $s->sesion =$sesion;
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
               $s->particular = $request->particular;
@@ -385,6 +387,7 @@ class AtencionesController extends Controller
 			  
      // $porcentaje = $searchServicio->porcentaje;
 	  $programa = $searchServicio->programa;
+    $sesion= $searchServicio->sesion;
 	  
 	  if ($request->origen == 1 ){
 		    $porcentaje = $searchServicio->por_per;
@@ -413,7 +416,8 @@ class AtencionesController extends Controller
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
-			  $serv->serv_prog =  $programa;
+			        $serv->serv_prog =  $programa;
+              $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
@@ -424,8 +428,8 @@ class AtencionesController extends Controller
               $serv->id_sede = $request->session()->get('sede');
               $serv->estatus = 1;
               $serv->particular = $request->particular;
-                            $serv->usuario = Auth::user()->id;
-                                          $serv->ticket =AtencionesController::generarId($request);
+              $serv->usuario = Auth::user()->id;
+              $serv->ticket =AtencionesController::generarId($request);
               $serv->save(); 
 
               $creditos = new Creditos();
@@ -577,6 +581,7 @@ class AtencionesController extends Controller
 			->first();
 			
 			$detalle = $servdetalle->detalle;
+      $sesion= $servdetalle->sesion;
 
             if(! is_null($id_servicio)){
               $s = new Atenciones();
@@ -595,6 +600,7 @@ class AtencionesController extends Controller
               $s->porc_pagar = 0;
               $s->pendiente = 0;
               $s->monto = 99999;
+              $s->sesion = $sesion;
               $s->abono = 0;
               $s->porcentaje =0;
               $s->id_sede =$request->session()->get('sede');
@@ -776,6 +782,9 @@ $paciente = DB::table('pacientes')
 			  
      // $porcentaje = $searchServicio->porcentaje;
 	  $programa = $searchServicio->programa;
+    $sesion = $searchServicio->sesion;
+
+
 	  
 	  if ($request->origen == 1 ){
 		    $porcentaje = $searchServicio->por_per;
@@ -804,7 +813,8 @@ $paciente = DB::table('pacientes')
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
-			  $serv->serv_prog =  $programa;
+			        $serv->serv_prog =  $programa;
+              $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;

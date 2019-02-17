@@ -74,8 +74,9 @@
 
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-3">
+
                       <select id="servicios_#index#_servicio"  name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                        <option value="1">Seleccionar servicio</option>}
+                        <option value="1">Seleccionar servicio</option>
                         option
                         @foreach($servicios as $pac)
                           <option value="{{$pac->id}}">
@@ -643,6 +644,27 @@ function createPac(e){
         }
 
 
+    </script>
+    <script type="text/javascript">
+      function buscarSelect()
+{
+  // creamos un variable que hace referencia al select
+  var select=document.getElementById("elementos");
+ 
+  // obtenemos el valor a buscar
+  var buscar=document.getElementById("buscar").value;
+ 
+  // recorremos todos los valores del select
+  for(var i=1;i<select.length;i++)
+  {
+    if(select.options[i].text==buscar)
+    {
+      // seleccionamos el valor que coincide
+      select.selectedIndex=i;
+    }
+  }
+}
+</script>
     </script>
 @endsection
 @endsection
