@@ -392,10 +392,9 @@ class ComporPagarController extends Controller
                   ]);
       }
 
-      Toastr::success('Las comisiones han sido pagadas.', 'Comisiones!', ['progressBar' => true]);
+      return back();
     } 
 
-      return back();
   }
        
    
