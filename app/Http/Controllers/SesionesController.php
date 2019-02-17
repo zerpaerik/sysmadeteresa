@@ -31,13 +31,14 @@ class SesionesController extends Controller
 
 
       	$sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.fecha_atencion','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','a.sesion')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.fecha_atencion','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','a.sesion','a.id_sede')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.atendido','=',NULL)
         ->where('a.resultado','=', NULL)
         ->where('a.sesion','=',1)
@@ -47,13 +48,14 @@ class SesionesController extends Controller
     } else {
 
     		$sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.fecha_atencion','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','a.sesion','a.fecha_atencion')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.fecha_atencion','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','a.sesion','a.fecha_atencion','a.id_sede')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('paquetes as pa','pa.id','a.id_paquete')
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+                ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.atendido','=',NULL)
         ->where('a.resultado','=', NULL)
         ->where('a.sesion','=',1)
@@ -80,13 +82,14 @@ class SesionesController extends Controller
 
 
         $sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper','a.id_sede')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('personals as p','a.atendido','p.id')
         ->whereBetween('a.fecha_atencion', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.atendido','<>',NULL)
         ->where('a.sesion','=',1)
         ->orderby('a.fecha_atencion','desc')
@@ -95,13 +98,14 @@ class SesionesController extends Controller
       } else {
 
          $sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.atendido','a.fecha_atencion','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.name as nomper','p.lastname as apeper','a.id_sede')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('personals as p','a.atendido','p.id')
         ->whereDate('a.fecha_atencion', '=',Carbon::today()->toDateString())
+                ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.atendido','<>',NULL)
         ->where('a.sesion','=',1)
         ->orderby('a.fecha_atencion','desc')
