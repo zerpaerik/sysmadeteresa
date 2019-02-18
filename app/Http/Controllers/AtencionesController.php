@@ -141,6 +141,14 @@ class AtencionesController extends Controller
 
   public function create(Request $request)
   {
+    if(is_null($request->origen_usuario)){
+      Toastr::error('Debe Seleccionar un Origen', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+
+    return back();
+
+
+
+    } else {
 	
    if($request->origen == 3){
 	   
@@ -902,7 +910,9 @@ $paciente = DB::table('pacientes')
 	
     	 Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
 
+
     return redirect()->route('atenciones.index');
+     }
   }
 
   public function personal(){
