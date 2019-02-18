@@ -60,7 +60,7 @@
 				</div>
 			</div>	
 
-			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index1']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
