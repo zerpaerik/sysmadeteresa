@@ -60,6 +60,25 @@
 				</div>
 			</div>	
 
+			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					<input type="text" class="form-control" name="origen" placeholder="Origen" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+
+					<input type="hidden" value="{{$f1}}" name="f1">
+				    <input type="hidden" value="{{$f2}}" name="f2">
+
+				</div>
+				
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+			</div>	
+
 			<div class="row">
 				<strong>Monto a Pagar:</strong>{{$aten->monto}}
 				
@@ -127,11 +146,6 @@
 
 </body>
 
-
-
-
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 
 
 <script type="text/javascript">

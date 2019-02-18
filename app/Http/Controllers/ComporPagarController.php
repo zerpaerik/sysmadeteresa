@@ -240,7 +240,8 @@ class ComporPagarController extends Controller
         }
   }else if(! is_null($request->origen)){
 
-
+       $f1 = $request->fecha;
+       $f2 = $request->fecha2; 
 
 
       $atenciones = DB::table('atenciones as a')
@@ -257,6 +258,7 @@ class ComporPagarController extends Controller
    ->whereNotIn('a.origen_usuario',[99999999])
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('e.lastname','like','%'.$request->origen.'%')
    ->orderby('a.id','desc')
    ->get();
@@ -271,6 +273,8 @@ class ComporPagarController extends Controller
                       ->first();
         if ($aten->monto == 0) {
         }
+
+       
 
 
  }else{
@@ -304,6 +308,9 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
+         $f1 = Carbon::today()->toDateString();
+         $f2 = Carbon::today()->toDateString(); 
+
 
 
 
@@ -313,7 +320,7 @@ class ComporPagarController extends Controller
 
 
 
-        return view('movimientos.comporpagar.index', ['atenciones' => $atenciones,'aten' => $aten]);
+        return view('movimientos.comporpagar.index', ['atenciones' => $atenciones,'aten' => $aten,'f1' => $f1,'f2' => $f2]);
 	}
 
    

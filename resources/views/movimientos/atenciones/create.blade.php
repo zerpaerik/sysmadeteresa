@@ -55,7 +55,7 @@
 						</div>
 
 						<div class="col-sm-6">
-							  <div id="origen1" class="origen1" require="true">
+							  <div id="origen1" class="origen1">
 
 						</div>
 
@@ -75,7 +75,7 @@
                     <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicio</label>
                     <div class="col-sm-4">
 
-                      <select id="el7"  name="id_servicio[servicios][#index#][servicio]" class="selectServ">
+                      <select id="servicios_#index#_servicio"  name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
                         <option value="1">Seleccionar servicio</option>
                         option
                         @foreach($servicios as $pac)
@@ -131,7 +131,7 @@
 
                     <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Lab</label>
                     <div class="col-sm-4">
-                      <select id="el8" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="selectLab form-control">
                         <option value="1">Seleccionar laboratorio</option>
                         @foreach($laboratorios as $pac)
                           <option value="{{$pac->id}}">
@@ -184,7 +184,7 @@
 
                     <label for="paquetes_#index#_paquete" class="col-sm-1 control-label">Paq</label>
                     <div class="col-sm-4">
-                      <select id="el9" name="id_paquete[paquetes][#index#][paquete]" class="selectPaq">
+                      <select id="paquetes_#index#_paquete" name="id_paquete[paquetes][#index#][paquete]" class="selectPaq form-control">
                         <option value="1">Seleccionar paquete</option>
                         @foreach($paquetes as $pac)
                           <option value="{{$pac->id}}">
@@ -252,7 +252,33 @@
               </select>
             </div>
           </div>
-       
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total:
+              </div> 
+              <input type="text" name="total" class="number form-control" value="0.00" id="total" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
+
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total abono:
+              </div>
+              <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
+
+          <div class="form-group form-inline">
+            <div class="col-sm-8 col-sm-offset-7">
+              <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
+                Total restante:  
+              </div>
+               
+              <input type="text" name="total_g" class="number form-control" value="0.00" id="total_g" readonly="readonly" style="width: 150px">
+            </div>
+          </div>
 
 
 
