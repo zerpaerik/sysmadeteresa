@@ -200,6 +200,21 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
+  $origen = DB::table('atenciones as a')
+   ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
+   ->join('users as e','e.id','a.origen_usuario')
+    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('a.pago_com_tec','=',NULL)
+   ->whereNotIn('a.monto',[0,0.00,99999])
+   ->whereNotIn('a.origen_usuario',[99999999])
+   ->whereNotIn('a.porcentaje',[0,0.00,99999])
+   ->where('a.pendiente','=',0)
+   ->where('a.pagado_com','=', NULL)
+   ->orderby('e.lastname','asc')
+   ->groupBy('a.origen_usuario')
+   ->get();
+
 
  }else if(! is_null($request->fecha)){
 
@@ -238,6 +253,20 @@ class ComporPagarController extends Controller
                                     ->first();
         if ($aten->monto == 0) {
         }
+    $origen = DB::table('atenciones as a')
+   ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
+   ->join('users as e','e.id','a.origen_usuario')
+    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('a.pago_com_tec','=',NULL)
+   ->whereNotIn('a.monto',[0,0.00,99999])
+   ->whereNotIn('a.origen_usuario',[99999999])
+   ->whereNotIn('a.porcentaje',[0,0.00,99999])
+   ->where('a.pendiente','=',0)
+   ->where('a.pagado_com','=', NULL)
+   ->orderby('e.lastname','asc')
+   ->groupBy('a.origen_usuario')
+   ->get();
   }else if(! is_null($request->origen)){
 
        $f1 = $request->fecha;
@@ -311,16 +340,10 @@ class ComporPagarController extends Controller
          $f1 = Carbon::today()->toDateString();
          $f2 = Carbon::today()->toDateString(); 
 
-
-
-
-
-
- }
-
-  $origen = DB::table('atenciones as a')
-   ->select('a.id','a.origen_usuario','e.name','e.lastname')
+   $origen = DB::table('atenciones as a')
+   ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
    ->join('users as e','e.id','a.origen_usuario')
+    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('a.pago_com_tec','=',NULL)
    ->whereNotIn('a.monto',[0,0.00,99999])
@@ -331,6 +354,12 @@ class ComporPagarController extends Controller
    ->orderby('e.lastname','asc')
    ->groupBy('a.origen_usuario')
    ->get();
+
+
+
+
+ }
+
 
 
 
@@ -383,6 +412,21 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
+         $origen = DB::table('atenciones as a')
+   ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
+   ->join('users as e','e.id','a.origen_usuario')
+   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->where('a.pago_com_tec','=',NULL)
+   ->whereNotIn('a.monto',[0,0.00,99999])
+   ->whereNotIn('a.origen_usuario',[99999999])
+   ->whereNotIn('a.porcentaje',[0,0.00,99999])
+   ->where('a.pendiente','=',0)
+   ->where('a.pagado_com','=', NULL)
+   ->orderby('e.lastname','asc')
+   ->groupBy('a.origen_usuario')
+   ->get();
+
 
  
 
@@ -427,13 +471,10 @@ class ComporPagarController extends Controller
 
 
 
-
-
- }
-
- $origen = DB::table('atenciones as a')
-   ->select('a.id','a.origen_usuario','e.name','e.lastname')
+         $origen = DB::table('atenciones as a')
+   ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
    ->join('users as e','e.id','a.origen_usuario')
+   ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
    ->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('a.pago_com_tec','=',NULL)
    ->whereNotIn('a.monto',[0,0.00,99999])
@@ -444,6 +485,10 @@ class ComporPagarController extends Controller
    ->orderby('e.lastname','asc')
    ->groupBy('a.origen_usuario')
    ->get();
+
+
+ }
+
 
 
 
