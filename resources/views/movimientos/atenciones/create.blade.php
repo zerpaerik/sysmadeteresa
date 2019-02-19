@@ -245,10 +245,10 @@
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
                 Forma de Pago:
               </div> 
-              <select name="tipopago" class="form-control" required="true">
+              <select required aria-required="true" name="tipopago" class="form-control">
                         <option value="">Seleccionar Tipo de Pago</option>
-                        <option value="EF">Efectivo</option>}
-                        <option value="TJ">Tarjeta</option> 
+                        <option>EF</option>
+                        <option>TJ</option> 
               </select>
             </div>
           </div>

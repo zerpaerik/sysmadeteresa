@@ -337,10 +337,11 @@ class ReportesController extends Controller
     public function verReciboProfesional($id){
        
          $reciboprofesional = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('paquetes as p','p.id','a.id_paquete')
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.pagado_com','=', 1)
         ->where('a.recibo','=', $id)

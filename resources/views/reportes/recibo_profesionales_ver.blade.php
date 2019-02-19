@@ -78,8 +78,10 @@
     <td>{{ $recibo->created_at}} </td>
     @if($recibo->es_servicio == '1')
     <td>{{$recibo->servicio}}</td>
-    @else
+    @elseif($recibo->es_laboratorio == '1')
     <td>{{$recibo->laboratorio}} </td>
+    @else
+    <td>{{$recibo->paquete}} </td>
     @endif
     <td>{{ $recibo->porcentaje}}.00</td></tr>
   @endforeach
