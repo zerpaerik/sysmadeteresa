@@ -52,20 +52,22 @@
 
 </head>
 <body>
+		 <img src="/var/www/html/sysmadreteresa/public/img/logo.jpeg"  style="width: 20%;"/>
 
-	<p style="text-align: left;"><center><h1>SEDE:{{ Session::get('sedeName') }}</h1></center></p>
+
+	<p style="text-align: left;"><center><h2>SEDE:{{ Session::get('sedeName') }}</h2></center></p>
 	<br>
    @foreach($reciboprofesional2 as $recibo)
-  <p style="margin-left: 15px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
-  <p style="margin-left: 15px;"><strong>CONSULTORIO:</strong></p>
-  <p style="margin-left: 15px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
+  <p style="margin-left: 15px; margin-top: 10px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
+  <p style="margin-left: 15px;margin-top: 2px;"><strong>CONSULTORIO:</strong></p>
+  <p style="margin-left: 15px;margin-top: 2px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
    @endforeach
 
 
 <table>
   <thead>
   <tr>
-    <th scope="col">PACIENTE</th>
+    <th style="width: 40%;" scope="col">PACIENTE</th>
     <th scope="col">FECHA</th>
     <th scope="col">DETALLE</th>
     <th scope="col">MONTO</th>
@@ -88,7 +90,7 @@
  </tbody>
 
   @foreach($totalrecibo as $recibo)
- <p><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}.00</p>
+ <p style="margin-left: 550px;"><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}.00</p>
   @endforeach
 
 
