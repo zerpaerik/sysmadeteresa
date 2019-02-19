@@ -77,7 +77,7 @@
   <tbody>
     @foreach($reciboprofesional as $recibo)
     <tr><td>{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
-    <td>{{ $recibo->created_at}} </td>
+    <td>{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
     @if($recibo->es_servicio == '1')
     <td>{{$recibo->servicio}}</td>
     @elseif($recibo->es_laboratorio == '1')
