@@ -246,9 +246,9 @@
                 Forma de Pago:
               </div> 
               <select required aria-required="true" name="tipopago" class="form-control">
-                        <option value="">Seleccionar Tipo de Pago</option>
-                        <option>EF</option>
-                        <option>TJ</option> 
+                        <option value="EF">Seleccionar Tipo de Pago</option>
+                        <option value="EF">Efectivo</option>
+                        <option value="TJ">Tarjeta</option> 
               </select>
             </div>
           </div>
