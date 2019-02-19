@@ -52,7 +52,7 @@
 
 </head>
 <body>
-		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
+		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpg"  style="width: 20%;"/>
 
 	<p style="text-align: left;"><center><h2>SEDE:{{ Session::get('sedeName') }}</h2></center></p>
 	<br>
