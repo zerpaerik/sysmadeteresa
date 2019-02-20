@@ -110,9 +110,9 @@
 								@else
 								<td>{{$atec->paquete}}</td>
 								@endif
-								<td>{{$atec->monto}}</td>
+								<td>{{number_format($atec->monto, 2, ',', '.')}}</td>
 								<td>{{$atec->porc_pagar}}</td>
-								<td>{{$atec->porcentaje}}</td>
+								<td>{{number_format($atec->porcentaje, 2, ',', '.')}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
