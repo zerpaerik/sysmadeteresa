@@ -56,11 +56,11 @@
 		 <img src="var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
 
 
-	<p style="margin-left: 600px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
+	<p style="margin-left: 600px;margin-top: -20px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
    @foreach($reciboprofesional2 as $recibo)
-  <p style="margin-left: 15px; margin-top: 10px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
-  <p style="margin-left: 15px;margin-top: 2px;"><strong>CONSULTORIO:</strong></p>
-  <p style="margin-left: 15px;margin-top: 2px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
+  <p style="margin-left: 15px; margin-top: -20px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
+  <p style="margin-left: 15px;margin-top: -20px;"><strong>CONSULTORIO:</strong></p>
+  <p style="margin-left: 15px;margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
    @endforeach
 
 
