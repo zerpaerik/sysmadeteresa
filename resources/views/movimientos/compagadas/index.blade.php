@@ -90,7 +90,7 @@
 								<td>{{$atec->created_at}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
 								<td>{{$atec->totalrecibo}}</td>
-                                <td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a>
+                                <td><a target="_blank"  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a>
                                 <a href="{{asset('/reversar')}}/{{$atec->recibo}}" onclick="return confirm('¿Desea Reversar este Pago?')" class="btn btn-xs btn-danger">Reversar</a></td>
                             </tr>
 						@endforeach

@@ -52,11 +52,12 @@
 
 </head>
 <body>
-	<p style="text-align: right;"><h2>CENTRO MÈDICO</h2></p>
-	<p style="text-align: right;"><h2>MADRE TERESA</h2></p>
+
+    <img src="var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
 	<br>
 
-	<p style="margin-left: -20px;"><center><h2>SEDE:{{ Session::get('sedeName') }}</h2></center></p>
+
+	<p style="margin-left: 600px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
    @foreach($reciboprofesional2 as $recibo)
   <p style="margin-left: 15px; margin-top: 10px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
   <p style="margin-left: 15px;margin-top: 2px;"><strong>CONSULTORIO:</strong></p>
