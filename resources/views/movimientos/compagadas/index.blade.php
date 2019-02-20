@@ -76,6 +76,7 @@
 							<th>Recibo</th>
 							<th>Origen</th>
 							<th>Fecha Atenciòn</th>
+						    <th>Fecha de Pago</th>
 							<th>Total Pagado</th>
 							<th>Acciones</th>
 						</tr>
@@ -87,6 +88,7 @@
 								<td>{{$atec->recibo}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>{{$atec->fecha_pago_comision}}</td>
 								<td>{{$atec->totalrecibo}}</td>
                                 <td><a  href="{{asset('recibo_profesionales_ver')}}/{{$atec->recibo}}" class="btn btn-xs btn-primary">Ver</a>
                                 <a href="{{asset('/reversar')}}/{{$atec->recibo}}" onclick="return confirm('¿Desea Reversar este Pago?')" class="btn btn-xs btn-danger">Reversar</a></td>

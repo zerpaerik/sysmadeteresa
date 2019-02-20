@@ -426,6 +426,7 @@ class ComporPagarController extends Controller
           Atenciones::where('id', $id)
                   ->update([
                       'pagado_com' => 1,
+                      'fecha_pago_comision' => Carbon::today()->toDateString(),
                       'recibo' => 'REC'.date('Y').'-'.str_pad($last+1, 4, "0", STR_PAD_LEFT)
                   ]);
 				  
@@ -486,6 +487,7 @@ class ComporPagarController extends Controller
         Atenciones::where('id', $atencion)
                   ->update([
                       'pagado_com' => 1,
+                      'fecha_pago_comision' => Carbon::today()->toDateString(),
                       'recibo' => $recibo
                   ]);
       }
