@@ -53,8 +53,7 @@
 </head>
 <body>
 
-    <img src="var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
-	<br>
+		 <img src="var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
 
 
 	<p style="margin-left: 600px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
@@ -69,9 +68,9 @@
   <thead>
   <tr>
     <th style="width: 40%;" scope="col">PACIENTE</th>
-    <th scope="col">FECHA</th>
-    <th scope="col">DETALLE</th>
-    <th scope="col">MONTO</th>
+    <th style="width: 15%;" scope="col">FECHA</th>
+    <th  style="width: 35%;" scope="col">DETALLE</th>
+    <th style="width: 10%;" scope="col">MONTO</th>
   </tr>
  
   </thead>
