@@ -73,9 +73,9 @@
 			</div>	
 
 			<div class="row">
-				<strong>Monto a Pagar:</strong>{{$aten->monto}}
-				
+				<strong>Monto a Pagar:</strong>{{number_format($aten->monto, 2, ',', '.')}}
 			</div>
+
 
 
 			<div class="box-content no-padding">
