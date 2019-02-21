@@ -53,10 +53,10 @@
 </head>
 <body>
 
-		 <img src="var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
+		 <img src="\var\www\html\sysmadeteresa\public\img\logo.jpeg"  style="width: 20%;"/>
 
 
-	<p style="margin-left: 600px;margin-top: -20px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
+	<p style="margin-left: 550px;margin-top: -20px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
    @foreach($reciboprofesional2 as $recibo)
   <p style="margin-left: 15px; margin-top: -20px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
   <p style="margin-left: 15px;margin-top: -20px;"><strong>CONSULTORIO:</strong></p>
@@ -64,7 +64,7 @@
    @endforeach
 
 
-<table>
+<table style="margin-top: -30px;border: none;border-collapse:collapse;">
   <thead>
   <tr>
     <th style="width: 40%;" scope="col">PACIENTE</th>
@@ -76,16 +76,17 @@
   </thead>
   <tbody>
     @foreach($reciboprofesional as $recibo)
-    <tr><td>{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
-    <td>{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
+    <tr >
+    	<td style="padding: 0;">{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
+    <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
     @if($recibo->es_servicio == '1')
-    <td>{{$recibo->servicio}}</td>
+    <td style="padding: 0;">{{$recibo->servicio}}</td>
     @elseif($recibo->es_laboratorio == '1')
-    <td>{{$recibo->laboratorio}} </td>
+    <td style="padding: 0;">{{$recibo->laboratorio}} </td>
     @else
-    <td>{{$recibo->paquete}} </td>
+    <td style="padding: 0;">{{$recibo->paquete}} </td>
     @endif
-    <td>{{ $recibo->porcentaje}}</td></tr>
+    <td style="padding: 0;">{{ $recibo->porcentaje}}</td></tr>
   @endforeach
  </tbody>
 
