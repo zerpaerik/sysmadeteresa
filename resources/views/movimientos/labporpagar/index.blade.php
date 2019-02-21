@@ -57,7 +57,7 @@
 						<td>{{$d->costo}}</td>
 						<td>
 
-						<a  class="btn btn-success" href="pagar/{{$d->id}}">Editar</a>	
+						<a  class="btn btn-success" href="pagar/{{$d->id}}">Pagar</a>	
 						</td>
 
 				        @endforeach

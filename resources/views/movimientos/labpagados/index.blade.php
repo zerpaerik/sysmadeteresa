@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Laboratorios Pagadossss</span>
+					<span>Movimientos/Laboratorios Pagados</span>
 
 				</div>
 
@@ -72,6 +72,7 @@
 							<th>Fecha</th>
 							<th>Paciente</th>
 							<th>Registrado Por</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -82,8 +83,12 @@
 								<td>{{$atec->analisis}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->nombre}},{{$atec->apellido}}</td>
-							    <td>{{$atec->nombre}},{{$atec->apellido}}</td>
+								<td>{{$atec->nompac}},{{$atec->apepac}}</td>
+							   <td>{{$atec->nombre}},{{$atec->apellido}}</td>
+							   <td>
+							   	  <a href="labpagados-reversar-{{$atec->id}}" onclick="return confirm('¿Desea Reversar este registro?')" class="btn btn-danger">Reversar</a>
+							   	
+							   </td>
 
 							
 							</tr>

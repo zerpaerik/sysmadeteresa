@@ -268,6 +268,8 @@ Route::get('historialcobros-delete-{id}','HistorialCobrosController@delete');
 
 Route::get('labpagados', 'LaboratoriosPagadosController@index')->name('labpagados.index')->middleware('auth');
 
+Route::get('labpagados-reversar-{id}', 'LaboratoriosPagadosController@reversar');
+
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 Route::get('movimientos/atencion/particular','AtencionesController@particular');

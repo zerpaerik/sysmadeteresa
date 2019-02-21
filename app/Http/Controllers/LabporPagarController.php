@@ -9,6 +9,7 @@ use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Historiales;
+use App\Models\LaboratoriosPagados;
 use Auth;
 
 
@@ -51,7 +52,9 @@ class LabporPagarController extends Controller
         }   
     }
 
-	public function pagar($id, Request $request) {
+	
+
+  public function pagar($id, Request $request) {
 
        $searchAtencion = DB::table('atenciones as a')
         ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_laboratorio','a.monto','a.pagado_lab','a.porcentaje','a.abono')
@@ -61,16 +64,22 @@ class LabporPagarController extends Controller
          foreach ($searchAtencion as $atencion) {
                     $monto = $atencion->monto;
                     $id_laboratorio = $atencion->id_laboratorio;
+                    $paciente= $atencion->id_paciente;
                 }
 
         $searchAnalisis =  DB::table('analises as a')
-        ->select('a.id','a.costlab','a.name')
+        ->select('a.id','a.costlab','a.name','a.laboratorio')
         ->where('a.id','=', $id_laboratorio)
         ->get(); 
+
+
+            
+
 
         foreach ($searchAnalisis as $analisis) {
                     $costo = $analisis->costlab;
                     $name = $analisis->name;
+                    $laboratorio = $analisis->laboratorio;
                 } 
 
                 $pagarlab = Atenciones::findOrFail($id);
@@ -80,16 +89,23 @@ class LabporPagarController extends Controller
                 $debitos = new Debitos();
                 $debitos->origen = 'LAB POR PAGAR';
                 $debitos->monto= $costo;
-                $debitos->id_sede = $request->session()->get('sede');
                 $debitos->descripcion = $name;
+                $debitos->id_sede = $request->session()->get('sede');
                 $debitos->save();  
 
-                 $historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Lab por Pagar';
-		  $historial->detalle = $costo;
-          $historial->id_usuario = \Auth::user()->id;
-          $historial->save();				
+              
+
+
+                $pagados = new LaboratoriosPagados();
+                $pagados->laboratorio = $laboratorio;
+                $pagados->analisis = $id_laboratorio;
+                $pagados->monto= $costo;
+                $pagados->gasto= $debitos->id;
+                $pagados->atencion= $id;
+                $pagados->paciente= $paciente;
+                $pagados->usuario = \Auth::user()->id;
+                $pagados->sede = $request->session()->get('sede');
+                $pagados->save();                   
 
     return redirect()->route('labporpagar.index');
 

@@ -129,6 +129,9 @@
       <li>
         <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
       </li>
+       <li>
+        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
+      </li>
       <li>
         <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
       </li>
@@ -455,6 +458,9 @@
       <li>
         <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
       </li>
+       <li>
+        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
+      </li>
       <li>
         <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
       </li>
@@ -719,6 +725,9 @@
       </li>
       <li>
         <a href="{{route('labporpagar.index')}}"><i class="fa fa-dollar"></i> Laboratorios por Pagar</a>
+      </li>
+       <li>
+        <a href="{{route('labpagados.index')}}"><i class="fa fa-dollar"></i> Laboratorios Pagados</a>
       </li>
       <li>
         <a href="{{route('ingresos.index')}}"><i class="fa fa-money"></i> Otros Ingresos</a>
