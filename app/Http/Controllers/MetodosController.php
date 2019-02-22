@@ -60,6 +60,23 @@ class MetodosController extends Controller
 
     public function index1(Request $request){
 
+      if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2; 
+
+     $metodos = DB::table('metodos as a')
+            ->select('a.id','a.id_paciente','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+           ->join('users as c','c.id','a.id_usuario')
+           ->join('pacientes as b','b.id','a.id_paciente')
+           ->join('productos as d','d.id','a.id_producto')
+          ->where('a.sede','=',$request->session()->get('sede'))
+          ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+            ->orderBy('a.created_at','asc')
+            ->get(); 
+
+  } else {
+
 
 
         $metodos = DB::table('metodos as a')
@@ -71,6 +88,8 @@ class MetodosController extends Controller
            ->where('a.proximo','=',Carbon::today()->toDateString())
             ->orderBy('a.created_at','asc')
             ->get(); 
+
+            }
 
     
 

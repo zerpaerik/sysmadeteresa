@@ -434,6 +434,7 @@ Route::post('consulta/edit', 'Events\EventController@edit_consulta');
 Route::post('historial/create','HistorialController@create')->name('historials.create');
 Route::post('observacion/create','ConsultaController@create')->name('observacions.create');
 Route::post('observacion/edit','ConsultaController@edit')->name('observacions.edit');
+
 Route::get('proximacita', 'ConsultaController@index')->name('proximacita.index')->middleware('auth');
 Route::get('proximacita-search', 'ConsultaController@search')->name('proximacita.search')->middleware('auth');
 Route::get('historias', 'ConsultaController@indexh')->name('historias.index')->middleware('auth');
