@@ -97,7 +97,6 @@ class ComisionesPagadasController extends Controller
                                     ->whereNotIn('monto',[0,0.00])
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pagado_com','=', 1)
-                                    ->groupBy('recibo')
                                     ->select(DB::raw('COUNT(*) as total'))
                                     ->first();
         if ($sobres->total == 0) {
@@ -136,7 +135,6 @@ class ComisionesPagadasController extends Controller
                                     ->whereNotIn('monto',[0,0.00])
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pagado_com','=', 1)
-                                     ->groupBy('recibo')
                                     ->select(DB::raw('COUNT(*) as total'))
                                     ->first();
         if ($sobres->total == 0) {
@@ -179,7 +177,6 @@ class ComisionesPagadasController extends Controller
                                     ->whereNotIn('monto',[0,0.00])
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pagado_com','=', 1)
-                                     ->groupBy('recibo')
                                     ->select(DB::raw('COUNT(*) as total'))
                                     ->first();
 
@@ -189,6 +186,7 @@ class ComisionesPagadasController extends Controller
           $sobres=0;
         } 
 
+      
       
 
 
