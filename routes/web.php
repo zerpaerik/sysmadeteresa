@@ -225,6 +225,9 @@ Route::get('compagadas', 'ComisionesPagadasController@index')->name('compagadas.
 Route::get('compagadas-search', 'ComisionesPagadasController@search')->name('compagadas.search')->middleware('auth');
 Route::get('reversar/{id}', 'ComisionesPagadasController@reversar')->middleware('auth');
 
+Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
+
+
 Route::get('comollego', 'ComollegoController@index')->name('comollego.index')->middleware('auth');
 Route::get('comollego-search', 'ComollegoController@search')->name('comollego.search')->middleware('auth');
 

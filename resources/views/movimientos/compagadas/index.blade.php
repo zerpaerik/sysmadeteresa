@@ -63,6 +63,18 @@
 			     </div>
 			</div>	
 
+			<div class="row">
+
+				<form action="reporte/pagadas" method="get">
+
+					<input type="hidden" value="{{$f1}}" name="f1">
+				    <input type="hidden" value="{{$f2}}" name="f2">
+						
+				<button style="margin-left: 15px;" target="_blank" type="submit">Generar Reporte</button>
+			   </form>
+				
+			</div>
+
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
