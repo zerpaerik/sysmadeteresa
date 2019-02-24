@@ -40,6 +40,27 @@ class ComisionesPagadasController extends Controller
  ->orderby('a.id','desc')
  ->paginate(2000000);
 
+  $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                   ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                     ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+     $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                    ->groupBy('recibo')
+                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->first();
+        if ($sobres->total == 0) {
+        }
+
   }else if(! is_null($request->fecha)){
 
      $f1 = $request->fecha;
@@ -61,6 +82,27 @@ class ComisionesPagadasController extends Controller
  ->orderby('a.id','desc')
  ->paginate(2000000);
 
+   $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                   ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                     ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+     $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                    ->groupBy('recibo')
+                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->first();
+        if ($sobres->total == 0) {
+        }
+
   }else if(! is_null($request->origen)){
 
      $atenciones = DB::table('atenciones as a')
@@ -77,6 +119,28 @@ class ComisionesPagadasController extends Controller
  ->groupBy('a.recibo')
  ->orderby('a.id','desc')
  ->paginate(2000000);
+
+  $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                    ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+
+     $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                     ->groupBy('recibo')
+                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->first();
+        if ($sobres->total == 0) {
+        }
 
 
  }else{
@@ -96,10 +160,41 @@ class ComisionesPagadasController extends Controller
  ->orderby('a.id','desc')
  ->paginate(2000000);
 
+    $f1 =Carbon::today()->toDateString();
+    $f2 = Carbon::today()->toDateString();  
+
+     $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                    ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        } 
+
+
+     $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+                                    ->whereNotIn('monto',[0,0.00])
+                                     ->whereNotIn('origen_usuario',[99999999])
+                                     ->where('pagado_com','=', 1)
+                                     ->groupBy('recibo')
+                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->first();
+
+      
+
+        if ($sobres == NULL) {
+          $sobres=0;
+        } 
+
+      
+
 
  }
        
-        return view('movimientos.compagadas.index', ["atenciones" => $atenciones]);
+        return view('movimientos.compagadas.index', ["atenciones" => $atenciones,"f1" => $f1,"f2" => $f2,"aten" => $aten,"sobres" => $sobres]);
 	}
 
     

@@ -56,43 +56,51 @@
 		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
 
 
-	<p style="margin-left: 550px;margin-top: -150px;margin-bottom: 100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
+	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
    @foreach($reciboprofesional2 as $recibo)
-  <p style="margin-left: 400px; margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
-  <p style="margin-left: 180px;margin-top: -20px;"><strong>CONSULTORIO:</strong></p>
-  <p style="margin-left: 180px;margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
+  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
+  <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong></p>
+  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
    @endforeach
 
 
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
   <thead>
   <tr>
-    <th style="width: 40%;" scope="col">PACIENTE</th>
-    <th style="width: 15%;" scope="col">FECHA</th>
-    <th  style="width: 35%;" scope="col">DETALLE</th>
-    <th style="width: 10%;" scope="col">MONTO</th>
+    <th style="width:35%;" scope="col">PACIENTE</th>
+    <th style="width:15%;" scope="col">FECHA</th>
+    <th style="width:35%;text-overflow:ellipsis;" scope="col">DETALLE</th>
+    <th scope="col">MONTO</th>
+    <th scope="col">PORC</th>
+    <th scope="col">COMISION</th>
   </tr>
  
   </thead>
   <tbody>
     @foreach($reciboprofesional as $recibo)
     <tr >
-    	<td style="padding: 0;">{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
+    <td style="padding: 0;text-align: left;">{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
     <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
     @if($recibo->es_servicio == '1')
-    <td style="padding: 0;">{{$recibo->servicio}}</td>
+    <td style="padding: 0;text-align: left;">{{$recibo->servicio}}</td>
     @elseif($recibo->es_laboratorio == '1')
-    <td style="padding: 0;">{{$recibo->laboratorio}} </td>
+    <td style="padding: 0;text-align: left;">{{$recibo->laboratorio}} </td>
     @else
-    <td style="padding: 0;">{{$recibo->paquete}} </td>
+    <td style="padding: 0;text-align: left;">{{$recibo->paquete}} </td>
     @endif
-    <td style="padding: 0;">{{ $recibo->porcentaje}}</td></tr>
+    <td style="padding: 0;">{{ $recibo->monto}}</td>
+    <td style="padding: 0;">{{ $recibo->porc_pagar}}</td>
+    <td style="padding: 0;">{{ $recibo->porcentaje}}</td>
+</tr>
   @endforeach
  </tbody>
 
   @foreach($totalrecibo as $recibo)
- <p style="margin-left: 550px;"><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}</p>
+ <p style="margin-left: 570px;"><strong>TOTAL:</strong>{{ $recibo->totalrecibo}}</p>
   @endforeach
+
+  <p style="text-align: left"><strong>FECHA EMISIÒN:</strong>{{$hoy}}</p>
+
 
 
 

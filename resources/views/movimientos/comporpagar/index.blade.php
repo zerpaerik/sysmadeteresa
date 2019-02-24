@@ -46,6 +46,14 @@
 					{!! Form::close() !!}
 
 				</div>
+				<div class="col-md-2">
+				<strong>Monto a Pagar:</strong>{{number_format($aten->monto, 2, ',', '.')}}
+					
+				</div>
+				<div class="col-md-2">
+				<strong>Total Pendiente:</strong>{{$totalorigen->total}}
+					
+				</div>
 			</div>	
 
 			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index1']]) !!}
@@ -72,9 +80,7 @@
 				</div>
 			</div>	
 
-			<div class="row">
-				<strong>Monto a Pagar:</strong>{{number_format($aten->monto, 2, ',', '.')}}
-			</div>
+	
 
 
 
