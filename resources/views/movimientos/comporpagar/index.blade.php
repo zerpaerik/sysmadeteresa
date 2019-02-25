@@ -51,7 +51,7 @@
 					
 				</div>
 				<div class="col-md-2">
-				<strong>Total Prof. Pendiente:</strong>{{$totalorigen}}
+				<strong>Item por Pagar:</strong>{{$totalorigen}}
 				</div>
 			</div>	
 
