@@ -61,6 +61,7 @@ class ComporPagarController extends Controller
 
 
   $origen = DB::table('atenciones as a')
+   //->select(DB::raw('COUNT(*) as total'),'a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
    ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at')
    ->join('users as e','e.id','a.origen_usuario')
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -75,6 +76,8 @@ class ComporPagarController extends Controller
    ->groupBy('a.origen_usuario')
    ->get();
 
+ 
+  
     $totalorigen = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                                      ->where('id_sede','=', $request->session()->get('sede'))
@@ -84,8 +87,8 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('porcentaje',[0,0.00,99999])
                                      ->where('pendiente','=',0)
                                      ->where('pagado_com','=', NULL)
-                                    ->select(DB::raw('COUNT(*) as total'))
-                                    ->first();
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
 
 
      
