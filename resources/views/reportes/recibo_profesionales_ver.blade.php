@@ -45,7 +45,10 @@
 	tr td{
 		font-size: 14px;
 		padding: 8px 5px;
+	    text-overflow: ellipsis;
 	}
+
+	
 </style>
 <head>
 	<title>Recibo de Profesional</title>
@@ -82,11 +85,11 @@
     <td style="padding: 0;text-align: left;">{{ $recibo->nombres.' '.$recibo->apellidos}}</td>
     <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
     @if($recibo->es_servicio == '1')
-    <td style="padding: 0;text-align: left;">{{$recibo->servicio}}</td>
+    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$recibo->servicio}}</td>
     @elseif($recibo->es_laboratorio == '1')
-    <td style="padding: 0;text-align: left;">{{$recibo->laboratorio}} </td>
+    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$recibo->laboratorio}} </td>
     @else
-    <td style="padding: 0;text-align: left;">{{$recibo->paquete}} </td>
+    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$recibo->paquete}} </td>
     @endif
     <td style="padding: 0;">{{ $recibo->monto}}</td>
     <td style="padding: 0;">{{ $recibo->porc_pagar}}</td>

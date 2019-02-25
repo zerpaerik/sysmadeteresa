@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Movimientos/Comisiones Por Pagar Profesional</span>
+					<span>Movimientos/Comisiones Por Pagar Personal</span>
 
 				</div>
 
@@ -29,7 +29,7 @@
 				<div class="no-move"></div>
 				
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index2']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
@@ -55,7 +55,7 @@
 				</div>
 			</div>	
 
-			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index1']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['comporpagar.index3']]) !!}
 
 			<div class="row">
 				<div class="col-md-4">

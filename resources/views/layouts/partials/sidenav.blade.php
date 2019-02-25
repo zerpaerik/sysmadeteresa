@@ -142,14 +142,46 @@
       <li>
         <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
       </li>
+
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Comisiones por Pagar</span>
+    </a>
+    <ul class="dropdown-menu">
+      
       <li>
-        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
+        <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Prof.</a>
+      </li>
+      <li>
+        <a href="{{route('comporpagar.index2')}}"><i class="fa fa-list-alt"></i> Comis. Pers.</a>
       </li>
       <li>
         <a href="{{route('comporpagartec.index')}}"><i class="fa fa-list-alt"></i> Comis. Tecnólogos</a>
       </li>
+     
+    </ul>
+  </li>
+
+   <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Comisiones Pagadas</span>
+    </a>
+    <ul class="dropdown-menu">
+      
       <li>
-        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pagadas</a>
+        <a href="{{route('compagadas.index')}}"><i class="fa fa-list-alt"></i> Comisiones Pers.</a>
+      </li>
+
+       <li>
+        <a href="{{route('compagadas.index1')}}"><i class="fa fa-list-alt"></i> Comisiones Prof.</a>
+      </li>
+      <li>
+        <a href="{{route('compagadas.index2')}}"><i class="fa fa-list-alt"></i> Comisiones Tecn.</a>
       </li>
 
     </ul>
@@ -467,6 +499,18 @@
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
+     
+
+    </ul>
+  </li>
+
+ <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Comisiones</span>
+    </a>
+    <ul class="dropdown-menu">
+      
       <li>
         <a href="{{route('comporpagar.index')}}"><i class="fa fa-list-alt"></i> Comis. Pers y Prof.</a>
       </li>
