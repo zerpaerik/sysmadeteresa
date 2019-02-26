@@ -348,6 +348,7 @@ class ReportesController extends Controller
        // ->orderby('a.id','desc')
         ->get();
 
+
         if($reciboprofesional){
             return $reciboprofesional;
          }else{
