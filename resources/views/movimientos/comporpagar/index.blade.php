@@ -51,7 +51,7 @@
 					
 				</div>
 				<div class="col-md-2">
-				<strong>Item por Pagar:</strong>{{$totalorigen}}
+				<strong>Item por Pagar:</strong>{{$totalorigen->total}}
 				</div>
 			</div>	
 
