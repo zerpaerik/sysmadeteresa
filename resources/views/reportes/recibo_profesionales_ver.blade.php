@@ -45,7 +45,6 @@
 	tr td{
 		font-size: 14px;
 		padding: 8px 5px;
-	    text-overflow: ellipsis;
 	}
 
 	
@@ -96,14 +95,14 @@
     <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
     @if($recibo->es_servicio == '1')
     <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{substr($recibo->servicio,0,18)}}</td>
-    @elseif($recibo->es_laboratorio == '1')
+    @elseif($recibo->es_laboratorio == '1')s
     <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{substr($recibo->laboratorio,0,18)}} </td>
     @else
     <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{substr($recibo->paquete,0,18)}} </td>
     @endif
-    <td style="padding: 0;">{{ $recibo->monto}}</td>
-    <td style="padding: 0;">{{ $recibo->porc_pagar}}</td>
-    <td style="padding: 0;">{{ $recibo->porcentaje}}</td></tr>
+    <td style="padding: 0;">{{$recibo->monto}}</td>
+    <td style="padding: 0;">{{$recibo->porc_pagar}}</td>
+    <td style="padding: 0;">{{$recibo->porcentaje}}</td></tr>
 
   @endforeach
  </tbody>
