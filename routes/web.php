@@ -215,6 +215,7 @@ Route::post('pagarmultiple', 'ComporPagarController@pagarmultiple');
 Route::get('pagarcom/{id}', 'ComporPagarController@pagarcom')->middleware('auth');
 
 Route::get('comporpagartec', 'ComisionesPorPagarTecController@index')->name('comporpagartec.index')->middleware('auth');
+Route::get('comporpagartec1', 'ComisionesPorPagarTecController@index1')->name('comporpagartec.index1')->middleware('auth');
 Route::get('comporpagartec-search', 'ComisionesPorPagarTecController@search')->name('comporpagartec.search')->middleware('auth');
 Route::get('comporpagartec-create', 'ComisionesPorPagarTecController@createView')->name('comporpagartec.create')->middleware('auth');
 Route::post('comporpagartec/create', 'ComisionesPorPagarTecController@create')->middleware('auth');

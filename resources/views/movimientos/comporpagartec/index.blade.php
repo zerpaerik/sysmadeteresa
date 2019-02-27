@@ -33,31 +33,55 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha'))
-					<p class="help-block">
-						{{ $errors->first('fecha') }}
-					</p>
-					@endif
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
-					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha2'))
-					<p class="help-block">
-						{{ $errors->first('fecha2') }}
-					</p>
-					@endif
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				<div class="col-md-2">
+				<strong>Monto a Pagar:</strong>{{number_format($aten->monto, 2, ',', '.')}}
+					
+				</div>
+				<div class="col-md-2">
+				<strong>Item por Pagar:</strong>{{$totalorigen->total}}
+				</div>
+			</div>	
+
+			{!! Form::open(['method' => 'get', 'route' => ['comporpagartec.index1']]) !!}
+
+			<div class="row">
+				<div class="col-md-4">
+						<select id="el2" name="origen">
+							<option>Seleccione un Origen</option>
+							@foreach($origen as $user)
+								    <option value="{{$user->origen_usuario}}">{{$user->lastname}},{{$user->name}}</option>
+							@endforeach
+						</select>
+
+					<input type="hidden" value="{{$f1}}" name="f1">
+				    <input type="hidden" value="{{$f2}}" name="f2">
+
+				</div>
+				
+				
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
 					{!! Form::close() !!}
 
 				</div>
 			</div>	
+
+	
+
+
 
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
@@ -91,9 +115,9 @@
 								@else
 								<td>{{$atec->paquete}}</td>
 								@endif
-								<td>{{$atec->monto}}</td>
+								<td>{{number_format($atec->monto, 2, ',', '.')}}</td>
 								<td>{{$atec->porc_pagar}}</td>
-								<td>{{$atec->porcentaje}}</td>
+								<td>{{number_format($atec->porcentaje, 2, ',', '.')}}</td>
 								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
@@ -103,20 +127,15 @@
 						<tr>
 							<th>Marcar</th>
 							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Porcentaje</th>
-							<th>Monto a Pagar</th>
-							<th>Fecha Atenciòn</th>
-							<th>Acciones</th>
 						</tr>
 						    <th>
 								{{ csrf_field() }}
-								<button style="margin-left: -5px;" type="submit" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
+								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
 							</th>
+
 					</tfoot>
+											</form>
+
 				</table>
 			</div>
 		</div>
@@ -127,31 +146,47 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-
-
-
-
+@section('scripts')
 <script type="text/javascript">
-// Run Datables plugin and create 3 variants of settings
-function AllTables(){
-	TestTable1();
-	TestTable2();
-	TestTable3();
-	LoadSelect2Script(MakeSelect2);
-}
-function MakeSelect2(){
-	$('select').select2();
-	$('.dataTables_filter').each(function(){
-		$(this).find('label input[type=text]').attr('placeholder', 'Search');
-	});
-}
+// Run Select2 on element
 $(document).ready(function() {
-	// Load Datatables and run plugin on tables 
-	LoadDataTablesScripts(AllTables);
-	// Add Drag-n-Drop feature
-	WinMove();
+      LoadTimePickerScript(DemoTimePicker);
+      LoadSelect2Script(function (){
+            $("#el2").select2();
+            $("#el1").select2();
+            $("#el3").select2({disabled : true});
+      });
+      WinMove();
 });
+
+$('#input_date').on('change', getAva);
+$('#el1').on('change', getAva);
+
+function getAva (){
+            var d = $('#input_date').val();
+            var e = $("#el1").val();
+            if(!d) return;
+            $.ajax({
+      url: "available-time/"+e+"/"+d,
+      headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+      type: "get",
+      success: function(res){
+            $('#el3').find('option').remove().end();
+            for(var i = 0; i < res.length; i++){
+                              var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
+                              $('#el3').append(newOption).trigger('change');
+            }
+      }
+    });     
+}
+
+function DemoTimePicker(){
+      $('#input_date').datepicker({
+      setDate: new Date(),
+      minDate: 0});
+}
 </script>
+@endsection
 @endsection
