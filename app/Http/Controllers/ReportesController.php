@@ -337,7 +337,7 @@ class ReportesController extends Controller
     public function verReciboProfesional($id){
        
          $reciboprofesional = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.porc_pagar','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+        ->select('a.id','a.id_paciente','a.origen','a.created_at','a.origen_usuario','a.porc_pagar','a.origen','a.porcentaje','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','d.name as laboratorio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -360,7 +360,28 @@ class ReportesController extends Controller
      public function verReciboProfesional2($id){
        
          $reciboprofesional2 = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','e.dni','p.centro','c.name as centroprof')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('profesionales as p','p.apellidos','e.lastname')
+        ->join('centros as c','c.id','p.centro')
+        ->where('a.pagado_com','=', 1)
+        ->where('a.recibo','=', $id)
+        ->groupBy('a.recibo')
+        ->get();
+
+        if($reciboprofesional2){
+            return $reciboprofesional2;
+         }else{
+            return false;
+         }  
+
+     }
+
+      public function verReciboProfesional3($id){
+       
+         $reciboprofesional2 = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','e.name','e.lastname','e.dni')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as e','e.id','a.origen_usuario')
         ->where('a.pagado_com','=', 1)
@@ -375,6 +396,9 @@ class ReportesController extends Controller
          }  
 
      }
+
+    
+
 
      public function verTotalRecibo($id){
 
@@ -397,6 +421,7 @@ class ReportesController extends Controller
     
        $reciboprofesional = ReportesController::verReciboProfesional($id);
        $reciboprofesional2 = ReportesController::verReciboProfesional2($id);
+    $reciboprofesional3 = ReportesController::verReciboProfesional3($id);
        $totalrecibo = ReportesController::verTotalRecibo($id);
 
        $hoy= Carbon::today()->toDateString();
@@ -404,7 +429,7 @@ class ReportesController extends Controller
 
 
       
-       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
+       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2)->with('reciboprofesional3', $reciboprofesional3)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_profesionales_ver');
