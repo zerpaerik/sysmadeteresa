@@ -1093,10 +1093,14 @@
     <span class="hidden-xs">Archivos</span>
   </a>
   <ul class="dropdown-menu">
-   
+     <li>
+      <a href="{{route('centros.index')}}"><i class="fa fa-hospital-o"></i> Centros Medicos</a>
+    </li>
     <li>
       <a href="{{route('profesionales.index')}}"><i class="fa fa-plus-square"></i> Prof. de apoyo</a>
     </li>
+
+   
     
   </ul>
 </li>
