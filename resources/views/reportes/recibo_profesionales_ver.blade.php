@@ -80,14 +80,14 @@
 
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
   <thead>
-  <tr>
-    <th style="width:35%;" scope="col">PACIENTE</th>
+  
+    <tr><th style="width:35%;" scope="col">PACIENTE</th>
     <th style="width:15%;" scope="col">FECHA</th>
     <th style="width:35%;text-overflow:ellipsis;" scope="col">DETALLE</th>
     <th scope="col">MONTO</th>
     <th scope="col">PORC</th>
-    <th scope="col">COMISION</th>
-  </tr>
+    <th scope="col">COMISION</th></tr>
+  
  
   </thead>
   <tbody>
