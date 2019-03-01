@@ -57,25 +57,24 @@
 
 		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
 
-    @foreach($reciboprofesional as $recibo)
 
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
-	@if($recibo->origen == 1)
+ @if($reciboe->origen ==1)
    @foreach($reciboprofesional3 as $recibo3)
   <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo3->name.' '.$recibo3->lastname}}</p>
   <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>MADRE TERESA</p>
   <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo3->recibo}}</p>
    @endforeach
+
    @else
+
     @foreach($reciboprofesional2 as $recibo2)
   <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo2->name.' '.$recibo2->lastname}}</p>
   <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>{{ $recibo2->centroprof}}</p>
   <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo2->recibo}}</p>
    @endforeach
    @endif
-
-  @endforeach
 
 
 

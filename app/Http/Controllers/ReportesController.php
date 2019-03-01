@@ -418,7 +418,7 @@ class ReportesController extends Controller
       public function recibo_profesionales_ver($id) 
     {
 
-    
+       $reciboe = ReportesController::verReciboProfesional($id)->first();
        $reciboprofesional = ReportesController::verReciboProfesional($id);
        $reciboprofesional2 = ReportesController::verReciboProfesional2($id);
     $reciboprofesional3 = ReportesController::verReciboProfesional3($id);
@@ -429,7 +429,7 @@ class ReportesController extends Controller
 
 
       
-       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboprofesional2', $reciboprofesional2)->with('reciboprofesional3', $reciboprofesional3)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
+       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboe', $reciboe)->with('reciboprofesional2', $reciboprofesional2)->with('reciboprofesional3', $reciboprofesional3)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_profesionales_ver');
