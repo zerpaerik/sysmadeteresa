@@ -627,12 +627,8 @@ if ($sobres == NULL) {
 
      $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))])
-                                    ->whereNotIn('monto',[0,0.00])
-                                     ->whereNotIn('origen_usuario',[99999999])
-                                     ->where('pagado_com','=', 1)
                                      ->where('origen','=',1)
-                                    ->groupBy('recibo')
-                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                                     ->first();
         if ($sobres->total == 0) {
         }
@@ -676,12 +672,10 @@ if ($sobres == NULL) {
 
      $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))])
-                                    ->whereNotIn('monto',[0,0.00])
-                                     ->whereNotIn('origen_usuario',[99999999])
-                                     ->where('pagado_com','=', 1)
+                                   
                                      ->where('origen','=',2)
-                                    ->groupBy('recibo')
-                                    ->select(DB::raw('COUNT(*) as total'))
+                                
+                                    ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                                     ->first();
         if ($sobres->total == 0) {
         }
@@ -725,12 +719,8 @@ if ($sobres == NULL) {
 
      $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))])
-                                    ->whereNotIn('monto',[0,0.00])
-                                     ->whereNotIn('origen_usuario',[99999999])
-                                     ->where('pagado_com','=', 1)
                                       ->where('pago_com_tec','=',0)
-                                    ->groupBy('recibo')
-                                    ->select(DB::raw('COUNT(*) as total'))
+                                    ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                                     ->first();
        if ($sobres == NULL) {
           $sobres=0;
