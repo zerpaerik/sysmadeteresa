@@ -195,6 +195,7 @@ class PrenatalController extends Controller
 
     	$talla= $request->talla_pregestacional * $request->talla_pregestacional;
 
+
           
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
@@ -274,8 +275,6 @@ class PrenatalController extends Controller
 
 
 
-
-
     	Control::create([
     		"id_paciente" => $request->paciente,
 			"id_ficha_prenatal" => $request->id_ficha_prenatal,
@@ -303,7 +302,8 @@ class PrenatalController extends Controller
 			"vih" => $request->vih,
 			"vihd" => $request->vihd,
 			"hemo" => $request->hemo,
-			"hemod" => $request->hemod
+			"hemod" => $request->hemod,
+			"observacion" => $request->observacion
 
     	]);
 

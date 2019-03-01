@@ -498,7 +498,16 @@
 
             </div>
 
+
+             
+
         </div>
+
+        <label class="col-sm-1 control-label">Observaciòn</label>
+            <div class="col-sm-3">
+
+                {{$c->observacion}}
+            </div> 
 
 
    @endforeach

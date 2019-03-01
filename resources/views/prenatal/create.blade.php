@@ -666,6 +666,12 @@
   @endforeach
   </tr>
 
+   <th style="background: #81BEF7;border: 1px solid black;">Observaciòn</th>
+ @foreach($control as $c)
+    <td style="border: 1px solid black;">{{$c->observacion}}</td>
+  @endforeach
+  </tr>
+
 
 
 
@@ -828,6 +834,12 @@
             <div class="col-sm-3">
              	<input type="text" name="hemo" style="line-height: 20px">gr/dl	
 				<input type="date" name="hemod" style="line-height: 20px">	
+
+            </div>
+
+            <label class="col-sm-1 control-label">Observaciòn</label>
+            <div class="col-sm-3">
+             	<input type="text" class="form-control" name="observacion" placeholder="Observacion" data-toggle="tooltip" data-placement="bottom" title="Observacion">
 
             </div>
 
