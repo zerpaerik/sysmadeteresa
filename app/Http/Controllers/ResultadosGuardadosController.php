@@ -68,7 +68,7 @@ class ResultadosGuardadosController extends Controller
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('a.resultado','=', 1)
         ->orderby('a.id','desc')
-        ->paginate(20);
+        ->get();
 
     return $resultadosguardados;
   }
@@ -167,7 +167,7 @@ class ResultadosGuardadosController extends Controller
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('a.resultado','=', 1)
         ->orderby('a.id','desc')
-        ->paginate(20);
+        ->get();
 
     return $resultadosguardados;
   }
