@@ -184,23 +184,9 @@
 
             <div class="col-md-3">
             <label for="">Conclusiòn</label>
-           @if($data->imc < 16)
-           Infrapeso: Delgadez Severa
-           @elseif($data->imc >= 16 && $data->imc < 17)
-           Infrapeso: Delgadez Moderada
-           @elseif($data->imc >= 17 && $data->imc <= 18.49)
-           Infrapeso: Delgadez Aceptable
-           @elseif($data->imc >= 18.50 && $data->imc <= 24.99)
-           Peso Normal
-           @elseif($data->imc >= 25 && $data->imc <= 29.99)
-           Sobrepeso
-           @elseif($data->imc >= 30 && $data->imc <= 34.99)
-           Obeso:Tipo I
-           @elseif($data->imc >= 35 && $data->imc <= 40)
-           Obeso:Tipo II
-           @else
-           Obeso:Tipo II
-           @endif
+         
+
+                            {{$data->conclusion}}
 
             </div>
 
@@ -413,7 +399,7 @@
             </div>
 
 
-             <label class="col-sm-1 control-label">Sulfato.</label>
+             <label class="col-sm-1 control-label">Vitaminas.</label>
             <div class="col-sm-3">
               {{$c->sulfato}}
             </div>
@@ -498,16 +484,7 @@
 
             </div>
 
-
-             
-
         </div>
-
-        <label class="col-sm-1 control-label">Observaciòn</label>
-            <div class="col-sm-3">
-
-                {{$c->observacion}}
-            </div> 
 
 
    @endforeach

@@ -163,10 +163,9 @@ Route::get('metodos-delete-{id}','MetodosController@delete');
 Route::get('metodos-llamar-{id}','MetodosController@llamar');
 Route::get('metodos-ticket-ver-{id}','MetodosController@ticket_ver');
 
-
 /**
- * Atenciones
- */
+ **   Atenciones
+ **/
 Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')->middleware('auth');
 Route::get('atenciones-search', 'AtencionesController@search')->name('atenciones.search')->middleware('auth');
 Route::get('atenciones-create', 'AtencionesController@createView')->name('atenciones.create')->middleware('auth');

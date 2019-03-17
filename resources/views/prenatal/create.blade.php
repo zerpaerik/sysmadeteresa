@@ -18,7 +18,7 @@
 
 		     <p class="col-sm-2"><strong>Partos:</strong> {{ $prenatal->parto }}</p>
 		    <p class="col-sm-2"><strong>0 ó +3:</strong> {{ $prenatal->num }}</p>
-		    <p class="col-sm-2"><strong>>2500gr:</strong> {{ $prenatal->gr }}</p>
+		    <p class="col-sm-2"><strong>250gr:</strong> {{ $prenatal->gr }}</p>
 		    <p class="col-sm-2"><strong>Gemelar:</strong> {{ $prenatal->gemelar }}</p>
 		    <p class="col-sm-2"><strong>37 Sem.:</strong> {{ $prenatal->m37m }}</p>
 		    <br>
@@ -73,24 +73,7 @@
 
     	</div>
     	<div class="col-md-3">
-    		   <strong>Conclusiòn:</strong>
-    		   @if($prenatal->imc < 16)
-    		   Infrapeso: Delgadez Severa
-    		   @elseif($prenatal->imc >= 16 && $prenatal->imc < 17)
-    		   Infrapeso: Delgadez Moderada
-    		   @elseif($prenatal->imc >= 17 && $prenatal->imc <= 18.49)
-    		   Infrapeso: Delgadez Aceptable
-    		   @elseif($prenatal->imc >= 18.50 && $prenatal->imc <= 24.99)
-    		   Peso Normal
-    		   @elseif($prenatal->imc >= 25 && $prenatal->imc <= 29.99)
-    		   Sobrepeso
-    		   @elseif($prenatal->imc >= 30 && $prenatal->imc <= 34.99)
-    		   Obeso:Tipo I
-    		   @elseif($prenatal->imc >= 35 && $prenatal->imc <= 40)
-    		   Obeso:Tipo II
-    		   @else
-    		   Obeso:Tipo II
-    		   @endif
+    		   <strong>Conclusiòn:</strong>{{ $prenatal->conclusion }}
     	</div>
 
     	<div class="col-md-3">
@@ -144,14 +127,11 @@
 	<div class="col-md-2">
 
 		<strong>Orina</strong>: {{ $prenatal->orina }}
-	    <strong>Fecha</strong>: {{ $prenatal->orinad }}
 		
 	</div>
 
 		<div class="col-md-2">
 					<strong>Urea</strong>: {{ $prenatal->urea }}
-						    <strong>Fecha</strong>: {{ $prenatal->uread }}
-
 
 		
 	</div>
@@ -159,7 +139,6 @@
 		<div class="col-md-2">
 
 					<strong>Creatinina</strong>: {{ $prenatal->creatinina }}
-											    <strong>Fecha</strong>: {{ $prenatal->creatininad }}
 
 		
 	</div>
@@ -167,7 +146,6 @@
 		<div class="col-md-2">
 
 					<strong>BK</strong>: {{ $prenatal->bic }}
-					<strong>Fecha</strong>: {{ $prenatal->bicd }}
 
 		
 	</div>
@@ -175,7 +153,6 @@
 		<div class="col-md-2">
 
 					<strong>Torch</strong>: {{ $prenatal->torch }}
-										<strong>Fecha</strong>: {{ $prenatal->torchd }}
 
 		
 	</div>
@@ -246,7 +223,7 @@
 							<input type="text" class="form-control" name="num" placeholder="" data-toggle="tooltip" data-placement="bottom" title="">
 						</div>
 
-						<label class="col-sm-1 control-label">2500gr</label>
+						<label class="col-sm-1 control-label">250gr</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="gr" placeholder="250gr" data-toggle="tooltip" data-placement="bottom" title="250gr">
 						</div>
@@ -268,13 +245,11 @@
 
 
 						   <h3>II. Antecedentes Familiares</h3>
-					  
+					    <p>
 							
                          <div class="col-sm-12">
-
-			         <select id="el4" name="af[]" multiple="true">
-
-                          <option value="Ninguno">Ninguno</option>
+							<select id="el5" multiple="true" name="af[]" style="width: 350px;">
+							<option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
 							<option value="Epilepsia">Epilepsia</option>
@@ -284,24 +259,21 @@
 							<option value="Neoplasia">Neoplasia</option>
 							<option value="TBC Pulmonar">TBC Pulmonar</option>
 							<option value="Otro">Otro</option>
-                      </select>
-                    </div>
-               </div>
+						    </select>
+						</div>
+						</p>
 
-               
-					
+						          </div>
 
-							<div class="col-md-6">
+										<div class="col-md-6">
 
 
-						   <h3>II. Antecedentes Personales</h3>
-					  
+						   <h3>III. Antecedentes Personales</h3>
+					    <p>
 							
                          <div class="col-sm-12">
-
-			         <select id="el5" name="ap[]" multiple="true">
-
-                          <option value="Ninguno">Ninguno</option>
+							<select id="el6" multiple="true" name="ap[]" style="width: 350px;">
+							<option value="Ninguno">Ninguno</option>
 							<option value="Alergias">Alergias</option>
 							<option value="Anomalias Congenitas">Anomalias Congenitas</option>
 							<option value="Epilepsia">Epilepsia</option>
@@ -311,14 +283,14 @@
 							<option value="Neoplasia">Neoplasia</option>
 							<option value="TBC Pulmonar">TBC Pulmonar</option>
 							<option value="Otro">Otro</option>
-                      </select>
-                    </div>
-               </div>
+						    </select>
+						</div>
+						</p>
 
-           </div>
-                     
+						          </div>
 
-                 
+
+          </div>
 
           <br>
 
@@ -447,7 +419,6 @@
 					      <div class="col-md-2">
                         <label for="">Eco: EG</label>
 						<input type="date" name="eco_eg" style="line-height: 20px">	
-						<input type="text" name="eco_eg_input" placeholder="ECO EG">
 					     </div>
 
 
@@ -558,6 +529,7 @@
 	<table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
 
 		<tr>
+			<div>
 
     <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES de {{$paciente->nombres}} {{$paciente->apellidos}}</th>
 
@@ -666,12 +638,88 @@
   @endforeach
   </tr>
 
-   <th style="background: #81BEF7;border: 1px solid black;">Observaciòn</th>
  @foreach($control as $c)
-    <td style="border: 1px solid black;">{{$c->observacion}}</td>
-  @endforeach
-  </tr>
+<div class="col-sm-12">
+   <h2>Fecha de Control: {{$c->created_at}}</h2>
+      
 
+
+
+		    </div>
+          <div class="row">
+			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
+			<div class="col-sm-2"><strong>Piel/Mucosas:</strong>	
+{{$c->piel}}			</div>
+			<div class="col-sm-2"><strong>Mamas:</strong>	
+{{$c->mamas}}			</div>
+			<div class="col-sm-2"><strong>Abdomen:</strong>	
+{{$c->abdomen}}			</div>
+			<div class="col-sm-2"><strong>Gen.Ext:</strong>		
+{{$c->genext}}			</div>
+			<div class="col-sm-2"><strong>Gen.Int:</strong>		
+{{$c->genint}}			</div>
+			<div class="col-sm-2"><strong>MiembrosInf.:</strong>		
+{{$c->miembros}}			</div>
+
+
+		    </div>
+
+		    <div class="row">
+		    	<div class="col-sm-6"><strong>Diag.Presuntivo:</strong>	
+{{$c->pres}}			    </div>
+
+			    <div class="col-sm-6"><strong>Exa.Auxiliares:</strong>		
+{{$c->exa}}			</div>
+		    </div>
+
+		    <div class="row">
+
+			<div class="col-sm-6"><strong>Diag.Definito:</strong>		
+{{$c->def}}			</div>
+
+			<div class="col-sm-6"><strong>PlanTratamiento:</strong>		
+{{$c->def}}			</div>
+
+			</div>
+			  <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Serologia</label>
+            <div class="col-sm-2">
+            <strong>Resultado:</strong>:{{$c->sero}}
+             <strong>Fecha:</strong>:{{$c->serod}}
+
+
+            </div>
+
+
+             <label class="col-sm-1 control-label">Glucosa</label>
+            <div class="col-sm-2">
+                 <strong>Resultado:</strong>:{{$c->glu}}
+             <strong>Fecha:</strong>:{{$c->glud}}
+
+            </div>
+
+             <label class="col-sm-1 control-label">VIH</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->vih}}
+             <strong>Fecha:</strong>:{{$c->vihd}}
+
+            </div>
+
+            <label class="col-sm-1 control-label">Hemoglobina</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->hemo}}
+             <strong>Fecha:</strong>:{{$c->hemod}}
+
+            </div>
+
+        </div>
+
+		    	
+</div>
+  @endforeach
 
 
 
@@ -786,6 +834,16 @@
             </div>
 
 
+             <label class="col-sm-1 control-label">Visita.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
+            </div>
+
+             <label class="col-sm-1 control-label">Establ.</label>
+            <div class="col-sm-3">
+              <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
+            </div>
+
         </div>
 
 
@@ -837,14 +895,52 @@
 
             </div>
 
-            <label class="col-sm-1 control-label">Observaciòn</label>
-            <div class="col-sm-3">
-             	<input type="text" class="form-control" name="observacion" placeholder="Observacion" data-toggle="tooltip" data-placement="bottom" title="Observacion">
-
-            </div>
-
 
           </div>
+     
+          <div class="row">
+			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
+			<div class="col-sm-2">Piel/Mucosas	
+				<input class="form-control" type="text" name="piel">
+			</div>
+			<div class="col-sm-2">Mamas	
+				<input class="form-control" type="text" name="mamas">
+			</div>
+			<div class="col-sm-2">Abdomen	
+				<input class="form-control" type="text" name="abdomen">
+			</div>
+			<div class="col-sm-2">Genitales Externos	
+				<input class="form-control" type="text" name="genext">
+			</div>
+			<div class="col-sm-2">Genitales Internos	
+				<input class="form-control" type="text" name="genint">
+			</div>
+			<div class="col-sm-2">Miembros Inferiores	
+				<input class="form-control" type="text" name="miembros">
+			</div>
+
+
+		    </div>
+
+		    <div class="row">
+		    	<div class="col-sm-3">Diag.Pres	
+				<input class="form-control" type="text" name="pres">
+			    </div>
+
+			    <div class="col-sm-3">Exa.Auxiliares	
+				<input class="form-control" type="text" name="exa">
+			</div>
+
+			<div class="col-sm-3">Diag.Def	
+				<input class="form-control" type="text" name="def">
+			</div>
+
+			<div class="col-sm-3">PlanTratamiento	
+				<input class="form-control" type="text" name="tra">
+			</div>
+
+		    	
+		    </div>
 
         </div>
 
@@ -873,10 +969,7 @@
 
 
 
-
 <script type="text/javascript">
-
- 
 
 // Run Select2 on element
 function Select2Test(){
@@ -884,25 +977,9 @@ function Select2Test(){
 	$("#el1").select2();
 	$("#el3").select2();
   $("#el5").select2();
-  $("#el4").select2();
-  $("#el6").select2();
+    $("#el6").select2();
   $("#el7").select2();
-  $("#el8").select2();
-  $("#el9").select2();
-  $("#el10").select2();
-  $("#el11").select2();
-  $("#el12").select2();
-    $("#el13").select2();
-  $("#el14").select2();
-    $("#el15").select2();
-
-  $("#el16").select2();
-
-  $("#el17").select2();
-
-
-
-
+  $("#el4").select2();
 }
 $(document).ready(function() {
 	// Load script of Select2 and run this
@@ -924,6 +1001,15 @@ function DemoTimePicker(){
 		stepMinute: 10
 	});
 }
+
+</script>
+<script type="text/javascript">
+
+$('#my-select').multiSelect()
+$('#my-select2').multiSelect()
+
+
+
 </script>
 
 

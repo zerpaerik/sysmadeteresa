@@ -193,9 +193,6 @@ class PrenatalController extends Controller
     public function create(Request $request)
     {
 
-    	$talla= $request->talla_pregestacional * $request->talla_pregestacional;
-
-
           
     		Prenatal::create([
 		    	'paciente' =>$request->paciente,
@@ -226,7 +223,7 @@ class PrenatalController extends Controller
 				'sangrerh' =>$request->sangrerh,
 				'ultima_menstruacion' =>$request->ultima_menstruacion,
 				'parto_probable' =>$request->parto_probable,
-				'eco_eg' =>$request->eco_eg.'-'.$request->eco_eg_input,
+				'eco_eg' =>$request->eco_eg,
 				'orina' =>$request->orina,
 				'orinad' =>$request->orinad,
 				'urea' =>$request->urea,
@@ -237,7 +234,8 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => $request->peso_pregestacional / $talla
+				'imc' => $request->peso_pregestacional / $request->talla_pregestacional * $request->talla_pregestacional
+
 
 				
 			]);
@@ -275,6 +273,8 @@ class PrenatalController extends Controller
 
 
 
+
+
     	Control::create([
     		"id_paciente" => $request->paciente,
 			"id_ficha_prenatal" => $request->id_ficha_prenatal,
@@ -303,7 +303,22 @@ class PrenatalController extends Controller
 			"vihd" => $request->vihd,
 			"hemo" => $request->hemo,
 			"hemod" => $request->hemod,
-			"observacion" => $request->observacion
+			//"fc" => $request->fc,
+			"fr" => $request->fr,
+			"pri" => $request->pri,
+			"peso" => $request->peso,
+			"talla" => $request->talla,
+			"pp" => $request->pp,
+			"piel" => $request->piel,
+			"mamas" => $request->mamas,
+			"abdomen" => $request->abdomen,
+			"genext" => $request->genext,
+			"genint" => $request->genint,
+			"miembros" => $request->miembros,
+			"pres" => $request->pres,
+			"exa" => $request->exa,
+			"def" => $request->def,
+			"tra" => $request->tra,
 
     	]);
 
@@ -316,42 +331,4 @@ class PrenatalController extends Controller
 		return back();
 
     }
-
-     public function deletebase($id)
-  {
-  
-
-
-    $prenatal = Prenatal::where('paciente','=',$id)->delete();
-
-    $control = Control::where('id_paciente','=',$id)->delete();
-
-    return back();
-  }
-
-
- public function imprimir($id)
-    {
-
-    	$control = Control::where('id_paciente',$id)->get();
-    	$paciente = Paciente::where('id',$id)->get();
-    	$prenatal = Prenatal::where('paciente',$id)->get();
-    	$view = \View::make('prenatal.reporte')->with('controles', $control)->with('pacientes', $paciente)->with('prenatal', $prenatal);
-        $pdf = \App::make('dompdf.wrapper');
-     //   $pdf->setPaper(array(0,0,867.00,343.80));
-       // $pdf->setPaper('A4', 'landscape');
-        $pdf->loadHTML($view);
-        return $pdf->stream('historias_prenatal_ver');
-    }
-
-
-
-
-
-
-
-
-
-
-
 }

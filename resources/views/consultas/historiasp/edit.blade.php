@@ -92,6 +92,16 @@
 				<input class="form-control" type="date" name="fur" value="{{$historias->fur}}">
 			</div>
 
+				<label for="" class="col-sm-2 control-label">Amenorrea:</label>
+			<div class="col-sm-4">	
+				<input class="form-control" type="date" name="amenorrea" value="{{$historias->amenorrea}}">
+			</div>
+
+				<label for="" class="col-sm-2 control-label">Andria:</label>
+			<div class="col-sm-4">	
+				<input class="form-control" type="date" name="andria" value="{{$historias->andria}}">
+			</div>
+
 			<label for="" class="col-sm-2 control-label">PAP:</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" type="date" name="pap" value="{{$historias->pap}}">

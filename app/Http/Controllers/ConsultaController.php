@@ -292,6 +292,8 @@ class ConsultaController extends Controller
 		$consulta->sed =$request->sed;
 		$consulta->orina =$request->orina;
 		$consulta->animo =$request->animo;
+     $consulta->amenorrea =$request->amenorrea;
+    $consulta->andria =$request->andria;
 		$consulta->g =$request->g;
 		$consulta->p =$request->p;
 		$consulta->pap =$request->pap;
@@ -339,6 +341,9 @@ class ConsultaController extends Controller
     $consulta->apetito =$request->apetito;
     $consulta->sed =$request->sed;
     $consulta->orina =$request->orina;
+ $consulta->amenorrea =$request->amenorrea;
+    $consulta->andria =$request->andria;
+
     $consulta->animo =$request->animo;
     $consulta->g =$request->g;
     $consulta->p =$request->p;

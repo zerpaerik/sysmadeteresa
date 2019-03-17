@@ -44,17 +44,17 @@ class ComisionesPagadasController extends Controller
   $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
                                     ->whereNotIn('monto',[0,0.00])
-                                     ->whereNotIn('origen_usuario',[99999999])
-                                     ->where('pagado_com','=', 1)
-                                      ->where('origen','=',1)
-                                     ->select(DB::raw('SUM(porcentaje) as monto'))
+                                    ->whereNotIn('origen_usuario',[99999999])
+                                    ->where('pagado_com','=', 1)
+                                    ->where('origen','=',1)
+                                    ->select(DB::raw('SUM(porcentaje) as monto'))
                                     ->first();
         if ($aten->monto == 0) {
         }
 
      $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                                      ->where('origen','=',1)
+                                    ->where('origen','=',1)
                                     ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                                     ->first();
         if ($sobres->total == 0) {
@@ -591,7 +591,7 @@ if ($sobres == NULL) {
                   ]);
      
     Toastr::success('El pago de la comisiòn fue reversado.', 'Pago Reversado!', ['progressBar' => true]);
-    return redirect()->route('compagadas.index');
+      return back();
 
   }
 

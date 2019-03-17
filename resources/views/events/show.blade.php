@@ -137,10 +137,12 @@
 				<p class="col-sm-6"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
 				<p class="col-sm-6"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
 				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}x min</p>
-				<p class="col-sm-6"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
+				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->pulso }}</p>
 				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
 				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
+				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
+				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->andria }}</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
 			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
@@ -156,8 +158,8 @@
 				<p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
 				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
 				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
-				<p class="col-sm-6"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
+				<p class="col-sm-6"><strong>CIEX Pres.Diag.:</strong> {{ $consulta->CIEX }}</p>
+				<p class="col-sm-6"><strong>CIEX Diag.Final: </strong>{{ $consulta->CIEX2 }}</p>
 				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
 				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
 				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
@@ -254,7 +256,7 @@
 			<div class="col-sm-4">	
 				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">Pulso:</label>
+			<label for="" class="col-sm-2 control-label">Andria:</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="pulso">
 			</div>
@@ -280,6 +282,16 @@
 			<label for="" class="col-sm-2 control-label">FUR:</label>
 			<div class="col-sm-4">	
 				<input class="form-control" type="date" name="fur">
+			</div>
+
+			<label for="" class="col-sm-2 control-label">Amenorrea:</label>
+			<div class="col-sm-4">	
+				<input class="form-control" type="text" name="andria">
+			</div>
+
+			<label for="" class="col-sm-2 control-label">Andria:</label>
+			<div class="col-sm-4">	
+				<input class="form-control" type="text" name="andria">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">PAP:</label>
@@ -340,7 +352,7 @@
 		
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el6" name="ciex">
+				<select id="el6" name="ciex[]" multiple="">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
 						{{$c->codigo}}-{{$c->nombre}}
@@ -359,7 +371,7 @@
 
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el4" name="ciex2">
+				<select id="el4" name="ciex2[]" multiple="">
 					@foreach($ciex as $c)
 					<option value="{{$c->codigo}}-{{$c->nombre}}">
 						{{$c->codigo}}-{{$c->nombre}}

@@ -33,8 +33,6 @@
 							<th>DNI</th>
 							<th>Registro</th>
 							<th>Ver Ficha</th>
-					        <th>Imprimir Ficha</th>
-							
 							
 						</tr>
 					</thead>
@@ -45,9 +43,6 @@
 								<td>{{$d->dni}}</td>
 								<td>{{$d->created_at}}</td>
 								<td><a href="prenatal-ver-{{$d->idPaciente}}" class="btn btn-success">Ver ficha</a></td>
-								<td><a href="prenatal-imprimir-{{$d->idPaciente}}" target="_blank" class="btn btn-danger">Imprimir</a></td>
-								
-								
 							</tr>
 						@endforeach
 					</tbody>
