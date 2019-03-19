@@ -11,6 +11,7 @@ use App\Models\Creditos;
 use App\Models\Pacientes;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
+use App\Models\MaterialesMalogrados;
 use App\Models\Events\Event;
 use PDF;
 use Auth;
@@ -955,6 +956,95 @@ class ReportesController extends Controller
 
         return $resultados;
     }
+
+    public function materialesmalogrados(Request $request){
+
+
+        if(!is_null($request->fecha)){
+
+
+            $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('users as c','c.id','a.usuario')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->get();
+
+        $totalmat = MaterialesMalogrados::whereBetween('created_at', [date('Y-m-d 00:00:00',                         strtotime($request->fecha)), date('Y-m-d 23:59:59',strtotime                         ($request->fecha2))])
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+        $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+        
+
+
+       }elseif (!is_null($request->fecha) && !is_null($request->user)) {
+
+         $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('users as c','c.id','a.usuario')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->where('a.usuario','=',$request->user)
+        ->get();
+
+        $totalmat = MaterialesMalogrados::whereBetween('created_at', [date('Y-m-d 00:00:00',                         strtotime($request->fecha)), date('Y-m-d 23:59:59',strtotime                         ($request->fecha2))])
+                                    ->where('usuario','=',$request->user)
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+          $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+
+
+    }elseif (!is_null($request->user)) {
+
+         $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('users as c','c.id','a.usuario')
+        ->where('a.usuario','=',$request->user)
+        ->get();
+
+        $totalmat = MaterialesMalogrados::where('usuario','=',$request->user)
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+          $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+        
+        }else{
+
+        $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('users as c','c.id','a.usuario')
+        ->where('a.id','=',999999999999999999999)
+        ->get();
+
+         $totalmat = MaterialesMalogrados::where('id','=',999999999999999999999)
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+
+
+          $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+
+        }
+
+        $usuarios = DB::table('users as a')
+        ->select('a.id','a.name','a.lastname')
+        ->join('mat_malogrados as b','b.usuario','a.id')
+        ->groupBy('a.id')
+        ->get();
+
+ 
+       return view('reportes.matlogrados',compact('materiales','totalmat','f1','f2','usuarios'));
+
+    }
+
 }
 
 

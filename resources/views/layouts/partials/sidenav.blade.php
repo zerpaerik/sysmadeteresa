@@ -329,6 +329,9 @@
 	   <li>
         <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
       </li>
+       <li>
+        <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
+      </li>
     </ul>
   </li>
 
@@ -678,6 +681,8 @@
       </li>
 	   <li>
         <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+      </li>
+      <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
       </li>
     </ul>
   </li>

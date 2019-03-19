@@ -338,7 +338,7 @@ Route::get('resultadosg-reversarl-{id}-{id2}', 'ResultadosGuardadosController@re
 Route::put('resultadosg-edits-{id}', 'ResultadosGuardadosController@edits')->name('informes.update');
 Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->name('informes1.update');;
 
-
+Route::get('materialesmalogrados', 'ReportesController@materialesmalogrados')->name('malogrados.ver');
 
 
 Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
