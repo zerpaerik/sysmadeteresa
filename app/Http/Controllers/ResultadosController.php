@@ -11,6 +11,7 @@ use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Models\ResultadosMateriales;
+use App\Models\MaterialesMalogrados;
 use App\Models\Existencias\Producto;
 use App\Informe;
 use Auth;
@@ -303,13 +304,16 @@ class ResultadosController extends Controller
 
     $atencion = Atenciones::findOrFail($id);
 		$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+    $productos2 = Producto::where('almacen','=',2)->where("categoria",'=',4)->where("sede_id", "=", $request->session()->get('sede'))->get();
 
 
-    return view('resultados.guardar', compact('atencion','productos'));
+    return view('resultados.guardar', compact('atencion','productos','productos2'));
 
     }
 	
 	 public function edit1($id,Request $request){
+
+  
 
      $searchAtenciones = DB::table('atenciones')
                     ->select('*')
@@ -441,7 +445,34 @@ class ResultadosController extends Controller
                }
 
          ///PARA MATERIALES
+
+              if (!is_null($request->materialm)) {
+        foreach ($request->materialm['servicios'] as $key => $servicio) {
+          if (!is_null($servicio['servicio'])) {
+
+
+            $pro = new MaterialesMalogrados();
+            $pro->id_resultado = $product->id;
+            $pro->id_producto =  $servicio['servicio'];
+            $pro->cantidad = $request->monto_abos['servicios'][$key]['abono'];
+            $pro->usuario = Auth::user()->id;
+            $pro->save();
+
+            $SearchMaterial = Producto::where('id', $servicio['servicio'])
+            ->first();
+            $cantactual= $SearchMaterial->cantidad;
+
+            $p = Producto::find($servicio['servicio']);
+            $p->cantidad = $cantactual - $request->monto_abos['servicios'][$key]['abono'];
+            $res = $p->save();
+
+          } 
+        }
         
+      }
+
+
+        ///
       }
 
      
@@ -507,6 +538,8 @@ class ResultadosController extends Controller
           } 
         }
       }
+
+    
 
 
            }
