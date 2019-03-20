@@ -331,7 +331,6 @@ class ResultadosController extends Controller
 
          $searchAtencionesServicios = DB::table('atenciones')
          ->select('*')
-                   // ->where('estatus','=','1')
          ->where('id','=', $request->id)
          ->get();
 
@@ -444,7 +443,8 @@ class ResultadosController extends Controller
 
                }
 
-         ///PARA MATERIALES
+         ///PARA MATERIALES MALOGRADOS
+      if (isset($request->materialm)) {
 
               if (!is_null($request->materialm)) {
         foreach ($request->materialm['servicios'] as $key => $servicio) {
@@ -460,16 +460,65 @@ class ResultadosController extends Controller
 
             $SearchMaterial = Producto::where('id', $servicio['servicio'])
             ->first();
+            if($SearchMaterial){
             $cantactual= $SearchMaterial->cantidad;
 
             $p = Producto::find($servicio['servicio']);
             $p->cantidad = $cantactual - $request->monto_abos['servicios'][$key]['abono'];
             $res = $p->save();
+            
+            }else{
+              $cantactual=0;
+            }
+
+         
 
           } 
         }
         
       }
+
+    }
+
+      // PARA MATERIALES USADOS
+      if (isset($request->material)) {
+
+
+          if (!is_null($request->material)) {
+        foreach ($request->material['laboratorios'] as $key => $laboratorio) {
+          if (!is_null($laboratorio['laboratorio'])) {
+            $pro = new ResultadosMateriales();
+            $pro->id_resultado = $product->id;
+            $pro->id_material =  $laboratorio['laboratorio'];
+            $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+            $pro->save();
+
+
+            
+            $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
+            ->first();
+            $cantactual= $SearchMaterial->cantidad;
+
+             if($SearchMaterial){
+            $cantactual= $SearchMaterial->cantidad;
+
+            
+            $p = Producto::find($laboratorio['laboratorio']);
+            $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+            $res = $p->save();
+
+
+            }else{
+              $cantactual=0;
+            }
+
+
+
+          } 
+        }
+      }
+
+        }
 
 
         ///
