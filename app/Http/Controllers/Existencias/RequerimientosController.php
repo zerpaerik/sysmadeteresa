@@ -263,9 +263,9 @@ class RequerimientosController extends Controller
          $searchProductoSedeSolicitad =  DB::table('productos')
                     ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('codigo','=', $codigo)
-                    ->where('sede_id','=',$sede_solicita)
-                    ->where('almacen','=',2)
+                    ->where('padre','=', $producto)
+                   // ->where('sede_id','=',$sede_solicita)
+                   // ->where('almacen','=',2)
                     ->first(); 
 
                     if($searchProductoSedeSolicitad == NULL){
@@ -303,15 +303,14 @@ class RequerimientosController extends Controller
         $prod->sede_id = $sede_solicita;
         $prod->cantidad = $request->cantidadd;
         $prod->almacen = 2;
+        $prod->padre = $producto;
         $prod->save();
 
       }
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
-               return back();
-
-
+      return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
     }
 
       public function reversar(Request $request,$id){
