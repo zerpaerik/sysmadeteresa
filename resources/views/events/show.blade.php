@@ -142,7 +142,7 @@
 				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
-				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->andria }}</p>
+				<p class="col-sm-6"><strong>Ciclo Menstrual:</strong> {{ $consulta->andria }}</p>
 				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
 			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
 				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>

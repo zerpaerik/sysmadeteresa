@@ -31,7 +31,7 @@ class CuentasporCobrarController extends Controller
     ->where('a.pendiente','>',0)
     //->where('a.abono','<','a.monto')
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
+   // ->where('a.id_sede','=', $request->session()->get('sede'))
     ->orderby('a.id','desc')
     ->get(); 
 
@@ -110,7 +110,7 @@ class CuentasporCobrarController extends Controller
     ->where('b.apellidos','like','%'.$ape.'%')
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
+    //->where('a.id_sede','=', $request->session()->get('sede'))
     ->orderby('a.id','desc')
     ->paginate(15); 
 
