@@ -76,7 +76,7 @@
 		@foreach ($pagadas as $atec)
 			<tr>
 				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->recibo}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->name}},{{$atec->lastname}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 25%;text-align: left;">{{$atec->name}},{{$atec->lastname}}</td>
 				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->fecha_pago_comision}}</td>
 				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->totalrecibo}}</td>
 			</tr>
