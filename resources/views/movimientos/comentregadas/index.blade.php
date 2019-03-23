@@ -36,7 +36,7 @@
 							<th>Recibo</th>
 							<th>Paciente</th>
 							<th>Origen</th>
-							<th>Fecha Atenciòn</th>
+							<th>Fecha Emisiòn</th>
 							<th>Fecha Entregas</th>
 							<th>Visitador</th>
 
@@ -49,8 +49,8 @@
 								<td>{{$atec->recibo}}</td>
 								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->updated_at}}</td>
+								<td>{{$atec->fecha_pago_comision}}</td>
+								<td>{{$atec->fecha_entrega}}</td>
 							    <td>{{$atec->nomentre}},{{$atec->apeentre}}</td>
                                 						
                             </tr>
