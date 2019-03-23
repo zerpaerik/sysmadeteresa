@@ -57,9 +57,7 @@
 	<div class="col-6">
 		Fecha de Impresión: {{ Carbon\Carbon::now()->format('d/m/Y') }}
 	</div>
-	<div class="col-6 text-right">
-		Hora de Impresión: {{ Carbon\Carbon::now('America/Lima')->format('h:i a') }}
-	</div> 
+	
 
 </div>
 
@@ -71,18 +69,16 @@
 		<tr>
 			<th>RECIBO</th>
 			<th>ORIGEN</th>
-			<th>FECHA ATENCIÒN</th>
 			<th>FECHA PAGO</th>
 		    <th>COMISIÒN</th>
 			
 		</tr>
 		@foreach ($pagadas as $atec)
 			<tr>
-				<td>{{$atec->recibo}}</td>
-				<td>{{$atec->name}},{{$atec->lastname}}</td>
-				<td>{{$atec->created_at}}</td>
-				<td>{{$atec->fecha_pago_comision}}</td>
-				<td>{{$atec->totalrecibo}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->recibo}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->name}},{{$atec->lastname}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->fecha_pago_comision}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->totalrecibo}}</td>
 			</tr>
 		@endforeach
 		<tr>
