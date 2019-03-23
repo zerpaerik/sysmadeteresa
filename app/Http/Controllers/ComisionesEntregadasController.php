@@ -32,7 +32,7 @@ class ComisionesEntregadasController extends Controller
   private function elasticSearch($initial, $final)
   { 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.porcentaje','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')

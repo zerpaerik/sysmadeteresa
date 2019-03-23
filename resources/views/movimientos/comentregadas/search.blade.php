@@ -34,7 +34,7 @@
 					<thead>
 						<tr>
 							<th>Recibo</th>
-							<th>Paciente</th>
+							<th>Monto</th>
 							<th>Origen</th>
 							<th>Fecha Emisiòn</th>
 							<th>Fecha Entregas</th>
@@ -47,7 +47,7 @@
 
 							<tr>
 								<td>{{$atec->recibo}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
 								<td>{{$atec->fecha_entrega}}</td>
