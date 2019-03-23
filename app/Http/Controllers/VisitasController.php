@@ -53,7 +53,7 @@ class VisitasController extends Controller
 
   public function createView() {
 
-    $profesionales =Profesional::where("estatus", '=', 1)->get();
+    $profesionales =Profesional::where("estatus", '=', 1)->orderby('apellidos','asc')->get();
     
     return view('visitas.create', compact('profesionales'));
   }

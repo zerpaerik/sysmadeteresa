@@ -30,7 +30,7 @@
 						<div class="col-sm-9">
 							<select class="form-control" name="profesional" id="profesional">
 							@foreach($profesionales as $lab)
-							<option value="{{$lab->id}}">{{$lab->name}},{{$lab->apellidos}}</option>
+							<option value="{{$lab->id}}">{{$lab->apellidos}},{{$lab->name}}</option>
 							@endforeach
 						</select>
 						</div>	

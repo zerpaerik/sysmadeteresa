@@ -68,17 +68,17 @@
 	<table style="">
 		<tr>
 			<th>RECIBO</th>
-			<th>ORIGEN</th>
+			<th style="width: 40%;">ORIGEN</th>
 			<th>FECHA PAGO</th>
 		    <th>COMISIÒN</th>
 			
 		</tr>
 		@foreach ($pagadas as $atec)
 			<tr>
-				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->recibo}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;width: 25%;text-align: left;">{{$atec->name}},{{$atec->lastname}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->fecha_pago_comision}}</td>
-				<td style="padding: 0;text-overflow: ellipsis;width: 25%;">{{$atec->totalrecibo}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->recibo}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;width: 40%;text-align: left;">{{$atec->name}},{{$atec->lastname}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->fecha_pago_comision}}</td>
+				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->totalrecibo}}</td>
 			</tr>
 		@endforeach
 		<tr>
