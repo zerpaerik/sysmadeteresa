@@ -56,7 +56,7 @@ class ComisionesporEntregarController extends Controller
           Atenciones::where('recibo', $id)
                   ->update([
                       'entregado' => 1,
-                      'fecha_entrega' => Carbon::now()->format('Y-m-d 23:59:59'),
+                      'fecha_entrega' => Carbon::now()->format('Y-m-d H:i:s'),
                       'usuario_entrega' => Auth::id()
                   ]);
      
