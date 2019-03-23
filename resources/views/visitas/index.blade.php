@@ -24,14 +24,38 @@
 			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
-					<form action="/visitas-search" method="get">
-						<h5>Rango de Fechas</h5>
-						<label for="">Inicio</label>
-						<input type="date" name="inicio" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<label for="">Final</label>
-						<input type="date" name="final" value="{{ Carbon\Carbon::now()->toDateString()}}" style="line-height: 20px">
-						<input type="submit">
-					</form>
+			{!! Form::open(['method' => 'get', 'route' => ['visitas.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-2">
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
+				</div>
+				<div class="col-md-2">
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
+				</div>
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+				<div class="col-md-2">
+					<strong>Total de Visitas:</strong> {{$total->total}}
+				</div>
+			</div>	
+			<div class="row">
+
+				<form action="reporte/visitas" method="get">
+
+					<input type="hidden" value="{{$f1}}" name="f1">
+				    <input type="hidden" value="{{$f2}}" name="f2">
+						
+				<button style="margin-left: 15px;" target="_blank" type="submit">Generar Reporte</button>
+			   </form>
+				
+			</div>
 				
 					<thead>
 						<tr>

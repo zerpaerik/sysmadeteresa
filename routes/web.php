@@ -255,6 +255,8 @@ Route::get('comentregadas-search', 'ComisionesEntregadasController@search')->nam
 
 Route::get('visitas', 'VisitasController@index')->name('visitas.index')->middleware('auth');
 Route::get('visitas-search', 'VisitasController@search')->name('visitas.search')->middleware('auth');
+Route::get('reporte/visitas', 'VisitasController@reporte_visitas');
+
 Route::get('visitar', 'VisitasController@visitar');
 Route::get('visitar-create', 'VisitasController@createView')->name('visitar.create')->middleware('auth');
 Route::post('visitar/create', 'VisitasController@create')->middleware('auth');
