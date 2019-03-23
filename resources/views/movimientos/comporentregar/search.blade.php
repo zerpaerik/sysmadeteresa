@@ -34,7 +34,7 @@
 					<thead>
 						<tr>
 							<th>Recibo</th>
-							<th>Paciente</th>
+							<th>Monto</th>
 							<th>Origen</th>
 							<th>Fecha Pago</th>
 							<th>Acciones</th>
@@ -46,7 +46,7 @@
 
 							<tr>
 								<td>{{$atec->recibo}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
 								<td><a  href="{{asset('/entregar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Entregar</a></td>
