@@ -44,6 +44,7 @@
 					<strong>Total:</strong> {{$total->total}}
 					@else
 					<strong>Total:</strong> 0
+					@endif
 
 				</div>				</div>
 			</div>
