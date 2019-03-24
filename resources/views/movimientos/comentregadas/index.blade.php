@@ -40,8 +40,12 @@
 
 				</div>
 				<div class="col-md-2">
-					<strong>Total:</strong> {{$total}}
-				</div>
+                    @if($total)
+					<strong>Total:</strong> {{$total->total}}
+					@else
+					<strong>Total:</strong> 0
+
+				</div>				</div>
 			</div>
 					<thead>
 						<tr>

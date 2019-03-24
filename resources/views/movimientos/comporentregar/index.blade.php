@@ -40,7 +40,13 @@
 
 				</div>
 				<div class="col-md-2">
-					<strong>Total:</strong> {{$total}}
+					@if($total)
+					<strong>Total:</strong> {{$total->total}}
+					@else
+					<strong>Total:</strong> 0
+										@endif
+
+
 				</div>
 			</div>
 					<form action="/pagarmultiple" method="post">
