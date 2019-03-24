@@ -19,11 +19,11 @@ class ComisionesEntregadasController extends Controller
 
         if(!is_null($request->fecha)){
 
-            $f1=$request->fecha;
-       $f2=$request->fecha2;
+     $f1=$request->fecha;
+      $f2=$request->fecha2;
 
-         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.porcentaje','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre')
+             $atenciones = DB::table('atenciones as a')
+          ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre',DB::raw('SUM(a.porcentaje) as monto1'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -32,30 +32,34 @@ class ComisionesEntregadasController extends Controller
         ->where('a.entregado','=', 1)
         ->where('a.id_sede','=', \Session::get("sede"))
         ->whereNotIn('a.monto',[0,0.00])
-                ->whereNotIn('a.porcentaje',[0,0.00])
+        ->whereNotIn('a.porcentaje',[0,0.00])
         ->whereBetween('a.fecha_entrega', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
         ->groupBy('a.recibo')
         ->orderby('a.id','desc')
         ->get();
 
+
       $total= Atenciones::where('entregado','=',1)
                            ->where('id_sede','=', \Session::get("sede"))
                            ->whereNotIn('monto',[0,0.00])
-                           ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                           ->whereBetween('fecha_entrega', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                            ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                            ->first();
-        if ($total==NULL) {
-                      $total=0;
-                   }   
+                         
 
+                  if ($total==NULL) {
+                      $total=0;
+                   }  
+
+
+        
 
 
 
     } else {
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.porcentaje','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre')
+        ->select('a.id','a.id_paciente','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.fecha_entrega','a.fecha_pago_comision','a.pagado_com','a.id_laboratorio','a.id_sede','a.es_servicio','a.usuario_entrega','a.updated_at','a.es_laboratorio','entregado','a.recibo','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','f.name as nomentre','f.lastname as apeentre',DB::raw('SUM(a.porcentaje) as monto1'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -64,11 +68,13 @@ class ComisionesEntregadasController extends Controller
         ->where('a.entregado','=', 1)
         ->where('a.id_sede','=', \Session::get("sede"))
         ->whereNotIn('a.monto',[0,0.00])
-                ->whereNotIn('a.porcentaje',[0,0.00])
-        ->whereDate('a.created_at',Carbon::today()->toDateString())
+        ->whereNotIn('a.porcentaje',[0,0.00])
+        ->whereDate('a.fecha_entrega',Carbon::today()->toDateString())
         ->groupBy('a.recibo')
         ->orderby('a.id','desc')
         ->get();
+
+      
 
           $f1=Carbon::today()->toDateString();
       $f2=Carbon::today()->toDateString();
@@ -76,7 +82,7 @@ class ComisionesEntregadasController extends Controller
       $total= Atenciones::where('entregado','=',1)
                            ->where('id_sede','=', \Session::get("sede"))
                            ->whereNotIn('monto',[0,0.00])
-                           ->whereDate('created_at',Carbon::today()->toDateString())
+                           ->whereDate('fecha_entrega',Carbon::today()->toDateString())
                            ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                            ->first();
                          

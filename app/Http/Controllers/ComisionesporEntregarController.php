@@ -67,7 +67,7 @@ class ComisionesporEntregarController extends Controller
         ->where('a.id_sede','=', \Session::get("sede"))
         ->whereNotIn('a.monto',[0,0.00])
         ->whereNotIn('a.porcentaje',[0,0.00])
-        ->whereDate('a.created_at',Carbon::today()->toDateString())
+        ->whereDate('a.fecha_pago_comision',Carbon::today()->toDateString())
         //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($final)), date('Y-m-d 23:59:59', strtotime($final))])
        ->groupBy('a.recibo')
         ->orderby('a.id','desc')
@@ -79,7 +79,7 @@ class ComisionesporEntregarController extends Controller
        $total= Atenciones::where('entregado','=', NULL)
                            ->where('id_sede','=', \Session::get("sede"))
                            ->whereNotIn('monto',[0,0.00])
-                           ->whereDate('created_at',Carbon::today()->toDateString())
+                           ->whereDate('fecha_pago_comision',Carbon::today()->toDateString())
                            ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
                            ->first();
                          
