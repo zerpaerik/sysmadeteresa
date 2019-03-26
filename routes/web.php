@@ -26,6 +26,7 @@ Route::get('role/{id}', 'Users\RoleController@delete')->middleware('auth');
 
 Route::get('users-password-edit', 'Users\UserController@updatepasswd')->name('users.password');
 Route::post('users/updatepassw', 'Users\UserController@updatepass');
+Route::get('user-delete-{id}','Users\UserController@delete');
 
 
 Route::get('personal', 'Personal\PersonalController@index')->name('personal.index')->middleware('auth');

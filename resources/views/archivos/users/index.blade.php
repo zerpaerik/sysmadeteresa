@@ -29,6 +29,7 @@
 							<th>Apellidos</th>
 							<th>Rol</th>
 							<th>Email</th>
+							<th>Acciones:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,15 +39,14 @@
 								<td>{{$user->lastname}}</td>
 							    <td>{{$user->rol}}</td>
 								<td>{{$user->email}}</td>
+								<td>
+									<a class="btn btn-danger" href="user-delete-{{$user->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
-						<tr>
-							<th>
-								<button type="button" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</button>
-							</th>
-						</tr>
+				
 					</tfoot>
 				</table>
 			</div>
