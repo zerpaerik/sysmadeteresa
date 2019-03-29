@@ -55,10 +55,11 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
@@ -66,10 +67,11 @@ class EventController extends Controller
   } else {
 
      $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
+    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
@@ -141,7 +143,7 @@ class EventController extends Controller
             ->update([
               'profesional' => $request->especialista,
               'paciente' => $request->paciente,
-              'date' => Carbon::createFromFormat('d/m/Y', $request->date),
+              'date' => Carbon::today()->toDateString(),
               'time' => $request->time,
               'monto' => $request->monto
             ]);
@@ -261,15 +263,12 @@ class EventController extends Controller
 
     $paciente = Paciente::find($request->paciente);
 
-    $exists = Event::where("date", "=", Carbon::createFromFormat('d/m/Y', $request->date))
-      ->where("time", "=", $request->time)
-      ->get()->first();
-    if(!$exists){
+  
     
         $evt = new Event;
         $evt->paciente=$request->paciente;
         $evt->profesional=$request->especialista;
-        $evt->date=Carbon::createFromFormat('d/m/Y', $request->date);
+        $evt->date=Carbon::today()->toDateString();
         $evt->time=$request->time;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
         $evt->monto=$request->monto;
@@ -286,15 +285,7 @@ class EventController extends Controller
         "id_event" => $evt->id
       ]);
 	  
-	  $historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Consultas';
-		  $historial->detalle = $paciente->nombres . " " . $paciente->apellidos . " Paciente.";
-          $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
-          $historial->save();
-    }
-
+	
     $calendar = Calendar::addEvents($this->getEvents())
     ->setOptions([
       'locale' => 'es',

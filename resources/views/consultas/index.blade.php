@@ -72,6 +72,7 @@
 							<th>Horas</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
+							<th>TipoIngreso</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -91,6 +92,7 @@
 						<td style="background: #FE642E;">No ha sido Atendido</td>
 						@endif
 						<td>{{$d->tipo}}</td>
+						<td>{{$d->tipo_ingreso}}</td>
 						<td>
 
 
