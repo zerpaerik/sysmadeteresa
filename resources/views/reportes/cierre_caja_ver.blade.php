@@ -50,6 +50,7 @@
 </head>
 
 <div>
+<img src="/var/www/html/sysmadeteresa/public/img/logo2.jpeg"  style="width: 20%;"/>
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}

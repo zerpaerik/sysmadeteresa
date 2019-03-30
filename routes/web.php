@@ -480,7 +480,9 @@ Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
 
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
-Route::get('recibo_caja_ver2/{id}/{f1?}/{f2?}','ReportesController@recibo_caja_ver2');
+Route::get('recibo_caja_verd/{id}','ReportesController@recibo_caja_verd');
+Route::get('recibo_caja_ver2/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2');
+Route::get('recibo_caja_ver2d/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2d');
 
 Route::get('recibo_gasto_ver/{id}','ReportesController@recibo_gasto_ver');
 
