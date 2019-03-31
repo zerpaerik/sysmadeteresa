@@ -75,9 +75,12 @@ class CajaController extends Controller
 	                   ->first();
       
 
-		$mensaje;	                   
+		$mensaje;	
 
 
+
+          $f1 = Carbon::now()->toDateString();
+         $f2 = Carbon::now()->toDateString(); 
     	
     	
     	if (count($caja) == 0) {
@@ -96,7 +99,9 @@ class CajaController extends Controller
 	    	'total' => $aten,
 	    	'mensaje' => $mensaje,
 	    	'caja' => $caja,
-	    	'fecha' => Carbon::now()->toDateString()
+	    	'fecha' => Carbon::now()->toDateString(),
+            'f1' => $f1,
+            'f2' => $f2
 	    ]);    	
     }
 /*

@@ -32,25 +32,13 @@
       {!! Form::open(['method' => 'get', 'route' => ['cierre.index']]) !!}
 
       <div class="row">
-        <div class="col-md-2">
-          {!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-          {!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-          <p class="help-block"></p>
-          @if($errors->has('fecha'))
-          <p class="help-block">
-            {{ $errors->first('fecha') }}
-          </p>
-          @endif
+       <div class="col-md-2">
+          <label>Fecha Inicio</label>
+          <input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
         </div>
         <div class="col-md-2">
-          {!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-          {!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-          <p class="help-block"></p>
-          @if($errors->has('fecha2'))
-          <p class="help-block">
-            {{ $errors->first('fecha2') }}
-          </p>
-          @endif
+          <label>Fecha Fin</label>
+          <input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
         </div>
         <div class="col-md-2">
           {!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
@@ -98,9 +86,9 @@
                   <a target="_blank" href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Consolidado</a>
                   <a target="_blank" href="{{asset('recibo_caja_verd')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Detallado</a>
                   @else
-                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Consolidado</a>
+                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$f1}}/{{$f2}}" class="btn btn-xs btn-primary">VerT Consolidado</a>
 
-                   <a target="_blank"  href="{{asset('recibo_caja_ver2d')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Detallado</a>
+                   <a target="_blank"  href="{{asset('recibo_caja_ver2d')}}/{{$c->id}}/{{$f1}}/{{$f2}}" class="btn btn-xs btn-primary">VerT Detallado</a>
 
 
                   @endif
