@@ -19,7 +19,8 @@ class GastosController extends Controller
   if(! is_null($request->fecha)) {
 
       $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+      ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,$request->fecha)
       ->where('a.id_sede','=', $request->session()->get('sede'))
       ->orderby('a.id','desc')
@@ -28,7 +29,8 @@ class GastosController extends Controller
     } else {
 
        $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede')
+      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+      ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
       ->where('a.id_sede','=', $request->session()->get('sede'))
       ->orderby('a.id','desc')
