@@ -30,9 +30,9 @@ class ConsultaController extends Controller
 
 
           $atenciones = DB::table('consultas as a')
-        ->select('a.id','a.paciente_id','a.created_at','a.profesional_id','a.prox','b.nombres','b.apellidos','c.name as nompro','c.apellidos as apepro')
+        ->select('a.id','a.paciente_id','a.created_at','a.profesional_id','a.prox','b.nombres','b.apellidos','c.name as nompro','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente_id')
-        ->join('profesionales as c','c.id','a.profesional_id')
+        ->join('personals as c','c.id','a.profesional_id')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
         ->get();
@@ -41,9 +41,9 @@ class ConsultaController extends Controller
 
 
           $atenciones = DB::table('consultas as a')
-        ->select('a.id','a.paciente_id','a.created_at','a.profesional_id','a.prox','b.nombres','b.apellidos','c.name as nompro','c.apellidos as apepro')
+        ->select('a.id','a.paciente_id','a.created_at','a.profesional_id','a.prox','b.nombres','b.apellidos','c.name as nompro','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente_id')
-        ->join('profesionales as c','c.id','a.profesional_id')
+        ->join('personals as c','c.id','a.profesional_id')
     
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
@@ -60,24 +60,49 @@ class ConsultaController extends Controller
 
 
   
-     public function indexh(){
+     public function indexh(Request $request){
 
+
+      if(!is_null($request->paciente)){
+
+        $historias = DB::table('events as e')
+          ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
+      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+      'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
+      ->join('consultas as a','a.paciente_id','e.paciente')
+      ->join('historials as b','e.paciente','b.paciente_id')
+      ->join('pacientes as p','p.id','=','e.paciente')
+      ->where('e.paciente','=',$request->paciente)
+      ->orderby('a.id','desc')
+      ->groupBy('a.id')
+      ->get();
+
+    } else {
 
       $historias = DB::table('events as e')
-        ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
-    'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
-    'a.pa','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
-    'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
-    ->join('consultas as a','a.paciente_id','e.paciente')
-    ->join('historials as b','e.paciente','b.paciente_id')
-    ->join('pacientes as p','p.id','=','e.paciente')
-    ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
-    ->groupBy('e.paciente')
+          ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
+      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+      'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
+      ->join('consultas as a','a.paciente_id','e.paciente')
+      ->join('historials as b','e.paciente','b.paciente_id')
+      ->join('pacientes as p','p.id','=','e.paciente')
+      ->where('e.paciente','=',$request->paciente)
+      ->orderby('a.id','desc')
+            ->groupBy('a.id')
+      ->get();
+
+
+
+    }
+
+
+    $pacientes = DB::table('pacientes as a')
+    ->select('a.id','a.nombres','a.apellidos','a.dni','b.paciente_id')
+    ->join('consultas as b','a.id','b.paciente_id')
+    ->groupBy('a.id')
     ->get();
-    
-   
-        return view('consultas.historias.index', ["historias" => $historias]);
+
+    return view('consultas.historias.index', ['historias' => $historias, 'pacientes' => $pacientes]);
 	}
 
 
@@ -188,24 +213,35 @@ class ConsultaController extends Controller
   public function show(Request $request,$id)
   {
 
-    
-    $event = DB::table('events as e')
-    ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id')
-    ->join('pacientes as p','p.id','=','e.paciente')
-    ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
-    ->where('e.paciente','=',$id)
-    ->first();
-    $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
-    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $consultas = Consulta::where('id','=',$id)->first();
+    $historial = Historial::where('paciente_id','=',$consultas->paciente_id)->first();
+    $data= Paciente::where('id','=',$consultas->paciente_id)->first();
     $personal = Personal::where('estatus','=',1)->get();
     return view('consultas.historias.show',[
-      'data' => $event,
       'historial' => $historial,
-      'consultas' => $consultas,
+      'consulta' => $consultas,
       'personal' => $personal,
+      'data' => $data
     ]);
   }
+
+   public function report(Request $request,$id)
+  {
+
+    $consultas = Consulta::where('id','=',$id)->first();
+    $historial = Historial::where('paciente_id','=',$consultas->paciente_id)->first();
+    $data= Paciente::where('id','=',$consultas->paciente_id)->first();
+    $personal = Personal::where('estatus','=',1)->get();
+
+
+    $edad = Carbon::parse($historial->fechanac)->age;
+ 
+    $view = \View::make('consultas.historias.reporte')->with('consulta', $consultas)->with('historial', $historial)->with('data', $data);
+    $pdf = \App::make('dompdf.wrapper');
+    $pdf->loadHTML($view);
+    return $pdf->stream('historia_pdf');
+  }
+
 
 
    public function editview(Request $request,$id)
@@ -214,7 +250,7 @@ class ConsultaController extends Controller
     $historias = DB::table('events as e')
         ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
     'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
-    'a.pa','a.id as consulta','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.pendiente','a.presuncion_diagnostica','a.diagnostico_final','a.amenorrea','a.andria','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.mac','a.tipo_enfermedad','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+    'a.pa','a.id as consulta','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.pendiente','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.mac','a.tipo_enfermedad','a.profesional_id','a.created_at','a.amenorrea','a.andria','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
     'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
     ->join('consultas as a','a.paciente_id','e.paciente')
     ->join('historials as b','e.paciente','b.paciente_id')
@@ -272,6 +308,8 @@ class ConsultaController extends Controller
 
     $consulta->piel =$request->piel;
     $consulta->mamas =$request->mamas;
+     $consulta->amenorrea =$request->amenorrea;
+    $consulta->andria =$request->andria;
     $consulta->abdomen =$request->abdomen;
     $consulta->genext =$request->genext;
     $consulta->genint =$request->genint;
@@ -279,8 +317,8 @@ class ConsultaController extends Controller
 
 		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
 		$consulta->diagnostico_final =$request->diagnostico_final;
-		$consulta->ciex =json_encode($request->ciex);
-		$consulta->ciex2=json_encode($request->ciex2);
+		$consulta->ciex =$request->ciex;
+		$consulta->ciex2=$request->ciex2;
 		$consulta->examen_auxiliar=$request->examen_auxiliar;
 		$consulta->plan_tratamiento =$request->plan_tratamiento;
 		$consulta->observaciones =$request->observaciones;
@@ -292,8 +330,6 @@ class ConsultaController extends Controller
 		$consulta->sed =$request->sed;
 		$consulta->orina =$request->orina;
 		$consulta->animo =$request->animo;
-    $consulta->amenorrea =$request->amenorrea;
-    $consulta->andria =$request->andria;
 		$consulta->g =$request->g;
 		$consulta->p =$request->p;
 		$consulta->pap =$request->pap;
@@ -316,6 +352,11 @@ class ConsultaController extends Controller
     }
       public function edit(Request $request)
     {
+
+      $users = DB::table('users')
+            ->select('*')
+            ->where('id','=',\Auth::user()->id)
+            ->first();
       
     $consulta = Consulta::find($request->id);
     $consulta->pa =$request->pa;
@@ -337,14 +378,13 @@ class ConsultaController extends Controller
     $consulta->observaciones =$request->observaciones;
     $consulta->profesional_id =$request->profesional_id;
     $consulta->prox =$request->prox;
-    $consulta->personal =$request->personal;
+    $consulta->personal =$users->name . " " .$users->lastname;
     $consulta->apetito =$request->apetito;
     $consulta->sed =$request->sed;
     $consulta->orina =$request->orina;
- $consulta->amenorrea =$request->amenorrea;
-    $consulta->andria =$request->andria;
-
     $consulta->animo =$request->animo;
+     $consulta->amenorrea =$request->amenorrea;
+    $consulta->andria =$request->andria;
     $consulta->g =$request->g;
     $consulta->p =$request->p;
     $consulta->pap =$request->pap;
