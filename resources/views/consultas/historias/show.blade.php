@@ -29,52 +29,49 @@
 <br>
 	
 	<br>
-	<h2>Resultados anteriores de {{$data->nombres}} {{$data->apellidos}}</h2>
-	@foreach($consultas as $consulta)
-	<div class="rows">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<div class="rows">
 				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
-				<p class="col-sm-6"><strong>P/A:</strong> {{ $consulta->pa }}</p>
-				<p class="col-sm-6"><strong>Sed:</strong> {{ $consulta->sed }}</p>
-				<p class="col-sm-6"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
-				<p class="col-sm-6"><strong>Animo:</strong> {{ $consulta->animo }}</p>
-				<p class="col-sm-6"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}</p>
-				<p class="col-sm-6"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}</p>
-				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}</p>
-				<p class="col-sm-6"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
-				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
-				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
-				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
-        <p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea }}</p>
-        <p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->andria }}</p>
-				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			  <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
-				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G:</strong>{{ $consulta->g }}</p>
-				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
-				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong></p>
-        <p class="col-sm-6"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
-        <p class="col-sm-6"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
-        <p class="col-sm-6"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
-        <p class="col-sm-6"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
-        <p class="col-sm-6"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
-        <p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
-				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
-				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
-				<p class="col-sm-6"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
-				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
-				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
-				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+				<p class="col-sm-12"><strong>P/A:</strong> {{ $consulta->pa }}</p>
+				<p class="col-sm-12"><strong>Sed:</strong> {{ $consulta->sed }}</p>
+				<p class="col-sm-12"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
+				<p class="col-sm-12"><strong>Animo:</strong> {{ $consulta->animo }}</p>
+				<p class="col-sm-12"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}</p>
+				<p class="col-sm-12"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}</p>
+				<p class="col-sm-12"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}</p>
+				<p class="col-sm-12"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
+				<p class="col-sm-12"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
+				<p class="col-sm-12"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+				<p class="col-sm-12"><strong>FUR:</strong> {{ $consulta->fur }}</p>
+        <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->amenorrea }}</p>
+        <p class="col-sm-12"><strong>Amenorrea:</strong> {{ $consulta->andria }}</p>
+
+				<p class="col-sm-12"><strong>PAP:</strong> {{ $consulta->pap }}</p>
+			  <p class="col-sm-12"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
+				<p class="col-sm-12"><strong>P:</strong> {{ $consulta->p }},<strong>G:</strong>{{ $consulta->g }}</p>
+				<p class="col-sm-12"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
+				<p class="col-sm-12"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
+				<p class="col-sm-12"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
+				<p class="col-sm-12"><strong>Examen Fisico Regional: </strong></p>
+        <p class="col-sm-12"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
+        <p class="col-sm-12"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
+        <p class="col-sm-12"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
+        <p class="col-sm-12"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
+        <p class="col-sm-12"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
+        <p class="col-sm-12"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
+				<p class="col-sm-12"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
+				<p class="col-sm-12"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
+				<p class="col-sm-12"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
+				<p class="col-sm-12"><strong>CIEX: </strong>{{ $consulta->CIEX2 }}</p>
+				<p class="col-sm-12"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
+				<p class="col-sm-12"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
+				<p class="col-sm-12"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
 				<p class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
 				<p class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
 				<br>
 			</div>
 		</div>
 	
-	@endforeach
 	<div class="col-sm-12">
 	<form action="observacion/create" method="post" class="form-horizontal">
 		{{ csrf_field() }}
