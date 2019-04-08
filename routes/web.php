@@ -380,6 +380,12 @@ Route::get('correlativo-delete-{id}','Config\CorrelativoController@delete');
 //Productos
 Route::get('productos', 'Existencias\ProductoController@index')->name('productos.index');
 Route::get('productos2', 'Existencias\ProductoController@index2')->name('productos.index2');
+Route::get('rayos', 'Existencias\ProductoController@rayos')->name('rayos.index');
+Route::get('metodosp', 'Existencias\ProductoController@metodosp')->name('metodosp.index');
+Route::get('recepcion', 'Existencias\ProductoController@recepcion')->name('recepcion.index');
+Route::get('lab', 'Existencias\ProductoController@lab')->name('lab.index');
+Route::get('obstetra', 'Existencias\ProductoController@obstetra')->name('obstetra.index');
+
 Route::post('producto/create', 'Existencias\ProductoController@create')->name('producto.create');
 Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
 Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
@@ -403,11 +409,13 @@ Route::get('requerimientos1', 'Existencias\RequerimientosController@index2')->na
 Route::get('requerimientos2', 'Existencias\RequerimientosController@index3')->name('requerimientos.index3')->middleware('auth');
 Route::get('requerimientos-search', 'Existencias\RequerimientosController@search')->name('requerimientos.search')->middleware('auth');
 Route::get('requerimientos-create', 'Existencias\RequerimientosController@createView')->name('requerimientos.create')->middleware('auth');
+Route::get('requerimientos-create1', 'Existencias\RequerimientosController@createView1')->name('requerimientos.create1')->middleware('auth');
 Route::post('requerimientos/create', 'Existencias\RequerimientosController@create')->middleware('auth');
 Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
 Route::get('procesar/{id}', 'Existencias\RequerimientosController@procesar')->middleware('auth');
 //Route::get('requerimientos-edit-{id}', 'Existencias\RequerimientosController@editView')->name('requerimientos.edit');
 Route::get('requerimientos-edit', 'Existencias\RequerimientosController@edit');
+Route::get('requerimientos-edit1', 'Existencias\RequerimientosController@edit1');
 Route::get('requerimientos-reversar-{id}', 'Existencias\RequerimientosController@reversar');
 Route::get('requerimientos-delete-{id}', 'Existencias\RequerimientosController@delete');
 

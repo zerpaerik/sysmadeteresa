@@ -48,6 +48,92 @@ class ProductoController extends Controller
       ]);     
     }
 
+     public function recepcion(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',1)->orderBy('nombre','ASC')->get();
+      return view('generics.index5', [
+        "icon" => "fa-list-alt",
+        "model" => "existencias",
+        "model1" => "Productos en Almacen Recepciòn",
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
+        "data" => $producto,
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
+
+
+     public function lab(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',2)->orderBy('nombre','ASC')->get();
+      return view('generics.index5', [
+        "icon" => "fa-list-alt",
+        "model" => "existencias",
+        "model1" => "Productos en Almacen Laboratorio",
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
+        "data" => $producto,
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
+
+    public function metodosp(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',3)->orderBy('nombre','ASC')->get();
+      return view('generics.index5', [
+        "icon" => "fa-list-alt",
+        "model" => "existencias",
+        "model1" => "Productos en Almacen Mètodos",
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
+        "data" => $producto,
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
+
+     public function rayos(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',4)->orderBy('nombre','ASC')->get();
+      return view('generics.index5', [
+        "icon" => "fa-list-alt",
+        "model" => "existencias",
+        "model1" => "Productos en Almacen Rayos",
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
+        "data" => $producto,
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
+
+    public function obstetra(){
+    //  $producto = Producto::all();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',5)->orderBy('nombre','ASC')->get();
+      return view('generics.index5', [
+        "icon" => "fa-list-alt",
+        "model" => "existencias",
+        "model1" => "Productos en Almacen Obstetra",
+        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
+        "data" => $producto,
+        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
+          "actions" => [
+            '<button type="button" class="btn btn-info">Transferir</button>',
+            '<button type="button" class="btn btn-warning">Editar</button>'
+          ]
+      ]);     
+    }
+
     
    public function entrada(Request $request){
     

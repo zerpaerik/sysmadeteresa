@@ -89,7 +89,13 @@
 							    <td>{{$req->cantidad}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
-							    <td><form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form></td>		
+							    <td>
+							    @if(Session::get('sedeName') <> 'PROCERES')
+							    <form method="get" action="requerimientos-edit"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form>
+							    @else
+							    <form method="get" action="requerimientos-edit1"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form>
+							    @endif
+							    </td>		
 						
 							</tr>
 						@endforeach

@@ -10,7 +10,11 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Requerimientos/Enviados</span>
+					@if(Session::get('sedeName') <> 'PROCERES')
 				    <a href="{{route('requerimientos.create')}}" class="btn btn-success">Agregar</a>
+				    @else
+                    <a href="{{route('requerimientos.create1')}}" class="btn btn-success">Agregar</a>
+				    @endif
 
 				</div>
 				<div class="box-icons">
@@ -33,6 +37,9 @@
 							<th>ID</th>
 							<th>Dirigida A:</th>
 							<th>Usuario Solicitante</th>
+							@if(Session::get('sedeName') == 'PROCERES')
+							<th>Almacen Solicitante</th>
+							@endif
 							<th>Producto Solicitado</th>
 							<th>Cantidad</th>
 							<th>Cantidad Entregada</th>
@@ -50,6 +57,17 @@
 								<td>{{$req->id}}</td>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
+								@if(Session::get('sedeName') == 'PROCERES')
+								@if($req->almacen_solicita == 1)
+								<td>Recepciòn</td>
+								@elseif($req->almacen_solicita == 2)
+								<td>Laboratorio</td>
+								@elseif($req->almacen_solicita == 3)
+								<td>Rayos</td>
+								@else
+								<td>Obstetra</td>
+                                @endif
+								@endif
 								<td>{{$req->nombre}}</td>
 								<td>{{$req->cantidad}}</td>
 								<td>{{$req->cantidadd}}</td>
