@@ -70,7 +70,7 @@ margin-top: -20px;
 	</div>
 
 <div class="paciente">
-		<p><strong>{{$ticket->nombres}},{{$ticket->apellidos}}</strong></p>
+		<p><strong>{{$ticket->apellidos}},{{$ticket->nombres}}</strong></p>
 	</div>
 
 
@@ -89,9 +89,7 @@ margin-top: -20px;
 		<p><strong>Deuda: {{ $ticket->pendiente}}</strong></p>
 	</div>
 
-	<div class="" style="margin-left: 50px; margin-top: -25px;">
-		<p><strong>Origen:{{ $ticket->nompac}},{{ $ticket->apepac}}</strong></p>
-	</div>
+	
 
 	<div class="total">
 		<p><strong>{{ $ticket->monto}}</strong></p>
