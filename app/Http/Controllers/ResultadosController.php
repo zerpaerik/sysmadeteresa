@@ -304,10 +304,15 @@ class ResultadosController extends Controller
 
     $atencion = Atenciones::findOrFail($id);
 		$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+    $laboratorios = Producto::where('almacen','=',2)->where('categoria','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+    $servicios = Producto::where('almacen','=',2)->whereNotIn('categoria',[2,3])->where("sede_id", "=", $request->session()->get('sede'))->get();
+
+    dd($servicios);
+    die();
     $productos2 = Producto::where('almacen','=',2)->where("categoria",'=',4)->where("sede_id", "=", $request->session()->get('sede'))->get();
 
 
-    return view('resultados.guardar', compact('atencion','productos','productos2'));
+    return view('resultados.guardar', compact('atencion','productos','productos2','servicios','laboratorios'));
 
     }
 	

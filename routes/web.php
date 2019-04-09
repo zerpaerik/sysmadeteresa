@@ -487,6 +487,8 @@ Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
 
+Route::get('saldo/view/{id}', 'CajaController@saldo')->middleware('auth');
+
 Route::get('recibo_caja_ver/{id}','ReportesController@recibo_caja_ver');
 Route::get('recibo_caja_verd/{id}','ReportesController@recibo_caja_verd');
 Route::get('recibo_caja_ver2/{id}/{fecha1?}/{fecha2?}','ReportesController@recibo_caja_ver2');

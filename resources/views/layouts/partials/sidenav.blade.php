@@ -430,12 +430,33 @@
           <li>
             <a href="{{route('productos.index')}}"><i class="fa fa-list-alt"></i> Almacen Central</a>
           </li>
+
+          <li>
+            <a href="{{route('rayos.index')}}"><i class="fa fa-list-alt"></i> Almacen Rayos</a>
+          </li>
+
+          <li>
+            <a href="{{route('obstetra.index')}}"><i class="fa fa-list-alt"></i> Almacen Obstetra</a>
+          </li>
+
+          <li>
+            <a href="{{route('lab.index')}}"><i class="fa fa-list-alt"></i> Almacen Laboratorio</a>
+          </li>
+
+          <li>
+            <a href="{{route('recepcion.index')}}"><i class="fa fa-list-alt"></i> Almacen Recepcion</a>
+          </li>
+          
 @endif
+
+@if(Session::get('sedeName') <> 'PROCERES')
+
 
 
           <li>
             <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
           </li>
+@endif
 
 
         </ul>      
@@ -453,17 +474,16 @@
           <li>
             <a href="{{route('requerimientos.index2')}}"><i class="fa fa-plus-square-o"></i> Recibidos</a>
           </li>
+
+          <li>
+            <a href="{{route('requerimientos.index3')}}"><i class="fa fa-plus-square-o"></i> Procesados</a>
+          </li>
 @endif
 
 
         </ul>      
     </li>
-@if(Session::get('sedeName') == 'PROCERES')
 
-    <li>
-      <a href="{{route('historico')}}"><i class="fa fa-list-alt"></i> Historico de Transferencias</a>
-    </li>
-@endif
 
 @if(Session::get('sedeName') == 'PROCERES')
   
@@ -498,6 +518,7 @@
 
   </ul>
 </li>
+
 
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">

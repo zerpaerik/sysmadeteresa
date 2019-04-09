@@ -170,7 +170,7 @@ class ProductoController extends Controller
 
     public function productOutView(){
       return view('existencias.salida', [
-        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->get(['id', 'nombre','cantidad']),
+        "productos" => Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',1)->get(['id', 'nombre','cantidad']),
         "sedes" => Sede::all(),
         "proveedores" => Proveedor::all()
       ]);    

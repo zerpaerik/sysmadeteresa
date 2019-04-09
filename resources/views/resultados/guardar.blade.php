@@ -24,7 +24,8 @@
 											{{Form::file('informe', ["class"=>"form-control", "required"])}}
 										</div>
 									</div>
-								</div>
+								</div> 
+         @if($atencion->es_servicio == 1)
 								
 								<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
             <!-- sheepIt Form -->
@@ -37,7 +38,7 @@
                     <div class="col-sm-4">
                       <select id="laboratorios_#index#_laboratorio" name="material[laboratorios][#index#][laboratorio]" class="selectLab form-control">
                         <option value="">Seleccionar Material</option>
-                        @foreach($productos as $pac)
+                        @foreach($servicios as $pac)
                           <option value="{{$pac->id}}">
                             {{$pac->nombre}}
                           </option>
@@ -71,6 +72,56 @@
             <!-- /sheepIt Form --> 
 						
 					</div>
+
+          @else
+
+          <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
+            <!-- sheepIt Form -->
+            <div id="laboratorios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="laboratorios_template" class="template row">
+
+                    <label for="laboratorios_#index#_laboratorio" class="col-sm-1 control-label">Materiales</label>
+                    <div class="col-sm-4">
+                      <select id="laboratorios_#index#_laboratorio" name="material[laboratorios][#index#][laboratorio]" class="selectLab form-control">
+                        <option value="">Seleccionar Material</option>
+                        @foreach($laboratorios as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->nombre}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-1 control-label">Cantidad Usada:</label>
+                    <div class="col-sm-2">
+
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono] type="text" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="0.00">
+                    </div>
+
+                    <a id="laboratorios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="laboratorios_noforms_template" class="noItems col-sm-12 text-center">Ningún laboratorios</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="laboratorios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="laboratorios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
+                    <div id="laboratorios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="laboratorios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
+            
+          </div>
+
+          @endif
           <hr>
 
            <div class="row">
