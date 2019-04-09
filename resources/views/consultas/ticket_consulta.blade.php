@@ -70,7 +70,11 @@ margin-top: -20px;
 		<p><strong>Fecha de cita: {{ $paciente->date}}</strong></p>
 	</div>
 	<div class="servicios">
-		<p><strong>Especialista: {{ $paciente->nombrePro}} {{ $paciente->apellidoPro}}</strong></p>
+		@if($paciente->tipo == 'CONTROLES')
+		<p><strong>Tipo: CONTROL PRENATAL</strong></p>
+		@else
+		<p><strong>Tipo: CONSULTA</strong></p>
+		@endif
 	</div>
 
 	<div class="servicios">
