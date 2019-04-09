@@ -790,10 +790,15 @@
    <li>
       <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Productos</a>
         <ul class="dropdown-menu">
-
+        @if(Session::get('sedeName') == 'PROCERES')
+           <li>
+            <a href="{{route('recepcion.index')}}"><i class="fa fa-list-alt"></i> Almacen Recepcion</a>
+          </li>
+        @else
           <li>
             <a href="{{route('productos.index2')}}"><i class="fa fa-list-alt"></i> Almacen Local</a>
           </li>
+        @endif
         </ul>      
     </li>
     <li>
@@ -1009,6 +1014,20 @@
     </li>
 
   </ul>
+  <li>
+      <a href="#" class="dropdown-toggle"><i class="fa fa-tasks"></i> Productos</a>
+        <ul class="dropdown-menu">
+
+          <li>
+            <a href="{{route('rayos.index')}}"><i class="fa fa-list-alt"></i> Almacen Rayos</a>
+          </li>
+
+          <li>
+            <a href="{{route('obstetra.index')}}"><i class="fa fa-list-alt"></i> Almacen Obstetra</a>
+          </li>
+        </ul>      
+    </li>
+
 </li>
  
 <li class="dropdown">
