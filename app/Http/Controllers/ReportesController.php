@@ -164,12 +164,13 @@ class ReportesController extends Controller
 	 public function verTicket($id){
        
                 $searchtipo = DB::table('atenciones')
-                ->select('id','es_servicio','es_laboratorio')
+                ->select('id','es_servicio','es_laboratorio','es_paquete')
                 ->where('id','=', $id)
                 ->first();
            
                 $es_servicio = $searchtipo->es_servicio;
                 $es_laboratorio = $searchtipo->es_laboratorio;
+                $es_paquete = $searchtipo->es_paquete;
 				
 		
                 if (!is_null($es_servicio)) {
@@ -184,7 +185,7 @@ class ReportesController extends Controller
 				
 			 
 
-                } else {
+                } elseif(!is_null($es_laboratorio)) {
 
                 $ticket = DB::table('atenciones as a')
                 ->select('a.id','a.id_paciente','a.origen_usuario','a.ticket','a.id_laboratorio','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.name as detalle','a.created_at','a.abono','a.pendiente','a.monto')
@@ -194,6 +195,15 @@ class ReportesController extends Controller
                 ->where('a.id','=', $id)
                 ->first();
 
+
+                } else {
+                      $ticket = DB::table('atenciones as a')
+                ->select('a.id','a.id_paciente','a.origen_usuario','a.ticket','a.id_paquete','b.name as nompac','b.lastname as apepac','c.nombres','c.apellidos','e.detalle as detalle','a.created_at','a.abono','a.pendiente','a.monto')
+                ->join('users as b','b.id','a.origen_usuario')
+                ->join('pacientes as c','c.id','a.id_paciente')
+                ->join('paquetes as e','e.id','a.id_paquete')
+                ->where('a.id','=', $id)
+                ->first();
 
                 }
 
