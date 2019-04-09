@@ -142,9 +142,11 @@ class CajaController extends Controller
 
     }*/
 
+
+
      public function saldo(Request $request,$id){
 
-        $caja=Caja::where('fecha','=',Carbon::now()->toDateString())->first();
+        $caja=Caja::where('fecha','=',Carbon::now()->toDateString())->where('sede','=',$request->session()->get('sede'))->first();
 
         if($caja){
         $fechamañana=$caja->created_at; 
@@ -169,7 +171,7 @@ class CajaController extends Controller
      
 
 
-         $consultas = Creditos::where('origen', 'CONSULTAS')
+         $consultas = Creditos::where('origen','CONSULTAS')
                                      ->where('id_sede','=', $request->session()->get('sede'))
                                       ->whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fechanoche))
@@ -266,6 +268,7 @@ class CajaController extends Controller
         }
 
         $consultas = Creditos::where('origen', 'CONSULTAS')
+                                    ->where('id_sede','=', $request->session()->get('sede'))
                                     ->whereDate('created_at','=',$fecha)
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
