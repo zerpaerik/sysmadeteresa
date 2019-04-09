@@ -201,6 +201,17 @@ class CajaController extends Controller
             $cuentasXcobrar->monto = 0;
         }
 
+          $metodos = Creditos::where('origen', 'METODOS ANTICONCEPTIVOS')
+                                             ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereRaw("created_at > ? AND created_at <= ?", 
+                                     array($fechamañana, $fechanoche))
+                                    ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+                                    ->first();
+        if ($metodos->cantidad == 0) {
+            $metodos->monto = 0;
+        }
+
+
          $ventas = Creditos::where('origen','VENTA DE PRODUCTOS')
                                     ->where('id_sede','=', $request->session()->get('sede'))
                                     ->whereRaw("created_at > ? AND created_at <= ?", 
@@ -247,7 +258,7 @@ class CajaController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto + $punziones->monto;
+         $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $ventas->monto + $metodos->monto;
 
 
         }else{
