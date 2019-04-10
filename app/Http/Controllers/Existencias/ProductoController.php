@@ -50,7 +50,7 @@ class ProductoController extends Controller
 
      public function recepcion(){
     //  $producto = Producto::all();
-      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',1)->orderBy('nombre','ASC')->get();
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->whereNotIn('categoria',[2,4,5])->orderBy('nombre','ASC')->get();
       return view('generics.index5', [
         "icon" => "fa-list-alt",
         "model" => "existencias",
