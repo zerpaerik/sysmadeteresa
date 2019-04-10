@@ -313,7 +313,9 @@ class ResultadosController extends Controller
 
     $rayos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->union($local)->get();
 
-    return view('resultados.guardar', compact('atencion','productos','productos2','servicios','laboratorios','rayos'));
+    $placas = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->get();
+
+    return view('resultados.guardar', compact('atencion','productos','productos2','servicios','laboratorios','rayos','placas'));
 
     }
 	
