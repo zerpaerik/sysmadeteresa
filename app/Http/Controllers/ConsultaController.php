@@ -317,8 +317,8 @@ class ConsultaController extends Controller
 
 		$consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
 		$consulta->diagnostico_final =$request->diagnostico_final;
-		$consulta->ciex =$request->ciex;
-		$consulta->ciex2=$request->ciex2;
+		$consulta->ciex =str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->ciex));
+		$consulta->ciex2=str_replace(["[", "]", '"', ","], ["", ".", "", ", "], json_encode($request->ciex2));
 		$consulta->examen_auxiliar=$request->examen_auxiliar;
 		$consulta->plan_tratamiento =$request->plan_tratamiento;
 		$consulta->observaciones =$request->observaciones;
