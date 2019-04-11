@@ -748,40 +748,23 @@ class ReportesController extends Controller
       
 
 
-    
-
-    if(!is_null($request->fecha1) && (!is_null($request->fecha2))){
-
-        $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
-        ->join('users as b','b.id','a.usuario')
-        ->whereDate('a.fecha','=',$request->fecha1)
-        ->first(); 
-        
-        $fechamañana=$cajamañana->created_at; 
-
- 
-        
-
-   } else {
-
-     $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+      $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
-      $fechamañana=$cajamañana->created_at; 
-}
+      $fechamañana=$cajamañana->created_at;   
     
       
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->where('a.id','=',$id)
         ->first();
 
         $fecha=$caja->created_at;
+
 
 
     
@@ -899,35 +882,17 @@ class ReportesController extends Controller
       
 
 
-    
-
-    if(!is_null($request->fecha1) && (!is_null($request->fecha2))){
-
-        $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
-        ->join('users as b','b.id','a.usuario')
-        ->whereDate('a.fecha','=',$request->fecha1)
-        ->first(); 
-        
-        $fechamañana=$cajamañana->created_at; 
-
- 
-        
-
-   } else {
-
-     $cajamañana=DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+       $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
-      $fechamañana=$cajamañana->created_at; 
-}
+      $fechamañana=$cajamañana->created_at;   
     
       
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.usuario','b.name','b.lastname')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->where('a.id','=',$id)
         ->first();
