@@ -172,6 +172,13 @@ class MetodosController extends Controller
 	}    
 
   public function delete($id){
+    
+    $metodos = Metodos::where('id','=',$id)->first();
+
+    $p = Producto::find($metodos->id_producto);
+          $p->cantidad = $p->cantidad + 1;
+          $res = $p->save();
+
     $metodo = Metodos::find($id);
     $metodo->delete();
 
