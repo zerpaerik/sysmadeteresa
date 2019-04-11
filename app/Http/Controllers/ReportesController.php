@@ -748,19 +748,25 @@ class ReportesController extends Controller
       
     if(!is_null($request->fecha1)){
 
+
+
       $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereDate('fecha','=',$request->fecha1)
         ->first();  
 
-      $fechamañana=$cajamañana->created_at;   
-    
+      $fechamañana=$cajamañana->created_at; 
+
+       
+
     } else {
 
         $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
@@ -776,6 +782,8 @@ class ReportesController extends Controller
         ->first();
 
         $fecha=$caja->created_at;
+
+
 
 
 
@@ -895,19 +903,25 @@ class ReportesController extends Controller
 
   if(!is_null($request->fecha1)){
 
+
+
       $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereDate('fecha','=',$request->fecha1)
         ->first();  
 
-      $fechamañana=$cajamañana->created_at;   
-    
+      $fechamañana=$cajamañana->created_at; 
+
+       
+
     } else {
 
         $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
