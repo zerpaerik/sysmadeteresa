@@ -746,16 +746,28 @@ class ReportesController extends Controller
      public function recibo_caja_ver2(Request $request,$id,$fecha1=NULL,$fecha2=NULL) 
     {
       
-
+    if(!is_null($request->fecha1)){
 
       $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->whereDate('fecha','=',$request->fecha1)
+        ->first();  
+
+      $fechamañana=$cajamañana->created_at;   
+    
+    } else {
+
+        $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
       $fechamañana=$cajamañana->created_at;   
-    
+
+
+    }
       
       $caja = DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
@@ -881,16 +893,29 @@ class ReportesController extends Controller
     {
       
 
+  if(!is_null($request->fecha1)){
 
-       $cajamañana=DB::table('cajas as  a')
+      $cajamañana=DB::table('cajas as  a')
+        ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
+        ->whereDate('fecha','=',$request->fecha1)
+        ->first();  
+
+      $fechamañana=$cajamañana->created_at;   
+    
+    } else {
+
+        $cajamañana=DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('fecha','=',Carbon::today()->toDateString())
         ->first();  
 
       $fechamañana=$cajamañana->created_at;   
-    
-      
+
+
+    }
+
       $caja = DB::table('cajas as  a')
         ->select('a.id','a.cierre_matutino','a.cierre_vespertino','a.created_at','a.fecha','a.balance','a.sede','a.usuario','b.name','b.lastname')
         ->join('users as b','b.id','a.usuario')
