@@ -56,18 +56,6 @@
 						</div>
 
 
-						<label class="col-sm-1 control-label">Lo Aplicara:</label>
-						<div class="col-sm-3">
-							<select id="el3" name="personal">
-								@foreach($personal as $paciente)
-									<option value="{{$paciente->lastname}},{{$paciente->name}}">
-										{{$paciente->dni}} - 
-										{{$paciente->lastname}} {{$paciente->name}}
-									</option>
-								@endforeach
-							</select>
-						</div>
-
 						<label class="col-sm-1 control-label">TipoPago</label>
 							<div class="col-sm-3">
 								<select id="el3" name="tipopago">

@@ -8,6 +8,7 @@ use App\Models\Personal;
 use App\Models\Metodos;
 use App\Models\Creditos;
 use App\Models\AplicaMetodo;
+use App\User;
 use App\Models\Existencias\Producto;
 use Carbon\Carbon;
 use Toastr;
@@ -128,7 +129,6 @@ class MetodosController extends Controller
          $metodos->id_producto =$request->producto;
          $metodos->monto =$request->monto;
          $metodos->proximo = $proximo;
-         $metodos->personal = $request->personal;
          $metodos->estatus ='No Llamado';
          $metodos->id_usuario = \Auth::user()->id;
          $metodos->sede = $request->session()->get('sede');
@@ -272,11 +272,14 @@ class MetodosController extends Controller
 
     public function aplicar(Request $request){
 
+      $aplica=User::where('id','=',\Auth::user()->id)->first();
+
 
        DB::table('metodos')
             ->where('id', $request->id)
             ->update([
-              'aplicado' => 1
+              'aplicado' => 1,
+              'personal' => $aplica->name.' '.$aplica->lastname
             ]);
 
          $metodos=Metodos::where('id','=',$request->id)->first(); 

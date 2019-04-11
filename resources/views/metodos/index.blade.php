@@ -74,7 +74,7 @@
 							<th>Método</th>
 							<th>Monto</th>
 							<th>Próxima Aplicación</th>
-							<th>Lo Aplicara</th>
+							<th>Aplicado Por:</th>
 						    <th>Registrado Por:</th>
 							<th>Acciones</th>
 						</tr>
@@ -99,7 +99,15 @@
 							    <a target="_blank" href="metodos-ticket-ver-{{$atec->id}}" class="btn btn-success">Ver Ticket</a>
 							    @endif
 							   
-							    @if(\Auth::user()->role_id == 5 && \Auth::user()->role_id == 4)
+							    @if(\Auth::user()->role_id == 5)
+							    <a href="metodos-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+							    <a href="metodos-edit-{{$atec->id}}" class="btn btn-primary">Editar</a>
+							      <a target="_blank" href="metodos-ticket-ver-{{$atec->id}}" class="btn btn-success">Ver Ticket</a>
+							     @if($atec->aplicado == 0)
+							    <a href="aplimetodo-{{$atec->id}}" class="btn btn-danger">Aplicar</a>
+							    @endif
+							    @endif
+							    @if(\Auth::user()->role_id == 4)
 							    <a href="metodos-delete-{{$atec->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 							    <a href="metodos-edit-{{$atec->id}}" class="btn btn-primary">Editar</a>
 							      <a target="_blank" href="metodos-ticket-ver-{{$atec->id}}" class="btn btn-success">Ver Ticket</a>
@@ -125,6 +133,7 @@
 							<th>Método</th>
 							<th>Monto</th>
 							<th>Próxima Aplicación</th>
+							<th>Aplicado Por:</th>
 						    <th>Registrado Por:</th>
 							<th>Acciones</th>
 						  
