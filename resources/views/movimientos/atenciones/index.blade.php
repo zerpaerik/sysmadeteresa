@@ -10,6 +10,7 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Movimientos/Atenciones</span>
+				<a href="{{route('atenciones.create')}}" class="btn btn-primary">Agregar</a>
 
 				</div>
 
