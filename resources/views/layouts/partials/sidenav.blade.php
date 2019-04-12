@@ -544,6 +544,10 @@
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
       </li>
+
+      <li>
+        <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
+      </li>
      
 
     </ul>
@@ -851,6 +855,10 @@
       </li>
       <li>
         <a href="{{route('cuentasporcobrar.index')}}"><i class="fa fa-list-alt"></i> Cuentas por Cobrar</a>
+      </li>
+      
+      <li>
+        <a href="{{route('historialcobros.index')}}"><i class="fa fa-list-alt"></i> Historial de Cobros</a>
       </li>
     </ul>
   </li>
