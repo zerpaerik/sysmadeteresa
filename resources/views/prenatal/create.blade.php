@@ -114,7 +114,7 @@
 
 	<div class="col-md-3">
 
-	<strong>ECO EG</strong>: {{ $prenatal->eco_eg }}
+	<strong>ECO EG</strong>: {{ $prenatal->eco_eg }},TEXTO:{{ $prenatal->eco_eg_text}}
 		
 	</div>
 
@@ -419,6 +419,7 @@
 					      <div class="col-md-2">
                         <label for="">Eco: EG</label>
 						<input type="date" name="eco_eg" style="line-height: 20px">	
+						<input type="text" name="eco_eg_text">
 					     </div>
 
 
