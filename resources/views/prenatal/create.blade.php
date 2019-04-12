@@ -100,22 +100,22 @@
 <div class="col-md-6">
 			<strong><p>VI. F.U.M</p></strong>	
 
-	<div class="col-md-3">
+	<div class="col-md-2">
 		<strong>FUM</strong>: {{ $prenatal->ultima_menstruacion }}
 		
 	</div>
 
 
-	<div class="col-md-3">
+	<div class="col-md-2">
 
 	<strong>FPP</strong>: {{ $prenatal->parto_probable }}
 		
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-4">
 
-	<strong>ECO EG</strong>: {{ $prenatal->eco_eg }},TEXTO:{{ $prenatal->eco_eg_text}}
-		
+	<strong>ECO EG</strong>: {{ $prenatal->eco_eg }}
+		{{ $prenatal->eco_eg_text}}
 	</div>
 
 	</div>
