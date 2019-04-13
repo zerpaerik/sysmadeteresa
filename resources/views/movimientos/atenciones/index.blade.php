@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+</br>
 
-<body>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="box">
+						<a href="{{route($model.'.create')}}" class="btn btn-primary">Agregar</a>
+
 			<div class="box-header">
 				<div class="box-name">
-					<i class="fa fa-linux"></i>
-					<span>Movimientos/Atenciones</span>
-				<a href="{{route('atenciones.create')}}" class="btn btn-primary">Agregar</a>
-
+					<i class="fa {{$icon}}"></i>
+					<span><strong>{{ucfirst($model)}}</strong></span>
 				</div>
-
-
 				<div class="box-icons">
 					<a class="collapse-link">
 						<i class="fa fa-chevron-up"></i>
@@ -22,37 +20,22 @@
 					<a class="expand-link">
 						<i class="fa fa-expand"></i>
 					</a>
-					<a class="close-link">
-						<i class="fa fa-times"></i>
-					</a>
 				</div>
-
 				<div class="no-move"></div>
-				
 			</div>
-			{!! Form::open(['method' => 'get', 'route' => ['atenciones.index']]) !!}
-
-			<div class="row">
-				<div class="col-md-2">
-					<label>Fecha</label>
-					<input type="date" value="{{$fecha}}" name="fecha" style="line-height: 20px">
-				</div>
-				<div class="col-md-3">
-					<label>Buscar por Detalle</label>
-					<input type="text" name="detalle" style="line-height: 20px">
-				</div>
-				<div class="col-md-2">
-					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
-					{!! Form::close() !!}
-				</div>
-				
-			</div>	
-
-		
-
 			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-					<thead>
+			               <div class="box-content no-padding table-responsive">				
+
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<form action="/atenciones-search" method="get">
+						<h5>Rango de fechas</h5>
+						<label for="">Inicio</label>
+						<input type="date" name="inicio" value="" style="line-height: 20px">
+						<label for="">Buscar</label>
+						<input type="text" name="nombre" style="line-height: 20px">
+						<input type="submit" class="btn btn-primary" value="Buscar">
+					</form>
+					<thead> 
 						<tr>
 							<th>Id</th>
 							<th>Paciente</th>
@@ -67,7 +50,7 @@
 						</tr>
 					</thead>
 					<tbody>
-                          @foreach($atenciones as $d)
+						@foreach($data as $d)
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->apellidos}},{{$d->nombres}}</td>
@@ -83,71 +66,70 @@
 						<td>{{$d->abono}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
-		                <td>
-		                	<a target="_blank" class="btn btn-primary" href="ticket-ver-{{$d->id}}">Ver Ticket</a>	
+		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
 						      @if(\Auth::user()->role_id <> 6)							 
-							<a href="atenciones-edit-{{$d->id}}" class="btn btn-primary">Editar</a>
-						    <a href="atenciones-delete-{{$d->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
-		                     @endif
-		                 </td>
-						</tr>
-						@endforeach	
-					</tbody>
-					<tfoot>
+											<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 						
-					</tfoot>
-
+		                   <td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+		                     @endif
+						</tr>
+						@endforeach						
+					</tbody>
+					
 				</table>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@if(isset($created))
+	<div class="alert alert-success" role="alert">
+	  A simple success alert—check it out!
+	</div>
+@endif
 
-</body>
-
-
-
-@section('scripts')
 <script type="text/javascript">
-// Run Select2 on element
-$(document).ready(function() {
-      LoadTimePickerScript(DemoTimePicker);
-      LoadSelect2Script(function (){
-            $("#el2").select2();
-            $("#el1").select2();
-            $("#el3").select2({disabled : true});
-      });
-      WinMove();
-});
-
-$('#input_date').on('change', getAva);
-$('#el1').on('change', getAva);
-
-function getAva (){
-            var d = $('#input_date').val();
-            var e = $("#el1").val();
-            if(!d) return;
-            $.ajax({
-      url: "available-time/"+e+"/"+d,
+	function del(id){
+		$.ajax({
+      url: "{{$model}}-delete-"+id,
       headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-      type: "get",
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "delete",
+      dataType: "json",
+      data: {},
       success: function(res){
-            $('#el3').find('option').remove().end();
-            for(var i = 0; i < res.length; i++){
-                              var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
-                              $('#el3').append(newOption).trigger('change');
-            }
+      	location.reload(true);
       }
-    });     
-}
+    });
+	}
 
-function DemoTimePicker(){
-      $('#input_date').datepicker({
-      setDate: new Date(),
-      minDate: 0});
-}
+	function closeModal(){
+		$('#myModal').modal('hide');
+	}
+
+	function openmodal(){
+		$("#myModal").show();
+	}
+
 </script>
-@endsection
+
+<div id="myModal" class="modal" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Modal Body</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="closeModal()" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection

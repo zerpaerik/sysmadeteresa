@@ -1132,7 +1132,7 @@ class ReportesController extends Controller
         $informe->setValue('date',date('d-m-Y'));        
         //dd($resultados->origen);
         if ($resultados->origen == 1) {
-            $informe->setValue('indicacion','P'. '-'.$resultados->dniprof);
+            $informe->setValue('indicacion','PERSONAL');
         }
         if ($resultados->origen == 2) {
            
