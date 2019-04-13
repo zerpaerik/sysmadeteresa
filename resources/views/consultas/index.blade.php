@@ -69,7 +69,6 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
 							<th>Acciones:</th>
@@ -84,7 +83,6 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->date}}</td>
-						<td>{{$d->start_time}}-{{$d->end_time}}</td>
 						@if($d->atendido == 1)
 						<td style="background: #82FA58;">Fue Atendido</td>
 						@else
@@ -126,7 +124,6 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
-							<th>Horas</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
 							<th>Acciones:</th>

@@ -59,16 +59,7 @@
 						</div>
 
 					
-						<label class="col-sm-1 control-label">Hora</label>
-							<div class="col-sm-3">
-								<select id="el3" name="time">
-									@foreach($tiempos as $tiempo)
-										<option value="{{$tiempo->id}}">
-											{{$tiempo->start_time}} {{$tiempo->end_time}}
-										</option>
-									@endforeach
-								</select>
-							</div>	
+						
 
 							<label class="col-sm-1 control-label">TipoPago</label>
 							<div class="col-sm-3">
