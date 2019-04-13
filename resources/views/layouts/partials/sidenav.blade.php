@@ -118,7 +118,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de Productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
+            <a href="{{route('ventas.index')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
 @if(Session::get('sedeName') == 'PROCERES')
 
@@ -502,7 +502,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de Productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
+            <a href="{{route('ventas.index')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
 @if(Session::get('sedeName') == 'PROCERES')
 
@@ -821,7 +821,7 @@
       <a href="#" class="dropdown-toggle"><i class="fa fa-reply"></i> Salida de Productos</a>
         <ul class="dropdown-menu">
           <li>
-            <a href="{{route('productos.out')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
+            <a href="{{route('ventas.index')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
 
 

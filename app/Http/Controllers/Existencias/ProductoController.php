@@ -8,7 +8,10 @@ use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
 use App\Models\Creditos;
+use App\Models\Ventas;
 use Toastr;
+use Auth;
+use Carbon\Carbon;
 
 
 class ProductoController extends Controller
@@ -47,6 +50,83 @@ class ProductoController extends Controller
           ]
       ]);     
     }
+
+     public function indexv(Request $request){
+
+       if(! is_null($request->fecha)) {
+
+    $f1 = $request->fecha;
+    $f2 = $request->fecha2;   
+
+
+
+
+          $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.sede','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('productos as b','b.id','a.id_producto')
+            ->where('a.sede','=',$request->session()->get('sede'))
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderby('a.id','desc')
+            ->get();
+
+           $aten = Ventas::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                                    ->where('sede','=',$request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+            if ($aten->monto == 0) {
+        }
+          
+           $cantidad = Ventas::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',                        strtotime($f2))])
+                       ->where('sede','=',$request->session()->get('sede'))
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
+        
+
+
+        } else {
+
+
+           $atenciones = DB::table('ventas as a')
+            ->select('a.id','a.id_producto','a.created_at','a.sede','a.monto','a.id_usuario','a.cantidad','e.name','e.lastname','b.nombre','b.codigo')
+            ->join('users as e','e.id','a.id_usuario')
+            ->join('productos as b','b.id','a.id_producto')
+            ->where('a.sede','=',$request->session()->get('sede'))
+            ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
+            ->orderby('a.id','desc')
+            ->get();
+           
+
+        $aten = Ventas::whereDate('created_at', '=',Carbon::today()->toDateString())
+                                            ->where('sede','=',$request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+        if ($aten->monto == 0) {
+        }
+
+            $cantidad = Ventas::whereDate('created_at', '=',Carbon::today()->toDateString())
+                          ->where('sede','=',$request->session()->get('sede'))
+                        ->select(DB::raw('COUNT(*) as cantidad'))
+                       ->first();
+
+        if ($cantidad->cantidad == 0) {
+        }
+
+
+
+
+
+        }
+
+
+        return view('existencias.ventas.index', ["atenciones" => $atenciones, "aten" => $aten,"cantidad" => $cantidad]);
+  }
 
      public function recepcion(){
     //  $producto = Producto::all();
@@ -205,6 +285,14 @@ class ProductoController extends Controller
                   ->update([
                       'cantidad' => $cantidadactual - $request->cantidadplus,
                   ]);
+
+               $ventas = new Ventas();
+              $ventas->id_producto = $request->producto;
+              $ventas->monto = $request->monto;
+              $ventas->cantidad= $request->cantidadplus;
+              $ventas->id_usuario = Auth::user()->id;
+              $ventas->sede = $request->session()->get('sede');
+              $ventas->save();
 				  
 		      $creditos = new Creditos();
               $creditos->origen = 'VENTA DE PRODUCTOS';
@@ -213,10 +301,11 @@ class ProductoController extends Controller
               $creditos->id_sede = $request->session()->get('sede');
               $creditos->tipo_ingreso = $request->tipopago;
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
+              $creditos->id_venta = $ventas->id;
               $creditos->save();
 			  
        Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
-      return redirect()->action('Existencias\ProductoController@index2', ["created" => true]);
+      return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
 		}
     
     }
@@ -283,6 +372,25 @@ class ProductoController extends Controller
       }else{
         return response()->json(["exists" => false, "medida" => $prod->medida]);
       }
+    }
+
+     public function deleteventas($id){
+
+      $ventas= Ventas::where('id','=',$id)->first();
+
+      $p = Producto::find($ventas->id_producto);
+      $p->cantidad= $p->cantidad - $ventas->cantidad;
+      $res = $p->save();
+
+      $creditos= Creditos::where('id_venta','=',$id)->first();
+      $creditos->delete();
+
+      $ventasp= Ventas::where('id','=',$id)->first();
+      $ventasp->delete();
+
+       Toastr::success('Eliminado Exitosamente', 'Venta!', ['progressBar' => true]);
+    return redirect()->route('ventas.index');
+
     }
 
 

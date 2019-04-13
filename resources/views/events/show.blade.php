@@ -4,7 +4,6 @@
 	<p>Paciente: {{$data->nombres}} {{$data->apellidos}} </p>
 	<p>Doctor: {{$data->nombrePro}} {{$data->apellidoPro}}</p>
 	<p>Fecha de cita: {{$data->date}}</p>
-	<p>Hora: {{$data->start_time}} Hasta las {{$data->end_time}}</p>
 	<br>
 
 	<h2>Datos del paciente</h2>
@@ -243,6 +242,7 @@
 			<label for="" class="col-sm-2 control-label">Animo</label>
 			<div class="col-sm-4">	
 				<select id="el9" name="animo">
+				    <option value="Normal">Normal</option>
 					<option value="Deprimido">Deprimido</option>
 					<option value="Eufòrico">Eufòrico</option>
 					<option value="Tendencia al llanto">Tendencia al llanto</option>
