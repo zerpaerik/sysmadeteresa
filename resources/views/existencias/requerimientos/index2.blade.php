@@ -95,6 +95,8 @@
 							    @else
 							    <form method="get" action="requerimientos-edit1"><input type="hidden" value="{{$req->id}}" name="id"><input type="text" name="cantidadd" value="" size="8"><button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Procesar</button></form>
 							    @endif
+
+							    <a _blank" class="btn btn-warning" href="requerimientos-delete-{{$req->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 							    </td>		
 						
 							</tr>

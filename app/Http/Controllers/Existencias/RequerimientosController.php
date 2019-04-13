@@ -183,7 +183,7 @@ class RequerimientosController extends Controller
       $res = $p->delete();
       
        Toastr::success('Eliminado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
-        return redirect()->action('Existencias\RequerimientosController@index', ["created" => false]);
+        return redirect()->action('Existencias\RequerimientosController@index2', ["created" => false]);
     }
 
 
