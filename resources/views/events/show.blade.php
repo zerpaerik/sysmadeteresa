@@ -296,7 +296,7 @@
 
 			<label for="" class="col-sm-2 control-label">PAP:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="date" name="pap">
+				<input   class="form-control" type="text" name="pap">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">MAC:</label>
