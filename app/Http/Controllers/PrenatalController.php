@@ -214,8 +214,8 @@ class PrenatalController extends Controller
 				'fecha_terminacion' =>$request->fecha_terminacion,
 				'peso_gestacion' =>$request->peso_gestacion,
 				'aborto_gestacion' =>$request->aborto_gestacion,
-				'af'=> json_encode($request->af),
-				'ap'=> json_encode($request->ap),
+				'af'=> str_replace(["[", "]", '"', ","], ["", ".", "", ", "],json_encode($request->af)),
+				'ap'=> str_replace(["[", "]", '"', ","], ["", ".", "", ", "],json_encode($request->ap)),
 				'peso_pregestacional' =>$request->peso_pregestacional,
 				'talla_pregestacional' =>$request->talla_pregestacional,
 				'conclusion' =>$request->conclusion,
@@ -224,7 +224,6 @@ class PrenatalController extends Controller
 				'ultima_menstruacion' =>$request->ultima_menstruacion,
 				'parto_probable' =>$request->parto_probable,
 				'eco_eg' =>$request->eco_eg,
-				'eco_eg_text' =>$request->eco_eg_text,
 				'orina' =>$request->orina,
 				'orinad' =>$request->orinad,
 				'urea' =>$request->urea,
@@ -235,7 +234,7 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => $request->peso_pregestacional / $request->talla_pregestacional * $request->talla_pregestacional
+				'imc' => number_format(($request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)) * 10000, 2)
 
 
 				

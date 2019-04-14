@@ -175,27 +175,29 @@
             <h3>V. Peso y Talla</h3>
             <div class="col-md-3">
             <label for="">Peso Gr.</label>
-            <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" disabled="">
+            <input type="text" name="peso_pregestacional" value="{{$data->peso_pregestacional}}" disabled="" style="width: 150px;">
               </div>
               <div class="col-md-3">
             <label for="">Talla (Cm)</label>
-            <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" disabled="">>
-            </div>
-
-            <div class="col-md-3">
-            <label for="">Conclusiòn</label>
-         
-
-                            {{$data->conclusion}}
-
+            <input type="text" name="talla_pregestacional" value="{{$data->talla_pregestacional}}" disabled="" style="width: 150px;">
             </div>
 
             <div class="col-md-3">
             <label for="">IMC</label>
-         
+              <input type="text" value="{{$data->imc}}" disabled="" style="width: 150px;">
+            </div>
 
-                            {{$data->imc}}
-
+            <div class="col-md-3">
+            <label for="">Conclusión</label>
+              @if($data->imc <= 24)
+              <input type="text" value="Normal" disabled="" style="width: 110px;">
+              @elseif($data->imc <=29)
+              <input type="text" value="Sobrepeso" disabled="" style="width: 110px;">
+              @elseif($data->imc <=34)
+              <input type="text" value="Obesidad I" disabled="" style="width: 110px;">
+              @elseif($data->imc >= 35)
+              <input type="text" value="Obesidad II" disabled="" style="width: 110px;">
+              @endif
             </div>
 
             </div>

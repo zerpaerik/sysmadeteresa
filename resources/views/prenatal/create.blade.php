@@ -69,15 +69,24 @@
     	</div>
 
     	<div class="col-md-3">
-    		    		<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }} Cms
-
+			<strong>Talla:</strong>{{ $prenatal->talla_pregestacional }} Cms
     	</div>
-    	<div class="col-md-3">
-    		   <strong>Conclusiòn:</strong>{{ $prenatal->conclusion }}
-    	</div>
-
+    	
     	<div class="col-md-3">
     		   <strong>IMC:</strong>{{ $prenatal->imc }}
+    	</div>
+
+    	<div class="col-md-3">
+    		<strong>Conclusión:</strong>
+	    	@if($prenatal->imc <= 24)
+	    	<strong>Normal</strong>
+	    	@elseif($prenatal->imc <=29)
+	    	<strong>Sobrepeso</strong>
+	    	@elseif($prenatal->imc <=34)
+	    	<strong>Obesidad I</strong>
+	    	@elseif($prenatal->imc >= 35)
+	    	<strong>Obesidad II</strong>
+	    	@endif
     	</div>
     	
     </div>
