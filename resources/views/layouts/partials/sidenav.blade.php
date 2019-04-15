@@ -1197,6 +1197,22 @@
     </ul>
   </li>
 
+    <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-unsorted"></i>
+      <span class="hidden-xs">Comisiones Pagadas</span>
+    </a>
+    <ul class="dropdown-menu">
+      
+    
+       <li>
+        <a href="{{route('compagadas.index1')}}"><i class="fa fa-list-alt"></i> Comisiones Prof.</a>
+      </li>
+   
+
+    </ul>
+  </li>
+
 @else
 
 @endif
