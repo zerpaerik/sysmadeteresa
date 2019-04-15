@@ -25,107 +25,119 @@
 
             <h3>I. Antecedentes Obstetricos</h3>
 
-            <label class="col-sm-1 control-label">Gestas</label>
+            <div class="col-sm-8">
+              
             <div class="col-sm-3">
               <input type="text" class="form-control" name="gesta" value="{{$data->gesta}}" placeholder="gesta" data-toggle="tooltip" data-placement="bottom" title="gesta" readonly="">
+              <label class="col-sm-2 control-label">Gestas</label>
             </div>
 
-            <label class="col-sm-1 control-label">Aborto</label>
+            
             <div class="col-sm-3">
               <input type="text" class="form-control" name="aborto" value="{{$data->aborto}}"  placeholder="Noabortombres" data-toggle="tooltip" data-placement="bottom" title="aborto" readonly="">
+              <label class="col-sm-2 control-label">Aborto</label>
             </div>
 
-            <label class="col-sm-1 control-label">Vaginales</label>
+            
             <div class="col-sm-3">
               <input type="text" class="form-control" name="vaginales" value="{{$data->vaginales}}"  placeholder="vaginales" data-toggle="tooltip" data-placement="bottom" title="vaginales" readonly="">
+              <label class="col-sm-2 control-label">Vaginales</label>
             </div>
 
-            <label class="col-sm-1 control-label">Nac.Vivos</label>
+            
             <div class="col-sm-3">
               <input type="text" class="form-control" name="vivos" placeholder="vivos" value="{{$data->vivos}}" data-toggle="tooltip" data-placement="bottom" title="vivos" readonly="">
+              <label class="col-sm-2 control-label">Nac.Vivos</label>
             </div>
+          </div>
 
-              <label class="col-sm-1 control-label">Nac.Muertoss</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="muertos" placeholder="muertos" value="{{$data->muertos}}" data-toggle="tooltip" data-placement="bottom" title="muertos" readonly="">
-            </div>
-
-              <label class="col-sm-1 control-label">Viven</label>
-            <div class="col-sm-3">
+          <div class="col-sm-4">
+            <div class="row">
+            <div class="col-sm-4">
               <input type="text" class="form-control" name="viven" placeholder="viven" value="{{$data->viven}}" data-toggle="tooltip" data-placement="bottom" title="viven" readonly="">
+              <label class="col-sm-2 control-label">Viven</label>
             </div>
-
-              <label class="col-sm-1 control-label">Mueren.1Sem</label>
-            <div class="col-sm-3">
+            </div>
+            <div class="row">
+            <div class="col-sm-4">
               <input type="text" class="form-control" name="semana1" placeholder="semana1" value="{{$data->semana1}}" data-toggle="tooltip" data-placement="bottom" title="semana1" readonly="">
+              <label class="col-sm-2 control-label">Mueren.1Sem</label>
             </div>
-
-              <label class="col-sm-1 control-label">Despues.1Sem</label>
-            <div class="col-sm-3">
+            </div>
+            <div class="row">
+            <div class="col-sm-4">
               <input type="text" class="form-control" name="semana2" placeholder="semana2" value="{{$data->semana2}}"  data-toggle="tooltip" data-placement="bottom" title="semana2" readonly="">
+              <label class="col-sm-2 control-label">Despues.1Sem</label>
+            </div>
             </div>
 
-              <label class="col-sm-1 control-label">Cesarea</label>
+          </div>
+
+          <div class="col-sm-8" style="margin-top: -50px;">
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="cesaria" placeholder="cesarea" value="{{$data->cesaria}}" data-toggle="tooltip" data-placement="bottom" title="cesaria" readonly="">
+                <input type="text" class="form-control" name="num" placeholder="" value="{{$data->num}}"  data-toggle="tooltip" data-placement="bottom" title="num" readonly="">
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="parto" placeholder="" value="{{$data->parto}}"  data-toggle="tooltip" data-placement="bottom" title="parto" readonly="">
+                <label class="col-sm-2 control-label">Partos</label>
             </div>
 
-            <label class="col-sm-1 control-label">Partos</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="parto" placeholder="parto" value="{{$data->parto}}" data-toggle="tooltip" data-placement="bottom" title="parto" readonly="">
+                <input type="text" class="form-control" name="cesaria" placeholder="" value="{{$data->cesaria}}"  data-toggle="tooltip" data-placement="bottom" title="cesaria" readonly="">
+                <label class="col-sm-2 control-label">Cesarea</label>
             </div>
 
-              <label class="col-sm-1 control-label">0 ó +3</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="num" placeholder="" value="{{$data->num}}"  data-toggle="tooltip" data-placement="bottom" title="" readonly="">
+                <input type="text" class="form-control" name="muertos" placeholder="" value="{{$data->muertos}}"  data-toggle="tooltip" data-placement="bottom" title="muertos" readonly="">
+                <label class="col-sm-2 control-label">Nac.Muertos</label>
             </div>
+          </div>
 
-            <label class="col-sm-1 control-label">250gr</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="gr" placeholder="250gr"  value="{{$data->gr}}"  data-toggle="tooltip" data-placement="bottom" title="250gr" readonly="">
-            </div>
-
-            <label class="col-sm-1 control-label">Gemelar</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="gemelar" placeholder="gemelar" value="{{$data->gemelar}}"  data-toggle="tooltip" data-placement="bottom" title="gemelar" readonly="">
-            </div>
-                        <label class="col-sm-3 control-label">37 Sem.</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" name="m37m" placeholder="m37m" value="{{$data->m37m}}"  data-toggle="tooltip" data-placement="bottom" title="m37m" readonly="">
-            </div>
 
           <br>
 
           <div class="row">
-
+            @if($data->af == '1')
             <div class="col-md-6">
-
-
-               <h3>II. Antecedentes Familiares</h3>
+              <h3>II. Antecedentes Familiares</h3>
               <p>
-              
-                         <div class="col-sm-12">
-                          {{$data->af}}
-
-            
+                <div class="col-sm-12">
+                  <label>Otro: </label>
+                  <input readonly="true" type="text"  value="{{$data->at_fami}}" disabled=""> 
+                </div>
+              </p>
             </div>
-            </p>
-
-                      </div>
-
-                    <div class="col-md-6">
-
-
-               <h3>III. Antecedentes Personales</h3>
+            @else
+            <div class="col-md-6">
+              <h3>II. Antecedentes Familiares</h3>
               <p>
-              
-                         <div class="col-sm-12">
-                          {{$data->ap}}
-             
+                <div class="col-sm-12">
+                  <input readonly="true" type="text"  value="{{$data->af}}" disabled="">
+                </div>
+              </p>
             </div>
-            </p>
+            @endif
 
-                      </div>
+            @if($data->af == '1')
+            <div class="col-md-6">
+              <h3>II. Antecedentes Familiares</h3>
+              <p>
+                <div class="col-sm-12">
+                  <label>Otro: </label>
+                  <input readonly="true" type="text"  value="{{$data->at_perso}}" disabled="">
+                </div>
+              </p>
+            </div>
+            @else
+            <div class="col-md-6">
+              <h3>III. Antecedentes Personales</h3>
+              <p>
+                <div class="col-sm-12">
+                  <input readonly="true" type="text"  value="{{$data->ap}}" disabled="">
+                </div>
+              </p>
+            </div>
+            @endif
 
 
           </div>
@@ -135,41 +147,33 @@
           <div class="row">
 
 
-            <h3>IV. Fin Gestacion Anterior</h3>
-                        <div class="col-md-3">
+          <h3>IV. Fin Gestacion Anterior</h3>
 
-            <p>
-            <label for="">Fecha</label>
-             {{$data->fecha_terminacion}}
+          <div class="col-md-3">
+          <label for="">Terminación de Gestación:</label>
+          <input readonly="true" type="text"  value="{{$data->terminacion_gestacion}}" disabled="">
             
-            </p>  
-
-      </div>
-
-                  <div class="col-md-3">
-
-
-            <label for="">Fecha</label>
-             Fecha:{{$data->fecha_terminacion}}
             <br>
           </div>
 
-                  <div class="col-md-3">
-
-            <label for="">Si fue aborto que tipo de aborto</label>
-          
-                {{$data->aborto_gestacion}}
-            
+          <div class="col-md-3">
+          <label for="">Fecha:</label>
+          <input readonly="true" type="text"  value="{{$data->fecha_terminacion}}" disabled="">
           </div>
 
-        <div class="col-md-3">
+          <div class="col-md-3">
 
-            <label for="">RN de mayor peso</label>
+          <label for="">Si fue aborto, qué tipo de aborto:</label>
+          <input readonly="true" type="text"  value="{{$data->aborto_gestacion}}" disabled="">
+          </div>
+
+          <div class="col-md-3">
+
+            <label for="">RN de mayor peso:</label>
             <input readonly="true" type="text"  value="{{$data->peso_gestacion}}" disabled="">Gr
-            <br>
           </div>
-
     </div>
+    <br>
                       
             <div class="row">
             <h3>V. Peso y Talla</h3>
@@ -204,49 +208,42 @@
             <br>
 
             <div class="row">
-          <div class="col-md-4">    
+            <div class="col-md-4">    
 
 
-            <h3>VI. Tipo de Sangre</h3> 
+            <h3>VI. Tipo de Sangre</h3>
+
             <div class="col-md-2">  
-            <label for="">Grupo</label>
-              <p>
+              <label for="">Grupo</label>
+              <input readonly="true" type="text"  value="{{$data->sangre}}" disabled="" style="width: 40px">
+            </div>
 
-                 {{$data->sangre}}
+            <div class="col-md-2">
+              <label for="">RH</label>
+              <input readonly="true" type="text"  value="{{$data->sangrerh}}" disabled="" style="width: 140px">
+            </div>
+            </div>
 
-            </p>
-               </div>
-               <div class="col-md-2">
-            <label for="">RH</label>
-              <p>
-              
-      
-                             {{$data->sangrerh}}
-
-            </p>
-               </div>
-           </div>
-           <div class="col-md-8">
+            <div class="col-md-8">
 
                <h3>VI. F.U.M</h3> 
 
                <div class="col-md-2">
-                        <label for="">FUM</label>
-            <input type="date" name="ultima_menstruacion" value="{{$data->ultima_menstruacion}}" style="line-height: 20px" disabled="">
+                  <label for="">FUM</label>
+                  <input type="date" name="ultima_menstruacion" value="{{$data->ultima_menstruacion}}" style="line-height: 20px" disabled="">
                </div>
 
 
                <div class="col-md-2">
-                        <label for="">FPP</label>
-            <input type="date" name="parto_probable" value="{{$data->parto_probable}}"  style="line-height: 20px" disabled>
+                  <label for="">FPP</label>
+                  <input type="date" name="parto_probable" value="{{$data->parto_probable}}"  style="line-height: 20px" disabled>
                </div>
 
                 <div class="col-md-2">
-                        <label for="">Eco: EG</label>
-            <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px" disabled=""> 
+                  <label for="">Eco: EG</label>
+                  <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px; width: 130px;" disabled="">
+                   
                </div>
-
-
 
             </div>
 
@@ -259,12 +256,10 @@
 
           <h3>Orina</h3>  
           <p>
-              
-                    {{$data->orina}}
-
-
-            <input type="date" name="orinad" style="line-height: 20px" value="{{$data->orinad}}" disabled=""> 
-            </p>
+            <input type="date" name="orina" style="line-height: 20px; width: 150px;" value="{{$data->orina}}" disabled="">
+            
+            <input type="date" name="orinad" style="line-height: 20px; width: 150px;" value="{{$data->orinad}}" disabled=""> 
+          </p>
 
           </div>  
 
@@ -273,9 +268,9 @@
           <h3>Urea</h3> 
           <p>
               
-            <input type="text" name="urea" style="line-height: 20px" value="{{$data->urea}}" disabled=""> 
+            <input type="text" name="urea" style="line-height: 20px; width: 150px;" value="{{$data->urea}}" disabled=""> 
 
-            <input type="date" name="uread" style="line-height: 20px" value="{{$data->uread}}" disabled="">  
+            <input type="date" name="uread" style="line-height: 20px; width: 150px;" value="{{$data->uread}}" disabled="">  
             </p>
 
           </div>  
@@ -285,9 +280,9 @@
           <h3>Creati.</h3>  
           <p>
               
-            <input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px" value="{{$data->creatinina}}" disabled="">  
+            <input type="text" placeholder="creatinina" name="creatinina" style="line-height: 20px; width: 150px;" value="{{$data->creatinina}}" disabled="">  
 
-            <input type="date" name="creatininad" style="line-height: 20px" value="{{$data->creatininad}}" disabled="">  
+            <input type="date" name="creatininad" style="line-height: 20px; width: 150px;" value="{{$data->creatininad}}" disabled="">  
             </p>
 
           </div>
@@ -296,13 +291,11 @@
 
           <h3>BK</h3>  
           <p>
-              
-          
-                                {{$data->bic}}
+            <input type="text" name="bic" style="line-height: 20px; width: 150px;" value="{{$data->bic}}" disabled="">
 
 
-            <input type="date" name="bicd" style="line-height: 20px" value="{{$data->bicd}}" disabled=""> 
-            </p>
+            <input type="date" name="bicd" style="line-height: 20px; width: 150px;" value="{{$data->bicd}}" disabled=""> 
+          </p>
 
           </div>  
 
@@ -310,13 +303,10 @@
 
           <h3>TORCH</h3>  
           <p>
-              
-            
-                                            {{$data->torch}}
-
-
-            <input type="date" name="torchd" style="line-height: 20px" value="{{$data->torchd}}" disabled=""> 
-            </p>
+            <input type="text" name="torch" style="line-height: 20px; width: 150px;" value="{{$data->torch}}" disabled="">
+          
+            <input type="date" name="torchd" style="line-height: 20px; width: 150px;" value="{{$data->torchd}}" disabled=""> 
+          </p>
 
           </div>    
 
