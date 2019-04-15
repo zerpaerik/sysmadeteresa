@@ -78,7 +78,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="servicios">
-		<p><strong>Hora de cita: {{ $paciente->start_time}} {{ $paciente->end_time}}</strong></p>
+		<p><strong>Hora de cita: </strong></p>
 	</div>
 
 	<div class="total">

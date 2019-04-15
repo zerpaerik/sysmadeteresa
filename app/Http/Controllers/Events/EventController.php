@@ -198,6 +198,9 @@ class EventController extends Controller
     ->join('personals as per','per.id','=','e.profesional')
     ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->join('creditos as cr','cr.id_event','e.id')
+    ->select('e.id as EventId','e.paciente','e.tipo','e.title','e.profesional','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId')
+    ->join('pacientes as p','p.id','=','e.paciente')
+    ->join('personals as per','per.id','=','e.profesional')
     ->where('e.id','=',$id)
     ->first();
 
