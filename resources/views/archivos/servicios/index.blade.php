@@ -31,6 +31,7 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
+							<th>Id</th>
 							<th>Detalle</th>
 							<th>Precio</th>
 							<th>Porcentaje Prof.</th>
@@ -45,6 +46,7 @@
 					<tbody>
 					@foreach($servicios as $p)					
 						<tr>
+						<td>{{$p->id}}</td>
 						<td>{{$p->detalle}}</td>
 						<td>{{$p->precio}}</td>
 						<td>{{$p->porcentaje}}</td>
@@ -62,7 +64,8 @@
 					</tbody>
 					<tfoot>
 						<tr>
-								<th>Detalle</th>
+								<th>Id</th>
+							<th>Detalle</th>
 							<th>Precio</th>
 							<th>Porcentaje Prof.</th>
 							<th>Porcentaje Pers.</th>
