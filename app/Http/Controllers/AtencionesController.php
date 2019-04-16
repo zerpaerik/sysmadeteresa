@@ -33,9 +33,9 @@ public function index(Request $request){
       "icon" => "fa-list-alt",
       "model" => "atenciones",
       "model1" => "ticket",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","TipoIngreso","Fecha","Editar", "Eliminar"],
       "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","tipo_ingreso","created_at"],
       "actions" => [
         '<button type="button" class="btn btn-info">Transferir</button>',
         '<button type="button" class="btn btn-warning">Editar</button>'
@@ -58,9 +58,9 @@ public function index(Request $request){
       "icon" => "fa-list-alt",
       "model" => "atenciones",
       "model1" => "ticket",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","TipoIngreso","Fecha","Editar", "Eliminar"],
       "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+       "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","tipo_ingreso","created_at"],
         "actions" => [
           '<button type="button" class="btn btn-info">Transferir</button>',
           '<button type="button" class="btn btn-warning">Editar</button>'
@@ -72,9 +72,9 @@ public function index(Request $request){
       return view('movimientos.atenciones.search', [
       "icon" => "fa-list-alt",
       "model" => "atenciones",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Fecha","Editar", "Eliminar"],
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","TipoIngreso","Fecha","Editar", "Eliminar"],
       "data" => $atenciones,
-      "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","created_at"],
+       "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","tipo_ingreso","created_at"],
         "actions" => [
           '<button type="button" class="btn btn-info">Transferir</button>',
           '<button type="button" class="btn btn-warning">Editar</button>'
@@ -1039,7 +1039,7 @@ $paciente = DB::table('pacientes')
     ->join('users as e','e.id','a.origen_usuario')
     ->join('users as h','h.id','a.usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
-        ->join('creditos as cr','cr.id_atencion','a.id')
+    ->join('creditos as cr','cr.id_atencion','a.id')
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.estatus','=',1)   
     ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
