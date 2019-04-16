@@ -166,6 +166,9 @@ Route::get('metodos-ticket-ver-{id}','MetodosController@ticket_ver');
 Route::get('aplimetodo-{id}', 'MetodosController@aplimetodo')->name('aplimetodo.edit');
 Route::post('metodos/aplicar', 'MetodosController@aplicar');
 
+Route::get('antf/otro','PrenatalController@atf');
+Route::get('antp/otro','PrenatalController@atp');
+
 /**
  **   Atenciones
  **/

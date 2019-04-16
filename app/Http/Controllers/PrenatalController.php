@@ -63,6 +63,7 @@ class PrenatalController extends Controller
 				'a.gemelar' ,
 				'a.m37m' ,
 				'a.fecha_terminacion' ,
+				'a.terminacion_gestacion' ,
 				'a.peso_gestacion' ,
 								'a.muertos',
 
@@ -74,7 +75,7 @@ class PrenatalController extends Controller
 				'a.ultima_menstruacion' ,
 				'a.parto_probable' ,
 				'a.eco_eg' ,
-				
+				'a.eco_eg_text',
 				'a.sangre' ,
 				'a.sangrerh' ,
 				'a.created_at',
@@ -92,6 +93,8 @@ class PrenatalController extends Controller
 				
 				'a.af',
 				'a.ap',
+				'a.at_fami',
+				'a.at_perso',
 			 'p.nombres',
 			 'p.apellidos',
 			 'p.dni',
@@ -150,6 +153,7 @@ class PrenatalController extends Controller
 				'a.gemelar' ,
 				'a.m37m' ,
 				'a.fecha_terminacion' ,
+				'a.terminacion_gestacion' ,
 				'a.peso_gestacion' ,
 				'a.created_at',
 				'a.aborto_gestacion',
@@ -158,6 +162,7 @@ class PrenatalController extends Controller
 				'a.ultima_menstruacion' ,
 				'a.parto_probable' ,
 				'a.eco_eg' ,
+				'a.eco_eg_text',
 				'a.conclusion',
 				'a.sangre' ,
 				'a.sangrerh' ,
@@ -174,6 +179,8 @@ class PrenatalController extends Controller
 				'a.terminacion' ,
 				'a.af',
 				'a.ap',
+				'a.at_fami',
+				'a.at_perso',
 			 'p.nombres',
 			 'p.apellidos',
 			 'p.dni',
@@ -224,6 +231,7 @@ class PrenatalController extends Controller
 				'ultima_menstruacion' =>$request->ultima_menstruacion,
 				'parto_probable' =>$request->parto_probable,
 				'eco_eg' =>$request->eco_eg,
+				'eco_eg_text' =>$request->eco_eg_text,
 				'orina' =>$request->orina,
 				'orinad' =>$request->orinad,
 				'urea' =>$request->urea,
@@ -234,7 +242,9 @@ class PrenatalController extends Controller
 				'bicd' =>$request->bicd,
 				'torch' =>$request->torch,
 				'torchd' =>$request->torchd,
-				'imc' => number_format(($request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)) * 10000, 2)
+				'imc' => number_format(($request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)) * 10000, 2),
+				'at_fami' =>$request->at_fami,
+				'at_perso' =>$request->at_perso
 
 
 				
@@ -252,6 +262,18 @@ class PrenatalController extends Controller
 
 		
     }
+
+    public function atf(){
+     
+      
+    return view('prenatal.antfotro');
+  	}
+
+  	public function atp(){
+     
+      
+    return view('prenatal.antpotro');
+  	}
 
     public function verControl($id)
     {
