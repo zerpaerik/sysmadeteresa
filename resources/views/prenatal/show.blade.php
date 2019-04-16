@@ -112,13 +112,13 @@
               <h3>II. Antecedentes Familiares</h3>
               <p>
                 <div class="col-sm-12">
-                  <input readonly="true" type="text"  value="{{$data->af}}" disabled="">
+                  {{$data->af}}
                 </div>
               </p>
             </div>
             @endif
 
-            @if($data->af == '1')
+            @if($data->ap == '1')
             <div class="col-md-6">
               <h3>II. Antecedentes Familiares</h3>
               <p>
@@ -133,7 +133,7 @@
               <h3>III. Antecedentes Personales</h3>
               <p>
                 <div class="col-sm-12">
-                  <input readonly="true" type="text"  value="{{$data->ap}}" disabled="">
+                  {{$data->ap}}
                 </div>
               </p>
             </div>
@@ -242,6 +242,7 @@
                 <div class="col-md-2">
                   <label for="">Eco: EG</label>
                   <input type="date" name="eco_eg" value="{{$data->eco_eg}}"  style="line-height: 20px; width: 130px;" disabled="">
+                  <input type="text" name="eco_eg_text" value="{{$data->eco_eg_text}}"  style="line-height: 20px; width: 130px;" disabled="">
                    
                </div>
 

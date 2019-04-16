@@ -485,7 +485,7 @@
 					      <div class="col-md-2">
                         <label for="">Eco: EG</label>
 						<input type="date" name="eco_eg" style="line-height: 20px; width: 130px;">	
-						<!--<input type="text" name="eco_eg_text" style="line-height: 20px; width: 130px;">-->
+						<input type="text" name="eco_eg_text" style="line-height: 20px; width: 130px;">
 					     </div>
 
 
