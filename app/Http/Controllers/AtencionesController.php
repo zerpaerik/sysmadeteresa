@@ -33,7 +33,7 @@ public function index(Request $request){
       "icon" => "fa-list-alt",
       "model" => "atenciones",
       "model1" => "ticket",
-      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","TipoIngreso","Fecha","Editar", "Eliminar"],
+      "headers" => ["Nombre Paciente", "Apellido Paciente","Nombre Origen","Apellido Origen","Servicio","Laboratorio","Paquete","Monto","Monto Abonado","Tipo Ingreso","Fecha","Editar", "Eliminar"],
       "data" => $atenciones,
       "fields" => ["nombres", "apellidos","name","lastname","servicio","laboratorio","paquete","monto","abono","tipo_ingreso","created_at"],
       "actions" => [
@@ -82,7 +82,6 @@ public function index(Request $request){
     ]);         
     }      
   }
-
 
  
 

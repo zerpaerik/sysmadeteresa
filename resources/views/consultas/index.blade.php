@@ -71,6 +71,8 @@
 							<th>Fecha</th>
 							<th>Estatus</th>
 							<th>Tipo</th>
+							<th>TipoIngreso</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -89,6 +91,8 @@
 						<td style="background: #FE642E;">No ha sido Atendido</td>
 						@endif
 						<td>{{$d->tipo}}</td>
+					    <td>{{$d->tipo_ingreso}}</td>
+					    <td>{{$d->name}} {{$d->lastname}}</td>
 						<td>
 
 
@@ -108,7 +112,7 @@
 
 						<a _blank" class="btn btn-warning" href="consulta-delete-{{$d->EventId}}" onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
 
-						<a _blank" class="btn btn-danger" href="prenatal-eliminar-{{$d->paciente}}" onclick="return confirm('¿Desea Finalizar?')">Finalizar</a>	
+						<a _blank" class="btn btn-danger" href="prenatal-eliminar-{{$d->paciente}}" onclick="return confirm('¿Desea Finalizar el Historial Base?')">Finalizar</a>	
 						@endif
 							
 
