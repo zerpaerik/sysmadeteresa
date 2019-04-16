@@ -9,6 +9,7 @@ use App\Models\Events\{Event, RangoConsulta};
 use App\Prenatal;
 use App\Control;
 use App\User;
+use App\Historial;
 use DB;
 use Toastr;
 use Auth;
@@ -353,4 +354,18 @@ class PrenatalController extends Controller
 		return back();
 
     }
+
+    public function deletebase($id){
+
+    	$historial = Historial::where('paciente_id','=',$id);
+    	$historial->delete();
+
+    	Toastr::success('Finalizado Exitosamente.', 'Historia Base!', ['progressBar' => true]);
+		return back();
+
+
+    }
+
+
+
 }
