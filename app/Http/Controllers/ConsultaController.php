@@ -111,7 +111,7 @@ class ConsultaController extends Controller
 
       $historias = DB::table('events as e')
         ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
-    'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
+    'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId',
     'a.pa','a.id as consulta','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap','a.pendiente',
     'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
     ->where('a.pendiente','=',1)
@@ -119,7 +119,6 @@ class ConsultaController extends Controller
     ->join('historials as b','e.paciente','b.paciente_id')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-    ->join('rangoconsultas as rg','rg.id','=','e.time')
     ->groupBy('e.paciente')
     ->get();
 
