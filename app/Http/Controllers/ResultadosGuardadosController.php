@@ -19,20 +19,107 @@ class ResultadosGuardadosController extends Controller
 
 {
 
-	public function index(){
+	public function index(Request $request){
 
-     $initial = Carbon::now()->toDateString();
-     $resultadosguardados = $this->elasticSearch();
 
-       return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados]); 
+    if(!is_null($request->paciente)){
+
+     $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','r.informe','r.id as id2')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('resultados_servicios as r','a.id','r.id_atencion')
+        ->where('a.id_paciente','=',$request->paciente)
+        ->where('a.es_servicio','=',1)
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->where('a.resultado','=', 1)
+        ->orderby('a.id','desc')
+        ->get();
+
+
+
+      } else {
+
+         $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','r.informe','r.id as id2')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('resultados_servicios as r','a.id','r.id_atencion')
+        ->where('a.es_servicio','=',999999)
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->where('a.resultado','=', 1)
+        ->orderby('a.id','desc')
+        ->get();
+
+      }
+
+
+
+     $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','b.resultado','b.es_servicio')
+        ->join('atenciones as b','b.id_paciente','a.id')
+        ->where('b.resultado','=', 1)
+        ->where('b.es_servicio','=',1)
+        ->groupBy('a.id')
+        ->get();
+      
+    return view('resultadosguardados.index', ['resultadosguardados' => $resultadosguardados,'pacientes' => $pacientes]); 
 	}
 	
-	public function index1(){
+	public function index1(Request $request){
 
-     $initial = Carbon::now()->toDateString();
-     $resultadosguardados = $this->elasticSearch1($initial);
+    
+    if(!is_null($request->paciente)){
 
-      return view('resultadosguardados.index1', ["resultadosguardados" => $resultadosguardados]);
+     $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','r.informe','r.id as id2')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('resultados_servicios as r','a.id','r.id_atencion')
+        ->where('a.id_paciente','=',$request->paciente)
+        ->where('a.es_laboratorio','=',1)
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->where('a.resultado','=', 1)
+        ->orderby('a.id','desc')
+        ->get();
+
+
+
+      } else {
+
+         $resultadosguardados = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.created_at','a.abono','a.pendiente','a.es_servicio','a.es_laboratorio','a.es_paquete','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','r.informe','r.id as id2')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('resultados_servicios as r','a.id','r.id_atencion')
+        ->where('a.es_laboratorio','=',1)
+        ->where('a.id_sede','=', \Session::get("sede"))
+        ->where('a.resultado','=', 1)
+        ->orderby('a.id','desc')
+        ->get();
+
+      }
+
+
+
+
+   $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','b.resultado','b.es_laboratorio')
+        ->join('atenciones as b','b.id_paciente','a.id')
+        ->where('b.resultado','=',1)
+        ->where('b.es_laboratorio','=',1)
+        ->groupBy('a.id')
+        ->get();
+
+      return view('resultadosguardados.index1', ["resultadosguardados" => $resultadosguardados,'pacientes' => $pacientes]);
 
 	}
 

@@ -25,6 +25,25 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
+		    {!! Form::open(['method' => 'get', 'route' => ['resultadosguardados.index']]) !!}
+
+			<div class="row">
+				<div class="col-md-3">
+						<select id="el2" name="paciente">
+							<option>Seleccione un Paciente</option>
+							@foreach($pacientes as $user)
+								    <option value="{{$user->id}}">{{$user->apellidos}},{{$user->nombres}}</option>
+							@endforeach
+						</select>
+				</div>
+				
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+			</div>	
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -35,9 +54,6 @@
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
-							
-
-
 						</tr>
 					</thead>
 					<tbody>
@@ -94,8 +110,7 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 
 
 
@@ -121,4 +136,50 @@ $(document).ready(function() {
 	WinMove();
 });
 </script>
+
+@section('scripts')
+<script type="text/javascript">
+// Run Select2 on element
+$(document).ready(function() {
+	LoadTimePickerScript(DemoTimePicker);
+	LoadSelect2Script(function (){
+		$("#el2").select2();
+		$("#el4").select2();
+		$("#el5").select2();
+		$("#el1").select2();
+		$("#el3").select2({disabled : true});
+	});
+	WinMove();
+});
+
+$('#input_date').on('change', getAva);
+$('#el1').on('change', getAva);
+
+function getAva (){
+		var d = $('#input_date').val();
+		var e = $("#el1").val();
+		if(!d) return;
+		$.ajax({
+      url: "available-time/"+e+"/"+d,
+      headers: {
+    		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  		},
+      type: "get",
+      success: function(res){
+      	$('#el3').find('option').remove().end();
+      	for(var i = 0; i < res.length; i++){
+					var newOption = new Option(res[i].start_time+"-"+res[i].end_time, res[i].id, false, false);
+					$('#el3').append(newOption).trigger('change');
+      	}
+      }
+    });	
+}
+
+function DemoTimePicker(){
+	$('#input_date').datepicker({
+	setDate: new Date(),
+	minDate: 0});
+}
+</script>
+@endsection
 @endsection
