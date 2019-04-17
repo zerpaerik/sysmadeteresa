@@ -366,6 +366,17 @@ class PrenatalController extends Controller
 
     }
 
+      public function deletebase2($id){
+
+    	$historial = Prenatal::where('paciente','=',$id);
+    	$historial->delete();
+
+    	Toastr::success('Finalizado Exitosamente.', 'Historia Base!', ['progressBar' => true]);
+		return back();
+
+
+    }
+
 
 
 }
