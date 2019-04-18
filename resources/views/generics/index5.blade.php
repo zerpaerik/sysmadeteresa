@@ -43,7 +43,7 @@
 								<td>{{$d->$f}}</td>
 							@endforeach
 							
-						 @if(\Auth::user()->role_id <> 6)							
+						 @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							
 
 							<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
 								<td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>

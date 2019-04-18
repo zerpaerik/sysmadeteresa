@@ -86,7 +86,7 @@
 						<tr>
 						<td>{{$p->id}}</td>
 						<td>{{$p->created_at}}</td>
-						<td>{{$p->nombres}},{{$p->apellidos}}</td>
+						<td>{{$p->apellidos}},{{$p->nombres}}</td>
 						<td>{{$p->name}},{{$p->lastname}}</td>
 						@if($p->es_servicio =='1')
 						<td>{{$p->servicio}}</td>
