@@ -605,14 +605,15 @@ if ($sobres == NULL) {
  ->join('users as e','e.id','a.origen_usuario')
  ->where('a.id_sede','=', $request->session()->get('sede'))
  ->where('a.pagado_com','=', 1)
- ->where('a.origen','=',1)
  ->whereNotIn('a.monto',[0,0.00])
  ->whereNotIn('a.origen_usuario',[99999999])
- ->whereBetween('a.fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))]) 
+ ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))]) 
  ->groupBy('a.recibo')
  ->orderby('a.recibo','desc')
  ->get();
 
+dd($pagadas);
+die();
 
    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($request->f1)), date('Y-m-d', strtotime($request->f2))])

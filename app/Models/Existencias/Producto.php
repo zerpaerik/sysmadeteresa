@@ -16,5 +16,7 @@ class Producto extends Model
 
     public function getCategoriaAttribute($value){
         return Categoria::where('id', '=', $value)->get()->first()->nombre;
-    }    
+    }  
+
+  
 }

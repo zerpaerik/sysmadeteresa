@@ -80,7 +80,7 @@ public function index(Request $request){
           '<button type="button" class="btn btn-warning">Editar</button>'
         ]
     ]);         
-    }      
+    }  
   }
 
  
@@ -963,6 +963,30 @@ $paciente = DB::table('pacientes')
     
     return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users'));
   }
+
+   public function VerDataPacientes($id){
+
+       
+
+         $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.dni','a.nombres','a.apellidos','a.direccion','a.telefono')
+        ->where('a.id','=',$id)
+        ->get();
+
+        return $pacientes;
+       
+
+     }
+
+  public function getExist($prod, $sede){
+      $ex = Pacientes::where('id', '=', $prod)->get()->first();
+      $prod = Pacientes::where('id', '=', $prod)->get()->first();
+      if($ex){
+        return response()->json(["existencia" => $ex, "exists" => true, "nombres" => $prod->nombres, "apellidos" => $prod->apellidos, "dni" => $prod->dni, "direccion" => $prod->direccion]);
+      }else{
+        return response()->json(["exists" => false, "nombres" => $prod->nombres, "apellidos" => $prod->apellidos, "dni" => $prod->dni, "direccion" => $prod->direccion]);
+      }
+    }
 
   public function edit(Request $request, $id)
   {

@@ -25,12 +25,18 @@
 				<form class="form-horizontal" role="form" method="post" action="atenciones/create">
 					{{ csrf_field() }}
 					<div class="form-group">
+            <div class="row">
+              <div class="col-sm-3">
+             <a href="{{route('pacientes.create2')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes</a>
+           </div>
+            </div>
 
 						<div class="row">
 
 						<label class="col-sm-1 control-label">Pacientes</label>
 						<div class="col-sm-3">
 							<select id="el1" name="id_paciente">
+                <option value="">Seleccione un Paciente</option>
 								@foreach($pacientes as $pac)
 									<option value="{{$pac->id}}">
 										{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
@@ -38,9 +44,15 @@
 								@endforeach
 							</select>
 						</div>
-            <a href="{{route('pacientes.create2')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes</a>
+
+            <div class="col-sm-6">
+                <div id="pacientes" class="pacientes">
+
+            </div>
+            </div>
            
-						</div>
+          </div>
+
 						<br>
 						<div class="row">
 
@@ -58,10 +70,10 @@
 							  <div id="origen1" class="origen1">
 
 						</div>
-
-
 						</div>
 					</div>
+
+      
 					<br>
 					
    <div class="row">
@@ -620,54 +632,29 @@ function createPac(e){
        
     </script>
 
-    <script>
-    	    function add_li()
-        {
-            var nuevoLi=document.getElementById("el3").value;
-            if(nuevoLi.length>0)
-            {
-                    var li=document.createElement('el3');
-                    li.id=nuevoLi;
-                    li.innerHTML="<span onclick='eliminar(this)'>X</span>"+nuevoLi;
-                    document.getElementById("listaDesordenada").appendChild(li);
-            }
-            return false;
-        }
+ <script type="text/javascript">
+      $(document).ready(function(){
+        $('#el1').on('change',function(){
+          var link;
+            link = '/movimientos/atenciones/dataPacientes/'+$(this).val();
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#pacientes').html(a);
+                 }
+          });
 
- 
-        /**
-         * Funcion para eliminar los elementos
-         * Tiene que recibir el elemento pulsado
-         */
-        function eliminar(elemento)
-        {
-            var id=elemento.parentNode.getAttribute("id");
-            node=document.getElementById(id);
-            node.parentNode.removeChild(node);
-        }
+        });
+        
 
-
+      });
+       
     </script>
-    <script type="text/javascript">
-      function buscarSelect()
-{
-  // creamos un variable que hace referencia al select
-  var select=document.getElementById("elementos");
- 
-  // obtenemos el valor a buscar
-  var buscar=document.getElementById("buscar").value;
- 
-  // recorremos todos los valores del select
-  for(var i=1;i<select.length;i++)
-  {
-    if(select.options[i].text==buscar)
-    {
-      // seleccionamos el valor que coincide
-      select.selectedIndex=i;
-    }
-  }
-}
-</script>
+
+    
+   
     </script>
+    
 @endsection
 @endsection

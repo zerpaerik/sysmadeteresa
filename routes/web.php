@@ -186,6 +186,10 @@ Route::post('atenciones/asoc/{id}', 'AtencionesController@asoc');
 Route::post('atenciones/asoc1/{id}', 'AtencionesController@asoc1');
 Route::get('atenciones-delete-{id}','AtencionesController@delete');
 
+ Route::get('/movimientos/atenciones/dataPacientes/{id}','AtencionesController@verDataPacientes');
+
+ Route::get('pacientes/{prod}/{sede}', 'AtencionesController@getExist');
+
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index')->middleware('auth');
 Route::get('gastos-search', 'GastosController@search')->name('gastos.search')->middleware('auth');
