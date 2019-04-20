@@ -37,9 +37,7 @@ class ResultadosGuardadosController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-        dd($resultadosguardados);
-        die();
-
+    
 
 
       } else {
