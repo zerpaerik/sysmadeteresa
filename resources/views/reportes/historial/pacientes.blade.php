@@ -135,11 +135,10 @@
                       
 					</tbody>
 					<tfoot>
-						   <th>Id</th>
+						<th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-						
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 						    <th>Adjuntado Por:</th>
@@ -186,10 +185,9 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
 							<th>Fecha</th>
-							<th>Adjuntado Por:</th>
+							<th>Registrado Por:</th>
+						    <th>Adjuntado Por:</th>
 					</tfoot>
 				</table>
 			</div>
