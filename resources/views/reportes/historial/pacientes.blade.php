@@ -57,64 +57,14 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
 							<th>Fecha</th>
-							<th>TP</th>
 							<th>Registrado Por:</th>
+							<th>Adjuntado Por:</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($atenciones as $d)
-						<tr>
-						<td>{{$d->id}}</td>
-						<td>{{$d->apellidos}},{{$d->nombres}}</td>
-						<td>{{$d->name}},{{$d->lastname}}</td>
-						@if($d->es_servicio =='1')
-						<td>{{$d->servicio}}</td>
-						@elseif($d->es_laboratorio =='1')
-						<td>{{$d->laboratorio}}</td>
-						@else
-						<td>{{$d->paquete}}</td>
-						@endif
-						<td>{{$d->monto}}</td>
-						<td>{{$d->abono}}</td>
-						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
-						<td>{{$d->tipo_ingreso}}</td>
-						<td>{{$d->user}},{{$d->userp}}</td>
-					</tr>
-						@endforeach
-                      
-					</tbody>
-					<tfoot>
-						   <th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Fecha</th>
-							<th>TP</th>
-							<th>Registrado Por:</th>
-					</tfoot>
-				</table>
-			</div>
-			<span><strong>ATENCIONES CON RESULTADOS SERVICIOS</strong></span>
-			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Fecha</th>
-							<th>Registrado Por:</th>
-						    <th>Adjuntado Por:</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($atencioness as $d)
+						@if($atencionesl)
+						@foreach($atencionesl as $d)
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->apellidos}},{{$d->nombres}}</td>
@@ -130,67 +80,26 @@
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 						<td>{{$d->nameinf}},{{$d->apeinf}}</td>
+
 					</tr>
 						@endforeach
-                      
-					</tbody>
-					<tfoot>
-						<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Fecha</th>
-							<th>Registrado Por:</th>
-						    <th>Adjuntado Por:</th>
-					</tfoot>
-				</table>
-			</div>
-			<span><strong>ATENCIONES CON RESULTADOS LABORATORIOS</strong></span>
-			<div class="box-content no-padding">
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-							<th>Origen</th>
-							<th>Detalle</th>
-							<th>Fecha</th>
-							<th>Registrado Por:</th>
-						    <th>Adjuntado Por:</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($atencionesl as $d)
-						<tr>
-						<td>{{$d->id}}</td>
-						<td>{{$d->apellidos}},{{$d->nombres}}</td>
-						<td>{{$d->name}},{{$d->lastname}}</td>
-						@if($d->es_servicio =='1')
-						<td>{{$d->servicio}}</td>
-						@elseif($d->es_laboratorio =='1')
-						<td>{{$d->laboratorio}}</td>
 						@else
-						<td>{{$d->paquete}}</td>
+						<p>Al Paciente no se le han adjuntado sus informes de resultados.</p>
 						@endif
-					
-						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
-						<td>{{$d->user}},{{$d->userp}}</td>
-					    <td>{{$d->nameinf}},{{$d->apeinf}}</td>
-					</tr>
-						@endforeach
                       
 					</tbody>
 					<tfoot>
-						   <th>Id</th>
+						    <th>Id</th>
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
-						    <th>Adjuntado Por:</th>
+							<th>Adjuntado Por:</th>
 					</tfoot>
 				</table>
 			</div>
+		
 		       <span><strong>CONSULTAS</strong></span>
 				<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
