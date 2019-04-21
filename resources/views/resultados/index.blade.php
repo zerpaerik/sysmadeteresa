@@ -219,7 +219,7 @@
                                     <option value="ABDOMEN POLIPOSIS VB.docx">ABDOMEN POLIPOSIS VB</option>
                                     <option value="ABDOMEN STATUS POST COLECISTECTOMIA.docx">ABDOMEN STATUS POST COLECISTECTOMIA</option>
                                      <option value="COLPOSCOPIA POSITIVO.docx">COLPOSCOPIAPOSITIVO</option>
-                                      <option value="COLPOSCOPIA NEGA.docx">COLPOSCOPIANEGATIVO</option>
+                                      <option value="COLPO NEGATIVO.docx">COLPOSCOPIANEGATIVO</option>
                                     <option value="GIN EPI.docx">GIN EPI</option>
                                     <option value="GIN NRML.docx">GIN NRML</option>
                                     <option value="GIN POLIFOL, EPI.docx">GIN POLIFOL, EPI</option>
