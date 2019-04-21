@@ -291,6 +291,8 @@ class ConsultaController extends Controller
             ->select('*')
             ->where('id','=',\Auth::user()->id)
             ->first();
+
+    
     	
 		$consulta = new Consulta;
 		$consulta->pa =$request->pa;
@@ -334,10 +336,13 @@ class ConsultaController extends Controller
 		$consulta->deposiciones =$request->deposiciones;
 		$consulta->card =$request->card;
     $consulta->pendiente =$request->pendiente;
+    $consulta->id_evento =$request->evento;
+    $consulta->usuario =\Auth::user()->id;
 		$consulta->save();
 
     $event = Event::find($request->evento);
     $event->atendido=1;
+    $event->atendidopor=\Auth::user()->id;
     $event->update();
 
 
