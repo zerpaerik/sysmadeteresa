@@ -108,9 +108,7 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-						
 							<th>Fecha</th>
-							<th>TP</th>
 							<th>Registrado Por:</th>
 						    <th>Adjuntado Por:</th>
 						</tr>
@@ -143,7 +141,6 @@
 							<th>Detalle</th>
 						
 							<th>Fecha</th>
-							<th>TP</th>
 							<th>Registrado Por:</th>
 						    <th>Adjuntado Por:</th>
 					</tfoot>
@@ -158,9 +155,7 @@
 							<th>Paciente</th>
 							<th>Origen</th>
 							<th>Detalle</th>
-						
 							<th>Fecha</th>
-							<th>TP</th>
 							<th>Registrado Por:</th>
 						    <th>Adjuntado Por:</th>
 						</tr>
@@ -194,7 +189,6 @@
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Fecha</th>
-							<th>TP</th>
 							<th>Adjuntado Por:</th>
 					</tfoot>
 				</table>
