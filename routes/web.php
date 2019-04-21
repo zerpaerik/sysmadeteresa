@@ -188,6 +188,7 @@ Route::get('atenciones-delete-{id}','AtencionesController@delete');
 
  Route::get('/movimientos/atenciones/dataPacientes/{id}','AtencionesController@verDataPacientes');
 
+
  Route::get('pacientes/{prod}/{sede}', 'AtencionesController@getExist');
 
 

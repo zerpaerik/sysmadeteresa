@@ -969,6 +969,28 @@ $paciente = DB::table('pacientes')
        
 
          $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.dni','a.nombres','a.apellidos','a.direccion','a.telefono','a.fechanac')
+        ->where('a.id','=',$id)
+        ->first();
+
+            $edad = Carbon::parse($pacientes->fechanac)->age;
+
+
+        //return $pacientes;
+
+            return view('movimientos.atenciones.dataPacientes',compact('pacientes','edad'));
+
+       
+
+     }
+
+     /*
+
+        public function VerDataPacientes(){
+
+       
+
+         $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.dni','a.nombres','a.apellidos','a.direccion','a.telefono')
         ->where('a.id','=',$id)
         ->get();
@@ -976,7 +998,7 @@ $paciente = DB::table('pacientes')
         return $pacientes;
        
 
-     }
+     }*/
 
   public function getExist($prod, $sede){
       $ex = Pacientes::where('id', '=', $prod)->get()->first();

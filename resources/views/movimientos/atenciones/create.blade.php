@@ -45,12 +45,15 @@
 							</select>
 						</div>
 
-            <div class="col-sm-6">
+         
+           
+          </div>
+          <div class="box-conten">
                 <div id="pacientes" class="pacientes">
 
-            </div>
-            </div>
-           
+           </div>
+             
+            
           </div>
 
 						<br>
@@ -632,6 +635,8 @@ function createPac(e){
        
     </script>
 
+
+
  <script type="text/javascript">
       $(document).ready(function(){
         $('#el1').on('change',function(){
@@ -651,6 +656,8 @@ function createPac(e){
       });
        
     </script>
+
+
 
     
    
