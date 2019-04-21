@@ -47,7 +47,6 @@
 
 				</div>
 			</div>	
-
             <span><strong>ATENCIONES</strong></span>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
@@ -63,8 +62,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						@if($atencionesl)
-						@foreach($atencionesl as $d)
+						@foreach($atenciones as $d)
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->apellidos}},{{$d->nombres}}</td>
@@ -79,13 +77,15 @@
 						
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
+						@if($d->resultado == 1)
 						<td>{{$d->nameinf}},{{$d->apeinf}}</td>
+						@else
+						<td style="background: #82FA58;">No se ha adjuntado informe</td>
+						@endif
 
 					</tr>
 						@endforeach
-						@else
-						<p>Al Paciente no se le han adjuntado sus informes de resultados.</p>
-						@endif
+						
                       
 					</tbody>
 					<tfoot>
