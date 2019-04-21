@@ -81,13 +81,15 @@ class ResultadosGuardadosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
-        ->join('resultados_servicios as r','a.id','r.id_atencion')
+        ->join('resultados_laboratorios as r','a.id','r.id_atencion')
         ->where('a.id_paciente','=',$request->paciente)
         ->where('a.es_laboratorio','=',1)
         ->where('a.id_sede','=', \Session::get("sede"))
         ->where('a.resultado','=', 1)
         ->orderby('a.id','desc')
         ->get();
+
+  
 
 
 
@@ -112,12 +114,14 @@ class ResultadosGuardadosController extends Controller
 
 
    $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.apellidos','b.resultado','b.es_laboratorio','b.id')
+        ->select('a.id','a.nombres','a.apellidos','b.resultado','b.es_laboratorio','b.id as atencion')
         ->join('atenciones as b','b.id_paciente','a.id')
         ->where('b.resultado','=',1)
         ->where('b.es_laboratorio','=',1)
         ->groupBy('a.id')
         ->get();
+
+     
 
       return view('resultadosguardados.index1', ["resultadosguardados" => $resultadosguardados,'pacientes' => $pacientes]);
 
