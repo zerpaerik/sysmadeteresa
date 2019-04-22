@@ -25,32 +25,46 @@
 				<form class="form-horizontal" role="form" method="post" action="services/create">
 					{{ csrf_field() }}
 					<div class="form-group">
+						<div class="row">
 
-					    <label class="col-sm-1 control-label">Atenciones</label>
-						<div class="col-sm-4">
-							<select id="el4" name="atencion">
-								@foreach($atenciones as $atec)
+					    <label class="col-sm-1 control-label">Paciente</label>
+						<div class="col-sm-3">
+							<select id="el4" name="paciente">
+								@foreach($pacientes as $atec)
 									<option value="{{$atec->id}}">
-										ID:{{$atec->id}} Paciente:{{$atec->apellidos}},{{$atec->nombres}}-{{$atec->dni}}
+										{{$atec->nombres}},{{$atec->apellidos}} DNI:{{$atec->dni}}
 									</option>
 								@endforeach
+							</select>
+						</div>
+
+						<label class="col-sm-1 control-label">Tipo</label>
+						<div class="col-sm-3">
+							<select id="el9" name="tipo">
+									<option value="0">Seleccione</option>
+									<option value="1">Servicios</option>
+									<option value="2">Consulta</option>
+									<option value="3">Controles</option>
 							</select>
 						</div>
 						
-						<label class="col-sm-1 control-label">Especialistas</label>
+						<div id="origen1">
+							
+						</div>
+					</div>
+						
+						<label class="col-sm-1 control-label">Especialista</label>
 						<div class="col-sm-3">
-							<select id="el1" name="especialista">
-								@foreach($especialistas as $especialista)
-									<option value="{{$especialista->id}}">
-										{{$especialista->name}} {{$especialista->lastname}}
-										/ {{$especialista->tipo}}
+							<select id="el2" name="especialista">
+								@foreach($especialistas as $esp)
+									<option value="{{$esp->id}}">
+										{{$esp->name}},{{$esp->lastname}}
 									</option>
 								@endforeach
 							</select>
 						</div>
-
 						<label class="col-sm-1 control-label">Fecha</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<input type="text" id="input_date" class="form-control" placeholder="Fecha" name="date" required="required">
 						</div>
 						<label class="col-sm-1 control-label">Hora</label>
@@ -65,7 +79,7 @@
 							</div>						
 
 						<br>
-						<input type="button" onclick="form.submit()"style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
+						<input onclick="form.submit()"  type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
 
 						<a href="#" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-danger">Volver</a>
 					</div>			
@@ -118,5 +132,33 @@ function DemoTimePicker(){
 	minDate: 0});
 }
 </script>
+
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el9').on('change',function(){
+          var link;
+          if ($(this).val() ==  1) {
+            link = '/service/servicios/';
+          }else if($(this).val() ==  2){
+            link = '/service/consultas/';
+          }else {
+            link = '/service/controles/';
+          }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#origen1').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
 @endsection
 @endsection

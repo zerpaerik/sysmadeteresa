@@ -34,24 +34,12 @@
 
 			<div class="row">
 				<div class="col-md-2">
-					{!! Form::label('fecha', 'Fecha Inicio', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha', old('fechanac'), ['id'=>'fecha','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha'))
-					<p class="help-block">
-						{{ $errors->first('fecha') }}
-					</p>
-					@endif
+					<label>Fecha Inicio</label>
+					<input type="date" value="{{$f1}}" name="fecha" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
-					{!! Form::label('fecha2', 'Fecha Fin', ['class' => 'control-label']) !!}
-					{!! Form::date('fecha2', old('fecha2'), ['id'=>'fecha2','class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
-					<p class="help-block"></p>
-					@if($errors->has('fecha2'))
-					<p class="help-block">
-						{{ $errors->first('fecha2') }}
-					</p>
-					@endif
+					<label>Fecha Fin</label>
+					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
@@ -69,6 +57,7 @@
 							<th>Especialista</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</thead>
@@ -81,10 +70,11 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
+						<td>{{$d->name}}-{{$d->lastname}}</td>
 						<td>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
 
-						<a target="_blank" class="btn btn-primary" href="consulta-ticket-ver-{{$d->SerId}}">Ver</a>
+						<a class="btn btn-primary" href="service-{{$d->SerId}}">Ver</a>
 
 						<a  class="btn btn-success" href="services-edit-{{$d->SerId}}">Editar</a>	
 
@@ -104,6 +94,7 @@
 							<th>Especialista</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
 					</tfoot>

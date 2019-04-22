@@ -19,21 +19,22 @@ use DB;
 use App\Historial;
 use App\Consulta;
 use App\Service;
+use Auth;
 
 class ServiceController extends Controller
 {
 
 	public function index(Request $request)
-  	{
+    {
     if($request->isMethod('get')){
       $calendar = false;
-      return view('service.index', ["calendar" => $calendar, "especialistas" =>  Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get()]);
+      return view('service.index', ["calendar" => $calendar, "especialistas" =>   Personal::all()]);
     }else{
       $calendar = Calendar::addEvents($this->getEvents($request->especialista))
       ->setOptions([
         'locale' => 'es',
       ]);
-      return view('service.index',[ "calendar" => $calendar, "especialistas" => Personal::where('estatus','=',1)->where('tipo','=','Especialista')->get()]);
+      return view('service.index',[ "calendar" => $calendar, "especialistas" => Personal::all()]);
     }
   }
   private static function toggleType($type){
@@ -47,19 +48,69 @@ class ServiceController extends Controller
         break;
     }
   }
-  public function inicio()
+
+    private function getEvents($args = null){
+    $events = [];
+    $data = ($args) ? Service::where('especialista_id', '=', $args)->get() : Service::all();
+    if($data) {
+      foreach ($data as $d) {
+        $datetime = RangoConsulta::find($d->hora_id);
+        $events[] = Calendar::event(
+          $d->title,
+          false,
+          new \DateTime($d->date),
+          new \DateTime($d->date),
+          null,
+          [
+            'color' => self::toggleType($d->entrada),
+            'url' => 'service-'.$d->id
+          ]
+        );
+      }
+    }
+    return $events;    
+  }
+  public function inicio(Request $request)
   {
+
+    if(!is_null($request->fecha)){
+      $f1=$request->fecha;
+      $f2=$request->fecha2;
     $services = DB::table('services as s')
-    ->select('s.id as SerId','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
+    ->select('s.id as SerId','s.created_at','s.usuario','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
+    ->join('users as u','u.id','s.usuario')
+    ->whereBetween('s.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->get(); 
+
+  } else {
+
+      $services = DB::table('services as s')
+    ->select('s.id as SerId','s.usuario','s.date','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
+    ->join('personals as pro','pro.id','=','s.especialista_id')
+    ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
+    ->join('servicios as sr','sr.id','=','s.servicio_id')
+    ->join('pacientes as pc','pc.id','=','s.paciente_id')
+    ->join('users as u','u.id','s.usuario')
+    ->where('s.date','=',Carbon::now()->toDateString())
+    ->get(); 
+
+  
+
+    $f1=Carbon::now()->toDateString();
+    $f2=Carbon::now()->toDateString();
+
+
+  }
     
 
     return view('service.inicio',[
-      'data' => $services
+      'data' => $services,
+      'f1' => $f1,
+      'f2' => $f2
     ]);
   }
 
@@ -115,32 +166,13 @@ class ServiceController extends Controller
     return redirect('/services-inicio');    
   }
 
-  private function getEvents($args = null){
-    $events = [];
-    $data = ($args) ? Service::where('especialista_id', '=', $args)->get() : Service::all();
-    if($data->count()) {
-      foreach ($data as $d) {
-        $datetime = RangoConsulta::find($d->hora_id);
-        $events[] = Calendar::event(
-          $d->title,
-          false,
-          new \DateTime($d->date." ".$datetime->start_time),
-          new \DateTime($d->date." ".$datetime->end_time),
-          null,
-          [
-            'color' => self::toggleType($d->entrada),
-            'url' => 'service-'.$d->id
-          ]
-        );
-      }
-    }
-    return $events;    
-  }
+
+ 
 
   public function show($id)
   {
     $services = DB::table('services as s')
-    ->select('s.id','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
+    ->select('s.id','s.especialista_id','s.tipo','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
@@ -175,59 +207,89 @@ class ServiceController extends Controller
 	
   }
 
+     public function servicios(){
+     
+        $servicios= Servicios::where('estatus','=',1)->get(); 
+
+    return view('service.servicios', compact('servicios'));
+  }
+
+   public function consultas(){
+     
+
+    return view('service.consultas');
+  }
+
+   public function controles(){
+     
+
+    return view('service.controles');
+  }
+
    public function create(Request $request){
-    $validator = \Validator::make($request->all(), [
-      "espcialidad" => "required", 
-      "especialista" => "required", 
-      "servicios" => "required", 
-      "date" => "required", 
-      "time" => "required",
-    ]);
-	
-	 $searchAtenciones = DB::table('atenciones')
-              ->select('*')
-              ->where('id','=', $request->atencion)
-              ->first();  
-			  
-      $paciente = $searchAtenciones->id_paciente;
-	  $servicio = $searchAtenciones->id_servicio;
-	
-	
-    if($validator->fails()){
-      $this->createView([
-        "fail" => true,
-        "errors" => $validator->errors()
-      ]);
-    }
-   $exists = Service::where('date',  Carbon::createFromFormat('d/m/Y', $request->date))
-    ->where("hora_id", "=", $request->time)
-    ->first();
+       $especialista = Personal::find($request->especialista);
+       $paciente= Pacientes::find($request->paciente);
 
-    $especialista = Personal::find($request->especialista);
-    //$servicio = Servicios::find($request->servicio);
 
-    if(!$exists){
+
+
+     if($request->tipo == 1){ // servicios
+
+      $servicios = Servicios::where('id','=',$request->servicio_id)->first();
+
       $evt = Service::create([
         "especialista_id" => $request->especialista,
-        "paciente_id" => $paciente,
+        "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "hora_id" => $request->time,
-        "servicio_id" => $servicio,
-        "title" => $especialista->name." ".$especialista->lastname." "."Personal"
+        "tipo" => $request->tipo,
+        "servicio_id" => $request->servicio_id,
+        "consulta" =>'No',
+        "control" =>'No',
+        "usuario" =>\Auth::user()->id,
+        "title" => "Especialista: ".$especialista->name." ".$especialista->lastname." "."Servicio: ".$servicios->detalle." Paciente: ".$paciente->nombres." ".$paciente->apellidos
       ]);
-	  
-	    Atenciones::where('id', $request->atencion)
-                  ->update([
-                      'serv_prog' => 3,
-                  ]);
 
-    $calendar = Calendar::addEvents($this->getEvents())
-    ->setOptions([
-      'locale' => 'es',
-    ]);
-    return redirect()->action('ServiceController@index');
+    } else if($request->tipo == 2){//consultas
 
-  }
+      $consulta='CONSULTA';
+
+        $evt = Service::create([
+        "especialista_id" => $request->especialista,
+        "paciente_id" => $request->paciente,
+        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+       "tipo" => $request->tipo,
+        "servicio_id" => 1,
+        "consulta" =>'CONSULTA',
+        "control" =>'No',
+        "usuario" =>\Auth::user()->id,
+        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Consulta-".$consulta."Paciente ".$paciente->nombres." ".$paciente->apellidos
+      ]);
+
+    } else if($request->tipo == 3){//control
+
+            $control='CONTROL';
+
+        $evt = Service::create([
+        "especialista_id" => $request->especialista,
+        "paciente_id" => $request->paciente,
+        "date" => Carbon::createFromFormat('d/m/Y', $request->date),
+        "hora_id" => $request->time,
+        "tipo" => $request->tipo,
+        "servicio_id" => 1,
+        "consulta" =>'No',
+        "control" =>'CONTROL PRENATAL',
+                "usuario" =>\Auth::user()->id,
+        "title" => $especialista->name." ".$especialista->lastname." "." Especialista" . "Control-".$control."Paciente ".$paciente->nombres." ".$paciente->apellidos
+      ]);
+
+    } else {
+
+    }
+    
+
+    return redirect()->action('ServiceController@inicio');
+  
 
 }
  /* public function availableTime($e, $d, $m, $y){
