@@ -1200,8 +1200,8 @@ class ReportesController extends Controller
         if ($resultados->origen == 3 ) {
             $informe->setValue('indicacion','PARTICULAR');
         }        
-        $informe->saveAs($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
-        return response()->download($resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
+        $informe->saveAs($resultados->id.'-'.$resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
+        return response()->download($resultados->id.'-'.$resultados->nombrePaciente.'-'.$resultados->apellidoPaciente.'-'.$resultados->dni.'.docx');
 
     }
 
