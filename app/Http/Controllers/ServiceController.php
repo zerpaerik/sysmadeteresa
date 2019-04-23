@@ -91,13 +91,13 @@ class ServiceController extends Controller
   } else {
 
       $services = DB::table('services as s')
-    ->select('s.id as SerId','s.usuario','s.date','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
+    ->select('s.id as SerId','s.usuario','s.date','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.created_at','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
     ->join('users as u','u.id','s.usuario')
-    ->whereDate('s.date','=',Carbon::now()->toDateString())
+    ->whereDate('s.created_at','=',Carbon::now()->toDateString())
     ->get(); 
 
   
