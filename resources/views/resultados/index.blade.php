@@ -134,6 +134,7 @@
                                     <option value="GIN TV DIU SITUACION BAJA-V.docx">GIN TV DIU SITUACION BAJA-V</option>
                                     <option value="GIN TV MIOMATOSIS-V.docx">GIN TV MIOMATOSIS-V</option>
                                     <option value="GIN TV NRML-V.docx">GIN TV NRML-V</option>
+
                                     <option value="GIN TV OV MORFOLOGIA POLIQUISTICA-V.docx">GIN TV OV MORFOLOGIA POLIQUISTICA-V</option>
                                     <option value="GIN TV POLIFOL, EPI-V.docx">GIN TV POLIFOL, EPI-V</option>
                                     <option value="GIN TV POLIFOL-V.docx">GIN TV POLIFOL-V</option>
@@ -148,8 +149,8 @@
                                     <option value="OBST 4D II TRIMESTRE-V.docx">OBST 4D TRIMESTRE-V</option>
                                     <option value="OBST 4D III TRIMESTRE CC-V.docx">OBST 4D III TRIMESTRE CC-V</option>
                                     <option value="OBST 4D III TRIMESTRE-V.docx">OBST 4D III TRIMESTRE-V</option>
-                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE-V.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE-V-V</option>
-
+                                   
+                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE-V.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE-V</option>
                                     <option value="OBST GEMELAR II, III TRIMESTRE BICO, BIAMN-V.docx">OBST GEMELAR II, III TRIMESTRE BICO, BIAMN-V-V</option>
                                     <option value="OBST GEMELAR II, III TRIMESTRE MONOCO, BIAMN-V.docx">OBST GEMELAR II, III TRIMESTRE MONOCO, BIAMN-V-V</option>
                                     <option value="OBST I EMBRION 6 - 8 SEMANAS-V.docx">OBST I EMBRION 6 - 8 SEMANAS-V-V</option>
@@ -239,10 +240,12 @@
                                     <option value="GIN TV SITUACION INDETERMIDA BETA +.docx">GIN TV SITUACION INDETERMIDA BETA +</option>
                                     <option value="MAMAS FIBROADENOMA MAMA DER.docx">MAMAS FIBROADENOMA MAMA DER</option>
                                     <option value="MAMAS FIBROADENOMA MAMA IZQ.docx">MAMAS FIBROADENOMA MAMA IZQ</option>
+                                     <option value="GIN TV OV MORFOLOGIA POLIQUISTICA.docx">GIN TV OV MORFOLOGIA POLIQUISTICA</option>
+                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE NRML.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE</option>
                                   
                                     <option value="MAMAS.docx">MAMAS</option>
                                     <option value="OBST 4D II TRIMESTRE.docx">OBST 4D TRIMESTRE</option>
-                                    <option value="OBST 4D III TRIMESTRE CC.docx">OBST 4D III TRIMESTRE CC</option>
+                                   
                                     <option value="OBST 4D III TRIMESTRE.docx">OBST 4D III TRIMESTRE</option>
                                     <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE</option>
 
