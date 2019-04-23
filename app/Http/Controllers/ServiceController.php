@@ -54,12 +54,14 @@ class ServiceController extends Controller
     $data = ($args) ? Service::where('especialista_id', '=', $args)->get() : Service::all();
     if($data) {
       foreach ($data as $d) {
-        $datetime = RangoConsulta::find($d->hora_id);
+        $datetime = RangoConsulta::where('id','=',$d->hora_id)->get(['start_time','end_time'])->first();
+        $ini=$datetime->start_time;
+        $fin=$datetime->end_time; 
         $events[] = Calendar::event(
           $d->title,
           false,
-          new \DateTime($d->date),
-          new \DateTime($d->date),
+          new \DateTime($d->date." ".$ini),
+          new \DateTime($d->date." ".$fin),
           null,
           [
             'color' => self::toggleType($d->entrada),
