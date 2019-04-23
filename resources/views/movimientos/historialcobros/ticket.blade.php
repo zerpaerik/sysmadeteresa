@@ -82,7 +82,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="acuenta">
-		<p><strong>Abono:{{ $ticket->abono}}</strong></p>
+		<p><strong>Abono:{{ $ticket->abono_parcial}}</strong></p>
 	</div>
 
 	<div class="pendiente">
