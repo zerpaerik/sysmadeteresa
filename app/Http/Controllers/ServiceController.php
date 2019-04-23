@@ -261,6 +261,7 @@ class ServiceController extends Controller
         "paciente_id" => $request->paciente,
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
        "tipo" => $request->tipo,
+               "hora_id" => $request->time,
         "servicio_id" => 1,
         "consulta" =>'CONSULTA',
         "control" =>'No',
