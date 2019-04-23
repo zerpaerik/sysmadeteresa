@@ -97,7 +97,7 @@ class ServiceController extends Controller
     ->join('servicios as sr','sr.id','=','s.servicio_id')
     ->join('pacientes as pc','pc.id','=','s.paciente_id')
     ->join('users as u','u.id','s.usuario')
-    ->where('s.date','=',Carbon::now()->toDateString())
+    ->whereDate('s.date','=',Carbon::now()->toDateString())
     ->get(); 
 
   
