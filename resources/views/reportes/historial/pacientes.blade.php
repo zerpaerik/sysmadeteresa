@@ -77,8 +77,8 @@
 						
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
-						@if($d->resultado == 1)
-						<td>{{$d->nameinf}},{{$d->apeinf}}</td>
+						@if($d->usuarioinforme <> NULL)
+						<td>{{$d->usuarioinforme}}</td>
 						@else
 						<td style="background: #82FA58;">No se ha adjuntado informe</td>
 						@endif

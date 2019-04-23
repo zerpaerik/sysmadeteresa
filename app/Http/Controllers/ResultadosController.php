@@ -14,6 +14,7 @@ use App\Models\ResultadosMateriales;
 use App\Models\MaterialesMalogrados;
 use App\Models\Existencias\Producto;
 use App\Informe;
+use App\User;
 use Auth;
 use Toastr;
 use Carbon\Carbon;
@@ -384,9 +385,16 @@ class ResultadosController extends Controller
 
 
 
-                  $p = Atenciones::findOrFail($id);
-                  $p->resultado = 1;  
-                  $p->save();   
+
+
+
+        $p = User::where('id','=',Auth::user()->id)->first();
+
+          $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->save(); 
+
 
 
                   $product=new ResultadosServicios;
@@ -404,11 +412,18 @@ class ResultadosController extends Controller
 
                } else {
 
-               
+                     //  dd('hola');
 
-                $p = Atenciones::findOrFail($id);
-          $p->resultado = 1;  
-          $p->save();   
+
+               
+        $p = User::where('id','=',Auth::user()->id)->first();
+
+        //dd($p);
+
+        $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->save(); 
 
 
           $product=new ResultadosServicios;
@@ -550,11 +565,12 @@ class ResultadosController extends Controller
         }
 
        
+        $p = User::where('id','=',Auth::user()->id)->first();
 
-
-          $p = Atenciones::findOrFail($id);
-        $p->resultado = 1;  
-        $p->save();   
+          $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->save();   
         
         $product=new ResultadosLaboratorios;
         $img = $request->file('informe');

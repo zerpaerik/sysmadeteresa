@@ -85,42 +85,9 @@ class ReportesController extends Controller
 
         if(!is_null($request->paciente)){
 
-          $atencioness = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.resultado','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','rs.user_id','u.name as nameinf','u.lastname as apeinf')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('users as h','h.id','a.usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->join('resultados_servicios as rs','rs.id_atencion','a.id')
-    ->join('users as u','u.id','rs.user_id')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->where('b.dni','=',$request->paciente)
-    ->orderby('a.id','desc');
- 
-
-     $atencionesl = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.resultado','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','rl.user_id','u.name as nameinf','u.lastname as apeinf')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('users as h','h.id','a.usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->join('resultados_laboratorios as rl','rl.id_atencion','a.id')
-    ->join('users as u','u.id','rl.user_id')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->where('a.id_sede','=', $request->session()->get('sede'))
-    ->where('b.dni','=',$request->paciente)
-    ->orderby('a.id','desc');
-    //->union($atencioness)
-
-
-
+    
        $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.resultado','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','b.telefono','b.direccion','b.fechanac')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.usuarioinforme','a.resultado','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','b.telefono','b.direccion','b.fechanac')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -130,11 +97,9 @@ class ReportesController extends Controller
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.id_sede','=', $request->session()->get('sede'))
     ->where('b.dni','=',$request->paciente)
-    ->union($atencioness)
-    ->union($atencionesl)
     ->get();
 
-  
+
 
 
     $event = DB::table('events as e')
@@ -157,7 +122,7 @@ class ReportesController extends Controller
    } else {
 
      $atenciones = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.usuarioinforme','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -170,51 +135,7 @@ class ReportesController extends Controller
     ->get();
 
 
-    if($atenciones <> NULL){
-        $tipo=1;
-    }
-     
-    
-       $atencioness = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','rs.user_id','u.name as nameinf','u.lastname as apeinf')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('users as h','h.id','a.usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->join('resultados_servicios as rs','rs.id_atencion','a.id')
-    ->join('users as u','u.id','rs.user_id')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->where('a.id_sede','=',9)
-    ->orderby('a.id','desc')
-    ->get();
-
-     if($atencioness <> NULL){
-        $tipo=2;
-    }
-    
-
-       $atencionesl = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete','rl.user_id','u.name as nameinf','u.lastname as apeinf')
-    ->join('pacientes as b','b.id','a.id_paciente')
-    ->join('servicios as c','c.id','a.id_servicio')
-    ->join('analises as d','d.id','a.id_laboratorio')
-    ->join('users as e','e.id','a.origen_usuario')
-    ->join('users as h','h.id','a.usuario')
-    ->join('paquetes as f','f.id','a.id_paquete')
-    ->join('resultados_laboratorios as rl','rl.id_atencion','a.id')
-    ->join('users as u','u.id','rl.user_id')
-    ->whereNotIn('a.monto',[0,0.00,99999])
-    ->where('a.id_sede','=',9)
-    ->orderby('a.id','desc')
-    //->union($atencioness)
-    ->get();
-
-
-    if($atencionesl <> NULL){
-        $tipo=3;
-    }
+   
 
 
     $event = DB::table('events as e')
@@ -243,7 +164,7 @@ class ReportesController extends Controller
 
        $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
 
-        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atencionesl" => $atencionesl,"atenciones" => $atenciones,"atencioness" => $atencioness]);
+        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atenciones" => $atenciones]);
     }
 
     public function update($id,Request $request)
