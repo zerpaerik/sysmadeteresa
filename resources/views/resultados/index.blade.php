@@ -241,8 +241,7 @@
                                     <option value="MAMAS FIBROADENOMA MAMA DER . IZQ.docx">MAMAS FIBROADENOMA MAMA DER</option>
                                     <option value="MAMAS FIBROADENOMA MAMA DER . IZQ.docx">MAMAS FIBROADENOMA MAMA IZQ</option>
                                      <option value="GIN TV OV MORFOLOGIA POLIQUISTICA.docx">GIN TV OV MORFOLOGIA POLIQUISTICA</option>
-                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE NRML.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE</option>
-                                  
+                                   
                                     <option value="MAMAS.docx">MAMAS</option>
                                     <option value="OBST 4D II TRIMESTRE.docx">OBST 4D TRIMESTRE</option>
                                      <option value="OBST 5D II TRIMESTRE.docx">OBST 5D II TRIMESTRE</option>
