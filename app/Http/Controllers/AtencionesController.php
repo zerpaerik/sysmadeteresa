@@ -771,36 +771,33 @@ $paciente = DB::table('pacientes')
     }
 
     if (isset($request->id_servicio)) {
-      $searchServicio = DB::table('servicios')
-              ->select('*')
-              ->where('id','=', $request->id_servicio)
-              ->first();  
+     
         
      // $porcentaje = $searchServicio->porcentaje;
-    $programa = $searchServicio->programa;
-    $sesion = $searchServicio->sesion;
-
-
-    
-    if ($request->origen == 1 ){
-        $porcentaje = $searchServicio->por_per;
-    } else {
-        $porcentaje = $searchServicio->porcentaje;
-    }
-    
+ 
   
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
-              $serMateriales = ServicioMaterial::where('servicio_id', $servicio['servicio'])
-                                        ->with('material', 'servicio')
-                                        ->get();
+
+           $searchServicio = DB::table('servicios')
+              ->select('*')
+              ->where('id','=',$servicio['servicio'])
+              ->first(); 
+
+
+                 $programa = $searchServicio->programa;
+    $sesion = $searchServicio->sesion; 
+             
+
+             if ($request->origen == 1 ){
+          $porcentaje = $searchServicio->por_per;
+      } else {
+          $porcentaje = $searchServicio->porcentaje;
+      }
 
           
 
-              foreach ($serMateriales as $sm) {
-                $sm->material->cantidad = $sm->material->cantidad - $sm->cantidad;
-                $sm->material->save();
-              }
+             
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
               $serv->origen = $request->origen;
@@ -845,23 +842,27 @@ $paciente = DB::table('pacientes')
 
     if (isset($request->id_laboratorio)) {
 
-       $searchAnalisis = DB::table('analises')
-                    ->select('*')
-                   // ->where('estatus','=','1')
-                    ->where('id','=', $request->id_laboratorio)
-                    ->first();   
+       
                    
                    
-    if ($request->origen == 2 ){
-        $porcentaje = $searchAnalisis->porcentaje;
-    } else {
-      $porcentaje=0;
-    }   
+   
 
 
 
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
+
+          $searchAnalisis = DB::table('analises')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $laboratorio['laboratorio'])
+                    ->first();   
+
+           if ($request->origen == 2 ){
+        $porcentaje = $searchAnalisis->porcentaje;
+    } else {
+      $porcentaje=0;
+    }   
 
          
           $lab = new Atenciones();
