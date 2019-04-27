@@ -285,7 +285,7 @@
                                     <option value="OBST III PB.docx">OBST III PB</option>
                                     <option value="OBST III TRIMESTRE CIRCULAR DE CORDON.docx">OBST III TRIMESTRE CIRCULAR DE CORDON</option>
                                     <option value="OBST III.docx">OBST III</option>
-                                    <option value="OBST MORFOLOGICA II TRIMESTRE.docx">OBST MORFOLOGICA II TRIMESTRE-2p</option>
+                                    <option value="OBST MORFOLOGICA II TRIMESTRE-2p.docx">OBST MORFOLOGICA II TRIMESTRE-2p</option>
                                     <option value="PB CADERAS NRML.docx">PB CADERAS NRML</option>
                                     <option value="PB INGLE NRML, HERNIA POSITIVO.docx">PB INGLE NRML, HERNIA POSITIVO</option>
                                     <option value="PB TESTICULAR NRML.docx">PB TESTICULAR NRML</option>
