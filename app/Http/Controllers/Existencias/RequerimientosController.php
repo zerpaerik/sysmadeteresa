@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Existencias;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Existencias\{Producto, Requerimientos, Transferencia};
+use App\Models\Existencias\{Producto, Requerimientos, Transferencia,ProductosMovimientos};
 use App\Models\Config\{Sede, Proveedor};
 use DB;
 use Toastr;
@@ -208,13 +208,23 @@ class RequerimientosController extends Controller
         if (!is_null($laboratorio['laboratorio'])) {
           $lab = new Requerimientos();
           $lab->id_producto =  $laboratorio['laboratorio'];
-          $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];;
+          $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];
           $lab->id_sede_solicita = $request->session()->get('sede');
           $lab->usuario = Auth::user()->id;
           $lab->id_sede_solicitada = 1;
           $lab->estatus = 'Solicitado';
           $lab->almacen_solicita =$request->almacen;
           $lab->save();
+
+             $productom = new ProductosMovimientos();
+              $productom->id_producto = $laboratorio['laboratorio'];
+              $productom->accion = 'SOLICITADO';
+              $productom->origen= 'REQUERIMIENTO ENVIADO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->monto_abol['laboratorios'][$key]['abono'];
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
 
         } 
       }
@@ -297,6 +307,20 @@ class RequerimientosController extends Controller
       if($p){
         $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
         $p->save();
+
+
+       
+              $productom = new ProductosMovimientos();
+              $productom->id_producto = $producto;
+              $productom->accion = 'INGRESO EN ALMACEN';
+              $productom->origen= 'REQUERIMIENTO PROCESADO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadd;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
+
+
       }else{
 
         $prod = new Producto();
@@ -311,6 +335,15 @@ class RequerimientosController extends Controller
         $prod->almacen = 2;
         $prod->padre = $producto;
         $prod->save();
+
+          $productom = new ProductosMovimientos();
+          $productom->id_producto = $producto;
+          $productom->accion = 'INGRESO EN ALMACEN';
+          $productom->origen= 'REQUERIMIENTO PROCESADO';
+          $productom->usuario= Auth::user()->id;
+          $productom->cantidad=$request->cantidadd;
+          $productom->sede = $request->session()->get('sede');
+          $productom->save();
 
       }
 
@@ -378,6 +411,17 @@ class RequerimientosController extends Controller
       if($p){
         $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
         $p->save();
+        
+
+              $productom = new ProductosMovimientos();
+              $productom->id_producto = $producto;
+              $productom->accion = 'INGRESO EN ALMACEN';
+              $productom->origen= 'REQUERIMIENTO PROCESADO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadd;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
       }else{
 
         $prod = new Producto();
@@ -392,6 +436,16 @@ class RequerimientosController extends Controller
         $prod->almacen = 2;
         $prod->padre = $producto;
         $prod->save();
+
+
+              $productom = new ProductosMovimientos();
+              $productom->id_producto = $producto;
+              $productom->accion = 'INGRESO EN ALMACEN';
+              $productom->origen= 'REQUERIMIENTO PROCESADO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadd;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
 
       }
 

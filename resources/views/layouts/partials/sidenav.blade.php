@@ -347,8 +347,8 @@
        <li>
         <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Còmo llego el Paciente?</a>
       </li>
-	   <li>
-        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+	      <li>
+        <a href="{{route('movimientosp.index')}}"><i class="fa fa-file-o"></i> Movimientos de Productos</a>
       </li>
        <li>
         <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
@@ -726,7 +726,7 @@
         <a href="{{route('comollego.index')}}"><i class="fa fa-file-o"></i> Còmo llego el Paciente?</a>
       </li>
 	   <li>
-        <a href="{{route('historial.index')}}"><i class="fa fa-file-o"></i> Historial</a>
+        <a href="{{route('movimientosp.index')}}"><i class="fa fa-file-o"></i> Movimientos de Productos</a>
       </li>
       <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
       </li>

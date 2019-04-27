@@ -10,6 +10,7 @@ use App\Models\Creditos;
 use App\Models\AplicaMetodo;
 use App\User;
 use App\Models\Existencias\Producto;
+use App\Models\Existencias\ProductosMovimientos;
 use Carbon\Carbon;
 use Toastr;
 use Auth;
@@ -134,6 +135,15 @@ class MetodosController extends Controller
          $metodos->sede = $request->session()->get('sede');
          $metodos->save();
 
+         $productom = new ProductosMovimientos();
+              $productom->id_producto = $request->producto;
+              $productom->accion = 'SALIDA';
+              $productom->origen= 'VENTA DE MÈTODO ANTICONCEPTIVO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad='1';
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
 
           $credito = Creditos::create([
 		        "origen" => 'METODOS ANTICONCEPTIVOS',
@@ -178,6 +188,18 @@ class MetodosController extends Controller
     $p = Producto::find($metodos->id_producto);
           $p->cantidad = $p->cantidad + 1;
           $res = $p->save();
+
+
+         $productom = new ProductosMovimientos();
+              $productom->id_producto = $metodos->id_producto;
+              $productom->accion = 'ENTRADA';
+              $productom->origen= ' REVERSO DE VENTA DE MÈTODO ANTICONCEPTIVO';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad='1';
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
+
 
     $metodo = Metodos::find($id);
     $metodo->delete();

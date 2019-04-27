@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Existencias;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Existencias\{Producto, Existencia, Transferencia};
+use App\Models\Existencias\{Producto, Existencia, Transferencia,ProductosMovimientos};
 use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
 use App\Models\Creditos;
@@ -220,6 +220,20 @@ class ProductoController extends Controller
           $p = Producto::find($request->producto);
           $p->cantidad = $p->cantidad + $request->cantidadplus;
           $res = $p->save();
+
+            $productom = new ProductosMovimientos();
+              $productom->id_producto = $request->producto;
+              $productom->accion = 'ENTRADA EN ALM CENTRAL';
+              $productom->origen= 'ENTRADA DE PRODUCTOS';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadplus;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+          
+
+
+
+
           Toastr::success('La Entrada se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
           return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
   
@@ -303,6 +317,15 @@ class ProductoController extends Controller
               $creditos->descripcion = 'VENTA DE PRODUCTOS';
               $creditos->id_venta = $ventas->id;
               $creditos->save();
+
+                $productom = new ProductosMovimientos();
+              $productom->id_producto = $request->producto;
+              $productom->accion = 'SALIDA';
+              $productom->origen= 'VENTA DE PRODUCTOS';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$request->cantidadplus;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
 			  
        Toastr::success('Registrada Exitosamente', 'Venta!', ['progressBar' => true]);
       return redirect()->action('Existencias\ProductoController@indexv', ["created" => true]);
@@ -382,6 +405,16 @@ class ProductoController extends Controller
       $p->cantidad= $p->cantidad - $ventas->cantidad;
       $res = $p->save();
 
+
+       $productom = new ProductosMovimientos();
+              $productom->id_producto = $ventas->id_producto;
+              $productom->accion = 'ENTRADA';
+              $productom->origen= 'REVERSO DE VENTA DE PRODUCTOS';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad=$ventas->cantidad;
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
       $creditos= Creditos::where('id_venta','=',$id)->first();
       $creditos->delete();
 
@@ -426,17 +459,32 @@ class ProductoController extends Controller
       } else {
     
 
-       $producto = Producto::create([
-        "nombre" => $request->nombre,
-        "codigo" => $request->codigo,
-        "categoria" => $request->categoria,
-        "medida" => $request->medida,
-        "preciounidad" => $request->preciounidad,
-        "precioventa" => $request->precioventa,
-        "vence" => $request->vence,
-        "sede_id" => $request->session()->get('sede'),
-        "almacen" => 1
-      ]);
+  
+              $producto = new Producto();
+              $producto->nombre = $request->nombre;
+              $producto->codigo = $request->codigo;
+              $producto->categoria= $request->categoria;
+              $producto->medida= $request->medida;
+              $producto->preciounidad= $request->preciounidad;
+              $producto->precioventa= $request->precioventa;
+              $producto->sede_id = $request->session()->get('sede');
+              $producto->vence = $request->vence;
+              $producto->almacen =1;
+              $producto->save();
+
+              $productom = new ProductosMovimientos();
+              $productom->id_producto = $producto->id;
+              $productom->accion = 'CREACIÒN';
+              $productom->origen= 'ALMACEN CENTRAL';
+              $productom->usuario= Auth::user()->id;
+              $productom->cantidad='0';
+              $productom->sede = $request->session()->get('sede');
+              $productom->save();
+
+
+
+
+
 
        }
 	  
@@ -458,6 +506,66 @@ class ProductoController extends Controller
     public function transView($code){
       $t = Transferencia::where('code', '=', $code)->get();
       return view('existencias.transferencia', ["transferencias" => $t, "code" => $code]);
+    }
+
+
+    public function movimientos(Request $request){
+
+
+      if(!is_null($request->fecha) && !is_null($request->fecha2) && !is_null($request->producto)){
+
+         $productosm= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+
+      }elseif(!is_null($request->fecha) && !is_null($request->fecha2) && is_null($request->producto)){
+      $productosm= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+
+
+      }elseif(is_null($request->fecha) && is_null($request->fecha2) && !is_null($request->producto)){
+
+         $productosm= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->get();
+
+
+      }else{
+
+
+      $productosm= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',9)
+                    ->get();
+      }
+
+
+           $productos = DB::table('productos as a')
+                    ->select('a.id','a.nombre','a.sede_id','a.almacen')
+                    ->join('productos_movimientos as pm','pm.id_producto','a.id')
+                    ->where('sede_id','=',$request->session()->get('sede'))
+                    ->groupBy('a.id')
+                    ->get();
+
+      return view('existencias.movimientos.index',compact('movimientos','productos','productosm'));
     }
 
     function unique_multidim_array($array, $key) { 
