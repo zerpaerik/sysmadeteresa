@@ -181,7 +181,7 @@ class MetodosController extends Controller
 		return redirect()->action('MetodosController@index', ["created" => true, "metodos" => Metodos::all()]);
 	}    
 
-  public function delete($id){
+  public function delete(Request $request,$id){
     
     $metodos = Metodos::where('id','=',$id)->first();
 
