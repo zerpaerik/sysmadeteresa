@@ -238,11 +238,14 @@
                                     <option value="GIN TV PRODUCTOS RETENIDOS DE LA CONCEPCION.docx">GIN TV PRODUCTOS RETENIDOS DE LA CONCEPCION</option>
                                     <option value="GIN TV SEGUIMIENTO OVULATORIO NRML.docx">GIN TV SEGUIMIENTO OVULATORIO NRML</option>
                                     <option value="GIN TV SITUACION INDETERMIDA BETA +.docx">GIN TV SITUACION INDETERMIDA BETA +</option>
-                                    <option value="MAMAS FIBROADENOMA MAMA DER . IZQ.docx">MAMAS FIBROADENOMA MAMA DER</option>
-                                    <option value="MAMAS FIBROADENOMA MAMA DER . IZQ.docx">MAMAS FIBROADENOMA MAMA IZQ</option>
+                                  
                                      <option value="GIN TV OV MORFOLOGIA POLIQUISTICA.docx">GIN TV OV MORFOLOGIA POLIQUISTICA</option>
                                    
-                                    <option value="MAMAS.docx">MAMAS</option>
+                                    <option value="MAMAS NRML.docx">MAMAS NRML</option>
+                                    <option value="MAMAS QT SIMPLE.docx">MAMAS QT SIMPLE</option>
+                                    <option value="MAMAS FIBROADENOMA MAMA DER . IZQ.docx">MAMAS FIBROADENOMA MAMA DER . IZQ</option>
+                                    <option value="MAMAS MASTOPATIA FQ BILATERAL.docx">MAMAS MASTOPATIA FQ BILATERAL</option>
+
                                     <option value="OBST 4D II TRIMESTRE.docx">OBST 4D TRIMESTRE</option>
                                      <option value="OBST 5D II TRIMESTRE.docx">OBST 5D II TRIMESTRE</option>
                                       <option value="OBST 5D III TRIMESTRE.docx">OBST 5D III TRIMESTRE</option>
