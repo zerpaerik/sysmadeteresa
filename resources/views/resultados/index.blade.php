@@ -251,7 +251,7 @@
                                       <option value="OBST 5D III TRIMESTRE.docx">OBST 5D III TRIMESTRE</option>
                                    
                                     <option value="OBST 4D III TRIMESTRE.docx">OBST 4D III TRIMESTRE</option>
-                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE</option>
+                                   
 
                                     <option value="OBST GEMELAR II, III TRIMESTRE BICO, BIAMN.docx">OBST GEMELAR II, III TRIMESTRE BICO, BIAMN</option>
                                     <option value="OBST GEMELAR II, III TRIMESTRE MONOCO, BIAMN.docx">OBST GEMELAR II, III TRIMESTRE MONOCO, BIAMN</option>
