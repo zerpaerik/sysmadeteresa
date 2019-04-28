@@ -18,36 +18,9 @@ use Auth;
 class PrenatalController extends Controller
 {
 
-	public function index(){
-    
-        $prenatal = $this->elasticSearch('');
-   
-        return view('prenatal.index', ["prenatal" => $prenatal]);
-	}
+	public function index(Request $request){
 
-    public function search(Request $request)
-    {
-      $search = $request->dni;
-      $split = explode(" ",$search);
-    
-
-      if (!isset($split[1])) {
-       
-        $split[1] = '';
-        $prenatal = $this->elasticSearch($split[0],$split[1]);
-      
-        return view('prenatal.search', ["prenatal" => $prenatal]); 
-
-      }else{
-        $prenatal = $this->elasticSearch($split[0],$split[1]); 
-      
-        return view('prenatal.search', ["prenatal" => $prenatal]);   
-      }    
-    }
-
-      private function elasticSearch($dni)
-  { 
-      $prenatal = DB::table('prenatals as a')
+		 $prenatal = DB::table('prenatals as a')
     	->select( 'a.id',
     			'a.paciente' ,
 				'a.gesta' ,
@@ -101,11 +74,22 @@ class PrenatalController extends Controller
 			 'p.dni',
 			 'p.id as idPaciente')
     	->join('pacientes as p','p.id','a.paciente')
-        ->where('p.dni','like','%'.$dni.'%')
-        ->groupBy('a.paciente')
+        ->where('a.paciente','=',$request->paciente)
+        //->groupBy('a.paciente')
         ->get();
-        return $prenatal;
-  }
+
+
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni')
+        ->join('prenatals as pr','pr.paciente','a.id')
+        ->get();
+    
+   
+        return view('prenatal.index',compact('prenatal','pacientes'));
+	}
+
+
+
 
     public function createView($paciente,$evento)
     {

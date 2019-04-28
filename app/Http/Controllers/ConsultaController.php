@@ -213,6 +213,7 @@ class ConsultaController extends Controller
   {
 
     $consultas = Consulta::where('id','=',$id)->first();
+
     $historial = Historial::where('paciente_id','=',$consultas->paciente_id)->first();
     $data= Paciente::where('id','=',$consultas->paciente_id)->first();
     $personal = Personal::where('estatus','=',1)->get();

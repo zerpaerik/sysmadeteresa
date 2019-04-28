@@ -13,7 +13,6 @@ use Auth;
 
 
 
-
 class RequerimientosController extends Controller
 {
 
@@ -216,14 +215,28 @@ class RequerimientosController extends Controller
           $lab->almacen_solicita =$request->almacen;
           $lab->save();
 
-             $productom = new ProductosMovimientos();
-              $productom->id_producto = $laboratorio['laboratorio'];
-              $productom->accion = 'SOLICITADO';
-              $productom->origen= 'REQUERIMIENTO ENVIADO';
-              $productom->usuario= Auth::user()->id;
-              $productom->cantidad=$request->monto_abol['laboratorios'][$key]['abono'];
-              $productom->sede = $request->session()->get('sede');
-              $productom->save();
+ 
+
+          if($request->almacen==1){
+            $alm='RECEPCION';
+          }elseif($request->almacen==2){
+           $alm='LABORATORIO';
+         }elseif($request->almacen==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
+
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $laboratorio['laboratorio'];
+              $productosm->accion = 'SOLICITADO';
+              $productosm->origen= 'REQUERIMIENTO ENVIADO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$request->monto_abol['laboratorios'][$key]['abono'];
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1 =$alm;
+              $productosm->alm2 ='CENTRAL';
+              $productosm->save();
 
 
         } 
@@ -258,6 +271,7 @@ class RequerimientosController extends Controller
                   
                     $producto = $searchRequerimiento->id_producto;
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
+                    $almacen_solicita=$searchRequerimiento->almacen_solicita;
 
              
                   
@@ -309,15 +323,31 @@ class RequerimientosController extends Controller
         $p->save();
 
 
+
+          if($almacen_solicita==1){
+            $alm='RECEPCION';
+          }elseif($almacen_solicita==2){
+           $alm='LABORATORIO';
+         }elseif($almacen_solicita==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
+
+
+
+
        
-              $productom = new ProductosMovimientos();
-              $productom->id_producto = $producto;
-              $productom->accion = 'INGRESO EN ALMACEN';
-              $productom->origen= 'REQUERIMIENTO PROCESADO';
-              $productom->usuario= Auth::user()->id;
-              $productom->cantidad=$request->cantidadd;
-              $productom->sede = $request->session()->get('sede');
-              $productom->save();
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $producto;
+              $producproductosmtom->accion = 'INGRESO EN ALMACEN';
+              $productosm->origen= 'REQUERIMIENTO PROCESADO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$request->cantidadd;
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1=$alm;
+              $productosm->alm2='CENTRAL';
+              $productosm->save();
 
 
 
@@ -336,14 +366,27 @@ class RequerimientosController extends Controller
         $prod->padre = $producto;
         $prod->save();
 
-          $productom = new ProductosMovimientos();
-          $productom->id_producto = $producto;
-          $productom->accion = 'INGRESO EN ALMACEN';
-          $productom->origen= 'REQUERIMIENTO PROCESADO';
-          $productom->usuario= Auth::user()->id;
-          $productom->cantidad=$request->cantidadd;
-          $productom->sede = $request->session()->get('sede');
-          $productom->save();
+          if($almacen_solicita==1){
+            $alm='RECEPCION';
+          }elseif($almacen_solicita==2){
+           $alm='LABORATORIO';
+         }elseif($almacen_solicita==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
+
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $producto;
+              $productosm->accion = 'INGRESO EN ALMACEN';
+              $productosm->origen= 'REQUERIMIENTO PROCESADO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$request->cantidadd;
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1=$alm;
+              $productosm->alm2='CENTRAL';
+              $productosm->save();
+
 
       }
 
@@ -365,6 +408,7 @@ class RequerimientosController extends Controller
                   
                     $producto = $searchRequerimiento->id_producto;
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
+                    $almacen_solicita = $searchRequerimiento->almacen_solicita;
 
              
                   
@@ -413,14 +457,36 @@ class RequerimientosController extends Controller
         $p->save();
         
 
-              $productom = new ProductosMovimientos();
-              $productom->id_producto = $producto;
-              $productom->accion = 'INGRESO EN ALMACEN';
-              $productom->origen= 'REQUERIMIENTO PROCESADO';
-              $productom->usuario= Auth::user()->id;
-              $productom->cantidad=$request->cantidadd;
-              $productom->sede = $request->session()->get('sede');
-              $productom->save();
+
+              if($almacen_solicita==1){
+            $alm='RECEPCION';
+          }elseif($almacen_solicita==2){
+           $alm='LABORATORIO';
+         }elseif($almacen_solicita==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
+
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $producto;
+              $productosm->accion = 'INGRESO EN ALMACEN';
+              $productosm->origen= 'REQUERIMIENTO PROCESADO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$request->cantidadd;
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1=$alm;
+              $productosm->alm2='CENTRAL';
+              $productosm->save();
+
+
+
+
+
+
+
+
+
 
       }else{
 
@@ -438,15 +504,27 @@ class RequerimientosController extends Controller
         $prod->save();
 
 
-              $productom = new ProductosMovimientos();
-              $productom->id_producto = $producto;
-              $productom->accion = 'INGRESO EN ALMACEN';
-              $productom->origen= 'REQUERIMIENTO PROCESADO';
-              $productom->usuario= Auth::user()->id;
-              $productom->cantidad=$request->cantidadd;
-              $productom->sede = $request->session()->get('sede');
-              $productom->save();
+            
+              if($almacen_solicita==1){
+            $alm='RECEPCION';
+          }elseif($almacen_solicita==2){
+           $alm='LABORATORIO';
+         }elseif($almacen_solicita==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
 
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $producto;
+              $productosm->accion = 'INGRESO EN ALMACEN';
+              $productosm->origen= 'REQUERIMIENTO PROCESADO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$request->cantidadd;
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1=$alm;
+              $productosm->alm2='CENTRAL';
+              $productosm->save();
       }
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
@@ -469,6 +547,7 @@ class RequerimientosController extends Controller
                     $solicitada = $searchRequerimiento->cantidad;
                     $entregada = $searchRequerimiento->cantidadd;
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
+                    $almacen_solicita = $searchRequerimiento->almacen_solicita;
             
 
          
@@ -515,6 +594,28 @@ class RequerimientosController extends Controller
       $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
       $p->cantidad = $cantidadactualsedesolicita - $entregada;
       $p->update();
+
+
+              if($almacen_solicita==1){
+            $alm='RECEPCION';
+          }elseif($almacen_solicita==2){
+           $alm='LABORATORIO';
+         }elseif($almacen_solicita==3){
+           $alm='RAYOS';
+         }else{
+          $alm='OBSTETRA';
+        }
+
+              $productosm = new ProductosMovimientos();
+              $productosm->id_producto = $producto;
+              $productosm->accion = 'ENTRADA';
+              $productosm->origen= 'REVERSO DE REQUERIMIENTO';
+              $productosm->usuario= Auth::user()->id;
+              $productosm->cantidad=$entregada;
+              $productosm->sede = $request->session()->get('sede');
+              $productosm->alm1=$alm;
+              $productosm->alm2='CENTRAL';
+              $productosm->save();
   
 
         Toastr::success('Reversado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);

@@ -72,6 +72,8 @@
 							<th>Origen</th>
 							<th>Cantidad</th>
                             <th>Fecha</th>
+                            <th>Almacen Origen</th>
+							<th>Almacen Destino</th>
 							<th>Registrado Por:</th>
 					
 						</tr>
@@ -84,6 +86,8 @@
 						<td>{{$p->origen}}</td>
                         <td>{{$p->cantidad}}</td>
                         <td>{{$p->created_at}}</td>
+                        <td>{{$p->alm2}}</td>
+                        <td>{{$p->alm1}}</td>
 						<td>{{$p->lastname}},{{$p->name}}</td>
 						
 						</tr>

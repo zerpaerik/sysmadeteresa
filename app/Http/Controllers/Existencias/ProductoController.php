@@ -515,7 +515,7 @@ class ProductoController extends Controller
       if(!is_null($request->fecha) && !is_null($request->fecha2) && !is_null($request->producto)){
 
          $productosm= DB::table('productos_movimientos as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.alm1','a.alm2','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
                     ->join('productos as p','a.id_producto','p.id')
                     ->join('users as u','u.id','a.usuario')
                     ->where('a.sede','=',$request->session()->get('sede'))
@@ -526,7 +526,7 @@ class ProductoController extends Controller
 
       }elseif(!is_null($request->fecha) && !is_null($request->fecha2) && is_null($request->producto)){
       $productosm= DB::table('productos_movimientos as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
                     ->join('productos as p','a.id_producto','p.id')
                     ->join('users as u','u.id','a.usuario')
                     ->where('a.sede','=',$request->session()->get('sede'))
@@ -538,7 +538,7 @@ class ProductoController extends Controller
       }elseif(is_null($request->fecha) && is_null($request->fecha2) && !is_null($request->producto)){
 
          $productosm= DB::table('productos_movimientos as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
                     ->join('productos as p','a.id_producto','p.id')
                     ->join('users as u','u.id','a.usuario')
                     ->where('a.sede','=',$request->session()->get('sede'))
@@ -550,7 +550,7 @@ class ProductoController extends Controller
 
 
       $productosm= DB::table('productos_movimientos as a')
-                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
                     ->join('productos as p','a.id_producto','p.id')
                     ->join('users as u','u.id','a.usuario')
                     ->where('a.sede','=',9)

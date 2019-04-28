@@ -59,6 +59,7 @@
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 							<th>Adjuntado Por:</th>
+							<th>Ver Informe:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -82,6 +83,13 @@
 						@else
 						<td style="background: #82FA58;">No se ha adjuntado informe</td>
 						@endif
+						@if($d->informe <> NULL)
+						<td>
+							<a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
+						</td>
+						@else
+						<td style="background: #82FA58;">No hay Informe</td>
+						@endif
 
 					</tr>
 						@endforeach
@@ -96,6 +104,7 @@
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 							<th>Adjuntado Por:</th>
+							<th>Ver Informe:</th>
 					</tfoot>
 				</table>
 			</div>
@@ -130,8 +139,8 @@
 						@else
 						<td style="background: #FE642E;">No ha sido Atendido</td>
 						@endif
-					</tr>
 						@endforeach
+											</tr>
 		
                       
 					</tbody>
