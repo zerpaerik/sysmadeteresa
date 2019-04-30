@@ -83,9 +83,9 @@
 						@else
 						<td style="background: #82FA58;">No se ha adjuntado informe</td>
 						@endif
-						@if($d->informe <> NULL)
+						@if($d->nombreinforme <> NULL)
 						<td>
-							<a href="{{route('descargar2',$d->informe)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
+							<a href="{{route('descargar2',$d->nombreinforme)}}" class="btn btn-primary" target="_blank">Ver Informe</a>
 						</td>
 						@else
 						<td style="background: #82FA58;">No hay Informe</td>

@@ -37,7 +37,7 @@ class ResultadosController extends Controller
 
 
       	$resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -46,6 +46,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->where('d.name','like','%'.$request->name.'%')
         ->orderby('a.id','desc')
         ->get();
@@ -56,7 +57,7 @@ class ResultadosController extends Controller
            $f2 = $request->fecha2; 
 
           $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -65,6 +66,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->orderby('a.id','desc')
         ->get();
 
@@ -72,7 +74,7 @@ class ResultadosController extends Controller
         } elseif(! is_null($request->name)){
 
             $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -81,6 +83,7 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('d.name','like','%'.$request->name.'%')
+               ->where('e.es_delete','<>',1)
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
         ->get();
@@ -91,7 +94,7 @@ class ResultadosController extends Controller
 
 
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','e.name','e.lastname','d.name as laboratorio')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -100,6 +103,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->orderby('a.id','desc')
         ->get();
 
@@ -135,7 +139,7 @@ class ResultadosController extends Controller
 
 
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -144,6 +148,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->where('c.detalle','like','%'.$request->name.'%')
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
@@ -155,7 +160,7 @@ class ResultadosController extends Controller
            $f2 = $request->fecha2; 
 
           $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -164,6 +169,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
@@ -172,7 +178,7 @@ class ResultadosController extends Controller
         } elseif(! is_null($request->name)){
 
             $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -180,6 +186,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->where('c.detalle','like','%'.$request->name.'%')
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sesion','=',NULL)
@@ -192,7 +199,7 @@ class ResultadosController extends Controller
 
 
         $resultados = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.es_servicio','a.es_paquete','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.sesion')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -201,6 +208,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
+               ->where('e.es_delete','<>',1)
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
@@ -390,12 +398,6 @@ class ResultadosController extends Controller
 
         $p = User::where('id','=',Auth::user()->id)->first();
 
-          $pa = Atenciones::findOrFail($id);
-        $pa->resultado = 1;  
-        $pa->usuarioinforme=$p->name.' '.$p->lastname;
-        $pa->save(); 
-
-
 
                   $product=new ResultadosServicios;
                   $img = $request->file('informe');
@@ -410,6 +412,15 @@ class ResultadosController extends Controller
                  }
                  \DB::commit();
 
+
+          $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->nombreinforme=$nombre_imagen;
+        $pa->save(); 
+
+
+
                } else {
 
                      //  dd('hola');
@@ -417,14 +428,6 @@ class ResultadosController extends Controller
 
                
         $p = User::where('id','=',Auth::user()->id)->first();
-
-        //dd($p);
-
-        $pa = Atenciones::findOrFail($id);
-        $pa->resultado = 1;  
-        $pa->usuarioinforme=$p->name.' '.$p->lastname;
-        $pa->save(); 
-
 
           $product=new ResultadosServicios;
           $img = $request->file('informe');
@@ -438,6 +441,15 @@ class ResultadosController extends Controller
 
          }
          \DB::commit();
+
+        $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->nombreinforme=$nombre_imagen;
+        $pa->save(); 
+
+
+        
 
 
               $s = new Atenciones();
@@ -567,11 +579,6 @@ class ResultadosController extends Controller
        
         $p = User::where('id','=',Auth::user()->id)->first();
 
-          $pa = Atenciones::findOrFail($id);
-        $pa->resultado = 1;  
-        $pa->usuarioinforme=$p->name.' '.$p->lastname;
-        $pa->save();   
-        
         $product=new ResultadosLaboratorios;
         $img = $request->file('informe');
         $nombre_imagen=$img->getClientOriginalName();
@@ -584,6 +591,14 @@ class ResultadosController extends Controller
 
        }
        \DB::commit();
+
+          $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->nombreinforme=$nombre_imagen; 
+        $pa->save();   
+        
+        
 
 
        ////materiales
@@ -659,7 +674,7 @@ class ResultadosController extends Controller
     private function elasticSearch($nom, $ape)
     {     
       $resultados = DB::table('atenciones as a')
-      ->select('a.id','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+      ->select('a.id','a.id_paciente','a.origen_usuario','a.es_delete','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('servicios as c','c.id','a.id_servicio')
       ->join('analises as d','d.id','a.id_laboratorio')
@@ -667,6 +682,7 @@ class ResultadosController extends Controller
       ->whereNotIn('a.monto',[0,0.00])
 	   ->where('a.es_paquete','<>',1)
       ->where('a.resultado','=', NULL)
+             ->where('e.es_delete','<>',1)
       ->where('b.nombres','like','%'.$nom.'%')
       ->where('b.apellidos','like','%'.$ape.'%')
       ->orderby('a.id','desc')

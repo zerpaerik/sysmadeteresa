@@ -92,6 +92,7 @@
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+								@if($atec->es_delete <> 1)
 								<td>
 
 								@if(\Auth::user()->role_id == 6)
@@ -121,6 +122,10 @@
 							    @endif
 							    @endif
 								</td>
+								@else
+							    <td style="background:#FE642E">Fue Eliminado</td>
+
+								@endif
 							</tr>
 						@endforeach
 					</tbody>

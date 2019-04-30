@@ -91,10 +91,8 @@
 						@endif
 						<td>{{$d->tipo}}</td>
 					    <td>{{$d->name}} {{$d->lastname}}</td>
+					    @if($d->es_delete <> 1)
 						<td>
-
-
-
                         @if($d->tipo == 'CONSULTAS')
                          @if($d->atendido <> 1)
 						<a class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>
@@ -121,6 +119,9 @@
 							
 
 						</td>
+						@else
+		                 <td style="background:#FE642E">Fue Eliminado</td>
+						@endif
 
 				        @endforeach
 				    </tr>

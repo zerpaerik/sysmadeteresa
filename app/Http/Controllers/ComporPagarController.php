@@ -219,9 +219,9 @@ class ComporPagarController extends Controller
    ->whereNotIn('a.porcentaje',[0,0.00,99999])
    ->whereNotIn('a.origen_usuario',[99999999])
    ->where('a.pendiente','=',0)
-   ->where('a.pagado_com','=', NULL)
+   ->where('a.pagado_com','=',NULL)
    ->orderby('a.id','desc')
-   ->paginate(20000);
+   ->get();
 
    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -252,6 +252,17 @@ class ComporPagarController extends Controller
    ->orderby('e.lastname','asc')
    ->groupBy('a.origen_usuario')
    ->get();
+
+  /* $origen = DB::table('users as a')
+   ->select('a.id','a.name','a.lastname','e.created_at','e.origen_usuario','e.origen','e.created_at')
+   ->join('atenciones as e','e.origen_usuario','a.id')
+    ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+   ->where('e.origen','=',1)
+   ->orderby('a.lastname','asc')
+   ->groupBy('e.origen_usuario')
+   ->get();*/
+
+
 
  
   

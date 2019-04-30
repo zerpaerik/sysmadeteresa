@@ -43,7 +43,6 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
-							<th>Tipo Ingreso</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 							<th>Acciones</th>
@@ -65,15 +64,18 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
-						<td>{{$d->tipo_ingreso}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
-		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
+						@if($d->es_delete <> 1)
+		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a>
 						      @if(\Auth::user()->role_id <> 6)							 
-											<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+						<a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a>
 						
-		                   <td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+		                <a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
 		                     @endif
+		                 @else
+		                 <td style="background:#CF5F2F">Fue Eliminado</td>
+		                 @endif
 						</tr>
 						@endforeach						
 					</tbody>

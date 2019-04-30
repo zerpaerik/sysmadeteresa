@@ -56,7 +56,7 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
@@ -67,7 +67,7 @@ class EventController extends Controller
   } else {
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
         ->join('users as u','u.id','e.usuario')
@@ -88,8 +88,9 @@ class EventController extends Controller
 
   public function delete_consulta($id)
   {
-    $consulta = Event::find($id);
-    $consulta->delete();
+    $consulta = Event::where('id','=',$id)->first();
+    $consulta->es_delete= 1;
+    $consulta->save();
 
 
     $creditos = Creditos::where('id_event','=',$id);
