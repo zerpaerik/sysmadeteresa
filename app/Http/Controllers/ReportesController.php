@@ -1060,7 +1060,7 @@ class ReportesController extends Controller
                                     ->first();
        
          $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente'¡,'a.es_delete','a.monto','a.sede','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+        ->select('a.id','a.profesional','a.paciente','a.es_delete','a.monto','a.sede','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('personals as c','c.id','a.profesional')
         ->where('a.sede','=', $request->session()->get('sede'))
