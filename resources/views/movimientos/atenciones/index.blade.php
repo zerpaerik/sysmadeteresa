@@ -43,6 +43,7 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>Tipo Ingreso</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 							<th>Ticket</th>
@@ -65,6 +66,7 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
+						<td>{{$d->tipopago}}</td>
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 						@if($d->es_delete <> 1)

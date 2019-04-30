@@ -63,7 +63,7 @@ margin-top: -20px;
 
 
 <div class="paciente">
-		<p><strong>Paciente: {{$metodos->nombres}} {{$metodos->apellidos}}</strong></p>
+		<p><strong>Paciente: {{$metodos->apellidos}} {{$metodos->nombres}}</strong></p>
 	</div>
 
 	<div class="fecha">

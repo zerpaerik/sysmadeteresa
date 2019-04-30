@@ -79,7 +79,7 @@
 
 							<tr>
 								<td>{{$atec->id_atencion}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->dni}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->abono_parcial}}</td>

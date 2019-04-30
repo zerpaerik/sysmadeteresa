@@ -64,7 +64,7 @@
 													<tr>
 
 						<td>{{$d->id}}</td>
-						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>

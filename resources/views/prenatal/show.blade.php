@@ -7,7 +7,7 @@
       <div class="box-header">
         <div class="box-name">
           <i class="fa fa-users"></i>
-          <span><strong>Control Prenatal del Paciente: {{$data->nombres}},{{$data->apellidos}}</strong></span>
+          <span><strong>Control Prenatal del Paciente: {{$data->apellidos}} {{$data->nombres}}</strong></span>
             <span><strong>Fecha: {{$data->created_at}}</strong></span>
         </div>
         <div class="box-icons">

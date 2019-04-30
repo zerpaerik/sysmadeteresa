@@ -1201,7 +1201,7 @@ class ReportesController extends Controller
     $edad = Carbon::parse($resultados1->fechanac)->age;
 
 
-        $informe->setValue('name', $resultados->nombrePaciente. ' '.$resultados->apellidoPaciente. ' Edad: '.$edad);
+        $informe->setValue('name', $resultados->apellidoPaciente. ' '.$resultados->nombrePaciente. ' Edad: '.$edad);
         $informe->setValue('descripcion',$resultados->servicio);
         $informe->setValue('date',date('d-m-Y'));        
         //dd($resultados->origen);

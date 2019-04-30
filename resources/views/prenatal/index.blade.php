@@ -52,7 +52,7 @@
 					<tbody>
 						@foreach($prenatal as $d)					
 							<tr>
-								<td>{{$d->nombres}} {{$d->apellidos}}</td>
+								<td>{{$d->apellidos}} {{$d->nombres}}</td>
 								<td>{{$d->dni}}</td>
 								<td>{{$d->created_at}}</td>
 								<td><a href="prenatal-ver-{{$d->idPaciente}}" class="btn btn-success">Ver ficha</a></td>

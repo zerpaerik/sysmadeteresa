@@ -82,7 +82,7 @@
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->servicio }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
@@ -115,7 +115,7 @@
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->laboratorio }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->apellidos }},{{ $serv->nombres }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->tipopago }}</td>
@@ -148,7 +148,7 @@
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->paquete }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
@@ -177,7 +177,7 @@
 		</tr>
 		@foreach ($consultas as $con)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->nombres }},{{ $con->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->apellidos }},{{ $con->nombres }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->name }},{{ $con->apepro }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>
@@ -260,7 +260,7 @@
 		</tr>
 		@foreach ($metodos as $serv)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->producto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>

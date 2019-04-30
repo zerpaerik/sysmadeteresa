@@ -85,7 +85,7 @@
                         @foreach($atenciones as $atec)	
 
 							<tr>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>

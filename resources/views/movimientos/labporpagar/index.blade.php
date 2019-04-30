@@ -51,7 +51,7 @@
 						<tr>
 						<td>{{$d->id}}</td>
 						<td>{{$d->created_at}}</td>
-						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->nombreana}}</td>
 						<td>{{$d->nombrelab}}</td>
 						<td>{{$d->costo}}</td>

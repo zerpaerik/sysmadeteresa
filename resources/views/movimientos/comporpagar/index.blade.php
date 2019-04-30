@@ -106,7 +106,7 @@
 							<tr>
 								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
 								<td>{{$atec->id}}</td>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								@if($atec->es_servicio =='1')
 								<td>{{$atec->servicio}}</td>

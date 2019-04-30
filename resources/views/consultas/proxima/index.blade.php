@@ -76,7 +76,7 @@
                         	@foreach($atenciones as $atec)	
 
 							<tr>
-								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
 								<td>{{$atec->prox}}</td>
 								

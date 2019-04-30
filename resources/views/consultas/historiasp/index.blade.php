@@ -40,7 +40,7 @@
 					<tbody>
 						@foreach($historias as $h)					
 							<tr>
-								<td>{{$h->nombres}},{{$h->apellidos}}</td>
+								<td>{{$h->apellidos}},{{$h->nombres}}</td>
 								<td>{{$h->dni}}</td>
 								<td>{{$h->created_at}}</td>
 								<td>

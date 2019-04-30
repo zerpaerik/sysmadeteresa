@@ -83,7 +83,7 @@
 								<td>{{$atec->analisis}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->nompac}},{{$atec->apepac}}</td>
+								<td>{{$atec->apepac}},{{$atec->nompac}}</td>
 							   <td>{{$atec->nombre}},{{$atec->apellido}}</td>
 							   <td>
 							   	  <a href="labpagados-reversar-{{$atec->id}}" onclick="return confirm('¿Desea Reversar este registro?')" class="btn btn-danger">Reversar</a>

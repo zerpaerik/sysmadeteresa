@@ -23,7 +23,7 @@
         <form class="form-horizontal" role="form" method="post" action="control/create">
           {{ csrf_field() }}
           <div class="form-group">          
-            <h3>Control Prenatal de {{$paciente->nombres}} {{$paciente->apellidos}}</h3>
+            <h3>Control Prenatal de {{$paciente->apellidos}} {{$paciente->nombres}}</h3>
             <br>
             
             <input type="hidden" name="id_paciente" value="{{$data->paciente}}">

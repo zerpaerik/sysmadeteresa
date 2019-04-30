@@ -14,7 +14,7 @@
      <div style="width: 100%;">
         <fieldset style="border: 1px solid #000; border-radius: 5px;">
             <legend style="border-radius: 5px;"><strong>DATOS DEL PACIENTE</strong></legend>
-            <p style="margin-bottom: 8px;">Nombre: {{$data->nombres}}, {{$data->apellidos}}</p>
+            <p style="margin-bottom: 8px;">Nombre: {{$data->apellidos}}, {{$data->nombres}}</p>
             <p style="margin-left:380px;margin-top: -30px;">DNI paciente: {{$data->dni}}</p>
             <p style="margin-bottom: 8px;">Dirección del paciente: {{$data->direccion}}</p>
             <p style="margin-bottom: 8px;">Fecha de nacimiento: {{$data->fechanac}}</p>

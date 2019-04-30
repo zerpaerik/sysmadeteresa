@@ -50,7 +50,7 @@
 					  @foreach($cuentasporcobrar as $d)
 					  <tr>
 					    <td>{{$d->id}}</td>
-						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->created_at}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>

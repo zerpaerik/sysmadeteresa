@@ -10,7 +10,7 @@
 	<p style="margin-left: 260px; font-size: 16px;"><strong>INFORME DE RESULTADOS</strong></p>
 	<br>
 
-	<p style="margin-left: 150px;"><strong>PACIENTE:</strong>{{ $resultados->nompac.' '.$resultados->apepac }}</p>
+	<p style="margin-left: 150px;"><strong>PACIENTE:</strong>{{ $resultados->apepac.' '.$resultados->nompac }}</p>
 	<p style="margin-left: 150px;"><strong>EXAMEN/SERVICIO:</strong>{{ $resultados->detalle }}</p>
     <p style="margin-left: 150px;"><strong>INDICACIÒN:</strong></p>
     <p style="margin-left: 150px;"><strong>FECHA:</strong>{{ $resultados->detalle}}</p>

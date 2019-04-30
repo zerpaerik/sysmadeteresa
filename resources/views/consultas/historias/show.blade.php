@@ -2,7 +2,7 @@
 @section('content')
 <div class="col-sm-4">
 	<h2>Datos del paciente</h2>
-	<p>Nombre: {{$data->nombres}} {{$data->apellidos}} </p>
+	<p>Nombre: {{$data->apellidos}} {{$data->nombres}} </p>
 	<p>DNI paciente: {{$data->dni}}</p>
 	<p>Direccion del paciente: {{$data->direccion}}</p>
 	<p>Telefono del paciente: {{$data->telefono}}</p>
@@ -13,7 +13,7 @@
 <div class="col-sm-8">
 
 	@if($historial)
-	<h2>Historia Base de {{$data->nombres}} {{$data->apellidos}}</h2>
+	<h2>Historia Base de {{$data->apellidos}} {{$data->nombres}} </h2>
 		<p>Alergias: {{$historial->alergias}}</p>
 		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
