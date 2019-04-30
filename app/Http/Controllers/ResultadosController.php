@@ -46,7 +46,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->where('d.name','like','%'.$request->name.'%')
         ->orderby('a.id','desc')
         ->get();
@@ -66,7 +66,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->orderby('a.id','desc')
         ->get();
 
@@ -83,7 +83,7 @@ class ResultadosController extends Controller
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
         ->where('d.name','like','%'.$request->name.'%')
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','desc')
         ->get();
@@ -103,7 +103,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->orderby('a.id','desc')
         ->get();
 
@@ -148,7 +148,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->where('c.detalle','like','%'.$request->name.'%')
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
@@ -169,7 +169,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
@@ -186,7 +186,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->where('c.detalle','like','%'.$request->name.'%')
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sesion','=',NULL)
@@ -208,7 +208,7 @@ class ResultadosController extends Controller
         ->where('a.id_sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->where('a.resultado','=', NULL)
-               ->where('e.es_delete','<>',1)
+               ->where('a.es_delete','=',NULL)
         ->where('a.sesion','=',NULL)
         ->orderby('a.id','desc')
         ->get();
