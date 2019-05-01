@@ -52,19 +52,19 @@
 				<div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th>INGRESOS</th>
-			<th>CANTIDAD</th>
-			<th>MONTO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">INGRESOS</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">CANTIDAD</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO</th>
 		</tr>
 		<tr>
-			<td>Atenciones</td>
-			<td>{{ $atenciones->cantidad }}</td>
-			<td>{{ $atenciones->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Atenciones</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->monto }}</td>
 		</tr>
 		<tr>
-			<td>Consultas</td>
-			<td>{{ $consultas->cantidad }}</td>
-			<td>{{ $consultas->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Consultas</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->monto }}</td>
 		</tr>
 		<tr>
 			<td>Otros Ingresos</td>
@@ -151,14 +151,14 @@
 			<th>Egresos</th>
 		</tr>
 		<tr>
-			<td>{{ $totalIngresos }}</td>
+			<td>{{ $efectivo->monto }}</td>
 			<td>{{ $totalEgresos }}</td>
 		</tr>
 		<tr>
 			<td>Total</td>
 			<td></td>
 			<td width="80">
-				{{ $totalIngresos - $totalEgresos }}
+				{{ $efectivo->monto - $totalEgresos }}
 			</td>
 		</tr>
 	</table>
