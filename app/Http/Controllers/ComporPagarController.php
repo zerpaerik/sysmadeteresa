@@ -82,7 +82,6 @@ class ComporPagarController extends Controller
    ->groupBy('a.origen_usuario')
    ->get();
 
-   dd($origen);
 
  
     $totalorigen = Atenciones::where('id_sede','=', $request->session()->get('sede'))
