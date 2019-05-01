@@ -43,11 +43,11 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
-							<th>Tipo Ingreso</th>
+							<th>TI</th>
 						    <th>PG</th>
 							<th>AT</th>
 							<th>Fecha</th>
-							<th>Registrado Por:</th>
+							<th>RP:</th>
 							<th>Ticket</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -80,7 +80,7 @@
 						<td>SI</td>
 						@endif
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
-						<td>{{$d->user}},{{$d->userp}}</td>
+						<td>{{$d->user}}</td>
 						@if($d->es_delete <> 1)
 		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">TCK</a></td>
 
