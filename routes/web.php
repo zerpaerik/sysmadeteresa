@@ -249,6 +249,7 @@ Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
 Route::get('reporte/pagadas1', 'ComisionesPagadasController@reporte_pagadas1');
 Route::get('reporte/pagadas2', 'ComisionesPagadasController@reporte_pagadas2');
 
+Route::get('produccion', 'ProduccionController@index')->name('produccion.index')->middleware('auth');
 
 
 Route::get('comollego', 'ComollegoController@index')->name('comollego.index')->middleware('auth');

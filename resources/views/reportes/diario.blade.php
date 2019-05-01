@@ -160,14 +160,14 @@
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Egresos</th>
 		</tr>
 		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalIngresos }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalEgresos }}</td>
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">
-				{{ $totalIngresos - $totalEgresos }}
+				{{ $efectivo->monto - $totalEgresos }}
 			</td>
 		</tr>
 	</table>

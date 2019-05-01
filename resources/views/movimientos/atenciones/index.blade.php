@@ -44,6 +44,8 @@
 							<th>Monto</th>
 							<th>Monto Abonado</th>
 							<th>Tipo Ingreso</th>
+						    <th>PG</th>
+							<th>AT</th>
 							<th>Fecha</th>
 							<th>Registrado Por:</th>
 							<th>Ticket</th>
@@ -67,6 +69,16 @@
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
 						<td>{{$d->tipopago}}</td>
+						@if($d->pagado_com == NULL)
+						<td>NO</td>
+						@else
+						<td>SI</td>
+						@endif
+						@if($d->informe == NULL)
+						<td>NO</td>
+						@else
+						<td>SI</td>
+						@endif
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 						@if($d->es_delete <> 1)

@@ -50,7 +50,6 @@
 </head>
 
 <div>
-			<img src="/var/www/html/sysmadeteresa/public/img/logo2.jpeg"  style="width: 20%;"/>
 
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA DETALLADO</strong> </center>
@@ -69,24 +68,24 @@
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th>CIERRE</th>
-			<th>FECHA</th>
-			<th>MONTO DE CIERRE</th>
-            <th>CERRADO POR:</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">CIERRE</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO DE CIERRE</th>
+            <th style="padding: 0;width: 5%;text-overflow: ellipsis;">CERRADO POR:</th>
 		</tr>
 		<tr>
                 @if($caja->cierre_matutino)
-                <td>Matutino: {{$caja->cierre_matutino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">Matutino: {{$caja->cierre_matutino}}</td>
                 @else
-                <td>Vespertino: {{$caja->cierre_vespertino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">Vespertino: {{$caja->cierre_vespertino}}</td>
                 @endif			
-                <td>{{$caja->created_at}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->created_at}}</td>
                 @if($caja->cierre_matutino)
-                <td>{{$caja->cierre_matutino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->cierre_matutino}}</td>
                 @else
-                <td>{{$caja->cierre_vespertino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->cierre_vespertino}}</td>
                 @endif	
-			    <td>{{$caja->name}},{{$caja->lastname}}</td>
+			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->name}},{{$caja->lastname}}</td>
 		</tr>
 	
 		
@@ -100,28 +99,28 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Ticket</th>
-			<th>Detalle</th>
-			<th>Paciente</th>
-			<th>Monto Total</th>
-		    <th>Monto Abonado</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
+		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
 		</tr>
 		@foreach ($servicios as $serv)
 			<tr>
-				<td>{{ $serv->id }}</td>
-				<td>{{ $serv->servicio }}</td>
-				<td>{{ $serv->nombres }},{{ $serv->apellidos }}</td>
-				<td>{{ $serv->monto }}</td>
-				<td>{{ $serv->abono }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->servicio }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total Abonado</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{$totalServicios->abono}}</td>
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$totalServicios->abono}}</td>
 		</tr>
 	</table>
 </div>
@@ -131,28 +130,28 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Ticket</th>
-			<th>Detalle</th>
-			<th>Paciente</th>
-			<th>Monto Total</th>
-		    <th>Monto Abonado</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
+		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
 		</tr>
 		@foreach ($laboratorios as $lab)
 			<tr>
-				<td>{{ $lab->id }}</td>
-				<td>{{ $lab->laboratorio }}</td>
-				<td>{{ $lab->nombres }},{{ $serv->apellidos }}</td>
-				<td>{{ $lab->monto }}</td>
-				<td>{{ $lab->abono }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->laboratorio }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total Abonado</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
 			<td></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalLaboratorios->monto }}</td>
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalLaboratorios->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -162,23 +161,23 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Ticket</th>
-			<th>Detalle</th>
-			<th>Paciente</th>
-			<th>Monto Total</th>
-		    <th>Monto Abonado</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
+		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
 		</tr>
 		@foreach ($paquetes as $lab)
 			<tr>
-				<td>{{ $lab->id }}</td>
-				<td>{{ $lab->paquete }}</td>
-				<td>{{ $lab->nombres }},{{ $lab->apellidos }}</td>
-				<td>{{ $lab->monto }}</td>
-				<td>{{ $lab->abono }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;"> {{ $lab->id }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->paquete }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->nombres }},{{ $lab->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total Abonado</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
 			<td></td>
 			<td></td>
 			<td></td>
@@ -193,24 +192,24 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Paciente</th>
-			<th>Doctor</th>
-			<th>Monto</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Doctor</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
 		</tr>
 		@foreach ($consultas as $con)
 			<tr>
-				<td>{{ $con->nombres }},{{ $con->apellidos }}</td>
-				<td>{{ $con->name }},{{ $con->apepro }}</td>
-				<td>{{ $con->monto }}</td>
-				<td>EF</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->nombres }},{{ $con->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->name }},{{ $con->apepro }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalconsultas->monto }}</td>
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalconsultas->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -221,23 +220,23 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Descripciòn</th>
-			<th>Monto</th>
-			<th>Tipo de INGRESO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Descripciòn</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de INGRESO</th>
 		</tr>
 		@foreach ($otrosingresos as $con)
 			<tr>
-				<td>{{ $con->descripcion }}</td>
-				<td>{{ $con->monto }}</td>
-				<td>{{ $con->tipo_ingreso }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->descripcion }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->tipo_ingreso }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalotrosingresos->monto }}</td>
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;"> {{ $totalotrosingresos->monto }}</td>
 		</tr>
 	</table>
 </div>
@@ -248,31 +247,31 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Paciente</th>
-			<th>Detalle</th>
-			<th>Monto</th>
-			<th>Tipo de INGRESO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de INGRESO</th>
 		</tr>
 		@foreach ($cuentasporcobrar as $con)
 			<tr>
-				<td>{{ $con->nombres }},{{ $con->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->nombres }},{{ $con->apellidos }}</td>
 				@if($con->es_servicio == 1)
-				<td>{{ $con->servicio }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->servicio }}</td>
 				@elseif($con->es_laboratorio == 1)
-				<td>{{ $con->laboratorio }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->laboratorio }}</td>
 				@else
-				<td>{{ $con->paquete }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->paquete }}</td>
 				@endif
-				<td>{{ $con->monto }}</td>
-				<td>{{ $con->tipo_ingreso }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->tipo_ingreso }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td width="80">{{ $totalcuentasporcobrar->monto }}</td>
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalcuentasporcobrar->monto }}</td>
 		</tr>
 	</table>
 </div>

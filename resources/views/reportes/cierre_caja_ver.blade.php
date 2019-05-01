@@ -50,7 +50,6 @@
 </head>
 
 <div>
-<img src="/var/www/html/sysmadeteresa/public/img/logo2.jpeg"  style="width: 20%;"/>
 	<div class="text-center title-header col-12">
 		<center><strong>REPORTE DE CIERRE DE CAJA</strong> </center>
 		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
@@ -70,24 +69,24 @@
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th>CIERRE</th>
-			<th>FECHA</th>
-			<th>MONTO DE CIERRE</th>
-            <th>CERRADO POR:</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">CIERRE</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO DE CIERRE</th>
+            <th style="padding: 0;width: 5%;text-overflow: ellipsis;">CERRADO POR:</th>
 		</tr>
 		<tr>
                 @if($caja->cierre_matutino)
-                <td>Matutino: {{$caja->cierre_matutino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">Matutino: {{$caja->cierre_matutino}}</td>
                 @else
-                <td>Vespertino: {{$caja->cierre_vespertino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">Vespertino: {{$caja->cierre_vespertino}}</td>
                 @endif			
-                <td>{{$caja->created_at}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->created_at}}</td>
                 @if($caja->cierre_matutino)
-                <td>{{$caja->cierre_matutino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->cierre_matutino}}</td>
                 @else
-                <td>{{$caja->cierre_vespertino}}</td>
+                <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->cierre_vespertino}}</td>
                 @endif	
-			    <td>{{$caja->name}},{{$caja->lastname}}</td>
+			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$caja->name}},{{$caja->lastname}}</td>
 		</tr>
 	
 		
@@ -97,34 +96,34 @@
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th>INGRESOS</th>
-			<th>CANTIDAD</th>
-			<th>MONTO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">INGRESOS</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">CANTIDAD</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO</th>
 		</tr>
 		<tr>
-			<td>Atenciones</td>
-			<td>{{ $atenciones->cantidad }}</td>
-			<td>{{ $atenciones->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Atenciones</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->monto }}</td>
 		</tr>
 		<tr>
-			<td>Consultas</td>
-			<td>{{ $consultas->cantidad }}</td>
-			<td>{{ $consultas->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Consultas</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->monto }}</td>
 		</tr>
 		<tr>
-			<td>Otros Ingresos</td>
-			<td>{{ $otros_servicios->cantidad }}</td>
-			<td>{{ $otros_servicios->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Otros Ingresos</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $otros_servicios->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $otros_servicios->monto }}</td>
 		</tr>
 		<tr>
-			<td>Cuentas por Cobrar</td>
-			<td>{{ $cuentasXcobrar->cantidad }}</td>
-			<td>{{ $cuentasXcobrar->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Cuentas por Cobrar</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->monto }}</td>
 		</tr>
 		<tr>
-			<td>Métodos Anticonceptivos</td>
-			<td>{{ $metodos->cantidad }}</td>
-			<td>{{ $metodos->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Métodos Anticonceptivos</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->monto }}</td>
 		</tr>
 		
 	</table>
@@ -136,19 +135,19 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th>Descripción</th>
-			<th>Origen</th>
-			<th>Monto</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Descripción</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Origen</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
 		</tr>
 		@foreach ($egresos as $egreso)
 			<tr>
-				<td>{{ $egreso->descripcion }}</td>
-				<td>{{ $egreso->origen }}</td>
-				<td>{{ $egreso->monto }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->descripcion }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->origen }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->monto }}</td>
 			</tr>
 		@endforeach
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td></td>
 			<td width="80">{{ $totalEgresos }}</td>
@@ -161,17 +160,17 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table>
 		<tr>
-			<th>Total efectivo</th>
-			<th>Total tarjeta</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Total efectivo</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Total tarjeta</th>
 		</tr>
 		<tr>
-			<td>{{ $efectivo->monto }}</td>
-			<td>{{ $tarjeta->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $tarjeta->monto }}</td>
 		</tr>
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
-			<td width="80">
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">
 				{{ $efectivo->monto + $tarjeta->monto }}
 			</td>
 		</tr>
@@ -183,18 +182,18 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table>
 		<tr>
-			<th>Ingresos</th>
-			<th>Egresos</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ingresos</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Egresos</th>
 		</tr>
 		<tr>
-			<td>{{ $totalIngresos }}</td>
-			<td>{{ $totalEgresos }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalEgresos }}</td>
 		</tr>
 		<tr>
-			<td>Total</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
-			<td width="80">
-				{{ $totalIngresos - $totalEgresos }}
+			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">
+				{{ $efectivo->monto - $totalEgresos }}
 			</td>
 		</tr>
 	</table>

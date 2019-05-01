@@ -326,6 +326,9 @@
       <span class="hidden-xs">Reportes</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('produccion.index')}}"><i class="fa fa-file-o"></i> Producciòn del Dia</a>
+      </li>
       <li>
         <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>
       </li>
