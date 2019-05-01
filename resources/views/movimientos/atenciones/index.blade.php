@@ -82,13 +82,13 @@
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 						@if($d->es_delete <> 1)
-		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>
+		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">TCK</a></td>
 
 						      @if(\Auth::user()->role_id <> 6)	
 						  <td>						 
-						<a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
+						<a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">EDT</a></td>
 						<td>
-		                <a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a>
+		                <a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">ELM</a>
 		                 </td>
 		                     @endif
 		                 @else
