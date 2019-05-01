@@ -82,8 +82,9 @@ class ComporPagarController extends Controller
    ->groupBy('a.origen_usuario')
    ->get();
 
+   dd($origen);
+
  
-  
     $totalorigen = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                                      ->where('id_sede','=', $request->session()->get('sede'))
