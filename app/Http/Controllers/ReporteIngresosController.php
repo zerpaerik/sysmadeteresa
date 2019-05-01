@@ -98,12 +98,13 @@ class ReporteIngresosController extends Controller
 
 
         $atenciones = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+        ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.nombre','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
         ->where('id_sede','=', $request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','desc')
-        ->paginate(200000000);
+        ->get();
 
           $aten = Debitos::where('id_sede','=', $request->session()->get('sede'))
                         ->whereNotIn('monto',[0,0.00])
@@ -117,7 +118,8 @@ class ReporteIngresosController extends Controller
 
 
         $atenciones = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at')
+        ->select('a.id','a.descripcion','a.monto','a.origen','a.created_at','a.nombre','a.usuario','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario')
         ->where('id_sede','=', $request->session()->get('sede'))
         ->whereNotIn('a.monto',[0,0.00])
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())

@@ -71,6 +71,8 @@
 						<tr>
 						    <th>Descripciòn</th>
 							<th>Origen</th>
+							<th>Registrado Por</th>
+							<th>Recibido Por</th>
 							<th>Monto</th>
 							<th>Fecha</th>
 						</tr>
@@ -81,6 +83,8 @@
 							<tr>
 								<td>{{$atec->descripcion}}</td>
 								<td>{{$atec->origen}}</td>
+								<td>{{$atec->name}} {{$atec->lastname}}</td>
+								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->monto}}</td>
 								<td>{{$atec->created_at}}</td>
 							</tr>
