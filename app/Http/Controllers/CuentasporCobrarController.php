@@ -22,13 +22,14 @@ class CuentasporCobrarController extends Controller
   {
 
     $cuentasporcobrar = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.es_servicio','a.es_laboratorio','a.es_paquete','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.id_paquete','a.porcentaje','a.abono','a.pendiente','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+    ->select('a.id','a.created_at','a.id_paciente','a.es_delete','a.origen_usuario','a.origen','a.es_servicio','a.es_laboratorio','a.es_paquete','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.id_paquete','a.porcentaje','a.abono','a.pendiente','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
     ->join('paquetes as p','p.id','a.id_paquete')
     ->join('users as e','e.id','a.origen_usuario')
     ->where('a.pendiente','>',0)
+        ->where('a.es_delete','=',NULL)
     //->where('a.abono','<','a.monto')
     ->whereNotIn('a.monto',[0,0.00])
    // ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -100,7 +101,7 @@ class CuentasporCobrarController extends Controller
   private function elasticSearch(Request $request,$nom, $ape)
   {
      $cuentasporcobrar = DB::table('atenciones as a')
-    ->select('a.id','a.created_at','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
+    ->select('a.id','a.created_at','a.id_paciente','a.es_delete','a.origen_usuario','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('servicios as c','c.id','a.id_servicio')
     ->join('analises as d','d.id','a.id_laboratorio')
@@ -110,6 +111,7 @@ class CuentasporCobrarController extends Controller
     ->where('b.apellidos','like','%'.$ape.'%')
     ->where('a.pendiente','>',0)
     ->whereNotIn('a.monto',[0,0.00])
+            ->where('a.es_delete','=',NULL)
     //->where('a.id_sede','=', $request->session()->get('sede'))
     ->orderby('a.id','desc')
     ->paginate(15); 
