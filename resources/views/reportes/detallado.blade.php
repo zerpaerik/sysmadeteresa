@@ -199,9 +199,9 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Descripciòn</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de INGRESO</th>
+			<th>Descripciòn</th>
+			<th>Monto</th>
+			<th>Tipo de INGRESO</th>
 		</tr>
 		@foreach ($otrosingresos as $con)
 			<tr>
@@ -226,9 +226,9 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Descripciòn</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de INGRESO</th>
+			<th>Descripciòn</th>
+			<th>Monto</th>
+			<th>Tipo de INGRESO</th>
 		</tr>
 		@foreach ($cuentasporcobrar as $con)
 			<tr>
