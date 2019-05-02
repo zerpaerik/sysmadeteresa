@@ -81,8 +81,8 @@
 		@foreach ($servicios as $serv)
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->servicio,0,22)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->servicio,0,15)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
@@ -114,8 +114,8 @@
 		@foreach ($laboratorios as $lab)
 			<tr>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->laboratorio,0,22)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->apellidos.' '.$lab->nombres,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->laboratorio,0,15)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->apellidos.' '.$lab->nombres,0,15)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->tipopago }}</td>
@@ -147,8 +147,8 @@
 		@foreach ($paquetes as $serv)
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->paquete,0,22)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->paquete,0,15)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
