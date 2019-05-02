@@ -34,6 +34,7 @@ class ServiceController extends Controller
       ->setOptions([
         'locale' => 'es',
       ]);
+
       return view('service.index',[ "calendar" => $calendar, "especialistas" => Personal::all()]);
     }
   }
