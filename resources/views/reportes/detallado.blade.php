@@ -105,11 +105,11 @@
 	<table style="">
 		<tr>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
-		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de Pago</th>
+			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Total</th>
+		    <th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Abonado</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo Pago</th>
 		</tr>
 		@foreach ($laboratorios as $lab)
 			<tr>
