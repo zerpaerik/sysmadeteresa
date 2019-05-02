@@ -54,8 +54,11 @@
 						<td>{{$p->por_tec}}</td>
 						<td>{{$p->user}},{{$p->lastname}}</td>
 						<td>
+
 						<a href="servicios-edit-{{$p->id}}" class="btn btn-primary">Editar</a>
+						@if(\Auth::user()->role_id <> 6)
 						<a href="servicios-delete-{{$p->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+						@endif
 
 						</td>
 						</tr>

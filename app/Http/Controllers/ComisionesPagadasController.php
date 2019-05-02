@@ -656,7 +656,7 @@ die();
  ->whereNotIn('a.origen_usuario',[99999999])
  ->whereBetween('a.fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))]) 
  ->groupBy('a.recibo')
- ->orderby('a.id','desc')
+ ->orderby('e.lastname','asc')
  ->get();
 
 

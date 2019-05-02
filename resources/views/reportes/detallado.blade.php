@@ -69,20 +69,20 @@
 		SERVICIOS
 </div>
 <div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
+	<table>
 		<tr>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
-		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de Pago</th>
+			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Detalle</th>
+			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Total</th>
+		    <th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Abonado</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo Pago</th>
 		</tr>
 		@foreach ($servicios as $serv)
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->servicio }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->servicio,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,22)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
@@ -113,9 +113,9 @@
 		</tr>
 		@foreach ($laboratorios as $lab)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->laboratorio }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->apellidos }},{{ $serv->nombres }}</td>
+			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->laboratorio,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->apellidos.' '.$lab->nombres,0,22)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->tipopago }}</td>
@@ -147,8 +147,8 @@
 		@foreach ($paquetes as $serv)
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->paquete }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->paquete,0,22)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,22)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
 			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
@@ -177,8 +177,8 @@
 		</tr>
 		@foreach ($consultas as $con)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->apellidos }},{{ $con->nombres }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->name }},{{ $con->apepro }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($con->apellidos.' '.$con->nombres,0,15)}}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($con->apepro.' '.$con->name,0,15)}}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>
 			</tr>
@@ -253,17 +253,17 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Método</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de Pago</th>
+			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Paciente</th>
+			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Método</th>
+			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Monto</th>
+			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Tipo de Pago</th>
 		</tr>
 		@foreach ($metodos as $serv)
 			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->apellidos }},{{ $serv->nombres }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->producto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
-			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>
+				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
+				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{ $serv->producto }}</td>
+				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
+			    <td style="padding: 0;width: 30%;text-overflow: ellipsis;">EF</td>
 			</tr>
 		@endforeach
 		<tr>

@@ -78,9 +78,9 @@
 						<td>{{$d->created_at}}</td>
 						<td>{{$d->name}} {{$d->lastname}}</td>
 						<td>
-
-						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
+							
 						@if(\Auth::user()->role_id <> 6)
+						<a class="btn btn-success" href="gastos-edit-{{$d->id}}">Editar</a>	
 						<a class="btn btn-warning" href="gastos-delete-{{$d->id}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 						@endif
 						 <a  href="{{asset('recibo_gasto_ver')}}/{{$d->id}}" class="btn btn-xs btn-danger">Recibo</a>

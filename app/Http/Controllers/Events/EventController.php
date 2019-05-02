@@ -56,11 +56,10 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname','cr.tipo_ingreso')
+    ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
-    ->join('creditos as cr','cr.id_event','e.id')
     ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
@@ -68,11 +67,10 @@ class EventController extends Controller
   } else {
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname','cr.tipo_ingreso')
+    ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
-        ->join('users as u','u.id','e.usuario')
-            ->join('creditos as cr','cr.id_event','e.id')
+    ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
@@ -116,7 +114,7 @@ class EventController extends Controller
   {
   
     $paciente = DB::table('events as e')
-    ->select('e.id','e.paciente','e.title','e.profesional','e.tipo','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId')
+    ->select('e.id','e.paciente','e.tipopago','e.title','e.profesional','e.tipo','e.date','e.monto','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->where('e.id','=',$id)
@@ -149,6 +147,7 @@ class EventController extends Controller
               'time' => $request->time,
               'monto' => $request->monto,
               'tipo' => $request->tipo,
+              'tipopago' => $request->tipopago
             ]);
 
     DB::table('creditos')
@@ -275,6 +274,7 @@ class EventController extends Controller
         $evt->monto=$request->monto;
         $evt->sede=$request->session()->get('sede');
         $evt->tipo=$request->tipo;
+        $evt->tipopago=$request->tipopago;
         $evt->usuario=\Auth::user()->id;
         $evt->save();
 
