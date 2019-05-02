@@ -25,7 +25,7 @@
 				<form class="form-horizontal" role="form" method="post" action="consulta/edit">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<input type="hidden" value="{{$paciente->EventId}}" name="event">
+						<input type="hidden" value="{{$paciente->id}}" name="event">
 						<label class="col-sm-1 control-label">Especialistas</label>
 						<div class="col-sm-3">
 							<select id="el1" name="especialista">
@@ -54,16 +54,21 @@
 						</div>
 
 						
-						<label class="col-sm-1 control-label">Hora</label>
+					      <label class="col-sm-1 control-label">TipoPago</label>
 							<div class="col-sm-3">
-								<select id="el3" name="time">
-									@foreach($tiempos as $tiempo)
-										<option value="{{$tiempo->id}}">
-											{{$tiempo->start_time}} {{$tiempo->end_time}}
-										</option>
-									@endforeach
+								<select id="el4" name="tipopago">
+										<option value="EF">EF</option>
+										<option value="TJ">TJ</option>
 								</select>
-							</div>						
+							</div>	
+
+							<label class="col-sm-1 control-label">Tipo</label>
+							<div class="col-sm-2">
+								<select id="el5" name="tipo" value="{{$paciente->tipo}}">
+										<option value="CONSULTAS">CONSULTAS</option>
+										<option value="CONTROLES">CONTROLES</option>
+								</select>
+							</div>					
 
 						<br>
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
