@@ -56,10 +56,11 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
+    ->join('creditos as cr','cr.id_event','e.id')
     ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
@@ -67,10 +68,11 @@ class EventController extends Controller
   } else {
 
     $event = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.paciente','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname','cr.tipo_ingreso')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
         ->join('users as u','u.id','e.usuario')
+            ->join('creditos as cr','cr.id_event','e.id')
     ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();

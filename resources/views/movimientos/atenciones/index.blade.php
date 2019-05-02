@@ -70,14 +70,14 @@
 						<td>{{$d->abono}}</td>
 						<td>{{$d->tipopago}}</td>
 						@if($d->pagado_com == NULL)
-						<td>NO</td>
+						<td style="background: #F0391C">NO</td>
 						@else
-						<td>SI</td>
+						<td style="background: #49F01C">SI</td>
 						@endif
 						@if($d->informe == NULL)
-						<td>NO</td>
+						<td style="background: #F0391C">NO</td>
 						@else
-						<td>SI</td>
+						<td style="background: #49F01C">SI</td>
 						@endif
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}}</td>
