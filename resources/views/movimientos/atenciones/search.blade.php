@@ -43,17 +43,21 @@
 							<th>Detalle</th>
 							<th>Monto</th>
 							<th>Monto Abonado</th>
+							<th>TI</th>
+						    <th>PG</th>
+							<th>AT</th>
 							<th>Fecha</th>
-							<th>Registrado Por:</th>
-							<th>Acciones</th>
-							<th></th>
+							<th>RP:</th>
+							<th>Ticket</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
 						@foreach($data as $d)
 						<tr>
 						<td>{{$d->id}}</td>
-						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->apellidos}},{{$d->nombres}}</td>
 						<td>{{$d->name}},{{$d->lastname}}</td>
 						@if($d->es_servicio =='1')
 						<td>{{$d->servicio}}</td>
@@ -64,14 +68,32 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
-						<td>{{$d->created_at}}</td>
-												<td>{{$d->user}},{{$d->userp}}</td>
-		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">Ver Ticket</a></td>	
-						      @if(\Auth::user()->role_id <> 6)							 
-											<td><a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">Editar</a></td>
-						
-		                   <td><a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">Eliminar</a></td>
+						<td>{{$d->tipopago}}</td>
+						@if($d->pagado_com == NULL)
+						<td style="background: #F0391C">NO</td>
+						@else
+						<td style="background: #49F01C">SI</td>
+						@endif
+						@if($d->informe == NULL)
+						<td style="background: #F0391C">NO</td>
+						@else
+						<td style="background: #49F01C">SI</td>
+						@endif
+						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
+						<td>{{$d->user}}</td>
+						@if($d->es_delete <> 1)
+		                <td><a target="_blank" class="btn btn-primary" href="{{$model1.'-ver-'.$d->id}}">TCK</a></td>
+
+						      @if(\Auth::user()->role_id <> 6)	
+						  <td>						 
+						<a class="btn btn-warning" href="{{$model . '-edit-' .$d->id}}">EDT</a></td>
+						<td>
+		                <a class="btn btn-danger" href="{{$model.'-delete-'.$d->id}}">ELM</a>
+		                 </td>
 		                     @endif
+		                 @else
+		                 <td style="background:#CF5F2F">Fue Eliminado</td>
+		                 @endif
 						</tr>
 						@endforeach						
 					</tbody>
