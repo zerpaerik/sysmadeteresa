@@ -73,6 +73,7 @@
 							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
+							<th>TP</th>
 							<th>Próxima Aplicación</th>
 							<th>Aplicado Por:</th>
 						    <th>Registrado Por:</th>
@@ -89,6 +90,7 @@
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->monto}}</td>
+								<td>{{$atec->tipopago}}</td>
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
@@ -137,6 +139,7 @@
 							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
+							<th>TP</th>
 							<th>Próxima Aplicación</th>
 							<th>Aplicado Por:</th>
 						    <th>Registrado Por:</th>
