@@ -14,7 +14,7 @@
             
              <label class="col-sm-3">CERRAR CONTROL?:</label>
 			<div class="col-sm-2">
-				<select  name="pendiente" required="true" value="{{$control->pendiente}}">
+				<select style="background: #F0CD1C;" name="pendiente" required="true" value="{{$control->pendiente}}">
 					<option value="0">Si</option>
 					<option value="1">No</option>
 				</select>

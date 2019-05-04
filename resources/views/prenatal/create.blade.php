@@ -807,11 +807,12 @@
               <input type="hidden" name="evento" value="{{$evento->id}}">
             <h3>Control Prenatal Mensual de {{$paciente->nombres}} {{$paciente->apellidos}}</h3>
             <br>
+            <br>
             
              <input type="hidden" name="paciente" value="{{$paciente->id}}">
              <label class="col-sm-3">CERRAR CONTROL?:</label>
 			<div class="col-sm-2">
-				<select id="el3" name="pendiente" required="true">
+				<select  style="background: #F0CD1C;" name="pendiente" required="true">
 					<option value="0">Si</option>
 					<option value="1">No</option>
 				</select>

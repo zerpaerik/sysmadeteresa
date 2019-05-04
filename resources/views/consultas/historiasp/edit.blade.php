@@ -9,9 +9,10 @@
 		<div class="form-group">
 			
              <div class="row">
+             	<br>
 			  <label class="col-sm-3">CERRAR HISTORIA?:</label>
 			<div class="col-sm-2">
-				<select id="el3" name="pendiente" required="true" value="{{$historias->pendiente}}">
+				<select style="background: #F0CD1C;" name="pendiente" required="true" value="{{$historias->pendiente}}">
 					<option value="0" value="{{$historias->pendiente}}">Si</option>
 					<option value="1" value="{{$historias->pendiente}}">No</option>
 				</select>
