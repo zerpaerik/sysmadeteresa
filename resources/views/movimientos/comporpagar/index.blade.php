@@ -83,6 +83,7 @@
 
 
 
+	<li><label><input type="checkbox" id="checkTodos" />Seleccionar Todos</label></li>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 				<form action="/pagarmultiple" method="post">
@@ -131,6 +132,8 @@
 						    <th>
 								{{ csrf_field() }}
 								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
+
+							    
 							</th>
 
 					</tfoot>
@@ -181,6 +184,12 @@ function getAva (){
       }
     });     
 }
+
+$('document').ready(function(){
+   $("#checkTodos").change(function () {
+      $("input:checkbox").prop('checked', $(this).prop("checked"));
+  });
+});
 
 function DemoTimePicker(){
       $('#input_date').datepicker({
