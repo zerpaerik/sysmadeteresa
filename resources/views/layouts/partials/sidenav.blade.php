@@ -223,7 +223,12 @@
       <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li> 
-      
+      <li>
+        <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
+      </li> 
+      <li>
+        <a href="{{route('controlesp.index')}}"><i class="fa fa-plus-circle"></i> Controles Pendientes</a>
+      </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
@@ -610,6 +615,12 @@
        <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li>  
+      <li>
+        <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
+      </li> 
+      <li>
+        <a href="{{route('controlesp.index')}}"><i class="fa fa-plus-circle"></i> Controles Pendientes</a>
+      </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
@@ -876,7 +887,12 @@
        <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li> 
-       
+      <li>
+        <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
+      </li> 
+      <li>
+        <a href="{{route('controlesp.index')}}"><i class="fa fa-plus-circle"></i> Controles Pendientes</a>
+      </li> 
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              
@@ -1049,7 +1065,12 @@
        <li>
         <a href="{{route('prenatal.index')}}"><i class="fa fa-plus-circle"></i> Ver Controles</a>
       </li>  
-      
+      <li>
+        <a href="{{route('historias.indexp')}}"><i class="fa fa-plus-circle"></i> Historias Pendientes</a>
+      </li> 
+      <li>
+        <a href="{{route('controlesp.index')}}"><i class="fa fa-plus-circle"></i> Controles Pendientes</a>
+      </li>  
        <li>
         <a href="{{route('proximacita.index')}}"><i class="fa fa-plus-circle"></i> Pròximas Citas</a>
       </li>              

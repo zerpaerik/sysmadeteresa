@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Historias Pendientes</span>
+					<span>Controles Pendientes</span>
 
 				</div>
 				<div class="box-icons">
@@ -32,19 +32,19 @@
 							<th>Paciente</th>
 							<th>DNI</th>
 							<th>Registro</th>
-							<th>Historia</th>
+							<th>Controles</th>
 
 
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($historias as $h)					
+						@foreach($controles as $h)					
 							<tr>
 								<td>{{$h->apellidos}},{{$h->nombres}}</td>
 								<td>{{$h->dni}}</td>
 								<td>{{$h->created_at}}</td>
 								<td>
-								<a  class="btn btn-success" href="historiasp-edit-{{$h->id}}">Completar</a>	
+								<a  class="btn btn-success" href="control-edit-{{$h->id}}">Completar</a>
 								</td>
 							</tr>
 						@endforeach

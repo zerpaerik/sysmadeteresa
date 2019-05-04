@@ -150,6 +150,7 @@ Route::post('control/edit', 'PrenatalController@editarcontrol');
 Route::post('prenatal/create', 'PrenatalController@create')->middleware('auth');
 Route::post('control/create', 'PrenatalController@createControl')->middleware('auth');
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
+Route::get('controlesp', 'PrenatalController@indexcp')->name('controlesp.index')->middleware('auth');
 Route::get('prenatal-search', 'PrenatalController@search')->name('prenatal.search')->middleware('auth');
 
 Route::get('prenatal-imprimir-{id}', 'PrenatalController@imprimir');

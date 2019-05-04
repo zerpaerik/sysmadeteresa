@@ -210,6 +210,21 @@ class PrenatalController extends Controller
     return view('prenatal.antpotro');
   	}
 
+  	public function indexcp(){
+
+
+      $controles = DB::table('controls as a')
+        ->select('a.id','a.id_paciente','a.pendiente','a.created_at','p.nombres','p.apellidos','p.dni')
+    ->join('pacientes as p','p.id','=','a.id_paciente')
+    ->where('a.pendiente','=',1)
+    ->get();
+
+
+    
+   
+        return view('prenatal.control.indexp', ["controles" => $controles]);
+  }
+
     public function verControl($id)
     {
 
@@ -233,7 +248,50 @@ class PrenatalController extends Controller
 
 
     	Control::create([
-    		
+    		"id_paciente" => $request->paciente,
+			"id_ficha_prenatal" => $request->id_ficha_prenatal,
+			"fecha_cont" => $request->fecha_cont,
+			"gesta_semanas" => $request->gesta_semanas,
+			"peso_madre" => $request->peso_madre,
+			"temp" => $request->temp,
+			"tension" => $request->tension,
+			"altura_uterina" => $request->altura_uterina,
+			"presentacion" => $request->presentacion,
+			"fcf" => $request->fcf,
+			"movimiento_fetal" => $request->movimiento_fetal,
+			"edema" => $request->edema,
+			"pulso_materno" => $request->pulso_materno,
+			"consejeria" => $request->consejeria,
+			"sulfato" => $request->sulfato,
+			"perfil_biofisico" => $request->perfil_biofisico,
+			"visita_domicilio" => $request->visita_domicilio,
+			"establecimiento_atencion" => $request->establecimiento_atencion,
+			"responsable_control" => $usuario->name.' '.$usuario->lastname,
+			"sero" => $request->sero,
+			"serod" => $request->serod,
+			"glu" => $request->gluco,
+			"glud" => $request->glucod,
+			"vih" => $request->vih,
+			"vihd" => $request->vihd,
+			"hemo" => $request->hemo,
+			"hemod" => $request->hemod,
+			//"fc" => $request->fc,
+			"fr" => $request->fr,
+			"pri" => $request->pri,
+			"peso" => $request->peso,
+			"talla" => $request->talla,
+			"pp" => $request->pp,
+			"piel" => $request->piel,
+			"mamas" => $request->mamas,
+			"abdomen" => $request->abdomen,
+			"genext" => $request->genext,
+			"genint" => $request->genint,
+			"miembros" => $request->miembros,
+			"pres" => $request->pres,
+			"exa" => $request->exa,
+			"def" => $request->def,
+			"tra" => $request->tra,
+						"pendiente" => $request->pendiente,
 
     	]);
 
@@ -259,8 +317,7 @@ class PrenatalController extends Controller
 
     public function editarcontrol(Request $request){
 
-
-
+    
     $control = Control::find($request->id);
     $control->fecha_cont=$request->fecha_cont;
     $control->gesta_semanas=$request->gesta_semanas;
@@ -303,11 +360,10 @@ class PrenatalController extends Controller
     $control->pendiente= $request->pendiente;
     $control->save();
 
-    Toastr::success('Completado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
-  return back();
 
+      Toastr::success('Completado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
+      return redirect()->route('prenatal.index');
 
-     
 
 
     }
