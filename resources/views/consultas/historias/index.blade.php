@@ -65,7 +65,10 @@
 								<td>{{$h->created_at}}</td>
 								<td>
 								<a  class="btn btn-success" href="historias-{{$h->consultaid}}">Ver Historia</a>
-								<a target="_blank" class="btn btn-danger" href="historiasr-{{$h->consultaid}}">Ver Reporte</a>	
+								<a target="_blank" class="btn btn-danger" href="historiasr-{{$h->consultaid}}">Ver Reporte</a>
+								@if($h->pendiente == 1)	
+								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Completar</a>
+								@endif
 								</td>
 							</tr>
 						@endforeach

@@ -20,70 +20,20 @@ class PrenatalController extends Controller
 
 	public function index(Request $request){
 
-		 $prenatal = DB::table('prenatals as a')
-    	->select( 'a.id',
-    			'a.paciente' ,
-				'a.gesta' ,
-				'a.aborto' ,
-				'a.vaginales' ,
-				'a.vivos' ,
-				'a.viven' ,
-				'a.semana1' ,
-				'a.semana2' ,
-				'a.cesaria' ,
-				'a.parto' ,
-				'a.num' ,
-				'a.gr' ,
-				'a.gemelar' ,
-				'a.m37m' ,
-				'a.fecha_terminacion' ,
-				'a.terminacion_gestacion' ,
-				'a.peso_gestacion' ,
-								'a.muertos',
-
-								'a.aborto_gestacion',
-
-				'a.peso_pregestacional' ,
-				'a.talla_pregestacional' ,
-			
-				'a.ultima_menstruacion' ,
-				'a.parto_probable' ,
-				'a.eco_eg' ,
-				'a.eco_eg_text',
-				'a.sangre' ,
-				'a.sangrerh' ,
-				'a.created_at',
-				'a.orina' ,
-				'a.orinad',
-				'a.urea',
-				'a.uread',
-				'a.creatinina',
-				'a.creatininad',
-				'a.bic',
-				'a.bicd',
-				'a.torch',
-				'a.torchd',
-				'a.terminacion' ,
-				
-				'a.af',
-				'a.ap',
-				'a.at_fami',
-				'a.at_perso',
-			 'p.nombres',
-			 'p.apellidos',
-			 'p.dni',
-			 'p.id as idPaciente')
-    	->join('pacientes as p','p.id','a.paciente')
-        ->where('a.paciente','=',$request->paciente)
-        //->groupBy('a.paciente')
+		 $prenatal = DB::table('controls as a')
+    	->select('a.id','a.id_paciente','a.pendiente','a.created_at','p.nombres','p.apellidos','p.dni','p.id as idPaciente')
+    	->join('pacientes as p','p.id','a.id_paciente')
+        ->where('a.id_paciente','=',$request->paciente)
         ->get();
 
 
         $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.nombres','a.apellidos','a.dni')
-        ->join('prenatals as pr','pr.paciente','a.id')
+        ->join('controls as pr','pr.id_paciente','a.id')
+        ->groupBy('a.id')
         ->get();
-    
+
+
    
         return view('prenatal.index',compact('prenatal','pacientes'));
 	}
@@ -283,49 +233,7 @@ class PrenatalController extends Controller
 
 
     	Control::create([
-    		"id_paciente" => $request->paciente,
-			"id_ficha_prenatal" => $request->id_ficha_prenatal,
-			"fecha_cont" => $request->fecha_cont,
-			"gesta_semanas" => $request->gesta_semanas,
-			"peso_madre" => $request->peso_madre,
-			"temp" => $request->temp,
-			"tension" => $request->tension,
-			"altura_uterina" => $request->altura_uterina,
-			"presentacion" => $request->presentacion,
-			"fcf" => $request->fcf,
-			"movimiento_fetal" => $request->movimiento_fetal,
-			"edema" => $request->edema,
-			"pulso_materno" => $request->pulso_materno,
-			"consejeria" => $request->consejeria,
-			"sulfato" => $request->sulfato,
-			"perfil_biofisico" => $request->perfil_biofisico,
-			"visita_domicilio" => $request->visita_domicilio,
-			"establecimiento_atencion" => $request->establecimiento_atencion,
-			"responsable_control" => $usuario->name.' '.$usuario->lastname,
-			"sero" => $request->sero,
-			"serod" => $request->serod,
-			"glu" => $request->gluco,
-			"glud" => $request->glucod,
-			"vih" => $request->vih,
-			"vihd" => $request->vihd,
-			"hemo" => $request->hemo,
-			"hemod" => $request->hemod,
-			//"fc" => $request->fc,
-			"fr" => $request->fr,
-			"pri" => $request->pri,
-			"peso" => $request->peso,
-			"talla" => $request->talla,
-			"pp" => $request->pp,
-			"piel" => $request->piel,
-			"mamas" => $request->mamas,
-			"abdomen" => $request->abdomen,
-			"genext" => $request->genext,
-			"genint" => $request->genint,
-			"miembros" => $request->miembros,
-			"pres" => $request->pres,
-			"exa" => $request->exa,
-			"def" => $request->def,
-			"tra" => $request->tra,
+    		
 
     	]);
 
@@ -336,6 +244,71 @@ class PrenatalController extends Controller
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
 
 		return back();
+
+    }
+
+    public function editcontrol($id){
+
+    	$control= Control::where('id','=',$id)->first();
+
+    	$paciente = Paciente::where('id','=',$control->id_paciente)->first();
+
+    	return view('prenatal.control.edit',compact('control','paciente'));
+
+    }
+
+    public function editarcontrol(Request $request){
+
+
+
+    $control = Control::find($request->id);
+    $control->fecha_cont=$request->fecha_cont;
+    $control->gesta_semanas=$request->gesta_semanas;
+    $control->peso_madre=$request->peso_madre;
+    $control->temp=$request->temp;
+    $control->tension=$request->tension;
+    $control->altura_uterina=$request->altura_uterina;
+    $control->presentacion=$request->presentacion;
+    $control->fcf=$request->fcf;
+    $control->movimiento_fetal=$request->movimiento_fetal;
+    $control->edema=$request->edema;
+    $control->pulso_materno=$request->pulso_materno;
+    $control->consejeria=$request->consejeria;
+    $control->sulfato=$request->sulfato;
+    $control->perfil_biofisico=$request->perfil_biofisico;
+    $control->visita_domicilio=$request->visita_domicilio;
+    $control->establecimiento_atencion=$request->establecimiento_atencion;
+    $control->sero=$request->sero;
+    $control->serod=$request->serod;
+    $control->glu=$request->gluco;
+    $control->glud=$request->glucod;
+    $control->vih=$request->vih;
+    $control->vihd=$request->vihd;
+    $control->hemo=$request->hemo;
+    $control->hemod=$request->hemod;
+    $control->fr= $request->fr;
+    $control->pri=$request->pri;
+    $control->peso= $request->peso;
+    $control->talla=$request->talla;
+    $control->pp=$request->pp;
+    $control->mamas= $request->mamas;
+    $control->abdomen=$request->abdomen;
+    $control->genext= $request->genext;
+    $control->genint=$request->genint;
+    $control->miembros=$request->miembros;
+    $control->pres= $request->pres;
+    $control->exa= $request->exa;
+    $control->def=$request->def;
+    $control->tra= $request->tra;
+    $control->pendiente= $request->pendiente;
+    $control->save();
+
+    Toastr::success('Completado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
+  return back();
+
+
+     
+
 
     }
 

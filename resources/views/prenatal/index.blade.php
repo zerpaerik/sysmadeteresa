@@ -46,6 +46,7 @@
 							<th>DNI</th>
 							<th>Registro</th>
 							<th>Ver Ficha</th>
+							<th>Completar</th>
 							
 						</tr>
 					</thead>
@@ -56,6 +57,9 @@
 								<td>{{$d->dni}}</td>
 								<td>{{$d->created_at}}</td>
 								<td><a href="prenatal-ver-{{$d->idPaciente}}" class="btn btn-success">Ver ficha</a></td>
+								@if($d->pendiente ==1)
+								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Completar</a></td>
+								@endif
 							</tr>
 						@endforeach
 					</tbody>

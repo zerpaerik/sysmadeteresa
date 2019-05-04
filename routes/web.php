@@ -144,6 +144,9 @@ Route::get('prenatal-ver-{id}', 'PrenatalController@show')->name('prenatal.show'
 Route::get('prenatal-ficha-{id}', 'PrenatalController@FichaView')->name('prenatal.ficha')->middleware('auth');
 Route::get('prenatal-control-{id}', 'PrenatalController@createControlView')->name('prenatal.control')->middleware('auth');
 Route::get('prenatal-vercontrol-{id}', 'PrenatalController@verControl')->name('prenatal.vercontrol')->middleware('auth');
+
+Route::get('control-edit-{id}','PrenatalController@editcontrol')->name('control.edit')->middleware('auth');
+Route::post('control/edit', 'PrenatalController@editarcontrol');
 Route::post('prenatal/create', 'PrenatalController@create')->middleware('auth');
 Route::post('control/create', 'PrenatalController@createControl')->middleware('auth');
 Route::get('prenatal', 'PrenatalController@index')->name('prenatal.index')->middleware('auth');
