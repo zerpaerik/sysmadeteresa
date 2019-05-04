@@ -185,21 +185,6 @@
 
 
 
-
-
-
-			<label class="col-sm-2">Personal Responsable:</label>
-			<div class="col-sm-3">
-				<select id="el1" name="personal" value="{{$historias->personal}}">
-					@foreach($personal as $per)
-					<option value="{{$per->name}},{{$per->lastname}}">
-						{{$per->name}} {{$per->lastname}}
-					</option>
-					@endforeach
-				</select>
-			</div> 
-
-				
 			
             <!-- sheepIt Form -->
             <div id="laboratorios" class="embed ">
