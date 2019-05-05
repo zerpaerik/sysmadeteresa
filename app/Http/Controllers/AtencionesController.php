@@ -424,7 +424,6 @@ public function index(Request $request){
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
-              $serv->serv_prog =  $programa;
               $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
@@ -869,7 +868,6 @@ $paciente = DB::table('pacientes')
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
-              $serv->serv_prog =  $programa;
               $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
