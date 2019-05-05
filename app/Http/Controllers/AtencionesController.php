@@ -266,6 +266,7 @@ public function index(Request $request){
               $s->monto = 99999;
               $s->abono = 0;
               $s->porcentaje =0;
+              $s->sesion =$sesion;
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 2;
               $s->particular = $request->particular;
@@ -414,6 +415,22 @@ public function index(Request $request){
   
       foreach ($request->id_servicio['servicios'] as $key => $servicio) {
         if (!is_null($servicio['servicio'])) {
+
+              $searchServicio = DB::table('servicios')
+              ->select('*')
+              ->where('id','=',$servicio['servicio'])
+              ->first(); 
+
+
+              $programa = $searchServicio->programa;
+              $sesion = $searchServicio->sesion; 
+
+
+              if ($request->origen == 1 ){
+                $porcentaje = $searchServicio->por_per;
+              } else {
+                $porcentaje = $searchServicio->porcentaje;
+              }
              
               $serv = new Atenciones();
               $serv->id_paciente = $request->id_paciente;
@@ -423,6 +440,8 @@ public function index(Request $request){
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
+              $serv->serv_prog =  $programa;
+              $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
@@ -687,6 +706,7 @@ public function index(Request $request){
               $s->porc_pagar = 0;
               $s->pendiente = 0;
               $s->monto = 99999;
+              $s->sesion = $sesion;
               $s->abono = 0;
               $s->porcentaje =0;
               $s->id_sede =$request->session()->get('sede');
@@ -865,6 +885,8 @@ $paciente = DB::table('pacientes')
               $serv->id_paquete =  1;
               $serv->id_servicio =  $servicio['servicio'];
               $serv->es_servicio =  true;
+              $serv->serv_prog =  $programa;
+              $serv->sesion =  $sesion;
               $serv->tipopago = $request->tipopago;
               $serv->porc_pagar = $porcentaje;
               $serv->comollego = $request->comollego;
