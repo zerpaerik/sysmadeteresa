@@ -286,6 +286,7 @@ Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingre
 Route::post('ingresos/create', 'OtrosIngresosController@create')->middleware('auth');
 Route::get('ingresos/{id}', 'OtrosIngresosController@delete')->middleware('auth');
 Route::get('ingresos-edit-{id}', 'OtrosIngresosController@editView')->name('ingresos.edit');
+Route::get('ingresos-delete-{id}', 'OtrosIngresosController@delete')->name('ingresos.delete');
 Route::post('ingresos/edit', 'OtrosIngresosController@edit');
 
 Route::get('cuentasporcobrar', 'CuentasporCobrarController@index')->name('cuentasporcobrar.index')->middleware('auth');
@@ -309,6 +310,11 @@ Route::get('labpagados-reversar-{id}', 'LaboratoriosPagadosController@reversar')
 Route::get('movimientos/atencion/personal','AtencionesController@personal');
 Route::get('movimientos/atencion/profesional','AtencionesController@profesional');
 Route::get('movimientos/atencion/particular','AtencionesController@particular');
+
+Route::get('movimientos/atencion/mx','AtencionesController@mx');
+Route::get('movimientos/atencion/nada','AtencionesController@nada');
+
+
 
 Route::get('af/otros','ConsultaController@af');
 Route::get('af/ningunof','ConsultaController@ningunof');
