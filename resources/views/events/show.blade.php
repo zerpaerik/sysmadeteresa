@@ -257,7 +257,7 @@
 			<div class="col-sm-4">	
 				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">Andria:</label>
+			<label for="" class="col-sm-2 control-label">Pulso:</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="pulso">
 			</div>
@@ -394,12 +394,13 @@
 			</div>
 			
 			
-			<div class="row">
+			<div class="col-sm-12">
 			<label for="" class="col-sm-2 control-label"><strong>Plan de Tratamiento:</strong></label>
-		    </div>
+		    
 
-			<div class="col-sm-12">	
+			<div class="col-sm-10">	
 				<input   class="form-control" type="text" name="plan_tratamiento">
+			</div>
 			</div>
 
 			<label for="" class="col-sm-2 control-label">Observaciones</label>
