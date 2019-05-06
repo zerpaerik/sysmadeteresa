@@ -519,7 +519,7 @@ public function index(Request $request){
     } else {
       $porcentaje=0;
     }    
-    
+
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
@@ -931,7 +931,7 @@ $paciente = DB::table('pacientes')
           }else{
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $lab->id;
+          $creditos->id_atencion = $serv->id;
           $creditos->monto= $request->monto_abos['servicios'][$key]['abono'];
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
