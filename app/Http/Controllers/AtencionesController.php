@@ -185,28 +185,7 @@ public function index(Request $request){
               $paq->ti = $request->tipopago;
               $paq->save(); 
 
-              
-              if(($request->tipopago=='MX') && ($paquete->id <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $paq->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $paq->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+             
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $paq->id;
@@ -215,7 +194,7 @@ public function index(Request $request){
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
+         
 
 
         } else {
@@ -461,27 +440,7 @@ public function index(Request $request){
               $serv->save(); 
 
               
-              if(($request->tipopago=='MX') && ($paquete->id <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $serv->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $serv->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+             
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $serv->id;
@@ -490,7 +449,7 @@ public function index(Request $request){
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
+          
         } else {
 
         }
@@ -548,27 +507,7 @@ public function index(Request $request){
          $lab->ticket =AtencionesController::generarId($request);
           $lab->save();
 
-            if(($request->tipopago=='MX') && ($laboratorio['laboratorio'] <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $lab->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $lab->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+         
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $lab->id;
@@ -577,7 +516,7 @@ public function index(Request $request){
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
+        
 
          
         } else {
@@ -632,27 +571,7 @@ public function index(Request $request){
               $paq->save(); 
 
              
-              if(($request->tipopago=='MX') && ($paquete->id <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $paq->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $paq->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+             
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $paq->id;
@@ -661,7 +580,7 @@ public function index(Request $request){
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
+        
 
 
         } else {
@@ -908,27 +827,7 @@ $paciente = DB::table('pacientes')
               $serv->save(); 
 
               
-          if(($request->tipopago=='MX') && ($servicio['servicio'] <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $serv->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $serv->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+         
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $serv->id;
@@ -937,8 +836,7 @@ $paciente = DB::table('pacientes')
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
-         
+        
 
         } else {
 
@@ -992,27 +890,7 @@ $paciente = DB::table('pacientes')
           $lab->save();
 
          
-          if(($request->tipopago=='MX') && ($laboratorio['laboratorio'] <> 1)){
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $lab->id;
-          $creditos->monto= $request->mxef;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'EF';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-          $creditos = new Creditos();
-          $creditos->origen = 'ATENCIONES';
-          $creditos->id_atencion = $lab->id;
-          $creditos->monto= $request->mxtj;
-          $creditos->id_sede = $request->session()->get('sede');
-          $creditos->tipo_ingreso = 'TJ';
-          $creditos->descripcion = 'INGRESO DE ATENCIONES';
-          $creditos->save();
-
-
-          }else{
+         
           $creditos = new Creditos();
           $creditos->origen = 'ATENCIONES';
           $creditos->id_atencion = $lab->id;
@@ -1021,8 +899,7 @@ $paciente = DB::table('pacientes')
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
           $creditos->save();
-          }
-
+      
          
 
         } else {

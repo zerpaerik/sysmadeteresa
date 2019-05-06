@@ -264,7 +264,6 @@
                         <option value="EF">Seleccionar Tipo de Pago</option>
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
-                        <option value="MX">Mixto</option>  
               </select>
               <div id="tpmx" class="tpmx">
                 
