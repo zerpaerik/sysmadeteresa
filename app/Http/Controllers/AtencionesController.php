@@ -499,10 +499,15 @@ public function index(Request $request){
 
     if (isset($request->id_laboratorio)) {
 
-       $searchAnalisis = DB::table('analises')
+               
+
+      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
+        if (!is_null($laboratorio['laboratorio'])) {
+          //dd($request->total_g);
+          $searchAnalisis = DB::table('analises')
                     ->select('*')
                    // ->where('estatus','=','1')
-                    ->where('id','=', $request->id_laboratorio)
+                    ->where('id','=', $laboratorio['laboratorio'])
                     ->first();   
                    
                    $porcentaje =  $searchAnalisis->porcentaje;
@@ -513,11 +518,8 @@ public function index(Request $request){
         $porcentaje = 0;
     } else {
       $porcentaje=0;
-    }           
-
-      foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
-        if (!is_null($laboratorio['laboratorio'])) {
-          //dd($request->total_g);
+    }    
+    
           $lab = new Atenciones();
           $lab->id_paciente = $request->id_paciente;
           $lab->origen = $request->origen;
