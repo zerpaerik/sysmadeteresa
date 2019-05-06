@@ -85,8 +85,6 @@
 			<div class="col-sm-4">	
 				<input   class="form-control" type="text" name="tipo_enfermedad" value="{{$historias->tipo_enfermedad}}">
 			</div>
-			<br>
-			<label for="" class="col-sm-12 control-label"><strong>Solo para pacientes Femeninas:</strong></label>
 
 			<label for="" class="col-sm-2 control-label">FUR:</label>
 			<div class="col-sm-4">	
@@ -95,17 +93,17 @@
 
 				<label for="" class="col-sm-2 control-label">Amenorrea:</label>
 			<div class="col-sm-4">	
-				<input class="form-control" type="date" name="amenorrea" value="{{$historias->amenorrea}}">
+				<input class="form-control" type="text" name="amenorrea" value="{{$historias->amenorrea}}">
 			</div>
 
 				<label for="" class="col-sm-2 control-label">Andria:</label>
 			<div class="col-sm-4">	
-				<input class="form-control" type="date" name="andria" value="{{$historias->andria}}">
+				<input class="form-control" type="text" name="andria" value="{{$historias->andria}}">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">PAP:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="date" name="pap" value="{{$historias->pap}}">
+				<input   class="form-control" type="text" name="pap" value="{{$historias->pap}}">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">MAC:</label>
@@ -114,12 +112,12 @@
 			</div>
 
 			<label for="" class="col-sm-2 control-label">P:</label>
-			<div class="col-sm-4">	
+			<div class="col-sm-1">	
 				<input  class="form-control" type="text" name="p" value="{{$historias->p}}">
 			</div>
 
 			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-4">	
+			<div class="col-sm-1">	
 				<input   class="form-control" type="text" name="g" value="{{$historias->g}}">
 			</div>
 
@@ -139,32 +137,20 @@
 		
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el3" name="ciex" value="{{$historias->CIEX}}">
-					@foreach($ciex as $c)
-					<option value="{{$c->codigo}}-{{$c->nombre}}">
-						{{$c->codigo}}-{{$c->nombre}}
-					</option>
-					@endforeach
-				</select>
+				<input class="form-control" name="ciex" value="{{$historias->CIEX}}">
 			</div> 
 			
 			</div>
             
 		<div class="row">
-			<label for="" class="col-sm-2 ">Diag.Final</label>
+			<label for="" class="col-sm-2 control-label">Diag.Final</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final" value="{{$historias->diagnostico_final}}">
 			</div>
 
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<select id="el4" name="ciex2" value="{{$historias->CIEX2}}">
-					@foreach($ciex as $c)
-					<option value="{{$c->nombre}}">
-						{{$c->codigo}}-{{$c->nombre}}
-					</option>
-					@endforeach
-				</select>
+				<input class="form-control" name="ciex" value="{{$historias->CIEX2}}">
 			</div> 
 			
 		</div>
@@ -175,9 +161,9 @@
 			</div>
 			
 			
-			<div class="row">
-			<label for="" class="col-sm-3 control-label">Plan de Tratamiento</label>
-			<div class="col-sm-12">	
+			<div class="col-sm-12">
+			<label for="" class="col-sm-2 control-label">Plan de Tratamiento</label>
+			<div class="col-sm-10">	
 				<input   class="form-control" type="text" name="plan_tratamiento" value="{{$historias->plan_tratamiento}}">
 			</div>
 			</div>

@@ -395,7 +395,7 @@ class ConsultaController extends Controller
     
   
     Toastr::success('Editado Exitosamente.', 'Historia!', ['progressBar' => true]);
-    return back();
+    return redirect('/historiasp');
      
     }
 }
