@@ -260,11 +260,15 @@
               <div class="col-sm-2 text-right" style="font-weight: 600; font-size: 12px">
                 Forma de Pago:
               </div> 
-              <select required aria-required="true" name="tipopago" class="form-control">
+              <select required aria-required="true" id="tp" name="tipopago" class="form-control">
                         <option value="EF">Seleccionar Tipo de Pago</option>
                         <option value="EF">Efectivo</option>
-                        <option value="TJ">Tarjeta</option> 
+                        <option value="TJ">Tarjeta</option>
+                        <option value="MX">Mixto</option>  
               </select>
+              <div id="tpmx" class="tpmx">
+                
+              </div>
             </div>
           </div>
           <div class="form-group form-inline">
@@ -647,6 +651,32 @@ function createPac(e){
                  url:  link,
                  success: function(a) {
                     $('#pacientes').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#tp').on('change',function(){
+          var link;
+          if ($(this).val() =='MX') {
+            link = '/movimientos/atencion/mx/';
+          } else {
+        link = '/movimientos/atencion/nada/';
+      }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#tpmx').html(a);
                  }
           });
 
