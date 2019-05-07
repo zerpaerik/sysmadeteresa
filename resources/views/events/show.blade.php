@@ -320,7 +320,9 @@
 
 			<br>
 			<div class="row">
-			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
+			<div class="col-sm-12">	
+				<input   class="form-control" type="text" name="examen_fisico_regional">
+			</div>
 			<div class="col-sm-2">Piel/Mucosas	
 				<input class="form-control" type="text" name="piel">
 			</div>
