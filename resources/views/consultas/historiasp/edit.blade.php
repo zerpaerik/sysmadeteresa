@@ -111,15 +111,17 @@
 				<input  class="form-control" type="text" name="mac" value="{{$historias->mac}}">
 			</div>
 
+			<label for="" class="col-sm-2 control-label">G:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="g" value="{{$historias->g}}">
+			</div>
+
 			<label for="" class="col-sm-2 control-label">P:</label>
 			<div class="col-sm-1">	
 				<input  class="form-control" type="text" name="p" value="{{$historias->p}}">
 			</div>
 
-			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="g" value="{{$historias->g}}">
-			</div>
+			
 
 
 			<br>
