@@ -12,9 +12,9 @@
              	<br>
 			  <label class="col-sm-3">CERRAR HISTORIA?:</label>
 			<div class="col-sm-2">
-				<select style="background: #F0CD1C;" name="pendiente" required="true" value="{{$historias->pendiente}}">
-					<option value="0" value="{{$historias->pendiente}}">Si</option>
-					<option value="1" value="{{$historias->pendiente}}">No</option>
+				<select style="background: #F0CD1C;" name="pendiente" required="true">
+					<option value="0">Si</option>
+					<option value="1">No</option>
 				</select>
 			</div> 
 			</div>
