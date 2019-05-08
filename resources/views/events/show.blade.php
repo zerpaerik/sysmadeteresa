@@ -139,6 +139,7 @@
 				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->pulso }}</p>
 				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
 				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+				<p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }} Cm</p>
 				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
 				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
 				<p class="col-sm-6"><strong>Ciclo Menstrual:</strong> {{ $consulta->andria }}</p>
