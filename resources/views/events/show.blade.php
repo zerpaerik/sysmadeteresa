@@ -190,58 +190,71 @@
 			</div> 
 			</div>
            <div class="row">
-            <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
-			<div class="col-sm-4 control-label">	
-				<input  required class="form-control" type="text" name="motivo_consulta">		
+            <label for="" class="col-sm-2 ">Motivo de Consulta:</label>
+			<div class="col-sm-10 control-label">	
+				<textarea name="motivo_consulta" cols="10" rows="4" class="form-control" ></textarea>		
 			</div>
 		  </div>
 
-		
+		<div class="row">
+			<label for="" class="col-sm-2">Funciones Vitales:</label>
+		</div>
+		<br>
+		<div class="row">
 
-		  <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Biològicas</label>
-		  </div>
-		   <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Vitales</label>
-		  </div>
-			 <label for="" class="col-sm-2 control-label">Apetito</label>
-			<div class="col-sm-4">
+			<label for="" class="col-sm-1 control-label">P/A:</label>
+			<div class="col-sm-1">
+				<input type="text" name="pa" class="form-control" placeholder="mmgh-">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Pulso:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="pulso">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Temperatura:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="temperatura" placeholder="ºC">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Peso:</label>
+			<div class="col-sm-1">			
+				<input  class="form-control" type="text" name="peso" placeholder="Kg">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Talla:</label>
+			<div class="col-sm-1">			
+				<input  class="form-control" type="text" name="talla" placeholder="Cm">
+			</div>
+
+		</div>
+		<br>
+
+		<div class="row">
+			<label for="" class="col-sm-2">Funciones Biológicas:</label>
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-1 control-label">Apetito:</label>
+			<div class="col-sm-2">
 				<select id="el7" name="apetito">
 					<option value="Aumentado">Aumentado</option>
 					<option value="Normal">Normal</option>
 					<option value="Disminuido">Disminuido</option>
 				</select>
 			</div>
-			
-		
-			<label for="" class="col-sm-2 control-label">P/A</label>
-			<div class="col-sm-4">
-				<input type="text" name="pa" class="form-control" placeholder="mmgh-">
-			</div>
-			<label for="" class="col-sm-2 control-label">Sed:</label>
-			<div class="col-sm-4">	
+
+			<label for="" class="col-sm-1 control-label">Sed:</label>
+			<div class="col-sm-2">	
 				<select id="el8" name="sed">
 					<option value="Aumentado">Aumentado</option>
 					<option value="Normal">Normal</option>
 					<option value="Disminuido">Disminuido</option>
 				</select>
 			</div>
-			<label for=""class="col-sm-2 control-label">Frec.Cardìaca</label>
-			<div class="col-sm-4">
-				<input class="form-control" type="text" name="card" placeholder="x min">
-			</div>
-			
 
-			<label for="" class="col-sm-2 control-label">Frecuencia.Micciones</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Frecuencia Micciones" type="text" name="orina" placeholder="c 24/hrs">
-			</div>
-			<label for="" class="col-sm-2 control-label">Peso</label>
-			<div class="col-sm-4">			
-				<input  class="form-control" type="text" name="peso" placeholder="Kg">
-			</div>
-			<label for="" class="col-sm-2 control-label">Animo</label>
-			<div class="col-sm-4">	
+			<label for="" class="col-sm-1 control-label">Animo</label>
+			<div class="col-sm-2">	
 				<select id="el9" name="animo">
 				    <option value="Normal">Normal</option>
 					<option value="Deprimido">Deprimido</option>
@@ -249,19 +262,97 @@
 					<option value="Tendencia al llanto">Tendencia al llanto</option>
 				</select>
 			</div>
-			<label for="" class="col-sm-2 control-label">Temperatura</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="temperatura" placeholder="ºC">
+
+			<label for="" class="col-sm-1 control-label">Frec.Mic:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">Frecuencia.Deposiciones</label>
-			<div class="col-sm-4">	
-				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
+
+			<label for=""class="col-sm-1 control-label">Frec.Card:</label>
+			<div class="col-sm-2">
+				<input class="form-control" type="text" name="card" placeholder="x min">
 			</div>
-			<label for="" class="col-sm-2 control-label">Pulso:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pulso">
+
+			<label for="" class="col-sm-1 control-label">Frec.Depo:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" placeholder="Frec. Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs">
 			</div>
-			<label for="" class="col-sm-2 control-label">Evol.Enf</label>
+
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-2">Antecedentes:</label>
+		</div>
+		<div class="row">
+			<label for="" class="col-sm-1 control-label">FUR:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="date" name="fur">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">PAP:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" type="text" name="pap">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">MAC:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" type="text" name="mac">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Andria:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="text" name="andria">
+			</div>
+		</div>
+		<div class="row">
+
+			<label for="" class="col-sm-1 control-label">G:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" type="text" name="g">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">P:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" type="text" name="p">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Amenorrea:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="text" name="amenorrea">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<label class="col-sm-2">Exámen Físico y Regional:</label>
+			<div class="col-sm-10">	
+				<textarea  class="form-control" cols="10" rows="4" name="examen_fisico_regional"></textarea>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col-sm-2"><strong>Piel/Mucosas:</strong>
+				<input class="form-control" type="text" name="piel">
+			</div>
+			<div class="col-sm-2"><strong>Mamas:</strong>
+				<input class="form-control" type="text" name="mamas">
+			</div>
+			<div class="col-sm-2"><strong>Abdomen:</strong>
+				<input class="form-control" type="text" name="abdomen">
+			</div>
+			<div class="col-sm-2"><strong>Genitales Externos:</strong>
+				<input class="form-control" type="text" name="genext">
+			</div>
+			<div class="col-sm-2"><strong>Genitales Internos:</strong>
+				<input class="form-control" type="text" name="genint">
+			</div>
+			<div class="col-sm-2"><strong>Miembros Inferiores:</strong>
+				<input class="form-control" type="text" name="miembros">
+			</div>
+
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-2">Evol. Enfermedad:</label>
 			<div class="col-sm-4">	
 				<select id="el16" name="evolucion_enfermedad">
 					<option value="Insidioso">Insidioso</option>
@@ -277,82 +368,14 @@
 					
 				</select>
 			</div>
-			<br>
-		
-
-			<label for="" class="col-sm-2 control-label">FUR:</label>
+		</div>
+		<br>
+        <div class="row">
+			<label for="" class="col-sm-2">Presunción Diagóstica</label>
 			<div class="col-sm-4">	
-				<input class="form-control" type="date" name="fur">
+				<input   class="form-control" placeholder="Presunción Diagnostica" type="text" name="presuncion_diagnostica">
 			</div>
 
-			<label for="" class="col-sm-2 control-label">Amenorrea:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="andria">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">Andria:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="andria">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">PAP:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pap">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">MAC:</label>
-			<div class="col-sm-4">	
-				<input  class="form-control" type="text" name="mac">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="g">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">P:</label>
-			<div class="col-sm-1">	
-				<input  class="form-control" type="text" name="p">
-			</div>
-
-			
-
-
-			<br>
-			<div class="row">
-			<div class="col-sm-12">	
-				<input   class="form-control" type="text" name="examen_fisico_regional">
-			</div>
-			<div class="col-sm-2">Piel/Mucosas	
-				<input class="form-control" type="text" name="piel">
-			</div>
-			<div class="col-sm-2">Mamas	
-				<input class="form-control" type="text" name="mamas">
-			</div>
-			<div class="col-sm-2">Abdomen	
-				<input class="form-control" type="text" name="abdomen">
-			</div>
-			<div class="col-sm-2">Genitales Externos	
-				<input class="form-control" type="text" name="genext">
-			</div>
-			<div class="col-sm-2">Genitales Internos	
-				<input class="form-control" type="text" name="genint">
-			</div>
-			<div class="col-sm-2">Miembros Inferiores	
-				<input class="form-control" type="text" name="miembros">
-			</div>
-
-
-		    </div>
-
-
-            <div class="row">
-			<label for="" class="col-sm-2 control-label">Pres.Diag</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica">
-			</div>
-
-		
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
 				<select id="el6" name="ciex[]" multiple="">
@@ -364,10 +387,10 @@
 				</select>
 			</div> 
 			
-			</div>
+		</div>
             
 		<div class="row">
-			<label for="" class="col-sm-2 control-label">Diag.Final</label>
+			<label for="" class="col-sm-2">Diagnóstico Final</label>
 			<div class="col-sm-4">	
 				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final">
 			</div>
@@ -384,35 +407,29 @@
 			</div> 
 			
 		</div>
+		<br>
+		<div class="row">
 
-			<label for="" class="col-sm-2 control-label">Examen Auxiliar</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="examen_auxiliar">
-			</div>
-
-			<label for="" class="col-sm-2 control-label"></label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="" disabled="true">
-			</div>
-			
-			
-			<div class="col-sm-12">
-			<label for="" class="col-sm-2 control-label"><strong>Plan de Tratamiento:</strong></label>
-		    
-
+			<label for="" class="col-sm-2">Examen Auxiliar:</label>
 			<div class="col-sm-10">	
-				<input   class="form-control" type="text" name="plan_tratamiento">
-			</div>
+				<textarea class="form-control" cols="10" rows="4" name="examen_auxiliar"></textarea>
 			</div>
 
-			<label for="" class="col-sm-2 control-label">Observaciones</label>
+			<label for="" class="col-sm-2"><strong>Plan de Tratamiento:</strong></label>
 			<div class="col-sm-10">	
-				<textarea name="observaciones" cols="10" rows="10" class="form-control" ></textarea>
+				<textarea class="form-control" cols="10" rows="4" name="plan_tratamiento"></textarea>
+			</div>
+
+			<label for="" class="col-sm-2">Observaciones</label>
+			<div class="col-sm-10">	
+				<textarea name="observaciones" cols="10" rows="4" class="form-control" ></textarea>
 			</div>
 			<label for="" class="col-sm-2 ">Pròxima Cita</label>
 			<div class="col-sm-3">
 				<input type="date" name="prox" class="form-control" >
 			</div>
+
+		</div>
 		
 			
 			<label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Materiales Usados</label>
