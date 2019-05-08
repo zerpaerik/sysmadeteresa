@@ -982,7 +982,7 @@ $paciente = DB::table('pacientes')
 
          $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.dni','a.nombres','a.apellidos','a.direccion','a.telefono','a.fechanac')
-        ->where('a.id','=',$id)
+        ->where('a.dni','=',$id)
         ->first();
 
             $edad = Carbon::parse($pacientes->fechanac)->age;
