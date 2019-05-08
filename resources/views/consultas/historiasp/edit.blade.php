@@ -139,29 +139,26 @@
 		</div>
 		<br>
 		<div class="row">
-			<label class="col-sm-2">Exámen Físico y Regional:</label>
-			<div class="col-sm-10">	
-				<textarea  class="form-control" cols="10" rows="4" name="examen_fisico_regional">{{$historias->examen_fisico_regional}}</textarea>
-			</div>
+			<label class="col-sm-4">Exámen Físico y Regional:</label>
 		</div>
 		<div class="row">
 			
-			<div class="col-sm-2"><strong>Piel/Mucosas:</strong>
+			<div class="col-sm-4"><strong>Piel/Mucosas:</strong>
 				<input class="form-control" type="text" name="piel" value="{{$historias->piel}}">
 			</div>
-			<div class="col-sm-2"><strong>Mamas:</strong>
+			<div class="col-sm-4"><strong>Mamas:</strong>
 				<input class="form-control" type="text" name="mamas" value="{{$historias->mamas}}">
 			</div>
-			<div class="col-sm-2"><strong>Abdomen:</strong>
+			<div class="col-sm-4"><strong>Abdomen:</strong>
 				<input class="form-control" type="text" name="abdomen" value="{{$historias->abdomen}}">
 			</div>
-			<div class="col-sm-2"><strong>Genitales Externos:</strong>
+			<div class="col-sm-4"><strong>Genitales Externos:</strong>
 				<input class="form-control" type="text" name="genext" value="{{$historias->genext}}">
 			</div>
-			<div class="col-sm-2"><strong>Genitales Internos:</strong>
+			<div class="col-sm-4"><strong>Genitales Internos:</strong>
 				<input class="form-control" type="text" name="genint" value="{{$historias->genint}}">
 			</div>
-			<div class="col-sm-2"><strong>Miembros Inferiores:</strong>
+			<div class="col-sm-4"><strong>Miembros Inferiores:</strong>
 				<input class="form-control" type="text" name="miembros" value="{{$historias->miembros}}">
 			</div>
 
