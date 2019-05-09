@@ -25,8 +25,8 @@
 		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
 		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-		<p>Menarquia: {{$historial->menarquia}}</p> años
-		<p>1º R.S : {{$historial->prs}}</p> años
+		<p>Menarquia: {{$historial->menarquia}} años.</p> 
+		<p>1º R.S : {{$historial->prs}} años.</p> 
 
 	@else
 	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
