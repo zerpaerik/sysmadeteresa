@@ -25,8 +25,8 @@
 		<p>Antecedentes patologicos: {{$historial->antecedentes_patologicos}}</p>
 		<p>Antecedentes Personales: {{$historial->antecedentes_personales}}</p>
 		<p>Antecedentes Familiares: {{$historial->antecedentes_familiar}}</p>
-		<p>Menarquia: {{$historial->menarquia}}</p> años
-		<p>1º R.S : {{$historial->prs}}</p> años
+		<p>Menarquia: {{$historial->menarquia}} años.</p> 
+		<p>1º R.S : {{$historial->prs}} años.</p> 
 
 	@else
 	<h4>Este usuario no cuenta con un historial base, por favor agregue uno</h4>
@@ -87,32 +87,32 @@
 				</div>
 				<div class="row">
 
-				<label for="" class="col-sm-3">Alergias</label>
-				<div class="col-sm-3">
-					<select id="el10" name="al">
-					<option value="0">Seleccione</option>
-					<option value="1">No</option>
-					<option value="2">Si</option>
-				</select>
-
-				</div>
+					<label for="" class="col-sm-3">Alergias</label>
 					<div class="col-sm-3">
-					<div id="alerg"></div>
-				</div>
+						<select id="el10" name="al">
+						<option value="0">Seleccione</option>
+						<option value="1">No</option>
+						<option value="2">Si</option>
+					</select>
 
 					</div>
+						<div class="col-sm-3">
+						<div id="alerg"></div>
+					</div>
+
+				</div>
 				
 
-
-				<label for="" class="col-sm-3">Menarquia</label>
-				<div class="col-sm-3">
-					<input type="text" name="menarquia"> años.
+				<div class="row">
+					<label for="" class="col-sm-1">Menarquia</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="menarquia" placeholder="años.">
+					</div>
+					<label for="" class="col-sm-1">1º R.S</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" name="prs" placeholder="años.">
+					</div>
 				</div>
-				<label for="" class="col-sm-3">1º R.S</label>
-				<div class="col-sm-3">
-					<input type="text" name="prs"> años.
-				</div>
-			
 			
 				<br>
 				<div class="col-sm-12">
@@ -128,45 +128,60 @@
 		<div class="col-sm-12">
 			<div class="rows">
 				<h3 class="col-sm-12"><strong>Consulta del {{$consulta->created_at}}</strong></h3>
-				<p class="col-sm-6"><strong>P/A:</strong> {{ $consulta->pa }}mmhg-</p>
-
-				<p class="col-sm-6"><strong>Sed:</strong> {{ $consulta->sed }}</p>
-				<p class="col-sm-6"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
-				<p class="col-sm-6"><strong>Animo:</strong> {{ $consulta->animo }}</p>
-				<p class="col-sm-6"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
-				<p class="col-sm-6"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
-				<p class="col-sm-6"><strong>Frecuencia Cardìaca:</strong> {{ $consulta->card }}x min</p>
-				<p class="col-sm-6"><strong>Andria:</strong> {{ $consulta->pulso }}</p>
-				<p class="col-sm-6"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
-				<p class="col-sm-6"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
-				<p class="col-sm-6"><strong>Talla:</strong> {{ $consulta->talla }} Cm</p>
-				<p class="col-sm-6"><strong>FUR:</strong> {{ $consulta->fur }}</p>
-				<p class="col-sm-6"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
-				<p class="col-sm-6"><strong>Ciclo Menstrual:</strong> {{ $consulta->andria }}</p>
-				<p class="col-sm-6"><strong>PAP:</strong> {{ $consulta->pap }}</p>
-			    <p class="col-sm-6"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
-				<p class="col-sm-6"><strong>P:</strong> {{ $consulta->p }},<strong>G</strong>:{{ $consulta->g }}</p>
-				<p class="col-sm-6"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
-				<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
-				<p class="col-sm-6"><strong>Examen Fisico Regional: </strong></p>
-				<p class="col-sm-6"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
-				<p class="col-sm-6"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
-				<p class="col-sm-6"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
-				<p class="col-sm-6"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
-				<p class="col-sm-6"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
-				<p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
-				<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
-				<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
-				<p class="col-sm-6"><strong>CIEX Pres.Diag.:</strong> {{ $consulta->CIEX }}</p>
-				<p class="col-sm-6"><strong>CIEX Diag.Final: </strong>{{ $consulta->CIEX2 }}</p>
-				<p class="col-sm-6"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
-				<p class="col-sm-6"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
-				<p class="col-sm-6"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
-		        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-				<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
-
-
+				<br>
+				<br>
+				<div class="row">
+					<p class="col-sm-12"><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
+				</div>
+				<div class="row">
+				<p><strong>Funciones vitales</strong></p>
+					<p class="col-sm-2"><strong>P/A:</strong> {{ $consulta->pa }}mmhg-</p>
+					<p class="col-sm-2"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
+					<p class="col-sm-2"><strong>Temperatura:</strong> {{ $consulta->temperatura }}ºC</p>
+					<p class="col-sm-2"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+					<p class="col-sm-2"><strong>Talla:</strong> {{ $consulta->talla }} Cm</p>
+				</div>
+				<div class="row">
+				<p><strong>Funciones biológicas</strong></p>
+					<p class="col-sm-4"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
+					<p class="col-sm-4"><strong>Sed:</strong> {{ $consulta->sed }}</p>
+					<p class="col-sm-4"><strong>Animo:</strong> {{ $consulta->animo }}</p>
+					<p class="col-sm-4"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
+					<p class="col-sm-4"><strong>Frecuencia Cardíaca:</strong> {{ $consulta->card }}x min</p>
+					<p class="col-sm-4"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
+				</div>
+				<div class="row">
+				<p><strong>Antecedentes</strong></p>
+					<p class="col-sm-3"><strong>FUR:</strong> {{ $consulta->fur }}</p>
+					<p class="col-sm-3"><strong>PAP:</strong> {{ $consulta->pap }}</p>
+			    	<p class="col-sm-3"><strong>MAC:</strong> {{ $consulta->MAC }}</p>
+			    	<p class="col-sm-3"><strong>Andria:</strong> {{ $consulta->andria }}</p>
+			    	<p class="col-sm-3"><strong>G</strong>:{{ $consulta->g }}</p>
+			    	<p class="col-sm-3"><strong>P:</strong> {{ $consulta->p }}</p>
+			    	<p class="col-sm-3"><strong>Amenorrea:</strong> {{ $consulta->amenorrea}}</p>
+				</div>
+				<div class="row">
+				<p><strong>Exámen Físico y Regional</strong></p>
+					<p class="col-sm-6"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
+					<p class="col-sm-6"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
+					<p class="col-sm-6"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
+					<p class="col-sm-6"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
+					<p class="col-sm-6"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
+					<p class="col-sm-6"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
+					<p class="col-sm-6"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
+					<p class="col-sm-6"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
+					<p class="col-sm-6"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
+					<p class="col-sm-6"><strong>CIEX Pres.Diag.:</strong> {{ $consulta->CIEX }}</p>
+					<p class="col-sm-6"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
+					<p class="col-sm-6"><strong>CIEX Diag.Final: </strong>{{ $consulta->CIEX2 }}</p>
+				</div>
+				<div class="row">				
+					<p class="col-sm-12"><strong>Examen Auxiliar: </strong>{{ $consulta->examen_auxiliar }}</p>
+					<p class="col-sm-12"><strong>Plan de Tratamiento: </strong>{{ $consulta->plan_tratamiento }}</p>
+					<p  class="col-sm-12"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
+					<p class="col-sm-12"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
+			        <p  class="col-sm-12"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
+			    </div>
 				<br>
 			</div>
 		</div>
