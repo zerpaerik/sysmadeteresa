@@ -14,6 +14,10 @@
 <div class="col-md-2">
 	<strong>Telèfono:</strong>{{$pacientes->telefono}}
 </div>
+
+<div class="col-md-2">
+	<input type="hidden" name="id_paciente" value="{{$pacientes->id}}">
+</div>
 </div>
 
 

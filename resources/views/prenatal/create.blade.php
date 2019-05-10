@@ -908,15 +908,7 @@
             </div>
 
 
-             <label class="col-sm-1 control-label">Visita.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="visita_domicilio" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
-            </div>
-
-             <label class="col-sm-1 control-label">Establ.</label>
-            <div class="col-sm-3">
-              <input type="text" class="form-control" name="establecimiento_atencion" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
-            </div>
+         
 
         </div>
 

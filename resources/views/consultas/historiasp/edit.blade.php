@@ -12,170 +12,217 @@
              	<br>
 			  <label class="col-sm-3">CERRAR HISTORIA?:</label>
 			<div class="col-sm-2">
-				<select style="background: #F0CD1C;" name="pendiente" required="true" value="{{$historias->pendiente}}">
-					<option value="0" value="{{$historias->pendiente}}">Si</option>
-					<option value="1" value="{{$historias->pendiente}}">No</option>
+				<select style="background: #F0CD1C;" name="pendiente" required="true">
+					<option value="0">Si</option>
+					<option value="1">No</option>
 				</select>
 			</div> 
 			</div>
            <div class="row">
-            <label for="" class="col-sm-2 control-label">Motivo de Consulta</label>
-			<div class="col-sm-4 control-label">	
-				<input  required class="form-control" value="{{$historias->motivo_consulta}}" type="text" name="motivo_consulta">		
+            <label for="" class="col-sm-2 ">Motivo de Consulta:</label>
+			<div class="col-sm-10 control-label">	
+				<textarea name="motivo_consulta" cols="10" rows="4" class="form-control" readonly="">{{$historias->motivo_consulta}}</textarea>		
 			</div>
 		  </div>
 
-		
+		<div class="row">
+			<label for="" class="col-sm-2">Funciones Vitales:</label>
+		</div>
+		<br>
+		<div class="row">
 
-		  <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Biològicas</label>
-		  </div>
-		   <div class="col-md-6">
-		  	            <label for="" class="col-sm-2 control-label">Func.Vitales</label>
-		  </div>
-			 <label for="" class="col-sm-2 control-label">Apetito</label>
-			<div class="col-sm-4">
-				<input type="text" name="apetito" value="{{$historias->apetito}}" class="form-control">
+			<label for="" class="col-sm-1 control-label">P/A:</label>
+			<div class="col-sm-1">
+				<input type="text" name="pa" class="form-control" placeholder="mmgh-" value="{{$historias->pa}}" readonly="">
 			</div>
+
+			<label for="" class="col-sm-1 control-label">Pulso:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="pulso" value="{{$historias->pulso}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Temperatura:</label>
+			<div class="col-sm-1">	
+				<input   class="form-control" type="text" name="temperatura" placeholder="ºC" value="{{$historias->temperatura}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Peso:</label>
+			<div class="col-sm-1">			
+				<input  class="form-control" type="text" name="peso" placeholder="Kg" value="{{$historias->peso}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Talla:</label>
+			<div class="col-sm-1">			
+				<input  class="form-control" type="text" name="talla" placeholder="Cm" value="{{$historias->talla}}" readonly="">
+			</div>
+
+		</div>
+		<br>
+
+		<div class="row">
+			<label for="" class="col-sm-2">Funciones Biológicas:</label>
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-1 control-label">Apetito:</label>
+			<div class="col-sm-2">
+				<input type="text" name="apetito" class="form-control" value="{{$historias->apetito}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Sed:</label>
+			<div class="col-sm-2">	
+				<input type="text" name="sed" class="form-control" value="{{$historias->sed}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Animo</label>
+			<div class="col-sm-2">	
+				<input type="text" name="animo" class="form-control" value="{{$historias->animo}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Frec.Mic:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs" value="{{$historias->orina}}" readonly="">
+			</div>
+
+			<label for=""class="col-sm-1 control-label">Frec.Card:</label>
+			<div class="col-sm-2">
+				<input class="form-control" type="text" name="card" placeholder="x min" value="{{$historias->card}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Frec.Depo:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" placeholder="Frec. Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs" value="{{$historias->deposiciones}}" readonly="">
+			</div>
+
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-2">Antecedentes:</label>
+		</div>
+		<div class="row">
+			<label for="" class="col-sm-1 control-label">FUR:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="date" name="fur" value="{{$historias->fur}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">PAP:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" type="text" name="pap" value="{{$historias->pap}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">MAC:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" type="text" name="mac" value="{{$historias->MAC}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Andria:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="text" name="andria" value="{{$historias->andria}}" readonly="">
+			</div>
+		</div>
+		<div class="row">
+
+			<label for="" class="col-sm-1 control-label">G:</label>
+			<div class="col-sm-2">	
+				<input   class="form-control" type="text" name="g" value="{{$historias->g}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">P:</label>
+			<div class="col-sm-2">	
+				<input  class="form-control" type="text" name="p" value="{{$historias->p}}" readonly="">
+			</div>
+
+			<label for="" class="col-sm-1 control-label">Amenorrea:</label>
+			<div class="col-sm-2">	
+				<input class="form-control" type="text" name="amenorrea" value="{{$historias->amenorrea}}" readonly="">
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<label class="col-sm-4">Exámen Físico y Regional:</label>
+		</div>
+		<div class="row">
 			
-		
-			<label for="" class="col-sm-2 control-label">P/A</label>
-			<div class="col-sm-4">
-				<input type="text" name="pa" value="{{$historias->pa}}" class="form-control">
+			<div class="col-sm-4"><strong>Piel/Mucosas:</strong>
+				<input class="form-control" type="text" name="piel" value="{{$historias->piel}}" readonly="">
 			</div>
-			<label for="" class="col-sm-2 control-label">Sed:</label>
-			<div class="col-sm-4">	
-				<input  class="form-control" type="text" name="sed" value="{{$historias->sed}}">
+			<div class="col-sm-4"><strong>Mamas:</strong>
+				<input class="form-control" type="text" name="mamas" value="{{$historias->mamas}}" readonly="">
 			</div>
-			<label for=""class="col-sm-2 control-label">Frec.Cardìaca</label>
-			<div class="col-sm-4">
-				<input class="form-control" type="text" name="card" value="{{$historias->card}}">
+			<div class="col-sm-4"><strong>Abdomen:</strong>
+				<input class="form-control" type="text" name="abdomen" value="{{$historias->abdomen}}" readonly="">
 			</div>
-			
+			<div class="col-sm-4"><strong>Genitales Externos:</strong>
+				<input class="form-control" type="text" name="genext" value="{{$historias->genext}}" readonly="">
+			</div>
+			<div class="col-sm-4"><strong>Genitales Internos:</strong>
+				<input class="form-control" type="text" name="genint" value="{{$historias->genint}}" readonly="">
+			</div>
+			<div class="col-sm-4"><strong>Miembros Inferiores:</strong>
+				<input class="form-control" type="text" name="miembros" value="{{$historias->miembros}}" readonly="">
+			</div>
 
-			<label for="" class="col-sm-2 control-label">Frecuencia.Micciones</label>
+		</div>
+		<br>
+		<div class="row">
+			<label for="" class="col-sm-2">Evol. Enfermedad:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Frecuencia Micciones" type="text" name="orina" value="{{$historias->orina}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Peso</label>
-			<div class="col-sm-4">			
-				<input  class="form-control" type="text" name="peso" value="{{$historias->peso}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Animo</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="animo" value="{{$historias->animo}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Temperatura</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="temperatura" value="{{$historias->temperatura}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Frecuencia.Deposiciones</label>
-			<div class="col-sm-4">	
-				<input  class="form-control" placeholder="Frecuencia Deposiciones" type="text" name="deposiciones" value="{{$historias->deposiciones}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Pulso:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pulso" value="{{$historias->pulso}}">
-			</div>
-			<label for="" class="col-sm-2 control-label">Evol.Enf</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Evolucion de la enfermedad" type="text" name="evolucion_enfermedad" value="{{$historias->evolucion_enfermedad}}">
+				<input type="text" name="evolucion_enfermedad" class="form-control" value="{{$historias->evolucion_enfermedad}}" readonly="">
 			</div>	
 			<label for="" class="col-sm-2 control-label">Tipo de enfermedad:</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="tipo_enfermedad" value="{{$historias->tipo_enfermedad}}">
+					<input type="text" name="tipo_enfermedad" class="form-control" value="{{$historias->tipo_enfermedad}}" readonly="">
 			</div>
-
-			<label for="" class="col-sm-2 control-label">FUR:</label>
+		</div>
+		<br>
+        <div class="row">
+			<label for="" class="col-sm-2">Presunción Diagóstica</label>
 			<div class="col-sm-4">	
-				<input class="form-control" type="date" name="fur" value="{{$historias->fur}}">
-			</div>
-
-				<label for="" class="col-sm-2 control-label">Amenorrea:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="amenorrea" value="{{$historias->amenorrea}}">
-			</div>
-
-				<label for="" class="col-sm-2 control-label">Andria:</label>
-			<div class="col-sm-4">	
-				<input class="form-control" type="text" name="andria" value="{{$historias->andria}}">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">PAP:</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="pap" value="{{$historias->pap}}">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">MAC:</label>
-			<div class="col-sm-4">	
-				<input  class="form-control" type="text" name="mac" value="{{$historias->mac}}">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">P:</label>
-			<div class="col-sm-1">	
-				<input  class="form-control" type="text" name="p" value="{{$historias->p}}">
-			</div>
-
-			<label for="" class="col-sm-2 control-label">G:</label>
-			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="g" value="{{$historias->g}}">
-			</div>
-
-
-			<br>
-			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
-			<div class="col-sm-12">	
-				<input   class="form-control" type="text" name="examen_fisico_regional" value="{{$historias->examen_fisico_regional}}">
-			</div>
-			<br>
-            <div class="row">
-			<label for="" class="col-sm-2 control-label">Pres.Diag</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Presunciòn Diagnostica" type="text" name="presuncion_diagnostica" value="{{$historias->presuncion_diagnostica}}">
-			</div>
-
-		
-			<label class="col-sm-2">CIE-X:</label>
-			<div class="col-sm-4">
-				<input class="form-control" name="ciex" value="{{$historias->CIEX}}">
-			</div> 
-			
-			</div>
-            
-		<div class="row">
-			<label for="" class="col-sm-2 control-label">Diag.Final</label>
-			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final" value="{{$historias->diagnostico_final}}">
+				<input class="form-control" placeholder="Presunción Diagnostica" type="text" name="presuncion_diagnostica" value="{{$historias->presuncion_diagnostica}}" readonly="">
 			</div>
 
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<input class="form-control" name="ciex" value="{{$historias->CIEX2}}">
+				<input type="text" name="ciex" class="form-control" value="{{$historias->CIEX}}" readonly="">
 			</div> 
 			
 		</div>
-
-			<label for="" class="col-sm-2 control-label">Examen Auxiliar</label>
+            
+		<div class="row">
+			<label for="" class="col-sm-2">Diagnóstico Final</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" type="text" name="examen_auxiliar" value="{{$historias->examen_auxiliar}}">
-			</div>
-			
-			
-			<div class="col-sm-12">
-			<label for="" class="col-sm-2 control-label">Plan de Tratamiento</label>
-			<div class="col-sm-10">	
-				<input   class="form-control" type="text" name="plan_tratamiento" value="{{$historias->plan_tratamiento}}">
-			</div>
+				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final" value="{{$historias->diagnostico_final}}" readonly="">
 			</div>
 
-			<label for="" class="col-sm-2 control-label">Observaciones</label>
+			<label class="col-sm-2">CIE-X:</label>
+			<div class="col-sm-4">
+				<input type="text" name="ciex2" class="form-control" value="{{$historias->CIEX2}}" readonly="">
+			</div> 
+			
+		</div>
+		<br>
+		<div class="row">
+
+			<label for="" class="col-sm-2">Examen Auxiliar:</label>
 			<div class="col-sm-10">	
-				<textarea name="observaciones" cols="10" rows="10" class="form-control" value="{{$historias->observaciones}}"></textarea>
+				<textarea class="form-control" cols="10" rows="4" name="examen_auxiliar" readonly="">{{$historias->examen_auxiliar}}</textarea>
+			</div>
+
+			<label for="" class="col-sm-2"><strong>Plan de Tratamiento:</strong></label>
+			<div class="col-sm-10">	
+				<textarea readonly="" class="form-control" cols="10" rows="4" name="plan_tratamiento">{{$historias->plan_tratamiento}}</textarea>
+			</div>
+
+			<label for="" class="col-sm-2">Observaciones</label>
+			<div class="col-sm-10">	
+				<textarea  name="observaciones" cols="10" rows="4" class="form-control">{{$historias->observaciones}}</textarea>
 			</div>
 			<label for="" class="col-sm-2 ">Pròxima Cita</label>
 			<div class="col-sm-3">
-				<input type="date" name="prox" class="form-control" value="{{$historias->prox}}">
+				<input type="date" name="prox" class="form-control" value="{{$historias->prox}}" readonly="">
 			</div>
+
+		</div>
 
 
 
@@ -216,7 +263,7 @@
 						
 					</div>
           <hr>
-            		<input type="hidden" name="id" value="{{$historias->consulta}}">
+            		<input type="hidden" name="id" value="{{$historias->id}}">
 
 			
 	

@@ -34,16 +34,17 @@
 						<div class="row">
 
 						<label class="col-sm-1 control-label">Pacientes</label>
+            <form action="" method="get">
 						<div class="col-sm-3">
-							<select id="el1" name="id_paciente">
-                <option value="">Seleccione un Paciente</option>
-								@foreach($pacientes as $pac)
-									<option value="{{$pac->id}}">
-										{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
-									</option>
-								@endforeach
-							</select>
+							<input id="el1" type="text" name="paciente" placeholder="Introducir DNI del Paciente" onsubmit="datapac()">
 						</div>
+            <div class="col-sm-2">
+
+                <input type="button" value="Buscar">
+            </div>
+
+
+          </form>
 
          
            
@@ -264,7 +265,6 @@
                         <option value="EF">Seleccionar Tipo de Pago</option>
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
-                        <option value="MX">Mixto</option>  
               </select>
               <div id="tpmx" class="tpmx">
                 
@@ -660,6 +660,32 @@ function createPac(e){
       });
        
     </script>
+
+
+  <script type="text/javascript">
+
+
+  function datapac(){
+        
+     $('#el1').on('submit',function(){
+          var link;
+            link = '/movimientos/atenciones/dataPacientes/'+$(this).val();
+
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#pacientes').html(a);
+                 }
+          });
+
+        });
+
+    
+  </script>
+
+
 
 
     <script type="text/javascript">

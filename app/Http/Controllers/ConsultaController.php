@@ -67,7 +67,7 @@ class ConsultaController extends Controller
 
         $historias = DB::table('events as e')
           ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
-      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.pendiente','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.pendiente','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap','a.talla','a.amenorrea',
       'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
       ->join('consultas as a','a.paciente_id','e.paciente')
       ->join('historials as b','e.paciente','b.paciente_id')
@@ -81,17 +81,15 @@ class ConsultaController extends Controller
 
       $historias = DB::table('events as e')
           ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
-      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.pendiente','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+      'a.pa','a.id as consultaid','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.pendiente','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap','a.talla','a.amenorrea',
       'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
       ->join('consultas as a','a.paciente_id','e.paciente')
       ->join('historials as b','e.paciente','b.paciente_id')
       ->join('pacientes as p','p.id','=','e.paciente')
       ->where('e.paciente','=',$request->paciente)
       ->orderby('a.id','desc')
-            ->groupBy('a.id')
+      ->groupBy('a.id')
       ->get();
-
-
 
     }
 
@@ -190,7 +188,7 @@ class ConsultaController extends Controller
         $historias = DB::table('events as e')
         ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
 		'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','rg.start_time','rg.end_time','rg.id',
-		'a.pa','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
+		'a.pa','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.profesional_id','a.created_at','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap','a.talla','a.amenorrea',
 		'b.antecedentes_familiar','b.antecedentes_personales','b.antecedentes_patologicos','b.alergias','b.menarquia','b.prs','b.paciente_id')
 		->join('consultas as a','a.paciente_id','e.paciente')
 		->join('historials as b','e.paciente','b.paciente_id')
@@ -241,7 +239,7 @@ class ConsultaController extends Controller
    public function editview(Request $request,$id)
   {
   
-    $historias = DB::table('events as e')
+   /* $historias = DB::table('events as e')
         ->select('e.id','e.paciente','e.title','e.profesional','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.dni','p.apellidos','p.id as pacienteId',
     'per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId',
     'a.pa','a.id as consulta','a.pulso','a.temperatura','a.peso','a.fur','a.MAC','a.motivo_consulta','a.evolucion_enfermedad','a.examen_fisico_regional','a.pendiente','a.presuncion_diagnostica','a.diagnostico_final','a.CIEX','a.CIEX2','a.examen_auxiliar','a.plan_tratamiento','a.observaciones','a.paciente_id','a.mac','a.tipo_enfermedad','a.profesional_id','a.created_at','a.amenorrea','a.andria','a.prox','a.personal','a.apetito','a.sed','a.orina','a.card','a.animo','a.deposiciones','a.g','a.p','a.pap',
@@ -251,7 +249,10 @@ class ConsultaController extends Controller
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->where('a.id','=',$id)
-    ->first();
+    ->first();*/
+
+  $historias=Consulta::where('id','=',$id)->first();
+
 
     $especialistas =  Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get();
 
@@ -303,7 +304,7 @@ class ConsultaController extends Controller
 
     $consulta->piel =$request->piel;
     $consulta->mamas =$request->mamas;
-     $consulta->amenorrea =$request->amenorrea;
+    $consulta->amenorrea =$request->amenorrea;
     $consulta->andria =$request->andria;
     $consulta->abdomen =$request->abdomen;
     $consulta->genext =$request->genext;
@@ -330,6 +331,7 @@ class ConsultaController extends Controller
 		$consulta->pap =$request->pap;
 		$consulta->deposiciones =$request->deposiciones;
 		$consulta->card =$request->card;
+    $consulta->talla =$request->talla;
     $consulta->pendiente =$request->pendiente;
     $consulta->id_evento =$request->evento;
     $consulta->usuario =\Auth::user()->id;
@@ -355,6 +357,8 @@ class ConsultaController extends Controller
             ->select('*')
             ->where('id','=',\Auth::user()->id)
             ->first();
+
+      //dd($request->all());
       
     $consulta = Consulta::find($request->id);
     $consulta->pa =$request->pa;
@@ -366,7 +370,7 @@ class ConsultaController extends Controller
     $consulta->motivo_consulta =$request->motivo_consulta;
     $consulta->tipo_enfermedad =$request->tipo_enfermedad;
     $consulta->evolucion_enfermedad =$request->evolucion_enfermedad;
-    $consulta->examen_fisico_regional =$request->examen_fisico_regional;
+    //$consulta->examen_fisico_regional =$request->examen_fisico_regional;
     $consulta->presuncion_diagnostica =$request->presuncion_diagnostica;
     $consulta->diagnostico_final =$request->diagnostico_final;
     $consulta->ciex =$request->ciex;
@@ -381,13 +385,14 @@ class ConsultaController extends Controller
     $consulta->sed =$request->sed;
     $consulta->orina =$request->orina;
     $consulta->animo =$request->animo;
-     $consulta->amenorrea =$request->amenorrea;
+    $consulta->amenorrea =$request->amenorrea;
     $consulta->andria =$request->andria;
     $consulta->g =$request->g;
     $consulta->p =$request->p;
     $consulta->pap =$request->pap;
     $consulta->deposiciones =$request->deposiciones;
     $consulta->card =$request->card;
+    $consulta->talla =$request->talla;
     $consulta->pendiente =$request->pendiente;
     $consulta->save();
 
