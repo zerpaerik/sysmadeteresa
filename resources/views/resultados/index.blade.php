@@ -262,7 +262,9 @@
                                     <option value="OBST I EMBRION 9 SEMANAS.docx">OBST I EMBRION 9 SEMANAS</option>
                                     <option value="OBST I FETO 10 - 11SS.docx">OBST I FETO 10 - 11SS</option>
                                     <option value="OBST I FETO 12 - 14SS.docx">OBST I FETO 12 - 14SS</option>
-                                   
+
+                                    <option value="OBST DOPPLER TAMIZAJE II TRIMESTRE NRML.docx">OBST DOPPLER TAMIZAJE II TRIMESTRE NRML</option>
+
                                     <option value="OBST I TV DOPPLER TAMIZAJE.docx">OBST I TV DOPPLER TAMIZAJE</option>
                                     <option value="OBST I TV FETO 10 - 11SS DOBLE BIAMN BICOR.docx">OBST I TV FETO 10 - 11SS DOBLE BIAMN BICOR</option>
                                     <option value="OBST I TV FETO 10 - 11SS DOBLE BIAMN MONOCOR.docx">OBST I TV FETO 10 - 11SS DOBLE BIAMN MONOCOR</option>
