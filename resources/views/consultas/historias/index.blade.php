@@ -66,11 +66,22 @@
 								<td>
 								<a  class="btn btn-success" href="historias-{{$h->consultaid}}">Ver Historia</a>
 								<a target="_blank" class="btn btn-danger" href="historiasr-{{$h->consultaid}}">Ver Reporte</a>
-							   @if(\Auth::user()->role_id == 4)
-								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Completar</a>
+                                
+								@if(\Auth::user()->role_id == 4)
+								@if($h->reevaluado <> 1)
+								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Reevaluar</a>
 								@endif
-								 @if(\Auth::user()->role_id == 5)
-								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Completar</a>
+								@endif
+								@if(\Auth::user()->role_id == 5)
+								@if($h->reevaluado <> 1)
+								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Reevaluar</a>
+								@endif
+								@endif
+
+								@if(\Auth::user()->role_id == 7)
+								@if($h->reevaluado <> 1)
+								<a  class="btn btn-primary" href="historiasp-edit-{{$h->consultaid}}">Reevaluar</a>
+								@endif
 								@endif
 								</td>
 							</tr>

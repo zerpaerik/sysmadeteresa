@@ -61,7 +61,7 @@
 								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Completar</a></td>
 								@endif
 								@if(\Auth::user()->role_id == 5)
-								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Completar</a></td>
+								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Reevaluar</a></td>
 								@endif
 							</tr>
 						@endforeach

@@ -21,7 +21,7 @@
            <div class="row">
             <label for="" class="col-sm-2 ">Motivo de Consulta:</label>
 			<div class="col-sm-10 control-label">	
-				<textarea name="motivo_consulta" cols="10" rows="4" class="form-control">{{$historias->motivo_consulta}}</textarea>		
+				<textarea name="motivo_consulta" cols="10" rows="4" class="form-control" readonly="">{{$historias->motivo_consulta}}</textarea>		
 			</div>
 		  </div>
 
@@ -33,27 +33,27 @@
 
 			<label for="" class="col-sm-1 control-label">P/A:</label>
 			<div class="col-sm-1">
-				<input type="text" name="pa" class="form-control" placeholder="mmgh-" value="{{$historias->pa}}">
+				<input type="text" name="pa" class="form-control" placeholder="mmgh-" value="{{$historias->pa}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Pulso:</label>
 			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="pulso" value="{{$historias->pulso}}">
+				<input   class="form-control" type="text" name="pulso" value="{{$historias->pulso}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Temperatura:</label>
 			<div class="col-sm-1">	
-				<input   class="form-control" type="text" name="temperatura" placeholder="ºC" value="{{$historias->temperatura}}">
+				<input   class="form-control" type="text" name="temperatura" placeholder="ºC" value="{{$historias->temperatura}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Peso:</label>
 			<div class="col-sm-1">			
-				<input  class="form-control" type="text" name="peso" placeholder="Kg" value="{{$historias->peso}}">
+				<input  class="form-control" type="text" name="peso" placeholder="Kg" value="{{$historias->peso}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Talla:</label>
 			<div class="col-sm-1">			
-				<input  class="form-control" type="text" name="talla" placeholder="Cm" value="{{$historias->talla}}">
+				<input  class="form-control" type="text" name="talla" placeholder="Cm" value="{{$historias->talla}}" readonly="">
 			</div>
 
 		</div>
@@ -66,32 +66,32 @@
 		<div class="row">
 			<label for="" class="col-sm-1 control-label">Apetito:</label>
 			<div class="col-sm-2">
-				<input type="text" name="apetito" class="form-control" value="{{$historias->apetito}}">
+				<input type="text" name="apetito" class="form-control" value="{{$historias->apetito}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Sed:</label>
 			<div class="col-sm-2">	
-				<input type="text" name="sed" class="form-control" value="{{$historias->sed}}">
+				<input type="text" name="sed" class="form-control" value="{{$historias->sed}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Animo</label>
 			<div class="col-sm-2">	
-				<input type="text" name="animo" class="form-control" value="{{$historias->animo}}">
+				<input type="text" name="animo" class="form-control" value="{{$historias->animo}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Frec.Mic:</label>
 			<div class="col-sm-2">	
-				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs" value="{{$historias->orina}}">
+				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs" value="{{$historias->orina}}" readonly="">
 			</div>
 
 			<label for=""class="col-sm-1 control-label">R/C:</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" name="card" placeholder="x min" value="{{$historias->card}}">
+				<input class="form-control" type="text" name="card" placeholder="x min" value="{{$historias->card}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Frec.Depo:</label>
 			<div class="col-sm-2">	
-				<input  class="form-control" placeholder="Frec. Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs" value="{{$historias->deposiciones}}">
+				<input  class="form-control" placeholder="Frec. Deposiciones" type="text" name="deposiciones" placeholder="c 24/hrs" value="{{$historias->deposiciones}}" readonly="">
 			</div>
 
 		</div>
@@ -102,39 +102,39 @@
 		<div class="row">
 			<label for="" class="col-sm-1 control-label">FUR:</label>
 			<div class="col-sm-2">	
-				<input class="form-control" type="date" name="fur" value="{{$historias->fur}}">
+				<input class="form-control" type="date" name="fur" value="{{$historias->fur}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">PAP:</label>
 			<div class="col-sm-2">	
-				<input   class="form-control" type="text" name="pap" value="{{$historias->pap}}">
+				<input   class="form-control" type="text" name="pap" value="{{$historias->pap}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">MAC:</label>
 			<div class="col-sm-2">	
-				<input  class="form-control" type="text" name="mac" value="{{$historias->MAC}}">
+				<input  class="form-control" type="text" name="mac" value="{{$historias->MAC}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Andria:</label>
 			<div class="col-sm-2">	
-				<input class="form-control" type="text" name="andria" value="{{$historias->andria}}">
+				<input class="form-control" type="text" name="andria" value="{{$historias->andria}}" readonly="">
 			</div>
 		</div>
 		<div class="row">
 
 			<label for="" class="col-sm-1 control-label">G:</label>
 			<div class="col-sm-2">	
-				<input   class="form-control" type="text" name="g" value="{{$historias->g}}">
+				<input   class="form-control" type="text" name="g" value="{{$historias->g}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">P:</label>
 			<div class="col-sm-2">	
-				<input  class="form-control" type="text" name="p" value="{{$historias->p}}">
+				<input  class="form-control" type="text" name="p" value="{{$historias->p}}" readonly="">
 			</div>
 
 			<label for="" class="col-sm-1 control-label">Amenorrea:</label>
 			<div class="col-sm-2">	
-				<input class="form-control" type="text" name="amenorrea" value="{{$historias->amenorrea}}">
+				<input class="form-control" type="text" name="amenorrea" value="{{$historias->amenorrea}}" readonly="">
 			</div>
 		</div>
 		<br>
@@ -144,22 +144,22 @@
 		<div class="row">
 			
 			<div class="col-sm-4"><strong>Piel/Mucosas:</strong>
-				<input class="form-control" type="text" name="piel" value="{{$historias->piel}}">
+				<input class="form-control" type="text" name="piel" value="{{$historias->piel}}" readonly="">
 			</div>
 			<div class="col-sm-4"><strong>Mamas:</strong>
-				<input class="form-control" type="text" name="mamas" value="{{$historias->mamas}}">
+				<input class="form-control" type="text" name="mamas" value="{{$historias->mamas}}" readonly="">
 			</div>
 			<div class="col-sm-4"><strong>Abdomen:</strong>
-				<input class="form-control" type="text" name="abdomen" value="{{$historias->abdomen}}">
+				<input class="form-control" type="text" name="abdomen" value="{{$historias->abdomen}}" readonly="">
 			</div>
 			<div class="col-sm-4"><strong>Genitales Externos:</strong>
-				<input class="form-control" type="text" name="genext" value="{{$historias->genext}}">
+				<input class="form-control" type="text" name="genext" value="{{$historias->genext}}" readonly="">
 			</div>
 			<div class="col-sm-4"><strong>Genitales Internos:</strong>
-				<input class="form-control" type="text" name="genint" value="{{$historias->genint}}">
+				<input class="form-control" type="text" name="genint" value="{{$historias->genint}}" readonly="">
 			</div>
 			<div class="col-sm-4"><strong>Miembros Inferiores:</strong>
-				<input class="form-control" type="text" name="miembros" value="{{$historias->miembros}}">
+				<input class="form-control" type="text" name="miembros" value="{{$historias->miembros}}" readonly="">
 			</div>
 
 		</div>
@@ -167,23 +167,23 @@
 		<div class="row">
 			<label for="" class="col-sm-2">Evol. Enfermedad:</label>
 			<div class="col-sm-4">	
-				<input type="text" name="evolucion_enfermedad" class="form-control" value="{{$historias->evolucion_enfermedad}}">
+				<input type="text" name="evolucion_enfermedad" class="form-control" value="{{$historias->evolucion_enfermedad}}" readonly="">
 			</div>	
 			<label for="" class="col-sm-2 control-label">Tipo de enfermedad:</label>
 			<div class="col-sm-4">	
-					<input type="text" name="tipo_enfermedad" class="form-control" value="{{$historias->tipo_enfermedad}}">
+					<input type="text" name="tipo_enfermedad" class="form-control" value="{{$historias->tipo_enfermedad}}" readonly="">
 			</div>
 		</div>
 		<br>
         <div class="row">
 			<label for="" class="col-sm-2">Presunción Diagóstica</label>
 			<div class="col-sm-4">	
-				<input class="form-control" placeholder="Presunción Diagnostica" type="text" name="presuncion_diagnostica" value="{{$historias->presuncion_diagnostica}}">
+				<input class="form-control" placeholder="Presunción Diagnostica" type="text" name="presuncion_diagnostica" value="{{$historias->presuncion_diagnostica}}" readonly="">
 			</div>
 
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<input type="text" name="ciex" class="form-control" value="{{$historias->CIEX}}">
+				<input type="text" name="ciex" class="form-control" value="{{$historias->CIEX}}" readonly="">
 			</div> 
 			
 		</div>
@@ -191,12 +191,12 @@
 		<div class="row">
 			<label for="" class="col-sm-2">Diagnóstico Final</label>
 			<div class="col-sm-4">	
-				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final" value="{{$historias->diagnostico_final}}">
+				<input   class="form-control" placeholder="Diagnostica Final" type="text" name="diagnostico_final" value="{{$historias->diagnostico_final}}" readonly="">
 			</div>
 
 			<label class="col-sm-2">CIE-X:</label>
 			<div class="col-sm-4">
-				<input type="text" name="ciex2" class="form-control" value="{{$historias->CIEX2}}">
+				<input type="text" name="ciex2" class="form-control" value="{{$historias->CIEX2}}" readonly="">
 			</div> 
 			
 		</div>
@@ -205,21 +205,21 @@
 
 			<label for="" class="col-sm-2">Examen Auxiliar:</label>
 			<div class="col-sm-10">	
-				<textarea class="form-control" cols="10" rows="4" name="examen_auxiliar">{{$historias->examen_auxiliar}}</textarea>
+				<textarea class="form-control" cols="10" rows="4" name="examen_auxiliar" readonly="">{{$historias->examen_auxiliar}}</textarea>
 			</div>
 
 			<label for="" class="col-sm-2"><strong>Plan de Tratamiento:</strong></label>
 			<div class="col-sm-10">	
-				<textarea class="form-control" cols="10" rows="4" name="plan_tratamiento">{{$historias->plan_tratamiento}}</textarea>
+				<textarea readonly="" class="form-control" cols="10" rows="4" name="plan_tratamiento">{{$historias->plan_tratamiento}}</textarea>
 			</div>
 
 			<label for="" class="col-sm-2">Observaciones</label>
 			<div class="col-sm-10">	
-				<textarea name="observaciones" cols="10" rows="4" class="form-control">{{$historias->observaciones}}</textarea>
+				<textarea  name="observaciones" cols="10" rows="4" class="form-control">{{$historias->observaciones}}</textarea>
 			</div>
 			<label for="" class="col-sm-2 ">Pròxima Cita</label>
 			<div class="col-sm-3">
-				<input type="date" name="prox" class="form-control" value="{{$historias->prox}}">
+				<input type="date" name="prox" class="form-control" value="{{$historias->prox}}" readonly="">
 			</div>
 
 		</div>

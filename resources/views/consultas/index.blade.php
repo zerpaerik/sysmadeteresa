@@ -99,13 +99,16 @@
                          @if($d->atendido <> 1)
 						<a class="btn btn-danger" href="event-{{$d->EventId}}">Cargar Historia</a>
 						 @endif
-
+                        @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)	
 						<a _blank" class="btn btn-danger" href="prenatal-eliminar-{{$d->paciente}}" onclick="return confirm('¿Desea Finalizar el Historial Base?')">Finalizar</a>
+						@endif
 						@else
                          @if($d->atendido <> 1)
 						<a class="btn btn-danger" href="prenatal-create-{{$d->paciente}}-{{$d->EventId}}">Cargar Control</a>
-
+                        @if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)	
 						<a _blank" class="btn btn-danger" href="prenatal-eliminar2-{{$d->paciente}}" onclick="return confirm('¿Desea Finalizar el Historial Base?')">Finalizar</a>
+					    @endif
+
 												 @endif
 						@endif
 
