@@ -84,7 +84,7 @@
 				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs" value="{{$historias->orina}}">
 			</div>
 
-			<label for=""class="col-sm-1 control-label">Frec.Card:</label>
+			<label for=""class="col-sm-1 control-label">R/C:</label>
 			<div class="col-sm-2">
 				<input class="form-control" type="text" name="card" placeholder="x min" value="{{$historias->card}}">
 			</div>

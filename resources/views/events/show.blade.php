@@ -147,7 +147,7 @@
 					<p class="col-sm-4"><strong>Sed:</strong> {{ $consulta->sed }}</p>
 					<p class="col-sm-4"><strong>Animo:</strong> {{ $consulta->animo }}</p>
 					<p class="col-sm-4"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}c 24/hrs</p>
-					<p class="col-sm-4"><strong>Frecuencia Cardíaca:</strong> {{ $consulta->card }}x min</p>
+					<p class="col-sm-4"><strong>R/C:</strong> {{ $consulta->card }}x min</p>
 					<p class="col-sm-4"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}c 24/hrs</p>
 				</div>
 				<div class="row">
@@ -284,7 +284,7 @@
 				<input   class="form-control" placeholder="Frec. Micciones" type="text" name="orina" placeholder="c 24/hrs">
 			</div>
 
-			<label for=""class="col-sm-1 control-label">Frec.Card:</label>
+			<label for=""class="col-sm-1 control-label">R/C:</label>
 			<div class="col-sm-2">
 				<input class="form-control" type="text" name="card" placeholder="x min">
 			</div>

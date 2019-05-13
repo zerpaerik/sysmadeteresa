@@ -17,6 +17,7 @@
             <p style="margin-bottom: 8px;">Nombre: {{$data->apellidos}}, {{$data->nombres}}</p>
             <p style="margin-left:380px;margin-top: -30px;">DNI paciente: {{$data->dni}}</p>
             <p style="margin-bottom: 8px;">Dirección del paciente: {{$data->direccion}}</p>
+            <p style="margin-left:380px;margin-top: -30px;">Distrito: {{$data->nombre}}</p>
             <p style="margin-bottom: 8px;">Fecha de nacimiento: {{$data->fechanac}}</p>
             <p style="margin-left:380px;margin-top: -30px;">Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
             <p style="margin-bottom: 8px;">Ocupacion del paciente: {{$data->ocupacion}}</p>
@@ -52,16 +53,16 @@
             <p><strong>Motivo de Consulta:</strong> {{ $consulta->motivo_consulta }}</p>
             <p><strong>Funciones vitales</strong></p>
             <p style="margin-bottom: 8px;"><strong>P/A:</strong> {{ $consulta->pa }}</p>
-            <p style="margin-left:90px;margin-top: -30px;"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
-            <p style="margin-left:190px;margin-top: -40px;"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
-            <p style="margin-left:350px;margin-top: -50px;"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
-            <p style="margin-left:470px;margin-top: -60px;"><strong>Talla:</strong> {{ $consulta->talla }} kG</p>
+            <p style="margin-left:120px;margin-top: -30px;"><strong>Pulso:</strong> {{ $consulta->pulso }}</p>
+            <p style="margin-left:250px;margin-top: -40px;"><strong>Temperatura:</strong> {{ $consulta->temperatura }}</p>
+            <p style="margin-left:430px;margin-top: -50px;"><strong>Peso:</strong> {{ $consulta->peso }} kG</p>
+            <p style="margin-left:550px;margin-top: -60px;"><strong>Talla:</strong> {{ $consulta->talla }} cm</p>
             <p><strong>Funciones biológicas</strong></p>
             <p style="margin-bottom: 8px;"><strong>Apetito:</strong> {{ $consulta->apetito }}</p>
             <p style="margin-left:250px; margin-top: -30px;"><strong>Sed:</strong> {{ $consulta->sed }}</p>
             <p style="margin-left:470px;margin-top: -40px;"><strong>Animo:</strong> {{ $consulta->animo }}</p>
             <p style="margin-bottom: 8px;"><strong>Frecuencia Micciones:</strong> {{ $consulta->orina }}</p>
-            <p style="margin-left:250px;margin-top: -30px;"><strong>Frecuencia Cardíaca:</strong> {{ $consulta->card }}</p>
+            <p style="margin-left:250px;margin-top: -30px;"><strong>R/C:</strong> {{ $consulta->card }}</p>
             <p style="margin-left:470px;margin-top: -40px;"><strong>Frecuencia Deposiciones:</strong> {{ $consulta->deposiciones }}</p>
             <p><strong>Antecedentes</strong></p>
             <p style="margin-bottom: 8px;"><strong>FUR:</strong> {{ $consulta->fur }}</p>
@@ -74,11 +75,11 @@
             <p style="margin-bottom: 8px"><strong>Piel/Mucosas: </strong>{{ $consulta->piel }}</p>
             <p style="margin-left:380px;margin-top: -30px;"><strong>Mamas: </strong>{{ $consulta->mamas }}</p>
             <p style="margin-bottom: 8px;"><strong>Abdomen: </strong>{{ $consulta->abdomen }}</p>
-            <p style="margin-left:380px;margin-top: -30px"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
+            <p style="margin-bottom: 8px;"><strong>Genitales Externos: </strong>{{ $consulta->genext }}</p>
             <p style="margin-bottom: 8px;"><strong>Genitales Internos: </strong>{{ $consulta->genint }}</p>
-            <p style="margin-left:380px;margin-top: -30px"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
-            <p style="margin-bottom: 8px;"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
-            <p style="margin-left:380px;margin-top: -30px;"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
+            <p style="margin-bottom: 8px;"><strong>Miembros Inferiores: </strong>{{ $consulta->miembros }}</p>
+            <p style="margin-bottom: 8px;"><strong>Evolucion Enfermedad:</strong>{{ $consulta->evolucion_enfermedad }}</p>
+            <p style="margin-left:380px;margin-top: -30px;"><strong>Tipo de Enfermedad:</strong> {{ $consulta->tipo_enfermedad }}</p>
             <p style="margin-bottom: 8px;"><strong>Presuncion Diagnostica:</strong> {{ $consulta->presuncion_diagnostica }}</p>
             <p style="margin-bottom: 8px;"><strong>CIEX:</strong> {{ $consulta->CIEX }}</p>
             <p style="margin-bottom: 8px;"><strong>Diagnostico Final: </strong>{{ $consulta->diagnostico_final }}</p>
@@ -88,7 +89,7 @@
             <p style="margin-bottom: 8px;"><strong>Observaciones: </strong> {{ $consulta->observaciones }}</p>
             <p style="margin-bottom: 8px;"><strong>Proxima CITA </strong>{{ $consulta->prox }}</p>
             <p style="margin-left:380px;margin-top: -30px;"><strong>Atendido Por: </strong> {{ $consulta->personal }}</p>
-        </fieldset> 
+        </fieldset>  
      </div>
  
 </body>
