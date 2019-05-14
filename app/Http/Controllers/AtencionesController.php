@@ -1033,7 +1033,7 @@ $paciente = DB::table('pacientes')
                     ->select('*')
                     ->where('id','=', $request->origen_usuario)
                     ->first(); 
-    
+
 
     if($request->origen == 3){     
                     
@@ -1093,7 +1093,8 @@ $paciente = DB::table('pacientes')
   }
 
     if ($atencion->save() && $creditos->save()) {
-      return redirect()->route('atenciones.index');
+      Toastr::success('Editado Exitosamente.', 'AtenciÚn!', ['progressBar' => true]);
+    return back();
     } else {
       throw new Exception("Error en el proceso de actualizaci√≥n", 1);
     }
