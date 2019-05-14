@@ -97,7 +97,7 @@
 								<td>{{$atec->pendiente}}</td>
 								<td>{{$atec->porc_pagar}}%</td>
 								<td>{{$atec->porcentaje}}</td>
-								<td></td>
+								<td>{{$atec->usuarioinforme}}</td>
 								<td>{{$atec->created_at}}</td>
 							</tr>
 						@endforeach
