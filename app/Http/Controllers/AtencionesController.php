@@ -1032,9 +1032,39 @@ $paciente = DB::table('pacientes')
     $searchUsuarioID = DB::table('users')
                     ->select('*')
                     ->where('id','=', $request->origen_usuario)
-                    ->first();       
+                    ->first(); 
+    
+
+    if($request->origen == 3){     
                     
     if (isset($request->id_servicio)) {
+      $atencion->origen = $request->origen;
+      $atencion->origen_usuario = 99999999;
+      $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
+      $atencion->es_servicio =  true;
+      $atencion->tipopago = $request->tipopago;
+      $atencion->pendiente = (float)$request->monto_s['servicios'][0]['monto'] - (float)$request->monto_abos['servicios'][0]['abono'];
+      $atencion->monto = $request->monto_s['servicios'][0]['monto'];
+      $atencion->abono = $request->monto_abos['servicios'][0]['abono'];
+
+      $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
+    } else {
+      $atencion->origen = $request->origen;
+      $atencion->origen_usuario = 99999999;
+      $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
+      $atencion->tipopago = $request->tipopago;
+      $atencion->pendiente = (float)$request->monto_s['laboratorios'][0]['monto'] - (float)$request->monto_abos['laboratorios'][0]['abono'];
+      $atencion->monto = $request->monto_l['laboratorios'][0]['monto'];
+      $atencion->abono = $request->monto_abol['laboratorios'][0]['abono'];
+
+      $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
+    }
+
+  }  else {
+
+     if (isset($request->id_servicio)) {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
@@ -1058,6 +1088,9 @@ $paciente = DB::table('pacientes')
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
     }
+
+
+  }
 
     if ($atencion->save() && $creditos->save()) {
       return redirect()->route('atenciones.index');
