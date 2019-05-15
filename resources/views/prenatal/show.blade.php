@@ -351,7 +351,7 @@
 {{$c->def}}     </div>
 
       <div class="col-sm-6"><strong>PlanTratamiento:</strong>   
-{{$c->def}}     </div>
+{{$c->tra}}     </div>
 
       </div>
         <div class="row">
