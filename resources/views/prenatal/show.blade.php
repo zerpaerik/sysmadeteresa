@@ -319,6 +319,76 @@
 
     <h2>Control Mensual de {{$data->nombres}} {{$data->apellidos}}</h2>
     <h2>Fecha {{$c->created_at}}</h2>
+      <div class="row">
+      <label class="col-sm-12" for="">Examen Fisico General y Regional</label>
+      <div class="col-sm-2"><strong>Piel/Mucosas:</strong>  
+{{$c->piel}}      </div>
+      <div class="col-sm-2"><strong>Mamas:</strong> 
+{{$c->mamas}}     </div>
+      <div class="col-sm-2"><strong>Abdomen:</strong> 
+{{$c->abdomen}}     </div>
+      <div class="col-sm-2"><strong>Gen.Ext:</strong>   
+{{$c->genext}}      </div>
+      <div class="col-sm-2"><strong>Gen.Int:</strong>   
+{{$c->genint}}      </div>
+      <div class="col-sm-2"><strong>MiembrosInf.:</strong>    
+{{$c->miembros}}      </div>
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6"><strong>Diag.Presuntivo:</strong> 
+{{$c->pres}}          </div>
+
+          <div class="col-sm-6"><strong>Exa.Auxiliares:</strong>    
+{{$c->exa}}     </div>
+        </div>
+
+        <div class="row">
+
+      <div class="col-sm-6"><strong>Diag.Definito:</strong>   
+{{$c->def}}     </div>
+
+      <div class="col-sm-6"><strong>PlanTratamiento:</strong>   
+{{$c->def}}     </div>
+
+      </div>
+        <div class="row">
+
+
+
+             <label class="col-sm-1 control-label">Serologia</label>
+            <div class="col-sm-2">
+            <strong>Resultado:</strong>:{{$c->sero}}
+             <strong>Fecha:</strong>:{{$c->serod}}
+
+
+            </div>
+
+
+             <label class="col-sm-1 control-label">Glucosa</label>
+            <div class="col-sm-2">
+                 <strong>Resultado:</strong>:{{$c->glu}}
+             <strong>Fecha:</strong>:{{$c->glud}}
+
+            </div>
+
+             <label class="col-sm-1 control-label">VIH</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->vih}}
+             <strong>Fecha:</strong>:{{$c->vihd}}
+
+            </div>
+
+            <label class="col-sm-1 control-label">Hemoglobina</label>
+            <div class="col-sm-2">
+                  <strong>Resultado:</strong>:{{$c->hemo}}
+             <strong>Fecha:</strong>:{{$c->hemod}}
+
+            </div>
+
+        </div>
 
      <div class="row">
 
