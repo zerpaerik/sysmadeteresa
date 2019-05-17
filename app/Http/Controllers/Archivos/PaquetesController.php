@@ -182,21 +182,47 @@ class PaquetesController extends Controller
         }
 
 
-        if (isset($request->consultas)) {
-           
-            $con= PaqueteCons::where('paquete_id','=',$id)->first();
-            $con->cantidad = $request->consultas;
-            $con->save();
 
-        
+
+        if (isset($request->consultas)) {
+
+             $consul=PaqueteCons::where('paquete_id','=',$id)->first();
+
+             if($consul){
+          
+             PaqueteCons::where('paquete_id','=',$id)
+                          ->update([
+                              'cantidad' => $request->consultas
+                          ]);
+              } else {
+
+              $consultas = new PaqueteCons;
+              $consultas->paquete_id     = $id;
+              $consultas->cantidad = $request->consultas;
+              $consultas->save();
+
+
+              }
          
         }
 
            if (isset($request->controles)) {
+
+             $cont=PaqueteCont::where('paquete_id','=',$id)->first();
+
+             if($cont){
             PaqueteCont::where('paquete_id','=',$id)
                           ->update([
                               'cantidad' => $request->controles
                           ]);
+            }else{
+
+              $control = new PaqueteCont;
+              $control->paquete_id     = $id;
+              $control->cantidad = $request->controles;
+              $control->save();
+
+            }
          
         }
  
