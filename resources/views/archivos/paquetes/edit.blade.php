@@ -111,7 +111,7 @@
 				            <!-- /sheepIt Form --> 
 						</div>
 					</div>
-
+                       @if($consultasP)
 						<div class="form-group">
 						<div class="row">
 				            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Cantidad de Consultas</label>
@@ -122,7 +122,7 @@
 
 				                    <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Cantidad</label>
 				                    <div class="col-sm-3">
-				                      <input type="text"  class="form-control" name="consultas" placeholder="Cantidad de Consultas" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+				                      <input type="text"  class="form-control" name="consultas" value="{{$consultasP->cantidad}}" placeholder="Cantidad de Consultas" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 				                    </div>
 				                 
 				                </div>
@@ -135,6 +135,9 @@
 				            <!-- /sheepIt Form --> 
 				          </div>
 					</div>
+					@endif
+
+					@if($controlesP)
 
 					<div class="form-group">
 						<div class="row">
@@ -146,7 +149,7 @@
 
 				                    <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Cantidad</label>
 				                    <div class="col-sm-3">
-				                       <input type="text"  class="form-control" name="controles" placeholder="Cantidad de Controles" data-toggle="tooltip" data-placement="bottom" title="Nombres">
+				                       <input type="text"  class="form-control" name="controles" value="{{$controlesP->cantidad}}" placeholder="Cantidad de Controles" data-toggle="tooltip" data-placement="bottom" title="Nombres">
 				                    </div>
 				                   				                </div>
 				                <!-- /Form template-->
@@ -158,6 +161,7 @@
 				            <!-- /sheepIt Form --> 
 				          </div>
 					</div>
+					@endif
 
 					<div class="form-group">
 						<input type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
