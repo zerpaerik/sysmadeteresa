@@ -50,6 +50,7 @@ class UserController extends Controller
 
   public function delete($id){
     $users = User::find($id);
+    $users->password='';
     $users->estatus=0;
     $users->save();
     return redirect()->action('Users\UserController@index', ["deleted" => true, "users" => User::all()]);
