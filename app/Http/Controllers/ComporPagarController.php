@@ -30,7 +30,7 @@ class ComporPagarController extends Controller
 
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.es_delete','a.created_at','a.origen_usuario','a.origen','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.es_delete','a.created_at','a.origen_usuario','a.origen','a.pago_com_tec','a.origen','a.informe','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -45,6 +45,7 @@ class ComporPagarController extends Controller
    ->where('a.pendiente','=',0)
    ->where('a.es_delete','=',NULL)
    ->where('a.pagado_com','=', NULL)
+   ->where('a.informe','<>',NULL)
       ->where('a.origen','=',2)
    ->orderby('a.id','desc')
    ->get();
@@ -104,7 +105,7 @@ class ComporPagarController extends Controller
  }else{
 
   $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_paquete','a.id_paquete','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_paquete','a.id_paquete','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -119,6 +120,7 @@ class ComporPagarController extends Controller
    ->where('a.pendiente','=',0)
    ->where('a.es_delete','=',NULL)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
     ->where('a.origen','=',2)
    ->orderby('a.id','desc')
    ->paginate(20000);
@@ -204,7 +206,7 @@ class ComporPagarController extends Controller
 
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -221,6 +223,7 @@ class ComporPagarController extends Controller
    ->whereNotIn('a.origen_usuario',[99999999])
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=',NULL)
+      ->where('a.informe','<>',NULL)
    ->orderby('a.id','desc')
    ->get();
 
@@ -280,7 +283,7 @@ class ComporPagarController extends Controller
  }else{
 
   $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_paquete','a.id_paquete','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_laboratorio','a.es_paquete','a.id_paquete','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -295,6 +298,7 @@ class ComporPagarController extends Controller
    ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
    ->where('a.origen','=',1)
    ->orderby('a.id','desc')
    ->paginate(20000);
@@ -380,7 +384,7 @@ class ComporPagarController extends Controller
 
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -397,6 +401,7 @@ class ComporPagarController extends Controller
       ->where('a.es_delete','=',NULL)
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
     ->where('a.origen','=',2)
    ->orderby('a.id','desc')
    ->paginate(20000);
@@ -455,7 +460,7 @@ class ComporPagarController extends Controller
  }else{
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -472,6 +477,7 @@ class ComporPagarController extends Controller
    ->whereNotIn('a.origen_usuario',[99999999])
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
    ->orderby('a.id','desc')
    ->paginate(20000);
 
@@ -536,7 +542,7 @@ class ComporPagarController extends Controller
 
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -553,6 +559,7 @@ class ComporPagarController extends Controller
  //  ->where('a.es_delete','=',NULL)
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
     ->where('a.origen','=',1)
    ->orderby('a.id','desc')
    ->paginate(20000);
@@ -609,7 +616,7 @@ class ComporPagarController extends Controller
  }else{
 
    $atenciones = DB::table('atenciones as a')
-   ->select('a.id','a.id_paciente','a.created_at','a.es_delete','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
+   ->select('a.id','a.id_paciente','a.informe','a.created_at','a.es_delete','a.origen_usuario','a.pago_com_tec','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.pagado_com','a.id_paquete','a.id_laboratorio','a.es_servicio','a.es_laboratorio','a.monto','a.pendiente','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','p.detalle as paquete')
    ->join('pacientes as b','b.id','a.id_paciente')
    ->join('servicios as c','c.id','a.id_servicio')
    ->join('analises as d','d.id','a.id_laboratorio')
@@ -626,6 +633,7 @@ class ComporPagarController extends Controller
    ->whereNotIn('a.origen_usuario',[99999999])
    ->where('a.pendiente','=',0)
    ->where('a.pagado_com','=', NULL)
+      ->where('a.informe','<>',NULL)
    ->orderby('a.id','desc')
    ->paginate(20000);
 
