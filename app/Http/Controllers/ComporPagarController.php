@@ -57,7 +57,8 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                      ->where('pagado_com','=', NULL)
-                                        ->where('origen','=',2)
+                                    ->where('informe','<>', NULL)
+                                      ->where('origen','=',2)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
                                     ->first();
         if ($aten->monto == 0) {
@@ -95,6 +96,7 @@ class ComporPagarController extends Controller
                                      ->where('pendiente','=',0)
                                         ->where('es_delete','=',NULL)
                                      ->where('pagado_com','=', NULL)
+                                    ->where('informe','<>', NULL)
                                      ->where('origen','=',2)
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
@@ -132,6 +134,7 @@ class ComporPagarController extends Controller
                       ->where('pagado_com','=', NULL)
                       ->where('origen','=',2)
                        ->where('es_delete','=',NULL)
+                        ->where('informe','<>', NULL)
                       ->whereDate('created_at', '=',Carbon::today()->toDateString())
                       ->select(DB::raw('SUM(porcentaje) as monto'))
                       ->first();
@@ -170,6 +173,7 @@ class ComporPagarController extends Controller
                                      ->where('pendiente','=',0)
                                         ->where('es_delete','=',NULL)
                                      ->where('pagado_com','=', NULL)
+                                      ->where('informe','<>', NULL)
                                      ->where('origen','=',2)
                                     ->select(DB::raw('COUNT(*) as total'))
                                     ->first();
@@ -233,6 +237,7 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                      ->where('es_delete','=',NULL)
+                                    ->where('informe','<>', NULL)
                                       ->where('origen','=',1)
                                      ->where('pagado_com','=', NULL)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
@@ -272,6 +277,7 @@ class ComporPagarController extends Controller
                                      ->where('pendiente','=',0)
                                     ->where('es_delete','=',NULL)
                                      ->where('pagado_com','=', NULL)
+                                    ->where('informe','<>', NULL)
                                      ->where('origen','=',1)
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
@@ -309,6 +315,7 @@ class ComporPagarController extends Controller
                       ->where('pendiente','=',0)
                       ->where('pagado_com','=', NULL)
                        ->where('es_delete','=',NULL)
+                      ->where('informe','<>', NULL)
                          ->where('origen','=',1)
                       ->whereDate('created_at', '=',Carbon::today()->toDateString())
                       ->select(DB::raw('SUM(porcentaje) as monto'))
@@ -348,6 +355,7 @@ class ComporPagarController extends Controller
                                      ->where('pendiente','=',0)
                                        ->where('es_delete','=',NULL)
                                      ->where('pagado_com','=', NULL)
+                                      ->where('informe','<>', NULL)
                                     ->where('origen','=',1)
                                     ->select(DB::raw('COUNT(*) as total'))
                                     ->first();
@@ -413,6 +421,7 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                         ->where('es_delete','=',NULL)
+                                    ->where('informe','<>', NULL)
                                       ->where('pagado_com','=', NULL)
                                            ->where('origen','=',2)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
@@ -447,6 +456,7 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->whereNotIn('porcentaje',[0,0.00,99999])
                                         ->where('es_delete','=',NULL)
+                                        ->where('informe','<>', NULL)
                                      ->where('pendiente','=',0)
                                      ->where('pagado_com','=', NULL)
                                       ->where('origen','=',2)
@@ -487,6 +497,7 @@ class ComporPagarController extends Controller
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                         ->where('es_delete','=',NULL)
+                                    ->where('informe','<>', NULL)
                                      ->where('pagado_com','=', NULL)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
                                     ->first();
@@ -572,6 +583,7 @@ class ComporPagarController extends Controller
                                      ->where('pendiente','=',0)
                                        // ->where('es_delete','<>',1)
                                      ->where('pagado_com','=', NULL)
+                                      ->where('informe','<>', NULL)
                                            ->where('origen','=',1)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
                                     ->first();
@@ -600,7 +612,7 @@ class ComporPagarController extends Controller
                                       ->where('pago_com_tec','=',NULL)
                                       ->where('origen_usuario','=',$request->origen)
                                      ->whereNotIn('monto',[0,0.00,99999])
-                                        //->where('es_delete','=',NULL)
+                                     ->where('informe','<>', NULL)
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->whereNotIn('porcentaje',[0,0.00,99999])
                                      ->where('pendiente','=',0)
@@ -641,7 +653,7 @@ class ComporPagarController extends Controller
                                     ->whereDate('created_at','=',Carbon::today()->toDateString())
                                     ->whereNotIn('monto',[0,0.00])
                                      ->whereNotIn('origen_usuario',[99999999])
-                                        ->where('es_delete','=',NULL)
+                         ->where('informe','<>', NULL)
                                      ->where('pendiente','=',0)
                                      ->where('pagado_com','=', NULL)
                                     ->select(DB::raw('SUM(porcentaje) as monto'))
