@@ -280,6 +280,19 @@ Route::get('visitar', 'VisitasController@visitar');
 Route::get('visitar-create', 'VisitasController@createView')->name('visitar.create')->middleware('auth');
 Route::post('visitar/create', 'VisitasController@create')->middleware('auth');
 
+//programacion visitas
+
+Route::match(['get', 'post'],'visitasp','VisitasProgramadasController@index')->name('visitasp.index')->middleware('auth');
+Route::get('visitasp-create','VisitasProgramadasController@createView')->name('visitasp.create')->middleware('auth');
+Route::get('visitasp-delete-{id}','VisitasProgramadasController@delete')->name('visitasp.delete')->middleware('auth');
+Route::get('visitasp-edit-{id}','VisitasProgramadasController@editView')->name('visitasp.edit')->middleware('auth');
+Route::post('visitasp/edit','VisitasProgramadasController@edit')->name('visitasp.editar')->middleware('auth');
+Route::post('visitasp/edit2','VisitasProgramadasController@edit2')->name('visitasp.editar2')->middleware('auth');
+Route::get('visitasp-inicio','VisitasProgramadasController@inicio')->name('visitasp.inicio')->middleware('auth');
+Route::post('visitasp/create', 'VisitasProgramadasController@create')->middleware('auth');
+Route::get('visitasp-{id}','VisitasProgramadasController@show')->middleware('auth');
+//
+
 Route::get('ingresos', 'OtrosIngresosController@index')->name('ingresos.index')->middleware('auth');
 Route::get('ingresos-search', 'OtrosIngresosController@search')->name('ingresos.search')->middleware('auth');
 Route::get('ingresos-create', 'OtrosIngresosController@createView')->name('ingresos.create')->middleware('auth');

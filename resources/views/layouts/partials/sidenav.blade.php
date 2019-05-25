@@ -306,6 +306,13 @@
       <span class="hidden-xs">Visitadores</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('visitasp.inicio')}}"><i class="fa fa-truck"></i> Programar Visitas</a>
+      </li>
+
+      <li>
+        <a href="{{route('visitasp.index')}}"><i class="fa fa-truck"></i> Mostrar Visitas Programadas</a>
+      </li>
       <li>
         <a href="{{route('visitas.index')}}"><i class="fa fa-truck"></i> Registro de Visitas</a>
       </li>
@@ -688,6 +695,13 @@
       <span class="hidden-xs">Visitadores</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('visitasp.inicio')}}"><i class="fa fa-truck"></i> Programar Visitas</a>
+      </li>
+
+      <li>
+        <a href="{{route('visitasp.index')}}"><i class="fa fa-truck"></i> Mostrar Visitas Programadas</a>
+      </li>
       <li>
         <a href="{{route('visitas.index')}}"><i class="fa fa-truck"></i> Registro de Visitas</a>
       </li>
@@ -1180,6 +1194,13 @@
       <span class="hidden-xs">Visitadores</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('visitasp.inicio')}}"><i class="fa fa-truck"></i> Programar Visitas</a>
+      </li>
+
+      <li>
+        <a href="{{route('visitasp.index')}}"><i class="fa fa-truck"></i> Mostrar Visitas Programadas</a>
+      </li>
       <li>
         <a href="{{route('visitas.index')}}"><i class="fa fa-truck"></i> Registro de Visitas</a>
       </li>
