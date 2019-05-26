@@ -30,8 +30,8 @@ class PacientesController extends Controller
         ->select('a.id','a.nombres','a.apellidos','a.direccion','a.provincia','a.dni','a.telefono','a.fechanac','a.historia','a.ocupacion','a.usuario','c.name as user','c.lastname')
 		    ->join('users as c','c.id','a.usuario')
         ->where('a.estatus','=', 1)
-        ->Where('a.nombres','like','%'.$request->paciente.'%')
-        //>Where('a.apellidos','like','%'.$request->paciente.'%')
+        //->Where('a.nombres','like','%'.$request->paciente.'%')
+        ->where('a.apellidos','like','%'.$request->paciente.'%')
         //->Where('a.dni','=',$request->paciente)
         ->get(); 
 
