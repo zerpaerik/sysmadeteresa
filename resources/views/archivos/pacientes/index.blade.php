@@ -34,7 +34,7 @@
 			<div class="row">
                         <div class="col-md-3">
                               {!! Form::label('paciente', '*', ['class' => 'control-label']) !!}
-                            {!! Form::text('paciente', old('paciente'), ['class' => 'form-control', 'placeholder' => 'Buscar por Nombre,Apellido o DNI']) !!}
+                            {!! Form::text('paciente', old('paciente'), ['class' => 'form-control', 'placeholder' => 'Buscar por Nombre']) !!}
                             <p class="help-block"></p>
                             @if($errors->has('paciente'))
                             <p class="help-block">
