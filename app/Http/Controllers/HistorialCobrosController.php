@@ -117,7 +117,7 @@ class HistorialCobrosController extends Controller
     $ticket = DB::table('historialcobros as a')
         ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','a.created_at','a.updated_at')
         ->join('pacientes as b','b.id','a.id_paciente')
-        ->where('a.id_atencion','=',$id)
+        ->where('a.id','=',$id)
         ->first();
 
 
