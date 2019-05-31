@@ -95,11 +95,11 @@
 									@elseif(\Auth::user()->role_id == 5)							 
 									<a class="btn btn-danger" href="historialcobros-delete-{{$atec->id_atencion}}"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>	
 
-									<a class="btn btn-primary" target="_blank" href="ticketcobro-ver-{{$atec->id_atencion}}">Ticket</a>	
+									<a class="btn btn-primary" target="_blank" href="ticketcobro-ver-{{$atec->id}}">Ticket</a>	
 
 									@elseif(\Auth::user()->role_id == 6)							 
 							
-									<a class="btn btn-primary" target="_blank" href="ticketcobro-ver-{{$atec->id_atencion}}">Ticket</a>	
+									<a class="btn btn-primary" target="_blank" href="ticketcobro-ver-{{$atec->id}}">Ticket</a>	
 									@else
 									@endif
 
