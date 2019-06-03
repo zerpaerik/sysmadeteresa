@@ -252,7 +252,7 @@ class ComporPagarController extends Controller
 
    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                                    ->whereNotIn('monto',[0,0.00])
+                                    ->whereNotIn('monto',[0,0.00,99999])
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                      ->where('es_delete','=',NULL)
@@ -266,7 +266,7 @@ class ComporPagarController extends Controller
 
      $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                                    ->whereNotIn('monto',[0,0.00])
+                                    ->whereNotIn('monto',[0,0.00,99999])
                                      ->whereNotIn('origen_usuario',[99999999])
                                      ->where('pendiente','=',0)
                                      ->where('es_delete','=',NULL)
@@ -277,6 +277,8 @@ class ComporPagarController extends Controller
                                     ->first();
         if ($aten->monto == 0) {
         }
+
+        dd($aten->monto);
  
 
 
@@ -365,7 +367,7 @@ class ComporPagarController extends Controller
    ->paginate(20000);
 
     $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
-                      ->whereNotIn('monto',[0,0.00])
+                      ->whereNotIn('monto',[0,0.00,99999])
                       ->whereNotIn('origen_usuario',[99999999])
                       ->where('pendiente','=',0)
                       ->where('pagado_com','=', NULL)
