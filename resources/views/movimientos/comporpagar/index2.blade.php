@@ -101,8 +101,9 @@
 						</tr>
 					</thead>
 					<tbody>
-                          @foreach($atenciones as $atec)	
-
+                          @foreach($atenciones as $atec)
+                         
+                           
 							<tr>
 								<td><input value="{{$atec->id}}" type="checkbox" name="com[]"></td>
 								<td>{{$atec->id}}</td>
@@ -121,6 +122,9 @@
 								<td>{{$atec->created_at}}</td>
 								<td><a href="{{asset('/pagarcom')}}/{{$atec->id}}" onclick="return confirm('¿Desea Pagar esta Comisión?')" class="btn btn-xs btn-danger">Pagar</a></td>
 							</tr>
+
+
+                          
 						@endforeach
 					</tbody>
 					<tfoot>

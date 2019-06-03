@@ -70,18 +70,7 @@
 					     @endforeach					
 					
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>Id</th>
-							<th>Paciente</th>
-						    <th>Fecha</th>
-							<th>Detalle</th>
-							<th>Monto</th>
-							<th>Monto Abonado</th>
-							<th>Monto Pendiente</th>
-							<th>Acciones:</th>
-						</tr>
-					</tfoot>
+					
 				</table>
 			</div>
 		</div>
