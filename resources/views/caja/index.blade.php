@@ -109,9 +109,11 @@
                   <a target="_blank" href="{{asset('recibo_caja_ver')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Consolidado</a>
                   <a target="_blank" href="{{asset('recibo_caja_verd')}}/{{$c->id}}" class="btn btn-xs btn-primary">VerM Detallado</a>
                   @else
-                  <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Consolidado</a>
+                  
 
-                   <a target="_blank"  href="{{asset('recibo_caja_ver2d')}}/{{$c->id}}/{{$fecha1}}/{{$fecha2}}" class="btn btn-xs btn-primary">VerT Detallado</a>
+                    <a target="_blank"  href="{{asset('recibo_caja_ver2')}}/{{$c->id}}/{{$c->fecha}}/{{$c->fecha}}" class="btn btn-xs btn-primary">VerT Consolidado</a>
+
+                   <a target="_blank"  href="{{asset('recibo_caja_ver2d')}}/{{$c->id}}/{{$c->fecha}}/{{$c->fecha}}" class="btn btn-xs btn-primary">VerT Detallado</a>
 
                   @endif
                 </td>
