@@ -101,7 +101,7 @@
 					</div>
 					<br>
 					
-          @if($atencion->es_servicio)
+           @if($atencion->es_servicio == 1)
             <div class="row">
               <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Servicios seleccionados</label>
                 <!-- sheepIt Form -->
@@ -140,7 +140,7 @@
                 </div>
                 <!-- /sheepIt Form --> 
             </div>
-          @else
+          @elseif($atencion->es_laboratorio == 1)
             <div class="row">
               <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios seleccionados</label>
               <!-- sheepIt Form -->
@@ -180,6 +180,69 @@
               </div>
               <!-- /sheepIt Form --> 
             </div>
+          @else
+           <div class="row">
+
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Paquetes seleccionados</label>
+            <!-- sheepIt Form -->
+            <div id="paquetes" class="embed ">
+                <!-- Form template-->
+                <div id="paquetes_template" class="template row">
+
+                    <label for="paquetes_#index#_paquete" class="col-sm-1 control-label">Paq</label>
+                    <div class="col-sm-3">
+                      <select id="paquetes_0_paquete" name="id_paquete[paquetes][0][paquete]" class="selectPaq form-control">
+                        <option value="1">Seleccionar paquete</option>
+                        @foreach($paquetes as $pac)
+                          @if ($atencion->paquetes->id == $pac->id)
+                                    <option value="{{$pac->id}}" selected="selected">
+                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                    </option>
+                                  @else
+                                    <option value="{{$pac->id}}">
+                                      {{$pac->detalle}}-Precio:{{$pac->precio}}
+                                    </option>
+                                  @endif
+                        @endforeach
+                      </select>
+                    </div>
+
+                   
+
+                     <label for="paquetes_0_monto" class="col-sm-1 control-label">Monto</label>
+                      <div class="col-sm-2">
+                        <input id="paquetes_0_montoHidden" name="monto_h[laboratorios][0][montoHidden]" class="number" type="hidden" value="">
+
+                        <input id="paquetes_0_monto" name="monto_p[paquetes][0][monto] type="text" class="number form-control montol" placeholder="Monto" data-toggle="tooltip" data-placement="bottom" title="Monto" value="{{ $atencion->monto }}">
+                      </div>
+
+                
+
+                    <label for="paquetes_0_abonop" class="col-sm-1 control-label">Abono</label>
+                      <div class="col-sm-2">
+                        <input id="paquetes_0_abonop" name="monto_abop[paquetes][0][abono] type="text" class="number form-control abonop" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono" value="{{ $atencion->abono }}">
+                      </div>
+
+                    <a id="paquetes_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="paquetes_noforms_template" class="noItems col-sm-12 text-center">Ningún paquete</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="paquetes_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="paquetes_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar paquete</span></a></div>
+                    <div id="paquetes_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="paquetes_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+            </div>
+            <!-- /sheepIt Form --> 
+            
+          </div>
+
           @endif
 					
           <hr>

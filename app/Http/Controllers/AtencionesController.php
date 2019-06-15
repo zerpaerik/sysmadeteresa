@@ -973,7 +973,7 @@ $paciente = DB::table('pacientes')
 
     $atencion = Atenciones::findOrFail($id);
     
-    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users'));
+    return view('movimientos.atenciones.edit', compact('atencion','servicios','laboratorios','pacientes', 'users','paquetes'));
   }
 
    public function VerDataPacientes($id){
@@ -1049,7 +1049,7 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
-    } else {
+    } else if(isset($request->id_laboratorio)) {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = 99999999;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
@@ -1060,11 +1060,26 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+    } else {
+
+      $atencion->origen = $request->origen;
+      $atencion->origen_usuario =99999999;
+      $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
+      $atencion->tipopago = $request->tipopago;
+      $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
+      $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
+      $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];
+
+      $creditos->monto= $request->monto_abop['paquetes'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
+
     }
 
   }  else {
 
-     if (isset($request->id_servicio)) {
+
+
+      if (isset($request->id_servicio)) {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
@@ -1076,7 +1091,7 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
-    } else {
+    } else if(isset($request->id_laboratorio)) {
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
@@ -1087,8 +1102,20 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
-    }
+    } else {
 
+      $atencion->origen = $request->origen;
+      $atencion->origen_usuario = $searchUsuarioID->id;
+      $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
+      $atencion->tipopago = $request->tipopago;
+      $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
+      $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
+      $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];
+
+      $creditos->monto= $request->monto_abop['paquetes'][0]['abono'];
+      $creditos->tipo_ingreso = $request->tipopago;
+
+    }
 
   }
 

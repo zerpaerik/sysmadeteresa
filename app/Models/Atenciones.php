@@ -30,6 +30,11 @@ class Atenciones extends Model
         return $this->belongsTo('App\Models\Analisis','id_laboratorio');
     }
 
+     public function paquetes()
+    {
+        return $this->belongsTo('App\Models\Paquetes','id_paquete');
+    }
+
     public function personal()
     {
         return $this->hasOne('App\Models\Personal','id', 'origen_usuario');
