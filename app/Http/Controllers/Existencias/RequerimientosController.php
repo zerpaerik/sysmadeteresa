@@ -206,11 +206,6 @@ class RequerimientosController extends Controller
       foreach ($request->id_laboratorio['laboratorios'] as $key => $laboratorio) {
         if (!is_null($laboratorio['laboratorio'])) {
 
-          $product =Producto::where("id", '=',$laboratorio['laboratorio'])->first();
-
-
-         if($product->categoria == $request->almacen){
-
           $lab = new Requerimientos();
           $lab->id_producto =  $laboratorio['laboratorio'];
           $lab->cantidad =  $request->monto_abol['laboratorios'][$key]['abono'];
@@ -221,6 +216,7 @@ class RequerimientosController extends Controller
           $lab->almacen_solicita =$request->almacen;
           $lab->save();
 
+ 
 
           if($request->almacen==1){
             $alm='RECEPCION';
@@ -243,17 +239,11 @@ class RequerimientosController extends Controller
               $productosm->alm2 ='CENTRAL';
               $productosm->save();
 
-          } else {
-            Toastr::error('Debe Seleccionar un Producto de la misma categoria del almacen que solicita.', 'Requerimiento!', ['progressBar' => true]);
-                return redirect()->route('requerimientos.create1');
-          }
-
 
         } 
       }
     }
 
- Toastr::succes('Registrado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
     return redirect()->route('requerimientos.index');
 
     }
