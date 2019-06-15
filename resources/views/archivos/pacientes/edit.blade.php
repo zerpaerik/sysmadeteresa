@@ -27,34 +27,34 @@
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Nombres</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="nombres" placeholder="nombres" data-toggle="tooltip" data-placement="bottom" value="{{$nombres}}" title="nombres">
+							<input type="text" class="form-control" name="nombres" placeholder="nombres" data-toggle="tooltip" data-placement="bottom" value="{{$p->nombres}}" title="nombres">
 						</div>
 						<label class="col-sm-1 control-label">Apellidos</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="apellidos" placeholder="apellidos" data-toggle="tooltip" data-placement="bottom" value="{{$apellidos}}" title="apellidos">
+							<input type="text" class="form-control" name="apellidos" placeholder="apellidos" data-toggle="tooltip" data-placement="bottom" value="{{$p->apellidos}}" title="apellidos">
 						</div>
 						<label class="col-sm-1 control-label">DNI</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="dni" placeholder="dni" data-toggle="tooltip" data-placement="bottom" value="{{$dni}}" title="dni">
+							<input type="text" class="form-control" name="dni" placeholder="dni" data-toggle="tooltip" data-placement="bottom" value="{{$p->dni}}" title="dni">
 						</div>
 						<label class="col-sm-1 control-label">Direccion</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="direccion" placeholder="direccion" data-toggle="tooltip" data-placement="bottom" value="{{$direccion}}" title="direccion">
+							<input type="text" class="form-control" name="direccion" placeholder="direccion" data-toggle="tooltip" data-placement="bottom" value="{{$p->direccion}}" title="direccion">
 						</div>
 
 						<label class="col-sm-1 control-label">Ocupaciòn</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="ocupacion" placeholder="ocupacion" data-toggle="tooltip" data-placement="bottom" value="{{$ocupacion}}" title="ocupacion">
+							<input type="text" class="form-control" name="ocupacion" placeholder="ocupacion" data-toggle="tooltip" data-placement="bottom" value="{{$p->ocupacion}}" title="ocupacion">
 						</div>
 
 						<label class="col-sm-1 control-label">Teléfono</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="telefono" placeholder="telefono" data-toggle="tooltip" data-placement="bottom" value="{{$telefono}}" title="telefono">
+							<input type="text" class="form-control" name="telefono" placeholder="telefono" data-toggle="tooltip" data-placement="bottom" value="{{$p->telefono}}" title="telefono">
 						</div>
 
 						<label class="col-sm-1 control-label">Nacimiento</label>
 						<div class="col-sm-3">
-							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="nacimiento" value="{{$fechanac}}">
+							<input type="date" class="form-control" name="fechanac" placeholder="fechanac" data-toggle="tooltip" data-placement="bottom" title="nacimiento" value="{{$p->fechanac}}">
 						</div>
 
 					
@@ -76,14 +76,24 @@
 							</select>
 						</div>	
 
+						<label class="col-sm-1 control-label">Referencia</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="referencia" placeholder="Referencia" value="{{$p->referencia}}" data-toggle="tooltip" data-placement="bottom" title="Referencia" onkeyup="mayus(this);">
+						</div>
+
 						 <label class="col-sm-1 control-label">Edo.Civil</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="edocivil"  data-toggle="tooltip" data-placement="bottom">
-								@foreach($edocivil as $cen)
-									<option value="{{$cen->id}}">{{$cen->nombre}}</option>
+								 @foreach($edocivils as $e)
+					                  @if($p->edocivil == $e->id)
+					                    <option value="{{$e->id}}" selected="selected">
+					                      {{$e->nombre}} 
+					                    </option>
+					                    
+					                  @endif
 								@endforeach
 							</select>
-						</div>	
+						</div>
 
 
 						 <label class="col-sm-1 control-label">Instrucción</label>
@@ -97,7 +107,7 @@
 					
 
 
-						<input type="hidden" name="id" value="{{$id}}">
+						<input type="hidden" name="id" value="{{$p->id}}">
 
 						<div class="col-sm-8">
 							<input type="button" onclick="form.submit()" class="col-sm-2 btn btn-primary" value="Editar">

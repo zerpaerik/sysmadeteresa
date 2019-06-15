@@ -42,6 +42,15 @@
 					<div class="col-sm-4">
 						<strong>Ocupaciòn:</strong> {{$pacientes->ocupacion}}
 					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<strong>Referencia:</strong> {{$pacientes->referencia}}
+					</div>
+					<div class="col-sm-4">
+						<strong>Edo Civil:</strong> {{$pacientes->edocivil}}
+					</div>
+					
 				</div>				
 			</div>
 		</div>

@@ -120,8 +120,9 @@ class PacientesController extends Controller
 	  
 	   $pacientes = DB::table('pacientes as a')
               
-			  ->select('a.id','a.nombres','a.apellidos','a.dni','a.historia','a.direccion','a.gradoinstruccion','a.telefono','a.fechanac','a.ocupacion','a.distrito','b.nombre')
-              ->join('distritos as b','b.id','a.distrito')
+			  ->select('a.id','a.nombres','a.apellidos','a.edocivil','a.dni','a.historia','a.direccion','a.gradoinstruccion','a.referencia','a.telefono','a.fechanac','a.ocupacion','a.distrito','b.nombre','c.nombre as edocivil')
+        ->join('distritos as b','b.id','a.distrito')
+        ->join('edo_civils as c','c.id','a.edocivil')
 			  ->where('a.id','=', $id)
               ->first();
 	  
@@ -159,13 +160,7 @@ class PacientesController extends Controller
 	  
    		]);
 		
-		  $historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Paciente';
-		  $historial->detalle =$request->dni;
-          $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
-          $historial->save();
+		  
 		  }
 		Toastr::success('Registrado Exitosamente.', 'Paciente!', ['progressBar' => true]);
 		return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
@@ -369,8 +364,11 @@ class PacientesController extends Controller
   }
 
   public function editView($id){
-      $p = Pacientes::find($id);
-      return view('archivos.pacientes.edit', ["provincias" => Provincias::all(),"distritos" => Distritos::all(),"edocivil" => EdoCivil::all(),"gradoinstruccion" => GradoInstruccion::all(),"dni" => $p->dni, "nombres" => $p->nombres,"apellidos" => $p->apellidos,"direccion" => $p->direccion,"fechanac" => $p->fechanac,"gradoinstruccions" => $p->gradoinstruccions,"ocupacion" => $p->ocupacion,"historia" => $p->historia,"telefono" => $p->telefono,"referencia" => $p->referencia,"provincia" => $p->provincia,"distrito" => $p->distrito,"id" => $p->id]);
+
+      $p= Pacientes::where('id','=',$id)->first();  
+
+
+      return view('archivos.pacientes.edit', ["provincias" => Provincias::all(),"distritos" => Distritos::all(),"edocivils" => EdoCivil::all(),"gradoinstruccion" => GradoInstruccion::all(),"p" => $p]);
     }
 
 
@@ -383,6 +381,7 @@ class PacientesController extends Controller
       $p->telefono = $request->telefono;
       $p->fechanac = $request->fechanac;
       $p->ocupacion = $request->ocupacion;
+            $p->referencia = $request->referencia;
       $p->gradoinstruccion = $request->gradoinstruccion;
       $res = $p->save();
       return redirect()->action('Archivos\PacientesController@index', ["edited" => $res]);
