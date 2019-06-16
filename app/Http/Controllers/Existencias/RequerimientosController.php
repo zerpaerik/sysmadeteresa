@@ -393,7 +393,8 @@ class RequerimientosController extends Controller
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
-      return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
+          return back();
+
     }
 
     public function edit1(Request $request){
@@ -530,7 +531,8 @@ class RequerimientosController extends Controller
 
         Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
 
-      return redirect()->action('Existencias\RequerimientosController@index2', ["edited" => $res]);
+          return back();
+
     }
 
       public function reversar(Request $request,$id){
