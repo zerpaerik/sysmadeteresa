@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Editar producto</strong></span>
+					<span><strong>Editar Producto</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">
@@ -57,6 +57,11 @@
 						<label class="col-sm-1 control-label">Precio Venta.</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="precioventa" value="{{$precioventa}}" placeholder="precioventa" data-toggle="tooltip" data-placement="bottom" title="precioventa">
+						</div>
+
+						<label class="col-sm-1 control-label">Cantidad.</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="cantidad" value="{{$cantidad}}" placeholder="cantidad" data-toggle="tooltip" data-placement="bottom" title="cantidad">
 						</div>
 
 						<label class="col-sm-1 control-label">Vencimiento</label>

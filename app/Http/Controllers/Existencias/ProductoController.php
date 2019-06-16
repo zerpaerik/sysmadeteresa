@@ -245,7 +245,7 @@ class ProductoController extends Controller
 
     public function editView($id){
       $p = Producto::find($id);
-      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa]);
+      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
       
     }
 
@@ -375,7 +375,10 @@ class ProductoController extends Controller
       $p->codigo = $request->codigo;
       $p->vence = $request->vence;
       $res = $p->save();
-      return redirect()->action('Existencias\ProductoController@index', ["edited" => $res]);
+             Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+                return back();
+
     }
 
     public function delete($id){
