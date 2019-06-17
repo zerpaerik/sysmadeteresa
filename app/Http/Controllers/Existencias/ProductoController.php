@@ -375,9 +375,9 @@ class ProductoController extends Controller
       $p->codigo = $request->codigo;
       $p->vence = $request->vence;
       $res = $p->save();
-             Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
 
-                return back();
+    return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
 
     }
 
