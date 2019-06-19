@@ -1550,15 +1550,18 @@ $paciente = DB::table('pacientes')
     $atenciones = Atenciones::where('id','=',$id)->first();
     $atenciones->es_delete=1;
     $atenciones->save();
-    
-     $atenciones2 = Atenciones::where('paquete','=',$id);
-    $atenciones2->delete();
-  
-  $creditos = Creditos::where('id_atencion','=',$id);
+
+      $creditos = Creditos::where('id_atencion','=',$id);
     $creditos->delete();
 
+    /*
+    
+    $atenciones2 = Atenciones::where('paquete','=',$id);
+    $atenciones2->delete();
+  
     $event= Event::where('paquete','=',$id);
   $event->delete();
+  */
 
   
    Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
