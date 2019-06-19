@@ -1554,19 +1554,19 @@ $paciente = DB::table('pacientes')
       $creditos = Creditos::where('id_atencion','=',$id);
     $creditos->delete();
 
-    /*
+
     
     $atenciones2 = Atenciones::where('paquete','=',$id);
     $atenciones2->delete();
   
     $event= Event::where('paquete','=',$id);
   $event->delete();
-  */
 
   
    Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
 
-     return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
+  return back();
+
   
   }
   
