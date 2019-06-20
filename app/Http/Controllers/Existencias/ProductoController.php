@@ -20,35 +20,13 @@ class ProductoController extends Controller
     public function index(){
 		//	$producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 1)->orderBy('nombre','ASC')->get();
-			return view('generics.index5', [
-				"icon" => "fa-list-alt",
-				"model" => "existencias",
-        "model1" => "Productos en Almacen Central",
-				"headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-				"data" => $producto,
-				"fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-			]);    	
+			return view('existencias.central',compact('producto'));    	
     }
 
       public function index2(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Local",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.local',compact('producto'));     
     }
 
      public function indexv(Request $request){
@@ -131,87 +109,32 @@ class ProductoController extends Controller
      public function recepcion(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->whereNotIn('categoria',[2,4,5])->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Recepciòn",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.recepcion', compact('producto'));     
     }
 
 
      public function lab(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',2)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Laboratorio",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.lab',compact('producto'));     
     }
 
     public function metodosp(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',3)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Mètodos",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.metodos', compact('producto'));     
     }
 
      public function rayos(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',4)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Rayos",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.rayos',compact('producto'));     
     }
 
     public function obstetra(){
     //  $producto = Producto::all();
       $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',5)->orderBy('nombre','ASC')->get();
-      return view('generics.index5', [
-        "icon" => "fa-list-alt",
-        "model" => "existencias",
-        "model1" => "Productos en Almacen Obstetra",
-        "headers" => ["id", "Nombre","Medida", "Categoria","Cantidad","Precio Unidad","Precio Venta","Vencimiento", "Editar", "Eliminar"],
-        "data" => $producto,
-        "fields" => ["id", "nombre","medida", "categoria","cantidad","preciounidad","precioventa","vence"],
-          "actions" => [
-            '<button type="button" class="btn btn-info">Transferir</button>',
-            '<button type="button" class="btn btn-warning">Editar</button>'
-          ]
-      ]);     
+      return view('existencias.obstetra', compact('producto'));     
     }
 
     
@@ -243,9 +166,38 @@ class ProductoController extends Controller
     	return view('existencias.create', ["categorias" => Categoria::all(), "medidas" => Medida::all()] + $extraArgs);
     }
 
-    public function editView($id){
+    public function editViewc($id){
       $p = Producto::find($id);
-      return view('existencias.edit', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editc', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      
+    }
+
+    public function editViewre($id){
+      $p = Producto::find($id);
+      return view('existencias.editre', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      
+    }
+
+    public function editViewme($id){
+      $p = Producto::find($id);
+      return view('existencias.editme', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      
+    }
+
+    public function editViewra($id){
+      $p = Producto::find($id);
+      return view('existencias.editra', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      
+    }
+     public function editViewrla($id){
+      $p = Producto::find($id);
+      return view('existencias.editla', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      
+    }
+
+      public function editViewrobs($id){
+      $p = Producto::find($id);
+      return view('existencias.editobs', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
       
     }
 
@@ -364,7 +316,7 @@ class ProductoController extends Controller
       }
     }
 
-    public function edit(Request $request){
+    public function editc(Request $request){
       $p = Producto::find($request->id);
       $p->nombre = $request->nombre;
       $p->categoria = $request->categoria;
@@ -380,6 +332,93 @@ class ProductoController extends Controller
     return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
 
     }
+
+    public function editra(Request $request){
+      $p = Producto::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+    $p->preciounidad = $request->preciounidad;
+      $p->precioventa = $request->precioventa;
+      $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
+      $res = $p->save();
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+    return redirect()->action('Existencias\ProductoController@rayos', ["created" => false]);
+
+    }
+
+    public function editre(Request $request){
+      $p = Producto::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+    $p->preciounidad = $request->preciounidad;
+      $p->precioventa = $request->precioventa;
+      $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
+      $res = $p->save();
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+    return redirect()->action('Existencias\ProductoController@recepcion', ["created" => false]);
+
+    }
+
+    public function editme(Request $request){
+      $p = Producto::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+    $p->preciounidad = $request->preciounidad;
+      $p->precioventa = $request->precioventa;
+      $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
+      $res = $p->save();
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+    return redirect()->action('Existencias\ProductoController@metodosp', ["created" => false]);
+
+    }
+
+    public function editobs(Request $request){
+      $p = Producto::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+    $p->preciounidad = $request->preciounidad;
+      $p->precioventa = $request->precioventa;
+      $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
+      $res = $p->save();
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+    return redirect()->action('Existencias\ProductoController@obstetra', ["created" => false]);
+
+    }
+
+    public function editla(Request $request){
+      $p = Producto::find($request->id);
+      $p->nombre = $request->nombre;
+      $p->categoria = $request->categoria;
+      $p->medida = $request->medida;
+      $p->cantidad = $request->cantidad;
+    $p->preciounidad = $request->preciounidad;
+      $p->precioventa = $request->precioventa;
+      $p->codigo = $request->codigo;
+      $p->vence = $request->vence;
+      $res = $p->save();
+    Toastr::success('Editado Exitosamente.', 'Producto!', ['progressBar' => true]);
+
+    return redirect()->action('Existencias\ProductoController@lab', ["created" => false]);
+
+    }
+
+
 
     public function delete($id){
       $p = Producto::find($id);

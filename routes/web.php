@@ -428,8 +428,19 @@ Route::get('obstetra', 'Existencias\ProductoController@obstetra')->name('obstetr
 
 Route::post('producto/create', 'Existencias\ProductoController@create')->name('producto.create');
 Route::get('productos-create', 'Existencias\ProductoController@createView')->name('existencias.create');
-Route::get('existencias-edit-{id}', 'Existencias\ProductoController@editView')->name('existencias.edit');
-Route::post('producto/edit', 'Existencias\ProductoController@edit');
+
+Route::get('existencias-editc-{id}', 'Existencias\ProductoController@editViewc')->name('existencias.edit');
+Route::get('existencias-editre-{id}', 'Existencias\ProductoController@editViewre')->name('existencias.edit');
+Route::get('existencias-editra-{id}', 'Existencias\ProductoController@editViewra')->name('existencias.edit');
+Route::get('existencias-editla-{id}', 'Existencias\ProductoController@editViewla')->name('existencias.edit');
+Route::get('existencias-editme-{id}', 'Existencias\ProductoController@editViewme')->name('existencias.edit');
+Route::get('existencias-editobs-{id}', 'Existencias\ProductoController@editViewobs')->name('existencias.edit');
+Route::post('producto/editobs', 'Existencias\ProductoController@editobs');
+Route::post('producto/editc', 'Existencias\ProductoController@editc');
+Route::post('producto/editre', 'Existencias\ProductoController@editre');
+Route::post('producto/editra', 'Existencias\ProductoController@editra');
+Route::post('producto/editme', 'Existencias\ProductoController@editme');
+Route::post('producto/editla', 'Existencias\ProductoController@editla');
 Route::get('existencias-delete-{id}', 'Existencias\ProductoController@delete');
 Route::get('existencias-in', 'Existencias\ProductoController@productInView')->name('productos.in');
 Route::get('existencias-out', 'Existencias\ProductoController@productOutView')->name('productos.out');
