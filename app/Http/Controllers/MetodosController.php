@@ -37,7 +37,19 @@ class MetodosController extends Controller
 		->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
     ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
-        ->get(); 
+        ->get();
+
+     
+    $totalmetodos = Metodos::where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+     $totalmonto = Metodos::where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                     ->first();
+
 
       } else {
 
@@ -46,18 +58,28 @@ class MetodosController extends Controller
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
-
        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
         ->get(); 
+
+        $totalmetodos = Metodos::where('sede','=', $request->session()->get('sede'))
+                                    ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+        
+     $totalmonto = Metodos::where('sede','=', $request->session()->get('sede'))
+                                    ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                     ->first();
 
 
       }
 
 
 
-      return view('metodos.index', ['metodos' => $metodos]);     
+      return view('metodos.index', ['metodos' => $metodos,'totalmetodos' => $totalmetodos,'totalmonto' => $totalmonto]);     
     }
 
 

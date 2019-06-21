@@ -28,6 +28,8 @@
 				</div>
 
 				<div class="no-move"></div>
+
+			
 				
 			</div>
 			{!! Form::open(['method' => 'get', 'route' => ['metodos.index']]) !!}
@@ -59,6 +61,27 @@
 
 				</div>
 			</div>	
+
+				<div class="row">
+
+					<div class="col-md-3">
+						@if($totalmetodos)
+						<strong>Cantidad Vendida:</strong>{{$totalmetodos->total}}
+						@else
+					    <strong>Cantidad Vendida:</strong>0
+						@endif
+					</div>
+
+					<div class="col-md-3">
+						@if($totalmonto)
+						<strong>Total Vendidos:</strong>{{$totalmonto->monto}}
+						@else
+					    <strong>Total Vendidos:</strong>0
+						@endif
+					</div>
+					
+
+				</div>
 
 		
 
@@ -158,8 +181,7 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 
 
 
