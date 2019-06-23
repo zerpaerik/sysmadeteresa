@@ -66,7 +66,8 @@
 							<th>Cantidad Solicitada</th>
 						    <th>Cantidad Entregada</th>
 							<th>Estatus</th>
-							<th>Fecha</th>
+							<th>Fecha Sol.</th>
+							<th>Fecha Pro.</th>
 						    <th>Acciones</th>
 						
 						</tr>
@@ -83,6 +84,7 @@
 							    <td>{{$req->cantidadd}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
+								<td>{{$req->updated_at}}</td>
 								<td>
 									<a href="requerimientos-reversar-{{$req->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Reversar este Requerimiento?')">Reversar</a>
 								</td>

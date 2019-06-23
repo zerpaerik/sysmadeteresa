@@ -33,6 +33,9 @@
 							<option value="2">Laboratorio</option>
 							<option value="3">Rayos</option>
 							<option value="4">Obstetra</option>
+              <option value="5">Independencia</option>
+              <option value="6">Olivos</option>
+
 						    </select>
 							
 						</div>

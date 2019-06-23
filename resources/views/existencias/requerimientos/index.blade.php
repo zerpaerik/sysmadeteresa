@@ -64,8 +64,13 @@
 								<td>Laboratorio</td>
 								@elseif($req->almacen_solicita == 3)
 								<td>Rayos</td>
-								@else
+								@elseif($req->almacen_solicita == 4)
 								<td>Obstetra</td>
+								@elseif($req->almacen_solicita == 5)
+								<td>Independencia</td>
+								@elseif($req->almacen_solicita == 6)
+								<td>Olivos</td>
+								@else
                                 @endif
 								@endif
 								<td>{{$req->nombre}}</td>

@@ -70,9 +70,11 @@
 							<th>ID:</th>
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
+							@if(Session::get('sedeName') == 'PROCERES')
+							<th>Almacen Solicitante</th>
+							@endif
 							<th>Producto</th>
 							<th>Cantidad Solicitada</th>
-							<th>Estatus</th>
 							<th>Fecha</th>
 							<th>Cantidad a Entregar</th>
 						
@@ -85,9 +87,24 @@
 								<td>{{$req->id}}</td>
 								<td>{{$req->sede}}</td>
 								<td>{{$req->solicitante}}</td>
+								@if(Session::get('sedeName') == 'PROCERES')
+								@if($req->almacen_solicita == 1)
+								<td>Recepciòn</td>
+								@elseif($req->almacen_solicita == 2)
+								<td>Laboratorio</td>
+								@elseif($req->almacen_solicita == 3)
+								<td>Rayos</td>
+								@elseif($req->almacen_solicita == 4)
+								<td>Obstetra</td>
+								@elseif($req->almacen_solicita == 5)
+								<td>Independencia</td>
+								@elseif($req->almacen_solicita == 6)
+								<td>Olivos</td>
+								@else
+                                @endif
+                                @endif
 								<td>{{$req->nombre}}</td>
 							    <td>{{$req->cantidad}}</td>
-								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 							    <td>
 							    @if(Session::get('sedeName') <> 'PROCERES')
