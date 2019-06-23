@@ -113,7 +113,7 @@ class RequerimientosController extends Controller
      public function index3(Request $request){
 
 
-      if(! is_null($request->fecha)) {
+        if(! is_null($request->fecha) && ! is_null($request->almacen)) {
 
         $f1 = $request->fecha;
         $f2 = $request->fecha2;  
@@ -121,7 +121,22 @@ class RequerimientosController extends Controller
 
 
        $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('a.almacen_solicita','=',$request->almacen)
+                    ->where('a.estatus','=','Procesado')
+                    //->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->orderby('a.created_at','desc')
+                    ->get();
+         } else if(! is_null($request->fecha)) {
+
+          $requerimientos3 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -133,11 +148,28 @@ class RequerimientosController extends Controller
                     ->orderby('a.created_at','desc')
                     ->get();
 
+          } else if(! is_null($request->almacen)) {
+
+             $requerimientos3 = DB::table('requerimientos as a')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
+                    ->join('users as c','c.id','a.usuario')
+                    ->join('productos as d','d.id','a.id_producto')
+                    ->join('sedes as e','e.id','a.id_sede_solicita')
+                    ->where('a.almacen_solicita','=',$request->almacen)
+                    ->where('a.estatus','=','Procesado')
+                    //->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->orderby('a.created_at','desc')
+                    ->get();
+
+
+
            } else {
 
 
        $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
