@@ -51,7 +51,13 @@
 								<td>{{$req->id}}</td>
 								<td>{{$req->nombre}}</td>
 								<td>{{$req->medida}}</td>
-								<td>{{$req->categoria}}</td>
+								@if($req->categoria == 1)
+								<td>Recepciòn</td>
+								@elseif($req->categoria == 3)
+								<td>Metodos</td>
+								@else
+								<td>nada</td>
+								@endif
 								<td>{{$req->cantidad}}</td>
 								<td>{{$req->previounidad}}</td>
 								<td>{{$req->precioventa}}</td>
