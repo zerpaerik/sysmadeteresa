@@ -50,11 +50,14 @@
 				</div>
 				<div class="col-md-4">
 
-							<select  name="sede">
-								<option value="">Seleccione una Sede</option>
-								@foreach($sedes as $role)
-									<option value="{{$role->id}}">{{$role->name}}</option>
-								@endforeach
+							<select  name="almacen">
+								<option value="">Seleccione una Almacen</option>
+								<option value="1">Recepcion</option>
+								<option value="2">Laboratorio</option>
+								<option value="3">Rayos</option>
+								<option value="4">Obstetra</option>
+								<option value="5">Independencia</option>
+								<option value="6">Olivos</option>
 							</select>
 						</div>	
 				<div class="col-md-2">
@@ -70,9 +73,7 @@
 							<th>ID:</th>
 							<th>Solicitado Por:</th>
 							<th>Usuario Solicitante</th>
-							@if(Session::get('sedeName') == 'PROCERES')
 							<th>Almacen Solicitante</th>
-							@endif
 							<th>Producto</th>
 							<th>Cantidad Solicitada</th>
 							<th>Fecha</th>
@@ -101,6 +102,7 @@
 								@elseif($req->almacen_solicita == 6)
 								<td>Olivos</td>
 								@else
+								<td>{{$req->sede}}</td>
                                 @endif
                                 @endif
 								<td>{{$req->nombre}}</td>
