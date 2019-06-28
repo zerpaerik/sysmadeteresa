@@ -278,9 +278,7 @@ class ComporPagarController extends Controller
         if ($aten->monto == 0) {
         }
 
-        dd($aten->monto);
  
-
 
   $origen = DB::table('atenciones as a')
    ->select('a.id','a.origen_usuario','e.name','e.lastname','a.created_at','a.origen','a.es_delete')
