@@ -61,9 +61,9 @@
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
 
-  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
+  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $reciboe->name.' '.$reciboe->lastname}}</p>
   <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>MADRE TERESA</p>
-  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
+  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $reciboe->recibo}}</p>
 
 
 
