@@ -61,11 +61,9 @@
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
 
-   @foreach($reciboprofesional2 as $recibo2)
-  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo2->name.' '.$recibo2->lastname}}</p>
-  <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>{{ $recibo2->centroprof}}</p>
-  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo2->recibo}}</p>
-   @endforeach
+  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $recibo->name.' '.$recibo->lastname}}</p>
+  <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>MADRE TERESA</p>
+  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $recibo->recibo}}</p>
 
 
 
