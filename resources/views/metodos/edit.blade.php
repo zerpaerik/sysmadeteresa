@@ -27,23 +27,35 @@
 					<div class="form-group">
 						<label class="col-sm-1 control-label">Pacientes</label>
 						<div class="col-sm-3">
-							<select id="el1" value="{{$paciente}}" name="paciente">
-								@foreach($pacientes as $paciente)
-									<option value="{{$paciente->id}}">
-										{{$paciente->dni}} - 
-										{{$paciente->nombres}} {{$paciente->apellidos}}
-									</option>
+							<select id="el1" name="paciente">
+								@foreach($pacientes as $pac)
+								@if($paciente == $pac->id)
+								<option value="{{$pac->id}}" selected="selected">
+									{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
+								</option>
+								@else
+								<option value="{{$pac->id}}">
+									{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
+								</option>
+								@endif
 								@endforeach
 							</select>
+							
 						</div>
 
 	               <label class="col-sm-1 control-label">Productos</label>
 						<div class="col-sm-3">
-							<select id="el2" value="{{$producto}}" name="producto">
-								@foreach($productos as $paciente)
-									<option value="{{$paciente->id}}">
-										{{$paciente->nombre}}
-									</option>
+							<select id="el2"  name="producto">
+								@foreach($productos as $pro)
+								@if($producto == $pro->id)
+								<option value="{{$pro->id}}" selected="selected">
+									{{$pro->nombre}} 
+								</option>
+								@else
+								<option value="{{$pro->id}}">
+									{{$pro->nombre}} 
+								</option>
+								@endif
 								@endforeach
 							</select>
 						</div>

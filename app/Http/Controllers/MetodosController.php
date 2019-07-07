@@ -277,9 +277,9 @@ class MetodosController extends Controller
 	          $metodos = Metodos::find($request->id);
 	          $metodos->id_paciente =$request->paciente;
 	          $metodos->id_producto =$request->producto;
-			  $metodos->monto =$request->monto;
-                $metodos->tipopago =$request->tipo_ingreso;
-			  $res = $metodos->save();
+			      $metodos->monto =$request->monto;
+            $metodos->tipopago =$request->tipopago;
+			      $res = $metodos->save();
 
 
 
@@ -287,7 +287,7 @@ class MetodosController extends Controller
             ->where('id_metodo', $request->id)
             ->update([
               'monto' => $request->monto,
-              'tipopago' => $request->tipo_ingreso
+              'tipo_ingreso' => $request->tipopago
             ]);
 
 
