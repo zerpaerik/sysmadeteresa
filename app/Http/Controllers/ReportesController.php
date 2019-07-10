@@ -480,10 +480,25 @@ class ReportesController extends Controller
 
        $hoy= Carbon::today()->toDateString();
 
+      $atencion= Atenciones::where('recibo','=',$id)->first();
+
+     
+     if($atencion->origen == 1){
+
+    $encabezado= ReportesController::verReciboProfesional($id);
+
+     }elseif($atencion->origen == 2){
+
+    $encabezado= ReportesController::verReciboProfesional2($id);
+
+     }else{
+
+    $encabezado= ReportesController::verReciboProfesional($id);
+
+     }
 
 
-      
-       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboe', $reciboe)->with('reciboprofesional2', $reciboprofesional2)->with('reciboprofesional3', $reciboprofesional3)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy);
+       $view = \View::make('reportes.recibo_profesionales_ver')->with('reciboprofesional', $reciboprofesional)->with('reciboe', $reciboe)->with('reciboprofesional2', $reciboprofesional2)->with('reciboprofesional3', $reciboprofesional3)->with('totalrecibo', $totalrecibo)->with('hoy', $hoy)->with('atencion', $atencion)->with('encabezado', $encabezado);
        $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_profesionales_ver');
