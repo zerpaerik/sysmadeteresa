@@ -63,8 +63,14 @@
 								<td>{{$req->precioventa}}</td>
 								<td>{{$req->vencimiento}}</td>
 								<td>
+		                        @if(\Auth::user()->role_id == 4)	
 								<a href="existencias-editre-{{$req->id}}" class="btn btn-primary">Editar</a>
 						         <a href="existencias-delete-{{$req->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+						         @endif
+						           @if(\Auth::user()->role_id == 5)	
+								<a href="existencias-editre-{{$req->id}}" class="btn btn-primary">Editar</a>
+						         <a href="existencias-delete-{{$req->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a>
+						         @endif
 								</td>
 
 
