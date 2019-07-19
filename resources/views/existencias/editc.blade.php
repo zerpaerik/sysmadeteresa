@@ -34,8 +34,16 @@
 						<label class="col-sm-1 control-label">Categoria</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="categoria"  data-toggle="tooltip" data-placement="bottom">
-								@foreach($categorias as $categoria)
-									<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+								@foreach($categorias as $cat)
+								@if($categoria == $cat->id)
+								<option value="{{$categoria}}" selected="selected">
+									{{$cat->nombre}} 
+								</option>
+								@else
+								<option value="{{$cat->id}}">
+									{{$cat->nombre}} 
+								</option>
+								@endif
 								@endforeach
 							</select>
 						</div>						

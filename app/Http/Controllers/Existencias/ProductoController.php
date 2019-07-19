@@ -168,36 +168,37 @@ class ProductoController extends Controller
 
     public function editViewc($id){
       $p = Producto::find($id);
-      return view('existencias.editc', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editc', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
       
     }
 
     public function editViewre($id){
       $p = Producto::find($id);
-      return view('existencias.editre', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editre', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
       
     }
 
     public function editViewme($id){
       $p = Producto::find($id);
-      return view('existencias.editme', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editme', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
       
     }
 
     public function editViewra($id){
       $p = Producto::find($id);
-      return view('existencias.editra', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editra', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
       
     }
-     public function editViewrla($id){
+     public function editViewla($id){
       $p = Producto::find($id);
-      return view('existencias.editla', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
-      
+      return view('existencias.editla', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
+
+
     }
 
-      public function editViewrobs($id){
+      public function editViewobs($id){
       $p = Producto::find($id);
-      return view('existencias.editobs', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad]);
+      return view('existencias.editobs', ["medidas" => Medida::all(), "categorias" => Categoria::all(), "nombre" => $p->nombre, "cantidad" => $p->cantidad,"codigo" => $p->codigo, "vence" => $p->vence,"id" => $p->id,"preciounidad" => $p->preciounidad,"precioventa" => $p->precioventa,"cantidad" => $p->cantidad,"categoria" =>$p->categoria]);
       
     }
 
