@@ -30,8 +30,10 @@ class HistorialCobrosController extends Controller
 
 
         $atenciones = DB::table('historialcobros as a')
-        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at','c.id_sede','s.name as sede')
         ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('atenciones as c','c.id','a.id_atencion')
+        ->join('sedes as s','s.id','c.id_sede')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderby('a.id','ASC')
         ->get();
@@ -40,8 +42,10 @@ class HistorialCobrosController extends Controller
 
         
         $atenciones = DB::table('historialcobros as a')
-        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at')
+        ->select('a.id','a.id_atencion','a.id_paciente','a.monto','a.abono_parcial','a.abono','a.pendiente','b.nombres','b.apellidos','b.dni','a.created_at','a.updated_at','c.id_sede','s.name as sede')
         ->join('pacientes as b','b.id','a.id_paciente')
+                ->join('atenciones as c','c.id','a.id_atencion')
+                        ->join('sedes as s','s.id','c.id_sede')
         ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->orderby('a.id','ASC')
         ->get();
