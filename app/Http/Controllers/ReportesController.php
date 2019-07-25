@@ -1402,7 +1402,7 @@ class ReportesController extends Controller
     public function materialesmalogrados(Request $request){
 
 
-        if(!is_null($request->fecha)){
+        if(!is_null($request->fecha) && is_null($request->user)){
 
 
             $materiales = DB::table('mat_malogrados as a')
@@ -1440,7 +1440,7 @@ class ReportesController extends Controller
 
 
 
-    }elseif (!is_null($request->user)) {
+    }elseif (!is_null($request->user) && is_null($request->fecha)) {
 
          $materiales = DB::table('mat_malogrados as a')
         ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
