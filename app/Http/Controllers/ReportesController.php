@@ -10,9 +10,11 @@ use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Pacientes;
 use App\Models\ResultadosServicios;
+use App\Models\ResultadosMateriales;
 use App\Models\ResultadosLaboratorios;
 use App\Models\MaterialesMalogrados;
 use App\Models\Events\Event;
+use App\Models\Existencias\Producto;
 use PDF;
 use Auth;
 use Carbon\Carbon;
@@ -1397,6 +1399,87 @@ class ReportesController extends Controller
         ->first();
 
         return $resultados;
+    }
+
+    public function materialesusados(Request $request){
+
+        if(!is_null($request->fecha) && !is_null($request->producto)){
+
+              $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        ->join('productos as b','b.id','a.id_material')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->where('a.id_material','=',$request->producto)
+        ->get();
+
+        $totalmat = ResultadosMateriales::whereBetween('created_at', [date('Y-m-d 00:00:00',                         strtotime($request->fecha)), date('Y-m-d 23:59:59',strtotime                         ($request->fecha2))])
+                                     ->where('id_material','=',$request->producto)
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+        $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+        
+
+
+        }elseif(!is_null($request->fecha) && is_null($request->producto)){
+
+              $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        ->join('productos as b','b.id','a.id_material')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->get();
+
+        $totalmat = ResultadosMateriales::whereBetween('created_at', [date('Y-m-d 00:00:00',                         strtotime($request->fecha)), date('Y-m-d 23:59:59',strtotime                         ($request->fecha2))])
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+        $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+
+
+        }elseif(is_null($request->fecha) && !is_null($request->producto)){
+
+              $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        ->join('productos as b','b.id','a.id_material')
+        ->where('a.id_material','=',$request->producto)
+        ->get();
+
+        $totalmat = ResultadosMateriales::where('id_material','=',$request->producto)
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+        $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+
+        }else{ 
+
+            $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        ->join('productos as b','b.id','a.id_material')
+        ->where('a.created_at','=',Carbon::today()->toDateString())
+        ->get();
+
+        $totalmat = ResultadosMateriales::where('created_at','=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('SUM(cantidad) as cantidad'))
+                                    ->first();
+
+        $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+
+             
+
+        }
+
+
+        $productos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",$request->session()->get('sede'))->get();
+
+
+            return view('reportes.matusados',compact('materiales','totalmat','f1','f2','productos'));
+
+
     }
 
     public function materialesmalogrados(Request $request){

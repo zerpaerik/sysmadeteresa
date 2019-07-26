@@ -383,6 +383,7 @@ Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->nam
 
 Route::get('materialesmalogrados', 'ReportesController@materialesmalogrados')->name('malogrados.ver');
 
+Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');
 
 Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver');
 
