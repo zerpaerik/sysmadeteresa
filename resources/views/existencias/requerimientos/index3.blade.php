@@ -68,6 +68,21 @@
 
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-3">
+					<strong>Total Items:</strong>{{$total->total}}
+					
+				</div>
+				<div class="col-md-3">
+					<strong>Total P.Unidad:</strong>{{$totalunidad->total}}
+					
+				</div>
+				<div class="col-md-3">
+					<strong>Total P.Venta:</strong>{{$totalventa->total}}
+					
+				</div>
+				
+			</div>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>

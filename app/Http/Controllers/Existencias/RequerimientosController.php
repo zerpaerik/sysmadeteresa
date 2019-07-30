@@ -133,7 +133,44 @@ class RequerimientosController extends Controller
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
+
+
+
+    $total = Requerimientos::where('id_sede_solicitada','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                      ->where('almacen_solicita','=',$request->almacen)
+                                      ->where('estatus','=','Procesado')
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+      $totalunidad=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.preciounidad) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.almacen_solicita','=',$request->almacen)
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->first();
+
+
+     $totalventa=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.precioventa) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.almacen_solicita','=',$request->almacen)
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->first();
+        
+
+
          } else if(! is_null($request->fecha)) {
+
+            $f1 = $request->fecha;
+        $f2 = $request->fecha2;  
+
+
+
 
           $requerimientos3 = DB::table('requerimientos as a')
                     ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
@@ -147,6 +184,33 @@ class RequerimientosController extends Controller
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
                     ->orderby('a.created_at','desc')
                     ->get();
+
+
+                   $total = Requerimientos::where('id_sede_solicitada','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                      ->where('estatus','=','Procesado')
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+                  $totalunidad=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.preciounidad) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->first();
+
+
+                  $totalventa=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.precioventa) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->first();
+        
+
+        
 
           } else if(! is_null($request->almacen)) {
 
@@ -164,8 +228,18 @@ class RequerimientosController extends Controller
                     ->get();
 
 
+    $total = Requerimientos::where('estatus','=','Procesado')
+                                     ->where('id_sede_solicitada', '=', $request->session()->get('sede'))
+                                    ->where('almacen_solicita','=',$request->almacen)
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                     ->first();
+
+
 
            } else {
+
+             $f1 = Carbon::today()->toDateString();
+        $f2 = Carbon::today()->toDateString();  
 
 
        $requerimientos3 = DB::table('requerimientos as a')
@@ -174,17 +248,42 @@ class RequerimientosController extends Controller
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
                     ->join('sedes as e','e.id','a.id_sede_solicita')
-                    ->where('a.estatus','=','Procesado')
-                  //  ->where('a.usuario','=',Auth::user()->id)
+                    ->where('a.id','=',999999999999)
                     ->where('a.id_sede_solicitada', '=', $request->session()->get('sede'))
-                    ->orderby('a.created_at','desc')
+                    ->where('a.updated_at','=',Carbon::today()->toDateString())
                     ->get();
+
+                     $total = Requerimientos::where('estatus','=','Procesado')
+                                         ->where('id','=',999999999999)
+                                     ->where('id_sede_solicitada', '=', $request->session()->get('sede'))
+                                     ->select(DB::raw('COUNT(*) as total'))
+                                    ->where('updated_at','=',Carbon::today()->toDateString())
+                                     ->first();
+
+                         $totalunidad=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa as venta','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.preciounidad) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                    ->where('a.id','=',99999999999999)
+                    ->first();
+
+
+                  $totalventa=DB::table('productos as a')
+                    ->select('a.id','a.preciounidad','a.precioventa','r.created_at','r.almacen_solicita','r.estatus','r.id_sede_solicitada',DB::raw('SUM(a.precioventa) as total'))
+                    ->join('requerimientos as r','a.id','r.id_producto')
+                    ->whereBetween('r.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('r.estatus','=','Procesado')
+                    ->where('r.id_sede_solicitada', '=', $request->session()->get('sede'))
+                      ->where('a.id','=',99999999999999)
+                    ->first();
 
 
 
            }         
 
-        return view('existencias.requerimientos.index3', ["requerimientos3" => $requerimientos3]);    
+        return view('existencias.requerimientos.index3', compact('requerimientos3','total','totalventa','totalunidad'));    
     }
 
    
