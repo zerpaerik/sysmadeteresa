@@ -1405,9 +1405,13 @@ class ReportesController extends Controller
 
         if(!is_null($request->fecha) && !is_null($request->producto)){
 
-              $materiales = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_atencion','a.usuario','a.id_material','a.created_at','a.cantidad','b.nombre as producto','at.id_servicio','at.id_paciente','u.name','u.lastname','s.detalle as servicio','p.nombres','p.apellidos')
         ->join('productos as b','b.id','a.id_material')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('users as u','u.id','a.usuario')
+        ->join('pacientes as p','p.id','at.id_paciente')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->where('a.id_material','=',$request->producto)
         ->get();
@@ -1424,9 +1428,13 @@ class ReportesController extends Controller
 
         }elseif(!is_null($request->fecha) && is_null($request->producto)){
 
-              $materiales = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+       $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_atencion','a.usuario','a.id_material','a.created_at','a.cantidad','b.nombre as producto','at.id_servicio','at.id_paciente','u.name','u.lastname','s.detalle as servicio','p.nombres','p.apellidos')
         ->join('productos as b','b.id','a.id_material')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('users as u','u.id','a.usuario')
+        ->join('pacientes as p','p.id','at.id_paciente')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->get();
 
@@ -1440,9 +1448,13 @@ class ReportesController extends Controller
 
         }elseif(is_null($request->fecha) && !is_null($request->producto)){
 
-              $materiales = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+         $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_atencion','a.usuario','a.id_material','a.created_at','a.cantidad','b.nombre as producto','at.id_servicio','at.id_paciente','u.name','u.lastname','s.detalle as servicio','p.nombres','p.apellidos')
         ->join('productos as b','b.id','a.id_material')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('users as u','u.id','a.usuario')
+        ->join('pacientes as p','p.id','at.id_paciente')
         ->where('a.id_material','=',$request->producto)
         ->get();
 
@@ -1455,9 +1467,13 @@ class ReportesController extends Controller
 
         }else{ 
 
-            $materiales = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_resultado','a.id_material','a.created_at','a.cantidad','b.nombre as producto')
+        $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_resultado','a.id_atencion','a.usuario','a.id_material','a.created_at','a.cantidad','b.nombre as producto','at.id_servicio','at.id_paciente','u.name','u.lastname','s.detalle as servicio','p.nombres','p.apellidos')
         ->join('productos as b','b.id','a.id_material')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('users as u','u.id','a.usuario')
+        ->join('pacientes as p','p.id','at.id_paciente')
         ->where('a.created_at','=',Carbon::today()->toDateString())
         ->get();
 

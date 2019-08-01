@@ -526,6 +526,8 @@ class ResultadosController extends Controller
             $pro->id_resultado = $product->id;
             $pro->id_material =  $laboratorio['laboratorio'];
             $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+            $pro->id_atencion= $request->id;
+            $pro->usuario = Auth::user()->id;
             $pro->save();
 
 
@@ -610,6 +612,8 @@ class ResultadosController extends Controller
             $pro->id_resultado = $product->id;
             $pro->id_material =  $laboratorio['laboratorio'];
             $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+            $pro->id_atencion= $request->id;
+            $pro->usuario = Auth::user()->id;
             $pro->save();
 
 

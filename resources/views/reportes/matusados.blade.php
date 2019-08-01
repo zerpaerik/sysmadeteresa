@@ -70,6 +70,9 @@
 							<th>Id</th>
 							<th>Material</th>
 							<th>Cantidad</th>
+							<th>Paciente</th>
+							<th>Servicio</th>
+							<th>Registrado Por:</th>
 							<th>Fecha</th>
 						</tr>
 					</thead>
@@ -80,6 +83,9 @@
 								<td>{{$atec->id}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->cantidad}}</td>
+								<td>{{$atec->nombres}},{{$atec->apellidos}}</td>
+								<td>{{$atec->servicio}}</td>
+								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->created_at}}</td>
 								
 							</tr>
