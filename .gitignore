@@ -1,7 +1,8 @@
 /node_modules
 /public/hot
+/public/
 /public/storage
-/public/informes
+/public/modelos_informes/informes
 /storage/*.key
 /storage/edicion.doc
 /vendor
