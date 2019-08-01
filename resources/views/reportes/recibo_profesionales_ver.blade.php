@@ -60,15 +60,10 @@
 
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
-  @if($atencion->origen == 2)
-  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $reciboprofesional2->name.' '.$reciboprofesional2->lastname}}</p>
-  <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>{{ $reciboprofesional2->centroprof}}</p>
-  <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $reciboprofesional2->recibo}}</p>
-  @else
+
  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $reciboe->name.' '.$reciboe->lastname}}</p>
   <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>MADRE TERESA</p>
   <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $reciboe->recibo}}</p>
-  @endif
 
 
 
