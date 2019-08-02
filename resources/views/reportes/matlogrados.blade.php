@@ -41,10 +41,10 @@
 					<input type="date" value="{{$f2}}" name="fecha2" style="line-height: 20px">
 				</div>
 			      <div class="col-md-4">
-						<select id="el2" name="user">
-							<option>Seleccione un Usuario</option>
-							@foreach($usuarios as $user)
-								    <option value="{{$user->id}}">{{$user->lastname}},{{$user->name}}</option>
+						<select id="el2" name="producto">
+							<option value="">Seleccione una Placa</option>
+							@foreach($productos as $p)
+								    <option value="{{$p->id}}">{{$p->nombre}}</option>
 							@endforeach
 						</select>
 
@@ -71,7 +71,9 @@
 							<th>Material</th>
 							<th>Cantidad</th>
 							<th>Fecha</th>
-							<th>Usuario</th>
+							<th>Paciente</th>
+							<th>Servicio</th>
+							<th>Registrado Por:</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -82,6 +84,8 @@
 								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->cantidad}}</td>
 								<td>{{$atec->created_at}}</td>
+								<td>{{$atec->nombres}} {{$atec->apellidos}}</td>
+								<td>{{$atec->servicio}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								
 							</tr>
