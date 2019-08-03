@@ -51,16 +51,17 @@
 				</div>
 				<div class="col-md-4">
 
-					<select  name="almacen" id="">
-						<option value="">Seleccione una Almacen</option>
-						<option value="1">Recepcion</option>
-						<option value="2">Laboratorio</option>
-						<option value="3">Rayos</option>
-						<option value="4">Obstetra</option>
-						<option value="5">Independencia</option>
-						<option value="6">Olivos</option>
-													
-					</select>
+					<select  name="almacen">
+								<option value="">Seleccione una Almacen</option>
+								<option value="1">Recepcion</option>
+								<option value="2">Laboratorio</option>
+								<option value="3">Rayos</option>
+								<option value="4">Obstetra</option>
+								<option value="5">Independencia</option>
+								<option value="6">Olivos</option>
+							    <option value="99">Canto Rey</option>
+								<option value="100">Vida Feliz</option>
+							</select>
 						</div>
 				<div class="col-md-2">
 					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}

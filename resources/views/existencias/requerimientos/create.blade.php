@@ -84,6 +84,11 @@
               <input type="text" name="total_a" class="number form-control" value="0.00" id="total_a" readonly="readonly" style="width: 150px">
             </div>
           </div>
+          @if(Session::get('sedeName') == 'CANTO REY')
+          <input type="hidden" name="almacen" value="99">
+          @else
+          <input type="hidden" name="almacen" value="100">
+          @endif
 					
 						<br>
 						<input type="button" onclick="form.submit()" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
