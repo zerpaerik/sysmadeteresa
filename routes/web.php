@@ -389,7 +389,9 @@ Route::get('ticket-ver-{id}', 'ReportesController@ticket_ver')->name('ticket.ver
 
 
 Route::get('generalatenciones', 'ReporteIngresosController@indexa')->name('generalatenciones.indexa')->middleware('auth');
-Route::get('generalatenciones-search', 'ReporteIngresosController@searcha')->name('generalatenciones.searcha')->middleware('auth');
+Route::get('generalserv', 'ReporteIngresosController@generals')->name('generals.index')->middleware('auth');
+Route::get('generallabs', 'ReporteIngresosController@generall')->name('generall.index')->middleware('auth');
+Route::get('generalpaqs', 'ReporteIngresosController@generalp')->name('generalp.index')->middleware('auth');
 
 Route::get('generalegresos', 'ReporteIngresosController@indexe')->name('generalegresos.indexe')->middleware('auth');
 Route::get('generalegresos-search', 'ReporteIngresosController@searche')->name('generalegresos.searche')->middleware('auth');
