@@ -319,49 +319,12 @@ class PrenatalController extends Controller
 
     
     $control = Control::find($request->id);
-    $control->fecha_cont=$request->fecha_cont;
-    $control->gesta_semanas=$request->gesta_semanas;
-    $control->peso_madre=$request->peso_madre;
-    $control->temp=$request->temp;
-    $control->tension=$request->tension;
-    $control->altura_uterina=$request->altura_uterina;
-    $control->presentacion=$request->presentacion;
-    $control->fcf=$request->fcf;
-    $control->movimiento_fetal=$request->movimiento_fetal;
-    $control->edema=$request->edema;
-    $control->pulso_materno=$request->pulso_materno;
-    $control->consejeria=$request->consejeria;
-    $control->sulfato=$request->sulfato;
-    $control->perfil_biofisico=$request->perfil_biofisico;
-    $control->visita_domicilio=$request->visita_domicilio;
-    $control->establecimiento_atencion=$request->establecimiento_atencion;
-    $control->sero=$request->sero;
-    $control->serod=$request->serod;
-    $control->glu=$request->gluco;
-    $control->glud=$request->glucod;
-    $control->vih=$request->vih;
-    $control->vihd=$request->vihd;
-    $control->hemo=$request->hemo;
-    $control->hemod=$request->hemod;
-    $control->fr= $request->fr;
-    $control->pri=$request->pri;
-    $control->peso= $request->peso;
-    $control->talla=$request->talla;
-    $control->pp=$request->pp;
-    $control->mamas= $request->mamas;
-    $control->abdomen=$request->abdomen;
-    $control->genext= $request->genext;
-    $control->genint=$request->genint;
-    $control->miembros=$request->miembros;
-    $control->pres= $request->pres;
-    $control->exa= $request->exa;
-    $control->def=$request->def;
-    $control->tra= $request->tra;
+    $control->observacion=$request->observacion;
     $control->pendiente= $request->pendiente;
     $control->save();
 
 
-      Toastr::success('Completado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
+      Toastr::success('Reevaluado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
       return redirect()->route('prenatal.index');
 
 

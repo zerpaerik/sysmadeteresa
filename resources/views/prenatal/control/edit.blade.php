@@ -26,17 +26,17 @@
 
             <label class="col-sm-1 control-label">Gestaciòn</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="gesta_semanas" value="{{$control->gesta_semanas}}" placeholder="Semanas de gestacion" data-toggle="tooltip" data-placement="bottom" title="gesta_semanas">
+              <input type="text" class="form-control" name="gesta_semanas" value="{{$control->gesta_semanas}}" placeholder="Semanas de gestacion" data-toggle="tooltip" data-placement="bottom" title="gesta_semanas" readonly="">
             </div>
 
             <label class="col-sm-1 control-label">PesoMadre.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="peso_madre" value="{{$control->peso_madre}}" placeholder="Peso de Madre" data-toggle="tooltip" data-placement="bottom" title="m37m">
+              <input type="text" class="form-control" name="peso_madre" value="{{$control->peso_madre}}" placeholder="Peso de Madre" data-toggle="tooltip" data-placement="bottom" title="m37m" readonly="">
             </div>
 
             <label class="col-sm-1 control-label">Temp.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="temp" value="{{$control->temp}}" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura">
+              <input type="text" class="form-control" name="temp" value="{{$control->temp}}" placeholder="Temperatura" data-toggle="tooltip" data-placement="bottom" title="Temperatura" readonly=""> 
             </div>
 
             </div>
@@ -44,17 +44,17 @@
 
             <label class="col-sm-1 control-label">Tensiòn.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="tension" value="{{$control->tension}}" placeholder="tension arterial" data-toggle="tooltip" data-placement="bottom" title="tension">
+              <input type="text" class="form-control" name="tension" value="{{$control->tension}}" placeholder="tension arterial" data-toggle="tooltip" data-placement="bottom" title="tension" readonly="">
             </div>
 
              <label class="col-sm-1 control-label">Alt.Ute.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="altura_uterina" value="{{$control->altura_uterina}}" placeholder="Altura Uterina" data-toggle="tooltip" data-placement="bottom" title="altura uterina">
+              <input type="text" class="form-control" name="altura_uterina" value="{{$control->altura_uterina}}" placeholder="Altura Uterina" data-toggle="tooltip" data-placement="bottom" title="altura uterina" readonly="">
             </div>
 
             <label class="col-sm-1 control-label">Presentaciòn.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="presentacion" value="{{$control->presentacion}}" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion">
+              <input type="text" class="form-control" name="presentacion" value="{{$control->presentacion}}" placeholder="presentacion" data-toggle="tooltip" data-placement="bottom" title="presentacion" readonly="">
             </div>
 
             </div>
@@ -64,17 +64,17 @@
 
             <label class="col-sm-1 control-label">F.C.F.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="fcf" value="{{$control->fcf}}" placeholder="FCF" data-toggle="tooltip" data-placement="bottom" title="fcf">
+              <input type="text" class="form-control" name="fcf" value="{{$control->fcf}}" placeholder="FCF" data-toggle="tooltip" data-placement="bottom" title="fcf" readonly="">
             </div>
 
              <label class="col-sm-1 control-label">Movimiento.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="movimiento_fetal" value="{{$control->movimiento_fetal}}" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal">
+              <input type="text" class="form-control" name="movimiento_fetal" value="{{$control->movimiento_fetal}}" placeholder="Movimiento Fetal" data-toggle="tooltip" data-placement="bottom" title="movimiento_fetal" readonly="">
             </div>
 
              <label class="col-sm-1 control-label">Edema.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="edema" value="{{$control->edema}}" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema">
+              <input type="text" class="form-control" name="edema" value="{{$control->edema}}" placeholder="Edema" data-toggle="tooltip" data-placement="bottom" title="edema" readonly="">
             </div>
         </div>
 
@@ -83,19 +83,19 @@
 
              <label class="col-sm-1 control-label">Pulso.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="pulso_materno" value="{{$control->pulso_materno}}" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno">
+              <input type="text" class="form-control" name="pulso_materno" value="{{$control->pulso_materno}}" placeholder="Pulso Materno" data-toggle="tooltip" data-placement="bottom" title="pulso_materno" readonly="">
             </div>
 
 
              <label class="col-sm-1 control-label">Consejeria</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="consejeria" value="{{$control->consejeria}}" placeholder="Consejeria PF" data-toggle="tooltip" data-placement="bottom" title="consejeria">
+              <input type="text" class="form-control" name="consejeria" value="{{$control->consejeria}}" placeholder="Consejeria PF" data-toggle="tooltip" data-placement="bottom" title="consejeria" readonly="">
             </div>
 
 
              <label class="col-sm-1 control-label">Sulfato.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="sulfato" value="{{$control->sulfato}}" placeholder="Sulfato Ferroso" data-toggle="tooltip" data-placement="bottom" title="sulfato">
+              <input type="text" class="form-control" name="sulfato" value="{{$control->sulfato}}" placeholder="Sulfato Ferroso" data-toggle="tooltip" data-placement="bottom" title="sulfato" readonly="">
             </div>
 
         </div>
@@ -106,18 +106,18 @@
 
              <label class="col-sm-1 control-label">Perfil.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="perfil_biofisico" value="{{$control->perfil_biofisico}}" placeholder="Perfil Biosfisico" data-toggle="tooltip" data-placement="bottom" title="perfil_biofisico">
+              <input type="text" class="form-control" name="perfil_biofisico" value="{{$control->perfil_biofisico}}" placeholder="Perfil Biosfisico" data-toggle="tooltip" data-placement="bottom" title="perfil_biofisico" readonly="">
             </div>
 
 
              <label class="col-sm-1 control-label">Visita.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="visita_domicilio" value="{{$control->visita_domicilio}}" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio">
+              <input type="text" class="form-control" name="visita_domicilio" value="{{$control->visita_domicilio}}" placeholder="Visita a domicilio" data-toggle="tooltip" data-placement="bottom" title="visita_domicilio" readonly="">
             </div>
 
              <label class="col-sm-1 control-label">Establ.</label>
             <div class="col-sm-3">
-              <input type="text" class="form-control" name="establecimiento_atencion" value="{{$control->establecimiento_atencion}}" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion">
+              <input type="text" class="form-control" name="establecimiento_atencion" value="{{$control->establecimiento_atencion}}" placeholder="Establecimiento de atencion" data-toggle="tooltip" data-placement="bottom" title="establecimiento_atencion" readonly="">
             </div>
 
         </div>
@@ -126,7 +126,7 @@
                     <div class="row">
              <label class="col-sm-1 control-label">Serologia</label>
             <div class="col-sm-3">
-             <select id="el11" name="sero" value="{{$control->sero}}">
+             <select id="el11" name="sero" value="{{$control->sero}}" readonly="">
 							<option value="Negativo">Negativo</option>
 							<option value="Positivo">Positivo</option>
 						     <option value="No">No se hizo</option>
@@ -138,7 +138,7 @@
 
              <label class="col-sm-1 control-label">Glucosa</label>
             <div class="col-sm-3">
-               <select id="el12" name="gluco">
+               <select id="el12" name="gluco" readonly="">
 							<option value="Normal">Normal</option>
 							<option value="Anormal">Anormal</option>
 						     <option value="No">No se hizo</option>
@@ -149,7 +149,7 @@
 
              <label class="col-sm-1 control-label">VIH</label>
             <div class="col-sm-3">
-               <select id="el13" name="vih">
+               <select id="el13" name="vih" readonly="">
 							<option value="Positivo">Positivo</option>
 							<option value="Negativo">Negativo</option>
 						     <option value="No">No se hizo</option>
@@ -166,8 +166,8 @@
 
              <label class="col-sm-1 control-label">Hemoglobina</label>
             <div class="col-sm-3">
-             	<input type="text" name="hemo" value="{{$control->hemo}}" style="line-height: 20px">gr/dl	
-				<input type="date" name="hemod" value="{{$control->hemod}}"  style="line-height: 20px">	
+             	<input type="text" name="hemo" value="{{$control->hemo}}" readonly="" style="line-height: 20px">gr/dl	
+				<input type="date" name="hemod" value="{{$control->hemod}}" readonly=""  style="line-height: 20px">	
 
             </div>
 
@@ -177,22 +177,22 @@
           <div class="row">
 			<label class="col-sm-12" for="">Examen Fisico General y Regional</label>
 			<div class="col-sm-2">Piel/Mucosas	
-				<input class="form-control" type="text" name="piel" value="{{$control->piel}}">
+				<input class="form-control" type="text" name="piel" value="{{$control->piel}}" readonly="">
 			</div>
 			<div class="col-sm-2">Mamas	
-				<input class="form-control" type="text" name="mamas" value="{{$control->mamas}}">
+				<input class="form-control" type="text" name="mamas" value="{{$control->mamas}}" readonly="">
 			</div>
 			<div class="col-sm-2">Abdomen	
-				<input class="form-control" type="text" name="abdomen" value="{{$control->abdomen}}">
+				<input class="form-control" type="text" name="abdomen" value="{{$control->abdomen}}" readonly="">
 			</div>
 			<div class="col-sm-2">Genitales Externos	
-				<input class="form-control" type="text" name="genext" value="{{$control->genext}}">
+				<input class="form-control" type="text" name="genext" value="{{$control->genext}}" readonly="">
 			</div>
 			<div class="col-sm-2">Genitales Internos	
-				<input class="form-control" type="text" name="genint" value="{{$control->genint}}">
+				<input class="form-control" type="text" name="genint" value="{{$control->genint}}" readonly="">
 			</div>
 			<div class="col-sm-2">Miembros Inferiores	
-				<input class="form-control" type="text" name="miembros" value="{{$control->miembros}}">
+				<input class="form-control" type="text" name="miembros" value="{{$control->miembros}}" readonly="">
 			</div>
 
 
@@ -200,25 +200,37 @@
 
 		    <div class="row">
 		    	<div class="col-sm-3">Diag.Pres	
-				<input class="form-control" type="text" name="pres" value="{{$control->pres}}">
+				<input class="form-control" type="text" name="pres" value="{{$control->pres}}" readonly="">
 			    </div>
 
 			    <div class="col-sm-3">Exa.Auxiliares	
-				<input class="form-control" type="text" name="exa" value="{{$control->exa}}">
+				<input class="form-control" type="text" name="exa" value="{{$control->exa}}" readonly="">
 			</div>
 
 			<div class="col-sm-3">Diag.Def	
-				<input class="form-control" type="text" name="def" value="{{$control->def}}">
+				<input class="form-control" type="text" name="def" value="{{$control->def}}" readonly="">
 			</div>
 
 			<div class="col-sm-3">PlanTratamiento	
-				<input class="form-control" type="text" name="tra" value="{{$control->tra}}">
+				<input class="form-control" type="text" name="tra" value="{{$control->tra}}" readonly="">
 			</div>
 
 		    	
 		    </div>
 
+    
+
         </div>
+      
+      
+    </div>
+
+    <div class="row">
+            <label for="" class="col-sm-2 ">Observaciòn:</label>
+      <div class="col-sm-10 control-label"> 
+        <textarea name="observacion" cols="10" rows="4" class="form-control" ></textarea>   
+      </div>
+      </div>
 
 
             <br>

@@ -58,7 +58,7 @@
 								<td>{{$d->created_at}}</td>
 								<td><a href="prenatal-ver-{{$d->idPaciente}}" class="btn btn-success">Ver ficha</a></td>
 								@if(\Auth::user()->role_id == 4)
-								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Completar</a></td>
+								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Reevaluar</a></td>
 								@endif
 								@if(\Auth::user()->role_id == 5)
 								<td><a href="control-edit-{{$d->id}}" class="btn btn-primary">Reevaluar</a></td>

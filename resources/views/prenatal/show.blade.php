@@ -549,6 +549,11 @@
 
         </div>
 
+        <div class="row"><strong>Observaciòn:</strong>
+
+          {{$c->observacion}}
+        </div>
+
 
    @endforeach
 
