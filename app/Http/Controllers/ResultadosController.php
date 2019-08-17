@@ -449,9 +449,6 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-        
-
-/*
               $s = new Atenciones();
               $s->id_paciente = $id_paciente;
               $s->origen = $origen;
@@ -474,9 +471,10 @@ class ResultadosController extends Controller
               $s->porcentaje =$monto * $por_tec /100;
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
-              $s->save(); */
+              $s->tecnologo = 1;
+              $s->save(); 
 
-               }
+              
 
          ///PARA MATERIALES MALOGRADOS
       if (isset($request->materialm)) {

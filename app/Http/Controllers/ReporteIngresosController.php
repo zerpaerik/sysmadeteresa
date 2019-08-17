@@ -153,12 +153,13 @@ class ReporteIngresosController extends Controller
 
 
        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
+        ->select('a.id','a.id_paciente','a.tecnologo','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
           ->where('a.paquete','=',NULL)
+        ->where('a.tecnologo',<>,1)
         ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.id_servicio','=',$request->servicio)
         ->whereNotIn('a.monto',[0,0.00,99999])
@@ -170,8 +171,9 @@ class ReporteIngresosController extends Controller
         
          $monto = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->where('id_servicio','=',$request->servicio)
-                                        ->where('es_servicio','=',1)
-                                                  ->where('paquete','=',NULL)
+                        ->where('es_servicio','=',1)
+                        ->where('paquete','=',NULL)
+                      ->where('tecnologo',<>,1)
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
@@ -182,6 +184,7 @@ class ReporteIngresosController extends Controller
         $abono = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->where('id_servicio','=',$request->servicio)
                           ->where('es_servicio','=',1)
+                          ->where('tecnologo',<>,1)
                           ->where('paquete','=',NULL)
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -194,6 +197,7 @@ class ReporteIngresosController extends Controller
                        ->where('id_servicio','=',$request->servicio)
                           ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
+                        ->where('tecnologo',<>,1)
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(porcentaje) as monto'))
@@ -211,11 +215,12 @@ class ReporteIngresosController extends Controller
 
          
        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
+        ->select('a.id','a.id_paciente','a.tecnologo','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
+        ->where('a.tecnologo',<>,1)
           ->where('a.paquete','=',NULL)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])->orderby('a.id','desc')
         ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -226,6 +231,7 @@ class ReporteIngresosController extends Controller
           $monto = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
+                          ->where('tecnologo',<>,1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
@@ -236,6 +242,7 @@ class ReporteIngresosController extends Controller
         $abono = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
+                          ->where('tecnologo',<>,1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(abono) as monto'))
@@ -247,6 +254,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
+                          ->where('tecnologo',<>,1)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(porcentaje) as monto'))
                        ->first();
@@ -261,12 +269,13 @@ class ReporteIngresosController extends Controller
 
          
        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
+        ->select('a.id','a.id_paciente','a.tecnologo','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
           ->where('a.paquete','=',NULL)
+        ->where('a.tecnologo',<>,1)
         ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.id_servicio','=',$request->servicio)
         ->whereNotIn('a.monto',[0,0.00,99999])
@@ -278,6 +287,7 @@ class ReporteIngresosController extends Controller
                        ->where('id_servicio','=',$request->servicio)
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
+                                                ->where('tecnologo',<>,1)
                           ->where('paquete','=',NULL)
                        ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
@@ -289,6 +299,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                          ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
+                                                ->where('tecnologo',<>,1)
                        ->select(DB::raw('SUM(abono) as monto'))
                        ->first();
         if ($abono->monto == 0) {
@@ -299,6 +310,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                            ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
+                                                ->where('tecnologo',<>,1)
                        ->select(DB::raw('SUM(porcentaje) as monto'))
                        ->first();
         if ($comision->monto == 0) {
@@ -311,7 +323,7 @@ class ReporteIngresosController extends Controller
 
           
        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paciente','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
+        ->select('a.id','a.id_paciente','a.tecnologo','a.usuarioinforme','a.created_at','a.origen_usuario','a.origen','a.porc_pagar','a.id_servicio','es_laboratorio','a.id_sede','a.pagado_com','a.id_laboratorio','a.pendiente','a.abono','a.es_servicio','a.es_laboratorio','a.monto','a.porcentaje','a.abono','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','a.paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
@@ -327,6 +339,7 @@ class ReporteIngresosController extends Controller
          $monto = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                   ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
+                                                ->where('tecnologo',<>,1)
                        ->whereDate('created_at', '=',Carbon::today()->toDateString())
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -338,6 +351,7 @@ class ReporteIngresosController extends Controller
         $abono = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                ->whereDate('created_at', '=',Carbon::today()->toDateString())
                        ->whereNotIn('monto',[0,0.00,99999])
+                                             ->where('tecnologo',<>,1)
                          ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -350,6 +364,7 @@ class ReporteIngresosController extends Controller
                                 ->whereDate('created_at', '=',Carbon::today()->toDateString())
                        ->whereNotIn('monto',[0,0.00,99999])
                          ->where('es_servicio','=',1)
+                                               ->where('tecnologo',<>,1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(porcentaje) as monto'))
