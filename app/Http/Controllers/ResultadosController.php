@@ -449,6 +449,9 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
+        
+
+
               $s = new Atenciones();
               $s->id_paciente = $id_paciente;
               $s->origen = $origen;
@@ -474,7 +477,7 @@ class ResultadosController extends Controller
               $s->tecnologo = 1;
               $s->save(); 
 
-              
+               }
 
          ///PARA MATERIALES MALOGRADOS
       if (isset($request->materialm)) {
