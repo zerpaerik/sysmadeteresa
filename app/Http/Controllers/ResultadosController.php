@@ -311,18 +311,18 @@ class ResultadosController extends Controller
 	
     public function guardar($id,Request $request){
 
-    $atencion = Atenciones::findOrFail($id);
-		$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
-    $laboratorios = Producto::where('almacen','=',2)->where('categoria','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
-    $servicios = Producto::where('almacen','=',2)->whereNotIn('categoria',[2,3])->where("sede_id", "=", $request->session()->get('sede'))->get();
+      $atencion = Atenciones::findOrFail($id);
+      $productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+      $laboratorios = Producto::where('almacen','=',2)->where('categoria','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
+      $servicios = Producto::where('almacen','=',2)->whereNotIn('categoria',[2,3])->where("sede_id", "=", $request->session()->get('sede'))->get();
 
-    $productos2 = Producto::where('almacen','=',2)->where("categoria",'=',4)->where("sede_id", "=", $request->session()->get('sede'))->get();
+      $productos2 = Producto::where('almacen','=',2)->where("categoria",'=',4)->where("sede_id", "=", $request->session()->get('sede'))->get();
 
-    $local= Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'));
+      $local= Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'));
 
-    $rayos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->union($local)->get();
+      $rayos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->union($local)->get();
 
-    $placas = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->get();
+      $placas = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",1)->get();
 
     return view('resultados.guardar', compact('atencion','productos','productos2','servicios','laboratorios','rayos','placas'));
 
@@ -362,6 +362,7 @@ class ResultadosController extends Controller
           $abono = $servicios->abono;
           $sede = $servicios->id_sede;
           $comollego = $servicios->comollego;
+          $paquete= $servicios->paquete;
 
         }
 
@@ -371,8 +372,11 @@ class ResultadosController extends Controller
         ->where('id','=', $id_servicio)
         ->get();
 
+
+
         foreach ($searchServicioTec as $servicios) {
           $por_tec = $servicios->por_tec;
+          $precio = $servicios->precio;
         }
 
 
@@ -420,10 +424,57 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
+              } elseif($paquete<>NULL) {
+
+
+                $p = User::where('id','=',Auth::user()->id)->first();
+
+          $product=new ResultadosServicios;
+          $img = $request->file('informe');
+          $nombre_imagen=$img->getClientOriginalName();
+          $product->id_atencion=$request->id;
+          $product->id_servicio=$id_servicio;
+          $product->informe=$nombre_imagen;
+          $product->user_id=Auth::user()->id;
+          if ($product->save()) {
+           \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+
+         }
+         \DB::commit();
+
+        $pa = Atenciones::findOrFail($id);
+        $pa->resultado = 1;  
+        $pa->usuarioinforme=$p->name.' '.$p->lastname;
+        $pa->nombreinforme=$nombre_imagen;
+        $pa->save(); 
+
+   
+              $s = new Atenciones();
+              $s->id_paciente = $id_paciente;
+              $s->origen = $origen;
+              $s->origen_usuario = Auth::user()->id;
+              $s->id_laboratorio =  1;
+              $s->id_servicio =  $id_servicio;
+              $s->id_paquete = 1;
+              $s->comollego = $comollego;
+              $s->es_paquete =  FALSE;
+              $s->es_servicio =  1;
+              $s->es_laboratorio =  FALSE;
+              $s->serv_prog = FALSE;
+              $s->tipopago = $tipopago;
+              $s->porc_pagar = $por_tec;
+              $s->pendiente = 0;
+              $s->monto = $precio;
+              $s->abono = $abono;
+              $s->resultado = 1;  
+              $s->pago_com_tec = 0;   
+              $s->porcentaje =$precio * $por_tec /100;
+              $s->id_sede =$request->session()->get('sede');
+              $s->estatus = 1;
+              $s->tecnologo = 1;
+              $s->save(); 
 
                } else {
-
-                     //  dd('hola');
 
 
                
