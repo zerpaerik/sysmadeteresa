@@ -472,6 +472,7 @@ class ResultadosController extends Controller
               $s->id_sede =$request->session()->get('sede');
               $s->estatus = 1;
               $s->tecnologo = 1;
+              $s->paquete = $paquete;
               $s->save(); 
 
                } else {
