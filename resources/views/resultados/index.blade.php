@@ -97,7 +97,7 @@
 
 					    <a href="resultados-desoc-{{$p->id}}" class="btn btn-success">Reversar</a>
 	
-						<a href="/modelo-informe-{{$p->id}}-{{$p->informe}}" class="btn btn-danger" target="_blank">Descargar Modelo</a>
+						<a href="/modelo-informe-{{$p->id}}-{{$p->informe}}" class="btn btn-primary" target="_blank">Descargar Modelo</a>
 							
 						<td><a class="btn btn-primary" href="/resultados-guardar-{{$p->id}}">Adjuntar Informe</a></td>
 
@@ -368,9 +368,13 @@
                                     
 					     </select>
 							</td>
-							<td><input type="submit" class="btn btn-success" value="Asociar"></td>
+							<td><input type="submit" class="btn btn-success" value="Asociar">
+                            <a href="resultados-descartar-{{$p->id}}" class="btn btn-danger" onclick="return confirm('¿Desea Descartar este registro?')">Descartar</a>
+
+                            </td>
+
 							@endif
-							
+
 						</tr>
 						</form>
 						@endforeach	

@@ -360,6 +360,7 @@ Route::get('resultados-edit-{id}', 'ResultadosController@editView')->name('resul
 Route::get('resultados-guardar-{id}', 'ResultadosController@guardar')->name('resultados.guardar');
 Route::put('resultados-edit1-{id}', 'ResultadosController@edit1')->name('products.update');;
 Route::get('resultados-asoc-{id}', 'ResultadosController@asoc');
+Route::get('resultados-descartar-{id}', 'ResultadosController@descartar');
 Route::get('resultados-asoc1-{id}', 'ResultadosController@asoc1');
 Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
 
