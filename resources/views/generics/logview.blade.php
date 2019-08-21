@@ -87,8 +87,11 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
                   <div class="avatar">
+                    @if(\Auth::user()->id == 100000014)
+                    <img src="{{url('img/hernandez.jpeg')}}" class="img-rounded" alt="avatar" />
+                    @else
                     <img src="{{url('img/avatar.jpg')}}" class="img-rounded" alt="avatar" />
-                  </div>
+                    @endif                  </div>
                   @auth
                   <i class="fa fa-angle-down pull-right"></i>
                   <div class="user-mini pull-right">
