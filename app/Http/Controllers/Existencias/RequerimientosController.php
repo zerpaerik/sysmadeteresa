@@ -121,7 +121,7 @@ class RequerimientosController extends Controller
 
 
        $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.precioventa')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -173,7 +173,7 @@ class RequerimientosController extends Controller
 
 
           $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.precioventa')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -215,7 +215,7 @@ class RequerimientosController extends Controller
           } else if(! is_null($request->almacen)) {
 
              $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.precioventa')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')
@@ -243,7 +243,7 @@ class RequerimientosController extends Controller
 
 
        $requerimientos3 = DB::table('requerimientos as a')
-                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre')
+                    ->select('a.id','a.id_sede_solicita','a.id_sede_solicitada','a.usuario','a.id_producto','a.almacen_solicita','a.updated_at','a.cantidad','a.estatus','b.name as sede','a.created_at','a.cantidadd','c.name as solicitante','d.nombre','d.precioventa')
                     ->join('sedes as b','a.id_sede_solicita','b.id','e.name')
                     ->join('users as c','c.id','a.usuario')
                     ->join('productos as d','d.id','a.id_producto')

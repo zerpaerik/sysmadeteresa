@@ -95,6 +95,7 @@
 							<th>Producto</th>
 							<th>Cantidad Solicitada</th>
 						    <th>Cantidad Entregada</th>
+					        <th>Monto</th>
 							<th>Estatus</th>
 							<th>Fecha Sol.</th>
 							<th>Fecha Pro.</th>
@@ -127,6 +128,7 @@
 								<td>{{$req->nombre}}</td>
 							    <td>{{$req->cantidad}}</td>
 							    <td>{{$req->cantidadd}}</td>
+							    <td>{{$req->cantidadd * $req->precioventa}}</td>
 								<td>{{$req->estatus}}</td>
 								<td>{{$req->created_at}}</td>
 								<td>{{$req->updated_at}}</td>
