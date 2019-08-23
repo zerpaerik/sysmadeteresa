@@ -68,7 +68,7 @@
 					<thead>
 						<tr>
 							<th>Paciente</th>
-							<th>Profesional</th>
+							<th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
 						</tr>
 					</thead>
@@ -77,7 +77,7 @@
 
 							<tr>
 								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
-								<td>{{$atec->nompro}},{{$atec->apepro}}</td>
+								<td>{{$atec->tipo}}</td>
 								<td>{{$atec->prox}}</td>
 								
 							</tr>
@@ -86,7 +86,7 @@
 					<tfoot>
 						<tr>
 							<th>Paciente</th>
-							<th>Profesional</th>
+							<th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
 						</tr>
 						    

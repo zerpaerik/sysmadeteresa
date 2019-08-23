@@ -179,7 +179,7 @@ class PrenatalController extends Controller
 				'torchd' =>$request->torchd,
 				'imc' => number_format(($request->peso_pregestacional / ($request->talla_pregestacional * $request->talla_pregestacional)) * 10000, 2),
 				'at_fami' =>$request->at_fami,
-				'at_perso' =>$request->at_perso
+				'at_perso' =>$request->at_perso,
 
 
 				
@@ -291,12 +291,15 @@ class PrenatalController extends Controller
 			"exa" => $request->exa,
 			"def" => $request->def,
 			"tra" => $request->tra,
-						"pendiente" => $request->pendiente,
+		    "pendiente" => $request->pendiente,
+		    "prox" => $request->prox
+
 
     	]);
 
     	 $event = Event::find($request->evento);
 		    $event->atendido=1;
+		    $event->prox= $request->prox;
 		    $event->update();
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);

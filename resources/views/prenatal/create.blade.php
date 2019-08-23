@@ -1008,6 +1008,15 @@
 		    	
 		    </div>
 
+		    <div class="row">
+
+
+			<div class="col-sm-3">Proxima Cita	
+				<input class="form-control" type="date" name="prox">
+			</div>
+		    	
+		    </div>
+
         </div>
 
 
