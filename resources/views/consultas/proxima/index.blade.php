@@ -68,6 +68,7 @@
 					<thead>
 						<tr>
 							<th>Paciente</th>
+							<th>Telèfono</th>
 							<th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
 						</tr>
@@ -77,6 +78,7 @@
 
 							<tr>
 								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
+								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->tipo}}</td>
 								<td>{{$atec->prox}}</td>
 								

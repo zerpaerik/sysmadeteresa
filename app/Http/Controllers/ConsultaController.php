@@ -30,7 +30,7 @@ class ConsultaController extends Controller
 
 
       $atenciones = DB::table('events as a')
-      ->select('a.id','a.paciente','a.created_at','a.tipo','a.prox','b.nombres','b.apellidos','a.prox')
+      ->select('a.id','a.paciente','a.created_at','a.tipo','a.prox','b.nombres','b.apellidos','b.telefono','a.prox')
       ->join('pacientes as b','b.id','a.paciente')
       ->whereBetween('a.prox', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
       ->get();
@@ -40,7 +40,7 @@ class ConsultaController extends Controller
 
 
       $atenciones = DB::table('events as a')
-      ->select('a.id','a.paciente','a.created_at','a.tipo','a.prox','b.nombres','b.apellidos','a.prox')
+      ->select('a.id','a.paciente','a.created_at','a.tipo','a.prox','b.nombres','b.apellidos','b.telefono','a.prox')
       ->join('pacientes as b','b.id','a.paciente')
       ->whereDate('a.prox', '=',Carbon::today()->toDateString())
       ->orderby('a.id','desc')
