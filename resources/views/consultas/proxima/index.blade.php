@@ -66,21 +66,31 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 				<form action="/pagarmultiple" method="post">
 					<thead>
-						<tr>
+						<tr> 
+							<th>Sede</th>
 							<th>Paciente</th>
 							<th>Telèfono</th>
 							<th>Tipo</th>
 							<th>Fecha de Pròxima Cita</th>
+							<th>Llamado</th>
 						</tr>
 					</thead>
 					<tbody>
                         	@foreach($atenciones as $atec)	
 
-							<tr>
+							<tr>								
+								<td>{{$atec->sede}}</td>
 								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->tipo}}</td>
 								<td>{{$atec->prox}}</td>
+								@if($atec->llamado==0)
+								<td>
+								<a class="btn btn-danger" href="llama-{{$atec->id}}">Llamado</a>
+								</td>
+								@else
+								<td style="background-image: green;">Fue Llamado</td>
+								@endif
 								
 							</tr>
 						@endforeach

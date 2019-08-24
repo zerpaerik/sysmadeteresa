@@ -315,4 +315,15 @@ class EventController extends Controller
     ];
     return view('consultas.create', $data + $extra);
   }
+
+   public function llama($id){
+    $event = Event::find($id);
+    $event->llamado= 1;
+    $event->save();
+    
+   return back();
+
+  }
+
+
 }

@@ -508,6 +508,7 @@ Route::get('consulta-delete-{id}','Events\EventController@delete_consulta')->nam
 Route::get('consulta-atendido-{id}','Events\EventController@atendido')->name('consultas.atendido')->middleware('auth');
 Route::get('consulta-ticket-ver-{id}','Events\EventController@ticket_ver');
 Route::get('event-{id}','Events\EventController@show');
+Route::get('llama-{id}','Events\EventController@llama');
 Route::match(['get', 'post'], 'events', 'Events\EventController@index')->name('consultas.index');
 Route::get('available-time/{e}/{d}/{m}/{y}', 'Events\EventController@availableTime');
 Route::get('consulta-create', 'Events\EventController@createView')->name('consultas.create');
