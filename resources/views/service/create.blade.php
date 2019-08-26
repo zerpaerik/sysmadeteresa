@@ -76,7 +76,17 @@
 										</option>
 									@endforeach
 								</select>
-							</div>						
+							</div>	
+
+							<label class="col-sm-1 control-label">Tiempo</label>
+						<div class="col-sm-3">
+							<select id="el10" name="tiempo">
+									<option value="15min">15min</option>
+									<option value="30min">30min</option>
+									<option value="45min">45min</option>
+									<option value="60min">60min</option>
+							</select>
+						</div>					
 
 						<br>
 						<input onclick="form.submit()"  type="submit" style="margin-left:15px; margin-top: 20px;" class="col-sm-2 btn btn-primary" value="Agregar">
@@ -96,6 +106,7 @@ $(document).ready(function() {
 	LoadSelect2Script(function (){
 		$("#el2").select2();
 		$("#el9").select2();
+	    $("#el10").select2();
 		$("#el1").select2();
 		$("#el4").select2();
 		$("#el3").select2({disabled : true});

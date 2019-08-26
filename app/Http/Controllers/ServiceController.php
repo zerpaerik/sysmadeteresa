@@ -80,7 +80,7 @@ class ServiceController extends Controller
       $f1=$request->fecha;
       $f2=$request->fecha2;
     $services = DB::table('services as s')
-    ->select('s.id as SerId','s.created_at','s.usuario','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
+    ->select('s.id as SerId','s.created_at','s.tiempo','s.usuario','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
@@ -92,7 +92,7 @@ class ServiceController extends Controller
   } else {
 
       $services = DB::table('services as s')
-    ->select('s.id as SerId','s.usuario','s.date','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.created_at','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
+    ->select('s.id as SerId','s.usuario','s.tiempo','s.date','s.especialista_id','s.title','s.paciente_id','s.servicio_id','s.date','s.created_at','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac','u.name','u.lastname')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
@@ -175,7 +175,7 @@ class ServiceController extends Controller
   public function show($id)
   {
     $services = DB::table('services as s')
-    ->select('s.id','s.especialista_id','s.tipo','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
+    ->select('s.id','s.especialista_id','s.tiempo','s.tipo','s.title','s.paciente_id','s.servicio_id','s.date','s.hora_id','pro.name as nombrePro','pro.lastname as apellidoPro','pro.id as profesionalId','rg.start_time','rg.end_time','rg.id','sr.detalle as srDetalle','sr.id as srId','pc.nombres as nompac','pc.apellidos as apepac')
     ->join('personals as pro','pro.id','=','s.especialista_id')
     ->join('rangoconsultas as rg','rg.id','=','s.hora_id')
     ->join('servicios as sr','sr.id','=','s.servicio_id')
@@ -234,11 +234,10 @@ class ServiceController extends Controller
        $paciente= Pacientes::find($request->paciente);
 
 
-
-
      if($request->tipo == 1){ // servicios
 
       $servicios = Servicios::where('id','=',$request->servicio_id)->first();
+
 
       $evt = Service::create([
         "especialista_id" => $request->especialista,
@@ -247,6 +246,7 @@ class ServiceController extends Controller
         "hora_id" => $request->time,
         "tipo" => $request->tipo,
         "servicio_id" => $request->servicio_id,
+        "tiempo" => $request->tiempo,
         "consulta" =>'No',
         "control" =>'No',
         "usuario" =>\Auth::user()->id,
@@ -263,6 +263,7 @@ class ServiceController extends Controller
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
        "tipo" => $request->tipo,
                "hora_id" => $request->time,
+                       "tiempo" => $request->tiempo,
         "servicio_id" => 1,
         "consulta" =>'CONSULTA',
         "control" =>'No',
@@ -280,6 +281,7 @@ class ServiceController extends Controller
         "date" => Carbon::createFromFormat('d/m/Y', $request->date),
         "hora_id" => $request->time,
         "tipo" => $request->tipo,
+                "tiempo" => $request->tiempo,
         "servicio_id" => 1,
         "consulta" =>'No',
         "control" =>'CONTROL PRENATAL',

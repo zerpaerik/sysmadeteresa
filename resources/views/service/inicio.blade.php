@@ -57,6 +57,7 @@
 							<th>Especialista</th>
 							<th>Fecha</th>
 							<th>Horas</th>
+							<th>Tiempo</th>
 							<th>Registrado Por:</th>
 							<th>Acciones:</th>
 						</tr>
@@ -70,6 +71,7 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->date}}</td>
 						<td>{{$d->start_time}}-{{$d->end_time}}</td>
+						<td>{{$d->tiempo}}</td>
 						<td>{{$d->name}}-{{$d->lastname}}</td>
 						<td>
 						@if(\Auth::user()->role_id <> 6 && \Auth::user()->role_id <> 7)							 
