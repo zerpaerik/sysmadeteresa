@@ -91,7 +91,7 @@ class MetodosController extends Controller
     $f2 = $request->fecha2; 
 
      $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.tipopago','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+            ->select('a.id','a.id_paciente','a.tipopago','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.detalle_llamada','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
            ->join('users as c','c.id','a.id_usuario')
            ->join('pacientes as b','b.id','a.id_paciente')
            ->join('productos as d','d.id','a.id_producto')
@@ -105,7 +105,7 @@ class MetodosController extends Controller
 
 
         $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.tipopago','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+            ->select('a.id','a.id_paciente','a.tipopago','a.detalle_llamada','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
            ->join('users as c','c.id','a.id_usuario')
            ->join('pacientes as b','b.id','a.id_paciente')
            ->join('productos as d','d.id','a.id_producto')
@@ -240,18 +240,20 @@ class MetodosController extends Controller
 
     public function llamar($id){
 
-
-      DB::table('metodos')
-            ->where('id',$id)
-            ->update([
-              'estatus' =>'Fue Llamado'
-            ]);
-
-  
-    Toastr::success('Llamado Exitosamente.', 'Paciente!', ['progressBar' => true]);
+      return view('metodos.llamar',compact('id'));
+  }
 
 
-    return redirect()->action('MetodosController@index1', ["deleted" => true, "metodo" => Metodos::all()]);
+  public function llamada(Request $request){
+
+
+        $metodos = Metodos::find($request->id);
+        $metodos->detalle_llamada =$request->observacion;
+        $metodos->estatus ='Llamado';
+        $metodos->save();
+
+
+    return back();
   }
 
   public function createView(Request $request) {
