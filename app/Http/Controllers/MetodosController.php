@@ -96,8 +96,8 @@ class MetodosController extends Controller
            ->join('pacientes as b','b.id','a.id_paciente')
            ->join('productos as d','d.id','a.id_producto')
           ->where('a.sede','=',$request->session()->get('sede'))
-          ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-            ->orderBy('a.created_at','asc')
+          ->whereBetween('a.proximo', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+            ->orderBy('a.proximo','asc')
             ->get(); 
 
   } else {
@@ -111,7 +111,7 @@ class MetodosController extends Controller
            ->join('productos as d','d.id','a.id_producto')
           ->where('a.sede','=',$request->session()->get('sede'))
            ->where('a.proximo','=',Carbon::today()->toDateString())
-            ->orderBy('a.created_at','asc')
+            ->orderBy('a.proximo','asc')
             ->get(); 
 
             }
