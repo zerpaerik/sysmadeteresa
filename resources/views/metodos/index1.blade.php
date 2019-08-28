@@ -108,20 +108,7 @@
 							</tr>
 						@endforeach
 					</tbody>
-					<tfoot>
-						<tr>
-							<th>Fecha de Registro</th>
-							<th>Paciente</th>
-							<th>DNI</th>
-							<th>Teléfono</th>
-							<th>Método</th>
-							<th>Monto</th>
-							<th>Próxima Aplicación</th>
-						    <th>Registrado Por:</th>
-							<th>Acciones</th>
-						  
-
-					</tfoot>
+				
 
 				</table>
 			</div>
