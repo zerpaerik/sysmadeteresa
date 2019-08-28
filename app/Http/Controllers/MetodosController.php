@@ -114,12 +114,15 @@ class MetodosController extends Controller
             ->orderBy('a.proximo','asc')
             ->get(); 
 
+            $f1=Carbon::today()->toDateString();
+            $f2=Carbon::today()->toDateString();
+
             }
 
     
 
 
-      return view('metodos.index1', ['metodos' => $metodos]);     
+      return view('metodos.index1',compact('metodos','f1','f2'));     
     }
 
   public function ticket_ver($id) 
