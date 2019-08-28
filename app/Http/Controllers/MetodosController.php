@@ -243,6 +243,13 @@ class MetodosController extends Controller
       return view('metodos.llamar',compact('id'));
   }
 
+    public function llamado($id){
+
+      $llamada= Metodos::where('id',$id)->first();
+
+      return view('metodos.llamado',compact('id','llamada'));
+  }
+
 
   public function llamada(Request $request){
 

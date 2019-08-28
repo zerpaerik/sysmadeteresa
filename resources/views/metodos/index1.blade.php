@@ -63,7 +63,6 @@
 	
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
-					                          @foreach($metodos as $atec)	
 					<thead>
 						<tr>
 							<th>Fecha de Registro</th>
@@ -76,14 +75,14 @@
 							<th>Lo Aplicara</th>
 						    <th>Registrado Por:</th>
 						    <th>Estatus:</th>
-						    @if($atec->estatus == 'Llamado')
-						    <th>Observacion:</th>
-						    @endif
-							<th>Acciones</th>
+						    <th>
+						    	
+						    </th>
+						 
 						</tr>
 					</thead>
 					<tbody>
-
+					   @foreach($metodos as $atec)	
 							<tr>
 								<td>{{$atec->created_at}}</td>
 								<td>{{$atec->apellidos}},{{$atec->nombres}}</td>
@@ -94,17 +93,19 @@
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								<td style="background: #F781D8">{{$atec->estatus}}</td>
 								@if($atec->estatus == 'Llamado')
-							    <td>ffff</td>
-							    @endif
+								<td style="background: #F781D8">{{$atec->estatus}}<a href="#" class="btn btn-danger view1" onclick="view1(this)" data-id="{{$atec->id}}">Ver</a>
+								</td>
+								@else
+								<td style="background: #F781D8">{{$atec->estatus}}</td>
+								@endif
 								<td>
-								@if($atec->estatus == 'No Llamado')
+									@if($atec->estatus == 'No Llamado')
 							    <a href="#" class="btn btn-danger view" onclick="view(this)" data-id="{{$atec->id}}">Llamado</a>
 							    @endif
-
-
 								</td>
+							    
+								
 							</tr>
 						@endforeach
 					</tbody>
@@ -122,6 +123,17 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h4 class="modal-title" id="myModalLabel">Llamar a Paciente</h4>
+              </div>
+              <div class="modal-body"></div>
+            </div>
+          </div>
+        </div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Observaciòn de Paciente</h4>
               </div>
               <div class="modal-body"></div>
             </div>
@@ -145,6 +157,24 @@
             success: function (data) {
                 $(".modal-body").html(data);
                 $('#myModal').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    };
+</script>
+
+<script type="text/javascript">
+	function view1(e){
+        var id = $(e).attr('data-id');
+        
+        $.ajax({
+            type: "GET",
+            url: "/metodos-llamado-"+id,
+            success: function (data) {
+                $(".modal-body").html(data);
+                $('#myModal1').modal('show');
             },
             error: function (data) {
                 console.log('Error:', data);
