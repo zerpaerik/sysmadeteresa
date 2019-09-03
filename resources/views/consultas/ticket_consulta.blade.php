@@ -78,7 +78,8 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-50px;">
-		<p><strong>FECHA DE CITA:{{ $paciente->date}}</strong></p>
+	    <p><strong>FECHA DE CITA:{{ date('d/m/Y', strtotime($paciente->date)) }}</strong></p>
+
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">

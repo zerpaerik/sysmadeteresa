@@ -101,7 +101,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="fecha">
-		<p><strong>Fecha: {{ $metodos->created_at}}</strong></p>
+		<p><strong>Fecha: {{ date('d/m/Y', strtotime($metodos->created_at)) }}</strong></p>
 	</div>
 	<div class="servicios">
 		<p><strong>Mètodo: {{ $metodos->producto}}</strong></p>
