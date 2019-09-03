@@ -68,7 +68,7 @@ margin-top: -20px;
 
 	@if(Session::get('sedeName') == 'PROCERES')
 	<div class="" style="font-size: 35px; text-align: center;">
-		<img src="/var/www/html/sysmadeteresa/public/img/logo.jpg"  style="width: 30%;"/>
+		<img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 30%;"/>
 	</div>
 
  <div class="" style="font-size: 40px; text-align: center;margin-top: 18px;">
