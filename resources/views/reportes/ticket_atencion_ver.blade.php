@@ -71,13 +71,13 @@ margin-top: -20px;
 		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
 	</div>
 
- <div class="" style="font-size: 40px; text-align: center;margin-bottom:-60px;margin-top: 2px;">
+ <div class="" style="font-size: 30px; text-align: center;margin-bottom:-60px;margin-top: 2px;">
 		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
-		<p><strong>RUC: 20600971116</strong></p>
-	    <p><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
-		<p><strong>Teléfono: 01 3764637</strong></p>
-		<p><strong>WhatsApp: 942 066 567</strong></p>
-	   <p><strong>TICKET:{{ $ticket->id}}</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 01 3764637</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 942 066 567</strong></p>
+	   <p style="margin-top: -20px;"><strong>TICKET:{{ $ticket->id}}</strong></p>
 
 	</div>
 
