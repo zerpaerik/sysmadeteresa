@@ -68,10 +68,10 @@ margin-top: -20px;
 
 	@if(Session::get('sedeName') == 'PROCERES')
 	<div class="" style="font-size: 35px; text-align: center;">
-		<img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 30%;"/>
+		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
 	</div>
 
- <div class="" style="font-size: 40px; text-align: center;margin-top: 18px;">
+ <div class="" style="font-size: 40px; text-align: center;margin-top: 30px;">
 		<p style="margin-top: -30px;"><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
 		<p style="margin-top: -40px;"><strong>RUC: 20600971116</strong></p>
 	    <p style="margin-top: -40px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
@@ -79,24 +79,24 @@ margin-top: -20px;
 		<p style="margin-top: -40px;"><strong>WhatsApp: 942 066 567</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -70px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: 10px;">
 		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -70px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: 10px;">
 		<p><strong>DETALLE:{{ $ticket->detalle}}
 		</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -70px;;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: 10px;;">
 		<p><strong>MONTO: {{ $ticket->monto}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -70px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: 10px;">
 		<p><strong>ABONO:{{ $ticket->abono}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -70px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: 10px;">
 		<p><strong>RESTA: {{ $ticket->pendiente}}</strong></p>
 	</div>
 
