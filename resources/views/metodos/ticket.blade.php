@@ -61,7 +61,41 @@ margin-top: -20px;
 </head>
 <body>
 
+	@if(Session::get('sedeName') == 'PROCERES')
+<div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
+		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
+	</div>
 
+ <div class="" style="font-size: 30px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
+		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 01 3764637</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 942 066 567</strong></p>
+
+	</div>
+
+    <div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
+		<p><strong>FECHA:{{ $metodos->created_at}}</strong></p>
+	</div>
+
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
+		<p><strong>PACIENTE:{{$metodos->apellidos}} {{$metodos->nombres}}</strong></p>
+	</div>
+
+	
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
+		<p><strong>MÈTODOS ANTICONCEPTIVOS:{{ $metodos->producto}}
+		</strong></p>
+	</div>
+
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
+		<p><strong> MONTO TOTAL: {{ $metodos->monto}}</strong></p>
+	</div>
+
+	
+
+@else
 <div class="paciente">
 		<p><strong>Paciente: {{$metodos->apellidos}} {{$metodos->nombres}}</strong></p>
 	</div>
@@ -80,5 +114,6 @@ margin-top: -20px;
 	<div class="total">
 		<p><strong>Monto: {{ $metodos->monto}}</strong></p>
 	</div>
+@endif
 </body>
 </html>
