@@ -81,28 +81,28 @@ margin-top: -20px;
 
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-50px;">
 		<p><strong>FECHA:{{ $ticket->created_at}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -40px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -40px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>DETALLE:{{ $ticket->detalle}}
 		</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -40px;;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;;">
 		<p><strong>MONTO: {{ $ticket->monto}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -40px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>ABONO:{{ $ticket->abono}}</strong></p>
 	</div>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-top: -40px;">
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>RESTA: {{ $ticket->pendiente}}</strong></p>
 	</div>
 
