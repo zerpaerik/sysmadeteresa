@@ -76,7 +76,7 @@ margin-top: -20px;
 	</div>
 
     <div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong>FECHA:{{ $metodos->created_at}}</strong></p>
+		<p><strong>FECHA:{{ date('d/m/Y', strtotime($metodos->created_at)) }}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
