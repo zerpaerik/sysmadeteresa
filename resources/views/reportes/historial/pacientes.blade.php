@@ -32,6 +32,22 @@
 			{!! Form::open(['method' => 'get', 'route' => ['historial.pacientes']]) !!}
 
 			<div class="row">
+
+				<div class="col-md-4">
+					<input type="text" name="filtro" placeholder="Buscar por apellidos">
+					
+				</div>
+
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+				</div>
+				
+			</div>
+
+            			{!! Form::open(['method' => 'get', 'route' => ['historial.pacientes']]) !!}
+
+			<div class="row">
 					<div class="col-md-6">
 
 							<select id="el1"  name="paciente">

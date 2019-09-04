@@ -168,9 +168,14 @@ class ReportesController extends Controller
 
 
 
-       $pacientes =Pacientes::where("estatus", '=', 1)->orderby('nombres','asc')->get();
 
-        return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atenciones" => $atenciones]);
+    if(!is_null($request->filtro)){
+    $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','asc')->get();
+    }else{
+    $pacientes =Pacientes::where("estatus", '=', 9)->orderby('nombres','asc')->get();
+    }
+
+    return view('reportes.historial.pacientes',["pacientes" => $pacientes,"event" => $event,"metodos" => $metodos,"atenciones" => $atenciones]);
     }
 
     public function update($id,Request $request)
@@ -272,7 +277,8 @@ class ReportesController extends Controller
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
         $pdf = \App::make('dompdf.wrapper');
         //$pdf->setPaper('A5', 'landscape');
-		//$pdf->setPaper(array(0,0,600.00,360.00));
+        //$pdf->setPaper(array(0,0,600.00,360.00));
+        $pdf->setPaper(array(0,0,800.00,3000.00));
         $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
     }
