@@ -78,12 +78,15 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-50px;">
-	    <p><strong>FECHA DE CITA:{{ date('d/m/Y', strtotime($paciente->date)) }}</strong></p>
+	    <p><strong>FECHA DE CITA:{{ date('d/m/Y h:i a', strtotime($paciente->date)) }}</strong></p>
 
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>PACIENTE:{{$paciente->apellidos}} {{$paciente->nombres}}</strong></p>
+	</div>
+	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
+		<p><strong>MEDICO:{{$paciente->apellidoPro}} {{$paciente->nombrePro}}</strong></p>
 	</div>
    		@if($paciente->tipo == 'CONTROLES')
 
