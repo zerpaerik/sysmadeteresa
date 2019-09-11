@@ -159,7 +159,7 @@ class ReporteIngresosController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
           ->where('a.paquete','=',NULL)
-        ->where('a.tecnologo','<>',1)
+        //->where('a.tecnologo','<>',1)
         ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.id_servicio','=',$request->servicio)
         ->whereNotIn('a.monto',[0,0.00,99999])
@@ -173,7 +173,7 @@ class ReporteIngresosController extends Controller
                        ->where('id_servicio','=',$request->servicio)
                         ->where('es_servicio','=',1)
                         ->where('paquete','=',NULL)
-                      ->where('tecnologo','<>',1)
+                     // ->where('tecnologo','<>',1)
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
@@ -184,7 +184,7 @@ class ReporteIngresosController extends Controller
         $abono = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->where('id_servicio','=',$request->servicio)
                           ->where('es_servicio','=',1)
-                          ->where('tecnologo','<>',1)
+                          //->where('tecnologo','<>',1)
                           ->where('paquete','=',NULL)
                        ->whereNotIn('monto',[0,0.00,99999])
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -220,7 +220,7 @@ class ReporteIngresosController extends Controller
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
-        ->where('a.tecnologo','<>',1)
+       // ->where('a.tecnologo','<>',1)
           ->where('a.paquete','=',NULL)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])->orderby('a.id','desc')
         ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -228,10 +228,11 @@ class ReporteIngresosController extends Controller
         ->get();
 
 
+
           $monto = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
-                          ->where('tecnologo','<>',1)
+                        //  ->where('tecnologo','<>',1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(monto) as monto'))
@@ -242,7 +243,7 @@ class ReporteIngresosController extends Controller
         $abono = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
-                          ->where('tecnologo','<>',1)
+                         // ->where('tecnologo','<>',1)
                           ->where('paquete','=',NULL)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(abono) as monto'))
@@ -254,7 +255,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
-                          ->where('tecnologo','<>',1)
+                         // ->where('tecnologo','<>',1)
                        ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                        ->select(DB::raw('SUM(porcentaje) as monto'))
                        ->first();
@@ -275,7 +276,7 @@ class ReporteIngresosController extends Controller
         ->join('users as e','e.id','a.origen_usuario')
           ->where('a.es_servicio','=',1)
           ->where('a.paquete','=',NULL)
-        ->where('a.tecnologo','<>',1)
+       // ->where('a.tecnologo','<>',1)
         ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.id_servicio','=',$request->servicio)
         ->whereNotIn('a.monto',[0,0.00,99999])
@@ -287,7 +288,7 @@ class ReporteIngresosController extends Controller
                        ->where('id_servicio','=',$request->servicio)
                        ->whereNotIn('monto',[0,0.00,99999])
                           ->where('es_servicio','=',1)
-                                                ->where('tecnologo','<>',1)
+                                                //->where('tecnologo','<>',1)
                           ->where('paquete','=',NULL)
                        ->select(DB::raw('SUM(monto) as monto'))
                        ->first();
@@ -299,7 +300,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                          ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
-                                                ->where('tecnologo','<>',1)
+                                              //  ->where('tecnologo','<>',1)
                        ->select(DB::raw('SUM(abono) as monto'))
                        ->first();
         if ($abono->monto == 0) {
@@ -310,7 +311,7 @@ class ReporteIngresosController extends Controller
                        ->whereNotIn('monto',[0,0.00,99999])
                            ->where('es_servicio','=',1)
                           ->where('paquete','=',NULL)
-                                                ->where('tecnologo','<>',1)
+                                             //   ->where('tecnologo','<>',1)
                        ->select(DB::raw('SUM(porcentaje) as monto'))
                        ->first();
         if ($comision->monto == 0) {
