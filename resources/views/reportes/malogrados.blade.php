@@ -63,23 +63,23 @@
 
 
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
-  <thead>
   
-    <tr><th style="width:30%;" scope="col">PRODUCTO</th>
+    <tr>
+    <th style="width:30%;" scope="col">PRODUCTO</th>
     <th style="width:15%;" scope="col">CANTIDAD</th>
     <th scope="col">USUARIO</th>
     <th scope="col">FECHA</th>
+    </tr>
   
  
-  </thead>
-  <tbody>
     @foreach($materiales as $recibo)
+    <tr>
      <td style="padding: 0;">{{$recibo->nombre}}</td>
     <td style="padding: 0;">{{$recibo->cantidad}}</td>
     <td style="padding: 0;">{{$recibo->name}} {{$recibo->lastname}}</td>
-    <td style="padding: 0;">{{$recibo->created_at}}</td></tr>
+    <td style="padding: 0;">{{$recibo->created_at}}</td>
+</tr>
   @endforeach
- </tbody>
 
  
 
