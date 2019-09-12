@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span>Reportes/Placas Malogradas</span>
+					<span>Reportes/Materiales Malogradas</span>
 
 				</div>
 
@@ -42,7 +42,7 @@
 				</div>
 			      <div class="col-md-4">
 						<select id="el2" name="producto">
-							<option value="">Seleccione una Placa</option>
+							<option value="">Seleccione un Material</option>
 							@foreach($productos as $p)
 								    <option value="{{$p->id}}">{{$p->nombre}}</option>
 							@endforeach
@@ -55,10 +55,7 @@
 					{!! Form::close() !!}
 
 				</div>
-				<div class="col-md-2">
-				<strong>Cantidad:</strong>{{number_format($totalmat->cantidad, 2, ',', '.')}}
-					
-				</div>
+				
 				
 			</div>	
 
@@ -67,27 +64,18 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
-							<th>Id</th>
-							<th>Material</th>
+							<th>Producto</th>
 							<th>Cantidad</th>
-							<th>Fecha</th>
-							<th>Paciente</th>
-							<th>Servicio</th>
-							<th>Registrado Por:</th>
+							<th>Ver Detalle</th>
 						</tr>
 					</thead>
 					<tbody>
-                          @foreach($materiales as $atec)	
+                          @foreach($malogrados as $atec)	
 
-							<tr>
-								<td>{{$atec->id}}</td>
+							 <tr>
 								<td>{{$atec->nombre}}</td>
-								<td>{{$atec->cantidad}}</td>
-								<td>{{$atec->created_at}}</td>
-								<td>{{$atec->nombres}} {{$atec->apellidos}}</td>
-								<td>{{$atec->servicio}}</td>
-								<td>{{$atec->name}},{{$atec->lastname}}</td>
-								
+								<td>{{$atec->total}}</td>
+								<td><a target="_blank"  href="{{asset('malogrados/ver')}}/{{$f1}}/{{$f2}}/{{$atec->id_producto}}" class="btn btn-xs btn-primary">Ver Detalle</a></td>
 							</tr>
 						@endforeach
 					</tbody>

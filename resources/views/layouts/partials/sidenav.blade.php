@@ -125,6 +125,8 @@
           <li>
             <!--{{route('productos.trans')}}-->
             <a href="{{route('productos.trans')}}"><i class="fa fa-refresh"></i> Movimientos</a>
+            <a href="{{route('productos.out')}}"><i class="fa fa-refresh"></i> Salidas</a>
+
           </li>
 @endif
 

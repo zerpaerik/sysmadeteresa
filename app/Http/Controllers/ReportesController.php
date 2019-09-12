@@ -1526,10 +1526,18 @@ class ReportesController extends Controller
         $f1=$request->fecha;
         $f2=$request->fecha2;
 
+
+         $malogrados = DB::table('mat_malogrados as a')
+        ->select('a.id','a.created_at','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->get();
+
         
 
 
        }elseif (!is_null($request->fecha) && !is_null($request->producto)) {
+
 
           $materiales = DB::table('mat_malogrados as a')
         ->select('a.id','a.id_producto','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname','a.id_atencion','at.id_servicio','at.id_paciente','c.name','c.lastname','s.detalle as servicio','p.nombres','p.apellidos')
@@ -1541,6 +1549,15 @@ class ReportesController extends Controller
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->where('a.id_producto','=',$request->producto)
         ->get();
+
+         $malogrados = DB::table('mat_malogrados as a')
+        ->select('a.id','a.created_at','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->where('a.id_producto','=',$request->producto)
+        ->get();
+
+        //dd($malogrados);
 
         $totalmat = MaterialesMalogrados::whereBetween('created_at', [date('Y-m-d 00:00:00',                         strtotime($request->fecha)), date('Y-m-d 23:59:59',strtotime                         ($request->fecha2))])
                                     ->where('id_producto','=',$request->producto)
@@ -1569,6 +1586,12 @@ class ReportesController extends Controller
           $f1=Carbon::today()->toDateString();
         $f2=Carbon::today()->toDateString();
 
+         $malogrados = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->where('a.id_producto','=',$request->producto)
+        ->get();
+
         
         }else{
 
@@ -1591,12 +1614,63 @@ class ReportesController extends Controller
         $f2=Carbon::today()->toDateString();
 
 
+        
+
+
+         $malogrados = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->get();
+
+        //dd($malogrados);
+
+
         }
 
-        $productos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",$request->session()->get('sede'))->get();
+       // $productos = Producto::join('mat_malogrados','mat_malogrados.id_producto','=','productos.id')->where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",$request->session()->get('sede'))->get();
+
+
+        $productos = DB::table('productos as a')
+        ->select('a.id','a.nombre','a.categoria','a.sede_id','a.almacen')
+        ->join('mat_malogrados as m','m.id_producto','a.id')
+        ->where('a.sede_id','=',$request->session()->get('sede'))
+        ->where('a.categoria','=',4)
+        ->where('a.almacen','=',2)
+        ->get();
+
+
+
 
  
-       return view('reportes.matlogrados',compact('materiales','totalmat','f1','f2','productos'));
+       return view('reportes.matlogrados',compact('materiales','totalmat','f1','f2','productos','malogrados'));
+
+    }
+
+
+
+    public function reportmalogrados($f1,$f2,$id){
+
+
+         $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.id_resultado','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('users as c','c.id','a.usuario')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.id_producto','=',$id)
+        ->get();
+
+
+
+
+         $view = \View::make('reportes.malogrados', compact('materiales'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('malogrados'.$id.'.pdf');
+
+      
 
     }
 

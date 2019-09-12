@@ -12,5 +12,12 @@ class MaterialesMalogrados extends Model
     	'id_producto','cantidad','usuario','id_resultado','id_atencion'
     ];
 
+
+      public function productos()
+    {
+    	return $this->hasOne('App\Models\Existencias\Producto','id', 'id_producto');
+    }
+
+    
    
 }
