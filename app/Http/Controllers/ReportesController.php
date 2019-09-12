@@ -1636,6 +1636,7 @@ class ReportesController extends Controller
         ->where('a.sede_id','=',$request->session()->get('sede'))
         ->where('a.categoria','=',4)
         ->where('a.almacen','=',2)
+        ->groupBy('a.id')
         ->get();
 
 
