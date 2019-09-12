@@ -1671,8 +1671,8 @@ class ReportesController extends Controller
                                     ->first();
 
 
-          $f1=Carbon::today()->toDateString();
-        $f2=Carbon::today()->toDateString();
+          $f1='2019-01-01';
+        $f2='2019-12-31';
 
 
         
