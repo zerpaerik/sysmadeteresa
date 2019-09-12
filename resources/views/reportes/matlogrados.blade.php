@@ -64,15 +64,17 @@
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
+							<th>id prod</th>
 							<th>Producto</th>
 							<th>Cantidad</th>
 							<th>Ver Detalle</th>
 						</tr>
 					</thead>
 					<tbody>
-                          @foreach($malogrados as $atec)	
+                          @foreach($m as $atec)	
 
 							 <tr>
+							 	<td>{{$atec->id_producto}}</td>
 								<td>{{$atec->nombre}}</td>
 								<td>{{$atec->total}}</td>
 								<td><a target="_blank"  href="{{asset('malogrados/ver')}}/{{$f1}}/{{$f2}}/{{$atec->id_producto}}" class="btn btn-xs btn-primary">Ver Detalle</a></td>

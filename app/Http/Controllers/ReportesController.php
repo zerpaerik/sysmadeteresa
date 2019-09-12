@@ -1533,6 +1533,13 @@ class ReportesController extends Controller
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->get();
 
+         $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_producto')
+        ->get();
+
         
 
 
@@ -1555,6 +1562,14 @@ class ReportesController extends Controller
         ->join('productos as b','b.id','a.id_producto')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->where('a.id_producto','=',$request->producto)
+        ->get();
+
+         $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_producto')
+        ->where('a.id_producto','=',$request->producto)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_producto')
         ->get();
 
         //dd($malogrados);
@@ -1589,7 +1604,13 @@ class ReportesController extends Controller
          $malogrados = DB::table('mat_malogrados as a')
         ->select('a.id','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
         ->join('productos as b','b.id','a.id_producto')
+        ->get();
+
+         $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_producto')
         ->where('a.id_producto','=',$request->producto)
+        ->groupBy('a.id_producto')
         ->get();
 
         
@@ -1622,7 +1643,12 @@ class ReportesController extends Controller
         ->join('productos as b','b.id','a.id_producto')
         ->get();
 
-        dd($malogrados);
+       $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.id_producto','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_producto')
+        ->groupBy('a.id_producto')
+        ->get();
+
 
 
         }
@@ -1643,7 +1669,7 @@ class ReportesController extends Controller
 
 
  
-       return view('reportes.matlogrados',compact('materiales','totalmat','f1','f2','productos','malogrados'));
+       return view('reportes.matlogrados',compact('m','materiales','totalmat','f1','f2','productos','malogrados'));
 
     }
 
