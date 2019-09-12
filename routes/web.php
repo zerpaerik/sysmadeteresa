@@ -388,6 +388,8 @@ Route::put('resultadosg-editl-{id}', 'ResultadosGuardadosController@editl')->nam
 Route::get('materialesmalogrados', 'ReportesController@materialesmalogrados')->name('malogrados.ver');
 
 Route::get('malogrados/ver/{f1}/{f2}/{id}', 'ReportesController@reportmalogrados');
+Route::get('usados/ver/{f1}/{f2}/{id}', 'ReportesController@reportusados');
+
 
 
 Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');

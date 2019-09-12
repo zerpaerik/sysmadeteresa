@@ -1429,6 +1429,14 @@ class ReportesController extends Controller
         $f1=$request->fecha;
         $f2=$request->fecha2;
 
+         $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_material')
+        ->where('a.id_material','=',$request->producto)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_material')
+        ->get();
+
         
 
 
@@ -1450,6 +1458,13 @@ class ReportesController extends Controller
         $f1=$request->fecha;
         $f2=$request->fecha2;
 
+         $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_material')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_material')
+        ->get();
+
 
 
         }elseif(is_null($request->fecha) && !is_null($request->producto)){
@@ -1470,6 +1485,13 @@ class ReportesController extends Controller
         $f1=Carbon::today()->toDateString();
         $f2=Carbon::today()->toDateString();
 
+         $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_material')
+        ->where('a.id_material','=',$request->producto)
+               ->groupBy('a.id_material')
+        ->get();
+
 
         }else{ 
 
@@ -1487,8 +1509,15 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(cantidad) as cantidad'))
                                     ->first();
 
-        $f1=Carbon::today()->toDateString();
-        $f2=Carbon::today()->toDateString();
+        $f1='2019-01-01';
+        $f2='2019-12-31';
+
+          $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as p','p.id','a.id_material')
+        ->whereNotIn('a.cantidad',[0])
+        ->groupBy('a.id_material')
+        ->get();
 
 
              
@@ -1496,10 +1525,21 @@ class ReportesController extends Controller
         }
 
 
-        $productos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",$request->session()->get('sede'))->get();
+        //$productos = Producto::where('almacen','=',2)->where('categoria','=',4)->where("sede_id","=",$request->session()->get('sede'))->get();
+
+         $productos = DB::table('productos as a')
+        ->select('a.id','a.nombre','a.categoria','a.sede_id','a.almacen')
+        ->join('resultados_materiales as m','m.id_material','a.id')
+        ->where('a.sede_id','=',$request->session()->get('sede'))
+       // ->where('a.categoria','=',4)
+        //->where('a.almacen','=',2)
+        ->orderby('a.nombre','asc')
+        ->groupBy('a.id')
+        ->get();
 
 
-            return view('reportes.matusados',compact('materiales','totalmat','f1','f2','productos'));
+
+            return view('reportes.matusados',compact('m','materiales','totalmat','f1','f2','productos'));
 
 
     }
@@ -1696,6 +1736,32 @@ class ReportesController extends Controller
      
        
         return $pdf->stream('malogrados'.$id.'.pdf');
+
+      
+
+    }
+
+    public function reportusados($f1,$f2,$id){
+
+
+         $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.id_material','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+        ->join('productos as b','b.id','a.id_material')
+        ->join('users as c','c.id','a.usuario')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.id_material','=',$id)
+        ->get();
+
+
+
+
+         $view = \View::make('reportes.usados', compact('materiales'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('usados'.$id.'.pdf');
 
       
 
