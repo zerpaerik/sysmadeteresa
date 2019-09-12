@@ -1622,7 +1622,7 @@ class ReportesController extends Controller
         ->join('productos as b','b.id','a.id_producto')
         ->get();
 
-        //dd($malogrados);
+        dd($malogrados);
 
 
         }
