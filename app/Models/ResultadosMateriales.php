@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ResultadosMateriales extends Model
 {
     protected $fillable = [
-    	'id_resultado', 'id_material', "cantidad","id_atencion","usuario"
+    	'id_resultado', 'id_material', "cantidad","id_atencion","usuario","sede"
     ];
 }

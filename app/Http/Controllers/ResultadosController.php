@@ -544,10 +544,12 @@ class ResultadosController extends Controller
 
 
             $pro = new MaterialesMalogrados();
+            $pro->id_atencion= $request->id;
             $pro->id_resultado = $product->id;
             $pro->id_producto =  $servicio['servicio'];
             $pro->cantidad = $request->monto_abos['servicios'][$key]['abono'];
             $pro->usuario = Auth::user()->id;
+            $pro->sede =$request->session()->get('sede');
             $pro->save();
 
             $SearchMaterial = Producto::where('id', $servicio['servicio'])
@@ -585,6 +587,7 @@ class ResultadosController extends Controller
             $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
             $pro->id_atencion= $request->id;
             $pro->usuario = Auth::user()->id;
+            $pro->sede =$request->session()->get('sede');
             $pro->save();
 
 
@@ -671,6 +674,7 @@ class ResultadosController extends Controller
             $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
             $pro->id_atencion= $request->id;
             $pro->usuario = Auth::user()->id;
+            $pro->sede =$request->session()->get('sede');
             $pro->save();
 
 

@@ -1429,9 +1429,10 @@ class ReportesController extends Controller
         $f1=$request->fecha;
         $f2=$request->fecha2;
 
-         $m = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+          $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.sede','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
         ->join('productos as p','p.id','a.id_material')
+                ->where('a.sede','=',$request->session()->get('sede'))
         ->where('a.id_material','=',$request->producto)
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->groupBy('a.id_material')
@@ -1459,8 +1460,9 @@ class ReportesController extends Controller
         $f2=$request->fecha2;
 
          $m = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->select('a.id','a.sede','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
         ->join('productos as p','p.id','a.id_material')
+                ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->groupBy('a.id_material')
         ->get();
@@ -1485,9 +1487,10 @@ class ReportesController extends Controller
         $f1=Carbon::today()->toDateString();
         $f2=Carbon::today()->toDateString();
 
-         $m = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+          $m = DB::table('resultados_materiales as a')
+        ->select('a.id','a.sede','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
         ->join('productos as p','p.id','a.id_material')
+                ->where('a.sede','=',$request->session()->get('sede'))
         ->where('a.id_material','=',$request->producto)
                ->groupBy('a.id_material')
         ->get();
@@ -1513,8 +1516,9 @@ class ReportesController extends Controller
         $f2='2019-12-31';
 
           $m = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->select('a.id','a.sede','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
         ->join('productos as p','p.id','a.id_material')
+                ->where('a.sede','=',$request->session()->get('sede'))
         ->whereNotIn('a.cantidad',[0])
         ->groupBy('a.id_material')
         ->get();
@@ -1568,14 +1572,21 @@ class ReportesController extends Controller
 
 
          $malogrados = DB::table('mat_malogrados as a')
-        ->select('a.id','a.created_at','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'))
+        ->select('a.id','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape')
         ->join('productos as b','b.id','a.id_producto')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->get();
 
          $m = DB::table('mat_malogrados as a')
-        ->select('a.id','a.id_producto','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
-        ->join('productos as p','p.id','a.id_producto')
+        ->select('a.id','a.sede','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->groupBy('a.id_producto')
         ->get();
@@ -1604,10 +1615,13 @@ class ReportesController extends Controller
         ->where('a.id_producto','=',$request->producto)
         ->get();
 
-         $m = DB::table('mat_malogrados as a')
-        ->select('a.id','a.id_producto','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
-        ->join('productos as p','p.id','a.id_producto')
-        ->where('a.id_producto','=',$request->producto)
+        $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.sede','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
         ->groupBy('a.id_producto')
         ->get();
@@ -1647,8 +1661,12 @@ class ReportesController extends Controller
         ->get();
 
          $m = DB::table('mat_malogrados as a')
-        ->select('a.id','a.id_producto','p.nombre',DB::raw('SUM(a.cantidad) as total'))
-        ->join('productos as p','p.id','a.id_producto')
+        ->select('a.id','a.sede','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->where('a.id_producto','=',$request->producto)
         ->groupBy('a.id_producto')
         ->get();
@@ -1683,11 +1701,17 @@ class ReportesController extends Controller
         ->join('productos as b','b.id','a.id_producto')
         ->get();
 
-       $m = DB::table('mat_malogrados as a')
-        ->select('a.id','a.id_producto','p.nombre',DB::raw('SUM(a.cantidad) as total'))
-        ->join('productos as p','p.id','a.id_producto')
+         $m = DB::table('mat_malogrados as a')
+        ->select('a.id','a.sede','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape')
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->groupBy('a.id_producto')
         ->get();
+
+     //   dd($m);
 
 
 
@@ -1715,13 +1739,17 @@ class ReportesController extends Controller
 
 
 
-    public function reportmalogrados($f1,$f2,$id){
+    public function reportmalogrados(Request $request,$f1,$f2,$id){
 
 
-         $materiales = DB::table('mat_malogrados as a')
-        ->select('a.id','a.id_producto','a.id_resultado','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+          $materiales = DB::table('mat_malogrados as a')
+        ->select('a.id','a.sede','a.created_at','a.id_atencion','a.id_producto','b.nombre',DB::raw('SUM(a.cantidad) as total'),'at.id_paciente','at.id_servicio','s.detalle as servicio','p.nombres as nom','p.apellidos as ape','u.name','u.lastname')
         ->join('productos as b','b.id','a.id_producto')
-        ->join('users as c','c.id','a.usuario')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->join('users as u','u.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.id_producto','=',$id)
         ->get();
@@ -1741,13 +1769,18 @@ class ReportesController extends Controller
 
     }
 
-    public function reportusados($f1,$f2,$id){
+    public function reportusados(Request $request,$f1,$f2,$id){
 
 
-         $materiales = DB::table('resultados_materiales as a')
-        ->select('a.id','a.id_material','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname')
+          $materiales = DB::table('resultados_materiales as a')
+        ->select('a.id','a.sede','a.id_atencion','a.id_material','a.cantidad','a.usuario','a.created_at','b.nombre','c.name','c.lastname','at.id_servicio','at.id_paciente','s.detalle as servicio','p.nombres as nom','p.apellidos as ape','u.name','u.lastname')
         ->join('productos as b','b.id','a.id_material')
         ->join('users as c','c.id','a.usuario')
+        ->join('atenciones as at','at.id','a.id_atencion')
+        ->join('pacientes as p','p.id','at.id_paciente')
+        ->join('servicios as s','s.id','at.id_servicio')
+        ->join('users as u','u.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.id_material','=',$id)
         ->get();

@@ -67,6 +67,8 @@
     <tr>
     <th style="width:30%;" scope="col">PRODUCTO</th>
     <th style="width:15%;" scope="col">CANTIDAD</th>
+    <th scope="col">PACIENTE</th>
+    <th scope="col">SERVICIO</th>
     <th scope="col">USUARIO</th>
     <th scope="col">FECHA</th>
     </tr>
@@ -76,6 +78,8 @@
     <tr>
      <td style="padding: 0;">{{$recibo->nombre}}</td>
     <td style="padding: 0;">{{$recibo->cantidad}}</td>
+    <td style="padding: 0;">{{$recibo->ape}} {{$recibo->nom}}</td>
+        <td style="padding: 0;">{{$recibo->servicio}}</td>
     <td style="padding: 0;">{{$recibo->name}} {{$recibo->lastname}}</td>
     <td style="padding: 0;">{{$recibo->created_at}}</td>
 </tr>
