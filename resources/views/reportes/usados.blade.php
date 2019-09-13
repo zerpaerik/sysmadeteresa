@@ -78,10 +78,10 @@
     <tr>
      <td style="padding: 0;">{{$recibo->nombre}}</td>
     <td style="padding: 0;">{{$recibo->cantidad}}</td>
-    <td style="padding: 0;">{{$recibo->ape}} {{$recibo->nom}}</td>
+    <td style="padding: 0;">{{$recibo->ape}} {{substr($recibo->ape,0,5)}}</td>
         <td style="padding: 0;">{{$recibo->servicio}}</td>
     <td style="padding: 0;">{{$recibo->name}} {{$recibo->lastname}}</td>
-    <td style="padding: 0;">{{$recibo->created_at}}</td>
+    <td style="padding: 0;">{{substr($recibo->created_at,0,10)}}</td>
 </tr>
   @endforeach
 

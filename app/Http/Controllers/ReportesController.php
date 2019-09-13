@@ -1512,8 +1512,8 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(cantidad) as cantidad'))
                                     ->first();
 
-        $f1='2019-01-01';
-        $f2='2019-12-31';
+         $f1=date('Y-m-d');
+        $f2=date('Y-m-d');
 
           $m = DB::table('resultados_materiales as a')
         ->select('a.id','a.sede','a.id_material','a.created_at','p.nombre',DB::raw('SUM(a.cantidad) as total'))
@@ -1689,8 +1689,8 @@ class ReportesController extends Controller
                                     ->first();
 
 
-          $f1='2019-01-01';
-        $f2='2019-12-31';
+          $f1=date('Y-m-d');
+        $f2=date('Y-m-d');
 
 
         

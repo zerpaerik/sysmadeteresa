@@ -65,8 +65,8 @@
 <table style="margin-top: -30px;border: none;border-collapse:collapse;">
   
     <tr>
-    <th style="width:30%;" scope="col">PRODUCTO</th>
-    <th style="width:15%;" scope="col">CANTIDAD</th>
+    <th scope="col">PRODUCTO</th>
+    <th scope="col">CANTIDAD</th>
     <th scope="col">PACIENTE</th>
     <th scope="col">SERVICIO</th>
     <th scope="col">USUARIO</th>
@@ -78,10 +78,10 @@
     <tr>
      <td style="padding: 0;">{{$recibo->nombre}}</td>
     <td style="padding: 0;">{{$recibo->total}}</td>
-     <td style="padding: 0;">{{$recibo->nom}} {{$recibo->ape}}</td>
-    <td style="padding: 0;">{{$recibo->servicio}} </td>
+     <td style="padding: 0;">{{$recibo->nom}} {{substr($recibo->ape,0,5)}}</td>
+    <td style="padding: 0;">{{$recibo->servicio}}</td>
     <td style="padding: 0;">{{$recibo->name}} {{$recibo->lastname}}</td>
-    <td style="padding: 0;">{{$recibo->created_at}}</td>
+    <td style="padding: 0;">{{substr($recibo->created_at,0,10)}}</td>
 </tr>
   @endforeach
 
