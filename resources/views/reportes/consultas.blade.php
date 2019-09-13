@@ -57,7 +57,7 @@
 
 		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
 
-    <strong><p style="margin-left: 200px;margin-top: -100px;">MATERIALES USADOS</p></strong>
+    <strong><p style="margin-left: 200px;margin-top: -100px;">MATERIALES USADOS CONSULTAS</p></strong>
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
 
@@ -68,7 +68,6 @@
     <th style="width:30%;" scope="col">PRODUCTO</th>
     <th style="width:15%;" scope="col">CANTIDAD</th>
     <th scope="col">PACIENTE</th>
-    <th scope="col">SERVICIO</th>
     <th scope="col">USUARIO</th>
     <th scope="col">FECHA</th>
     </tr>
@@ -77,9 +76,8 @@
     @foreach($materiales as $recibo)
     <tr>
      <td style="padding: 0;">{{$recibo->nombre}}</td>
-    <td style="padding: 0;">{{$recibo->cantidad}}</td>
-    <td style="padding: 0;">{{substr($recibo->nom,0,5)}} {{substr($recibo->ape,0,5)}}</td>
-        <td style="padding: 0;">{{substr($recibo->servicio,0,10)}}</td>
+    <td style="padding: 0;">{{$recibo->total}}</td>
+    <td style="padding: 0;">{{$recibo->ape}} {{substr($recibo->ape,0,5)}}</td>
     <td style="padding: 0;">{{$recibo->name}} {{$recibo->lastname}}</td>
     <td style="padding: 0;">{{substr($recibo->created_at,0,10)}}</td>
 </tr>

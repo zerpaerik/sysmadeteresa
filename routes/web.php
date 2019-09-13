@@ -390,6 +390,10 @@ Route::get('materialesmalogrados', 'ReportesController@materialesmalogrados')->n
 Route::get('malogrados/ver/{f1}/{f2}/{id}', 'ReportesController@reportmalogrados');
 Route::get('usados/ver/{f1}/{f2}/{id}', 'ReportesController@reportusados');
 
+Route::get('materialesconsultas', 'ReportesController@materialesconsultas')->name('materialesconsultas.ver');
+Route::get('matconsultas/ver/{f1}/{f2}/{id}', 'ReportesController@reportconsultas');
+
+
 
 
 Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');

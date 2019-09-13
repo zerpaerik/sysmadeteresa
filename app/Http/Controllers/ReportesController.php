@@ -1800,6 +1800,147 @@ class ReportesController extends Controller
 
     }
 
+    ///
+     public function materialesconsultas(Request $request){
+
+
+        if(!is_null($request->fecha) && is_null($request->producto)){
+
+
+        $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+
+
+          $m = DB::table('materiales_consultas as a')
+        ->select('a.id','a.sede','a.created_at','a.id_consulta','a.id_producto','b.nombre','at.paciente','p.nombres as nom','p.apellidos as ape',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('events as at','at.id','a.id_consulta')
+        ->join('pacientes as p','p.id','at.paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_producto')
+        ->get();
+
+        
+
+
+       }elseif (!is_null($request->fecha) && !is_null($request->producto)) {
+
+
+         
+       $m = DB::table('materiales_consultas as a')
+        ->select('a.id','a.sede','a.created_at','a.id_consulta','a.id_producto','b.nombre','at.paciente','p.nombres as nom','p.apellidos as ape',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('events as at','at.id','a.id_consulta')
+        ->join('pacientes as p','p.id','at.paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha2))])
+        ->groupBy('a.id_producto')
+        ->get();
+
+    
+          $f1=$request->fecha;
+        $f2=$request->fecha2;
+
+
+
+    }elseif (!is_null($request->producto) && is_null($request->fecha)) {
+
+        
+
+          $f1=Carbon::today()->toDateString();
+        $f2=Carbon::today()->toDateString();
+
+        
+   $m = DB::table('materiales_consultas as a')
+        ->select('a.id','a.sede','a.created_at','a.id_consulta','a.id_producto','b.nombre','at.paciente','p.nombres as nom','p.apellidos as ape',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('events as at','at.id','a.id_consulta')
+        ->join('pacientes as p','p.id','at.paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->where('a.id_producto','=',$request->producto)
+        ->groupBy('a.id_producto')
+        ->get();
+
+        
+        }else{
+
+       
+
+          $f1=date('Y-m-d');
+        $f2=date('Y-m-d');
+
+
+    
+
+          $m = DB::table('materiales_consultas as a')
+        ->select('a.id','a.sede','a.created_at','a.id_consulta','a.id_producto','b.nombre','at.paciente','p.nombres as nom','p.apellidos as ape',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('events as at','at.id','a.id_consulta')
+        ->join('pacientes as p','p.id','at.paciente')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->groupBy('a.id_producto')
+        ->get();
+
+
+
+
+        }
+
+     
+
+
+        $productos = DB::table('productos as a')
+        ->select('a.id','a.nombre','a.categoria','a.sede_id','a.almacen')
+        ->join('materiales_consultas as m','m.id_producto','a.id')
+        ->where('a.sede_id','=',$request->session()->get('sede'))
+       // ->where('a.categoria','=',4)
+        ->where('a.almacen','=',2)
+        ->groupBy('a.id')
+        ->get();
+
+
+
+
+ 
+       return view('reportes.matconsultas',compact('m','f1','f2','productos'));
+
+    }
+
+     public function reportconsultas(Request $request,$f1,$f2,$id){
+
+
+          $materiales = DB::table('materiales_consultas as a')
+        ->select('a.id','a.sede','a.usuario','a.created_at','a.id_consulta','a.id_producto','b.nombre','at.paciente','p.nombres as nom','p.apellidos as ape','u.name','u.lastname',DB::raw('SUM(a.cantidad) as total'))
+        ->join('productos as b','b.id','a.id_producto')
+        ->join('events as at','at.id','a.id_consulta')
+        ->join('pacientes as p','p.id','at.paciente')
+        ->join('users as u','u.id','a.usuario')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.id_producto','=',$id)
+        ->get();
+
+
+
+
+         $view = \View::make('reportes.consultas', compact('materiales'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('consultas'.$id.'.pdf');
+
+      
+
+    }
+
+
+    ///
+
 }
 
 

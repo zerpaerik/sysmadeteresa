@@ -10,6 +10,7 @@ use App\Models\ConsultaMateriales;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use App\Models\Pacientes\Paciente;
 use App\Models\Personal;
+use App\Models\MaterialesConsultas;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\Creditos;
@@ -344,6 +345,49 @@ class ConsultaController extends Controller
     $event->atendido=1;
     $event->atendidopor=\Auth::user()->id;
     $event->update();
+
+
+
+
+     if (isset($request->material)) {
+
+
+          if (!is_null($request->material)) {
+        foreach ($request->material['laboratorios'] as $key => $laboratorio) {
+          if (!is_null($laboratorio['laboratorio'])) {
+            $pro = new MaterialesConsultas();
+            $pro->id_consulta = $request->evento;
+            $pro->id_producto =  $laboratorio['laboratorio'];
+            $pro->cantidad = $request->monto_abol['laboratorios'][$key]['abono'];
+            $pro->usuario = Auth::user()->id;
+            $pro->sede =$request->session()->get('sede');
+            $pro->save();
+
+
+            $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
+            ->first();
+            $cantactual= $SearchMaterial->cantidad;
+
+             if($SearchMaterial){
+            $cantactual= $SearchMaterial->cantidad;
+
+            
+            $p = Producto::find($laboratorio['laboratorio']);
+            $p->cantidad = $cantactual - $request->monto_abol['laboratorios'][$key]['abono'];
+            $res = $p->save();
+
+
+            }else{
+              $cantactual=0;
+            }
+
+
+
+          } 
+        }
+      }
+
+        }
 
 
 		

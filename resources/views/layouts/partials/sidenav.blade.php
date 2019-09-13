@@ -373,6 +373,9 @@
        <li>
         <a href="{{route('materialesusados.ver')}}"><i class="fa fa-file-o"></i> Materiales Usados</a>
       </li>
+      <li>
+        <a href="{{route('materialesconsultas.ver')}}"><i class="fa fa-file-o"></i> Materiales Consultas</a>
+      </li>
     </ul>
   </li>
 
@@ -759,10 +762,14 @@
 	   <li>
         <a href="{{route('movimientosp.index')}}"><i class="fa fa-file-o"></i> Movimientos de Productos</a>
       </li>
-      <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
+      <li>
+        <a href="{{route('malogrados.ver')}}"><i class="fa fa-file-o"></i> Materiales Malogrados</a>
+      </li>
+       <li>
+        <a href="{{route('materialesusados.ver')}}"><i class="fa fa-file-o"></i> Materiales Usados</a>
       </li>
       <li>
-        <a href="{{route('materialesusados.ver')}}"><i class="fa fa-file-o"></i> Materiales Usados</a>
+        <a href="{{route('materialesconsultas.ver')}}"><i class="fa fa-file-o"></i> Materiales Consultas</a>
       </li>
     </ul>
   </li>
