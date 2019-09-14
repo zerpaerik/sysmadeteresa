@@ -393,6 +393,7 @@ class RequerimientosController extends Controller
       public function edit(Request $request){
 
 
+
         $searchRequerimiento = DB::table('requerimientos')
                     ->select('*')
                    // ->where('estatus','=','1')
@@ -448,11 +449,13 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->get()->first();
+      $p = Producto::where("padre", "=", $producto)->first();
+
 
       if($p){
-        $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
-        $p->save();
+        
+        $atec=Producto::where("padre","=",$producto)
+                          ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
 
 
 
@@ -571,27 +574,35 @@ class RequerimientosController extends Controller
                     $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
                     }  
 
-              
+  
+      
+
+      $p = Producto::find($producto);
+      $p->cantidad= $cantidadactual - $request->cantidadd;
+      $res = $p->save();
+
+
 
       $p = Requerimientos::find($request->id);
       $p->estatus = 'Procesado';
       $p->cantidadd= $request->cantidadd;
       $res = $p->save();
 
-      $p = Producto::find($producto);
-      $p->cantidad= $cantidadactual - $request->cantidadd;
-      $res = $p->save();
-
      
-      $p = Producto::where("nombre", "=", $nombre)->where("sede_id", "=",  $sede_solicita)->where("almacen","=", 2)->where('categoria','=',$categoria)->get()->first();
+      $p = Producto::where("padre", "=", $producto)->first();
 
+      
       if($p){
-        $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
-        $p->save();
+
+        $atec=Producto::where("padre","=",$producto)
+                          ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
+
+       // $p->cantidad = $cantidadactualsedesolicita + $request->cantidadd;
+        //$p->save();
         
 
 
-              if($almacen_solicita==1){
+        if($almacen_solicita==1){
             $alm='RECEPCION';
           }elseif($almacen_solicita==2){
            $alm='LABORATORIO';
@@ -611,13 +622,6 @@ class RequerimientosController extends Controller
               $productosm->alm1=$alm;
               $productosm->alm2='CENTRAL';
               $productosm->save();
-
-
-
-
-
-
-
 
 
 
