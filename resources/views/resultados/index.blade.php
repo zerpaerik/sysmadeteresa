@@ -121,7 +121,7 @@
                                     <option value="ABDOMEN POLIPOSIS VB-V.docx">ABDOMEN POLIPOSIS VB-V</option>
                                     <option value="ABDOMEN STATUS POST COLECISTECTOMIA-V.docx">ABDOMEN STATUS POST COLECISTECTOMIA-V</option>
                                      <option value="COLPOSCOPIAPOSITIVO-V.docx">COLPOSCOPIAPOSITIVO-V</option>
-                                      <option value="COLPOSCOPIANEGATIVO-V.docx">COLPOSCOPIANEGATIVO-V</option>
+                                      <option value="COLPO NEGATIVO.docx">COLPOSCOPIANEGATIVO-V</option>
                                     <option value="GIN EPI-V.docx">GIN EPI-V</option>
                                     <option value="GIN NRML-V.docx">GIN NRML-V</option>
                                     <option value="GIN POLIFOL, EPI-V.docx">GIN POLIFOL, EPI-V</option>
@@ -205,7 +205,7 @@
                                     <option value="RENAL QT SIMPLE-V.docx">RENAL QT SIMPLEL-V</option>
                                     <option value="RENAL Y VIAS URINARIAS-V.docx">RENAL Y VIAS URINARIAS-V</option>
 
-                                    @endif
+                                    @else
 
                                      <option value="ABDOMEN COLECISTITIS CRONICA FASE AGUDA.docx">ABDOMEN COLECISTITIS CRONICA FASE AGUDA</option>
                                     <option value="ABDOMEN COLECISTITIS CRONICA.docx">ABDOMEN COLECISTITIS CRONICA</option>
@@ -367,6 +367,8 @@
 
                                     
 					     </select>
+                                                             @endif
+
 							</td>
 							<td><input type="submit" class="btn btn-success" value="Asociar">
                             <a href="resultados-descartar-{{$p->id}}" class="btn btn-danger" onclick="return confirm('¿Desea Descartar este registro?')">Descartar</a>
