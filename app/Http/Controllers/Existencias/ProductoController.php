@@ -490,16 +490,7 @@ class ProductoController extends Controller
     }
 
     public function create(Request $request){
-      $validator = \Validator::make($request->all(), [
-        'id' => 'required|unique:productos'
-      ]);
-
-        if($validator->fails()) {
-
-          Toastr::error('Error Registrando.', 'Nombre de Producto ya EXISTE!', ['progressBar' => true]);
-          return redirect()->action('Existencias\ProductoController@createView', ['errors' => $validator->errors()]);
-
-      } else {
+      
     
 
   
@@ -529,8 +520,7 @@ class ProductoController extends Controller
 
 
 
-       }
-	  
+    
 	    
        Toastr::success('Registrado Exitosamente.', 'Producto!', ['progressBar' => true]);
        return redirect()->action('Existencias\ProductoController@index', ["created" => true]);
