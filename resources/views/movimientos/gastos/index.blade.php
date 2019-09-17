@@ -55,6 +55,7 @@
 			</div>	
 
 			<div class="box-content no-padding">
+			<div class="box-content no-padding table-responsive">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
@@ -101,6 +102,7 @@
 					</tfoot>
 				</table>
 			</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -109,8 +111,7 @@
 
 
 
-<script src="{{url('/tema/plugins/jquery/jquery.min.js')}}"></script>
-<script src="{{url('/tema/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+
 
 
 
