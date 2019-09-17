@@ -491,7 +491,7 @@ class ProductoController extends Controller
 
     public function create(Request $request){
       $validator = \Validator::make($request->all(), [
-        'nombre' => 'required|unique:productos'
+        'id' => 'required|unique:productos'
       ]);
 
         if($validator->fails()) {
