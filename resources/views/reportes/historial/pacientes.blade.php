@@ -73,6 +73,7 @@
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Fecha</th>
+							<th>Sede</th>
 							<th>Registrado Por:</th>
 							<th>Adjuntado Por:</th>
 							<th>Ver Informe:</th>
@@ -93,6 +94,7 @@
 						@endif
 						
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
+						<td>{{$d->sede}}</td>
 						<td>{{$d->user}},{{$d->userp}}</td>
 						@if($d->usuarioinforme <> NULL)
 						<td>{{$d->usuarioinforme}}</td>
@@ -118,6 +120,7 @@
 							<th>Origen</th>
 							<th>Detalle</th>
 							<th>Fecha</th>
+							<th>Sede</th>
 							<th>Registrado Por:</th>
 							<th>Adjuntado Por:</th>
 							<th>Ver Informe:</th>
@@ -135,6 +138,7 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
+							<th>Sede</th>
 							@if($d->atendido == 1)
 							<th>Estatus</th>
 							<th>Atendido Por:</th>
@@ -149,6 +153,7 @@
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->monto}}</td>
 						<td>{{$d->date}}</td>
+						<td>{{$d->sede}}</td>
 						@if($d->atendido == 1)
 						<td style="background: #82FA58;">Fue Atendido</td>
 						<td>{{$d->nomate}} {{$d->apeate}}</td>
@@ -165,6 +170,7 @@
 							<th>Especialista</th>
 							<th>Monto</th>
 							<th>Fecha</th>
+							<th>Sede</th>
 							<th>Horas</th>
 							<th>Estatus</th>
 					</tfoot>
@@ -182,6 +188,7 @@
 							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
+							<th>Sede</th>
 							<th>Aplicado Por</th>
 							<th>Próxima Aplicación</th>
 						    <th>Registrado Por:</th>
@@ -197,6 +204,7 @@
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->monto}}</td>
+								<td>{{$atec->sede}}</td>
 								<td>{{$atec->personal}}</td>
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
@@ -211,6 +219,7 @@
 							<th>Teléfono</th>
 							<th>Método</th>
 							<th>Monto</th>
+							<th>Sede</th>
 							<th>Aplicado Por</th>
 							<th>Próxima Aplicación</th>
 						    <th>Registrado Por:</th>
