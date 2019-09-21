@@ -406,7 +406,9 @@ class RequerimientosController extends Controller
                     $sede_solicita = $searchRequerimiento->id_sede_solicita;
                     $almacen_solicita=$searchRequerimiento->almacen_solicita;
 
-             
+
+
+            
                   
 
         $searchProducto = DB::table('productos')
@@ -449,7 +451,7 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("padre", "=", $producto)->first();
+      $p = Producto::where("padre", "=", $producto)->where('sede_id','=',$sede_solicita)->where('almacen','=',2)->first();
 
 
       if($p){
@@ -589,7 +591,7 @@ class RequerimientosController extends Controller
       $res = $p->save();
 
      
-      $p = Producto::where("padre", "=", $producto)->first();
+      $p = Producto::where("padre", "=", $producto)->where('sede_id','=',$sede_solicita)->where('almacen','=',2)->first();
 
       
       if($p){
