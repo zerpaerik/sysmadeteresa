@@ -158,8 +158,108 @@ class ProductoController extends Controller
 
 
           Toastr::success('La Entrada se Registro Exitosamente.', 'Producto!', ['progressBar' => true]);
-          return redirect()->action('Existencias\ProductoController@index', ["created" => false]);
+          return redirect()->action('Existencias\ProductoController@reportentrada', ["created" => false]);
   
+    }
+
+    public function reportentrada(Request $request){
+
+      
+     if(!is_null($request->fecha) && !is_null($request->fecha2) && !is_null($request->producto)){
+
+      $f1=$request->fecha;
+              $f2=$request->fecha2; 
+
+         $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.sede','a.alm1','a.alm2','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->where('a.accion','=','ENTRADA EN ALM CENTRAL')
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+          $total = ProductosMovimientos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                                    ->where('sede','=',$request->session()->get('sede'))
+                                    ->where('id_producto','=',$request->producto)
+                                    ->where('accion','=','ENTRADA EN ALM CENTRAL')
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+
+      }elseif(!is_null($request->fecha) && !is_null($request->fecha2) && is_null($request->producto)){
+
+         $f1=$request->fecha;
+              $f2=$request->fecha2; 
+      $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.accion','=','ENTRADA EN ALM CENTRAL')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+          $total = ProductosMovimientos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59',strtotime($f2))])
+                                    ->where('sede','=',$request->session()->get('sede'))
+                                    ->where('accion','=','ENTRADA EN ALM CENTRAL')
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+            
+
+
+
+      }elseif(is_null($request->fecha) && is_null($request->fecha2) && !is_null($request->producto)){
+
+         $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->where('a.accion','=','ENTRADA EN ALM CENTRAL')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->where('a.id_producto','=',$request->producto)
+                    ->get();
+
+           $total = ProductosMovimientos::where('sede','=',$request->session()->get('sede'))
+                                    ->where('id_producto','=',$request->producto)
+                                    ->where('accion','=','ENTRADA EN ALM CENTRAL')
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+                  $f1=date('Y-m-d');
+                  $f2=date('Y-m-d');  
+
+
+      }else{
+
+
+      $entradas= DB::table('productos_movimientos as a')
+                    ->select('a.id','a.id_producto','a.cantidad','a.alm1','a.alm2','a.sede','a.usuario','a.accion','a.origen','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.id_producto','p.id')
+                    ->join('users as u','u.id','a.usuario')                   
+                    ->where('a.accion','=','ENTRADA EN ALM CENTRAL')
+                    ->where('a.created_at','=',date('Y-m-d'))
+                    ->get();
+
+         $total = ProductosMovimientos::where('sede','=',$request->session()->get('sede'))
+                                    ->where('accion','=','ENTRADA EN ALM CENTRAL')
+                                    ->where('created_at','=',date('Y-m-d'))
+                                    ->select(DB::raw('SUM(cantidad) as total'))
+                                    ->first();
+
+        $f1=date('Y-m-d');
+        $f2=date('Y-m-d'); 
+
+      }
+
+
+        
+       $productos= Producto::where('almacen','=',1)->get();
+
+      return view('existencias.reportentrada',compact('f1','f2','entradas','total','productos'));
+
     }
 
     public function createView($extraArgs = []){

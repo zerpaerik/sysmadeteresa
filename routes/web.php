@@ -470,6 +470,10 @@ Route::get('transferencia-{code}', 'Existencias\ProductoController@transView')->
 Route::post('entrada', 'Existencias\ProductoController@entrada');
 Route::get('movimientos', 'Existencias\ProductoController@movimientos')->name('movimientosp.index');
 
+Route::get('report-entrada', 'Existencias\ProductoController@reportentrada')->name('reportentrada.index');
+
+
+
 
 Route::get('ventas', 'Existencias\ProductoController@indexv')->name('ventas.index');
 Route::get('ventas-search', 'Existencias\ProductoController@search')->name('ventas.search');
