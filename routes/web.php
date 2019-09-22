@@ -472,6 +472,16 @@ Route::get('movimientos', 'Existencias\ProductoController@movimientos')->name('m
 
 Route::get('report-entrada', 'Existencias\ProductoController@reportentrada')->name('reportentrada.index');
 
+Route::get('descargar-stock', 'Existencias\ProductoController@descargar')->name('descargar.index');
+Route::get('descargar-stock-create', 'Existencias\ProductoController@descargarcreate')->name('descargarcreate.index');
+Route::get('almacen/recepcion', 'Existencias\ProductoController@almarecep');
+Route::get('almacen/rayos', 'Existencias\ProductoController@almarayos');
+Route::get('almacen/obstetra', 'Existencias\ProductoController@almaobstetra');
+Route::get('almacen/laboratorios', 'Existencias\ProductoController@almalab');
+Route::post('existencia/descargarstock', 'Existencias\ProductoController@procesarDescarga');
+
+
+
 
 
 

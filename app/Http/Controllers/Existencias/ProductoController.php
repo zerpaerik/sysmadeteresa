@@ -9,6 +9,7 @@ use App\Models\Config\{Medida, Categoria, Sede, Proveedor};
 use DB;
 use App\Models\Creditos;
 use App\Models\Ventas;
+use App\Models\Descarga;
 use Toastr;
 use Auth;
 use Carbon\Carbon;
@@ -161,6 +162,117 @@ class ProductoController extends Controller
           return redirect()->action('Existencias\ProductoController@reportentrada', ["created" => false]);
   
     }
+
+    public function descargar(Request $request){
+
+
+        if(!is_null($request->fecha) && !is_null($request->fecha2)){
+
+          $f1=$request->fecha;
+              $f2=$request->fecha2; 
+
+         $descargas= DB::table('descargar_mat as a')
+                    ->select('a.id','a.producto','a.cantidad','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+
+        }else{
+
+
+
+          $f1=date('Y-m-d');
+          $f2=date('Y-m-d'); 
+
+         $descargas= DB::table('descargar_mat as a')
+                    ->select('a.id','a.producto','a.cantidad','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre')
+                    ->join('productos as p','a.producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->whereBetween('a.created_at',[$f1,$f2])
+                    ->get();
+
+
+
+        }
+
+
+
+      return view('existencias.descargar',compact('f1','f2','descargas'));
+
+
+    }
+
+    public function descargarcreate(){
+
+      return view('existencias.descargarcreate');
+    }
+
+
+    public function almarecep(){
+
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->whereNotIn('categoria',[2,4,5])->orderBy('nombre','ASC')->get();
+
+
+      return view('existencias.almarecep',compact('producto'));
+
+    }
+
+    public function almarayos(){
+     $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',4)->orderBy('nombre','ASC')->get();
+
+
+      return view('existencias.almarayos',compact('producto'));
+
+    }
+
+    public function almalab(){
+
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',2)->orderBy('nombre','ASC')->get();
+
+
+      return view('existencias.almalab',compact('producto'));
+
+    }
+
+    public function almaobstetra(){
+
+      $producto =Producto::where("sede_id", '=', \Session::get("sede"))->where("almacen",'=', 2)->where('categoria','=',5)->orderBy('nombre','ASC')->get();
+
+
+      return view('existencias.almaobstetra',compact('producto'));
+
+    }
+
+    public function procesarDescarga(Request $request){
+
+      $produc= Producto::where('id',$request->producto)->first();
+
+
+       Producto::where('id', $request->producto)
+                  ->update([
+                      'cantidad' => $produc->cantidad - $request->cantidad,
+                  ]);
+
+
+               $productom = new Descarga();
+              $productom->producto = $request->producto;
+              $productom->almacen = $request->almacen;
+              $productom->cantidad= $request->cantidad;
+              $productom->observacion= $request->observacion;
+              $productom->usuario= Auth::user()->id;
+              $productom->save();
+
+
+       Toastr::success('Registrada Exitosamente', 'Descarga!', ['progressBar' => true]);
+           return redirect()->action('Existencias\ProductoController@descargar');
+      
+
+    }
+
+
+
 
     public function reportentrada(Request $request){
 
