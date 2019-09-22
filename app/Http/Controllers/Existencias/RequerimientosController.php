@@ -477,7 +477,7 @@ class RequerimientosController extends Controller
        
               $productosm = new ProductosMovimientos();
               $productosm->id_producto = $producto;
-              $producproductosmtom->accion = 'INGRESO EN ALMACEN';
+              $productosm->accion = 'INGRESO EN ALMACEN';
               $productosm->origen= 'REQUERIMIENTO PROCESADO';
               $productosm->usuario= Auth::user()->id;
               $productosm->cantidad=$request->cantidadd;
