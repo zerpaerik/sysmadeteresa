@@ -351,7 +351,6 @@ class ConsultaController extends Controller
 
      if (isset($request->material)) {
 
-
           if (!is_null($request->material)) {
         foreach ($request->material['laboratorios'] as $key => $laboratorio) {
           if (!is_null($laboratorio['laboratorio'])) {
@@ -366,7 +365,7 @@ class ConsultaController extends Controller
 
             $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
             ->first();
-            $cantactual= $SearchMaterial->cantidad;
+            //$cantactual= $SearchMaterial->cantidad;
 
              if($SearchMaterial){
             $cantactual= $SearchMaterial->cantidad;
