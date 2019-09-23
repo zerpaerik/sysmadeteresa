@@ -480,6 +480,10 @@ Route::get('almacen/obstetra', 'Existencias\ProductoController@almaobstetra');
 Route::get('almacen/laboratorios', 'Existencias\ProductoController@almalab');
 Route::post('existencia/descargarstock', 'Existencias\ProductoController@procesarDescarga');
 
+Route::get('descargar-stock1', 'Existencias\ProductoController@descargar1')->name('descargar.index1');
+Route::get('descargar-stock-create1', 'Existencias\ProductoController@descargarcreate1')->name('descargarcreate.index1');
+Route::post('existencia/descargarstock1', 'Existencias\ProductoController@procesarDescarga1');
+
 
 
 

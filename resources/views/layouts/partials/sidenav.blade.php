@@ -121,9 +121,17 @@
           <li>
             <a href="{{route('ventas.index')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
+        @if(Session::get('sedeName') == 'PROCERES')
+
           <li>
             <a href="{{route('descargar.index')}}"><i class="fa fa-plus-square-o"></i> Descargar Stock</a>
           </li>
+          @else
+         <li>
+            <a href="{{route('descargar.index1')}}"><i class="fa fa-plus-square-o"></i> Descargar Stock</a>
+          </li>
+
+         @endif
 @if(Session::get('sedeName') == 'PROCERES')
 
           <li>
@@ -531,9 +539,17 @@
           <li>
             <a href="{{route('ventas.index')}}"><i class="fa fa-plus-square-o"></i> Ventas</a>
           </li>
+           @if(Session::get('sedeName') == 'PROCERES')
+
           <li>
             <a href="{{route('descargar.index')}}"><i class="fa fa-plus-square-o"></i> Descargar Stock</a>
           </li>
+          @else
+         <li>
+            <a href="{{route('descargar.index1')}}"><i class="fa fa-plus-square-o"></i> Descargar Stock</a>
+          </li>
+
+         @endif
 @if(Session::get('sedeName') == 'PROCERES')
 
           <li>

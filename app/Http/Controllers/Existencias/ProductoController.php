@@ -172,9 +172,10 @@ class ProductoController extends Controller
               $f2=$request->fecha2; 
 
          $descargas= DB::table('descargar_mat as a')
-                    ->select('a.id','a.producto','a.cantidad','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.producto','a.cantidad','a.sede','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre','s.name as sede')
                     ->join('productos as p','a.producto','p.id')
                     ->join('users as u','u.id','a.usuario')
+                    ->join('sedes as s','s.id','a.sede')
                     ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
                     ->get();
 
@@ -187,9 +188,10 @@ class ProductoController extends Controller
           $f2=date('Y-m-d'); 
 
          $descargas= DB::table('descargar_mat as a')
-                    ->select('a.id','a.producto','a.cantidad','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre')
+                    ->select('a.id','a.producto','a.cantidad','a.sede','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre','s.name as sede')
                     ->join('productos as p','a.producto','p.id')
                     ->join('users as u','u.id','a.usuario')
+                    ->join('sedes as s','s.id','a.sede')
                     ->whereBetween('a.created_at',[$f1,$f2])
                     ->get();
 
@@ -204,9 +206,62 @@ class ProductoController extends Controller
 
     }
 
+     public function descargar1(Request $request){
+
+
+        if(!is_null($request->fecha) && !is_null($request->fecha2)){
+
+          $f1=$request->fecha;
+              $f2=$request->fecha2; 
+
+         $descargas= DB::table('descargar_mat as a')
+                    ->select('a.id','a.producto','a.cantidad','a.sede','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre','s.name as sede')
+                    ->join('productos as p','a.producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                    ->join('sedes as s','s.id','a.sede')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->whereBetween('a.created_at',[$request->fecha,$request->fecha2])
+                    ->get();
+
+
+        }else{
+
+
+
+          $f1=date('Y-m-d');
+          $f2=date('Y-m-d'); 
+
+         $descargas= DB::table('descargar_mat as a')
+                    ->select('a.id','a.producto','a.cantidad','a.sede','a.observacion','a.almacen','a.usuario','a.created_at','u.name','u.lastname','p.nombre','s.name as sede')
+                    ->join('productos as p','a.producto','p.id')
+                    ->join('users as u','u.id','a.usuario')
+                                        ->join('sedes as s','s.id','a.sede')
+                    ->where('a.sede','=',$request->session()->get('sede'))
+                    ->whereBetween('a.created_at',[$f1,$f2])
+                    ->get();
+
+
+
+        }
+
+
+
+      return view('existencias.descargar1',compact('f1','f2','descargas'));
+
+
+    }
+
     public function descargarcreate(){
 
       return view('existencias.descargarcreate');
+    }
+
+    public function descargarcreate1(Request $request){
+
+      $producto= Producto::where('sede_id','=',$request->session()->get('sede'))->where('almacen','=',2)->get();
+
+
+      return view('existencias.descargarcreate1',compact('producto'));
     }
 
 
@@ -260,13 +315,40 @@ class ProductoController extends Controller
               $productom->producto = $request->producto;
               $productom->almacen = $request->almacen;
               $productom->cantidad= $request->cantidad;
-              $productom->observacion= $request->observacion;
+              $productom->observacion= $request->observacion;;
+              $productom->sede = $request->session()->get('sede');
               $productom->usuario= Auth::user()->id;
               $productom->save();
 
 
        Toastr::success('Registrada Exitosamente', 'Descarga!', ['progressBar' => true]);
            return redirect()->action('Existencias\ProductoController@descargar');
+      
+
+    }
+
+      public function procesarDescarga1(Request $request){
+
+      $produc= Producto::where('id',$request->producto)->first();
+
+
+       Producto::where('id', $request->producto)
+                  ->update([
+                      'cantidad' => $produc->cantidad - $request->cantidad,
+                  ]);
+
+
+               $productom = new Descarga();
+              $productom->producto = $request->producto;
+              $productom->cantidad= $request->cantidad;
+              $productom->observacion= $request->observacion;;
+              $productom->sede = $request->session()->get('sede');
+              $productom->usuario= Auth::user()->id;
+              $productom->save();
+
+
+       Toastr::success('Registrada Exitosamente', 'Descarga!', ['progressBar' => true]);
+           return redirect()->action('Existencias\ProductoController@descargar1');
       
 
     }
@@ -361,7 +443,7 @@ class ProductoController extends Controller
                                     ->select(DB::raw('SUM(cantidad) as total'))
                                     ->first();
 
-        $f1=date('Y-m-d');
+        $f1=date('Y-m-d');
         $f2=date('Y-m-d'); 
 
       }

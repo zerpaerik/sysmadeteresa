@@ -45,11 +45,11 @@
 
 		 </div>
 		 <div class="col-md-2">
-		 	<input type="text" name="cantidad" placeholder="Cantidad a descargar">
+		 	<input type="text" class="form-control" name="cantidad" placeholder="Cantidad a descargar">
 		 	
 		 </div>
 		 <div class="col-md-7">
-		 	<input type="text" name="observacion" placeholder="Observacion">
+		 	<input type="text" class="form-control" name="observacion" placeholder="Observacion">
 		 	
 		 </div>
 

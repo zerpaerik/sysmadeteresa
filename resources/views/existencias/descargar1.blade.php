@@ -10,7 +10,7 @@
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
 					<span>Existencias/ Descargar en Stock</span>
-					<a href="{{route('descargarcreate.index')}}" class="btn btn-primary">Agregar</a>
+					<a href="{{route('descargarcreate.index1')}}" class="btn btn-primary">Agregar</a>
 
 				</div>
 				<div class="box-icons">
@@ -27,7 +27,7 @@
 				<div class="no-move"></div>
 			</div>
 
-			{!! Form::open(['method' => 'get', 'route' => ['descargar.index']]) !!}
+			{!! Form::open(['method' => 'get', 'route' => ['descargar.index1']]) !!}
 
 			<div class="row">
 				<div class="col-md-2">
@@ -54,7 +54,6 @@
 							<th>Cantidad</th>
                             <th>Fecha</th>
                             <th>Observaciòn</th>
-                            <th>Sede</th>
 							<th>Registrado Por:</th>
 					
 						</tr>
@@ -66,7 +65,6 @@
                         <td>{{$p->cantidad}}</td>
                         <td>{{$p->created_at}}</td>
                         <td>{{$p->observacion}}</td>
-                        <td>{{$p->sede}}</td>
 						<td>{{$p->lastname}},{{$p->name}}</td>
 						
 						</tr>
