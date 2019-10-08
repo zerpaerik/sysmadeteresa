@@ -42,11 +42,13 @@ class MetodosController extends Controller
      
     $totalmetodos = Metodos::where('sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                     ->whereNotIn('es_delete',[1])
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
 
      $totalmonto = Metodos::where('sede','=', $request->session()->get('sede'))
                                     ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                                    ->whereNotIn('es_delete',[1])
                                     ->select(DB::raw('SUM(monto) as monto'))
                                      ->first();
 
@@ -65,12 +67,14 @@ class MetodosController extends Controller
 
         $totalmetodos = Metodos::where('sede','=', $request->session()->get('sede'))
                                     ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->whereNotIn('es_delete',[1])
                                      ->select(DB::raw('COUNT(*) as total'))
                                      ->first();
 
         
      $totalmonto = Metodos::where('sede','=', $request->session()->get('sede'))
                                     ->whereDate('created_at', '=',Carbon::today()->toDateString())
+                                    ->whereNotIn('es_delete',[1])
                                     ->select(DB::raw('SUM(monto) as monto'))
                                      ->first();
 
