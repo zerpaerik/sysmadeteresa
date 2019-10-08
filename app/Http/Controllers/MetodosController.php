@@ -149,6 +149,8 @@ class MetodosController extends Controller
 
          $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));
 
+                 $producto= Producto::where('id',$request->producto)->first();
+
 
          $metodos = new Metodos();
          $metodos->id_paciente =$request->paciente;
