@@ -100,10 +100,31 @@
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">CANTIDAD</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO</th>
 		</tr>
+		
 		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Atenciones</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->cantidad }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $atenciones->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Servicios</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $otros->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $otros->monto }}</td>
+		</tr>
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Ecografias</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->monto }}</td>
+		</tr>
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">RayosX</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->monto }}</td>
+		</tr>
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
+		</tr>
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Paquetes</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $paq->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $paq->monto }}</td>
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Consultas</td>
