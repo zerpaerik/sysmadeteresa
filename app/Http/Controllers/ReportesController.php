@@ -82,6 +82,65 @@ class ReportesController extends Controller
         return view('resultadosguardados.editar', ["resultados" => $resultados]);
     }
 
+     public function reportdetallado(){
+
+        return view('reportes.general_detalle');
+    }
+
+    public function detallado(Request $request){
+
+
+        $f1= $request->f1;
+        $f2= $request->f2;
+
+
+
+
+
+          $ingresos = DB::table('creditos as a')
+                ->select('a.id','a.id_sede','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
+                ->whereBetween('a.date', [$f1,$f2])
+                ->where('a.id_sede','=', $request->session()->get('sede'))
+                ->whereNotIn('a.monto',[0,0.00])
+                ->groupBy('a.date')
+                ->get();  
+
+
+        $total= Creditos::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    //->groupBy('date')
+                                    ->first();
+         $egresos=Debitos::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as egreso'),'date')
+                                    ->groupBy('date')
+                                    ->get();
+                       
+                                    
+        $debitos=Debitos::where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    //->groupBy('date')
+                                    ->first();
+
+         $saldo= $total->monto - $debitos->monto;
+
+         //dd($egresos);
+
+
+
+
+         $view = \View::make('reportes.detallado1',compact('f1','f2','ingresos','egresos','debitos','total','saldo'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('movimientos'.$request->f1.'/'.$request->f2.'.pdf');
+
+    }
+
     public function historialp(Request $request)
     {
 
@@ -996,6 +1055,141 @@ class ReportesController extends Controller
             $atenciones->monto = 0;
         }
 
+         $serv = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1)   
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_servicio','=',1)
+        ->first();
+
+      //  dd($serv);
+
+        if ($serv->cantidad == 0) {
+            $serv->monto = 0;
+        }
+
+        $ray='RAYO';
+        $eco='ECO';
+
+        $rayos = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1) 
+        ->where('c.detalle','like','%'.$ray.'%')  
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_servicio','=',1)
+        ->first();
+
+
+
+        if ($rayos->cantidad == 0) {
+            $rayos->monto = 0;
+        }
+
+         $eco = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1) 
+        ->where('c.detalle','like','%'.$eco.'%')  
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_servicio','=',1)
+        ->first();
+
+
+
+        if ($eco->cantidad == 0) {
+            $eco->monto = 0;
+        }
+
+        $otros = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.otros','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1) 
+        ->where('c.otros','=',NULL)
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_servicio','=',1)
+        ->first();
+
+
+        if ($otros->cantidad == 0) {
+            $otros->monto = 0;
+        }
+
+
+        
+        $lab = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1)   
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_laboratorio','=',1)
+        ->first();
+
+      //  dd($serv);
+
+        if ($lab->cantidad == 0) {
+            $lab->monto = 0;
+        }
+
+
+         $paq = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->join('users as h','h.id','a.usuario')
+        ->join('paquetes as f','f.id','a.id_paquete')
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->where('a.estatus','=',1)   
+        ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_paquete','=',1)
+        ->first();
+
+    
+
+        if ($paq->cantidad == 0) {
+            $paq->monto = 0;
+        }
+
+
     
 
 
@@ -1084,7 +1278,7 @@ class ReportesController extends Controller
 
 
        
-       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta','caja'));
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','caja','egresos','totalEgresos','totalIngresos','efectivo','tarjeta','serv','lab','paq','otros','eco','rayos'));
              $pdf = \App::make('dompdf.wrapper');
        $pdf->loadHTML($view);
        return $pdf->stream('recibo_cierre_caja_ver');
