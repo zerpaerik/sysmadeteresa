@@ -605,7 +605,7 @@ class ReportesController extends Controller
         }
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -614,6 +614,7 @@ class ReportesController extends Controller
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
         ->where('a.estatus','=',1)   
+           ->where('a.es_delete','=',NULL)
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?",array($fechainic, $fecha))
         ->where('a.id_sede','=', $request->session()->get('sede'))
         ->where('a.es_servicio','=',1)
@@ -629,13 +630,14 @@ class ReportesController extends Controller
         $eco='ECO';
 
         $rayos = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
         ->join('users as e','e.id','a.origen_usuario')
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
+           ->where('a.es_delete','=',NULL)
         ->whereNotIn('a.monto',[0,0.00,99999])
         ->where('a.estatus','=',1) 
         ->where('c.detalle','like','%'.$ray.'%')  
@@ -651,7 +653,7 @@ class ReportesController extends Controller
         }
 
          $eco = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -659,6 +661,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1) 
         ->where('c.detalle','like','%'.$eco.'%')  
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?",array($fechainic, $fecha))
@@ -673,7 +676,7 @@ class ReportesController extends Controller
         }
 
         $otros = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.otros','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.otros','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -681,6 +684,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1) 
         ->where('c.otros','=',NULL)
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?",array($fechainic, $fecha))
@@ -696,7 +700,7 @@ class ReportesController extends Controller
 
         
         $lab = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -704,6 +708,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1)   
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?", 
                                      array($fechainic, $fecha))
@@ -719,7 +724,7 @@ class ReportesController extends Controller
 
 
          $paq = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -728,6 +733,7 @@ class ReportesController extends Controller
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
         ->where('a.estatus','=',1)   
+           ->where('a.es_delete','=',NULL)
         ->whereRaw("a.created_at >= ? AND a.created_at <= ?", 
                                      array($fechainic, $fecha))
         ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -1057,7 +1063,7 @@ class ReportesController extends Controller
         }
 
          $serv = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1065,6 +1071,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1)   
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
         ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -1081,7 +1088,7 @@ class ReportesController extends Controller
         $eco='ECO';
 
         $rayos = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1089,6 +1096,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1) 
         ->where('c.detalle','like','%'.$ray.'%')  
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
@@ -1103,7 +1111,7 @@ class ReportesController extends Controller
         }
 
          $eco = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1111,6 +1119,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1) 
         ->where('c.detalle','like','%'.$eco.'%')  
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
@@ -1125,7 +1134,7 @@ class ReportesController extends Controller
         }
 
         $otros = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.otros','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.otros','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1133,6 +1142,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1) 
         ->where('c.otros','=',NULL)
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
@@ -1148,7 +1158,7 @@ class ReportesController extends Controller
 
         
         $lab = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1156,6 +1166,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1)   
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
         ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -1170,7 +1181,7 @@ class ReportesController extends Controller
 
 
          $paq = DB::table('atenciones as a')
-        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete',DB::raw('COUNT(*) as cantidad, SUM(abono) as monto'))
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
@@ -1178,6 +1189,7 @@ class ReportesController extends Controller
         ->join('users as h','h.id','a.usuario')
         ->join('paquetes as f','f.id','a.id_paquete')
         ->whereNotIn('a.monto',[0,0.00,99999])
+           ->where('a.es_delete','=',NULL)
         ->where('a.estatus','=',1)   
         ->whereRaw("a.created_at > ? AND a.created_at <= ?",array($fechamañana, $fecha))
         ->where('a.id_sede','=', $request->session()->get('sede'))
