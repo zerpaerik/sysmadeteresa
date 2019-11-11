@@ -830,7 +830,7 @@ class ReportesController extends Controller
         
  
        
-       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos','rayos','eco','otros')->render());
+       $view = \View::make('reportes.cierre_caja_ver', compact('atenciones', 'consultas','otros_servicios', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','efectivo','tarjeta','totalEgresos','totalIngresos','rayos','eco','otros'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
