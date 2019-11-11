@@ -115,7 +115,9 @@
 			<td>Total</td>
 			<td></td>
 			<td></td>
+			@if($totalEgresos)
 			<td width="80">{{ $totalEgresos }}</td>
+			@endif
 		</tr>
 	</table>
 </div>
