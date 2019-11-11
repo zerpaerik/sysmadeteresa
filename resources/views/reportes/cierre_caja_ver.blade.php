@@ -212,13 +212,21 @@
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto }}</td>
+			@if($totalEgresos)
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totalEgresos }}</td>
+			@else
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0.00</td>
+			@endif
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">
+				@if($totalEgresos)
 				{{ $efectivo->monto - $totalEgresos }}
+				@else
+				{{ $efectivo->monto }}
+				@endif
 			</td>
 		</tr>
 	</table>
