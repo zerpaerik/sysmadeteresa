@@ -173,8 +173,10 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
 			<td></td>
 			<td></td>
+			@if($totalEgresos)
 			<td width="80">{{ $totalEgresos }}</td>
-		</tr>
+			@endif
+		</tr>s
 	</table>
 </div>
 <div style="font-weight: bold; font-size: 14px">

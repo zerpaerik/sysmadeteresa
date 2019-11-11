@@ -822,7 +822,7 @@ class ReportesController extends Controller
          $totalEgresos = 0;
 
         foreach ($egresos as $egreso) {
-            $totalEgresos += $egreso->monto;
+            $totalEgresos = $egreso->monto;
         }
     
          $totalIngresos = $atenciones->monto + $consultas->monto + $otros_servicios->monto + $cuentasXcobrar->monto + $metodos->monto;
