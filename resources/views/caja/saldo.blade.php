@@ -154,13 +154,21 @@
 		</tr>
 		<tr>
 			<td>{{ $efectivo->monto }}</td>
+			@if($totalEgresos)
 			<td>{{ $totalEgresos }}</td>
+			@else
+		    <td>0.00</td>
+			@endif
 		</tr>
 		<tr>
 			<td>Total</td>
 			<td></td>
 			<td width="80">
+				@if($totalEgresos)
 				{{ $efectivo->monto - $totalEgresos }}
+				@else
+				{{ $efectivo->monto }}
+				@endif
 			</td>
 		</tr>
 	</table>
