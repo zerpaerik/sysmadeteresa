@@ -356,7 +356,7 @@ class CajaController extends Controller
         $totalEgresos = 0;
 
         foreach ($egresos as $egreso) {
-            $totalEgresos = $egreso->monto;
+            $totalEgresos += $egreso->monto;
         }
         }
 
