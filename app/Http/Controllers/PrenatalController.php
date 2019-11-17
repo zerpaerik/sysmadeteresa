@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pacientes\Paciente;
 use App\Models\Historiales;
+use App\Models\PaqCont;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Prenatal;
 use App\Control;
@@ -301,6 +302,11 @@ class PrenatalController extends Controller
 		    $event->atendido=1;
 		    $event->prox= $request->prox;
 		    $event->update();
+
+
+		  $pa = PaqCont::where('control','=',$request->evento)->first();
+          $pa->estatus = 1;  
+          $pa->save(); 
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
 

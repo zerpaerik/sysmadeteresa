@@ -284,7 +284,8 @@ class EventController extends Controller
         "monto" => $request->monto,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
-        "id_event" => $evt->id
+        "id_event" => $evt->id,
+        "date" => date('Y-m-d')
       ]);
 	  
 	

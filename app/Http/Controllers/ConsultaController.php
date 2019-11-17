@@ -10,6 +10,7 @@ use App\Models\ConsultaMateriales;
 use App\Models\Existencias\{Producto, Existencia, Transferencia,Historiales};
 use App\Models\Pacientes\Paciente;
 use App\Models\Personal;
+use App\Models\PaqCon;
 use App\Models\MaterialesConsultas;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
@@ -345,6 +346,11 @@ class ConsultaController extends Controller
     $event->atendido=1;
     $event->atendidopor=\Auth::user()->id;
     $event->update();
+
+
+         $pa = PaqCon::where('consulta','=',$request->evento)->first();
+          $pa->estatus = 1;  
+          $pa->save(); 
 
 
 

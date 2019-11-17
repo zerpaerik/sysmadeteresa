@@ -9,6 +9,10 @@ use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Pacientes;
+use App\Models\PaqLab;
+use App\Models\PaqServ;
+use App\Models\PaqCon;
+use App\Models\PaqCont;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosMateriales;
 use App\Models\ResultadosLaboratorios;
@@ -2282,8 +2286,103 @@ class ReportesController extends Controller
     }
 
 
-    ///
+    public function detallepaquetes(Request $request){
 
+        if(!is_null($request->fecha) && is_null($request->fecha2)){
+
+            $f1= $request->fecha;
+            $f2= $request->fecha2;
+
+
+         $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+    ->whereNotIn('a.monto',[0,0.00,99999])
+    ->where('a.es_paquete','=',1)
+    ->where('a.estatus','=',1)   
+    ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->orderby('a.id','desc')
+    ->groupBy('a.id')
+    ->get();
+   }else{
+
+       $atenciones = DB::table('atenciones as a')
+    ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('servicios as c','c.id','a.id_servicio')
+    ->join('analises as d','d.id','a.id_laboratorio')
+    ->join('users as e','e.id','a.origen_usuario')
+    ->join('users as h','h.id','a.usuario')
+    ->join('paquetes as f','f.id','a.id_paquete')
+    ->whereNotIn('a.monto',[0,0.00,99999])
+    ->where('a.es_paquete','=',1)
+    ->where('a.estatus','=',1)   
+    ->where('a.id_sede','=', $request->session()->get('sede'))
+    ->whereDate('a.created_at','=',date('Y-m-d'))
+    ->orderby('a.id','desc')
+    ->groupBy('a.id')
+    ->get();
+
+        $f1= date('Y-m-d');
+        $f2= date('Y-m-d');
+
+
+
+
+   }
+
+   return view('reportes.detallepaquetes',compact('atenciones','f1','f2'));
+
+
+    }
+
+    public function detallepaquete($id){
+         
+
+         $atencion=  DB::table('atenciones as a')
+        ->select('a.id','a.paquete','a.id_paciente','a.created_at','p.nombres','p.apellidos')
+        ->where('a.paquete','=',$id)
+        ->join('pacientes as p','a.id_paciente','p.id')
+        ->first();
+
+
+
+          $serv = DB::table('paqserv as a')
+        ->select('a.id','a.paquete','a.servicio','a.estatus','s.detalle as detalle')
+        ->where('a.paquete','=',$id)
+        ->join('servicios as s','a.servicio','s.id')
+        ->get();
+
+          $lab = DB::table('paqlab as a')
+        ->select('a.id','a.paquete','a.lab','l.name as detalle','a.estatus')
+        ->where('a.paquete','=',$id)
+        ->join('analises as l','a.lab','l.id')
+        ->get();
+
+         $con = DB::table('paqcon as a')
+        ->select('a.id','a.paquete','a.consulta','a.estatus','e.tipo','e.title')
+        ->join('events as e','e.id','a.consulta')
+        ->where('a.paquete','=',$id)
+        ->get();
+
+         $cont = DB::table('paqcont as a')
+        ->select('a.id','a.paquete','a.control','a.estatus','e.tipo','e.title')
+        ->join('events as e','e.id','a.control')
+        ->where('a.paquete','=',$id)
+        ->get();
+
+
+        return view('reportes.detallepaquete',compact('serv','lab','con','cont','atencion'));
+    }
+
+
+    
 }
 
 

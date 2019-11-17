@@ -13,6 +13,10 @@ use App\Models\Profesionales;
 use App\Models\Creditos;
 use App\Models\Paquetes;
 use App\Models\Correlativo;
+use App\Models\PaqServ;
+use App\Models\PaqLab;
+use App\Models\PaqCon;
+use App\Models\PaqCont;
 use App\Models\Existencias\Producto;
 use App\Models\Events\{Event, RangoConsulta};
 use App\Models\ServicioMaterial;
@@ -193,6 +197,7 @@ public function index(Request $request){
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+          $creditos->date = date('Y-m-d');
           $creditos->save();
          
 
@@ -253,6 +258,13 @@ public function index(Request $request){
               $s->ticket =AtencionesController::generarId($request);
               $s->paquete= $paq->id; 
               $s->save(); 
+
+              $p = new PaqServ();
+              $p->paciente = $request->id_paciente;
+              $p->servicio =  $id_servicio;
+              $p->paquete= $paq->id; 
+              $p->num= $s->id; 
+              $p->save(); 
              
          }
         }
@@ -293,6 +305,13 @@ public function index(Request $request){
               $l->paquete= $paq->id; 
               $l->save(); 
 
+               $p = new PaqLab();
+              $p->paciente = $request->id_paciente;
+              $p->lab =  $id_laboratorio;
+              $p->paquete= $paq->id; 
+              $p->num= $l->id; 
+              $p->save(); 
+
          }
         }
 
@@ -331,6 +350,13 @@ public function index(Request $request){
         $evt->tipo='CONSULTAS';
         $evt->paquete= $paq->id; 
         $evt->save();
+
+              $p = new PaqCon();
+              $p->paciente = $request->id_paciente;
+              $p->consulta =  $evt->id;
+              $p->paquete= $paq->id; 
+              $p->save(); 
+
 
            $contador++;
          } 
@@ -373,6 +399,12 @@ public function index(Request $request){
         $evt->tipo='CONTROLES';
         $evt->paquete= $paq->id; 
         $evt->save();
+
+              $p = new PaqCont();
+              $p->paciente = $request->id_paciente;
+              $p->control =  $evt->id;
+              $p->paquete= $paq->id; 
+              $p->save(); 
 
            $contador++;
          }   
@@ -448,6 +480,7 @@ public function index(Request $request){
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+                    $creditos->date = date('Y-m-d');
           $creditos->save();
           
         } else {
@@ -515,6 +548,7 @@ public function index(Request $request){
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+                    $creditos->date = date('Y-m-d');
           $creditos->save();
         
 
@@ -579,6 +613,7 @@ public function index(Request $request){
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+                    $creditos->date = date('Y-m-d');
           $creditos->save();
         
 
@@ -637,6 +672,13 @@ public function index(Request $request){
               $s->ticket =AtencionesController::generarId($request);
              $s->paquete= $paq->id; 
               $s->save(); 
+
+                $p = new PaqServ();
+              $p->paciente = $request->id_paciente;
+              $p->servicio =  $id_servicio;
+              $p->paquete= $paq->id; 
+              $p->num= $s->id; 
+              $p->save(); 
              
          }
         }
@@ -677,6 +719,13 @@ public function index(Request $request){
               $l->paquete= $paq->id; 
               $l->save(); 
 
+               $p = new PaqLab();
+              $p->paciente = $request->id_paciente;
+              $p->lab =  $id_laboratorio;
+              $p->paquete= $paq->id; 
+              $p->num= $l->id; 
+              $p->save(); 
+
          }
         }
 
@@ -714,6 +763,12 @@ public function index(Request $request){
         $evt->tipo='CONSULTAS';
                 $evt->paquete= $paq->id; 
         $evt->save();
+
+         $p = new PaqCon();
+              $p->paciente = $request->id_paciente;
+              $p->consulta =  $evt->id;
+              $p->paquete= $paq->id; 
+              $p->save(); 
 
            $contador++;
          } 
@@ -757,6 +812,12 @@ $paciente = DB::table('pacientes')
         $evt->tipo='CONTROLES';
                 $evt->paquete= $paq->id; 
         $evt->save();
+
+         $p = new PaqCont();
+              $p->paciente = $request->id_paciente;
+              $p->control =  $evt->id;
+              $p->paquete= $paq->id; 
+              $p->save(); 
 
            $contador++;
          }   
@@ -835,6 +896,7 @@ $paciente = DB::table('pacientes')
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+                    $creditos->date = date('Y-m-d');
           $creditos->save();
         
 
@@ -898,6 +960,7 @@ $paciente = DB::table('pacientes')
           $creditos->id_sede = $request->session()->get('sede');
           $creditos->tipo_ingreso = $request->tipopago;
           $creditos->descripcion = 'INGRESO DE ATENCIONES';
+                    $creditos->date = date('Y-m-d');
           $creditos->save();
       
          
@@ -1551,16 +1614,15 @@ $paciente = DB::table('pacientes')
     $atenciones->es_delete=1;
     $atenciones->save();
 
-      $creditos = Creditos::where('id_atencion','=',$id);
+    $creditos = Creditos::where('id_atencion','=',$id);
     $creditos->delete();
 
 
-    
     $atenciones2 = Atenciones::where('paquete','=',$id);
     $atenciones2->delete();
   
     $event= Event::where('paquete','=',$id);
-  $event->delete();
+    $event->delete();
 
   
    Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
