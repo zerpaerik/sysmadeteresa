@@ -346,6 +346,9 @@
     </a>
     <ul class="dropdown-menu">
        <li>
+        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado</a>
+      </li>
+       <li>
         <a href="{{route('produccion.index')}}"><i class="fa fa-file-o"></i> Producciòn del Dia</a>
       </li>
       <li>
@@ -387,6 +390,9 @@
       </li>
       <li>
         <a href="{{route('materialesconsultas.ver')}}"><i class="fa fa-file-o"></i> Materiales Consultas</a>
+      </li>
+      <li>
+        <a href="{{route('detallepaquetes.index')}}"><i class="fa fa-file-o"></i> Detalle Paquetes</a>
       </li>
     </ul>
   </li>
@@ -758,6 +764,9 @@
       <span class="hidden-xs">Reportes</span>
     </a>
     <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado</a>
+      </li>
       <li>
         <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Consolidado</a>
       </li>
@@ -793,6 +802,9 @@
       </li>
       <li>
         <a href="{{route('materialesconsultas.ver')}}"><i class="fa fa-file-o"></i> Materiales Consultas</a>
+      </li>
+        <li>
+        <a href="{{route('detallepaquetes.index')}}"><i class="fa fa-file-o"></i> Detalle Paquetes</a>
       </li>
     </ul>
   </li>
