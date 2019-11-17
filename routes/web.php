@@ -393,7 +393,8 @@ Route::get('usados/ver/{f1}/{f2}/{id}', 'ReportesController@reportusados');
 Route::get('materialesconsultas', 'ReportesController@materialesconsultas')->name('materialesconsultas.ver');
 Route::get('matconsultas/ver/{f1}/{f2}/{id}', 'ReportesController@reportconsultas');
 
-
+Route::get('report-detallado', 'ReportesController@reportdetallado')->name('report.detallado');
+Route::post('reporte/detallado1', 'ReportesController@detallado');
 
 
 Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');
@@ -588,7 +589,8 @@ Route::get('recibo_gasto_ver/{id}','ReportesController@recibo_gasto_ver');
 
 Route::get('historial_pacientes', 'ReportesController@historialp')->name('historial.pacientes');
 
-
+Route::get('detalle_paquetes', 'ReportesController@detallepaquetes')->name('detallepaquetes.index');
+Route::get('detalle_paquetes-{id}', 'ReportesController@detallepaquete');
 
 
 
