@@ -336,6 +336,24 @@ class ResultadosController extends Controller
 	
 	 public function edit1($id,Request $request){
 
+
+
+     $at = Atenciones::where('id','=',$request->id)->first();
+
+            if($at->es_servicio == 1){
+
+              $ps = PaqServ::where('num','=',$request->id)->first();
+              $ps->estatus = 1;  
+              $ps->save(); 
+
+            }else{
+
+             $pl = PaqLab::where('num','=',$request->id)->first();
+             $pl->estatus = 1;  
+             $pl->save(); 
+
+           } 
+
   
 
      $searchAtenciones = DB::table('atenciones')
@@ -703,26 +721,12 @@ class ResultadosController extends Controller
         }
       }
 
-    
+            
 
 
            }
 
-            $at = Atenciones::where('id','=',$request->id)->first();
 
-            if($at->es_servicio == 1){
-
-              $ps = PaqServ::where('num','=',$request->id)->first();
-              $ps->estatus = 1;  
-              $ps->save(); 
-
-            }else{
-
-             $pl = PaqLab::where('num','=',$request->id)->first();
-             $pl->estatus = 1;  
-             $pl->save(); 
-
-           } 
 
       Toastr::success('Registrado Exitosamente.', 'Informe!', ['progressBar' => true]);
       return redirect()->action('ResultadosController@index');
