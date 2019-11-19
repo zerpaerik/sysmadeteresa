@@ -7,6 +7,8 @@ use DB;
 use App\Models\Atenciones;
 use App\Models\Debitos;
 use App\Models\Analisis;
+use App\Models\PaqServ;
+use App\Models\PaqLab;
 use App\Models\Creditos;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
@@ -427,6 +429,10 @@ class ResultadosController extends Controller
         $pa->nombreinforme=$nombre_imagen;
         $pa->save(); 
 
+           $pa = PaqServ::where('num','=',$request->id)->first();
+          $pa->estatus = 1;  
+          $pa->save(); 
+
 
               } elseif($paquete<>NULL) {
 
@@ -451,6 +457,11 @@ class ResultadosController extends Controller
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
         $pa->save(); 
+
+
+           $pa = PaqServ::where('num','=',$request->id)->first();
+          $pa->estatus = 1;  
+          $pa->save(); 
 
    
               $s = new Atenciones();
@@ -503,6 +514,11 @@ class ResultadosController extends Controller
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
         $pa->save(); 
+
+
+           $pa = PaqServ::where('num','=',$request->id)->first();
+          $pa->estatus = 1;  
+          $pa->save(); 
 
 
         
@@ -658,7 +674,12 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen; 
-        $pa->save();   
+        $pa->save();  
+
+
+           $pa = PaqLab::where('num','=',$request->id)->first();
+          $pa->estatus = 1;  
+          $pa->save();  
         
         
 
