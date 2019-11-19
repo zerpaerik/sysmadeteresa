@@ -429,9 +429,7 @@ class ResultadosController extends Controller
         $pa->nombreinforme=$nombre_imagen;
         $pa->save(); 
 
-           $pa = PaqServ::where('num','=',$request->id)->first();
-          $pa->estatus = 1;  
-          $pa->save(); 
+         
 
 
               } elseif($paquete<>NULL) {
@@ -459,9 +457,7 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-           $ps = PaqServ::where('num','=',$request->id)->first();
-          $ps->estatus = 1;  
-          $ps->save(); 
+         
 
    
               $s = new Atenciones();
@@ -516,10 +512,7 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-            $ps = PaqServ::where('num','=',$request->id)->first();
-          $ps->estatus = 1;  
-          $ps->save(); 
-
+           
 
         
 
@@ -677,9 +670,6 @@ class ResultadosController extends Controller
         $pa->save();  
 
 
-           $pl = PaqLab::where('num','=',$request->id)->first();
-          $pl->estatus = 1;  
-          $pl->save();  
         
         
 
@@ -717,6 +707,22 @@ class ResultadosController extends Controller
 
 
            }
+
+            $at = Atenciones::where('id','=',$request->id)->first();
+
+            if($at->es_servicio == 1){
+
+              $ps = PaqServ::where('num','=',$request->id)->first();
+              $ps->estatus = 1;  
+              $ps->save(); 
+
+            }else{
+
+             $pl = PaqLab::where('num','=',$request->id)->first();
+             $pl->estatus = 1;  
+             $pl->save(); 
+
+           } 
 
       Toastr::success('Registrado Exitosamente.', 'Informe!', ['progressBar' => true]);
       return redirect()->action('ResultadosController@index');
