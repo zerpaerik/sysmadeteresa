@@ -459,9 +459,9 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-           $pa = PaqServ::where('num','=',$request->id)->first();
-          $pa->estatus = 1;  
-          $pa->save(); 
+           $ps = PaqServ::where('num','=',$request->id)->first();
+          $ps->estatus = 1;  
+          $ps->save(); 
 
    
               $s = new Atenciones();
@@ -516,9 +516,9 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-           $pa = PaqServ::where('num','=',$request->id)->first();
-          $pa->estatus = 1;  
-          $pa->save(); 
+            $ps = PaqServ::where('num','=',$request->id)->first();
+          $ps->estatus = 1;  
+          $ps->save(); 
 
 
         
@@ -677,9 +677,9 @@ class ResultadosController extends Controller
         $pa->save();  
 
 
-           $pa = PaqLab::where('num','=',$request->id)->first();
-          $pa->estatus = 1;  
-          $pa->save();  
+           $pl = PaqLab::where('num','=',$request->id)->first();
+          $pl->estatus = 1;  
+          $pl->save();  
         
         
 
