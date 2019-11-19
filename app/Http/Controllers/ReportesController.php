@@ -2288,12 +2288,9 @@ class ReportesController extends Controller
 
     public function detallepaquetes(Request $request){
 
-        if(!is_null($request->fecha) && is_null($request->fecha2)){
+        if(!is_null($request->paciente)){
 
-            $f1= $request->fecha;
-            $f2= $request->fecha2;
-
-
+        
          $atenciones = DB::table('atenciones as a')
     ->select('a.id','a.created_at','a.es_delete','a.tipopago','a.id_paciente','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.estatus','a.pagado_com','a.informe','a.es_laboratorio','a.es_paquete','a.monto','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname','h.name as user','h.lastname as userp','d.name as laboratorio','f.detalle as paquete')
     ->join('pacientes as b','b.id','a.id_paciente')
@@ -2302,7 +2299,7 @@ class ReportesController extends Controller
     ->join('users as e','e.id','a.origen_usuario')
     ->join('users as h','h.id','a.usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
-    ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+    ->where('a.id_paciente','=', $request->paciente)
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.es_paquete','=',1)
     ->where('a.estatus','=',1)   
@@ -2329,15 +2326,15 @@ class ReportesController extends Controller
     ->groupBy('a.id')
     ->get();
 
-        $f1= date('Y-m-d');
-        $f2= date('Y-m-d');
-
+   
 
 
 
    }
 
-   return view('reportes.detallepaquetes',compact('atenciones','f1','f2'));
+   $pacientes =Pacientes::where("estatus", '=', 1)->orderby('apellidos','asc')->get();
+
+   return view('reportes.detallepaquetes',compact('atenciones','pacientes'));
 
 
     }
