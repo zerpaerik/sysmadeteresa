@@ -336,16 +336,13 @@ class ResultadosController extends Controller
 	
 	 public function edit1($id,Request $request){
 
-    dd($id);
-    die();
 
 
+     $at = Atenciones::where('id','=',$id)->first();
 
-     $at = Atenciones::where('id','=',$request->id)->first();
+            if($at->es_servicio == 1 && $at->paquete <> NULL){
 
-            if($at->es_servicio == 1){
-
-              $ps = PaqServ::where('num','=',$request->id)->first();
+              $ps = PaqServ::where('num','=',$id)->first();
               $ps->estatus = 1;  
               $ps->save(); 
 
