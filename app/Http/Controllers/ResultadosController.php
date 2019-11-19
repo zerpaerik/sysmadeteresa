@@ -336,6 +336,9 @@ class ResultadosController extends Controller
 	
 	 public function edit1($id,Request $request){
 
+    dd($id);
+    die();
+
 
 
      $at = Atenciones::where('id','=',$request->id)->first();
