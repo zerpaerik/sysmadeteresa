@@ -304,9 +304,7 @@ class PrenatalController extends Controller
 		    $event->update();
 
 
-		  $pa = PaqCont::where('control','=',$request->evento)->first();
-          $pa->estatus = 1;  
-          $pa->save(); 
+		
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
 

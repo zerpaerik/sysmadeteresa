@@ -338,21 +338,6 @@ class ResultadosController extends Controller
 
 
 
-     $at = Atenciones::where('id','=',$id)->first();
-
-            if($at->es_servicio == 1 && $at->paquete <> NULL){
-
-              $ps = PaqServ::where('num','=',$id)->first();
-              $ps->estatus = 1;  
-              $ps->save(); 
-
-            }else{
-
-             $pl = PaqLab::where('num','=',$request->id)->first();
-             $pl->estatus = 1;  
-             $pl->save(); 
-
-           } 
 
   
 

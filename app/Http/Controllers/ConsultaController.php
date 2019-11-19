@@ -348,9 +348,7 @@ class ConsultaController extends Controller
     $event->update();
 
 
-         $pa = PaqCon::where('consulta','=',$request->evento)->first();
-          $pa->estatus = 1;  
-          $pa->save(); 
+       
 
 
 
