@@ -682,10 +682,10 @@ class ResultadosController extends Controller
         $pa->save(); 
 
 
-         $al= Atenciones::where('id','=',$id)->first();
+         $alpl= Atenciones::where('id','=',$id)->first();
 
 
-        if($als->paquete <> 'NULL' && $als->es_laboratorio == 1) {
+        if($alpl->paquete <> 'NULL' && $alpl->es_laboratorio == 1) {
 
               $pl= PaqLab::where('num','=',$id)->first();
               $pl->estatus=1;
