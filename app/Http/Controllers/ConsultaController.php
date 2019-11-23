@@ -348,6 +348,19 @@ class ConsultaController extends Controller
     $event->update();
 
 
+
+      $e= Event::where('id','=',$request->evento)->first();
+
+      if($e->profesional == 36){
+
+        $ep = PaqCon::where('consulta','=',$request->evento)->first();
+        $ep->estatus=1;
+        $ep->save();
+
+      }
+
+
+
        
 
 

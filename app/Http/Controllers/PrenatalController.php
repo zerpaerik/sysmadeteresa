@@ -298,10 +298,16 @@ class PrenatalController extends Controller
 
     	]);
 
-    	 $event = Event::find($request->evento);
-		    $event->atendido=1;
-		    $event->prox= $request->prox;
-		    $event->update();
+
+    	$e= Event::where('id','=',$request->evento)->first();
+
+    	if($e->profesional == 36){
+
+    	    $ep = PaqCont::where('control','=',$request->evento)->first();
+		    $ep->estatus=1;
+		    $ep->save();
+
+		  }
 
 
 		

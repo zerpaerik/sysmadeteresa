@@ -338,9 +338,6 @@ class ResultadosController extends Controller
 
 
 
-
-  
-
      $searchAtenciones = DB::table('atenciones')
                     ->select('*')
                    // ->where('estatus','=','1')
@@ -350,6 +347,8 @@ class ResultadosController extends Controller
             foreach ($searchAtenciones as $atenciones) {
                     $es_servicio = $atenciones->es_servicio;
                     $es_laboratorio = $atenciones->es_laboratorio;
+                    $paquete = $atenciones->paquete;
+
                 }
 
         
@@ -405,10 +404,6 @@ class ResultadosController extends Controller
                 if($por_tec < 0){
 
 
-
-
-
-
         $p = User::where('id','=',Auth::user()->id)->first();
 
 
@@ -458,6 +453,20 @@ class ResultadosController extends Controller
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
         $pa->save(); 
+
+        
+
+        $als= Atenciones::where('id',$request->id)->first();
+
+       
+
+        if($als->paquete <> 'NULL' && $als->es_servicio == 1) {
+
+         $ps= PaqServ::where('num','=',$id)->first();
+         $ps->estatus=1;
+         $ps->save();
+       }
+
 
 
          
@@ -670,8 +679,21 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen; 
-        $pa->save();  
+        $pa->save(); 
 
+
+         $al= Atenciones::where('id','=',$id)->first();
+
+
+        if($als->paquete <> 'NULL' && $als->es_laboratorio == 1) {
+
+              $pl= PaqLab::where('num','=',$id)->first();
+              $pl->estatus=1;
+              $pl->save();
+            }
+
+
+       
 
         
         
@@ -690,7 +712,8 @@ class ResultadosController extends Controller
             $pro->usuario = Auth::user()->id;
             $pro->sede =$request->session()->get('sede');
             $pro->save();
-
+              
+           
 
             
             $SearchMaterial = Producto::where('id', $laboratorio['laboratorio'])
