@@ -460,7 +460,7 @@ class ResultadosController extends Controller
 
        
 
-        if($als->paquete <> 'NULL' && $als->es_servicio == 1) {
+        if($als->paquete <> NULL && $als->es_servicio == 1) {
 
          $ps= PaqServ::where('num','=',$id)->first();
          $ps->estatus=1;
@@ -685,7 +685,7 @@ class ResultadosController extends Controller
          $alpl= Atenciones::where('id','=',$id)->first();
 
 
-        if($alpl->paquete <> 'NULL' && $alpl->es_laboratorio == 1) {
+        if($alpl->paquete <> NULL && $alpl->es_laboratorio == 1) {
 
               $pl= PaqLab::where('num','=',$id)->first();
               $pl->estatus=1;
