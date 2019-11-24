@@ -1059,6 +1059,10 @@
        <li>
         <a href="reporte-solicitar_consolidado"><i class="fa fa-file-o"></i> Atenciòn Diaria Detallado</a>
       </li>
+
+      <li>
+        <a href="{{route('detallepaquetes.index')}}"><i class="fa fa-file-o"></i> Detalle Paquetes</a>
+      </li>
     </ul>
   </li>
 
@@ -1209,6 +1213,9 @@
        <li>
         <a href="{{route('historial.pacientes')}}"><i class="fa fa-file-o"></i> Historial Pacientes</a>
       </li> 
+      <li>
+        <a href="{{route('detallepaquetes.index')}}"><i class="fa fa-file-o"></i> Detalle Paquetes</a>
+      </li>
     
     </ul>
   </li>
