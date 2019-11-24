@@ -2327,20 +2327,18 @@ class ReportesController extends Controller
     ->get();
 
    
-
-
-
    }
 
 
     $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.apellidos','a.dni','a.estatus','a.estatus','s.es_paquete')
-        ->join('atenciones as s','s.id_paciente','a.id')
-        ->where('s.es_paquete','=',1)
-        ->where('a.estatus', '=', 1)
+        ->select('a.id','a.nombres','a.apellidos','a.dni','a.estatus')
+        ->join('paqserv as s','s.paciente','a.id')
+        ->where('a.estatus', '=',1)
         ->groupBy('a.id')
         ->orderby('a.apellidos','asc')
         ->get();
+
+        dd($pacientes);
 
    return view('reportes.detallepaquetes',compact('atenciones','pacientes'));
 
