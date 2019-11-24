@@ -21,9 +21,9 @@
 						<td>{{$s->id}}</td>
 						<td>{{$s->detalle}}</td>
 						@if($s->estatus == NULL)
-						<td>Sin Atender</td>
+						<td style="background: #1660A9;">Sin Atender</td>
 						@else
-						<td>Atendido</td>
+						<td style="background: #F31E08;">Atendido</td>
 						@endif
 					
 					
@@ -59,9 +59,9 @@
 						<td>{{$s->id}}</td>
 						<td>{{$s->detalle}}</td>
 						@if($s->estatus == NULL)
-						<td>Sin Atender</td>
+						<td style="background: #1660A9;">Sin Atender</td>
 						@else
-						<td>Atendido</td>
+						<td style="background: #F31E08;">Atendido</td>
 						@endif
 					
 					
@@ -99,9 +99,9 @@
 						<td>{{$s->tipo}}</td>
 						<td>{{$s->title}}</td>
 						@if($s->estatus == NULL)
-						<td>Sin Atender</td>
+						<td style="background: #1660A9;">Sin Atender</td>
 						@else
-						<td>Atendido</td>
+						<td style="background: #F31E08;">Atendido</td>
 						@endif
 					
 					
@@ -140,9 +140,9 @@
 						<td>{{$s->tipo}}</td>
 						<td>{{$s->title}}</td>
 						@if($s->estatus == NULL)
-						<td>Sin Atender</td>
+						<td style="background: #1660A9;">Sin Atender</td>
 						@else
-						<td>Atendido</td>
+						<td style="background: #F31E08;">Atendido</td>
 						@endif
 					
 					

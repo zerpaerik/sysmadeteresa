@@ -9,6 +9,7 @@ use App\Models\Debitos;
 use App\Models\Analisis;
 use App\Models\Creditos;
 use App\Models\Personal;
+use App\Models\PaqServ;
 use App\Models\ResultadosServicios;
 use App\Models\ResultadosLaboratorios;
 use App\Informe;
@@ -128,6 +129,10 @@ class SesionesController extends Controller
       $p->atendido = $request->atendido;
       $p->fecha_atencion = Carbon::today()->toDateString();
       $res = $p->save();
+
+         $ps= PaqServ::where('num','=',$request->id)->first();
+         $ps->estatus=1;
+         $ps->save();
 
       Toastr::success('Atendido Exitosamente.', 'Paciente!', ['progressBar' => true]);
       return back();
