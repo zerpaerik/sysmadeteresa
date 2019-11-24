@@ -2338,7 +2338,6 @@ class ReportesController extends Controller
         ->orderby('a.apellidos','asc')
         ->get();
 
-        dd($pacientes);
 
    return view('reportes.detallepaquetes',compact('atenciones','pacientes'));
 
