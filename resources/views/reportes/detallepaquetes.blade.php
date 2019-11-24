@@ -76,14 +76,10 @@
 						<td>{{date('d-m-Y H:i', strtotime($d->created_at))}}</td>
 						<td>{{$d->user}}</td>
 						@if($d->es_delete <> 1)
-		               
-
-						      @if(\Auth::user()->role_id <> 6)	
 						  <td>						 
 						<a class="btn btn-danger" href="detalle_paquetes-{{$d->id}}">Ver</a></td>
 						<td>
 		                 </td>
-		                     @endif
 		                 @else
 		                 <td style="background:#CF5F2F">Fue Eliminado</td>
 		                 @endif
