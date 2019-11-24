@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h2>PAQUETE Nº {{$atencion->paquete}}</h2>
+<h2>PAQUETE Nº {{$atencion->id}}</h2>
 <p>Paciente:{{$atencion->apellidos}} {{$atencion->nombres}}  </p>
 <p>Fecha de Registro de Paquete: {{$atencion->created_at}}</p>
 
