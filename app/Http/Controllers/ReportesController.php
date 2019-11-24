@@ -2332,13 +2332,12 @@ class ReportesController extends Controller
 
    }
 
-  // $pacientes =Pacientes::where("estatus", '=', 1)->orderby('apellidos','asc')->get();
-
 
     $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.apellidos','a.dni','a.estatus','s.es_paquete')
+        ->select('a.id','a.nombres','a.apellidos','a.dni','a.estatus','a.estatus','s.es_paquete')
         ->join('atenciones as s','s.id_paciente','a.id')
         ->where('s.es_paquete','=',1)
+        ->where('a.estatus', '=', 1)
         ->groupBy('a.id')
         ->orderby('a.apellidos','asc')
         ->get();
