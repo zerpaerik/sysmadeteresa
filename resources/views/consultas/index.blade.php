@@ -58,6 +58,22 @@
 					{!! Form::close() !!}
 
 				</div>
+				<div class="col-md-2">
+					Total Consultas: @if($consultas)
+					<p>{{$consultas->cantidad}}</p>
+					@endif
+
+				</div>
+				<div class="col-md-2">
+					Total Controles:@if($controles)
+					<p>{{$controles->cantidad}}</p>
+					@endif
+				</div>
+				<div class="col-md-2">
+					
+
+				</div>
+
 			</div>	
 
 			<div class="box-content no-padding">

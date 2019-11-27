@@ -55,7 +55,7 @@ class EventController extends Controller
     $f1 = $request->fecha;
     $f2 = $request->fecha2;    
 
-    $event = DB::table('events as e')
+    $eventos = DB::table('events as e')
     ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
@@ -64,9 +64,35 @@ class EventController extends Controller
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
 
+     $consultas = Event::where('tipo', 'CONSULTAS')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+     $controles = Event::where('tipo', 'CONTROLES')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+    $atconsultas = Event::where('tipo', 'CONSULTAS')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('atendido','=',1)
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+     $atcontroles = Event::where('tipo', 'CONTROLES')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('atendido','=',1)
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
   } else {
 
-    $event = DB::table('events as e')
+    $eventos = DB::table('events as e')
     ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
@@ -75,15 +101,39 @@ class EventController extends Controller
     ->where('e.sede','=',$request->session()->get('sede'))
     ->get();
 
+     $consultas = Event::where('tipo', 'CONSULTAS')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                    ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+     $controles = Event::where('tipo', 'CONTROLES')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+    $atconsultas = Event::where('tipo', 'CONSULTAS')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                    ->where('atendido','=',1)
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
+     $atcontroles = Event::where('tipo', 'CONTROLES')
+                                ->where('sede','=', $request->session()->get('sede'))
+                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                    ->where('atendido','=',1)
+                                    ->select(DB::raw('COUNT(*) as cantidad'))
+                                    ->first();
+
 
   }
 
 
 
 
-    return view('consultas.index',[
-      'eventos' => $event
-    ]);
+    return view('consultas.index',compact('eventos','consultas','controles','atconsultas','atcontroles'));
   }
 
   public function delete_consulta($id)
