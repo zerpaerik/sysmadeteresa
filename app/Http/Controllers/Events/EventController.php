@@ -103,26 +103,26 @@ class EventController extends Controller
 
      $consultas = Event::where('tipo', 'CONSULTAS')
                                 ->where('sede','=', $request->session()->get('sede'))
-                                    ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                    ->whereDate('created_at', '=',Carbon::today()->toDateString())
                                     ->select(DB::raw('COUNT(*) as cantidad'))
                                     ->first();
 
      $controles = Event::where('tipo', 'CONTROLES')
                                 ->where('sede','=', $request->session()->get('sede'))
-                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                  ->whereDate('created_at', '=',Carbon::today()->toDateString())
                                     ->select(DB::raw('COUNT(*) as cantidad'))
                                     ->first();
 
     $atconsultas = Event::where('tipo', 'CONSULTAS')
                                 ->where('sede','=', $request->session()->get('sede'))
-                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                  ->whereDate('created_at', '=',Carbon::today()->toDateString())
                                     ->where('atendido','=',1)
                                     ->select(DB::raw('COUNT(*) as cantidad'))
                                     ->first();
 
      $atcontroles = Event::where('tipo', 'CONTROLES')
                                 ->where('sede','=', $request->session()->get('sede'))
-                                  ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
+                                  ->whereDate('created_at', '=',Carbon::today()->toDateString())
                                     ->where('atendido','=',1)
                                     ->select(DB::raw('COUNT(*) as cantidad'))
                                     ->first();
