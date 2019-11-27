@@ -93,9 +93,7 @@ class OtrosIngresosController extends Controller
 
   public function createView() {
 
-    $ingresos = Creditos::all();
-
-    return view('movimientos.ingresos.create', compact('ingresos'));
+    return view('movimientos.ingresos.create');
   }
 
     public function editView($id){
