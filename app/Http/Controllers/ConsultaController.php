@@ -38,6 +38,8 @@ class ConsultaController extends Controller
       ->whereBetween('a.prox', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
       ->get();
 
+      
+
 
     } else {
 
@@ -357,6 +359,9 @@ class ConsultaController extends Controller
         $ep->estatus=1;
         $ep->save();
 
+      } else {
+
+       
       }
 
 
