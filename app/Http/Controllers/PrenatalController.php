@@ -301,13 +301,13 @@ class PrenatalController extends Controller
 
     	$e= Event::where('id','=',$request->evento)->first();
 
-    	if($e->profesional == 36){
+    /*	if($e->profesional == 36){
 
     	    $ep = PaqCont::where('control','=',$request->evento)->first();
 		    $ep->estatus=1;
 		    $ep->save();
 
-		  }
+		  }*/
 
 
 		
