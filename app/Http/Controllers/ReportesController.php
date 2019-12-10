@@ -93,6 +93,8 @@ class ReportesController extends Controller
 
   public function detallado(Request $request){
 
+    dd($request->all());
+
 
         $f1= $request->f1;
         $f2= $request->f2;
