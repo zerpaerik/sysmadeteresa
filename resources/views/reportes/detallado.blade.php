@@ -50,8 +50,8 @@
 	<div class="text-center title-header col-12">
 				<center><strong>LISTADO DE MOVIMIENTOS</strong> </center>
 		       <strong>SEDE:</strong> {{ Session::get('sedeName') }}
-		       <strong>DESDE:</strong>: {{$f1}} -
-		       <strong>HASTA:</strong>: {{$f2}}
+		       <strong>DESDE:</strong>:  -
+		       <strong>HASTA:</strong>: 
 
 	</div>
 </div>

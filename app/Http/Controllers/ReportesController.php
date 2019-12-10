@@ -93,7 +93,6 @@ class ReportesController extends Controller
 
   public function detallado(Request $request){
 
-    dd($request->all());
 
 
         $f1= $request->f1;
@@ -142,7 +141,7 @@ class ReportesController extends Controller
         $pdf->loadHTML($view);
      
        
-        return $pdf->stream('movimientos'.$request->f1.'/'.$request->f2.'.pdf');
+        return $pdf->stream('movimientos'.'.pdf');
 
     }
 
