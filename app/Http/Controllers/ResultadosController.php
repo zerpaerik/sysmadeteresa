@@ -459,13 +459,13 @@ class ResultadosController extends Controller
         $als= Atenciones::where('id',$request->id)->first();
 
        
-
+/*
         if($als->paquete <> NULL && $als->es_servicio == 1) {
 
          $ps= PaqServ::where('num','=',$id)->first();
          $ps->estatus=1;
          $ps->save();
-       }
+       }*/
 
 
 
