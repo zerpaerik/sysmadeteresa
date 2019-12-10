@@ -394,7 +394,7 @@ Route::get('materialesconsultas', 'ReportesController@materialesconsultas')->nam
 Route::get('matconsultas/ver/{f1}/{f2}/{id}', 'ReportesController@reportconsultas');
 
 Route::get('report-detallado', 'ReportesController@reportdetallado')->name('report.detallado');
-Route::post('reporte/detallado1', 'ReportesController@detallado');
+Route::post('reporte/detallado', 'ReportesController@detallado');
 
 
 Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');
