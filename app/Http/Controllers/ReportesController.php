@@ -91,7 +91,7 @@ class ReportesController extends Controller
         return view('reportes.general_detalle');
     }
 
-    public function detallado(Request $request){
+  public function detallado(Request $request){
 
 
         $f1= $request->f1;
@@ -143,6 +143,7 @@ class ReportesController extends Controller
         return $pdf->stream('movimientos'.$request->f1.'/'.$request->f2.'.pdf');
 
     }
+
 
     public function historialp(Request $request)
     {
