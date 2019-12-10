@@ -48,8 +48,11 @@
 
 <div>
 	<div class="text-center title-header col-12">
-				<center><strong>REPORTE DETALLADO</strong> </center><
-		<strong>SEDE:</strong> {{ Session::get('sedeName') }}
+				<center><strong>LISTADO DE MOVIMIENTOS</strong> </center>
+		       <strong>SEDE:</strong> {{ Session::get('sedeName') }}
+		       <strong>DESDE:</strong>: {{$f1}} -
+		       <strong>HASTA:</strong>: {{$f2}}
+
 	</div>
 </div>
 <div>
@@ -60,224 +63,57 @@
 		Hora de Impresión: {{ Carbon\Carbon::now('America/Lima')->format('h:i a') }}
 	</div> 
 </div>
-<div style="width: 49%;padding: 8px 5px;font-size: 18px;">
-		Fecha de Consulta: {{ date('d/m/Y', strtotime($fechaconsulta)) }}
 
-
-</div>
 <br>
 
-<div style="font-weight: bold; font-size: 14px">
-		SERVICIOS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
+<div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
-			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Detalle</th>
-			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Total</th>
-		    <th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Abonado</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo Pago</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">INGRESOS</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">EFECTIVO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TARJETA</th>
+
+
+
+
 		</tr>
-		@foreach ($servicios as $serv)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->servicio,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
-			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
-			</tr>
+		@foreach($ingresos as $c)
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->date}}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->monto}}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->efectivo}}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->tarjeta}}</td>
+			
+		</tr>
 		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{$totalServicios->abono}}</td>
-		</tr>
 	</table>
-</div>
-<div style="font-weight: bold; font-size: 14px">
-		LABORATORIOS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
+	<table>
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
-			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Detalle</th>
-			<th style="padding: 0;width: 20%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Total</th>
-		    <th style="padding: 0;width: 10%;text-overflow: ellipsis;">Monto Abonado</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo Pago</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">EGRESOS</th>
+			
+
+
+
 		</tr>
-		@foreach ($laboratorios as $lab)
-			<tr>
-			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->laboratorio,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($lab->apellidos.' '.$lab->nombres,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
-			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->tipopago }}</td>
-			</tr>
+		@foreach($egresos as $c)
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->date}}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->egreso}}</td>
+		</tr>
 		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{ $totalLaboratorios->abono }}</td>
-		</tr>
 	</table>
-</div>
-<div style="font-weight: bold; font-size: 14px">
-		PAQUETES
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Ticket</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Detalle</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Total</th>
-		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto Abonado</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de Pago</th>
-		</tr>
-		@foreach ($paquetes as $serv)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->id }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->paquete,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->abono }}</td>
-			    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $serv->tipopago }}</td>
-			</tr>
-		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total Abonado</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{$totalPaquetes->abono}}</td>
-		</tr>
-	</table>
-</div>
-<div style="font-weight: bold; font-size: 14px">
-		CONSULTAS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Doctor</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo de Pago</th>
-		</tr>
-		@foreach ($consultas as $con)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($con->apellidos.' '.$con->nombres,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{substr($con->apepro.' '.$con->name,0,15)}}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">EF</td>
-			</tr>
-		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{ $totalconsultas->monto }}</td>
-		</tr>
-	</table>
+
+	<strong>TOTAL INGRESOS:</strong>{{$total->monto}}<br>
+	<strong>TOTAL EGRESOS:</strong>{{$debitos->monto}}<br>
+	<strong>SALDO:</strong>{{$saldo}}
+
+	
+	
 </div>
 
-<div style="font-weight: bold; font-size: 14px">
-		OTROS INGRESOS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th>Descripciòn</th>
-			<th>Monto</th>
-			<th>Tipo de INGRESO</th>
-		</tr>
-		@foreach ($otrosingresos as $con)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->descripcion }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->tipo_ingreso }}</td>
-			</tr>
-		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{ $totalotrosingresos->monto }}</td>
-		</tr>
-	</table>
-</div>
 
-<div style="font-weight: bold; font-size: 14px">
-		CUENTAS POR COBRAR
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th>Descripciòn</th>
-			<th>Monto</th>
-			<th>Tipo de INGRESO</th>
-		</tr>
-		@foreach ($cuentasporcobrar as $con)
-			<tr>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->descripcion }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->monto }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $con->tipo_ingreso }}</td>
-			</tr>
-		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{ $totalcuentasporcobrar->monto }}</td>
-		</tr>
-	</table>
-</div>
-
-<div style="font-weight: bold; font-size: 14px">
-		MÉTODOS ANTICONCEPTIVOS
-</div>
-<div style="margin-top:10px; background: #eaeaea;">
-	<table style="">
-		<tr>
-			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Paciente</th>
-			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Método</th>
-			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Monto</th>
-			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">Tipo de Pago</th>
-		</tr>
-		@foreach ($metodos as $serv)
-			<tr>
-				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{substr($serv->apellidos.' '.$serv->nombres,0,15)}}</td>
-				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{ $serv->producto }}</td>
-				<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{ $serv->monto }}</td>
-			    <td style="padding: 0;width: 30%;text-overflow: ellipsis;">EF</td>
-			</tr>
-		@endforeach
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td width="80">{{$totalmetodos->monto}}</td>
-		</tr>
-	</table>
-</div>
 
 
 
