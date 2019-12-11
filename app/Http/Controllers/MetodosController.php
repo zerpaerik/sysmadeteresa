@@ -181,15 +181,31 @@ class MetodosController extends Controller
               $productom->save();
 
 
-          $credito = Creditos::create([
+        /*  $credito = Creditos::create([
 		        "origen" => 'METODOS ANTICONCEPTIVOS',
 		        "descripcion" => 'METODOS ANTICONCEPTIVOS',
 		        "monto" => $request->monto,
 		        "tipo_ingreso" => $request->tipopago,
 		        "id_sede" => $request->session()->get('sede'),
 		        "id_metodo" => $metodos->id
-		      ]);
+		      ]);*/
 
+
+
+                    $creditos = new Creditos();
+                    $creditos->origen = 'METODOS ANTICONCEPTIVOS';
+                    $creditos->descripcion = 'METODOS ANTICONCEPTIVOS';
+                    $creditos->monto= $request->monto;
+                    $creditos->id_sede = $request->session()->get('sede');
+                    $creditos->tipo_ingreso = $request->tipopago;
+                    $creditos->id_metodo = $metodos->id;
+                    $creditos->date = date('Y-m-d');
+                    if($request->tipopago=='EF'){
+                      $creditos->efectivo = $request->monto;
+                    }else{
+                      $creditos->tarjeta = $request->monto;
+                    }
+                    $creditos->save();
          $searchproducto = DB::table('productos')
         ->select('*')
                    // ->where('estatus','=','1')

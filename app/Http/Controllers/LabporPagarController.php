@@ -91,6 +91,7 @@ class LabporPagarController extends Controller
                 $debitos->monto= $costo;
                 $debitos->descripcion = $name;
                 $debitos->id_sede = $request->session()->get('sede');
+                $debitos->date = date('Y-m-d');
                 $debitos->save();  
 
               

@@ -95,16 +95,16 @@ class ReportesController extends Controller
 
 
 
+
         $f1= $request->f1;
         $f2= $request->f2;
 
-
-
+    
 
 
           $ingresos = DB::table('creditos as a')
-                ->select('a.id','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
-                ->whereBetween('a.created_atcreated_at', [$request->f1,$$request->f2])
+                ->select('a.id','a.created_at','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
+                ->whereBetween('a.date', [$f1,$f2])
                 ->whereNotIn('a.monto',[0,0.00])
                 ->groupBy('a.date')
                 ->get();  
@@ -113,22 +113,23 @@ class ReportesController extends Controller
 
 
         $total= Creditos::where('id_sede','=', $request->session()->get('sede'))
-                                    ->whereBetween('created_at', [$f1,$f2])
+                                    ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    //->groupBy('date')
+                                    ->groupBy('date')
                                     ->first();
          $egresos=Debitos::where('id_sede','=', $request->session()->get('sede'))
-                                    ->whereBetween('created_at', [$f1,$f2])
+                                    ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as egreso'),'date')
                                     ->groupBy('date')
                                     ->get();
                        
                                     
         $debitos=Debitos::where('id_sede','=', $request->session()->get('sede'))
-                                    ->whereBetween('created_at', [$f1,$f2])
+                                    ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    //->groupBy('date')
+                                    ->groupBy('date')
                                     ->first();
+
 
          $saldo= $total->monto - $debitos->monto;
 

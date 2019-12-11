@@ -67,21 +67,31 @@ class OtrosIngresosController extends Controller
         ]);
         if($validator->fails()) 
           return redirect()->action('OtrosIngresosController@createView', ['errors' => $validator->errors()]);
-		$ingresos = Creditos::create([
+	/*	$ingresos = Creditos::create([
 	      'descripcion' => $request->descripcion,
 	      'monto' => $request->monto,
 	      'origen' => 'OTROS INGRESOS',
 	      'tipo_ingreso' => $request->tipo_ingreso,
-	      'id_sede' => $request->session()->get('sede')
-   		]);
+	      'id_sede' => $request->session()->get('sede'),
+        'date' => date('Y-m-d')
+   		]);^*/
+
+
+                    $creditos = new Creditos();
+                    $creditos->origen = 'OTROS INGRESOS';
+                    $creditos->descripcion = 'OTROS INGRESOS';
+                    $creditos->monto= $request->monto;
+                    $creditos->id_sede = $request->session()->get('sede');
+                    $creditos->tipo_ingreso = $request->tipo_ingreso;
+                    $creditos->date = date('Y-m-d');
+                    if($request->tipo_ingreso=='EF'){
+                      $creditos->efectivo = $request->monto;
+                    }else{
+                      $creditos->tarjeta = $request->monto;
+                    }
+                    $creditos->save();
 		
-		 $historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Otros Ingresos';
-		  $historial->detalle = $request->monto;
-          $historial->id_usuario = \Auth::user()->id;
-		  $historial->sede = $request->session()->get('sede');
-          $historial->save();
+		 
 		return redirect()->action('OtrosIngresosController@index', ["created" => true, "ingresos" => Creditos::all()]);
 	}    
 

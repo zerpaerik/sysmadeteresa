@@ -771,12 +771,7 @@ class ComporPagarController extends Controller
                       'recibo' => 'REC'.date('Y').'-'.str_pad($last+1, 4, "0", STR_PAD_LEFT)
                   ]);
 				  
-		  $historial = new Historiales();
-          $historial->accion ='Registro';
-          $historial->origen ='Comisiones por Pagar';
-		  $historial->detalle ='Comision Por Pagar';
-          $historial->id_usuario = \Auth::user()->id;
-          $historial->save();
+		 
      
     Toastr::success('La comisión ha sido pagada.', 'Comisiones!', ['progressBar' => true]);
     return back();
