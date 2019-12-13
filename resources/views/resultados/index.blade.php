@@ -204,6 +204,60 @@
                                     <option value="RENAL NRML-V.docx">RENAL NRML-V</option>
                                     <option value="RENAL QT SIMPLE-V.docx">RENAL QT SIMPLEL-V</option>
                                     <option value="RENAL Y VIAS URINARIAS-V.docx">RENAL Y VIAS URINARIAS-V</option>
+ <option value="RX. ABDOMEN SIMPLE.docx">RX. ABDOMEN SIMPLE</option>
+
+                                    <option value="RX. ANTEBRAZO NRML.docx">RX. ANTEBRAZO NRML</option>
+                                    <option value="RX. ANTEBRAZO FX.docx">RX. ANTEBRAZO FX</option>
+                                    <option value="RX. BRAZO NRML.docx">RX. BRAZO NRML</option>
+                                    <option value="RX. CADERA NRML.docx">RX. CADERA NRML</option>
+                                    <option value="RX. CALCANEO ESPOLON.docx">RX. CALCANEO ESPOLON</option>
+                                    <option value="RX. CALCANEOS.docx">RX. CALCANEOS</option>
+                                    <option value="RX. CAVUM HIPERTROFIA.docx">RX. CAVUM HIPERTROFIA</option>
+                                    <option value="RX. CAVUM.docx">RX. CAVUM</option>
+                                    <option value="RX. CLAVICULA NRML.docx">RX. CLAVICULA NRML</option>
+                                    <option value="RX. CLAVICULA FX.docx">RX. CLAVICULA FX</option>
+                                    <option value="RX. CODO.docx">RX. CODO</option>
+                                    <option value="RX. COLUMNA CERV NRML.docx">RX. COLUMNA CERV NRML</option>
+                                    <option value="RX. COLUMNA CERVICAL ESPOND.docx">RX. COLUMNA CERVICAL ESPOND</option>
+                                    <option value="RX. COLUMNA DORSAL ESPOND, ESC.docx">RX. COLUMNA DORSAL ESPOND, ESC</option>
+                                    <option value="RX. COLUMNA DORSAL NRML.docx">RX. COLUMNA DORSAL NRML</option>
+                                    <option value="RX. COLUMNA DORSOLUMBAR ESPONDILOSIS, ESCOLIOSIS.docx">RX. COLUMNA DORSOLUMBAR ESPONDILOSIS, ESCOLIOSIS</option>
+                                    <option value="RX. COLUMNA LUMB SACRA NRML.docx">RX. COLUMNA LUMB SACRA NRML</option>
+                                    <option value="RX. COLUMNA LUMB SACRA PINZ L5 S1.docx">RX. COLUMNA LUMB SACRA PINZ L5 S1</option>
+                                    <option value="RX. COLUMNA LUMBO SACRA ESPOND.docx">RX. COLUMNA LUMBO SACRA ESPOND</option>
+                                    <option value="RX. COLUMNA SACRO COXIS NRML.docx">RX. COLUMNA SACRO COXIS NRML</option>
+                                    <option value="RX. CRANEO.docx">RX. CRANEO</option>
+                                    <option value="RX. FEMUR NRML.docx">RX. FEMUR NRML</option>
+                                    <option value="RX. HOMBRO.docx">RX. HOMBRO</option>
+                                    <option value="RX. HOMBRO TENDINITIS INICIAL.docx">RX. HOMBRO TENDINITIS INICIAL</option>
+                                    <option value="RX. HPN.docx">RX. HPN</option>
+                                    <option value="RX. HPN FX.docx">RX. HPN FX</option>
+                                    <option value="RX. MANO EDAD OSEA NRML.docx">RX. MANO EDAD OSEA NRML</option>
+                                    <option value="RX. MANO.docx">RX. MANO</option>
+                                    <option value="RX. MUÑECA NRML.docx">RX. MUÑECA NRML</option>
+                                    <option value="RX. PARRILLA COSTAL NRML.docx">RX. PARRILLA COSTAL NRML</option>
+                                    <option value="RX. PARRILLA COSTAL FX.docx">RX. PARRILLA COSTAL FX</option>
+                                    <option value="RX. PELVIS AP DISPLASIA NEGAT.docx">RX. PELVIS AP DISPLASIA NEGAT</option>
+                                    <option value="RX. PELVIS AP NRML.docx">RX. PELVIS AP NRML</option>
+                                    <option value="RX. PIE.docx">RX. PIE</option>
+                                    <option value="RX. PIERNA NRML.docx">RX. PIERNA NRML</option>
+                                    <option value="RX. RODILLA.docx">RX. RODILLA</option>
+                                    <option value="RX. RODILLA GONARTROSIS.docx">RX. RODILLA</option>
+
+                                    <option value="RX. SPN PROCESO ALERGICO.docx">RX. SPN PROCESO ALERGICO</option>
+                                    <option value="RX. SPN RINOSINUSITIS.docx">RX. SPN RINOSINUSITIS</option>
+                                    <option value="RX. SPN SINUSOPATIA.docx">RX. SPN SINUSOPATIA</option>
+                                    <option value="RX. SPN.docx">RRX. SPN</option>
+                                    <option value="RX. TOBILLO.docx">RX. TOBILLO</option>
+                                    <option value="RX. TORAX ATELECTASIA.docx">RX. TORAX ATELECTASIA</option>
+                                    <option value="RX. TORAX DERRAME PLEURAL.docx">RX. TORAX DERRAME PLEURAL</option>
+                                    <option value="RX. TORAX FIBROSIS PULMONAR.docx">RX. TORAX FIBROSIS PULMONAR</option>
+                                    <option value="RX. TORAX INFLAMT BRONQ.docx">RX. TORAX INFLAMT BRONQ</option>
+                                    <option value="RX. TORAX NEUMOPATIA NIÑO.docx">RX. TORAX NEUMOPATIA NIÑO</option>
+                                    <option value="RX. TORAX NRML NIÑO.docx">RX. TORAX NRML NIÑO</option>
+                                    <option value="RX. TORAX NRML.docx">RX. TORAX NRML</option>
+                                    <option value="RX. TORAX PEP.docx">RX. TORAX PEP</option>
+                                    <option value="RX. TORAX SECUELAS DE PEP.docx">RX. TORAX SECUELAS DE PEP</option>
 
                                     @else
 
