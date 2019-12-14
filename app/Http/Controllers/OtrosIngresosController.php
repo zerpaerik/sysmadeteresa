@@ -92,13 +92,15 @@ class OtrosIngresosController extends Controller
                     $creditos->save();
 		
 		 
-		return redirect()->action('OtrosIngresosController@index', ["created" => true, "ingresos" => Creditos::all()]);
+		Toastr::success('Registrado Exitosamente.', 'Ingreso!', ['progressBar' => true]);
+    return back();
 	}    
 
   public function delete($id){
     $ingresos = Creditos::find($id);
     $ingresos->delete();
-    return redirect()->action('OtrosIngresosController@index', ["deleted" => true, "ingresos" => Creditos::all()]);
+   Toastr::success('Eliminado Exitosamente.', 'Ingreso!', ['progressBar' => true]);
+    return back();
   }
 
   public function createView() {
