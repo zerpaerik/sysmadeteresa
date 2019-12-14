@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Creditos;
 use App\Models\Historiales;
+use Toastr;
 use DB;
 
 class OtrosIngresosController extends Controller
