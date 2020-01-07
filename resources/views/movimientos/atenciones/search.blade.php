@@ -92,7 +92,7 @@
 		                 </td>
 		                     @endif
 		                 @else
-		                 <td style="background:#CF5F2F">Fue Eliminado</td>
+		                 <td style="background:#CF5F2F">Fue Eliminado por {{$d->delete_por}}</td>
 		                 @endif
 						</tr>
 						@endforeach						
