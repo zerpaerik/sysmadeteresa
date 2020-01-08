@@ -18,6 +18,7 @@ use DB;
 use PDF;
 use App\Models\Existencias\{Producto, Existencia, Transferencia};
 use App\Historial;
+use App\User;
 use App\Consulta;
 use Toastr;
 use Auth;
@@ -56,7 +57,7 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $eventos = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.eliminado_por','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
@@ -93,7 +94,7 @@ class EventController extends Controller
   } else {
 
     $eventos = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.paciente','e.eliminado_por','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
@@ -138,8 +139,14 @@ class EventController extends Controller
 
   public function delete_consulta($id)
   {
+
+
+       $user= User::where('id','=',Auth::user()->id)->first();
+
+
     $consulta = Event::where('id','=',$id)->first();
     $consulta->es_delete= 1;
+    $consulta->eliminado_por= $user->name.' '.$user->lastname;
     $consulta->save();
 
 

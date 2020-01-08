@@ -149,7 +149,7 @@
 							    @endif
 								</td>
 								@else
-							    <td style="background:#FE642E">Fue Eliminado</td>
+							    <td style="background:#FE642E">Fue Eliminado por {{$atec->eliminado_por}}</td>
 
 								@endif
 							</tr>

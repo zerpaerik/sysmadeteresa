@@ -30,7 +30,7 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.tipopago','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -56,7 +56,7 @@ class MetodosController extends Controller
       } else {
 
       	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.tipopago','a.aplicado','a.es_delete','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+        ->select('a.id','a.id_paciente','a.tipopago','a.eliminado_por','a.aplicado','a.es_delete','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
@@ -253,8 +253,12 @@ class MetodosController extends Controller
 
 
 
+       $user= User::where('id','=',Auth::user()->id)->first();
+
+
     $metodo = Metodos::where('id','=',$id)->first();
     $metodo->es_delete=1;
+    $metodo->eliminado_por=$user->name.' '.$user->lastname;
     $metodo->save();
 
     $cred = Creditos::where('id_metodo','=',$id);
