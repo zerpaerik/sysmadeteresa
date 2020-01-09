@@ -164,7 +164,7 @@ class ReportesController extends Controller
     ->join('users as h','h.id','a.usuario')
     ->join('paquetes as f','f.id','a.id_paquete')
     ->join('sedes as s','s.id','a.id_sede')
-    ->whereNotIn('a.monto',[0,0.00])
+    ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.es_delete','=',NULL)
     ->where('b.dni','=',$request->paciente)
     ->get();
