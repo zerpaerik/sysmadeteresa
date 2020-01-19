@@ -57,16 +57,9 @@
                   @if($atencion->origen == 1)
                     <option value="1" selected="selected">Personal</option>
                     <option value="2">Profesional</option>
-                    <option value="3">Particular</option>
-                  @elseif($atencion->origen == 2)
+                  @else
                     <option value="1">Personal</option>
                     <option value="2" selected="selected">Profesional</option>
-                    <option value="3">Particular</option>
-                  @else
-                   <option value="1">Personal</option>
-                    <option value="2">Profesional</option>
-                    <option value="3"  selected="selected">Particular</option>
-
                   @endif
                   
               </select>
@@ -525,30 +518,7 @@ function DemoTimePicker(){
     </script>
 
     <script>
-          function add_li()
-        {
-            var nuevoLi=document.getElementById("el3").value;
-            if(nuevoLi.length>0)
-            {
-                    var li=document.createElement('el3');
-                    li.id=nuevoLi;
-                    li.innerHTML="<span onclick='eliminar(this)'>X</span>"+nuevoLi;
-                    document.getElementById("listaDesordenada").appendChild(li);
-            }
-            return false;
-        }
-
- 
-        /**
-         * Funcion para eliminar los elementos
-         * Tiene que recibir el elemento pulsado
-         */
-        function eliminar(elemento)
-        {
-            var id=elemento.parentNode.getAttribute("id");
-            node=document.getElementById(id);
-            node.parentNode.removeChild(node);
-        }
+        
 
 
     </script>
