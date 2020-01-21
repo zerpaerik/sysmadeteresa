@@ -140,7 +140,7 @@
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->id }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->laboratorio }}</td>
-				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->nombres }},{{ $serv->apellidos }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->nombres }},{{ $lab->apellidos }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->abono }}</td>
 			</tr>
