@@ -68,11 +68,7 @@
 				</div>
 
 
-				<div class="col-md-2">
-                 <strong>Monto Sesiones: </strong>{{$totalsesiones->monto}}
-                 <br>
-                 <strong>Total Sesiones: </strong>{{$totals->cantidad}}
-				</div>
+				
 				
 			</div>
 			<br>
@@ -118,7 +114,7 @@
 
 
 		<br>
-		 <span><strong>SESIONES</strong></span>
+		 <span><strong>SERVICIOS</strong></span>
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
@@ -151,7 +147,7 @@
 						@endif
 						<td>{{$d->monto}}</td>
 						<td>{{$d->abono}}</td>
-						<td>{{$d->nomate}} {{$d->apeate}}</td>
+						<td>{{$d->usuarioinforme}}</td>
 						<td>{{$d->created_at}}</td>
 						@endforeach
 						
