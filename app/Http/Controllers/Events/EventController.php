@@ -57,9 +57,9 @@ class EventController extends Controller
     $f2 = $request->fecha2;    
 
     $eventos = DB::table('events as e')
-    ->select('e.id as EventId','e.eliminado_por','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+    ->select('e.id as EventId','e.eliminado_por','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','us.name as nombrePro','us.lastname as apellidoPro','us.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
-    ->join('personals as per','per.id','=','e.profesional')
+    ->join('users as us','us.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
     ->whereBetween('e.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
     ->where('e.sede','=',$request->session()->get('sede'))
@@ -93,10 +93,10 @@ class EventController extends Controller
 
   } else {
 
-    $eventos = DB::table('events as e')
-    ->select('e.id as EventId','e.paciente','e.eliminado_por','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','per.name as nombrePro','per.lastname as apellidoPro','per.id as profesionalId','u.name','u.lastname')
+      $eventos = DB::table('events as e')
+    ->select('e.id as EventId','e.eliminado_por','e.paciente','e.tipopago','e.es_delete','e.tipo','e.created_at','e.tipo','e.atendido','e.title','e.sede','e.monto','e.profesional','e.usuario','e.date','e.time','p.dni','p.direccion','p.telefono','p.fechanac','p.gradoinstruccion','p.ocupacion','p.nombres','p.apellidos','p.id as pacienteId','us.name as nombrePro','us.lastname as apellidoPro','us.id as profesionalId','u.name','u.lastname')
     ->join('pacientes as p','p.id','=','e.paciente')
-    ->join('personals as per','per.id','=','e.profesional')
+    ->join('users as us','us.id','=','e.profesional')
     ->join('users as u','u.id','e.usuario')
     ->whereDate('e.created_at', '=',Carbon::today()->toDateString())
     ->where('e.sede','=',$request->session()->get('sede'))
@@ -366,7 +366,7 @@ class EventController extends Controller
 
   public function createView($extra = []){
     $data = [
-	  "especialistas" => Personal::where('tipo','=','Especialista')->orwhere('tipo','=','Tecnòlogo')->orwhere('tipo','=','ProfSalud')->where('estatus','=','1')->get(),
+	  "especialistas" => User::where('tipo','=','1')->get(),
       "pacientes" => Paciente::where('estatus','=',1)->get(),
       "tiempos" => RangoConsulta::all(),
 	  "ciex" => Ciex::all(),

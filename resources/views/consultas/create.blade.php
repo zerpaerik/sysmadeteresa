@@ -32,10 +32,10 @@
 						<label class="col-sm-1 control-label">Especialistas</label>
 						<div class="col-sm-3">
 							<select id="el1" name="especialista">
-									<option value="33">ALEX CALERO</option>
-						            <option value="19">JENNY MOLINA</option>
-									<option value="35">ROSA GOLINDARO</option>
-									<option value="36">OTROS</option>
+									<option value="91">ALEX CALERO</option>
+						            <option value="79">JENNY MOLINA</option>
+									<option value="100000025">ROSA GOLINDARO</option>
+									<option value="100000097">OTROS</option>
 
 							</select>
 						</div>
