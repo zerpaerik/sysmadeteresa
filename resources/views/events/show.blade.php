@@ -14,7 +14,6 @@
 	<p>Fecha de nacimiento: {{$data->fechanac}}</p>
 	<p>Grado de isntruccion del paciente: {{$data->gradoinstruccion}}</p>
 	<p>Ocupacion del paciente: {{$data->ocupacion}}</p>	
-    <p>Edad del paciente: {{$edad}} años</p>	
 
 
 	<br>	
