@@ -247,7 +247,7 @@ class EventController extends Controller
       'personal' => $personal,
 	  'productos' => $productos,
       'ciex' => $ciex,
-      'edad' => $edad,
+    //'edad' => $edad,
       'evento' => $evento
     ]);
   }
