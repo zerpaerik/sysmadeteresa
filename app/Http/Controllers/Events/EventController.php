@@ -235,8 +235,8 @@ class EventController extends Controller
 
 
   //  $edad = Carbon::parse($event->fechanac)->age;
-    $historial = Historial::where('paciente_id','=',$event->pacienteId)->first();
-    $consultas = Consulta::where('paciente_id','=',$event->pacienteId)->get();
+    $historial = Historial::where('paciente_id','=',$evento->paciente)->first();
+    $consultas = Consulta::where('paciente_id','=',$evento->paciente)->get();
     $personal = Personal::where('estatus','=',1)->get();
 	$productos = Producto::where('almacen','=',2)->where("sede_id", "=", $request->session()->get('sede'))->get();
     $ciex = Ciex::all();
