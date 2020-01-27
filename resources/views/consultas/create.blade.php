@@ -34,9 +34,8 @@
 							<select id="el1" name="especialista">
 									<option value="91">ALEX CALERO</option>
 						            <option value="79">JENNY MOLINA</option>
-									<option value="100000025">ROSA GOLINDARO</option>
-									<option value="100000097">OTROS</option>
-
+									<option value="35">ROSA GOLINDARO</option>
+									<option value="36">OTROS</option>
 							</select>
 						</div>
 
