@@ -346,7 +346,7 @@ public function index(Request $request){
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -395,7 +395,7 @@ public function index(Request $request){
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -774,7 +774,7 @@ public function index(Request $request){
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -823,7 +823,7 @@ $paciente = DB::table('pacientes')
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -1291,7 +1291,7 @@ $paciente = DB::table('pacientes')
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -1334,7 +1334,7 @@ $paciente = DB::table('pacientes')
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -1526,7 +1526,7 @@ $paciente = DB::table('pacientes')
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
@@ -1569,7 +1569,7 @@ $paciente = DB::table('pacientes')
         
         $evt = new Event;
         $evt->paciente=$request->id_paciente;
-        $evt->profesional=100000097;
+        $evt->profesional=36;
         $evt->date=date('Y-m-d');
         $evt->time=17;
         $evt->title=$paciente->nombres . " " . $paciente->apellidos . " Paciente.";
