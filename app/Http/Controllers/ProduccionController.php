@@ -42,31 +42,35 @@ class ProduccionController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-        $totalconsultas = Event::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1                         )), date('Y-m-d 23:59:59', strtotime($f2))])
-                                ->where('sede','=',$request->session()->get('sede'))
-                                    ->select(DB::raw('SUM(monto) as monto'))
-                                    ->first();
-        $totalc = Event::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date                         ('Y-m-d 23:59:59', strtotime($f2))])
-                    ->where('sede','=',$request->session()->get('sede'))
-                                    ->select(DB::raw('COUNT(*) as cantidad'))
-                                    ->first();
+
+
+                    $totalconsultas = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+                    ->join('users as up', 'events.profesional', '=', 'up.id')
+                    ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+                    ->whereBetween('events.created_at', [date('Y-m-d 00:00:00', strtotime($f1                         )), date('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('events.sede','=',$request->session()->get('sede'))
+                    ->select(DB::raw('SUM(monto) as monto'))
+                    ->first();
+
+
+                   
+                    $totalc = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+                    ->join('users as up', 'events.profesional', '=', 'up.id')
+                    ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+                    ->whereBetween('events.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date                         ('Y-m-d 23:59:59', strtotime($f2))])
+                    ->where('events.sede','=',$request->session()->get('sede'))
+                    ->select(DB::raw('COUNT(*) as cantidad'))
+                    ->first();
 
  
 
    	}elseif((!is_null($request->fecha)) && (!is_null($request->fecha2)) && (!is_null($request->pro))){
 
 
-
-     
-
-
+    
    			$f1=$request->fecha;
-   		    $f2=$request->fecha2;
+   		 $f2=$request->fecha2;
 
-           
-
-
-         
           $consultas = DB::table('events as a')
         ->select('a.id','a.profesional','a.atendidopor','a.sede','a.paciente','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','u.name as nameate','u.lastname as apeate')
         ->join('pacientes as b','b.id','a.paciente')
@@ -80,17 +84,26 @@ class ProduccionController extends Controller
 
 
 
-        $totalconsultas = Event::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1                         )), date('Y-m-d 23:59:59', strtotime($f2))])
-                                    ->where('profesional','=',$request->pro) 
-                                     ->where('sede','=',$request->session()->get('sede'))
-                                    ->select(DB::raw('SUM(monto) as monto'))
-                                    ->first();
+        $totalconsultas = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->whereBetween('events.created_at', [date('Y-m-d 00:00:00', strtotime($f1                         )), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('events.atendidopor','=',$request->pro) 
+        ->where('events.sede','=',$request->session()->get('sede'))
+        ->select(DB::raw('SUM(events.monto) as monto'))
+        ->first();
 
-        $totalc = Event::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date                         ('Y-m-d 23:59:59', strtotime($f2))])
-                                     ->where('profesional','=',$request->pro) 
-                                     ->where('sede','=',$request->session()->get('sede'))
-                                    ->select(DB::raw('COUNT(*) as cantidad'))
-                                    ->first();
+
+        $totalc = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->whereBetween('events.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date                         ('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('events.atendidopor','=',$request->pro) 
+        ->where('events.sede','=',$request->session()->get('sede'))
+        ->select(DB::raw('COUNT(*) as cantidad'))
+        ->first();
+
+
 
        
 
@@ -114,15 +127,21 @@ class ProduccionController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-        $totalconsultas = Event::where('profesional','=',$request->pro) 
-                                    ->select(DB::raw('SUM(monto) as monto'))
-                                             ->where('sede','=',$request->session()->get('sede'))
-                                    ->first();
+        $totalconsultas = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->where('events.atendidopor','=',$request->pro) 
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('events.sede','=',$request->session()->get('sede'))
+        ->first();
 
-        $totalc = Event::where('profesional','=',$request->pro) 
-                                    ->select(DB::raw('COUNT(*) as cantidad'))
-                                             ->where('sede','=',$request->session()->get('sede'))
-                                    ->first();
+        $totalc = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->where('events.atendidopor','=',$request->pro) 
+        ->select(DB::raw('COUNT(*) as cantidad'))
+        ->where('events.sede','=',$request->session()->get('sede'))
+        ->first();
 
 
 
@@ -143,13 +162,19 @@ class ProduccionController extends Controller
         ->orderby('a.id','desc')
         ->get();
 
-        $totalconsultas = Event::select(DB::raw('SUM(monto) as monto'))
-                                    ->where('profesional','=',0)
-                                    ->first();
+        $totalconsultas = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('events.profesional','=',0)
+        ->first();
 
-        $totalc = Event::select(DB::raw('COUNT(*) as cantidad'))
-                                            ->where('profesional','=',0)
-                                    ->first();
+        $totalc = Event::join('pacientes as p', 'events.paciente', '=', 'p.id')
+        ->join('users as up', 'events.profesional', '=', 'up.id')
+        ->join('users as ua', 'events.atendidopor', '=', 'ua.id')
+        ->select(DB::raw('COUNT(*) as cantidad'))
+        ->where('events.profesional','=',0)
+        ->first();
 
      
    	}
