@@ -82,6 +82,7 @@
 							<th>Paciente</th>
 							<th>Especialista</th>
 							<th>Monto</th>
+							<th>Atendido Por:</th>
 							<th>Fecha</th>
 						</tr>
 					</thead>
@@ -91,6 +92,7 @@
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
 						<td>{{$d->name}} {{$d->apepro}}</td>
 						<td>{{$d->monto}}</td>
+						<td>{{$d->nameate}} {{$d->apeate}}</td>
 						<td>{{$d->date}}</td>
 						
 						
@@ -100,9 +102,10 @@
                       
 					</tbody>
 					<tfoot>
-						    <th>Paciente</th>
+						   <th>Paciente</th>
 							<th>Especialista</th>
 							<th>Monto</th>
+							<th>Atendido Por:</th>
 							<th>Fecha</th>
 					</tfoot>
 				</table>
