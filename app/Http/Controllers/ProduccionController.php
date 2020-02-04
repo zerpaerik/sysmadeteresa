@@ -149,7 +149,16 @@ class ProduccionController extends Controller
 
 
 
-            $personal = User::where('tipo','=',1)->get();
+           // $personal = User::where('tipo','=',1)->get();
+
+
+
+        $personal = DB::table('users as a')
+    ->select('a.id','a.name','a.lastname','a.tipo')
+    ->join('consultas as b','b.usuario','a.id')
+    ->orderby('a.id','desc')
+    ->groupBy('a.id')
+    ->get(); 
        
         return view('produccion.index',["personal" => $personal,"f1" => $f1,"f2" => $f2,"consultas" => $consultas, "totalconsultas" => $totalconsultas,"totalc" => $totalc]);
     }
