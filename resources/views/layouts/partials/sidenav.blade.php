@@ -349,7 +349,10 @@
         <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado</a>
       </li>
        <li>
-        <a href="{{route('produccion.index')}}"><i class="fa fa-file-o"></i> Producciòn del Dia</a>
+        <a href="{{route('produccion.index')}}"><i class="fa fa-file-o"></i> Producciòn Consultas</a>
+      </li>
+       <li>
+        <a href="{{route('produccion.index2')}}"><i class="fa fa-file-o"></i> Producciòn Atenciones</a>
       </li>
       <li>
         <a href="{{route('cierre.index')}}"><i class="fa fa-file-o"></i> Cierre de Caja</a>

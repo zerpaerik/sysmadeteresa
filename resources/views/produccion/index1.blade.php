@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span><strong>Producción del Dia Consultas</strong></span>
+					<span><strong>Producción del Dia Atenciones</strong></span>
 
 				</div>
 
@@ -29,7 +29,7 @@
 				<div class="no-move"></div>
 				
 			</div>
-					{!! Form::open(['method' => 'get', 'route' => ['produccion.index']]) !!}
+					{!! Form::open(['method' => 'get', 'route' => ['produccion.index2']]) !!}
 
 			<br>
 			<div class="row">
@@ -62,9 +62,9 @@
 			</div>
 			<div class="row">
 				<div class="col-md-2">
-                 <strong>Monto Consultas: </strong>{{$totalconsultas->monto}}
+                 <strong>Monto Atenciones: </strong>{{$totalsesiones->monto}}
                  <br>
-                 <strong>Total Consultas: </strong>{{$totalc->cantidad}}
+                 <strong>Total Atenciones: </strong>{{$totals->cantidad}}
 				</div>
 
 
@@ -74,47 +74,67 @@
 			<br>
 			<hr class="page-header"></hr>	
 
-          <span><strong>CONSULTAS</strong></span>
-				<div class="box-content no-padding">
+      
+	
+
+		<br>
+		 <span><strong>ATENCIONES ATENDIDAS</strong></span>
+			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-3">
 					<thead>
 						<tr>
+							 <th>Id</th>
 							<th>Paciente</th>
-							<th>Especialista</th>
+							<th>Origen</th>
+							<th>Detalle</th>
 							<th>Monto</th>
+							<th>Monto Abonado</th>
+						    <th>Atendido Por:</th>
+						    <th>Sede:</th>
 							<th>Fecha</th>
+					
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($consultas as $d)
 						<tr>
-						<td>{{$d->apellidos}} {{$d->nombres}}</td>
-						<td>{{$d->name}} {{$d->apepro}}</td>
+
+						@foreach($sesiones as $d)
+						<tr>
+						<td>{{$d->id}}</td>
+						<td>{{$d->nombres}},{{$d->apellidos}}</td>
+						<td>{{$d->name}},{{$d->lastname}}</td>
+						@if($d->es_servicio =='1')
+						<td>{{$d->servicio}}</td>
+						@elseif($d->es_laboratorio =='1')
+						<td>{{$d->laboratorio}}</td>
+						@else
+						<td>{{$d->paquete}}</td>
+						@endif
 						<td>{{$d->monto}}</td>
-						<td>{{$d->date}}</td>
-						
+						<td>{{$d->abono}}</td>
+						<td>{{$d->usuarioinforme}}</td>
+						<td>{{$d->sede}}</td>
+						<td>{{$d->created_at}}</td>
+						@endforeach
 						
 					</tr>
-						@endforeach
-		
                       
 					</tbody>
 					<tfoot>
-						    <th>Paciente</th>
-							<th>Especialista</th>
+						   <th>Id</th>
+							<th>Paciente</th>
+							<th>Origen</th>
+							<th>Detalle</th>
 							<th>Monto</th>
+							<th>Monto Abonado</th>
+						    <th>Atendido Por:</th>
+						    <th>Sede:</th>
 							<th>Fecha</th>
+							
 					</tfoot>
 				</table>
 			</div>
 
-			<br>
-
-		
-
-
-		<br>
-		
 		<br>
 		
 

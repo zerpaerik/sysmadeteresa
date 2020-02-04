@@ -425,6 +425,7 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
+        $pa->at= $p->id;
         $pa->save(); 
 
          
@@ -452,6 +453,7 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
+        $pa->at= $p->id;
         $pa->save(); 
 
         
@@ -521,6 +523,7 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen;
+        $pa->at= $p->id;
         $pa->save(); 
 
 
@@ -679,6 +682,7 @@ class ResultadosController extends Controller
         $pa->resultado = 1;  
         $pa->usuarioinforme=$p->name.' '.$p->lastname;
         $pa->nombreinforme=$nombre_imagen; 
+        $pa->at= $p->id;
         $pa->save(); 
 
 
