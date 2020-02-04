@@ -328,6 +328,7 @@ class ProduccionController extends Controller
     ->select('a.id','a.name','a.lastname','a.tipo')
     ->join('atenciones as b','b.at','a.id')
     ->orderby('a.id','desc')
+    ->groupBy('a.id')
     ->get(); 
      
        
