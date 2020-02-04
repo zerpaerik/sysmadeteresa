@@ -65,17 +65,18 @@ class ProduccionController extends Controller
            
 
 
-      
+         
          $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.sede','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','cn.usuario')
+        ->select('a.id','a.profesional','a.atendidopor','a.paciente','a.sede','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('users as c','c.id','a.profesional')
-        ->join('consultas as cn','cn.id_evento','a.id')
          ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-        ->where('cn.usuario','=',$request->pro)
+        ->where('a.atendidopor','=',$request->pro)
         ->orderby('a.id','desc')
         ->get();
+
+
 
         $totalconsultas = Event::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1                         )), date('Y-m-d 23:59:59', strtotime($f2))])
                                     ->where('profesional','=',$request->pro) 
@@ -101,11 +102,10 @@ class ProduccionController extends Controller
 
          
          $consultas = DB::table('events as a')
-        ->select('a.id','a.profesional','a.paciente','a.sede','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro','cn.usuario')
+        ->select('a.id','a.profesional','a.atendidopor','a.paciente','a.sede','a.time','a.monto','a.date','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('users as c','c.id','a.profesional')
-        ->join('consultas as cn','cn.id_evento','a.id')
-        ->where('cn.usuario','=',$request->pro)
+        ->where('a.atendidopor','=',$request->pro)
         ->where('a.sede','=',$request->session()->get('sede'))
         ->orderby('a.id','desc')
         ->get();
@@ -150,17 +150,15 @@ class ProduccionController extends Controller
    	}
 
 
-
            // $personal = User::where('tipo','=',1)->get();
 
-
-
-        $personal = DB::table('users as a')
+    $personal = DB::table('users as a')
     ->select('a.id','a.name','a.lastname','a.tipo')
-    ->join('consultas as b','b.usuario','a.id')
-    ->orderby('a.id','desc')
+    ->join('events as b','b.atendidopor','a.id')
     ->groupBy('a.id')
     ->get(); 
+
+
        
         return view('produccion.index',["personal" => $personal,"f1" => $f1,"f2" => $f2,"consultas" => $consultas, "totalconsultas" => $totalconsultas,"totalc" => $totalc]);
     }
