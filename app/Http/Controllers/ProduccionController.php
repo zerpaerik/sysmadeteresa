@@ -293,7 +293,7 @@ class ProduccionController extends Controller
     
 
        $sesiones = DB::table('atenciones as a')
-        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete','pr.name as nomate','pr.lastname as apeate')
+        ->select('a.id','a.id_paquete','a.id_paciente','a.origen_usuario','a.atendido','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.es_paquete','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.abono','a.pendiente','a.resultado','b.nombres','b.apellidos','b.dni','c.detalle as servicio','e.name','e.lastname','d.name as laboratorio','pa.detalle as paquete')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('servicios as c','c.id','a.id_servicio')
         ->join('analises as d','d.id','a.id_laboratorio')
