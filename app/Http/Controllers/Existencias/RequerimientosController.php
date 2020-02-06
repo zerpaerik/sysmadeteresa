@@ -390,7 +390,7 @@ class RequerimientosController extends Controller
 
     
 
-      public function edit(Request $request){
+     /* public function edit(Request $request){
 
 
 
@@ -436,7 +436,7 @@ class RequerimientosController extends Controller
                     if($searchProductoSedeSolicitad == NULL){
                       $cantidadactualsedesolicita=0;
                     }else{
-                    $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
+                      $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
                     }  
 
               
@@ -456,25 +456,19 @@ class RequerimientosController extends Controller
 
       if($p){
         
-        $atec=Producto::where("padre","=",$producto)
-                          ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
+              $atec=Producto::where("padre","=",$producto)
+              ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
 
+              if($almacen_solicita==1){
+                $alm='RECEPCION';
+              }elseif($almacen_solicita==2){
+                $alm='LABORATORIO';
+              }elseif($almacen_solicita==3){
+                $alm='RAYOS';
+              }else{
+                $alm='OBSTETRA';
+              }
 
-
-          if($almacen_solicita==1){
-            $alm='RECEPCION';
-          }elseif($almacen_solicita==2){
-           $alm='LABORATORIO';
-         }elseif($almacen_solicita==3){
-           $alm='RAYOS';
-         }else{
-          $alm='OBSTETRA';
-        }
-
-
-
-
-       
               $productosm = new ProductosMovimientos();
               $productosm->id_producto = $producto;
               $productosm->accion = 'INGRESO EN ALMACEN';
@@ -490,28 +484,28 @@ class RequerimientosController extends Controller
 
       }else{
 
-        $prod = new Producto();
-        $prod->nombre =  $nombre;
-        $prod->categoria =  $categoria;
-        $prod->codigo = $codigo;
-        $prod->medida =  $medida;
-        $prod->preciounidad = $preciounidad;
-        $prod->precioventa = $precioventa;
-        $prod->sede_id = $sede_solicita;
-        $prod->cantidad = $request->cantidadd;
-        $prod->almacen = 2;
-        $prod->padre = $producto;
-        $prod->save();
+              $prod = new Producto();
+              $prod->nombre =  $nombre;
+              $prod->categoria =  $categoria;
+              $prod->codigo = $codigo;
+              $prod->medida =  $medida;
+              $prod->preciounidad = $preciounidad;
+              $prod->precioventa = $precioventa;
+              $prod->sede_id = $sede_solicita;
+              $prod->cantidad = $request->cantidadd;
+              $prod->almacen = 2;
+              $prod->padre = $producto;
+              $prod->save();
 
-          if($almacen_solicita==1){
-            $alm='RECEPCION';
-          }elseif($almacen_solicita==2){
-           $alm='LABORATORIO';
-         }elseif($almacen_solicita==3){
-           $alm='RAYOS';
-         }else{
-          $alm='OBSTETRA';
-        }
+              if($almacen_solicita==1){
+                 $alm='RECEPCION';
+              }elseif($almacen_solicita==2){
+                 $alm='LABORATORIO';
+              }elseif($almacen_solicita==3){
+                 $alm='RAYOS';
+              }else{
+                 $alm='OBSTETRA';
+              }
 
               $productosm = new ProductosMovimientos();
               $productosm->id_producto = $producto;
@@ -532,6 +526,9 @@ class RequerimientosController extends Controller
           return back();
 
     }
+
+      */
+
 
     public function edit1(Request $request){
 
@@ -671,6 +668,107 @@ class RequerimientosController extends Controller
           return back();
 
     }
+
+   
+
+     public function edit(Request $request){
+
+
+
+        $searchRequerimiento = DB::table('requerimientos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $request->id)
+                    ->first();                    
+                    //->get();
+
+                  
+                    $producto = $searchRequerimiento->id_producto;
+                    $sede_solicita = $searchRequerimiento->id_sede_solicita;
+
+
+
+            
+        
+
+        $searchProducto = DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('id','=', $producto)
+                    ->first();  
+
+                    $cantidadactual = $searchProducto->cantidad;
+                    $codigo = $searchProducto->codigo;
+                    $nombre = $searchProducto->nombre;
+                    $categoria = $searchProducto->categoria;
+                    $medida = $searchProducto->medida;
+                    $preciounidad = $searchProducto->preciounidad;
+                    $precioventa = $searchProducto->precioventa;
+
+         $searchProductoSedeSolicitad =  DB::table('productos')
+                    ->select('*')
+                   // ->where('estatus','=','1')
+                    ->where('padre','=', $producto)
+                   // ->where('sede_id','=',$sede_solicita)
+                   // ->where('almacen','=',2)
+                    ->first(); 
+
+                    if($searchProductoSedeSolicitad == NULL){
+                      $cantidadactualsedesolicita=0;
+                    }else{
+                    $cantidadactualsedesolicita = $searchProductoSedeSolicitad->cantidad; 
+                    }  
+
+              
+
+      $p = Requerimientos::find($request->id);
+      $p->estatus = 'Procesado';
+      $p->cantidadd= $request->cantidadd;
+      $res = $p->save();
+
+      $p = Producto::find($producto);
+      $p->cantidad= $cantidadactual - $request->cantidadd;
+      $res = $p->save();
+
+     
+      $p = Producto::where("padre", "=", $producto)->where('sede_id','=',$sede_solicita)->where('almacen','=',2)->first();
+
+
+      if($p){
+        
+        $atec=Producto::where("padre","=",$producto)
+                          ->update(['cantidad' => $cantidadactualsedesolicita + $request->cantidadd]);
+
+
+
+
+      }else{
+
+        $prod = new Producto();
+        $prod->nombre =  $nombre;
+        $prod->categoria =  $categoria;
+        $prod->codigo = $codigo;
+        $prod->medida =  $medida;
+        $prod->preciounidad = $preciounidad;
+        $prod->precioventa = $precioventa;
+        $prod->sede_id = $sede_solicita;
+        $prod->cantidad = $request->cantidadd;
+        $prod->almacen = 2;
+        $prod->padre = $producto;
+        $prod->save();
+
+          
+
+
+      }
+
+        Toastr::success('Procesado Exitosamente.', 'Requerimiento!', ['progressBar' => true]);
+
+          return back();
+
+    }
+
+
 
       public function reversar(Request $request,$id){
 
