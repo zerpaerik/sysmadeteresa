@@ -320,7 +320,7 @@ class PrenatalController extends Controller
 		
 
     	Toastr::success('Registrado Exitosamente.', 'Control Prenatal!', ['progressBar' => true]);
-      return redirect()->route('consultas.index');
+      return redirect()->route('consultas.inicio');
 
 		//return back();
 
