@@ -186,9 +186,12 @@ class PrenatalController extends Controller
 				
 			]);
 
-			
+					
+	 $event = Event::find($request->evento);
+		    $event->atendido=1;
+		    $event->update();
 
-			
+
 			
 			
 

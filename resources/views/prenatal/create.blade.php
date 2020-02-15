@@ -229,6 +229,7 @@
 					{{ csrf_field() }}
 
 		             <input type="hidden" name="paciente" value="{{$paciente->id}}">
+		              <input type="hidden" name="evento" value="{{$evento->id}}">
 						<h3>I. Antecedentes Obstetricos</h3>
 
 						<div class="col-sm-8">
