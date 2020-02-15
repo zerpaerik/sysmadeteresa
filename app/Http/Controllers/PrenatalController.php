@@ -186,7 +186,7 @@ class PrenatalController extends Controller
 				
 			]);
 
-					
+
 	 $event = Event::find($request->evento);
 		    $event->atendido=1;
 		    $event->update();
@@ -303,6 +303,10 @@ class PrenatalController extends Controller
 
 
     	$e= Event::where('id','=',$request->evento)->first();
+
+    	 $event = Event::find($request->evento);
+		    $event->atendido=1;
+		    $event->update();
 
     /*	if($e->profesional == 36){
 
