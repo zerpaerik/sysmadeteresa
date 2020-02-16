@@ -117,6 +117,8 @@ Route::post('pacientes/edit', 'Archivos\PacientesController@edit');
 Route::get('pacientes-delete-{id}','Archivos\PacientesController@delete');
 Route::get('pacientes-createpac','Archivos\PacientesController@createpac');
 Route::get('pacientes/view/{id}', 'Archivos\PacientesController@show');
+Route::get('pacienteByFiltro/{id}', 'Archivos\PacientesController@filtro');
+
 
 
 

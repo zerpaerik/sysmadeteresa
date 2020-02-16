@@ -214,6 +214,14 @@ class PacientesController extends Controller
    // return redirect()->action('Archivos\PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
   }  
 
+
+   public function filtro($filtro){
+
+    $pacientes =Pacientes::where('apellidos','like','%'.$filtro.'%')->orderby('apellidos','asc')->get();
+
+    return $pacientes;
+   }
+
    public function create3(Request $request){
 
      $validator = \Validator::make($request->all(), [

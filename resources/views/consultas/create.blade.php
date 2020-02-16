@@ -21,17 +21,40 @@
 				<div class="no-move"></div>
 			</div>
 			   <a href="{{route('pacientes.create3')}}"><i class="fa fa-wheelchair"></i> Crear Pacientes<a>
+			<form class="form-horizontal" role="form" method="post" action="consulta/create">
 
 			<div class="box-content">
+
 				<h4 class="page-header"></h4>
-				<form class="form-horizontal" role="form" method="post" action="consulta/create">
+				<div class="row">
+
+				<div class="col-md-4">
+					<input type="text" name="filtro" id="filtros" placeholder="Buscar por apellidos">
+				</div>
+
+			
+			</div>
+
+            			
+
+			<div class="row">
+					<div class="col-md-6">
+					     <select name="paciente" id="pacientes">
+                         <option value="">Seleccione Paciente</option>
+                         </select>
+						</div>	
+				<div class="col-md-6">
+				
+				</div>
+			</div>
 					{{ csrf_field() }}
 
+				
 					<div class="form-group">
 						
 						<label class="col-sm-1 control-label">Especialistas</label>
-						<div class="col-sm-3">
-							<select id="el1" name="especialista">
+						<div class="col-sm-2">
+							<select id="el2" name="especialista">
 									<option value="33">ALEX CALERO</option>
 						            <option value="19">JENNY MOLINA</option>
 									<option value="35">ROSA GOLINDARO</option>
@@ -39,21 +62,9 @@
 							</select>
 						</div>
 
-					<label class="col-sm-1 control-label">Pacientes</label>
-						<div class="col-sm-3">
-							<select id="el2" name="paciente">
-								@foreach($pacientes as $paciente)
-									<option value="{{$paciente->id}}">
-										{{$paciente->dni}} - 
-										{{$paciente->apellidos}} {{$paciente->nombres}}
-									</option>
-								@endforeach
-							</select>
-						</div>
-
-
+					
 						<label class="col-sm-1 control-label">Monto</label>
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<input type="number" class="form-control" placeholder="Monto" name="monto" required="required">
 						</div>
 
@@ -61,7 +72,7 @@
 						
 
 							<label class="col-sm-1 control-label">TipoPago</label>
-							<div class="col-sm-3">
+							<div class="col-sm-2">
 								<select id="el4" name="tipopago">
 										<option value="EF">EF</option>
 										<option value="TJ">TJ</option>
@@ -87,6 +98,24 @@
 </div>
 @section('scripts')
 <script type="text/javascript">
+
+  $(document).ready(function(){
+    $("#filtros").change(function(){
+      var filtro = $(this).val();
+      $.get('pacienteByFiltro/'+filtro, function(data){
+//esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+        console.log(data);
+          var pacient_select = '<option value="">Seleccione Paciente</option>'
+            for (var i=0; i<data.length;i++)
+              pacient_select+='<option value="'+data[i].id+'">'+data[i].apellidos+' '+data[i].nombres+'</option>';
+
+            $("#pacientes").html(pacient_select);
+
+      });
+    });
+  });
+
+
 // Run Select2 on element
 $(document).ready(function() {
 	LoadTimePickerScript(DemoTimePicker);
@@ -94,7 +123,7 @@ $(document).ready(function() {
 		$("#el2").select2();
 		$("#el4").select2();
 		$("#el5").select2();
-		$("#el1").select2();
+		$("#pacientes").select2();
 		$("#el3").select2({disabled : true});
 	});
 	WinMove();
