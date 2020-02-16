@@ -29,7 +29,7 @@
 				<div class="row">
 
 				<div class="col-md-4">
-					<input type="text" name="filtro" id="filtros" placeholder="Buscar por apellidos">
+					<input type="text" name="filtro" id="filtros" placeholder="Buscar por DNI">
 				</div>
 
 			
@@ -107,7 +107,7 @@
         console.log(data);
           var pacient_select = '<option value="">Seleccione Paciente</option>'
             for (var i=0; i<data.length;i++)
-              pacient_select+='<option value="'+data[i].id+'">'+data[i].apellidos+' '+data[i].nombres+'</option>';
+              pacient_select+='<option value="'+data[i].id+'">'+data[i].dni+' '+data[i].apellidos+' '+data[i].nombres+'</option>';
 
             $("#pacientes").html(pacient_select);
 

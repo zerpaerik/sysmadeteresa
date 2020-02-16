@@ -217,7 +217,7 @@ class PacientesController extends Controller
 
    public function filtro($filtro){
 
-    $pacientes =Pacientes::where('apellidos','like','%'.$filtro.'%')->orderby('apellidos','asc')->get();
+    $pacientes =Pacientes::where('dni','=',$filtro)->orderby('apellidos','asc')->get();
 
     return $pacientes;
    }
