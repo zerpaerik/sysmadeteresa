@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Events;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pacientes\Paciente;
+use App\Models\Pacientes;
 use App\Models\Personal;
 use App\Models\Profesionales\Profesional;
 use App\Models\Events\{Event, RangoConsulta};
@@ -364,14 +365,17 @@ class EventController extends Controller
     return response()->json(RangoConsulta::all()); 
   }
 
-  public function createView($extra = []){
-    $data = [
-	  "especialistas" => User::where('tipo','=','1')->get(),
-      "pacientes" => Paciente::where('estatus','=',1)->get(),
-      "tiempos" => RangoConsulta::all(),
-	  "ciex" => Ciex::all(),
-    ];
-    return view('consultas.create', $data + $extra);
+  public function createView (){ 
+
+    //dd($request->filtro);
+
+
+    $especialistas = User::where('tipo','=','1')->get();
+    $tiempos = RangoConsulta::all();
+    $ciex = Ciex::all();
+
+    
+    return view('consultas.create', compact('especialistas','tiempos','ciex'));
   }
 
    public function llama($id){
