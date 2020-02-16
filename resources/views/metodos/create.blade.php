@@ -41,7 +41,7 @@
 	
 
 			   <label class="col-sm-1 control-label">Paciente</label>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<select name="paciente" id="pacientes">
                          <option value="">Seleccione Paciente</option>
                          </select>
@@ -65,7 +65,7 @@
 
 
 						<label class="col-sm-1 control-label">TipoPago</label>
-							<div class="col-sm-2">
+							<div class="col-sm-1">
 								<select id="el3" name="tipopago">
 										<option value="EF">EF</option>
 										<option value="TJ">TJ</option>
