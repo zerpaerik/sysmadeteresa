@@ -30,10 +30,11 @@ class MetodosController extends Controller
 
       //$laboratorios =Laboratorios::where("estatus", '=', 1)->get();
 	  $metodos = DB::table('metodos as a')
-        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
 		->join('users as c','c.id','a.id_usuario')
 		->join('pacientes as b','b.id','a.id_paciente')
 		->join('productos as d','d.id','a.id_producto')
+    ->join('creditos as cr','cr.id_metodo','a.id')
 		->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
     ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
@@ -55,11 +56,12 @@ class MetodosController extends Controller
 
       } else {
 
-      	$metodos = DB::table('metodos as a')
-        ->select('a.id','a.id_paciente','a.tipopago','a.eliminado_por','a.aplicado','a.es_delete','a.id_usuario','a.monto','a.sede','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
-		->join('users as c','c.id','a.id_usuario')
-		->join('pacientes as b','b.id','a.id_paciente')
-		->join('productos as d','d.id','a.id_producto')
+      	 $metodos = DB::table('metodos as a')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
+    ->join('users as c','c.id','a.id_usuario')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('productos as d','d.id','a.id_producto')
+    ->join('creditos as cr','cr.id_metodo','a.id')
        ->whereDate('a.created_at', '=',Carbon::today()->toDateString())
         ->where('a.sede','=',$request->session()->get('sede'))
         ->orderBy('a.created_at','asc')
@@ -95,10 +97,11 @@ class MetodosController extends Controller
     $f2 = $request->fecha2; 
 
      $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.tipopago','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.detalle_llamada','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
-           ->join('users as c','c.id','a.id_usuario')
-           ->join('pacientes as b','b.id','a.id_paciente')
-           ->join('productos as d','d.id','a.id_producto')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
+    ->join('users as c','c.id','a.id_usuario')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('productos as d','d.id','a.id_producto')
+    ->join('creditos as cr','cr.id_metodo','a.id')
           ->where('a.sede','=',$request->session()->get('sede'))
           ->whereBetween('a.proximo', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
             ->orderBy('a.proximo','asc')
@@ -108,11 +111,12 @@ class MetodosController extends Controller
 
 
 
-        $metodos = DB::table('metodos as a')
-            ->select('a.id','a.id_paciente','a.tipopago','a.detalle_llamada','a.aplicado','a.id_usuario','a.sede','a.estatus','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal')
-           ->join('users as c','c.id','a.id_usuario')
-           ->join('pacientes as b','b.id','a.id_paciente')
-           ->join('productos as d','d.id','a.id_producto')
+         $metodos = DB::table('metodos as a')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
+    ->join('users as c','c.id','a.id_usuario')
+    ->join('pacientes as b','b.id','a.id_paciente')
+    ->join('productos as d','d.id','a.id_producto')
+    ->join('creditos as cr','cr.id_metodo','a.id')
           ->where('a.sede','=',$request->session()->get('sede'))
            ->where('a.proximo','=',Carbon::today()->toDateString())
             ->orderBy('a.proximo','asc')
@@ -171,7 +175,7 @@ class MetodosController extends Controller
          $metodos->sede = $request->session()->get('sede');
          $metodos->save();
 
-         $productom = new ProductosMovimientos();
+        $productom = new ProductosMovimientos();
               $productom->id_producto = $request->producto;
               $productom->accion = 'SALIDA';
               $productom->origen= 'VENTA DE MÈTODO ANTICONCEPTIVO';

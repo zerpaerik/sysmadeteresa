@@ -114,7 +114,7 @@
 								<td>{{$atec->telefono}}</td>
 								<td>{{$atec->producto}}</td>
 								<td>{{$atec->monto}}</td>
-								<td>{{$atec->tipopago}}</td>
+								<td>{{$atec->tipo_ingreso}}</td>
 								<td style="background: #00FFFF;">{{$atec->proximo}}</td>
 								<td>{{$atec->personal}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
