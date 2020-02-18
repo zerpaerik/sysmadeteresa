@@ -54,12 +54,18 @@
             <div class="col-sm-3">
               <select id="el2" name="origen">
                   <option value="0">Seleccione el Origen</option>
-                  @if($atencion->origen == 1)
+                @if($atencion->origen == 1)
                     <option value="1" selected="selected">Personal</option>
                     <option value="2">Profesional</option>
+                    <option value="3">Particular</option>
+                  @elseif($atencion->origen == 2)
+                  <option value="1">Personal</option>
+                  <option value="2" selected="selected">Profesional</option>
+                  <option value="3">Particular</option>
                   @else
                     <option value="1">Personal</option>
-                    <option value="2" selected="selected">Profesional</option>
+                    <option value="2">Profesional</option>
+                    <option value="3" selected="selected">Particular</option>
                   @endif
                   
               </select>
@@ -498,9 +504,11 @@ function DemoTimePicker(){
           var link;
           if ($(this).val() ==  1) {
             link = '/movimientos/atencion/personal/';
-          }else{
+          }else if ($(this).val() ==  2){
             link = '/movimientos/atencion/profesional/';
-          }
+          } else {
+        link = '/movimientos/atencion/particular/';
+      }
 
           $.ajax({
                  type: "get",
