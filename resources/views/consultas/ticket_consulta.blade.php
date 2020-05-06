@@ -62,7 +62,7 @@ margin-top: -20px;
 <body>
 
 
-	@if(Session::get('sedeName') == 'PROCERES')
+	@if(Session::get('sedeName') == 'PROCERES' && Session::get('sedeName') == 'CANTO REY')
 
 	<div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
 		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
