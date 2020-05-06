@@ -105,6 +105,12 @@ margin-top: -20px;
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>RESTA: {{ $ticket->pendiente}}</strong></p>
 	</div>
+    
+    <br><br><br><br><br><br><br><br>
+	<center><p style="font-size: 60px;">COMUNICADO</p></center>
+	<p style="text-align: justify;font-size: 30px;">Estimado cliente se informa, que todo estudio que quede pendiente de su realizaciòn <strong>tiene un plazo no mayor a 30 dias,</strong>contando desde la fecha de su cancelaciòn, <strong>pasado este tiempo quedarà como anulado dicho estudio</strong>. Asi mismo las <strong>consultas de reevaluaciòn tienen un plazo de 15 dias,</strong> pasado este tiempo el paciente deberà cancelar por su consulta.</p>
+
+	
 
     
 
@@ -140,6 +146,12 @@ margin-top: -20px;
 	<div class="total">
 		<p><strong>{{ $ticket->monto}}</strong></p>
 	</div>
+    
+    <br><br><br><br><br><br><br><br>
+	<center><p style="font-size: 60px;">COMUNICADO</p></center>
+	<p style="text-align: justify;font-size: 30px;">Estimado cliente se informa, que todo estudio que quede pendiente de su realizaciòn <strong>tiene un plazo no mayor a 30 dias,</strong>contando desde la fecha de su cancelaciòn, <strong>pasado este tiempo quedarà como anulado dicho estudio</strong>. Asi mismo las <strong>consultas de reevaluaciòn tienen un plazo de 15 dias,</strong> pasado este tiempo el paciente deberà cancelar por su consulta.</p>
+
+	
 
 
 @endif
