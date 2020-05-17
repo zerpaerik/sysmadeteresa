@@ -142,7 +142,7 @@ public function index(Request $request){
  public function create(Request $request)
   {
     if(is_null($request->origen_usuario) && ($request->origen <> 3)){
-      Toastr::error('Debe Seleccionar un Origen', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+      Toastr::error('Debe Seleccionar un Origen', 'Ingreso de AtenciÃ²n!', ['progressBar' => true]);
 
     return back();
   }
@@ -355,6 +355,17 @@ public function index(Request $request){
         $evt->tipo='CONSULTAS';
         $evt->paquete= $paq->id; 
         $evt->save();
+            
+            //guardando credito
+           $credito = Creditos::create([
+        "origen" => 'CONSULTAS',
+        "descripcion" => 'CONSULTAS',
+        "monto" => 0
+        "tipo_ingreso" => $request->tipopago,
+        "id_sede" => $request->session()->get('sede'),
+        "id_event" => $evt->id,
+        "date" => date('Y-m-d')
+      ]);
 
               $p = new PaqCon();
               $p->paciente = $request->id_paciente;
@@ -404,6 +415,16 @@ public function index(Request $request){
         $evt->tipo='CONTROLES';
         $evt->paquete= $paq->id; 
         $evt->save();
+            
+             $credito = Creditos::create([
+        "origen" => 'CONTROLES',
+        "descripcion" => 'CONTROLES',
+        "monto" => 0
+        "tipo_ingreso" => $request->tipopago,
+        "id_sede" => $request->session()->get('sede'),
+        "id_event" => $evt->id,
+        "date" => date('Y-m-d')
+      ]);
 
               $p = new PaqCont();
               $p->paciente = $request->id_paciente;
@@ -783,6 +804,16 @@ public function index(Request $request){
         $evt->tipo='CONSULTAS';
                 $evt->paquete= $paq->id; 
         $evt->save();
+            
+             $credito = Creditos::create([
+        "origen" => 'CONSULTAS',
+        "descripcion" => 'CONSULTAS',
+        "monto" => 0
+        "tipo_ingreso" => $request->tipopago,
+        "id_sede" => $request->session()->get('sede'),
+        "id_event" => $evt->id,
+        "date" => date('Y-m-d')
+      ]);
 
          $p = new PaqCon();
               $p->paciente = $request->id_paciente;
@@ -832,6 +863,16 @@ $paciente = DB::table('pacientes')
         $evt->tipo='CONTROLES';
                 $evt->paquete= $paq->id; 
         $evt->save();
+            
+             $credito = Creditos::create([
+        "origen" => 'CONTROLES',
+        "descripcion" => 'CONTROLES',
+        "monto" => 0
+        "tipo_ingreso" => $request->tipopago,
+        "id_sede" => $request->session()->get('sede'),
+        "id_event" => $evt->id,
+        "date" => date('Y-m-d')
+      ]);
 
          $p = new PaqCont();
               $p->paciente = $request->id_paciente;
@@ -1003,7 +1044,7 @@ $paciente = DB::table('pacientes')
   }
   
   
-       Toastr::success('Registrado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+       Toastr::success('Registrado Exitosamente.', 'Ingreso de AtenciÃ²n!', ['progressBar' => true]);
 
 
     return redirect()->route('atenciones.index');
@@ -1604,12 +1645,12 @@ $paciente = DB::table('pacientes')
   }
 
     if ($atencion->save() && $creditos->save()) {
-      Toastr::success('Editado Exitosamente.', 'Atenciòn!', ['progressBar' => true]);
+      Toastr::success('Editado Exitosamente.', 'AtenciÃ²n!', ['progressBar' => true]);
    // return back();
     return redirect()->route('atenciones.index');
 
     } else {
-      throw new Exception("Error en el proceso de actualizaciÃ³n", 1);
+      throw new Exception("Error en el proceso de actualizaciÃƒÂ³n", 1);
     }
   }
 
@@ -1660,7 +1701,7 @@ $paciente = DB::table('pacientes')
     $event->delete();
 
   
-   Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+   Toastr::error('Eliminado Exitosamente.', 'Ingreso de AtenciÃ²n!', ['progressBar' => true]);
 
   return back();
 
@@ -1675,7 +1716,7 @@ $paciente = DB::table('pacientes')
 	$creditos = Creditos::where('id_atencion','=',$id);
     $creditos->delete();
   
-	 Toastr::error('Eliminado Exitosamente.', 'Ingreso de Atenciòn!', ['progressBar' => true]);
+	 Toastr::error('Eliminado Exitosamente.', 'Ingreso de AtenciÃ²n!', ['progressBar' => true]);
 
      return redirect()->action('AtencionesController@index', ["created" => true, "atenciones" => Atenciones::all()]);
 	
