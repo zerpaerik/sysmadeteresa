@@ -360,7 +360,7 @@ public function index(Request $request){
            $credito = Creditos::create([
         "origen" => 'CONSULTAS',
         "descripcion" => 'CONSULTAS',
-        "monto" => 0
+        "monto" => 0,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
         "id_event" => $evt->id,
@@ -419,7 +419,7 @@ public function index(Request $request){
              $credito = Creditos::create([
         "origen" => 'CONTROLES',
         "descripcion" => 'CONTROLES',
-        "monto" => 0
+        "monto" => 0,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
         "id_event" => $evt->id,
@@ -808,7 +808,7 @@ public function index(Request $request){
              $credito = Creditos::create([
         "origen" => 'CONSULTAS',
         "descripcion" => 'CONSULTAS',
-        "monto" => 0
+        "monto" => 0,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
         "id_event" => $evt->id,
@@ -867,7 +867,7 @@ $paciente = DB::table('pacientes')
              $credito = Creditos::create([
         "origen" => 'CONTROLES',
         "descripcion" => 'CONTROLES',
-        "monto" => 0
+        "monto" => 0,
         "tipo_ingreso" => $request->tipopago,
         "id_sede" => $request->session()->get('sede'),
         "id_event" => $evt->id,
