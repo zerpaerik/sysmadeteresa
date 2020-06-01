@@ -80,7 +80,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong>PACIENTE:{{$metodos->apellidos}} {{$metodos->nombres}}</strong></p>
+		<p><strong>PACIENTE:{{$metodos->apellidos}} {{$metodos->nombres}} DNI:{{$metodos->dni}}</strong></p>
 	</div>
 
 	
@@ -97,7 +97,7 @@ margin-top: -20px;
 
 @else
 <div class="paciente">
-		<p><strong>Paciente: {{$metodos->apellidos}} {{$metodos->nombres}}</strong></p>
+		<p><strong>Paciente: {{$metodos->apellidos}} {{$metodos->nombres}} DNI:{{$metodos->dni}}</strong></p>
 	</div>
 
 	<div class="fecha">
