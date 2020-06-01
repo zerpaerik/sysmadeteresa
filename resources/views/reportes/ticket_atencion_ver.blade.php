@@ -86,7 +86,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
-		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}} DNI:{{$paciente->dni}}</strong></p>
+		<p><strong>PACIENTE:{{ $ticket->nombres}},{{ $ticket->apellidos}} DNI:{{$ticket->dni}}</strong></p>
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
@@ -122,7 +122,7 @@ margin-top: -20px;
 
 
 <div class="paciente">
-		<p><strong>{{$ticket->apellidos}},{{$ticket->nombres}}</strong></p>
+		<p><strong>{{$ticket->apellidos}},{{$ticket->nombres}} DNI:{{$ticket->dni}}</strong></p>
 	</div>
 
 
