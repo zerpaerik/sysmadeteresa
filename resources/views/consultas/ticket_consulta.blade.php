@@ -83,7 +83,7 @@ margin-top: -20px;
 	</div>
 
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
-		<p><strong>PACIENTE:{{$paciente->apellidos}} {{$paciente->nombres}}</strong></p>
+		<p><strong>PACIENTE:{{$paciente->apellidos}} {{$paciente->nombres}} DNI:{{$paciente->dni}}</strong></p>
 	</div>
 	<div class="" style="font-size: 40px; text-align: left;margin-top: -50px;">
 		<p><strong>MEDICO:{{$paciente->apellidoPro}} {{$paciente->nombrePro}}</strong></p>
