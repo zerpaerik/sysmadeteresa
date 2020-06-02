@@ -105,8 +105,8 @@ class ReportesController extends Controller
           $ingresos = DB::table('creditos as a')
                 ->select('a.id','a.created_at','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
                 ->whereBetween('a.date', [$f1,$f2])
-                ->whereNotIn('a.monto',[0,0.00])
-                ->groupBy('a.date')
+                //->whereNotIn('a.monto',[0,0.00])
+                //->groupBy('a.date')
                 ->get();  
 
 
