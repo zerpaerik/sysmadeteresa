@@ -346,7 +346,10 @@
     </a>
     <ul class="dropdown-menu">
        <li>
-        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado</a>
+        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado Por Sede</a>
+      </li>
+      <li>
+        <a href="{{route('report.detalladog')}}"><i class="fa fa-file-o"></i> Detallado General</a>
       </li>
        <li>
         <a href="{{route('produccion.index')}}"><i class="fa fa-file-o"></i> Producciòn Consultas</a>
@@ -768,7 +771,10 @@
     </a>
     <ul class="dropdown-menu">
        <li>
-        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado</a>
+        <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado Por Sede</a>
+      </li
+      <li>
+        <a href="{{route('report.detalladog')}}"><i class="fa fa-file-o"></i> Detallado General</a>
       </li>
       <li>
         <a href="reporte-solicitar_diario"><i class="fa fa-file-o"></i> Atenciòn Diaria Consolidado</a>
