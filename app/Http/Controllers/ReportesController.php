@@ -103,7 +103,8 @@ class ReportesController extends Controller
 
 
           $ingresos = DB::table('creditos as a')
-                ->select('a.id','a.created_at','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
+                ->select('a.id','a.created_at','a.date','a.id_sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
+                ->where('a.id_sede','=',  $request->session()->get('sede'))
                 ->whereBetween('a.date', [$f1,$f2])
                 ->whereNotIn('a.monto',[0,0.00])
                 ->groupBy('a.date')
@@ -146,6 +147,60 @@ class ReportesController extends Controller
         return $pdf->stream('movimientos'.'.pdf');
 
     }
+    
+      public function detalladog(Request $request){
+
+
+
+
+        $f1= $request->f1;
+        $f2= $request->f2;
+
+    
+
+
+          $ingresos = DB::table('creditos as a')
+                ->select('a.id','a.created_at','a.date',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'))
+                ->whereBetween('a.date', [$f1,$f2])
+                ->whereNotIn('a.monto',[0,0.00])
+                ->groupBy('a.date')
+                ->get();  
+
+
+
+
+        $total= Creditos::whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->groupBy('date')
+                                    ->first();
+         $egresos=Debitos::whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as egreso'),'date')
+                                    ->groupBy('date')
+                                    ->get();
+                       
+                                    
+        $debitos=Debitos::whereBetween('date', [$f1,$f2])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->groupBy('date')
+                                    ->first();
+
+         $saldo= $total->monto - $debitos->monto;
+        
+         //dd($egresos);
+
+
+
+
+         $view = \View::make('reportes.detalladog',compact('f1','f2','ingresos','egresos','debitos','total','saldo'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('movimientos'.'.pdf');
+
+    }
+
 
 
     public function historialp(Request $request)
