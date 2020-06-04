@@ -78,7 +78,7 @@
 
 
 		</tr>
-        @if($ingresos.length > 0)
+        @if($ingresos > 0)
 		@foreach($ingresos as $c)
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{$c->date}}</td>
