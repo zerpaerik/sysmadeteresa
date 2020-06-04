@@ -401,6 +401,9 @@ Route::get('matconsultas/ver/{f1}/{f2}/{id}', 'ReportesController@reportconsulta
 Route::get('report-detallado', 'ReportesController@reportdetallado')->name('report.detallado');
 Route::get('reporte/detallado', 'ReportesController@detallado');
 
+Route::get('report-detalladog', 'ReportesController@reportdetalladog')->name('report.detalladog');
+Route::get('reporte/detalladog', 'ReportesController@detalladog');
+
 
 Route::get('materialesusados', 'ReportesController@materialesusados')->name('materialesusados.ver');
 
