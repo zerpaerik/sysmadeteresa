@@ -135,8 +135,12 @@ class ReportesController extends Controller
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->groupBy('date')
                                     ->first();
+         if($debitos != null){
 
          $saldo= $total->monto - $debitos->monto;
+         } else {
+          $saldo= $total->monto - '0';
+         }
         
          //dd($egresos);
 
