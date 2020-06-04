@@ -86,9 +86,14 @@ class ReportesController extends Controller
         return view('resultadosguardados.editar', ["resultados" => $resultados]);
     }
 
-      public function reportdetallado(){
+       public function reportdetallado(){
 
-        return view('reportes.general_detalle');
+       return view('reportes.general_detalle');
+    }
+    
+     public function reportdetalladog(){
+
+       return view('reportes.general_detalleg');
     }
 
   public function detallado(Request $request){
