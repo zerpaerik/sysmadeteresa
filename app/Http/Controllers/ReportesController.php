@@ -121,19 +121,17 @@ class ReportesController extends Controller
         $total= Creditos::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    ->groupBy('date')
                                     ->first();
+      
          $egresos=Debitos::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as egreso'),'date')
-                                    ->groupBy('date')
                                     ->get();
                        
                                     
         $debitos=Debitos::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    ->groupBy('date')
                                     ->first();
          if($debitos != null){
 
@@ -180,17 +178,14 @@ class ReportesController extends Controller
 
         $total= Creditos::whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    ->groupBy('date')
                                     ->first();
          $egresos=Debitos::whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as egreso'),'date')
-                                    ->groupBy('date')
                                     ->get();
                        
                                     
         $debitos=Debitos::whereBetween('date', [$f1,$f2])
                                     ->select(DB::raw('SUM(monto) as monto'))
-                                    ->groupBy('date')
                                     ->first();
 
          $saldo= $total->monto - $debitos->monto;
