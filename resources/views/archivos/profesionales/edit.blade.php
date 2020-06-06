@@ -33,7 +33,7 @@
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="apellidos" placeholder="apellidos" data-toggle="tooltip" data-placement="bottom" value="{{$apellidos}}" title="apellidos">
 						</div>
-						<label class="col-sm-1 control-label">DNI</label>
+						<label class="col-sm-1 control-label">Nº Cuenta</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="dni" placeholder="dni" data-toggle="tooltip" data-placement="bottom" value="{{$dni}}" title="dni">
 						</div>
