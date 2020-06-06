@@ -69,7 +69,7 @@
 							<th>Còdigo</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th>DNI</th>
+							<th>Nº Cuenta</th>
 							<th>Especialidad</th>
 							<th>Centro</th>
 							<th>Registrado Por:</th>
