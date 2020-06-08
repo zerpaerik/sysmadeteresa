@@ -60,6 +60,7 @@
 					<thead>
 						<tr>
 							<th>Profesional</th>
+                            <th>Telèfono</th>
 							<th>Consultorio</th>
 							<th>Especialidad</th>
 							<th>Visitador</th>
@@ -72,6 +73,7 @@
 
 						<tr>
 							<td>{{$atec->name}},{{$atec->apellidos}}</td>
+                            <td>{{$atec->phone}}</td>
 							<td>{{$atec->centro}}</td>
 							<td>{{$atec->especialidad}}</td>
 							<td>{{$atec->nomvi}},{{$atec->apevi}}</td>
