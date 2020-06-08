@@ -33,6 +33,7 @@
 							<th>Còdigo</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
+                            <th>Telèfono</th>
 							<th>Nº Cuenta</th>
 							<th>Especialidad</th>
 							<th>Centro</th>
@@ -48,6 +49,7 @@
 						<td>{{$p->codigo}}</td>
 						<td>{{$p->name}}</td>
 						<td>{{$p->apellidos}}</td>
+                        <td>{{$p->phone}}</td>
 						<td>{{$p->dni}}</td>
 						<td>{{$p->especialidad}}</td>
 						<td>{{$p->centro}}</td>
@@ -69,6 +71,7 @@
 							<th>Còdigo</th>
 							<th>Nombres</th>
 							<th>Apellidos</th>
+                            <th>Telèfono</th>
 							<th>Nº Cuenta</th>
 							<th>Especialidad</th>
 							<th>Centro</th>
