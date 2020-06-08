@@ -26,7 +26,7 @@ class VisitasController extends Controller
 
 
     $visitas = DB::table('visitas as a')
-        ->select('a.id','a.id_profesional','a.id_visitador','a.created_at','b.name','b.apellidos','c.name as nomvi','c.lastname as apevi','b.centro','b.especialidad','d.name as centro','e.nombre as especialidad')/*,'c.name as nomvi','c.lastname as apevi','a.created_at'*/
+        ->select('a.id','a.id_profesional','a.id_visitador','a.created_at','b.name','b.apellidos','b.phone','c.name as nomvi','c.lastname as apevi','b.centro','b.especialidad','d.name as centro','e.nombre as especialidad')/*,'c.name as nomvi','c.lastname as apevi','a.created_at'*/
         ->join('profesionales as b','b.id','a.id_profesional')
         ->join('users as c','c.id','a.id_visitador')
         ->join('centros as d','b.centro','d.id')
@@ -42,7 +42,7 @@ class VisitasController extends Controller
       } else {
 
           $visitas = DB::table('visitas as a')
-        ->select('a.id','a.id_profesional','a.id_visitador','a.created_at','b.name','b.apellidos','c.name as nomvi','c.lastname as apevi','b.centro','b.especialidad','d.name as centro','e.nombre as especialidad')/*,'c.name as nomvi','c.lastname as apevi','a.created_at'*/
+        ->select('a.id','a.id_profesional','a.id_visitador','a.created_at','b.name','b.apellidos','b.phone','c.name as nomvi','c.lastname as apevi','b.centro','b.especialidad','d.name as centro','e.nombre as especialidad')/*,'c.name as nomvi','c.lastname as apevi','a.created_at'*/
         ->join('profesionales as b','b.id','a.id_profesional')
         ->join('users as c','c.id','a.id_visitador')
         ->join('centros as d','b.centro','d.id')
