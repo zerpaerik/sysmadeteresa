@@ -51,6 +51,7 @@
 					                      {{$cen->name}} 
 					                    </option>
 					                  @endif
+                                    <option value="{{$cen->id}}">{{$cen->name}}</option>
 								@endforeach
 							</select>
 						</div>						
@@ -64,6 +65,7 @@
 					                      {{$esp->nombre}} 
 					                    </option>
 					                  @endif
+                                      <option value="{{$esp->id}}">{{$esp->nombre}}</option>
 								@endforeach
 							</select>
 						</div>
