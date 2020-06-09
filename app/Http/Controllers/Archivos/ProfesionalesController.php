@@ -148,7 +148,7 @@ class ProfesionalesController extends Controller
 
      public function editView($id){
       $p = Profesionales::find($id);
-      $u = User::where('dni',$p->dni)->first();
+      $u = Profesionales::where('dni',$p->dni)->first();
       return view('archivos.profesionales.edit', ["especialidades" => Especialidades::all(),"centros" => Centros::all(),"name" => $p->name, "apellidos" => $p->apellidos,"cmp" => $p->cmp,"dni" => $p->dni, "nacimiento" => $p->nacimiento,"phone" => $p->phone,"id" => $p->id, "tipo" => $u->tipo, "centro" => $u->centro, "especialidad" => $u->especialidad]);
     }
 
