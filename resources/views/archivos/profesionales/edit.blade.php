@@ -45,8 +45,12 @@
 						<label class="col-sm-1 control-label">Centro</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="centro"  data-toggle="tooltip" data-placement="bottom">
-								@foreach($centros as $cen)
-									<option value="{{$cen->id}}">{{$cen->name}}</option>
+                                @foreach($centros as $cen)
+					                  @if($centro == $cen->id)
+					                    <option value="{{$cen->id}}" selected="selected">
+					                      {{$cen->nombre}} 
+					                    </option>
+					                  @endif
 								@endforeach
 							</select>
 						</div>						
