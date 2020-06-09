@@ -48,7 +48,7 @@
                                 @foreach($centros as $cen)
 					                  @if($centro == $cen->id)
 					                    <option value="{{$cen->id}}" selected="selected">
-					                      {{$cen->nombre}} 
+					                      {{$cen->name}} 
 					                    </option>
 					                  @endif
 								@endforeach
@@ -58,8 +58,12 @@
 						<label class="col-sm-1 control-label">Especialidad</label>
 						<div class="col-sm-3">
 							<select class="form-control" name="especialidad"  data-toggle="tooltip" data-placement="bottom">
-								@foreach($especialidades as $esp)
-									<option value="{{$esp->id}}">{{$esp->nombre}}</option>
+                                @foreach($especialidades as $esp)
+					                  @if($especialidad == $esp->id)
+					                    <option value="{{$esp->id}}" selected="selected">
+					                      {{$esp->nombre}} 
+					                    </option>
+					                  @endif
 								@endforeach
 							</select>
 						</div>
