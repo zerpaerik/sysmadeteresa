@@ -62,6 +62,8 @@
 
 
  <p style=" margin-top:1px;"><strong>DOCTOR:</strong>{{ $reciboe->name.' '.$reciboe->lastname}}</p>
+  <p style=" margin-top:1px;"><strong>CUENTA:</strong>{{ $reciboe->dni}}</p>
+  <p style=" margin-top:1px;"><strong>TELÈFONO:</strong>{{ $reciboe->phone}}</p>
   <p style="margin-top: -20px;"><strong>CONSULTORIO:</strong>MADRE TERESA</p>
   <p style="margin-top: -20px;"><strong>RECIBO: </strong>{{ $reciboe->recibo}}</p>
 
