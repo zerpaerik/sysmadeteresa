@@ -69,11 +69,11 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
                                 <td>
-                                 <select name="tipo" id="cars">
+                                 <select name="tipo" id="tipo">
                                   <option value="EF">EFECTIVO</option>
                                   <option value="TF">TRANSFERENCIA</option>
                                 </select>
-                                <a  href="{{asset('/entregar')}}/{{$atec->recibo}}" class="btn btn-xs btn-danger">Entregar</a></td>							</tr>
+                                <a  href="{{asset('/entregar')}}/{{$atec->recibo}}/{{$tipo}}" class="btn btn-xs btn-danger">Entregar</a></td>							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
