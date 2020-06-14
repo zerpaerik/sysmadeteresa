@@ -69,7 +69,7 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
                                 <td>
-                                 <select name="tipo" id="tipo">
+                                 <select value="{{$tipo}}" name="tipo" id="tipo">
                                   <option value="EF">EFECTIVO</option>
                                   <option value="TF">TRANSFERENCIA</option>
                                 </select>
