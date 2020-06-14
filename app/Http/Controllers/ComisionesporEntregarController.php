@@ -92,9 +92,9 @@ class ComisionesporEntregarController extends Controller
 
       }
 
+       $tipo = 'EF';
 
-
-        return view('movimientos.comporentregar.index', ["atenciones" => $atenciones,"f1" => $f1,"f2" => $f2,"total" => $total]);
+        return view('movimientos.comporentregar.index', ["atenciones" => $atenciones,"tipo" => $tipo,"f1" => $f1,"f2" => $f2,"total" => $total]);
 	}
 
     public function search(Request $request)
