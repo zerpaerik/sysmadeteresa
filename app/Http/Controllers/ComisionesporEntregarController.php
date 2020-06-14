@@ -133,7 +133,7 @@ class ComisionesporEntregarController extends Controller
                       'entregado' => 1,
                       'fecha_entrega' => Carbon::now()->format('Y-m-d H:i:s'),
                       'usuario_entrega' => Auth::id(),
-                      'tipo_entrega' => $request->tipo
+                      'tipo_entrega' => $tipo
                   ]);
      
     Toastr::success('La comisión ha sido entregada.', 'Comisioòn Entregada!', ['progressBar' => true]);
