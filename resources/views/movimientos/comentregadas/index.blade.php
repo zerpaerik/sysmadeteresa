@@ -53,6 +53,7 @@
 							<th>Recibo</th>
 							<th>Monto</th>
 							<th>Origen</th>
+                            <th>Tipo Entrega</th>
 							<th>Fecha Emisiòn</th>
 							<th>Fecha Entregas</th>
 							<th>Visitador</th>
@@ -66,6 +67,7 @@
 								<td>{{$atec->recibo}}</td>
 								<td>{{$atec->porcentaje}}</td>
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
+                                <td>{{$atec->tipo_entrega}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
 								<td>{{$atec->fecha_entrega}}</td>
 							    <td>{{$atec->nomentre}},{{$atec->apeentre}}</td>
