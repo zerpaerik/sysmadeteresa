@@ -137,7 +137,7 @@ class ComisionesporEntregarController extends Controller
                   ]);
      
     Toastr::success('La comisión ha sido entregada.', 'Comisioòn Entregada!', ['progressBar' => true]);
-    return redirect()->route('comporentregar.index');
+    return back();
 
   }
 
