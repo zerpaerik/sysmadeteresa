@@ -69,11 +69,15 @@
 								<td>{{$atec->name}},{{$atec->lastname}}</td>
 								<td>{{$atec->fecha_pago_comision}}</td>
                                 <td>
-                                 <select value="{{$tipo}}" name="tipo" id="tipo">
-                                  <option value="EF">EFECTIVO</option>
-                                  <option value="TF">TRANSFERENCIA</option>
-                                </select>
-                                <a  href="{{asset('/entregar')}}/{{$atec->recibo}}/{{$tipo}}" class="btn btn-xs btn-danger">Entregar</a></td>							</tr>
+                                <form method="get" action="entregar">
+                                    <input type="hidden" value="{{$atec->recibo}}" name="id">
+                                    <select  name="tipo" id="tipo">
+                                    <option value="EF">EFECTIVO</option>
+                                    <option value="TF">TRANSFERENCIA</option>
+                                    </select>
+                                    <button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Entregar</button>
+                                    </form>
+                                </td>
 						@endforeach
 					</tbody>
 					<tfoot>
