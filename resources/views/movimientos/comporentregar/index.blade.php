@@ -49,7 +49,6 @@
 
 				</div>
 			</div>
-					<form action="/pagarmultiple" method="post">
 					<thead>
 						<tr>
 							<th>Recibo</th>
@@ -83,7 +82,6 @@
 					<tfoot>
 							
 					</tfoot>
-					</form>
 				</table>
 			</div>
 		</div>
