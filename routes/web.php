@@ -275,7 +275,7 @@ Route::get('sesiones-atender', 'SesionesController@atender');
 
 Route::get('comporentregar', 'ComisionesporEntregarController@index')->name('comporentregar.index')->middleware('auth');
 Route::get('comporentregar-search', 'ComisionesporEntregarController@search')->name('comporentregar.search')->middleware('auth');
-Route::get('entregar/{id}/{tipo}', 'ComisionesporEntregarController@entregar')->middleware('auth');
+Route::get('entregar', 'ComisionesporEntregarController@entregar')->middleware('auth');
 
 Route::get('comentregadas', 'ComisionesEntregadasController@index')->name('comentregadas.index')->middleware('auth');
 Route::get('comentregadas-search', 'ComisionesEntregadasController@search')->name('comentregadas.search')->middleware('auth');
