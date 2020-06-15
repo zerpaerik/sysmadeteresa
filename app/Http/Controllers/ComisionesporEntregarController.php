@@ -126,14 +126,14 @@ class ComisionesporEntregarController extends Controller
         return $atenciones;
   }
 
-  	public function entregar($id, $tipo, Request $request) {
+  	public function entregar(Request $request) {
 
-          Atenciones::where('recibo', $id)
+          Atenciones::where('recibo', $request->id)
                   ->update([
                       'entregado' => 1,
                       'fecha_entrega' => Carbon::now()->format('Y-m-d H:i:s'),
                       'usuario_entrega' => Auth::id(),
-                      'tipo_entrega' => $tipo
+                      'tipo_entrega' => $request->tipo
                   ]);
      
     Toastr::success('La comisión ha sido entregada.', 'Comisioòn Entregada!', ['progressBar' => true]);
