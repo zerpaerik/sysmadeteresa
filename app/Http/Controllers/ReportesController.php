@@ -612,6 +612,8 @@ class ReportesController extends Controller
     {
 
        $reciboe = ReportesController::verReciboProfesional($id)->first();
+          print_r($reciboe);
+          die();
        $reciboprofesional = ReportesController::verReciboProfesional($id);
        $reciboprofesional2 = ReportesController::verReciboProfesional2($id);
     $reciboprofesional3 = ReportesController::verReciboProfesional3($id);
