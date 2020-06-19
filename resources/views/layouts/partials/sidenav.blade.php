@@ -429,6 +429,18 @@
       </li>	  
     </ul>
   </li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-book"></i>
+      <span class="hidden-xs">Noticias</span>
+    </a>
+    <ul class="dropdown-menu">
+       <li>
+        <a href="{{route('noticias.index')}}"><i class="fa fa-book"></i> Lista</a>
+      </li> 
+  
+    </ul>
+  </li>
  @elseif(\Auth::user()->role_id == 5)
  <li class="dropdown">
   <a href="#" class="dropdown-toggle">

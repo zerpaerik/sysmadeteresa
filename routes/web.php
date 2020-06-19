@@ -279,6 +279,8 @@ Route::get('entregar', 'ComisionesporEntregarController@entregar')->middleware('
 
 Route::get('comentregadas', 'ComisionesEntregadasController@index')->name('comentregadas.index')->middleware('auth');
 Route::get('comentregadas-search', 'ComisionesEntregadasController@search')->name('comentregadas.search')->middleware('auth');
+Route::get('reversar_entrega', 'ComisionesEntregadasController@reversar')->middleware('auth');
+
 
 Route::get('visitas', 'VisitasController@index')->name('visitas.index')->middleware('auth');
 Route::get('visitas-search', 'VisitasController@search')->name('visitas.search')->middleware('auth');
@@ -599,6 +601,14 @@ Route::get('historial_pacientes', 'ReportesController@historialp')->name('histor
 
 Route::get('detalle_paquetes', 'ReportesController@detallepaquetes')->name('detallepaquetes.index');
 Route::get('detalle_paquetes-{id}', 'ReportesController@detallepaquete');
+
+//NOTICIAS PARA APP
+
+Route::get('noticias', 'NoticiasController@index')->name('noticias.index');
+Route::get('noticias-create', 'NoticiasController@crearGet')->name('noticias.create');
+Route::post('noticias/crear', 'NoticiasController@crearPost');
+
+
 
 
 

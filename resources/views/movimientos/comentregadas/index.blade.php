@@ -57,6 +57,8 @@
 							<th>Fecha Emisiòn</th>
 							<th>Fecha Entregas</th>
 							<th>Visitador</th>
+							<th>Acciones</th>
+
 
 						</tr>
 					</thead>
@@ -71,6 +73,13 @@
 								<td>{{$atec->fecha_pago_comision}}</td>
 								<td>{{$atec->fecha_entrega}}</td>
 							    <td>{{$atec->nomentre}},{{$atec->apeentre}}</td>
+								<td>
+                                <form method="get" action="reversar-entrega">
+                                    <input type="hidden" value="{{$atec->recibo}}" name="id">
+                                
+                                    <button style="margin-left: 35px;" type="submit" class="btn btn-xs btn-danger">Reversar</button>
+                                    </form>
+                                </td>
                                 						
                             </tr>
 						@endforeach

@@ -133,6 +133,21 @@ class ComisionesEntregadasController extends Controller
         return $atenciones;
   }
 
+  public function reversar(Request $request) {
+
+    Atenciones::where('recibo', $request->id)
+            ->update([
+                'entregado' => null,
+                'fecha_entrega' => null,
+                'usuario_entrega' => null,
+                'tipo_entrega' => ''
+            ]);
+
+Toastr::success('La entrega ha sido reversada.', 'Comisioòn Reversada!', ['progressBar' => true]);
+return back();
+
+}
+
   
 
 
