@@ -623,8 +623,7 @@ if ($sobres == NULL) {
  ->orderby('a.recibo','desc')
  ->get();
 
-dd($pagadas);
-die();
+
 
    $aten = Atenciones::where('id_sede','=', $request->session()->get('sede'))
                                    ->whereBetween('fecha_pago_comision', [date('Y-m-d', strtotime($request->f1)), date('Y-m-d', strtotime($request->f2))])
