@@ -155,6 +155,7 @@
                                     <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
                                     <option value="RPR.docx">RPR</option>
                                     <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
+									<option value="ROXANA_LAB.docx">ROXANA LAB</option>
                                     <option value="RX.INFLAMATORIO.docx">RX.INFLAMATORIO</option>
                                     <option value="SECRECION VAGINAL.docx">SECRECION VAGINAL</option>
                                       <option value="SECRECION FARINGEA.docx">SECRECION FARINGEA</option>
