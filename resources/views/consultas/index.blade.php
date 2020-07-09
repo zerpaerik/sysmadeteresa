@@ -101,7 +101,7 @@
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
 						<td>{{$d->nombrePro}} {{$d->apellidoPro}}</td>
 						<td>{{$d->monto}}</td>
-						<td>{{$d->date}}</td>
+						<td>{{$d->created_at}}</td>
 						@if($d->atendido == 1)
 						<td style="background: #82FA58;">Fue Atendido</td>
 						@else
