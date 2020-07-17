@@ -152,6 +152,7 @@
                                     <option value="PERFIL TIROIDEO.docx">PERFIL TIROIDEO</option>
                                     <option value="PROTENURIA.docx">PROTENURIA</option>
                                     <option value="PSA TOTAL.docx">PSA TOTAL</option>
+									<option value="PRUEBA RAPIDA.docx">PRUEBA RAPIDA</option>
                                     <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
                                     <option value="RPR.docx">RPR</option>
                                     <option value="RASPADO DE PIEL.docx">RASPADO DE PIEL</option>
