@@ -337,6 +337,9 @@ Route::get('movimientos/atencion/particular','AtencionesController@particular');
 Route::get('movimientos/atencion/mx','AtencionesController@mx');
 Route::get('movimientos/atencion/nada','AtencionesController@nada');
 
+Route::get('referidos', 'ReferidosController@index')->name('referidos.index')->middleware('auth');
+Route::get('referido/view/{id}/{id2}/{id3}', 'ReferidosController@show');
+Route::post('referidos/create', 'ReferidosController@create')->middleware('auth');
 
 
 Route::get('af/otros','ConsultaController@af');
