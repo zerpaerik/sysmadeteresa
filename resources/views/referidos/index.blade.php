@@ -9,7 +9,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-linux"></i>
-					<span><strong>Referidos del Dia APP</strong></span>
+					<span><strong>Referidos del APP</strong></span>
 
 				</div>
 
@@ -83,7 +83,13 @@
                         @else
 						@endif
 						<td>{{$d->created_at}}</td>
-						<td><a id="{{$d->id}}" id2="{{$d->se}}" id3="{{$d->la}}" onclick="view(this)" class="btn btn-danger">Registrar</a></td>
+						<td>
+						@if($d->estatus == 1)
+						<a id="{{$d->id}}" id2="{{$d->se}}" id3="{{$d->la}}" onclick="view(this)" class="btn btn-danger">Registrar</a>
+						@else
+						<p>YA FUE INGRESADO</p>
+						@endif
+						</td>
 						
 						
 					</tr>
