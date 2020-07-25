@@ -119,6 +119,9 @@ class ReferidosController extends Controller
 
       if($request->se == 1){
 
+        $serv= Servicios::where('id',$request->item)->first();
+
+
       $l = new Atenciones();
       $l->id_paciente = $request->paciente;
       $l->origen = 2;
@@ -132,11 +135,11 @@ class ReferidosController extends Controller
       $l->es_laboratorio = 0;
       $l->serv_prog = FALSE;
       $l->tipopago = $request->tipopago;
-      $l->porc_pagar = 0;
+      $l->porc_pagar = $serv->porcentaje;
       $l->pendiente = $request->monto - $request->abono;
       $l->monto = $request->monto;
       $l->abono = $request->abono;
-      $l->porcentaje =$request->monto * $request->porcentaje / 100;
+      $l->porcentaje =$request->monto * $serv->porcentaje / 100;
       $l->id_sede =$request->session()->get('sede');
       $l->estatus = 1;
       $l->particular = '';
@@ -166,6 +169,9 @@ class ReferidosController extends Controller
 
     } else {
 
+      $ana= Analisis::where('id',$request->item)->first();
+
+
       $l = new Atenciones();
       $l->id_paciente = $request->paciente;
       $l->origen = 2;
@@ -179,11 +185,11 @@ class ReferidosController extends Controller
       $l->es_laboratorio = 1;
       $l->serv_prog = FALSE;
       $l->tipopago = $request->tipopago;
-      $l->porc_pagar = 0;
+      $l->porc_pagar = $ana->porcentaje;
       $l->pendiente = $request->monto - $request->abono;
       $l->monto = $request->monto;
       $l->abono = $request->abono;
-      $l->porcentaje =$request->monto * $request->porcentaje / 100;
+      $l->porcentaje =$request->monto * $ana->porcentaje / 100;
       $l->id_sede =$request->session()->get('sede');
       $l->estatus = 1;
       $l->particular = '';
