@@ -73,37 +73,24 @@ class ComunicaController extends Controller
     return redirect()->action('GastosController@index', ["deleted" => true, "analisis" => Debitos::all()]);
   }
 
-  public function createView() {
+  public function responde($id) {
 
-    $gastos = Debitos::all();
+    $comunica = Comunica::where('id','=',$id)->first();
 
-    return view('movimientos.gastos.create', compact('gastos'));
+    return view('movimientos.responder', compact('comunica'));
   }
 
-    public function editView($id){
-      $p = Debitos::find($id);
-      return view('movimientos.gastos.edit', ["descripcion" => $p->descripcion,"nombre" => $p->nombre, "monto" => $p->monto,"id" => $p->id]);
-    }
+   
 
       public function edit(Request $request){
-      $p = Debitos::find($request->id);
-      $p->descripcion = $request->descripcion;
-      $p->monto = $request->monto;
-      $p->nombre = $request->nombre;
+      $p = Comunica::find($request->id);
+      $p->respuesta = $request->respuesta;
+      $p->estatus = 2;
+      $p->usuario_r = Auth::user()->id;
       $res = $p->save();
-      return redirect()->action('GastosController@index', ["edited" => $res]);
+      return redirect()->action('ComunicaController@index', ["edited" => $res]);
     }
 
-    private function elasticSearch(Request $request,$initial)
-    {
-      $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.created_at','a.id_sede')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($initial)), date('Y-m-d 23:59:59', strtotime($initial))])
-        ->where('a.id_sede','=', $request->session()->get('sede'))
-		->orderby('a.id','desc')
-        ->paginate(20);  
-
-        return $gastos;
-    }
+  
 
 }

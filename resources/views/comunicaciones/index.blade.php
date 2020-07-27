@@ -80,7 +80,8 @@
                         @endif
 						<td>{{$d->created_at}}</td>
 						<td>
-							
+                        <a href="comunica-responde-{{$d->id}}" class="btn btn-success">Responder</a>
+
 						</td>
 
 				        @endforeach

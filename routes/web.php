@@ -616,6 +616,10 @@ Route::post('noticias/crear', 'NoticiasController@crearPost');
 
 
 Route::get('comunicaciones', 'ComunicaController@index')->name('comunica.index')->middleware('auth');
+Route::get('comunica-responde-{id}', 'ComunicaController@responde');
+Route::post('comunica/edit', 'ComunicaController@edit');
+
+
 
 
 
