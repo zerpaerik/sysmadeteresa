@@ -615,7 +615,7 @@ Route::get('noticias-create', 'NoticiasController@crearGet')->name('noticias.cre
 Route::post('noticias/crear', 'NoticiasController@crearPost');
 
 
-
+Route::get('comunicaciones', 'ComunicaController@index')->name('comunica.index')->middleware('auth');
 
 
 
