@@ -8,7 +8,7 @@
 			<div class="box-header">
 				<div class="box-name">
 					<i class="fa fa-users"></i>
-					<span><strong>Progesionales por VALIDAR APP</strong></span>
+					<span><strong>Profesionales por VALIDAR APP</strong></span>
 				</div>
 				<div class="box-icons">
 					<a class="collapse-link">

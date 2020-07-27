@@ -28,8 +28,7 @@ class UserController extends Controller
   
   public function pending(){
 		$users = DB::table('users as a')
-        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id)
-        ->orderby('a.id','desc')
+        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id')
 		    ->where('a.origen','=','APP')
         ->where('a.estatus','=',1)
         ->get();  
