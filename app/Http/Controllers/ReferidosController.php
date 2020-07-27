@@ -32,18 +32,17 @@ class ReferidosController extends Controller
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
-        ->where('a.usuario','=',$request->pro)
-        ->orderby('a.created_at','desc')
-        ->get();
+        ->where('a.usuario','=',$request->pro);
 
 
         
-      	$lab = DB::table('referido_labs as a')
+      	$referidos = DB::table('referido_labs as a')
           ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
           ->where('a.usuario','=',$request->pro)
+          ->union($serv)
           ->orderby('a.created_at','desc')
           ->get();
 
@@ -54,25 +53,24 @@ class ReferidosController extends Controller
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->orderby('a.created_at','desc')
-        ->get();
+        ->where('a.created_at','=',date('Y-m-d'));
 
 
         
-      	$lab = DB::table('referido_labs as a')
+      	$referidos = DB::table('referido_labs as a')
           ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
           ->where('a.created_at','=',date('Y-m-d'))
+          ->union($serv)
           ->orderby('a.created_at','desc')
           ->get();
 
 
        }
 
-        $referidos = $serv->merge($lab);
+        //$referidos = $serv->merge($lab);
 
         $profesionales = DB::table('users as a')
         ->select('a.id','a.name','a.lastname')
