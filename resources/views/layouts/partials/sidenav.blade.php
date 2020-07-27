@@ -444,11 +444,15 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle">
       <i class="fa fa-unsorted"></i>
-      <span class="hidden-xs">Referidos APP</span>
+      <span class="hidden-xs">Registros APP</span>
     </a>
     <ul class="dropdown-menu">
       <li>
         <a href="{{route('referidos.index')}}"><i class="fa fa-plus-circle"></i> Pacientes Enviados</a>
+      </li>
+
+      <li>
+        <a href="{{route('users.pending')}}"><i class="fa fa-plus-circle"></i> Otorgar accesos</a>
       </li>
      
     

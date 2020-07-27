@@ -24,6 +24,17 @@ class UserController extends Controller
         ->where('a.estatus','=',1)
         ->get();  
 		return view('archivos.users.index', ["users" => $users]);
+  }
+  
+  public function pending(){
+		$users = DB::table('users as a')
+        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id','b.name as rol')
+		    ->join('roles as b','b.id','a.role_id')
+        ->orderby('a.id','desc')
+		    ->where('a.origen','=','APP')
+        ->where('a.estatus','=',1)
+        ->get();  
+		return view('archivos.users.pending', compact('users'));
 	}
 
 	public function create(Request $request){
@@ -54,6 +65,20 @@ class UserController extends Controller
     $users->estatus=0;
     $users->save();
     return redirect()->action('Users\UserController@index', ["deleted" => true, "users" => User::all()]);
+  }
+
+  public function validate($id){
+    $users = User::find($id);
+    $users->validate=1;
+    $users->save();
+    return redirect()->action('Users\UserController@pending', ["deleted" => true, "users" => User::all()]);
+  }
+
+  public function denied($id){
+    $users = User::find($id);
+    $users->validate=NULL;
+    $users->save();
+    return redirect()->action('Users\UserController@pending', ["deleted" => true, "users" => User::all()]);
   }
 
   public function loginView(){

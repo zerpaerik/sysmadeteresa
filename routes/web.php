@@ -424,7 +424,10 @@ Route::get('generalegresos', 'ReporteIngresosController@indexe')->name('generale
 Route::get('generalegresos-search', 'ReporteIngresosController@searche')->name('generalegresos.searche')->middleware('auth');
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
+Route::get('user-pending', 'Users\UserController@pending')->name('users.pending')->middleware('auth');
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');
+Route::get('user-validate-{id}', 'Users\UserController@validate')->middleware('auth');
+Route::get('user-denied-{id}', 'Users\UserController@denied')->middleware('auth');
 Route::get('user/{id}', 'Users\UserController@delete')->middleware('auth');
 
 Route::get('/ui', function () { return view('layouts.admin'); })->name('ui');
