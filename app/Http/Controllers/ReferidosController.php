@@ -32,9 +32,7 @@ class ReferidosController extends Controller
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
-        ->where('a.usuario','=',$request->pro)
-        ->orderby('a.created_at','desc')
-        ->get();
+        ->where('a.usuario','=',$request->pro);
 
 
         
@@ -43,9 +41,7 @@ class ReferidosController extends Controller
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
-          ->where('a.usuario','=',$request->pro)
-          ->orderby('a.created_at','desc')
-          ->get();
+          ->where('a.usuario','=',$request->pro);
 
        } else {
 
@@ -54,9 +50,7 @@ class ReferidosController extends Controller
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->orderby('a.created_at','desc')
-        ->get();
+        ->where('a.created_at','=',date('Y-m-d'));
 
 
         
@@ -65,14 +59,12 @@ class ReferidosController extends Controller
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
-          ->where('a.created_at','=',date('Y-m-d'))
-          ->orderby('a.created_at','desc')
-          ->get();
+          ->where('a.created_at','=',date('Y-m-d'));
 
 
        }
 
-        $referidos = $serv->merge($lab);
+        $referidos = $serv->union($lab)->orderBy('a.created_at', 'desc');
 
         $profesionales = DB::table('users as a')
         ->select('a.id','a.name','a.lastname')
