@@ -456,7 +456,7 @@
       </li>
 
       <li>
-        <a href="{{route('comunica.index')}}"><i class="fa fa-plus-circle"></i>Comunicaciones Recibidas</a>
+        <a href="{{route('comunica.index')}}"><i class="fa fa-plus-circle"></i> Comunicaciones</a>
       </li>
      
     
