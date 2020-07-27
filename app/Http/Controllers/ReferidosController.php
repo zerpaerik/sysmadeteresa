@@ -28,7 +28,7 @@ class ReferidosController extends Controller
         if((!is_null($request->pro))){
 
       	$serv = DB::table('referido_servicios as a')
-        ->select('a.id','a.paciente','a.servicio','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.detalle as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
+        ->select('a.id','a.paciente','a.servicio','a.estatus','a.usuario','a.created_at as fecha','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.detalle as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
@@ -37,34 +37,34 @@ class ReferidosController extends Controller
 
         
       	$referidos = DB::table('referido_labs as a')
-          ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
+          ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at as fecha','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
           ->where('a.usuario','=',$request->pro)
           ->union($serv)
-          ->orderby('a.created_at','desc')
+          ->orderby('fecha','desc')
           ->get();
 
        } else {
 
         $serv = DB::table('referido_servicios as a')
-        ->select('a.id','a.paciente','a.servicio','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.detalle as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
+        ->select('a.id','a.paciente','a.servicio','a.estatus','a.usuario','a.created_at as fecha','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.detalle as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
         ->join('pacientes as b','b.id','a.paciente')
         ->join('servicios as c','c.id','a.servicio')
         ->join('users as e','e.id','a.usuario')
-        ->where('a.created_at','=',date('Y-m-d'));
+        ->where('fecha','=',date('Y-m-d'));
 
 
         
       	$referidos = DB::table('referido_labs as a')
-          ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
+          ->select('a.id','a.paciente','a.lab','a.estatus','a.usuario','a.created_at as fecha','a.es_s as se','a.es_l as la','b.nombres', 'b.apellidos','b.telefono', 'c.name as item','c.id as itd', 'e.name as usuario', 'e.lastname as usuariop')
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
           ->where('a.created_at','=',date('Y-m-d'))
           ->union($serv)
-          ->orderby('a.created_at','desc')
+          ->orderby('fecha','desc')
           ->get();
 
 
