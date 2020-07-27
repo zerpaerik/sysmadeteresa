@@ -40,9 +40,9 @@
 								<td>{{$user->email}}</td>
 								<td>
                                     @if($user->validate == NULL)
-									<a class="btn btn-success" href="user-validate-{{$user->id}}"  onclick="return confirm('¿Desea Validar este acceso?')">Validar</a>	
+									<a class="btn btn-success" href="user-validar-{{$user->id}}"  onclick="return confirm('¿Desea Validar este acceso?')">Validar</a>	
                                     @else
-                                    <a class="btn btn-danger" href="user-denied-{{$user->id}}"  onclick="return confirm('¿Desea Denegar este acceso?')">Denegar</a>	
+                                    <a class="btn btn-danger" href="user-denegar-{{$user->id}}"  onclick="return confirm('¿Desea Denegar este acceso?')">Denegar</a>	
                                     @endif
 								</td>
 							</tr>

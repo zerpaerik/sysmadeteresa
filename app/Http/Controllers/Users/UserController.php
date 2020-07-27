@@ -67,7 +67,7 @@ class UserController extends Controller
     return redirect()->action('Users\UserController@index', ["deleted" => true, "users" => User::all()]);
   }
 
-  public function validate($id){
+  public function validar($id){
     $users = User::find($id);
     $users->validate=1;
     $users->save();
