@@ -44,34 +44,9 @@ class ComunicaController extends Controller
 
 
 
+   
 
-	public function create(Request $request){
-        $validator = \Validator::make($request->all(), [
-          'descripcion' => 'required|string|max:255'
-      
-        ]);
-        if($validator->fails()) 
-          return redirect()->action('GastosController@createView', ['errors' => $validator->errors()]);
-		$gastos = Debitos::create([
-	      'descripcion' => $request->descripcion,
-	      'monto' => $request->monto,
-        'nombre' => $request->nombre,
-	      'origen' => 'RELACION DE GASTOS',
-	      'id_sede' => $request->session()->get('sede'),
-        'usuario' => Auth::user()->id,
-        'date' => date('Y-m-d')
-   		]);
-		
-		  
-		  
-		return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);
-	}    
-
-  public function delete($id){
-    $gastos = Debitos::find($id);
-    $gastos->delete();
-    return redirect()->action('GastosController@index', ["deleted" => true, "analisis" => Debitos::all()]);
-  }
+ 
 
   public function responde($id) {
 

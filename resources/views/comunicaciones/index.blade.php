@@ -80,7 +80,9 @@
                         @endif
 						<td>{{$d->created_at}}</td>
 						<td>
+                        @if($d->estatus == 1)
                         <a href="comunica-responde-{{$d->id}}" class="btn btn-success">Responder</a>
+                        @endif
 
 						</td>
 
