@@ -77,7 +77,7 @@ class ComunicaController extends Controller
 
     $comunica = Comunica::where('id','=',$id)->first();
 
-    return view('movimientos.responder', compact('comunica'));
+    return view('comunicaciones.responder', compact('comunica'));
   }
 
    
