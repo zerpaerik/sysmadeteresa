@@ -26,7 +26,6 @@
 						<tr>
 							<th>Nombres</th>
 							<th>Apellidos</th>
-							<th>Rol</th>
 							<th>Email</th>
 							<th>Acciones:</th>
 						</tr>
@@ -36,7 +35,6 @@
 							<tr>
 								<td>{{$user->name}}</td>
 								<td>{{$user->lastname}}</td>
-							    <td>{{$user->rol}}</td>
 								<td>{{$user->email}}</td>
 								<td>
                                     @if($user->validate == NULL)

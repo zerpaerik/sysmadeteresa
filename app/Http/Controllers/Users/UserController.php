@@ -28,8 +28,7 @@ class UserController extends Controller
   
   public function pending(){
 		$users = DB::table('users as a')
-        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id','b.name as rol')
-		    ->join('roles as b','b.id','a.role_id')
+        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id)
         ->orderby('a.id','desc')
 		    ->where('a.origen','=','APP')
         ->where('a.estatus','=',1)
@@ -74,7 +73,7 @@ class UserController extends Controller
     return redirect()->action('Users\UserController@pending', ["deleted" => true, "users" => User::all()]);
   }
 
-  public function denied($id){
+  public function denegar($id){
     $users = User::find($id);
     $users->validate=NULL;
     $users->save();
