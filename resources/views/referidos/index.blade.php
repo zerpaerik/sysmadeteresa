@@ -84,7 +84,7 @@
 						<td>Atendido</td>
                         @else
 						@endif
-						<td>{{$d->created_at}}</td>
+						<td>{{$d->fecha}}</td>
 						<td>
 						@if($d->estatus == 1)
 						<a id="{{$d->id}}" id2="{{$d->se}}" id3="{{$d->la}}" onclick="view(this)" class="btn btn-danger">Registrar</a>
