@@ -73,7 +73,11 @@
 						<td>{{$d->id}}</td>
 						<td>{{$d->asunto}}</td>
 						<td>{{$d->name}} {{$d->lastname}}</td>
-						<td>{{$d->estatus}}</td>
+                        @if($d->estatus == 1)
+                        <td style="color: red;">Recibida</td>
+                        @else
+                        <td style="color: green;">Respondida</td>
+                        @endif
 						<td>{{$d->created_at}}</td>
 						<td>
 							
