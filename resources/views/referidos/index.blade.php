@@ -64,6 +64,7 @@
 							<th>Profesional</th>
 							<th>Detalle</th>
                             <th>Paciente</th>
+							<th>Teléfono</th>
 							<th>Estatus</th>
 							<th>Fecha</th>
 							<th>Acciones</th>
@@ -76,6 +77,7 @@
 						<td>{{$d->usuariop}} {{$d->usuario}}</td>
 						<td>{{$d->item}}</td>
 						<td>{{$d->apellidos}} {{$d->nombres}}</td>
+						<td>{{$d->telefono}}</td>
 						@if($d->estatus == 1)
 						<td>Enviado</td>
 						@elseif($d->estatus == 2)
