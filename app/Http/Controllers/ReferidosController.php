@@ -62,7 +62,7 @@ class ReferidosController extends Controller
           ->join('pacientes as b','b.id','a.paciente')
           ->join('analises as c','c.id','a.lab')
           ->join('users as e','e.id','a.usuario')
-          ->where('a.created_at','=',date('Y-m-d'))
+          ->where('fecha','=',date('Y-m-d'))
           ->union($serv)
           ->orderby('fecha','desc')
           ->get();
