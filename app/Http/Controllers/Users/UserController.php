@@ -28,8 +28,8 @@ class UserController extends Controller
   
   public function pending(){
 		$users = DB::table('users as a')
-        ->select('a.id','a.estatus','a.name','a.lastname','a.origen','a.validate','a.dni','a.tipo','a.email','a.role_id')
-		    ->where('a.origen','=','APP')
+        ->select('a.id','a.estatus','a.name','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
+		    ->where('a.origen_r','=','APP')
         ->where('a.estatus','=',1)
         ->get();  
 		return view('archivos.users.pending', compact('users'));
