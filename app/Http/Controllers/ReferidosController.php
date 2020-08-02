@@ -148,6 +148,7 @@ class ReferidosController extends Controller
 
       $p = ReferidoServicios::where('id','=',$request->referido)->first();
       $p->estatus = 2;
+      $p->atencion = $l->id;
       $res = $p->save();
 
           $creditos = new Creditos();
@@ -198,6 +199,7 @@ class ReferidosController extends Controller
 
       $p = ReferidoLabs::where('id','=',$request->referido)->first();
       $p->estatus = 2;
+      $p->atencion = $l->id;
       $res = $p->save();
 
       $creditos = new Creditos();
