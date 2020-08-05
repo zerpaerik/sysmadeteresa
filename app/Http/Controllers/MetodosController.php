@@ -97,7 +97,7 @@ class MetodosController extends Controller
     $f2 = $request->fecha2; 
 
      $metodos = DB::table('metodos as a')
-        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.estatus','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
     ->join('users as c','c.id','a.id_usuario')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('productos as d','d.id','a.id_producto')
@@ -112,7 +112,7 @@ class MetodosController extends Controller
 
 
          $metodos = DB::table('metodos as a')
-        ->select('a.id','a.tipopago','a.eliminado_por','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
+        ->select('a.id','a.tipopago','a.eliminado_por','a.estatus','a.id_paciente','a.aplicado','a.es_delete','a.id_usuario','a.personal','a.monto','a.proximo','a.sede','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.telefono','b.dni','d.nombre as producto','a.personal','cr.tipo_ingreso')
     ->join('users as c','c.id','a.id_usuario')
     ->join('pacientes as b','b.id','a.id_paciente')
     ->join('productos as d','d.id','a.id_producto')
