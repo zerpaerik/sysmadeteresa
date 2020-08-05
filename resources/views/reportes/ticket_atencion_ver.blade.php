@@ -66,7 +66,6 @@ margin-top: -20px;
 <body>
 
 
-	@if(Session::get('sedeName') == 'PROCERES' || Session::get('sedeName') == 'CANTO REY')
 	<div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
 		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
 	</div>
@@ -114,47 +113,6 @@ margin-top: -20px;
 
     
 
-@else
-
-<div style="margin-left: 600px;margin-bottom:-35px;">
-		<p><strong>{{$ticket->ticket}}</strong></p>
-	</div>
-
-
-<div class="paciente">
-		<p><strong>{{$ticket->apellidos}},{{$ticket->nombres}} DNI:{{$ticket->dni}}</strong></p>
-	</div>
-
-
-	<div class="fecha">
-		<p><strong>{{ $ticket->created_at}}</strong></p>
-	</div>
-	<div class="servicios">
-		<p><strong>{{ $ticket->detalle}}</strong></p>
-	</div>
-
-	<div class="acuenta">
-		<p><strong>A Cuenta:{{ $ticket->abono}}</strong></p>
-	</div>
-
-	<div class="pendiente">
-		<p><strong>Deuda: {{ $ticket->pendiente}}</strong></p>
-	</div>
-
-	
-
-	<div class="total">
-		<p><strong>{{ $ticket->monto}}</strong></p>
-	</div>
-    
-    <br><br><br><br><br><br><br><br>
-	<center><p style="font-size: 60px;">COMUNICADO</p></center>
-	<p style="text-align: justify;font-size: 30px;">Estimado cliente se informa, que todo estudio que quede pendiente de su realizaciòn <strong>tiene un plazo no mayor a 30 dias,</strong>contando desde la fecha de su cancelaciòn, <strong>pasado este tiempo quedarà como anulado dicho estudio</strong>. Asi mismo las <strong>consultas de reevaluaciòn tienen un plazo de 15 dias,</strong> pasado este tiempo el paciente deberà cancelar por su consulta.</p>
-
-	
-
-
-@endif
 
 </body>
 </html>
