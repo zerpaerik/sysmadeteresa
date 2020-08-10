@@ -1340,6 +1340,22 @@
 
     </ul>
   </li>
+  @elseif(\Auth::user()->role_id == 9)
+
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle">
+      <i class="fa fa-cog"></i>
+      <span class="hidden-xs">Administración</span>
+    </a>
+    <ul class="dropdown-menu">
+      
+       <li>
+        <a href="{{route('users.password')}}"><i class="fa fa-users"></i> Modificar Contraseña</a>
+      </li> 
+     
+    </ul>
+  </li>
+
 
 @else
 
