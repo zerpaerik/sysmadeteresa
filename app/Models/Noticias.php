@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Noticias extends Model
 {
-    protected $fillable = ["titulo", "subtitulo", "cuerpo", "imagen", "estatus", "usuario"];
+    protected $fillable = ["tittle", "description", "link", "url_img","origin","category","date", "estatus", "usuario"];
 
    
 }

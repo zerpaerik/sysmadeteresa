@@ -27,17 +27,28 @@
 					<div class="form-group">
                        <div class="panel-body">
                         <div class="row">
-                        <label class="col-sm-1 control-label">Icono</label>
+                        <label class="col-sm-1 control-label">Imagen</label>
 						<div class="col-sm-2">
 							<input type="file" class="form-control" name="imagen" placeholder="Titulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Titulo">
 						</div>
                         <label class="col-sm-1 control-label">Titulo</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="titulo" placeholder="Titulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Titulo">
+							<input type="text" class="form-control" name="tittle" placeholder="Titulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Titulo">
 						</div>
-                        <label class="col-sm-1 control-label">Subtitulo</label>
+                        <label class="col-sm-1 control-label">Link</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="subtitulo" placeholder="Subtitulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Subtitulo">
+							<input type="text" class="form-control" name="link" placeholder="Link de Noticia" data-toggle="tooltip" data-placement="bottom" title="Subtitulo">
+						</div>
+                        </div>
+						<div class="row">
+                       
+                        <label class="col-sm-1 control-label">Origen</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="origin" placeholder="Origen de Noticia" data-toggle="tooltip" data-placement="bottom" title="Titulo">
+						</div>
+                        <label class="col-sm-1 control-label">Categoria</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" name="category" placeholder="Subtitulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Subtitulo">
 						</div>
                         </div>
                        </div>

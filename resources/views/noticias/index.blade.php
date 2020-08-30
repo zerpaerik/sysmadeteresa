@@ -32,7 +32,7 @@
 					<thead>
 						<tr>
 							<th>Titulo</th>
-							<th>Subtitulo</th>
+							<th>Link</th>
 							<th>Cuerpo</th>
 							<th>Fecha Redacciòn</th>
 							<th>Acciones:</th>
@@ -43,10 +43,10 @@
 					<tbody>
 					@foreach($noticias as $n)					
 						<tr>
-						<td>{{$n->titulo}}</td>
-						<td>{{$n->subtitulo}}</td>
+						<td>{{$n->tittle}}</td>
+						<td>{{$n->link}}</td>
 						<td>{{$n->cuerpo}}</td>
-						<td>{{$n->created_at}}</td>
+						<td>{{$n->date}}</td>
 						<td>
 
 						</td>

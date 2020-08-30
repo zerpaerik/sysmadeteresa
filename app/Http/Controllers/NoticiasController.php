@@ -24,7 +24,7 @@ class NoticiasController extends Controller
 
 
         $noticias = DB::table('noticias as a')
-        ->select('a.id','a.titulo','a.subtitulo','a.cuerpo','a.usuario','a.created_at','u.name', 'u.lastname')
+        ->select('a.id','a.tittle','a.description','a.link','a.link','a.category','a.url_img','a.usuario','a.created_at','u.name', 'u.lastname')
         ->join('users as u','u.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->orderby('a.id','desc')
@@ -44,9 +44,12 @@ class NoticiasController extends Controller
        // dd($request->all());
      
           $noticias = new Noticias();
-          $noticias->titulo = $request->titulo;
-          $noticias->subtitulo =$request->subtitulo;
-		  $noticias->cuerpo =$request->cuerpo;
+          $noticias->tittle = $request->tittle;
+          $noticias->link =$request->link;
+           $noticias->description =$request->cuerpo;
+           $noticias->origin =$request->origin;
+           $noticias->category =$request->category;
+           $noticias->date = date('Y-m-d');
           $noticias->usuario = \Auth::user()->id;
         /*  $path = $request->file('imagen')->getRealPath();
           $logo = file_get_contents($path);
