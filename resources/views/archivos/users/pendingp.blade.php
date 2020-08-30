@@ -27,8 +27,8 @@
 				<div class="col-md-3">
 						<select id="el2" name="paciente">
 							<option>Seleccione un Paciente</option>
-							@foreach($pacientes as $user)
-									<option value="{{$user->dni}}">{{$user->apellidos}},{{$user->nombres}}</option>
+							@foreach($pacientes as $pac)
+									<option value="{{$pac->dni}}">{{$pac->apellidos}},{{$pac->nombres}}</option>
 							@endforeach
 						</select>
 				</div>
@@ -51,20 +51,18 @@
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($users as $user)					
 							<tr>
-								<td>{{$user->name}}</td>
-								<td>{{$user->lastname}}</td>
-								<td>{{$user->email}}</td>
+								<td>{{$users->name}}</td>
+								<td>{{$users->lastname}}</td>
+								<td>{{$users->email}}</td>
 								<td>
-                                    @if($user->validate == NULL)
+                                    @if($users->validate == NULL)
 									<a class="btn btn-success" href="user-validar-{{$user->id}}"  onclick="return confirm('¿Desea Validar este acceso?')">Validar</a>	
                                     @else
                                     <a class="btn btn-danger" href="user-denegar-{{$user->id}}"  onclick="return confirm('¿Desea Denegar este acceso?')">Denegar</a>	
                                     @endif
 								</td>
 							</tr>
-						@endforeach
 					</tbody>
 					<tfoot>
 				

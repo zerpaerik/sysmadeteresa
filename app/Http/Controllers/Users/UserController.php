@@ -40,7 +40,7 @@ class UserController extends Controller
 
     if(!is_null($request->paciente)){
 
-		$users = DB::table('users as a')
+		    $users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
         ->where('a.origen_r','=','APP')
         ->where('a.id_paciente','=',$request->paciente)
@@ -52,7 +52,7 @@ class UserController extends Controller
         ->where('a.origen_r','=','APP')
         ->where('a.id_paciente','=',7495749564957945)
         ->where('a.estatus','=',1)
-        ->get();  
+        ->first();  
 
       }
 
