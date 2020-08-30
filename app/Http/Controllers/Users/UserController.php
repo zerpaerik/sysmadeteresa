@@ -38,7 +38,7 @@ class UserController extends Controller
 
   public function pendingp(Request $request){
 
-    if($request->paciente <> NULL){
+    if(!is_null($request->paciente)){
 
 		$users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
@@ -46,8 +46,6 @@ class UserController extends Controller
         ->where('a.id_paciente','=',$request->paciente)
         ->first();  
 
-        print($users);
-        die();
       } else {
         $users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
