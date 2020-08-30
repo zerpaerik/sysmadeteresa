@@ -51,18 +51,20 @@
 						</tr>
 					</thead>
 					<tbody>
+					      @if($users)
 							<tr>
 								<td>{{$users->name}}</td>
 								<td>{{$users->lastname}}</td>
 								<td>{{$users->email}}</td>
 								<td>
                                     @if($users->validate == NULL)
-									<a class="btn btn-success" href="user-validar-{{$user->id}}"  onclick="return confirm('¿Desea Validar este acceso?')">Validar</a>	
+									<a class="btn btn-success" href="user-validar-{{$users->id}}"  onclick="return confirm('¿Desea Validar este acceso?')">Validar</a>	
                                     @else
-                                    <a class="btn btn-danger" href="user-denegar-{{$user->id}}"  onclick="return confirm('¿Desea Denegar este acceso?')">Denegar</a>	
+                                    <a class="btn btn-danger" href="user-denegar-{{$users->id}}"  onclick="return confirm('¿Desea Denegar este acceso?')">Denegar</a>	
                                     @endif
 								</td>
 							</tr>
+						@endif
 					</tbody>
 					<tfoot>
 				
