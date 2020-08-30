@@ -61,7 +61,6 @@ margin-top: -20px;
 </head>
 <body>
 
-	@if(Session::get('sedeName') == 'PROCERES' || Session::get('sedeName') == 'CANTO REY')
 <div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
 		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
 	</div>
@@ -95,25 +94,5 @@ margin-top: -20px;
 
 	
 
-@else
-<div class="paciente">
-		<p><strong>Paciente: {{$metodos->apellidos}} {{$metodos->nombres}} DNI:{{$metodos->dni}}</strong></p>
-	</div>
-
-	<div class="fecha">
-		<p><strong>Fecha: {{ date('d/m/Y', strtotime($metodos->created_at)) }}</strong></p>
-	</div>
-	<div class="servicios">
-		<p><strong>Mètodo: {{ $metodos->producto}}</strong></p>
-	</div>
-
-	<div class="servicios">
-		<p><strong></strong></p>
-	</div>
-
-	<div class="total">
-		<p><strong>Monto: {{ $metodos->monto}}</strong></p>
-	</div>
-@endif
 </body>
 </html>

@@ -62,7 +62,6 @@ margin-top: -20px;
 <body>
 
 
-	@if(Session::get('sedeName') == 'PROCERES' || Session::get('sedeName') == 'CANTO REY')
 
 	<div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
 		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
@@ -107,31 +106,6 @@ margin-top: -20px;
 		<p><strong>MONTO: {{ $paciente->monto}}</strong></p>
 	</div>
 
-   @else
 
-
-<div class="paciente">
-		<p><strong>Paciente: {{$paciente->apellidos}} {{$paciente->nombres}} DNI:{{$paciente->dni}}</strong></p>
-	</div>
-
-	<div class="fecha">
-		<p><strong>Fecha de cita: {{ $paciente->date}}</strong></p>
-	</div>
-	<div class="servicios">
-		@if($paciente->tipo == 'CONTROLES')
-		<p><strong>Tipo: CONTROL PRENATAL</strong></p>
-		@else
-		<p><strong>Tipo: CONSULTA</strong></p>
-		@endif
-	</div>
-
-	<div class="servicios">
-		<p><strong>Hora de cita: </strong></p>
-	</div>
-
-	<div class="total">
-		<p><strong>Monto: {{ $paciente->monto}}</strong></p>
-	</div>
-@endif
 </body>
 </html>
