@@ -30,6 +30,7 @@ class UserController extends Controller
 		$users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
         ->where('a.origen_r','=','APP')
+        ->where('a.id_paciente','=',NULL)
         ->where('a.estatus','=',1)
         ->get();  
 		return view('archivos.users.pending', compact('users'));
