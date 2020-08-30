@@ -24,7 +24,7 @@ class NoticiasController extends Controller
 
 
         $noticias = DB::table('noticias as a')
-        ->select('a.id','a.tittle','a.description','a.link','a.link','a.category','a.url_img','a.usuario','a.created_at','u.name', 'u.lastname')
+        ->select('a.id','a.tittle','a.description','a.link','a.date','a.link','a.category','a.url_img','a.usuario','a.created_at','u.name', 'u.lastname')
         ->join('users as u','u.id','a.usuario')
         ->where('a.estatus','=', 1)
         ->orderby('a.id','desc')
