@@ -38,14 +38,16 @@ class UserController extends Controller
 
   public function pendingp(Request $request){
 
-    if($request->paciente  <> NULL){
+    if($request->paciente <> NULL){
 
 		$users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
         ->where('a.origen_r','=','APP')
         ->where('a.id_paciente','=',$request->paciente)
-        ->where('a.estatus','=',1)
         ->get();  
+
+        print($users);
+        die();
       } else {
         $users = DB::table('users as a')
         ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
