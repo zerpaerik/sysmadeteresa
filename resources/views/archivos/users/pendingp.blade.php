@@ -28,7 +28,7 @@
 						<select id="el2" name="paciente">
 							<option>Seleccione un Paciente</option>
 							@foreach($pacientes as $pac)
-									<option value="{{$pac->dni}}">{{$pac->apellidos}},{{$pac->nombres}}</option>
+									<option value="{{$pac->dni}}">{{$pac->apellidos}},{{$pac->nombres}}- DNI:{{$pac->dni}}</option>
 							@endforeach
 						</select>
 				</div>
