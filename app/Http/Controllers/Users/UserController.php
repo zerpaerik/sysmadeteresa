@@ -36,14 +36,23 @@ class UserController extends Controller
 		return view('archivos.users.pending', compact('users'));
   }
 
-  public function pendingp(){
+  public function pendingp(Request $request){
+
 		$users = DB::table('users as a')
-        ->select('a.id','a.estatus','a.name','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
+        ->select('a.id','a.estatus','a.name','a.dni','a.id_paciente','a.lastname','a.origen_r','a.validate','a.dni','a.tipo','a.email','a.role_id')
         ->where('a.origen_r','=','APP')
-        ->where('a.id_paciente','<>',NULL)
+        ->where('a.id_paciente','=',$request->paciente)
         ->where('a.estatus','=',1)
         ->get();  
-		return view('archivos.users.pendingp', compact('users'));
+
+        $pacientes = DB::table('pacientes as a')
+        ->select('a.id','a.nombres','a.apellidos','a.dni')
+        ->join('users as b','b.id_paciente','a.id')
+        ->orderBy('a.apellidos','desc')
+        ->get();
+
+
+		return view('archivos.users.pendingp', compact('users','pacientes'));
 	}
 
 	public function create(Request $request){

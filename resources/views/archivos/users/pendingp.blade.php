@@ -20,6 +20,26 @@
 				</div>
 				<div class="no-move"></div>
 			</div>
+
+			{!! Form::open(['method' => 'get', 'route' => ['users.pendingp']]) !!}
+
+			<div class="row">
+				<div class="col-md-3">
+						<select id="el2" name="paciente">
+							<option>Seleccione un Paciente</option>
+							@foreach($pacientes as $user)
+									<option value="{{$user->dni}}">{{$user->apellidos}},{{$user->nombres}}</option>
+							@endforeach
+						</select>
+				</div>
+				
+				
+				<div class="col-md-2">
+					{!! Form::submit(trans('Buscar'), array('class' => 'btn btn-info')) !!}
+					{!! Form::close() !!}
+
+				</div>
+			</div>	
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead>
