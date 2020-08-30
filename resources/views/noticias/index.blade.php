@@ -45,7 +45,7 @@
 						<tr>
 						<td>{{$n->tittle}}</td>
 						<td>{{$n->link}}</td>
-						<td>{{$n->cuerpo}}</td>
+						<td>{{$n->description}}</td>
 						<td>{{$n->date}}</td>
 						<td>
 
