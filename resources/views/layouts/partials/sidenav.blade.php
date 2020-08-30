@@ -889,7 +889,11 @@
       </li>
 
       <li>
-        <a href="{{route('users.pending')}}"><i class="fa fa-plus-circle"></i> Otorgar Accesos</a>
+        <a href="{{route('users.pending')}}"><i class="fa fa-plus-circle"></i> Validar Profesionales</a>
+      </li>
+
+      <li>
+        <a href="{{route('users.pendingp')}}"><i class="fa fa-plus-circle"></i> Validar Pacientes</a>
       </li>
 
       <li>

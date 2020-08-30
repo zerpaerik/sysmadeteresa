@@ -425,6 +425,7 @@ Route::get('generalegresos-search', 'ReporteIngresosController@searche')->name('
 
 Route::get('user', 'Users\UserController@index')->name('users.index')->middleware('auth');
 Route::get('user-pending', 'Users\UserController@pending')->name('users.pending')->middleware('auth');
+Route::get('user-pendingp', 'Users\UserController@pendingp')->name('users.pendingp')->middleware('auth');
 Route::post('user/create', 'Users\UserController@create')->middleware('auth');
 Route::get('user-validar-{id}', 'Users\UserController@validar')->middleware('auth');
 Route::get('user-denegar-{id}', 'Users\UserController@denegar')->middleware('auth');
