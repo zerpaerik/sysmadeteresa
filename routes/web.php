@@ -614,7 +614,7 @@ Route::get('detalle_paquetes-{id}', 'ReportesController@detallepaquete');
 Route::get('noticias', 'NoticiasController@index')->name('noticias.index');
 Route::get('noticias-create', 'NoticiasController@crearGet')->name('noticias.create');
 Route::post('noticias/crear', 'NoticiasController@crearPost');
-Route::get('noticias/{id}', 'Archivos\NoticiasController@delete')->middleware('auth');
+Route::get('noticias/{id}', 'NoticiasController@delete')->middleware('auth');
 
 
 
