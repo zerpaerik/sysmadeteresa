@@ -70,7 +70,7 @@ class NoticiasController extends Controller
           $noticias->category =$request->category;
           $noticias->date = date('Y-m-d');
           $noticias->usuario = \Auth::user()->id;
-          $noticias->link_img='http://sysmadreteresa.com/'. + $nombre_imagen;
+          $noticias->link_img=$nombre_imagen;
           if ($noticias->save()) {
             \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
