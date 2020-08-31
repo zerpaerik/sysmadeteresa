@@ -42,21 +42,42 @@ class NoticiasController extends Controller
     public function crearPost(Request $request){
 
        // dd($request->all());
+
+
+       /*
+
+        $img = $request->file('informe');
+                  $nombre_imagen=$img->getClientOriginalName();
+                  $product->id_atencion=$request->id;
+                  $product->id_servicio=$id_servicio;
+                  $product->informe=$nombre_imagen;
+                  $product->user_id=Auth::user()->id;
+                  if ($product->save()) {
+                   \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
+
+                 }
+                 \DB::commit();
+
+       */
      
           $noticias = new Noticias();
+          $img = $request->file('imagen');
+          $nombre_imagen=$img->getClientOriginalName();
           $noticias->tittle = $request->tittle;
           $noticias->link =$request->link;
-           $noticias->description =$request->cuerpo;
-           $noticias->origin =$request->origin;
-           $noticias->category =$request->category;
-           $noticias->date = date('Y-m-d');
+          $noticias->description =$request->cuerpo;
+          $noticias->origin =$request->origin;
+          $noticias->category =$request->category;
+          $noticias->date = date('Y-m-d');
           $noticias->usuario = \Auth::user()->id;
-        /*  $path = $request->file('imagen')->getRealPath();
-          $logo = file_get_contents($path);
-          $base64 = base64_encode($logo);
-          $noticias->imagen = $base64;*/
-          $noticias->save();
+          $noticias->link_img='http://sysmadreteresa.com/'. + $nombre_imagen;
+          if ($noticias->save()) {
+            \Storage::disk('public')->put($nombre_imagen,  \File::get($img));
 
+          }
+          \DB::commit();
+
+      
           Toastr::success('Registrado Exitosamente.', 'Noticia!', ['progressBar' => true]);
 
           return redirect()->action('NoticiasController@index', ["created" => true, "noticias" => Noticias::all()]);
