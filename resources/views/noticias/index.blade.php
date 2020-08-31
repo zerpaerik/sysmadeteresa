@@ -47,9 +47,8 @@
 						<td>{{$n->link}}</td>
 						<td>{{$n->description}}</td>
 						<td>{{$n->date}}</td>
-						<td>
+						<td><a href="noticias/{{$n->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
 
-						</td>
 						</tr>
 						
 				    @endforeach

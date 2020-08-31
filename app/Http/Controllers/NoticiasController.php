@@ -65,6 +65,13 @@ class NoticiasController extends Controller
 
     }
 
+    public function delete($id){
+      $noticias = Noticias::find($id);
+      $noticias->estatus = 0;
+      $noticias->save();
+      return redirect()->action('NoticiasController@index', ["deleted" => true, "noticias" => Noticias::all()]);
+    }
+
   
 
     }
