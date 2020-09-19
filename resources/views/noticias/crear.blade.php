@@ -48,8 +48,14 @@
 						</div>
                         <label class="col-sm-1 control-label">Categoria</label>
 						<div class="col-sm-4">
-							<input type="text" class="form-control" name="category" placeholder="Subtitulo de Noticia" data-toggle="tooltip" data-placement="bottom" title="Subtitulo">
+							<select  name="category">
+										<option value="General">General</option>
+										<option value="Transmición">Transmición</option>
+							</select>
+						
 						</div>
+
+						
                         </div>
                        </div>
 						
