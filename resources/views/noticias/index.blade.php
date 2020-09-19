@@ -34,6 +34,7 @@
 							<th>Titulo</th>
 							<th>Link</th>
 							<th>Cuerpo</th>
+							<th>Categoria</th>
 							<th>Fecha Redacciòn</th>
 							<th>Acciones:</th>
 
@@ -46,6 +47,7 @@
 						<td>{{$n->tittle}}</td>
 						<td>{{$n->link}}</td>
 						<td>{{$n->description}}</td>
+						<td>{{$n->category}}</td>
 						<td>{{$n->date}}</td>
 						<td><a href="noticias/{{$n->id}}" class="btn btn-danger"  onclick="return confirm('¿Desea Eliminar este registro?')">Eliminar</a></td>
 
