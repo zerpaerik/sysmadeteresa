@@ -124,9 +124,11 @@ class PacientesController extends Controller
         ->join('distritos as b','b.id','a.distrito')
         ->join('edo_civils as c','c.id','a.edocivil')
 			  ->where('a.id','=', $id)
-              ->first();
+        ->first();
+
+        $edad = Carbon::parse($pacientes->fechanac)->age;
 	  
-      return view('archivos.pacientes.show', compact('pacientes'));
+      return view('archivos.pacientes.show', compact('pacientes','edad'));
     }	  
 
 	public function create(Request $request){

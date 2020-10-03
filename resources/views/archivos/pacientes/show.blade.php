@@ -50,6 +50,10 @@
 					<div class="col-sm-4">
 						<strong>Edo Civil:</strong> {{$pacientes->edocivil}}
 					</div>
+
+					<div class="col-sm-4">
+						<strong>Edad:</strong> {{$edad}}
+					</div>
 					
 				</div>				
 			</div>
