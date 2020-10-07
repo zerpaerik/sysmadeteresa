@@ -72,10 +72,16 @@ margin-top: -20px;
 
  <div class="" style="font-size: 30px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
 		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+		@if(Session::get('sedeName') == 'ZARATE')
 		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 940 314 839</strong></p>
+		@else
+		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
 	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono: 01 3764637</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 942 066 567</strong></p>
+		@endif
 	   <p style="margin-top: -20px;"><strong>TICKET:{{ $ticket->id}}</strong></p>
 
 	</div>
