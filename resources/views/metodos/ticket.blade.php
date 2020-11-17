@@ -1,98 +1,103 @@
-<style>
-	.paciente {
-
-margin-left: 100px;
-margin-top: 45px;
-margin-bottom: 2px;
-}
-.fecha {
-
-margin-left: 100px;
-margin-top:-30px;
-
-
-}
-.servicios {
-
-margin-left: 50px;
-margin-top:40px;
-
-}
-.analisis {
-
-margin-left: 50px;
-margin-top:-30px;
-
-}
-
-.acuenta {
-
-margin-left: 50px;
-margin-top:40px;
-margin-bottom: 1px;
-
-}
-
-.pendiente {
-
-margin-left: 180px;
-margin-top:-50px;
-
-}
-
-.origen {
-
-margin-left: 50px;
-margin-top:-60px;
-
-}
-
-.total {
-
-margin-left: 410px;
-margin-top: -20px;
-}
-</style>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-	<title>Ticket de Mètodo</title>
-</head>
-<body>
+    <style type="text/css">
+      {
+        margin: 0;
+        padding: 0;
+      }
+      .table-main{
+       margin-left:-55px;
+       margin-right:-56px;
+      }
+      .truncate {
+        width: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      @page {
+        header: page-header;
+        footer: page-footer;
+      }
+      footer {
+        border:solid red;
+      }
+    </style>
 
-<div class="" style="font-size: 35px; text-align: center; margin-top: -40px;">
-		<img src="/var/www/html/sysmadeteresa/public/img/image.png"  style="width: 30%;"/>
-	</div>
+    <meta charset="utf-8">
 
- <div class="" style="font-size: 30px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
+  </head>
+
+    <body>
+
+    <br><br>
+
+    <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
 		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+		@if(Session::get('sedeName') == 'ZARATE')
+		<p style="margin-top: -20px;"><strong>RUC: 20492126072</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 940 314 839</strong></p>
+		@else
+		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
 	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono: 01 3764637</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 942 066 567</strong></p>
-
-	</div>
-
-    <div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong>FECHA:{{ date('d/m/Y h:i a', strtotime($metodos->created_at)) }}</strong></p>
-	</div>
-
-	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong>PACIENTE:{{$metodos->apellidos}} {{$metodos->nombres}} DNI:{{$metodos->dni}}</strong></p>
-	</div>
-
+		@endif
 	
-	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong>MÈTODOS ANTICONCEPTIVOS:{{ $metodos->producto}}
-		</strong></p>
-	</div>
+	   <p style="margin-top: -20px;"><strong>NÚMERO DE RECIBO ELECTRÓNICO:{{ $metodos->id}}</strong></p>
 
-	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-15px;">
-		<p><strong> MONTO TOTAL: {{ $metodos->monto}}</strong></p>
 	</div>
+    <br><br>
+    <br><br>
 
+
+    <div  style="font-size: 15px; text-align: left;margin-bottom:-60px;margin-top: -30px;">
+    <p><strong>FECHA:</strong> {{ date('d/m/Y h:i a', strtotime($metodos->created_at)) }} </p>
+	<p><strong>PACIENTE:</strong> {{$metodos->apellidos}} {{$metodos->nombres}} DNI:{{$metodos->dni}}</p>
 	
+	</div>
+  <br><br><br>
 
-</body>
-</html>
+    <table width="100%" class="table-main">
+      <thead>
+        <tr>
+          <th style="font-size: 15px; width=33px;"><center>Det.<center></th>
+          <th style="font-size: 15px; width=33px;"><center>Monto.<center></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td style="font-size: 13px; line-height: 30px;width=33px;margin-left:115px;" align="center">{{ $metodos->producto}}</td>
+            <td style="font-size: 15px; line-height: 30px;width=33px;margin-left:5px;" align="center">{{ $metodos->monto}}</td>
+
+          </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td style="width: 100%;">
+            <table width="100%">
+              <tbody>
+
+		
+                   
+
+                    <tr>
+                      <td align="left" style="font-size: 15px">VALOR TOTAL</td>
+                      <td align="right" style="font-size: 15px">{{ $metodos->monto}}</td>
+                    </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    </body>

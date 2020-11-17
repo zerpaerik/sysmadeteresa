@@ -1,102 +1,105 @@
-<style>
-	.paciente {
-
-margin-left: 100px;
-margin-top: 45px;
-margin-bottom: 2px;
-}
-
-
-
-
-.fecha {
-
-margin-left: 100px;
-margin-top:-30px;
-
-
-}
-.servicios {
-
-margin-left: 50px;
-margin-top:40px;
-
-}
-.analisis {
-
-margin-left: 50px;
-margin-top:-30px;
-
-}
-
-.acuenta {
-
-margin-left: 50px;
-margin-top:40px;
-margin-bottom: 1px;
-
-}
-
-.pendiente {
-
-margin-left: 180px;
-margin-top:-50px;
-
-}
-
-.origen {
-
-margin-left: 50px;
-margin-top:-60px;
-
-}
-
-.total {
-
-margin-left: 410px;
-margin-top: -20px;
-}
-</style>
-
-<!DOCTYPE html>
-<html lang="en">
 <head>
-	<title>Ticket de Cobro</title>
-</head>
-<body>
+    <style type="text/css">
+      {
+        margin: 0;
+        padding: 0;
+      }
+      .table-main{
+       margin-left:-55px;
+       margin-right:-56px;
+      }
+      .truncate {
+        width: 1px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      @page {
+        header: page-header;
+        footer: page-footer;
+      }
+      footer {
+        border:solid red;
+      }
+    </style>
 
-<div style="margin-left: 600px;margin-bottom:-35px;">
-		<p><strong>{{$ticket->id}}</strong></p>
-	</div>
+    <meta charset="utf-8">
 
-<div class="paciente">
-		<p><strong>{{$ticket->apellidos}},{{$ticket->nombres}}</strong></p>
-	</div>
+  </head>
 
+    <body>
 
-	<div class="fecha">
-		<p><strong>{{ $ticket->created_at}}</strong></p>
-	</div>
-	<div class="servicios">
-		<p><strong>CUENTA POR COBRAR</strong></p>
-	</div>
+    <br><br>
 
-	<div class="acuenta">
-		<p><strong>Abono:{{ $ticket->abono_parcial}}</strong></p>
-	</div>
-
-	<div class="pendiente">
-		<p><strong>Deuda: {{ $ticket->pendiente}}</strong></p>
-	</div>
-
+    <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
+		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+		@if(Session::get('sedeName') == 'ZARATE')
+		<p style="margin-top: -20px;"><strong>RUC: 20492126072</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 940 314 839</strong></p>
+		@else
+		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+	    <p style="margin-top: -20px;"><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 01 3764637</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 942 066 567</strong></p>
+		@endif
 	
+	   <p style="margin-top: -20px;"><strong>NÚMERO DE RECIBO ELECTRÓNICO:{{$ticket->id}}</strong></p>
 
-	<div class="total">
-		<p><strong>{{ $ticket->monto}}</strong></p>
 	</div>
+    <br><br>
+    <br><br>
 
 
+    <div  style="font-size: 15px; text-align: left;margin-bottom:-60px;margin-top: -30px;">
+    <p><strong>FECHA:</strong> {{ date('d/m/Y h:i a', strtotime($ticket->created_at)) }} </p>
+	<p><strong>PACIENTE:</strong> {{$ticket->apellidos}},{{$ticket->nombres}}</p>
+	
+	</div>
+  <br><br><br>
 
+    <table width="100%" class="table-main">
+      <thead>
+        <tr>
+          <th style="font-size: 15px; width=33px;"><center>Det.<center></th>
+          <th style="font-size: 15px; width=33px;"><center>Abono.<center></th>
+		  <th style="font-size: 15px; width=33px;"><center>Resta.<center></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td style="font-size: 13px; line-height: 30px;width=33px;margin-left:115px;" align="center">CUENTA POR COBRAR</td>
+            <td style="font-size: 15px; line-height: 30px;width=33px;margin-left:5px;" align="center">{{ $ticket->abono_parcial}}</td>
+            <td style="font-size: 15px; line-height: 30px;width=33px;margin-left:5px;" align="center">{{ $ticket->pendiente}}</td>
 
-</body>
-</html>
+          </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <table width="100%">
+      <tbody>
+        <tr>
+          <td style="width: 100%;">
+            <table width="100%">
+              <tbody>
+
+		
+                   
+
+                    <tr>
+                      <td align="left" style="font-size: 15px">VALOR TOTAL</td>
+                      <td align="right" style="font-size: 15px">{{ $ticket->monto}}</td>
+                    </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    </body>

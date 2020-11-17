@@ -253,6 +253,7 @@ class EventController extends Controller
     ]);
   }
 
+
   public function ticket_ver($id) 
   {
     $paciente = DB::table('events as e')
@@ -262,10 +263,12 @@ class EventController extends Controller
     ->where('e.id','=',$id)
     ->first();
 
+
     $view = \View::make('consultas.ticket_consulta')->with('paciente', $paciente);
+    $customPaper = array(0,0,500.00,200.00);
+
     $pdf = \App::make('dompdf.wrapper');
-    //$pdf->setPaper('A5', 'landscape');
-    $pdf->loadHTML($view);
+    $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
     
     return $pdf->stream('ticket_ver');
   }
