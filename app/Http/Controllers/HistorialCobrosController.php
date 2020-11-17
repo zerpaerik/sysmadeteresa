@@ -126,10 +126,8 @@ class HistorialCobrosController extends Controller
 
 
          $view = \View::make('movimientos.historialcobros.ticket')->with('ticket', $ticket);
-         $customPaper = array(0,0,500.00,200.00);
-
          $pdf = \App::make('dompdf.wrapper');
-         $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+         $pdf->loadHTML($view);
         return $pdf->stream('ticket_cobros_ver');
   }
 

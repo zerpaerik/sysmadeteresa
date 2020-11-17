@@ -144,10 +144,8 @@ class MetodosController extends Controller
             ->first();
 
     $view = \View::make('metodos.ticket')->with('metodos', $metodos);
-    $customPaper = array(0,0,500.00,200.00);
-
     $pdf = \App::make('dompdf.wrapper');
-    $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+    $pdf->loadHTML($view);
     
     return $pdf->stream('ticket_ver');
   }

@@ -404,10 +404,8 @@ class ReportesController extends Controller
     {
         $ticket =ReportesController::verTicket($id);
         $view = \View::make('reportes.ticket_atencion_ver')->with('ticket', $ticket);
-        $customPaper = array(0,0,500.00,200.00);
-
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+        $pdf->loadHTML($view);
         return $pdf->stream('ticket_ver');
     }
 

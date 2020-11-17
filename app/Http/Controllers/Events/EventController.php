@@ -265,10 +265,8 @@ class EventController extends Controller
 
 
     $view = \View::make('consultas.ticket_consulta')->with('paciente', $paciente);
-    $customPaper = array(0,0,500.00,200.00);
-
     $pdf = \App::make('dompdf.wrapper');
-    $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+    $pdf->loadHTML($view);
     
     return $pdf->stream('ticket_ver');
   }
