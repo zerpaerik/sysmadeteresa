@@ -54,7 +54,7 @@ margin-top: -20px;
 	    <p><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
 		<p><strong>WhatsApp: 940 314 839</strong></p>
 		@else
-		<p><strong>RUC: 20606283980</strong></p>
+		<p><strong>RUC: 20600971116</strong></p>
 	    <p><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
 		<p><strong>Teléfono: 01 3764637</strong></p>
 		<p><strong>WhatsApp: 942 066 567</strong></p>
