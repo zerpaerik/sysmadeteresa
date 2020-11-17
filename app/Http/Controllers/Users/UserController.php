@@ -20,7 +20,7 @@ class UserController extends Controller
         ->select('a.id','a.estatus','a.name','a.lastname','a.dni','a.tipo','a.email','a.role_id','b.name as rol')
 		    ->join('roles as b','b.id','a.role_id')
         ->orderby('a.id','desc')
-		    ->where('a.tipo','=',NULL)
+		    //->where('a.tipo','=',NULL)
         ->where('a.estatus','=',1)
         ->get();  
 		return view('archivos.users.index', ["users" => $users]);
