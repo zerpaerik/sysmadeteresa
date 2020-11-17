@@ -55,7 +55,6 @@
     <div  style="font-size: 15px; text-align: left;margin-bottom:-60px;margin-top: -30px;">
     <p><strong>FECHA:</strong> {{ date('d/m/Y h:i a', strtotime($paciente->date)) }} </p>
 	<p><strong>PACIENTE:</strong> {{$paciente->apellidos}} {{$paciente->nombres}} DNI:{{$paciente->dni}}</p>
-	<p><strong>MÉDICO:</strong> {{$paciente->apellidoPro}} {{$paciente->nombrePro}}</p>
 
 	</div>
   <br><br><br>
