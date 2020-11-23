@@ -66,6 +66,8 @@ margin-top: -20px;
 	<div class="" style="font-size: 40px; text-align: left;margin-bottom:-40px;">
   <p><strong>FECHA:</strong> {{ date('d/m/Y h:i a', strtotime($paciente->created_at)) }} </p>
 	<p><strong>PACIENTE:</strong> {{$paciente->apellidos}},{{$paciente->nombres}}</p>
+    	<p><strong>TIPO:</strong> {{$paciente->tipo}}</p>
+
 	</div>
 
 	
