@@ -979,7 +979,6 @@ $paciente = DB::table('pacientes')
 
           $searchAnalisis = DB::table('analises')
           ->select('*')
-                   // ->where('estatus','=','1')
           ->where('id','=', $laboratorio['laboratorio'])
           ->first();   
 
@@ -1172,11 +1171,25 @@ $paciente = DB::table('pacientes')
     if($request->origen == 3){     
                     
     if (isset($request->id_servicio)) {
+
+      $serv = DB::table('servicios')
+      ->select('*')
+      ->where('id','=', $request->id_servicio['servicios'][0]['servicio'])
+      ->first();   
+
+      if ($request->origen == 2 ){
+        $porcentaje = $serv->porcentaje;
+      } else {
+        $porcentaje=0;
+      }   
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = 99999999;
       $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
       $atencion->es_servicio =  true;
       $atencion->tipopago = $request->tipopago;
+      $atencion->porcentaje = ((float)$request->monto_s['servicios'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->pendiente = (float)$request->monto_s['servicios'][0]['monto'] - (float)$request->monto_abos['servicios'][0]['abono'];
       $atencion->monto = $request->monto_s['servicios'][0]['monto'];
       $atencion->abono = $request->monto_abos['servicios'][0]['abono'];
@@ -1184,10 +1197,24 @@ $paciente = DB::table('pacientes')
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
     } else if(isset($request->id_laboratorio)) {
+
+      $serv = DB::table('analises')
+      ->select('*')
+      ->where('id','=', $request->id_laboratorio['laboratorios'][0]['laboratorio'])
+      ->first();   
+
+      if ($request->origen == 2 ){
+        $porcentaje = $serv->porcentaje;
+      } else {
+        $porcentaje=0;
+      }   
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = 99999999;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->porcentaje = ((float)$request->monto_l['laboratorios'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->pendiente = (float)$request->monto_s['laboratorios'][0]['monto'] - (float)$request->monto_abos['laboratorios'][0]['abono'];
       $atencion->monto = $request->monto_l['laboratorios'][0]['monto'];
       $atencion->abono = $request->monto_abol['laboratorios'][0]['abono'];
@@ -1196,10 +1223,23 @@ $paciente = DB::table('pacientes')
       $creditos->tipo_ingreso = $request->tipopago;
     } else {
 
+      $serv = DB::table('paquetes')
+      ->select('*')
+      ->where('id','=', $request->id_paquete['paquetes'][0]['paquete'])
+      ->first();   
+
+      if ($request->origen == 2 ){
+        $porcentaje = $serv->porcentaje;
+      } else {
+        $porcentaje=0;
+      }   
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario =99999999;
       $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->porcentaje = ((float)$request->monto_p['paquetes'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
       $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
       $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];
@@ -1407,10 +1447,24 @@ $paciente = DB::table('pacientes')
 
 
       if (isset($request->id_servicio)) {
+
+        $serv = DB::table('servicios')
+        ->select('*')
+        ->where('id','=', $request->id_servicio['servicios'][0]['servicio'])
+        ->first();   
+  
+        if ($request->origen == 2 ){
+          $porcentaje = $serv->porcentaje;
+        } else {
+          $porcentaje=0;
+        }   
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_servicio =  $request->id_servicio['servicios'][0]['servicio'];
       $atencion->es_servicio =  true;
+      $atencion->porcentaje = ((float)$request->monto_s['servicios'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->tipopago = $request->tipopago;
       $atencion->pendiente = (float)$request->monto_s['servicios'][0]['monto'] - (float)$request->monto_abos['servicios'][0]['abono'];
       $atencion->monto = $request->monto_s['servicios'][0]['monto'];
@@ -1419,10 +1473,26 @@ $paciente = DB::table('pacientes')
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
     } else if(isset($request->id_laboratorio)) {
+
+      $serv = DB::table('analises')
+        ->select('*')
+        ->where('id','=', $request->id_laboratorio['laboratorios'][0]['laboratorio'])
+        ->first();   
+  
+        if ($request->origen == 2 ){
+          $porcentaje = $serv->porcentaje;
+        } else {
+          $porcentaje=0;
+        }  
+
+
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_laboratorio =  $request->id_laboratorio['laboratorios'][0]['laboratorio'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->porcentaje = ((float)$request->monto_l['laboratorios'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->pendiente = (float)$request->monto_s['laboratorios'][0]['monto'] - (float)$request->monto_abos['laboratorios'][0]['abono'];
       $atencion->monto = $request->monto_l['laboratorios'][0]['monto'];
       $atencion->abono = $request->monto_abol['laboratorios'][0]['abono'];
@@ -1431,10 +1501,24 @@ $paciente = DB::table('pacientes')
       $creditos->tipo_ingreso = $request->tipopago;
     } else {
 
+      $serv = DB::table('paquetes')
+      ->select('*')
+      ->where('id','=', $request->id_paquete['paquetes'][0]['paquete'])
+      ->first();   
+
+      if ($request->origen == 2 ){
+        $porcentaje = $serv->porcentaje;
+      } else {
+        $porcentaje=0;
+      }  
+
+
       $atencion->origen = $request->origen;
       $atencion->origen_usuario = $searchUsuarioID->id;
       $atencion->id_paquete =  $request->id_paquete['paquetes'][0]['paquete'];
       $atencion->tipopago = $request->tipopago;
+      $atencion->porcentaje = ((float)$request->monto_p['paquetes'][0]['monto']* $porcentaje)/100;
+      $atencion->porc_pagar = $porcentaje;
       $atencion->pendiente = (float)$request->monto_p['paquetes'][0]['monto'] - (float)$request->monto_abop['paquetes'][0]['abono'];
       $atencion->monto = $request->monto_p['paquetes'][0]['monto'];
       $atencion->abono = $request->monto_abop['paquetes'][0]['abono'];
