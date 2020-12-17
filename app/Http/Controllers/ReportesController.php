@@ -1617,9 +1617,18 @@ class ReportesController extends Controller
         
     $edad = Carbon::parse($resultados1->fechanac)->age;
 
+    if($resultados->es_servicio == '1'){
+        $modelo = $resultados->servicio;
+
+    } else {
+        $modelo = $resultados->laboratorio;
+
+
+    }
+
 
         $informe->setValue('name', $resultados->apellidoPaciente. ' '.$resultados->nombrePaciente. ' Edad: '.$edad);
-        $informe->setValue('descripcion',$resultados->servicio);
+        $informe->setValue('descripcion',$modelo);
         $informe->setValue('date',date('d-m-Y'));        
         //dd($resultados->origen);
         if ($resultados->origen == 1) {
