@@ -27,26 +27,7 @@
           {{ csrf_field() }}
           <div class="form-group">
 
-            <div class="row">
-
-            <label class="col-sm-1 control-label">Pacientes</label>
-            <div class="col-sm-3">
-              <select id="el1" name="id_paciente">
-                @foreach($pacientes as $pac)
-                  @if($atencion->paciente->id == $pac->id)
-                    <option value="{{$pac->id}}" selected="selected">
-                      {{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
-                    </option>
-                  @else
-                    <option value="{{$pac->id}}">
-                      {{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
-                    </option>
-                  @endif
-                @endforeach
-              </select>
-            </div>
-
-            </div>
+           
             <br>
             <div class="row">
 
