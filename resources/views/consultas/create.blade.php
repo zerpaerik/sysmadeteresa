@@ -65,7 +65,7 @@
 					
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-2">
-							<input type="float" class="form-control" placeholder="Monto" name="monto" required="required">
+							<input type="text" class="form-control" placeholder="Monto" name="monto" required="required">
 						</div>
 
 					
