@@ -50,7 +50,7 @@
 
 						<label class="col-sm-1 control-label">Monto</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" placeholder="Monto" name="monto" required="required" value="{{$paciente->monto}}">
+							<input type="text" class="form-control" placeholder="Monto" name="monto" required="required" value="{{$paciente->monto}}">
 						</div>
 
 						
