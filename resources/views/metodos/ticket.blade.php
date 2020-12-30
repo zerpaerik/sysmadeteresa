@@ -52,7 +52,8 @@ margin-top: -20px;
 		@if(Session::get('sedeName') == 'ZARATE')
 		<p><strong>RUC: 20600971116</strong></p>
 	    <p><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
-		<p><strong>WhatsApp: 940 314 839</strong></p>
+		<p><strong>Teléfono: 7820512</strong></p>
+		<p><strong>WhatsApp: 924 520 026</strong></p>
 		@else
 		<p><strong>RUC: 20600971116</strong></p>
 	    <p><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>
