@@ -48,9 +48,14 @@ margin-top: -20px;
 	</div>
 
   <div class="" style="font-size: 40px; text-align: center;margin-bottom:-60px;margin-top: 2px;">
-		<<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+       @if(Session::get('sedeName') == 'ZARATE')
+		<p><strong>SYSMEDIC PERU SAC - {{Session::get('sedeName')}}</strong></p>
+		@else
+		<p><strong>MADRE TERESA SAC- {{Session::get('sedeName')}}</strong></p>
+		@endif
+          
 		@if(Session::get('sedeName') == 'ZARATE')
-		<p><strong>RUC: 20600971116</strong></p>
+		<p><strong>RUC: 20606283980</strong></p>
 	    <p><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
 		<p><strong>Teléfono: 7820512</strong></p>
 		<p><strong>WhatsApp: 924 520 026</strong></p>
