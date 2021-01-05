@@ -356,6 +356,11 @@ class EventController extends Controller
                     $creditos->monto= $request->monto;
                     $creditos->id_sede = $request->session()->get('sede');
                     $creditos->tipo_ingreso = $request->tipopago;
+                    if($request->tipopago=='EF'){
+                      $creditos->efectivo = $request->monto;
+                      }else{
+                      $creditos->tarjeta = $request->monto;
+                      }
                     $creditos->id_event = $evt->id;
                     $creditos->date = date('Y-m-d');
                     $creditos->save();
