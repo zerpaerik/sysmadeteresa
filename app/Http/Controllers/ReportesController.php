@@ -212,6 +212,7 @@ class ReportesController extends Controller
     public function historialp(Request $request)
     {
 
+
         if(!is_null($request->paciente)){
 
     
@@ -226,8 +227,11 @@ class ReportesController extends Controller
     ->join('sedes as s','s.id','a.id_sede')
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.es_delete','=',NULL)
-    ->where('b.id','=',$request->paciente)
+    ->where('b.dni','=',$request->paciente)
     ->get();
+
+    dd($atenciones);
+
 
 
 
@@ -238,7 +242,7 @@ class ReportesController extends Controller
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.atendidopor')
     ->join('sedes as s','s.id','e.sede')
-    ->where('p.id','=',$request->paciente)
+    ->where('p.dni','=',$request->paciente)
     ->where('e.es_delete','=',NULL)
     ->get();
 
@@ -248,7 +252,7 @@ class ReportesController extends Controller
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('productos as d','d.id','a.id_producto')
         ->join('sedes as s','s.id','a.sede')
-        ->where('b.id','=',$request->paciente)
+        ->where('b.dni','=',$request->paciente)
         ->where('a.es_delete','=',NULL)
         ->orderBy('a.created_at','asc')
         ->get(); 
