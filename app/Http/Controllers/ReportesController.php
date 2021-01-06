@@ -226,7 +226,7 @@ class ReportesController extends Controller
     ->join('sedes as s','s.id','a.id_sede')
     ->whereNotIn('a.monto',[0,0.00,99999])
     ->where('a.es_delete','=',NULL)
-    ->where('b.dni','=',$request->paciente)
+    ->where('b.id','=',$request->paciente)
     ->get();
 
 
@@ -238,7 +238,7 @@ class ReportesController extends Controller
     ->join('personals as per','per.id','=','e.profesional')
     ->join('users as u','u.id','e.atendidopor')
     ->join('sedes as s','s.id','e.sede')
-    ->where('p.dni','=',$request->paciente)
+    ->where('p.id','=',$request->paciente)
     ->where('e.es_delete','=',NULL)
     ->get();
 
@@ -248,7 +248,7 @@ class ReportesController extends Controller
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('productos as d','d.id','a.id_producto')
         ->join('sedes as s','s.id','a.sede')
-        ->where('b.dni','=',$request->paciente)
+        ->where('b.id','=',$request->paciente)
         ->where('a.es_delete','=',NULL)
         ->orderBy('a.created_at','asc')
         ->get(); 
@@ -1784,6 +1784,153 @@ class ReportesController extends Controller
 
        
         $view = \View::make('reportes.detallado', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes','metodos','totalmetodos','hoy','fechaconsulta'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('detallado'.$request->fecha.'.pdf');
+
+    }
+
+    public function relacion_detalladod(Request $request)
+    {
+
+        $servicios = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.es_delete','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_servicio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as servicio','e.name','e.lastname')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->where('a.es_servicio','=', 1)
+            ->where('a.es_delete','=',NULL)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+         ->whereNotIn('a.monto',[0,0.00,99999])
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalServicios = Atenciones::where('es_servicio',1)
+		                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                        ->where('es_delete','=',NULL)
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(abono) as abono'))
+                                    ->first();
+
+         $laboratorios = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.es_delete','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.name as laboratorio','e.name','e.lastname')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('analises as c','c.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+            ->where('a.es_delete','=',NULL)
+		->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_laboratorio','=', 1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+         ->whereNotIn('a.monto',[0,0.00,99999])
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalLaboratorios = Atenciones::where('es_laboratorio',1)
+                                    ->whereNotIn('monto',[0,0.00,99999])
+                                        ->where('es_delete','=',NULL)
+		                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(abono) as abono'))
+                                    ->first();
+		 $paquetes = DB::table('atenciones as a')
+        ->select('a.id','a.created_at','a.id_paciente','a.es_delete','a.origen_usuario','a.origen','a.id_servicio','a.id_paquete','a.id_laboratorio','a.es_laboratorio','a.monto','a.tipopago','a.porcentaje','a.abono','a.id_sede','b.nombres','b.apellidos','c.detalle as paquete','e.name','e.lastname')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('paquetes as c','c.id','a.id_paquete')
+        ->join('users as e','e.id','a.origen_usuario')
+		->where('a.id_sede','=', $request->session()->get('sede'))
+        ->where('a.es_paquete','=', 1)
+            ->where('a.es_delete','=',NULL)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->whereNotIn('a.monto',[0,0.00,99999])
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalPaquetes = Atenciones::where('es_paquete',1)
+                                     ->whereNotIn('monto',[0,0.00,99999])
+                                         ->where('es_delete','=',NULL)
+		                            ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(abono) as abono'))
+                                    ->first();						
+       
+         $consultas = DB::table('events as a')
+        ->select('a.id','a.profesional','a.es_delete','a.paciente','a.sede','a.monto','a.created_at','b.nombres','b.apellidos','c.name','c.lastname as apepro')
+        ->join('pacientes as b','b.id','a.paciente')
+        ->join('personals as c','c.id','a.profesional')
+        ->where('a.es_delete','=',NULL)
+        ->where('a.sede','=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->orderby('a.id','desc')
+        ->get();
+        
+
+        $totalconsultas = Event::where('sede','=', $request->session()->get('sede'))
+                                 ->where('es_delete','=',NULL)
+                                  ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+        $otrosingresos = DB::table('creditos as a')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
+        ->where('a.origen','=','OTROS INGRESOS')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalotrosingresos = Creditos::where('origen','OTROS INGRESOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+        $cuentasporcobrar = DB::table('creditos as a')
+        ->select('a.id','a.origen','a.descripcion','a.tipo_ingreso','a.id_sede','a.monto','a.created_at')
+        ->where('a.origen','=','CUENTAS POR COBRAR')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->where('a.id_sede','=', $request->session()->get('sede'))
+        ->orderby('a.id','desc')
+        ->get();
+
+        $totalcuentasporcobrar = Creditos::where('origen','CUENTAS POR COBRAR')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('                 Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+          $metodos = DB::table('metodos as a')
+        ->select('a.id','a.id_paciente','a.id_usuario','a.monto','a.proximo','a.created_at','a.id_producto','c.name','c.lastname','b.nombres','b.apellidos','b.dni','d.nombre as producto')
+        ->join('users as c','c.id','a.id_usuario')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('productos as d','d.id','a.id_producto')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+        ->orderBy('a.created_at','desc')
+        ->get(); 
+
+
+        $totalmetodos = Creditos::where('origen','METODOS ANTICONCEPTIVOS')
+                                    ->whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
+                                    ->where('id_sede','=', $request->session()->get('sede'))
+                                    ->select(DB::raw('SUM(monto) as monto'))
+                                    ->first();
+
+
+    
+    
+     
+        $hoy=date('d-m-Y');
+
+                $fechaconsulta=$request->fecha;
+
+       
+        $view = \View::make('reportes.detalladod', compact('servicios', 'totalServicios','laboratorios', 'totalLaboratorios', 'consultas', 'totalconsultas','otrosingresos','totalotrosingresos','cuentasporcobrar','totalcuentasporcobrar','paquetes','totalPaquetes','metodos','totalmetodos','hoy','fechaconsulta'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

@@ -593,6 +593,7 @@ Route::get('reporte-solicitar_diario', 'ReportesController@formDiario');
 Route::get('reporte-solicitar_consolidado', 'ReportesController@formConsolidado');
 Route::post('reporte/diario', 'ReportesController@relacion_diario');
 Route::post('reporte/detallado', 'ReportesController@relacion_detallado');
+Route::post('reporte/detalladod', 'ReportesController@relacion_detalladod');
 Route::get('recibo_profesionales_ver/{id}','ReportesController@recibo_profesionales_ver');
 
 Route::get('saldo/view/{id}', 'CajaController@saldo')->middleware('auth');
