@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-xs-12">
-			<form action="reporte/detallado" method="post">
+			<form action="reporte/detalladod" method="post">
 				<div class="form-group">
 					<div class="col-xs-6">
 						<label class="control-label">Fecha a solictar</label>
