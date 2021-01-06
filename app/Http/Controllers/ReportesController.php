@@ -230,9 +230,6 @@ class ReportesController extends Controller
     ->where('b.dni','=',$request->paciente)
     ->get();
 
-    dd($atenciones);
-
-
 
 
 
