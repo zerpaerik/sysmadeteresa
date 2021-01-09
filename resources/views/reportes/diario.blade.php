@@ -110,6 +110,7 @@
 	<table style="">
 		<tr>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Descripción</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Tipo</th>
 		    <th style="padding: 0;width: 5%;text-overflow: ellipsis;">Recibido Por:</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Origen</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">Monto</th>
@@ -117,6 +118,7 @@
 		@foreach ($egresos as $egreso)
 			<tr>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->descripcion }}</td>
+				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->tipo }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->nombre }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->origen }}</td>
 				<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->monto }}</td>

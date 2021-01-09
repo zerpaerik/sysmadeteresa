@@ -471,7 +471,7 @@ class ReportesController extends Controller
         $egresos = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($request->fecha)), date('Y-m-d 23:59:59', strtotime($request->fecha))])
                             ->where('id_sede','=', $request->session()->get('sede'))
                             ->whereNotIn('tipo',['EXTERNO'])
-                            ->select(DB::raw('origen, descripcion, monto,nombre'))
+                            ->select(DB::raw('origen, descripcion, monto,nombre,tipo'))
                             ->get();
 
         $efectivo = Creditos::where('tipo_ingreso', 'EF')
@@ -865,7 +865,7 @@ class ReportesController extends Controller
                                      array($fechainic, $fecha))
                             ->where('id_sede','=', $request->session()->get('sede'))
                             ->whereNotIn('tipo',['EXTERNO'])
-                            ->select(DB::raw('origen, descripcion, monto,nombre'))
+                            ->select(DB::raw('origen, descripcion, monto,nombre,tipo'))
                             ->get();
 
         $efectivo = Creditos::where('tipo_ingreso', 'EF')
