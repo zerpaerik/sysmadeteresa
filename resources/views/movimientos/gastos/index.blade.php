@@ -60,6 +60,7 @@
 					<thead>
 						<tr>
 							<th>Id</th>
+							<th>Tipo de Gasto</th>
 							<th>Descripcion</th>
 							<th>Recibido Por:</th>
 							<th>Monto</th>
@@ -73,6 +74,7 @@
 						@foreach($gastos as $d)
 						<tr>
 						<td>{{$d->id}}</td>
+						<td>{{$d->tipo}}</td>
 						<td>{{$d->descripcion}}</td>
 						<td>{{$d->nombre}}</td>
 						<td>{{$d->monto}}</td>

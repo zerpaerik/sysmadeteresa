@@ -25,6 +25,24 @@
 				<form class="form-horizontal" role="form" method="post" action="gastos/edit">
 					{{ csrf_field() }}
 					<div class="form-group">
+					<label class="col-sm-1 control-label">Tipo</label>
+					<div class="col-sm-3">
+							<select id="el2" name="tipo" class="form-control">
+							        @if($tipo == 'CAJA')
+								    <option value="CAJA" selected>Caja</option>
+									<option value="EXTERNO">Externo</option>
+									<option value="RETIRO">Retiro de Efectivo</option>
+									@elseif($tipo == 'EXTERNO')
+									<option value="CAJA">Caja</option>
+									<option value="EXTERNO" selected>Externo</option>
+									<option value="RETIRO">Retiro de Efectivo</option>
+									@else
+									<option value="CAJA">Caja</option>
+									<option value="EXTERNO" >Externo</option>
+									<option value="RETIRO" selected>Retiro de Efectivo</option>
+									@endif
+							</select>
+						</div>
 						<label class="col-sm-1 control-label">Descripcion</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="descripcion" placeholder="descripcion" data-toggle="tooltip" data-placement="bottom" value="{{$descripcion}}" title="descripcion">

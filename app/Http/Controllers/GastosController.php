@@ -19,7 +19,7 @@ class GastosController extends Controller
   if(! is_null($request->fecha)) {
 
       $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+      ->select('a.id','a.descripcion','a.monto','a.tipo','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
       ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,$request->fecha)
       ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -29,7 +29,7 @@ class GastosController extends Controller
     } else {
 
        $gastos = DB::table('debitos as a')
-      ->select('a.id','a.descripcion','a.monto','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
+      ->select('a.id','a.descripcion','a.monto','a.tipo','a.nombre','a.created_at','a.id_sede','a.usuario','u.name','u.lastname')
       ->join('users as u','u.id','a.usuario')
       ->whereDate('a.created_at','=' ,Carbon::today()->toDateString())
       ->where('a.id_sede','=', $request->session()->get('sede'))
@@ -57,6 +57,7 @@ class GastosController extends Controller
 	      'descripcion' => $request->descripcion,
 	      'monto' => $request->monto,
         'nombre' => $request->nombre,
+        'tipo' => $request->tipo,
 	      'origen' => 'RELACION DE GASTOS',
 	      'id_sede' => $request->session()->get('sede'),
         'usuario' => Auth::user()->id,
@@ -83,7 +84,7 @@ class GastosController extends Controller
 
     public function editView($id){
       $p = Debitos::find($id);
-      return view('movimientos.gastos.edit', ["descripcion" => $p->descripcion,"nombre" => $p->nombre, "monto" => $p->monto,"id" => $p->id]);
+      return view('movimientos.gastos.edit', ["descripcion" => $p->descripcion,"nombre" => $p->nombre, "monto" => $p->monto,"id" => $p->id,"tipo" => $p->tipo]);
     }
 
       public function edit(Request $request){
@@ -91,6 +92,7 @@ class GastosController extends Controller
       $p->descripcion = $request->descripcion;
       $p->monto = $request->monto;
       $p->nombre = $request->nombre;
+      $p->tipo = $request->tipo;
       $res = $p->save();
       return redirect()->action('GastosController@index', ["edited" => $res]);
     }
