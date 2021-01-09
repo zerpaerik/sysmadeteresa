@@ -214,6 +214,8 @@
 	</table>
 </div>
 
+@if($cuentasporcobrar)
+
 <div style="font-weight: bold; font-size: 14px">
 		CUENTAS POR COBRAR
 </div>
@@ -248,5 +250,6 @@
 		</tr>
 	</table>
 </div>
+@endif
 
 

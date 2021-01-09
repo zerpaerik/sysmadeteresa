@@ -125,6 +125,7 @@ class ReportesController extends Controller
       
          $egresos=Debitos::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('date', [$f1,$f2])
+                                    ->wherenotIn('tipo', ['RETIRO'])
                                     ->select(DB::raw('SUM(monto) as egreso'),'date')
                                     ->groupBy('date')
                                     ->get();
