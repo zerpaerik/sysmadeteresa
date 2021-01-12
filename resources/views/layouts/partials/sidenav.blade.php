@@ -348,6 +348,10 @@
        <li>
         <a href="{{route('report.detallado')}}"><i class="fa fa-file-o"></i> Detallado Por Sede</a>
       </li>
+
+      <li>
+        <a href="{{route('report.detalladoy')}}"><i class="fa fa-file-o"></i> Detallado Por Sede Yanet</a>
+      </li>
       <li>
         <a href="{{route('report.detalladog')}}"><i class="fa fa-file-o"></i> Detallado General</a>
       </li>

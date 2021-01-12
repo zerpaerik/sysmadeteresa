@@ -404,7 +404,10 @@ Route::get('materialesconsultas', 'ReportesController@materialesconsultas')->nam
 Route::get('matconsultas/ver/{f1}/{f2}/{id}', 'ReportesController@reportconsultas');
 
 Route::get('report-detallado', 'ReportesController@reportdetallado')->name('report.detallado');
+Route::get('report-detallado-yanet', 'ReportesController@reportdetalladoy')->name('report.detalladoy');
 Route::get('reporte/detallado', 'ReportesController@detallado');
+Route::get('reporte/detallado/yanet', 'ReportesController@detalladoyanet');
+
 
 Route::get('report-detalladog', 'ReportesController@reportdetalladog')->name('report.detalladog');
 Route::get('reporte/detalladog', 'ReportesController@detalladog');
