@@ -201,6 +201,7 @@ class ReportesController extends Controller
                                     
         $debitos=Debitos::where('id_sede','=', $request->session()->get('sede'))
                                     ->whereBetween('date', [$f1,$f2])
+                                    ->wherenotIn('tipo', ['EXTERNO'])
                                     ->select(DB::raw('SUM(monto) as monto'))
                                     ->first();
          if($debitos != null){
