@@ -100,6 +100,7 @@
 <div style="margin-top:10px; background: #eaeaea;">
 	<table style="">
 		<tr>
+		<th>Tipo</th>
 			<th>Descripción</th>
 			<th>Origen</th>
 			<th>Monto</th>
