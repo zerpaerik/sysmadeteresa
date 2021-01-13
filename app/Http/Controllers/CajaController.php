@@ -226,8 +226,8 @@ class CajaController extends Controller
         $egresos = Debitos::whereRaw("created_at > ? AND created_at <= ?", 
                                      array($fechamañana, $fechanoche))
                             ->where('id_sede','=', $request->session()->get('sede'))
-                            ->whereNotIn('tipo',['EXTERNO'])
-                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->whereIn('tipo',['CAJA','RETIRO'])
+                            ->select(DB::raw('origen, descripcion, monto,tipo'))
                             ->get();
 
         $efectivo = Creditos::where('tipo_ingreso','EF')

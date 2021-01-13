@@ -106,6 +106,7 @@
 		</tr>
 		@foreach ($egresos as $egreso)
 			<tr>
+			<td>{{ $egreso->tipo }}</td>
 				<td>{{ $egreso->descripcion }}</td>
 				<td>{{ $egreso->origen }}</td>
 				<td>{{ $egreso->monto }}</td>
