@@ -230,6 +230,7 @@ class CajaController extends Controller
                             ->select(DB::raw('origen, descripcion, monto,tipo'))
                             ->get();
 
+
         $efectivo = Creditos::where('tipo_ingreso','EF')
                             ->where('id_sede','=', $request->session()->get('sede'))
                             ->whereNotIn('monto',[0,0.00,99999])
@@ -328,7 +329,8 @@ class CajaController extends Controller
 
         $egresos = Debitos::whereDate('created_at','=',$fecha)
                             ->where('id_sede','=', $request->session()->get('sede'))
-                            ->select(DB::raw('origen, descripcion, monto'))
+                            ->select(DB::raw('origen, descripcion, monto,tipo'))
+                            ->whereIn('tipo',['CAJA','RETIRO'])
                             ->get();
 
       
