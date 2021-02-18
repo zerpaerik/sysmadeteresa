@@ -327,7 +327,16 @@ class MetodosController extends Controller
 	          $metodos->id_producto =$request->producto;
 			      $metodos->monto =$request->monto;
             $metodos->tipopago =$request->tipopago;
-			      $res = $metodos->save();
+            $res = $metodos->save();
+            
+            if ($request->tipopago == 'EF'){
+              $efectivo = $request->monto;
+              $tarjeta = '0';
+      
+            } else {
+              $efectivo ='0';
+              $tarjeta = $request->monto;
+            }  
 
 
 
@@ -335,7 +344,9 @@ class MetodosController extends Controller
             ->where('id_metodo', $request->id)
             ->update([
               'monto' => $request->monto,
-              'tipo_ingreso' => $request->tipopago
+              'tipo_ingreso' => $request->tipopago,
+              'efectivo' => $efectivo,
+              'tarjeta'  => $tarjeta
             ]);
 
 

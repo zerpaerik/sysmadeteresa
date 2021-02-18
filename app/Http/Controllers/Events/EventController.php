@@ -208,11 +208,22 @@ class EventController extends Controller
               'tipopago' => $request->tipopago
             ]);
 
+            if ($request->tipopago == 'EF'){
+              $efectivo = $request->monto;
+              $tarjeta = '0';
+      
+            } else {
+              $efectivo ='0';
+              $tarjeta = $request->monto;
+            }  
+
     DB::table('creditos')
             ->where('id_event', $request->event)
             ->update([
               'monto' => $request->monto,
-              'tipo_ingreso' => $request->tipopago
+              'tipo_ingreso' => $request->tipopago,
+              'efectivo' => $efectivo,
+              'tarjeta'  => $tarjeta
             ]);        
      
 
