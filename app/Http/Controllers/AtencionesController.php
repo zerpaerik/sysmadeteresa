@@ -1196,6 +1196,15 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abos['servicios'][0]['abono'];
+        $creditos->tarjeta = '0';
+
+      } else {
+        $creditos->tarjeta = $request->monto_abos['servicios'][0]['abono'];
+        $creditos->efectivo = '0';
+      }  
     } else if(isset($request->id_laboratorio)) {
 
       $serv = DB::table('analises')
@@ -1221,6 +1230,15 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abol['laboratorios'][0]['abono'];
+        $creditos->tarjeta = '0';
+
+      } else {
+        $creditos->tarjeta = $request->monto_abol['laboratorios'][0]['abono'];
+        $creditos->efectivo = '0';
+      }  
     } else {
 
       $serv = DB::table('paquetes')
@@ -1246,6 +1264,16 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abop['paquetes'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abop['paquetes'][0]['abono'];
+        $creditos->tarjeta = '0';
+
+      } else {
+        $creditos->tarjeta = $request->monto_abop['paquetes'][0]['abono'];
+        $creditos->efectivo = '0';
+
+      }  
 
       $detailpaq = Atenciones::where('paquete','=',$id);
       $detailpaq->delete();
@@ -1472,6 +1500,15 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abos['servicios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abos['servicios'][0]['abono'];
+        $creditos->tarjeta = '0';
+
+      } else {
+        $creditos->tarjeta = $request->monto_abos['servicios'][0]['abono'];
+        $creditos->efectivo = '0';
+      }  
     } else if(isset($request->id_laboratorio)) {
 
       $serv = DB::table('analises')
@@ -1499,6 +1536,15 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abol['laboratorios'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abol['laboratorios'][0]['abono'];
+        $creditos->tarjeta = '0';
+      } else {
+        $creditos->tarjeta = $request->monto_abol['laboratorios'][0]['abono'];
+        $creditos->efectivo = '0';
+
+      }  
     } else {
 
       $serv = DB::table('paquetes')
@@ -1525,6 +1571,14 @@ $paciente = DB::table('pacientes')
 
       $creditos->monto= $request->monto_abop['paquetes'][0]['abono'];
       $creditos->tipo_ingreso = $request->tipopago;
+
+      if ($request->tipopago == 'EF'){
+        $creditos->efectivo = $request->monto_abop['paquetes'][0]['abono'];
+        $creditos->tarjeta = '0';
+      } else {
+        $creditos->tarjeta = $request->monto_abop['paquetes'][0]['abono'];
+        $creditos->efectivo = '0';
+      }  
 
 
       $detailpaq = Atenciones::where('paquete','=',$id);
