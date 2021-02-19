@@ -52,7 +52,7 @@
 							<div class="col-sm-3">
 								<select id="el3" name="tipopago">
 										<option value="EF">EF</option>
-										<option value="EF">TJ</option>
+										<option value="TJ">TJ</option>
 								</select>
 							</div>	
 
