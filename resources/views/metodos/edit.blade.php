@@ -24,24 +24,7 @@
 				<h4 class="page-header"></h4>
 				<form class="form-horizontal" role="form" method="post" action="metodos/edit">
 					{{ csrf_field() }}
-					<div class="form-group">
-						<label class="col-sm-1 control-label">Pacientes</label>
-						<div class="col-sm-3">
-							<select id="el1" name="paciente">
-								@foreach($pacientes as $pac)
-								@if($paciente == $pac->id)
-								<option value="{{$pac->id}}" selected="selected">
-									{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
-								</option>
-								@else
-								<option value="{{$pac->id}}">
-									{{$pac->nombres}} {{$pac->apellidos}}-{{$pac->dni}}
-								</option>
-								@endif
-								@endforeach
-							</select>
-							
-						</div>
+				
 
 	               <label class="col-sm-1 control-label">Productos</label>
 						<div class="col-sm-3">
