@@ -1275,8 +1275,7 @@ $paciente = DB::table('pacientes')
 
       }  
 
-      $detailpaq = Atenciones::where('paquete','=',$id);
-      $detailpaq->delete();
+      
 
 
       //aqui
@@ -1581,8 +1580,7 @@ $paciente = DB::table('pacientes')
       }  
 
 
-      $detailpaq = Atenciones::where('paquete','=',$id);
-      $detailpaq->delete();
+     
 
       //aqui
 
