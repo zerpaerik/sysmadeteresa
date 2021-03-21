@@ -1279,9 +1279,9 @@ $paciente = DB::table('pacientes')
       $detailpaq->delete();
 
 
-      //
+      //aqui
 
-       if(! is_null($request->id_paquete)){
+       /*if(! is_null($request->id_paquete)){
      foreach ($request->id_paquete as $key => $value) {
 
 
@@ -1459,7 +1459,7 @@ $paciente = DB::table('pacientes')
           }      
 
 }
-}
+}*/
 
       //
 
@@ -1584,9 +1584,9 @@ $paciente = DB::table('pacientes')
       $detailpaq = Atenciones::where('paquete','=',$id);
       $detailpaq->delete();
 
-      //
+      //aqui
 
-      if(! is_null($request->id_paquete)){
+    /*  if(! is_null($request->id_paquete)){
      foreach ($request->id_paquete as $key => $value) {
 
 
@@ -1764,17 +1764,9 @@ $paciente = DB::table('pacientes')
           }      
 
 }
-}
+}*/
 
-      //
-
-
-
-
-
-
-
-       
+    
 
 
 
