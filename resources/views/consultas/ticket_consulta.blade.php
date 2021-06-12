@@ -59,6 +59,11 @@ margin-top: -20px;
 	    <p><strong>DIRECCIÒN: Av Gran Chimú 745 Zarate, San Juan de Lurigancho</strong></p>
 		<p><strong>Teléfono: 7820512</strong></p>
 		<p><strong>WhatsApp: 924 520 026</strong></p>
+		@elseif(Session::get('sedeName') == 'VIDA FELIZ')
+		<p><strong>RUC: 20602415539</strong></p>
+	    <p><strong>DIRECCIÓN: Av Próceres de la independencia 1795 2do piso SJL</strong></p>
+		<p><strong>Teléfono: 01 4596494</strong></p>
+		<p><strong>WhatsApp: 978 216 135</strong></p>
 		@else
 		<p><strong>RUC: 20600971116</strong></p>
 	    <p><strong>DIRECCIÒN: Av Próceres de la independencia 1781 3er piso SJL</strong></p>

@@ -95,6 +95,13 @@
                           <input type="submit" class="btn btn-danger" value="Logout">
                         </form>
                       </a>
+                      <a href="{{route('logout')}}">
+                        <i class="fa fa-power-off"></i>
+                        <form method="POST" action="logout">
+                            {{csrf_field()}}
+                          <input type="submit" class="btn btn-danger" value="Logout">
+                        </form>
+                      </a>
                     </div>
                   </li>
                 </ul>
